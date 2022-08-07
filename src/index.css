@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Cairo Light";
+  src: url("./assets//font/Cairo-Light.ttf");
+}
+
+@font-face {
+  font-family: "Cairo Regular";
+  src: url("./assets//font/Cairo-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Cairo Bold";
+  src: url("./assets//font/Cairo-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Cairo Extra Bold";
+  src: url("./assets//font/Cairo-ExtraBold.ttf");
+}
+
+* {
+  font-family: "Cairo Regular";
+}
