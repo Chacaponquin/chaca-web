@@ -15,6 +15,7 @@ module.exports = {
       },
       backgroundImage: {
         "principal-bg": 'url("./assets/images/bg.svg")',
+        "second-bg": 'url("./assets/images/second-bg.svg")',
       },
     },
   },

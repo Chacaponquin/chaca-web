@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import clsx from "clsx";
+import { DATA_TYPES } from "../helpers/dataTypes";
 
 const titlePipe = (name) => {
   let newName = name.toLowerCase();
@@ -8,6 +9,7 @@ const titlePipe = (name) => {
 };
 
 const Modal = ({
+  datasetID,
   fieldID,
   fieldsOptions = [],
   handleCloseModal,
@@ -33,7 +35,7 @@ const Modal = ({
   };
 
   return (
-    <div className="w-full h-screen fixed bg-black/50 flex justify-center items-center z-50 top-0">
+    <div className="w-full h-screen fixed bg-black/50 flex justify-center items-center z-50 top-0 left-0">
       <div className="flex flex-col bg-white w-[80%] rounded-lg py-5 px-8 h-max-[80%]">
         <div className="flex justify-start w-full">
           <div className="flex flex-col gap-3 h-full overflow-auto w-[25%]">
@@ -63,13 +65,15 @@ const Modal = ({
         <div className="w-full flex justify-end gap-3">
           <button
             className="px-8 text-xl py-3 bg-principal-bg text-white font-fontBold rounded-md"
-            onClick={() =>
-              handleSelectType({
+            onClick={() => {
+              handleSelectType(datasetID, {
                 fieldID: fieldID,
                 parent: parentSelect.name,
                 type: optionSelected,
-              })
-            }
+                dataType: DATA_TYPES.SINGLE_VALUE,
+              });
+              handleCloseModal();
+            }}
           >
             Save
           </button>

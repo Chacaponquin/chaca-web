@@ -1,23 +1,35 @@
 import React from "react";
+import {
+  buttonClass,
+  formInputDivClass,
+  inputClass,
+  labelClass,
+} from "../helpers/classes";
 
 const Login = () => {
   return (
     <div className="w-full h-screen bg-principal-bg bg-cover bg-no-repeat flex justify-center items-center">
-      <div className="p-5 bg-white rounded-lg">
-        <form action="" className="flex flex-col">
-          <div className="flex flex-col">
-            <label htmlFor="">Email:</label>
-            <input type="email" placeholder="Email..." />
+      <div className="py-5 px-8 bg-white rounded-lg">
+        <form action="" className="flex flex-col gap-5 w-80">
+          <div className={formInputDivClass}>
+            <label htmlFor="" className={labelClass}>
+              Email:
+            </label>
+            <input type="email" placeholder="Email..." className={inputClass} />
           </div>
 
-          <div className="flex flex-col">
-            <label htmlFor="">Password:</label>
-            <input type="password" placeholder="Password..." />
+          <div className={formInputDivClass}>
+            <label htmlFor="" className={labelClass}>
+              Password:
+            </label>
+            <input
+              type="password"
+              placeholder="Password..."
+              className={inputClass}
+            />
           </div>
 
-          <button className="px-5 py-2 bg-principal-bg text-white font-fontBold text-3xl rounded-md">
-            Login
-          </button>
+          <button className={buttonClass}>Login</button>
         </form>
       </div>
     </div>

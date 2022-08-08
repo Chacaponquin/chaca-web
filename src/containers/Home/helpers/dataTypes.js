@@ -1,0 +1,5 @@
+export const DATA_TYPES = {
+  ARRAY: "ARRAY",
+  SINGLE_VALUE: "SINGLE_VALUE",
+  MIXED: "MIXED",
+};

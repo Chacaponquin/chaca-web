@@ -1,30 +1,28 @@
 import React, { useState } from "react";
 import { useQuery } from "../../shared/hooks/useQuery";
 import { apiRoutes } from "../../shared/routes/api/apiRoutes";
-import Icon from "supercons";
-import { inputClass } from "./helpers/classes";
-import Modal from "./components/Modal";
 import { dataMap } from "./helpers/dataMap";
 import { usePost } from "../../shared/hooks/usePost";
+import { ToastContainer, toast } from "react-toastify";
+import DatasetForm from "./components/DatasetForm";
+import LoaderContainer from "../../shared/components/Loader/LoaderContainer";
 
 const Home = () => {
   const [fieldsOptions, setFieldsOptions] = useState([]);
-
   const [datasets, setDatasets] = useState([
-    { id: Date.now(), name: "First DataSet" },
+    {
+      id: Date.now(),
+      name: "First DataSet",
+      fields: [
+        { id: 7497433, name: "", type: null, dataType: null },
+        { id: 7497443, name: "", type: null, dataType: null },
+        { id: 749749, name: "", type: null, dataType: null },
+      ],
+      limit: 50,
+    },
   ]);
 
-  const [createDataBody, setCreateDataBody] = useState([]);
-
-  const [openModal, setOpenModal] = useState(null);
-
-  const [fields, setFields] = useState([
-    { id: 7497433, name: "", type: null },
-    { id: 7497443, name: "", type: null },
-    { id: 749749, name: "", type: null },
-  ]);
-
-  const { loading } = useQuery({
+  const { loading: getFieldsLoading } = useQuery({
     url: apiRoutes.GET_FIELDS,
     onCompleted: (data) => setFieldsOptions(dataMap(data.fields)),
     onError: (error) => console.log(error),
@@ -34,146 +32,160 @@ const Home = () => {
     onCompleted: (data) => console.log(data),
     onError: (error) => console.log(error),
     url: apiRoutes.CREATE_DATA,
-    body: createDataBody,
+    body: datasets,
   });
 
-  const handleNewField = () => {
-    setFields([...fields, { id: Date.now() }]);
-  };
+  const handleNewField = (dataSetID) => {
+    const newDatasets = datasets.map((el) => {
+      if (el.id === dataSetID) {
+        return {
+          ...el,
+          fields: [
+            ...el.fields,
+            { id: Date.now(), name: "", type: null, dataType: null },
+          ],
+        };
+      }
 
-  const handleOpenModal = (id) => {
-    setOpenModal(id);
-  };
-
-  const handleChangeFieldName = (id, value) => {
-    const newFields = fields.map((f) => {
-      if (f.id === id) f.name = value;
-
-      return f;
+      return el;
     });
 
-    setFields(newFields);
+    setDatasets(newDatasets);
   };
 
-  const handleCloseModal = () => setOpenModal(null);
+  const handleChangeFieldName = (datasetID, fieldID, value) => {
+    const newDatasets = datasets.map((dat) => {
+      if (dat.id === datasetID) {
+        const newFields = dat.fields.map((f) => {
+          if (f.id === fieldID) f.name = value;
 
-  const handleDeleteField = (id) => {
-    const newFields = fields.filter((el) => el.id !== id);
-    setFields(newFields);
+          return f;
+        });
+
+        dat.fields = newFields;
+      }
+
+      return dat;
+    });
+
+    setDatasets(newDatasets);
   };
 
-  const handleSelectType = ({ fieldID, type, parent }) => {
-    const field = fields.find((el) => el.id === fieldID);
+  const handleDeleteField = (datasetID, fieldID) => {
+    const newDatasets = datasets.map((dat) => {
+      if (dat.id === datasetID) {
+        const newFields = dat.fields.filter((f) => f.id !== fieldID);
 
-    setCreateDataBody([...createDataBody, { field, parent, type }]);
-    setOpenModal(null);
+        dat.fields = newFields;
+      }
+
+      return dat;
+    });
+
+    setDatasets(newDatasets);
+  };
+
+  const handleSelectType = (datasetID, { fieldID, type, parent, dataType }) => {
+    const newDatasets = datasets.map((dat) => {
+      if (dat.id === datasetID) {
+        const newFields = dat.fields.map((f) => {
+          if (f.id === fieldID) {
+            f.type = { parent, type: type };
+            f.dataType = dataType;
+          }
+
+          return f;
+        });
+
+        dat.fields = newFields;
+      }
+
+      return dat;
+    });
+
+    setDatasets(newDatasets);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(createDataBody);
+
+    console.log(datasets);
+
+    try {
+      for (let x = 0; x < datasets.length; x++) {
+        const fields = datasets[x].fields;
+
+        for (let i = 0; i < fields.length; i++) {
+          let error = null;
+
+          if (!fields[i].name)
+            error = "No puede quedarse ningun campo sin nombre";
+          else if (!fields[i].type)
+            error = "Todos los campos deben tener un tipo de dato";
+          else if (
+            fields.find(
+              (el) => el.id !== fields[i].id && fields[i].name === el.name
+            )
+          )
+            error = "No puede haber dos campos con los mismos nombres";
+
+          if (error) throw new Error(error);
+        }
+      }
+
+      createData();
+    } catch (error) {
+      toast.error(error.message, { autoClose: true });
+    }
   };
+
+  if (getFieldsLoading || createDataLoading) {
+    return (
+      <div className="top-0 fixed flex justify-center items-center left-0 h-screen w-full bg-white">
+        <LoaderContainer
+          loading={getFieldsLoading || createDataLoading}
+          className="w-[220px]"
+          children={<div></div>}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="w-full flex flex-col items-center justify-center">
-      {openModal && (
-        <Modal
-          fieldID={openModal}
-          fieldsOptions={fieldsOptions}
-          handleCloseModal={handleCloseModal}
-          handleSelectType={handleSelectType}
-        />
-      )}
+      <ToastContainer />
 
-      <div>
-        <h1 className="font-fontExtraBold text-4xl text-center">Hello There</h1>
-
-        <div></div>
-
+      <div className="flex flex-col items-center gap-3">
+        <h1 className="font-fontExtraBold text-6xl text-center">
+          Let´s Create Your Datasets
+        </h1>
         <div className="flex items-center">
           <div></div>
 
-          <div className="flex flex-col rounded-md bg-white shadow-md py-5 px-7">
-            <div className="w-full flex justify-end py-3">
-              <button>
-                <Icon glyph="view-close" />
-              </button>
-            </div>
-
-            <form
-              action=""
-              className="flex flex-col gap-3"
-              onSubmit={handleSubmit}
-            >
-              {fields.map((field, i) => (
-                <InputDiv
-                  handleOpenModal={handleOpenModal}
-                  key={i}
-                  field={field}
-                  handleChangeFieldName={handleChangeFieldName}
-                  handleDeleteField={handleDeleteField}
-                />
-              ))}
-
-              <AddFieldButton handleNewField={handleNewField} />
-
-              <button
-                className="font-fontBold bg-principalColor py-2 px-4 w-full text-white text-2xl rounded-md"
-                type="submit"
-              >
-                Create
-              </button>
-            </form>
-          </div>
+          {datasets.map((dat, i) => (
+            <DatasetForm
+              {...dat}
+              key={i}
+              handleChangeFieldName={handleChangeFieldName}
+              handleNewField={handleNewField}
+              handleDeleteField={handleDeleteField}
+              handleSelectType={handleSelectType}
+              fieldsOptions={fieldsOptions}
+            />
+          ))}
 
           <div></div>
         </div>
+
+        <div className="flex justify-center">
+          <button
+            className="px-10 py-3 text-2xl font-fontBold bg-principalColor text-white rounded-md w-max"
+            onClick={handleSubmit}
+          >
+            Create
+          </button>
+        </div>
       </div>
-    </div>
-  );
-};
-
-const AddFieldButton = ({ handleNewField }) => {
-  return (
-    <div className="w-full flex justify-end">
-      <button
-        className="text-white px-4 rounded-md py-2 bg-secondColor items-center flex gap-3"
-        onClick={handleNewField}
-        type="button"
-      >
-        <Icon glyph="plus" size={25} />
-        <p className="mb-0 text-base">Add Field</p>
-      </button>
-    </div>
-  );
-};
-
-const InputDiv = ({
-  handleOpenModal,
-  field,
-  handleChangeFieldName,
-  handleDeleteField,
-}) => {
-  return (
-    <div className="flex items-center gap-3">
-      <input
-        type="text"
-        className={inputClass}
-        placeholder="Field"
-        onChange={(e) => handleChangeFieldName(field.id, e.target.value)}
-      />
-
-      <button
-        className="bg-principalColor text-white py-2 px-7 text-base rounded-md"
-        type="button"
-        onClick={() => handleOpenModal(field.id)}
-      >
-        Type
-      </button>
-
-      <button onClick={() => handleDeleteField(field.id)} type="button">
-        <Icon glyph="view-close" size={20} />
-      </button>
     </div>
   );
 };

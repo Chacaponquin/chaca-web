@@ -6,7 +6,7 @@ const LoaderContainer = ({ loading, className, children }) => {
     <>
       {loading ? (
         <div className={className}>
-          <img src={loader} alt="loader" />
+          <img src={loader} alt="loader" className="w-full" />
         </div>
       ) : (
         children

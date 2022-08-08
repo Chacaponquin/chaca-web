@@ -9,7 +9,5 @@ export const dataMap = (fields) => {
     };
   });
 
-  console.log(returnData);
-
   return returnData;
 };

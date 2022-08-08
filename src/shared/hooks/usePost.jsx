@@ -9,7 +9,7 @@ export const usePost = ({ onCompleted, onError, url, body }) => {
     axiosInstance
       .post(url, { data: body })
       .then(({ data }) => onCompleted(data))
-      .catch(onError)
+      .catch((error) => onError(error))
       .finally(() => setLoading(false));
   };
 
