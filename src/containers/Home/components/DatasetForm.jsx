@@ -33,12 +33,6 @@ const DatasetForm = ({
         />
       )}
 
-      <div className="w-full flex justify-end">
-        <button>
-          <Icon glyph="view-close" />
-        </button>
-      </div>
-
       <h1 className="font-fontBold text-3xl text-center mb-5">{name}</h1>
 
       <form action="" className="flex flex-col gap-3">
@@ -53,18 +47,18 @@ const DatasetForm = ({
           />
         ))}
 
-        <AddFieldButton handleNewField={handleNewField} />
+        <AddFieldButton handleNewField={handleNewField} datasetID={id} />
       </form>
     </div>
   );
 };
 
-const AddFieldButton = ({ handleNewField }) => {
+const AddFieldButton = ({ handleNewField, datasetID }) => {
   return (
     <div className="w-full flex justify-end">
       <button
         className="text-white px-4 rounded-md py-2 bg-secondColor items-center flex gap-3"
-        onClick={handleNewField}
+        onClick={() => handleNewField(datasetID)}
         type="button"
       >
         <Icon glyph="plus" size={25} />
@@ -92,13 +86,7 @@ const InputDiv = ({
         }
       />
 
-      <button
-        className="bg-principalColor text-white py-2 px-7 text-base rounded-md"
-        type="button"
-        onClick={() => handleOpenModal(field.id)}
-      >
-        Type
-      </button>
+      <FieldTypeButton field={field} handleOpenModal={handleOpenModal} />
 
       <button
         onClick={() => handleDeleteField(datasetID, field.id)}
@@ -107,6 +95,30 @@ const InputDiv = ({
         <Icon glyph="view-close" size={20} />
       </button>
     </div>
+  );
+};
+
+const FieldTypeButton = ({ field, handleOpenModal }) => {
+  return (
+    <>
+      {field.type ? (
+        <button
+          className="bg-principal-bg text-white py-2 px-7 text-base rounded-md w-full"
+          type="button"
+          onClick={() => handleOpenModal(field.id)}
+        >
+          {field.type.type}
+        </button>
+      ) : (
+        <button
+          className="bg-principalColor text-white py-2 px-7 text-base rounded-md w-full"
+          type="button"
+          onClick={() => handleOpenModal(field.id)}
+        >
+          Type
+        </button>
+      )}
+    </>
   );
 };
 

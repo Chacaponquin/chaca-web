@@ -3,3 +3,8 @@ export const DATA_TYPES = {
   SINGLE_VALUE: "SINGLE_VALUE",
   MIXED: "MIXED",
 };
+
+export const FIELDS_INPUT_TYPES = {
+  SELECT: "SELECT",
+  INPUT: "INPUT",
+};

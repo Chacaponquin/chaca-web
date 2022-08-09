@@ -17,6 +17,10 @@ module.exports = {
         "principal-bg": 'url("./assets/images/bg.svg")',
         "second-bg": 'url("./assets/images/second-bg.svg")',
       },
+      screens: {
+        exsm: { max: "400px" },
+        esm: { max: "640px" },
+      },
     },
   },
   plugins: [],

@@ -5,10 +5,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Login, Home, Api, Docs, SignUp } from "./containers";
 import { appRoutes } from "./shared/routes/app/appRoutes";
 
-import "react-toastify/dist/ReactToastify.css";
-import "./index.css";
 import UserProvider from "./shared/context/UserContext";
 import NoUserRoute from "./shared/routes/protected/NoUserRoute";
+
+import "react-toastify/dist/ReactToastify.css";
+import "./index.css";
+
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

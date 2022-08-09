@@ -3,12 +3,16 @@ import { useQuery } from "../../shared/hooks/useQuery";
 import { apiRoutes } from "../../shared/routes/api/apiRoutes";
 import { dataMap } from "./helpers/dataMap";
 import { usePost } from "../../shared/hooks/usePost";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import DatasetForm from "./components/DatasetForm";
 import LoaderContainer from "../../shared/components/Loader/LoaderContainer";
 
+import "./home.css";
+import CreationModal from "./components/CreationModal";
+
 const Home = () => {
   const [fieldsOptions, setFieldsOptions] = useState([]);
+  const [openCreationModal, setOpenCreationModal] = useState(false);
   const [datasets, setDatasets] = useState([
     {
       id: Date.now(),
@@ -30,7 +34,8 @@ const Home = () => {
 
   const [createData, { loading: createDataLoading }] = usePost({
     onCompleted: (data) => console.log(data),
-    onError: (error) => console.log(error),
+    onError: (error) =>
+      toast.error("Hubo un error en la creacion de los datasets"),
     url: apiRoutes.CREATE_DATA,
     body: datasets,
   });
@@ -85,12 +90,17 @@ const Home = () => {
     setDatasets(newDatasets);
   };
 
-  const handleSelectType = (datasetID, { fieldID, type, parent, dataType }) => {
+  const handleSelectType = (
+    datasetID,
+    { fieldID, type, parent, dataType, args }
+  ) => {
+    console.log({ fieldID, type, parent, dataType, args });
+
     const newDatasets = datasets.map((dat) => {
       if (dat.id === datasetID) {
         const newFields = dat.fields.map((f) => {
           if (f.id === fieldID) {
-            f.type = { parent, type: type };
+            f.type = { parent, type: type, args };
             f.dataType = dataType;
           }
 
@@ -109,8 +119,14 @@ const Home = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(datasets);
+    try {
+      createData();
+    } catch (error) {
+      toast.error("Hubo un error en la creacion de los datasets");
+    }
+  };
 
+  const handleOpenCreationModal = () => {
     try {
       for (let x = 0; x < datasets.length; x++) {
         const fields = datasets[x].fields;
@@ -133,7 +149,7 @@ const Home = () => {
         }
       }
 
-      createData();
+      setOpenCreationModal(true);
     } catch (error) {
       toast.error(error.message, { autoClose: true });
     }
@@ -144,7 +160,7 @@ const Home = () => {
       <div className="top-0 fixed flex justify-center items-center left-0 h-screen w-full bg-white">
         <LoaderContainer
           loading={getFieldsLoading || createDataLoading}
-          className="w-[220px]"
+          className="w-[220px] esm:w-[120px]"
           children={<div></div>}
         />
       </div>
@@ -153,10 +169,10 @@ const Home = () => {
 
   return (
     <div className="w-full flex flex-col items-center justify-center">
-      <ToastContainer />
+      {openCreationModal && <CreationModal handleSubmit={handleSubmit} />}
 
       <div className="flex flex-col items-center gap-3">
-        <h1 className="font-fontExtraBold text-6xl text-center">
+        <h1 className=" hidden font-fontExtraBold text-6xl text-center">
           Let´s Create Your Datasets
         </h1>
         <div className="flex items-center">
@@ -180,7 +196,7 @@ const Home = () => {
         <div className="flex justify-center">
           <button
             className="px-10 py-3 text-2xl font-fontBold bg-principalColor text-white rounded-md w-max"
-            onClick={handleSubmit}
+            onClick={handleOpenCreationModal}
           >
             Create
           </button>
