@@ -8,7 +8,7 @@ import DatasetForm from "./components/DatasetForm";
 import LoaderContainer from "../../shared/components/Loader/LoaderContainer";
 
 import "./home.css";
-import CreationModal from "./components/CreationModal";
+import CreationModal from "./components/CreationModal/CreationModal";
 
 const Home = () => {
   const [fieldsOptions, setFieldsOptions] = useState([]);
@@ -37,7 +37,7 @@ const Home = () => {
     onError: (error) =>
       toast.error("Hubo un error en la creacion de los datasets"),
     url: apiRoutes.CREATE_DATA,
-    body: datasets,
+    body: { datasets: datasets, config: {} },
   });
 
   const handleNewField = (dataSetID) => {
@@ -94,20 +94,31 @@ const Home = () => {
     datasetID,
     { fieldID, type, parent, dataType, args }
   ) => {
-    console.log({ fieldID, type, parent, dataType, args });
-
     const newDatasets = datasets.map((dat) => {
       if (dat.id === datasetID) {
         const newFields = dat.fields.map((f) => {
           if (f.id === fieldID) {
-            f.type = { parent, type: type, args };
+            f.type = { parent, type: type };
             f.dataType = dataType;
+            f.args = args;
           }
 
           return f;
         });
 
         dat.fields = newFields;
+      }
+
+      return dat;
+    });
+
+    setDatasets(newDatasets);
+  };
+
+  const handleChangeLimit = (datasetID, value) => {
+    const newDatasets = datasets.map((dat) => {
+      if (dat.id === datasetID) {
+        dat.limit = value;
       }
 
       return dat;
@@ -186,6 +197,7 @@ const Home = () => {
               handleNewField={handleNewField}
               handleDeleteField={handleDeleteField}
               handleSelectType={handleSelectType}
+              handleChangeLimit={handleChangeLimit}
               fieldsOptions={fieldsOptions}
             />
           ))}

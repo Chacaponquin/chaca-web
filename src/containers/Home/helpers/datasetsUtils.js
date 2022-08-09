@@ -6,5 +6,6 @@ export const DATA_TYPES = {
 
 export const FIELDS_INPUT_TYPES = {
   SELECT: "SELECT",
-  INPUT: "INPUT",
+  NUMBER: "NUMBER",
+  TEXT: "TEXT",
 };

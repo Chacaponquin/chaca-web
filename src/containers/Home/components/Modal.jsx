@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import clsx from "clsx";
 import { DATA_TYPES, FIELDS_INPUT_TYPES } from "../helpers/datasetsUtils";
 import { Dropdown } from "primereact/dropdown";
+import { InputNumber } from "primereact/inputnumber";
 
 const titlePipe = (name) => {
   let newName = name.toLowerCase();
@@ -145,7 +146,7 @@ const FieldOptionDiv = ({
           if (arg.inputType === FIELDS_INPUT_TYPES.SELECT)
             return (
               <div className="flex items-center gap-2" key={i}>
-                <p className="mb-0 font-fontBold">{titlePipe(arg.argument)}</p>
+                <p className="mb-0 font-fontBold">{titlePipe(arg.argument)}:</p>
 
                 <Dropdown
                   options={arg.selectValues}
@@ -157,6 +158,24 @@ const FieldOptionDiv = ({
                     });
                   }}
                 ></Dropdown>
+              </div>
+            );
+          else if (arg.inputType === FIELDS_INPUT_TYPES.NUMBER)
+            return (
+              <div className="flex items-center gap-2" key={i}>
+                <p className="mb-0 font-fontBold">{titlePipe(arg.argument)}:</p>
+
+                <InputNumber
+                  value={25}
+                  onValueChange={(e) => {
+                    handleChangeArguments({
+                      value: e.value,
+                      field: arg.argument,
+                    });
+                  }}
+                  min={1}
+                  max={100}
+                />
               </div>
             );
           else return <div></div>;

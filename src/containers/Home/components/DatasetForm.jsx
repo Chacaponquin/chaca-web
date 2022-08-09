@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import Icon from "supercons";
 import { inputClass } from "../helpers/classes";
+import { InputNumber } from "primereact/inputnumber";
 import Modal from "./Modal";
 
 const DatasetForm = ({
   id,
   name,
   fields,
+  limit,
   handleChangeFieldName,
   handleDeleteField,
   handleNewField,
   handleSelectType,
+  handleChangeLimit,
   fieldsOptions,
 }) => {
   const [openModal, setOpenModal] = useState(null);
@@ -34,6 +37,16 @@ const DatasetForm = ({
       )}
 
       <h1 className="font-fontBold text-3xl text-center mb-5">{name}</h1>
+
+      <div className="flex items-center gap-3 justify-center mb-3">
+        <p className="mb-0 text-lg font-fontBold">Cant:</p>
+        <InputNumber
+          value={limit}
+          onValueChange={(e) => handleChangeLimit(id, e.value)}
+          min={1}
+          max={100}
+        />
+      </div>
 
       <form action="" className="flex flex-col gap-3">
         {fields.map((field, i) => (

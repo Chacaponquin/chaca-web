@@ -5,7 +5,7 @@ export const dataMap = (fields) => {
     return {
       id: Date.now() + i,
       name: el,
-      fields: [...Object.values(fields[el])],
+      fields: fields[el],
     };
   });
 
