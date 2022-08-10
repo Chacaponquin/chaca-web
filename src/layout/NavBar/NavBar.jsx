@@ -12,19 +12,19 @@ const navBarOptions = [
 
 const NavBar = () => {
   return (
-    <div className="w-full p-4 px-10 mb-7">
-      <div className="grid grid-cols-3 w-full shadow-lg rounded-md p-5">
-        <div></div>
+    <div className="w-full p-4 px-10 mb-4">
+      <div className="flex w-full shadow-lg rounded-md p-5">
+        <div className="w-[20%] esm:hidden"></div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex justify-center items-center gap-3 w-[60%] esm:w-[100%]">
           {navBarOptions.map((el, i) => (
             <NavBarOption key={i} {...el} />
           ))}
         </div>
 
-        <div className="flex justify-end">
+        <div className="flex justify-end w-[20%] esm:hidden">
           <Link
-            className="px-7 py-2 font-fontBold text-secondColor shadow-md text-lg rounded-md"
+            className="px-7 py-2 font-fontBold text-secondColor shadow-md text-lg rounded-md lg:block hidden"
             to={appRoutes.AUTH_ROUTES.LOGIN}
           >
             Get Full Access
@@ -48,7 +48,7 @@ const NavBarOption = ({ icon, label, url }) => {
   return (
     <NavLink className={optionClass} to={url}>
       <Icon glyph={icon} />
-      <p className="mb-0 font-fontBold text-base pointer-events-none">
+      <p className="mb-0 font-fontBold text-base pointer-events-none lg:block hidden">
         {label}
       </p>
     </NavLink>

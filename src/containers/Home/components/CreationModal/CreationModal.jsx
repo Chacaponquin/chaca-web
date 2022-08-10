@@ -3,8 +3,9 @@ import Icon from "supercons";
 import CSVIcon from "./assets/CSVIcon";
 import JSONIcon from "./assets/JSONIcon";
 import clsx from "clsx";
+import OptionsButton from "../OptionsButton";
 
-const CreationModal = ({ handleSubmit }) => {
+const CreationModal = ({ handleSubmit, handleCloseCreateModal }) => {
   const formatOptions = [
     { format: "JSON", icon: JSONIcon },
     { format: "CSV", icon: CSVIcon },
@@ -26,33 +27,31 @@ const CreationModal = ({ handleSubmit }) => {
     );
   };
   return (
-    <div className="fixed bg-black/50 w-full h-screen top-0 left-0 flex items-center justify-center">
-      <div className="bg-white p-4 rounded-md w-[80%] h-[80%] flex flex-col gap-3">
+    <div className="fixed bg-black/50 w-full h-screen top-0 left-0 flex items-center justify-center z-50">
+      <div className="bg-white py-6 px-7 rounded-md w-[80%] h-[80%] flex flex-col gap-3">
         <div className="flex items-center gap-5 justify-end">
           {formatOptions.map((el, i) => (
-            <div
+            <button
               key={i}
               className={typeButton(el.format)}
               onClick={() => handleSelectFormat(el.format)}
             >
               <el.icon />
               <p className="mb-0 text-base">{el.format}</p>
-            </div>
+            </button>
           ))}
 
-          <div className={typeButton("Buenas")}>
-            <Icon glyph="private-outline" />
-          </div>
-        </div>
-
-        <div className="flex justify-end w-full">
-          <button
-            className="px-5 py-2 font-fontBold text-xl bg-principal-bg text-white"
-            onClick={handleSubmit}
-          >
-            Create
+          <button className={typeButton("Buenas")} disabled={true}>
+            <Icon glyph="private-outline" size={25} />
+            <p className="text-base mb-0">Code</p>
           </button>
         </div>
+
+        <OptionsButton
+          handleCancel={handleCloseCreateModal}
+          handleSubmit={handleSubmit}
+          submitText={"Create"}
+        />
       </div>
     </div>
   );

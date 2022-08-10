@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import { useQuery } from "../../shared/hooks/useQuery";
 import { apiRoutes } from "../../shared/routes/api/apiRoutes";
 import { dataMap } from "./helpers/dataMap";
@@ -6,25 +6,22 @@ import { usePost } from "../../shared/hooks/usePost";
 import { toast } from "react-toastify";
 import DatasetForm from "./components/DatasetForm";
 import LoaderContainer from "../../shared/components/Loader/LoaderContainer";
+import Icon from "supercons";
+import clsx from "clsx";
 
 import "./home.css";
 import CreationModal from "./components/CreationModal/CreationModal";
+import { datasetsReducer } from "./helpers/reducer/datasetsReducer";
+import { createInitialDataset } from "./helpers/reducer/createInitialFunctions";
+import { DATASETS_ACTIONS } from "./helpers/reducer/ActionTypes";
 
 const Home = () => {
+  const [datasets, dispatch] = useReducer(datasetsReducer, [
+    createInitialDataset(0),
+  ]);
+
   const [fieldsOptions, setFieldsOptions] = useState([]);
   const [openCreationModal, setOpenCreationModal] = useState(false);
-  const [datasets, setDatasets] = useState([
-    {
-      id: Date.now(),
-      name: "First DataSet",
-      fields: [
-        { id: 7497433, name: "", type: null, dataType: null },
-        { id: 7497443, name: "", type: null, dataType: null },
-        { id: 749749, name: "", type: null, dataType: null },
-      ],
-      limit: 50,
-    },
-  ]);
 
   const { loading: getFieldsLoading } = useQuery({
     url: apiRoutes.GET_FIELDS,
@@ -40,101 +37,13 @@ const Home = () => {
     body: { datasets: datasets, config: {} },
   });
 
-  const handleNewField = (dataSetID) => {
-    const newDatasets = datasets.map((el) => {
-      if (el.id === dataSetID) {
-        return {
-          ...el,
-          fields: [
-            ...el.fields,
-            { id: Date.now(), name: "", type: null, dataType: null },
-          ],
-        };
-      }
-
-      return el;
-    });
-
-    setDatasets(newDatasets);
-  };
-
-  const handleChangeFieldName = (datasetID, fieldID, value) => {
-    const newDatasets = datasets.map((dat) => {
-      if (dat.id === datasetID) {
-        const newFields = dat.fields.map((f) => {
-          if (f.id === fieldID) f.name = value;
-
-          return f;
-        });
-
-        dat.fields = newFields;
-      }
-
-      return dat;
-    });
-
-    setDatasets(newDatasets);
-  };
-
-  const handleDeleteField = (datasetID, fieldID) => {
-    const newDatasets = datasets.map((dat) => {
-      if (dat.id === datasetID) {
-        const newFields = dat.fields.filter((f) => f.id !== fieldID);
-
-        dat.fields = newFields;
-      }
-
-      return dat;
-    });
-
-    setDatasets(newDatasets);
-  };
-
-  const handleSelectType = (
-    datasetID,
-    { fieldID, type, parent, dataType, args }
-  ) => {
-    const newDatasets = datasets.map((dat) => {
-      if (dat.id === datasetID) {
-        const newFields = dat.fields.map((f) => {
-          if (f.id === fieldID) {
-            f.type = { parent, type: type };
-            f.dataType = dataType;
-            f.args = args;
-          }
-
-          return f;
-        });
-
-        dat.fields = newFields;
-      }
-
-      return dat;
-    });
-
-    setDatasets(newDatasets);
-  };
-
-  const handleChangeLimit = (datasetID, value) => {
-    const newDatasets = datasets.map((dat) => {
-      if (dat.id === datasetID) {
-        dat.limit = value;
-      }
-
-      return dat;
-    });
-
-    setDatasets(newDatasets);
+  const handleCloseCreateModal = () => {
+    setOpenCreationModal(false);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    try {
-      createData();
-    } catch (error) {
-      toast.error("Hubo un error en la creacion de los datasets");
-    }
+    createData();
   };
 
   const handleOpenCreationModal = () => {
@@ -179,41 +88,67 @@ const Home = () => {
   }
 
   return (
-    <div className="w-full flex flex-col items-center justify-center">
-      {openCreationModal && <CreationModal handleSubmit={handleSubmit} />}
+    <div className="w-full flex flex-col items-center justify-center gap-3">
+      {openCreationModal && (
+        <CreationModal
+          handleSubmit={handleSubmit}
+          handleCloseCreateModal={handleCloseCreateModal}
+        />
+      )}
 
-      <div className="flex flex-col items-center gap-3">
-        <h1 className=" hidden font-fontExtraBold text-6xl text-center">
-          Let´s Create Your Datasets
-        </h1>
+      <DatasetsOptions
+        handleOpenCreationModal={handleOpenCreationModal}
+        isCreateAvailable={datasets.length < 3}
+        dispatch={dispatch}
+      />
+
+      <div className="flex flex-col items-center gap-3 w-full">
         <div className="flex items-center">
-          <div></div>
-
-          {datasets.map((dat, i) => (
-            <DatasetForm
-              {...dat}
-              key={i}
-              handleChangeFieldName={handleChangeFieldName}
-              handleNewField={handleNewField}
-              handleDeleteField={handleDeleteField}
-              handleSelectType={handleSelectType}
-              handleChangeLimit={handleChangeLimit}
-              fieldsOptions={fieldsOptions}
-            />
-          ))}
-
-          <div></div>
-        </div>
-
-        <div className="flex justify-center">
-          <button
-            className="px-10 py-3 text-2xl font-fontBold bg-principalColor text-white rounded-md w-max"
-            onClick={handleOpenCreationModal}
-          >
-            Create
-          </button>
+          <div className="flex gap-7 flex-wrap w-full justify-center px-5">
+            {datasets.map((dat, i) => (
+              <DatasetForm
+                {...dat}
+                key={i}
+                dispatch={dispatch}
+                fieldsOptions={fieldsOptions}
+              />
+            ))}
+          </div>
         </div>
       </div>
+    </div>
+  );
+};
+
+const DatasetsOptions = ({
+  handleOpenCreationModal,
+  dispatch,
+  isCreateAvailable,
+}) => {
+  const addDatasetButtonClass = clsx(
+    "px-10 py-3 text-2xl font-fontBold rounded-md w-max flex gap-3",
+    { "bg-slate-200 text-black": !isCreateAvailable },
+    { "bg-secondColor text-white": isCreateAvailable }
+  );
+
+  return (
+    <div className="flex justify-center gap-4 w-full">
+      <button
+        className="px-10 py-3 text-2xl font-fontBold bg-principalColor text-white rounded-md w-max"
+        onClick={handleOpenCreationModal}
+      >
+        Create
+      </button>
+
+      <button
+        className={addDatasetButtonClass}
+        onClick={() => dispatch({ type: DATASETS_ACTIONS.CREATE_NEW_DATASET })}
+        disabled={isCreateAvailable ? false : true}
+      >
+        {isCreateAvailable ? <Icon glyph="plus" /> : <Icon glyph="private" />}
+
+        <p className="mb-0 font-fontBold">Add Dataset</p>
+      </button>
     </div>
   );
 };

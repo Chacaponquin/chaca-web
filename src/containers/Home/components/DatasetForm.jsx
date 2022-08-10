@@ -2,20 +2,11 @@ import React, { useState } from "react";
 import Icon from "supercons";
 import { inputClass } from "../helpers/classes";
 import { InputNumber } from "primereact/inputnumber";
-import Modal from "./Modal";
+import Modal from "./TypeModal/Modal";
+import { DATASETS_ACTIONS } from "../helpers/reducer/ActionTypes";
+import { Checkbox } from "primereact/checkbox";
 
-const DatasetForm = ({
-  id,
-  name,
-  fields,
-  limit,
-  handleChangeFieldName,
-  handleDeleteField,
-  handleNewField,
-  handleSelectType,
-  handleChangeLimit,
-  fieldsOptions,
-}) => {
+const DatasetForm = ({ id, name, fields, limit, fieldsOptions, dispatch }) => {
   const [openModal, setOpenModal] = useState(null);
 
   const handleOpenModal = (id) => {
@@ -25,14 +16,14 @@ const DatasetForm = ({
   const handleCloseModal = () => setOpenModal(null);
 
   return (
-    <div className="flex flex-col rounded-md bg-white shadow-md py-5 px-7">
+    <div className="flex flex-col rounded-md bg-white shadow-md py-5 px-7 h-max">
       {openModal && (
         <Modal
           datasetID={id}
           fieldID={openModal}
           fieldsOptions={fieldsOptions}
           handleCloseModal={handleCloseModal}
-          handleSelectType={handleSelectType}
+          dispatch={dispatch}
         />
       )}
 
@@ -42,7 +33,15 @@ const DatasetForm = ({
         <p className="mb-0 text-lg font-fontBold">Cant:</p>
         <InputNumber
           value={limit}
-          onValueChange={(e) => handleChangeLimit(id, e.value)}
+          onValueChange={(e) => {
+            dispatch({
+              type: DATASETS_ACTIONS.CHANGE_DATASET_LIMIT,
+              payload: {
+                datasetID: id,
+                value: e.value,
+              },
+            });
+          }}
           min={1}
           max={100}
         />
@@ -55,23 +54,27 @@ const DatasetForm = ({
             handleOpenModal={handleOpenModal}
             key={i}
             field={field}
-            handleChangeFieldName={handleChangeFieldName}
-            handleDeleteField={handleDeleteField}
+            dispatch={dispatch}
           />
         ))}
 
-        <AddFieldButton handleNewField={handleNewField} datasetID={id} />
+        <AddFieldButton dispatch={dispatch} datasetID={id} />
       </form>
     </div>
   );
 };
 
-const AddFieldButton = ({ handleNewField, datasetID }) => {
+const AddFieldButton = ({ dispatch, datasetID }) => {
   return (
     <div className="w-full flex justify-end">
       <button
         className="text-white px-4 rounded-md py-2 bg-secondColor items-center flex gap-3"
-        onClick={() => handleNewField(datasetID)}
+        onClick={() =>
+          dispatch({
+            type: DATASETS_ACTIONS.ADD_NEW_FIELD,
+            payload: { datasetID },
+          })
+        }
         type="button"
       >
         <Icon glyph="plus" size={25} />
@@ -81,28 +84,48 @@ const AddFieldButton = ({ handleNewField, datasetID }) => {
   );
 };
 
-const InputDiv = ({
-  handleOpenModal,
-  field,
-  handleChangeFieldName,
-  handleDeleteField,
-  datasetID,
-}) => {
+const InputDiv = ({ handleOpenModal, field, datasetID, dispatch }) => {
   return (
     <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2">
+        <Checkbox
+          onChange={(e) =>
+            dispatch({
+              type: DATASETS_ACTIONS.CHANGE_POSIBLE_NULL,
+              payload: {
+                datasetID,
+                fieldID: field.id,
+                value: e.checked,
+              },
+            })
+          }
+          value={field.isPosibleNull}
+          checked={field.isPosibleNull}
+        />
+        <p className="mb-0 text-sm">Posible Null</p>
+      </div>
+
       <input
         type="text"
         className={inputClass}
         placeholder="Field"
         onChange={(e) =>
-          handleChangeFieldName(datasetID, field.id, e.target.value)
+          dispatch({
+            type: DATASETS_ACTIONS.CHANGE_FIELD_NAME,
+            payload: { datasetID, value: e.target.value, fieldID: field.id },
+          })
         }
       />
 
       <FieldTypeButton field={field} handleOpenModal={handleOpenModal} />
 
       <button
-        onClick={() => handleDeleteField(datasetID, field.id)}
+        onClick={() =>
+          dispatch({
+            type: DATASETS_ACTIONS.DELETE_FIELD,
+            payload: { datasetID, fieldID: field.id },
+          })
+        }
         type="button"
       >
         <Icon glyph="view-close" size={20} />
