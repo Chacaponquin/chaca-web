@@ -61,14 +61,14 @@ const Modal = ({
 
   return (
     <div className="w-full h-screen fixed bg-black/50 flex justify-center items-center z-50 top-0 left-0">
-      <div className="flex flex-col bg-white w-[90%] rounded-lg py-5 px-8 sm:h-[80%] h-[90%]">
+      <div className="flex flex-col bg-white w-[95%] rounded-lg py-5 px-8 sm:h-[85%] h-[90%]">
         <DataTypeSelect
           selectedDataType={typeInfo.dataType}
           handleChangeDataType={handleChangeDataType}
         />
 
         <div className="flex sm:flex-row flex-col gap-3 justify-start w-full h-[75%]">
-          <div className="flex sm:flex-col gap-3 sm:h-full overflow-auto sm:w-[25%] w-full">
+          <div className="flex sm:flex-col gap-3 sm:h-full overflow-auto sm:w-[25%] w-full sm:py-0 py-4">
             {fieldsOptions.map((el, i) => (
               <ParentDiv
                 key={i}
@@ -79,7 +79,7 @@ const Modal = ({
             ))}
           </div>
 
-          <div className="sm:h-full grid xl:grid-cols-3 grid-cols-2 esm:grid-cols-1 overflow-auto gap-3 w-full sm:w-[75%]">
+          <div className="sm:h-full grid xl:grid-cols-3 grid-cols-2 esm:grid-cols-1 auto-rows-max overflow-auto gap-3 w-full sm:w-[75%]">
             {typeInfo.parent &&
               typeInfo.parent.fields.map((el, i) => (
                 <FieldOptionDiv

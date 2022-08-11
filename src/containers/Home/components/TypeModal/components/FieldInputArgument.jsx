@@ -19,8 +19,8 @@ const FieldInputArgument = ({
 
   if (arg.inputType === FIELDS_INPUT_TYPES.SELECT)
     return (
-      <div className="flex items-center gap-2">
-        <p className="mb-0 font-fontBold">{titlePipe(arg.argument)}:</p>
+      <div className="grid grid-rows-1 auto-cols-auto items-center gap-1 ">
+        <p className="mb-0 font-fontBold w-max">{titlePipe(arg.argument)}:</p>
 
         <Dropdown
           options={arg.selectValues}
@@ -37,7 +37,7 @@ const FieldInputArgument = ({
     );
   else if (arg.inputType === FIELDS_INPUT_TYPES.NUMBER)
     return (
-      <div className="flex items-center gap-2">
+      <div className="grid grid-rows-1 auto-cols-auto items-center gap-1">
         <p className="mb-0 font-fontBold">{titlePipe(arg.argument)}:</p>
 
         <InputNumber

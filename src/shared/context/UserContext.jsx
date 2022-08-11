@@ -22,7 +22,9 @@ const UserProvider = ({ children }) => {
       console.log(data);
       setActualUser(data.user);
     },
-    onError: (error) => {},
+    onError: (error) => {
+      console.log(error);
+    },
   });
 
   const data = { handleSignIn, actualUser, loading };

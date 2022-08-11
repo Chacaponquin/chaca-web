@@ -5,3 +5,19 @@
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
   padding: 0.4rem 1rem !important;
 }
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #a29bfe;
+  border-radius: 999px;
+}

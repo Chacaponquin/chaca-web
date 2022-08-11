@@ -5,7 +5,7 @@ import { DATA_TYPES } from "../../../helpers/datasetsUtils";
 const DataTypeSelect = ({ selectedDataType, handleChangeDataType }) => {
   const divClass = (dat) =>
     clsx(
-      "px-12 py-2 text-2xl rounded-2xl font-fontExtraBold",
+      "px-12 py-2 text-2xl rounded-2xl font-fontExtraBold esm:px-7 esm:text-lg",
       { "bg-secondColor text-white": selectedDataType === dat },
       { "bg-slate-200 text-black": !(selectedDataType === dat) }
     );

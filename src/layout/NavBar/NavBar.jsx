@@ -16,8 +16,8 @@ const NavBar = () => {
   const { actualUser } = useContext(UserContext);
 
   return (
-    <div className="w-full p-4 px-10 mb-4">
-      <div className="flex w-full shadow-lg rounded-md p-5">
+    <div className="w-full p-4 px-8 mb-4 esm:px-3">
+      <div className="flex w-full shadow-lg rounded-md px-5 py-3">
         <div className="w-[25%] esm:hidden"></div>
 
         <div className="flex justify-center items-center gap-3 w-[50%] esm:w-[100%]">

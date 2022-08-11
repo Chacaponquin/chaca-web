@@ -130,15 +130,15 @@ const DatasetsOptions = ({
   isCreateAvailable,
 }) => {
   const addDatasetButtonClass = clsx(
-    "px-10 py-3 text-2xl font-fontBold rounded-md w-max flex gap-3",
+    "px-10 py-3 text-2xl font-fontBold rounded-md w-max flex gap-3 esm:text-lg items-center esm:px-7 esm:py-2",
     { "bg-slate-200 text-black": !isCreateAvailable },
     { "bg-secondColor text-white": isCreateAvailable }
   );
 
   return (
-    <div className="flex justify-center gap-4 w-full">
+    <div className="flex justify-center gap-4 w-full flex-wrap">
       <button
-        className="px-10 py-3 text-2xl font-fontBold bg-principalColor text-white rounded-md w-max"
+        className="px-10 py-3 text-2xl font-fontBold bg-principalColor text-white rounded-md w-max esm:text-lg esm:px-7 esm:py-2"
         onClick={handleOpenCreationModal}
       >
         Create
