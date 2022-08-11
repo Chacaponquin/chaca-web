@@ -9,3 +9,8 @@ export const FIELDS_INPUT_TYPES = {
   NUMBER: "NUMBER",
   TEXT: "TEXT",
 };
+
+export const FILE_TYPE = {
+  JSON: "JSON",
+  CSV: "CSV",
+};

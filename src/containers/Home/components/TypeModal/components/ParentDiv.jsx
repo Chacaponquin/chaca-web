@@ -1,10 +1,18 @@
 import React from "react";
 import { titlePipe } from "../helpers/titlePipe";
+import clsx from "clsx";
 
-const ParentDiv = ({ parentClass, parent, handleChangeParentSelected }) => {
+const ParentDiv = ({ parent, handleChangeParentSelected, isSelected }) => {
+  const parentClass = () => {
+    return clsx("px-5 py-2 text-xl rounded-md text-center", {
+      "bg-principalColor text-white ": isSelected,
+      "bg-slate-100 text-black": !isSelected,
+    });
+  };
+
   return (
     <div
-      className={parentClass(parent.id)}
+      className={parentClass()}
       onClick={() => handleChangeParentSelected(parent)}
     >
       <p className="mb-0 capitalize font-fontBold pointer-events-none">

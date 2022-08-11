@@ -5,6 +5,7 @@ import { InputNumber } from "primereact/inputnumber";
 import Modal from "./TypeModal/Modal";
 import { DATASETS_ACTIONS } from "../helpers/reducer/ActionTypes";
 import { Checkbox } from "primereact/checkbox";
+import { DATA_TYPES } from "../helpers/datasetsUtils";
 
 const DatasetForm = ({ id, name, fields, limit, fieldsOptions, dispatch }) => {
   const [openModal, setOpenModal] = useState(null);
@@ -23,7 +24,6 @@ const DatasetForm = ({ id, name, fields, limit, fieldsOptions, dispatch }) => {
           fieldID={openModal}
           fieldsOptions={fieldsOptions}
           handleCloseModal={handleCloseModal}
-          dispatch={dispatch}
         />
       )}
 
@@ -144,6 +144,7 @@ const FieldTypeButton = ({ field, handleOpenModal }) => {
           onClick={() => handleOpenModal(field.id)}
         >
           {field.type.type}
+          {field.dataType === DATA_TYPES.ARRAY && "[ ]"}
         </button>
       ) : (
         <button

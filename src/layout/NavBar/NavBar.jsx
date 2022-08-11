@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Icon from "supercons";
 import { NavLink, Link } from "react-router-dom";
 import clsx from "clsx";
 import { appRoutes } from "../../shared/routes/app/appRoutes";
+import { UserContext } from "../../shared/context/UserContext";
+import avatar from "../../assets/images/avatar.jpg";
 
 const navBarOptions = [
   { icon: "home", label: "Home", url: appRoutes.HOME },
@@ -11,24 +13,34 @@ const navBarOptions = [
 ];
 
 const NavBar = () => {
+  const { actualUser } = useContext(UserContext);
+
   return (
     <div className="w-full p-4 px-10 mb-4">
       <div className="flex w-full shadow-lg rounded-md p-5">
-        <div className="w-[20%] esm:hidden"></div>
+        <div className="w-[25%] esm:hidden"></div>
 
-        <div className="flex justify-center items-center gap-3 w-[60%] esm:w-[100%]">
+        <div className="flex justify-center items-center gap-3 w-[50%] esm:w-[100%]">
           {navBarOptions.map((el, i) => (
             <NavBarOption key={i} {...el} />
           ))}
         </div>
 
-        <div className="flex justify-end w-[20%] esm:hidden">
+        <div className="flex justify-end w-[25%] esm:hidden items-center gap-3">
           <Link
             className="px-7 py-2 font-fontBold text-secondColor shadow-md text-lg rounded-md lg:block hidden"
             to={appRoutes.AUTH_ROUTES.LOGIN}
           >
             Get Full Access
           </Link>
+
+          {actualUser && (
+            <img
+              src={avatar}
+              alt="avatar"
+              className="object-top object-cover rounded-full w-[50px] h-[50px]"
+            />
+          )}
         </div>
       </div>
     </div>

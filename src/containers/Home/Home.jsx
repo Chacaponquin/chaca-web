@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useQuery } from "../../shared/hooks/useQuery";
 import { apiRoutes } from "../../shared/routes/api/apiRoutes";
 import { dataMap } from "./helpers/dataMap";
@@ -11,30 +11,33 @@ import clsx from "clsx";
 
 import "./home.css";
 import CreationModal from "./components/CreationModal/CreationModal";
-import { datasetsReducer } from "./helpers/reducer/datasetsReducer";
-import { createInitialDataset } from "./helpers/reducer/createInitialFunctions";
+import { DatasetsContext } from "../../shared/context/DatasetsContext";
 import { DATASETS_ACTIONS } from "./helpers/reducer/ActionTypes";
 
 const Home = () => {
-  const [datasets, dispatch] = useReducer(datasetsReducer, [
-    createInitialDataset(0),
-  ]);
+  const { datasets, dispatch, config } = useContext(DatasetsContext);
 
   const [fieldsOptions, setFieldsOptions] = useState([]);
   const [openCreationModal, setOpenCreationModal] = useState(false);
 
   const { loading: getFieldsLoading } = useQuery({
     url: apiRoutes.GET_FIELDS,
-    onCompleted: (data) => setFieldsOptions(dataMap(data.fields)),
+    onCompleted: (data) => {
+      setFieldsOptions(dataMap(data.fields));
+    },
     onError: (error) => console.log(error),
   });
 
   const [createData, { loading: createDataLoading }] = usePost({
-    onCompleted: (data) => console.log(data),
-    onError: (error) =>
-      toast.error("Hubo un error en la creacion de los datasets"),
+    onCompleted: (data) => {
+      window.open(`${process.env.REACT_APP_API_URL}/${data.downUrl}`);
+    },
+    onError: (error) => {
+      console.log(error);
+      toast.error("Hubo un error en la creacion de los datasets");
+    },
     url: apiRoutes.CREATE_DATA,
-    body: { datasets: datasets, config: {} },
+    body: { datasets: datasets, config },
   });
 
   const handleCloseCreateModal = () => {
@@ -75,11 +78,11 @@ const Home = () => {
     }
   };
 
-  if (getFieldsLoading || createDataLoading) {
+  if (getFieldsLoading) {
     return (
       <div className="top-0 fixed flex justify-center items-center left-0 h-screen w-full bg-white">
         <LoaderContainer
-          loading={getFieldsLoading || createDataLoading}
+          loading={getFieldsLoading}
           className="w-[220px] esm:w-[120px]"
           children={<div></div>}
         />
@@ -93,6 +96,7 @@ const Home = () => {
         <CreationModal
           handleSubmit={handleSubmit}
           handleCloseCreateModal={handleCloseCreateModal}
+          loading={createDataLoading}
         />
       )}
 

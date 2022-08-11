@@ -1,19 +1,20 @@
-import React, { useState } from "react";
-import clsx from "clsx";
+import React, { useContext, useState } from "react";
 import { DATA_TYPES } from "../../helpers/datasetsUtils";
 import { DATASETS_ACTIONS } from "../../helpers/reducer/ActionTypes";
 import OptionsButton from "../OptionsButton";
 import FieldOptionDiv from "./components/FieldOptionDiv";
 import ParentDiv from "./components/ParentDiv";
 import DataTypeSelect from "./components/DataTypeSelect";
+import { DatasetsContext } from "../../../../shared/context/DatasetsContext";
 
 const Modal = ({
   datasetID,
   fieldID,
   fieldsOptions = [],
-  dispatch,
   handleCloseModal,
 }) => {
+  const { dispatch } = useContext(DatasetsContext);
+
   const [typeInfo, setTypeInfo] = useState({
     fieldID: fieldID,
     parent: fieldsOptions[0],
@@ -58,16 +59,9 @@ const Modal = ({
     setTypeInfo({ ...typeInfo, parent, type: parent.fields[0], args: [] });
   };
 
-  const parentClass = (id) => {
-    return clsx("px-5 py-2 text-xl rounded-md text-center", {
-      "bg-principalColor text-white ": id === typeInfo.parent.id,
-      "bg-slate-100 text-black": id !== typeInfo.parent.id,
-    });
-  };
-
   return (
     <div className="w-full h-screen fixed bg-black/50 flex justify-center items-center z-50 top-0 left-0">
-      <div className="flex flex-col bg-white w-[90%] lg:w-[80%] rounded-lg py-5 px-8 sm:h-[80%] h-[90%]">
+      <div className="flex flex-col bg-white w-[90%] rounded-lg py-5 px-8 sm:h-[80%] h-[90%]">
         <DataTypeSelect
           selectedDataType={typeInfo.dataType}
           handleChangeDataType={handleChangeDataType}
@@ -80,7 +74,7 @@ const Modal = ({
                 key={i}
                 parent={el}
                 handleChangeParentSelected={handleChangeParentSelected}
-                parentClass={parentClass}
+                isSelected={el.id === typeInfo.parent.id}
               />
             ))}
           </div>
