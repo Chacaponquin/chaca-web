@@ -4,4 +4,6 @@ export const appRoutes = {
   HOME: "/home",
   API: "/api",
   DOCS: "/docs",
+  MY_SCHEMA: "/mySchema",
+  CONFIG: "/config",
 };

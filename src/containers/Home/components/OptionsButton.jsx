@@ -8,8 +8,8 @@ const OptionsButton = ({
   loading = false,
 }) => {
   return (
-    <div className="w-full flex justify-end gap-3 esm:justify-center">
-      <LoaderContainer className="w-[40px]" loading={loading}>
+    <div className="w-full flex justify-end gap-3 esm:justify-center items-center">
+      <LoaderContainer className="w-[40px] mr-5" loading={loading}>
         <button
           className="px-8 text-xl py-3 bg-principal-bg text-white font-fontBold rounded-md"
           onClick={handleSubmit}

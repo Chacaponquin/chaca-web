@@ -13,9 +13,12 @@ import "./home.css";
 import CreationModal from "./components/CreationModal/CreationModal";
 import { DatasetsContext } from "../../shared/context/DatasetsContext";
 import { DATASETS_ACTIONS } from "./helpers/reducer/ActionTypes";
+import { UserContext } from "../../shared/context/UserContext";
 
 const Home = () => {
-  const { datasets, dispatch, config } = useContext(DatasetsContext);
+  const { datasets, dispatch, config, noUserLimits } =
+    useContext(DatasetsContext);
+  const { actualUser } = useContext(UserContext);
 
   const [fieldsOptions, setFieldsOptions] = useState([]);
   const [openCreationModal, setOpenCreationModal] = useState(false);
@@ -102,7 +105,10 @@ const Home = () => {
 
       <DatasetsOptions
         handleOpenCreationModal={handleOpenCreationModal}
-        isCreateAvailable={datasets.length < 3}
+        isCreateAvailable={
+          datasets.length <
+          (actualUser ? actualUser.limitDatasets : noUserLimits.LIMIT_DATASETS)
+        }
         dispatch={dispatch}
       />
 
@@ -110,12 +116,7 @@ const Home = () => {
         <div className="flex items-center">
           <div className="flex gap-7 flex-wrap w-full justify-center px-5">
             {datasets.map((dat, i) => (
-              <DatasetForm
-                {...dat}
-                key={i}
-                dispatch={dispatch}
-                fieldsOptions={fieldsOptions}
-              />
+              <DatasetForm {...dat} key={i} fieldsOptions={fieldsOptions} />
             ))}
           </div>
         </div>

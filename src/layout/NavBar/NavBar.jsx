@@ -12,7 +12,7 @@ const navBarOptions = [
   { icon: "docs", label: "Docs", url: appRoutes.DOCS },
 ];
 
-const NavBar = () => {
+const NavBar = ({ handleOpenSideBar }) => {
   const { actualUser } = useContext(UserContext);
 
   return (
@@ -27,18 +27,21 @@ const NavBar = () => {
         </div>
 
         <div className="flex justify-end w-[25%] esm:hidden items-center gap-3">
-          <Link
-            className="px-7 py-2 font-fontBold text-secondColor shadow-md text-lg rounded-md lg:block hidden"
-            to={appRoutes.AUTH_ROUTES.LOGIN}
-          >
-            Get Full Access
-          </Link>
+          {!actualUser && (
+            <Link
+              className="px-7 py-2 font-fontBold text-secondColor shadow-md text-lg rounded-md lg:block hidden"
+              to={appRoutes.AUTH_ROUTES.LOGIN}
+            >
+              Get Full Access
+            </Link>
+          )}
 
           {actualUser && (
             <img
               src={avatar}
               alt="avatar"
-              className="object-top object-cover rounded-full w-[50px] h-[50px]"
+              className="object-top object-cover rounded-full w-[50px] h-[50px] cursor-pointer"
+              onClick={handleOpenSideBar}
             />
           )}
         </div>

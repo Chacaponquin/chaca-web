@@ -22,4 +22,5 @@ export const apiRoutes = {
   },
   GET_FIELDS: "/util/getFields",
   CREATE_DATA: "/createData",
+  GET_NO_USER_LIMITS: "/util/getNoUserLimits",
 };

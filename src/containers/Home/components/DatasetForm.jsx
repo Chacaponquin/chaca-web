@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Icon from "supercons";
 import { inputClass } from "../helpers/classes";
 import { InputNumber } from "primereact/inputnumber";
@@ -6,8 +6,12 @@ import Modal from "./TypeModal/Modal";
 import { DATASETS_ACTIONS } from "../helpers/reducer/ActionTypes";
 import { Checkbox } from "primereact/checkbox";
 import { DATA_TYPES } from "../helpers/datasetsUtils";
+import { DatasetsContext } from "../../../shared/context/DatasetsContext";
+import { UserContext } from "../../../shared/context/UserContext";
 
-const DatasetForm = ({ id, name, fields, limit, fieldsOptions, dispatch }) => {
+const DatasetForm = ({ id, name, fields, limit, fieldsOptions }) => {
+  const { noUserLimits, dispatch } = useContext(DatasetsContext);
+  const { actualUser } = useContext(UserContext);
   const [openModal, setOpenModal] = useState(null);
 
   const handleOpenModal = (id) => {
@@ -43,7 +47,11 @@ const DatasetForm = ({ id, name, fields, limit, fieldsOptions, dispatch }) => {
             });
           }}
           min={1}
-          max={100}
+          max={
+            actualUser
+              ? actualUser.limitDocuments
+              : noUserLimits.LIMIT_DOCUMENTS
+          }
         />
       </div>
 
@@ -139,7 +147,7 @@ const FieldTypeButton = ({ field, handleOpenModal }) => {
     <>
       {field.type ? (
         <button
-          className="bg-principal-bg text-white py-2 px-7 text-base rounded-md w-full"
+          className="bg-principal-bg text-white py-2 px-4 text-base rounded-md w-full"
           type="button"
           onClick={() => handleOpenModal(field.id)}
         >
@@ -148,7 +156,7 @@ const FieldTypeButton = ({ field, handleOpenModal }) => {
         </button>
       ) : (
         <button
-          className="bg-principalColor text-white py-2 px-7 text-base rounded-md w-full"
+          className="bg-principalColor text-white py-2 px-4 text-base rounded-md w-full"
           type="button"
           onClick={() => handleOpenModal(field.id)}
         >

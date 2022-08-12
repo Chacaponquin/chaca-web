@@ -5,6 +5,7 @@ import { apiRoutes } from "../routes/api/apiRoutes";
 const UserContext = createContext({
   actualUser: null,
   handleSignIn: () => {},
+  handleSignOut: () => {},
   loading: true,
 });
 
@@ -27,7 +28,12 @@ const UserProvider = ({ children }) => {
     },
   });
 
-  const data = { handleSignIn, actualUser, loading };
+  const handleSignOut = () => {
+    localStorage.removeItem("token");
+    window.location.reload(false);
+  };
+
+  const data = { handleSignIn, actualUser, loading, handleSignOut };
 
   return <UserContext.Provider value={data}>{children}</UserContext.Provider>;
 };
