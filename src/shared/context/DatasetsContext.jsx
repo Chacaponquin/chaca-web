@@ -1,4 +1,5 @@
 import { createContext, useReducer, useState } from "react";
+import { initialDataMap } from "../../containers/Home/helpers/dataMap";
 import { configReducer } from "../../containers/Home/helpers/reducer/configReducer";
 import { createInitialDataset } from "../../containers/Home/helpers/reducer/createInitialFunctions";
 import { datasetsReducer } from "../../containers/Home/helpers/reducer/datasetsReducer";
@@ -11,6 +12,8 @@ const DatasetsContext = createContext({
   noUserLimits: {},
   dispatch: () => {},
   configDispatch: () => {},
+  fieldsOptions: [],
+  getFieldsLoading: true,
 });
 
 const DatasetsProvider = ({ children }) => {
@@ -24,6 +27,16 @@ const DatasetsProvider = ({ children }) => {
 
   const [noUserLimits, setNoUserLimits] = useState({});
 
+  const [fieldsOptions, setFieldsOptions] = useState([]);
+
+  const { loading: getFieldsLoading } = useQuery({
+    url: apiRoutes.GET_FIELDS,
+    onCompleted: (data) => {
+      setFieldsOptions(initialDataMap(data.fields));
+    },
+    onError: (error) => console.log(error),
+  });
+
   useQuery({
     url: apiRoutes.GET_NO_USER_LIMITS,
     onCompleted: (data) => setNoUserLimits(data.limits),
@@ -36,6 +49,8 @@ const DatasetsProvider = ({ children }) => {
     config,
     configDispatch,
     noUserLimits,
+    fieldsOptions,
+    getFieldsLoading,
   };
 
   return (

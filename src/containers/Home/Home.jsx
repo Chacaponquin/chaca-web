@@ -1,36 +1,31 @@
 import React, { useContext, useState } from "react";
-import { useQuery } from "../../shared/hooks/useQuery";
 import { apiRoutes } from "../../shared/routes/api/apiRoutes";
-import { dataMap } from "./helpers/dataMap";
 import { usePost } from "../../shared/hooks/usePost";
 import { toast } from "react-toastify";
-import DatasetForm from "./components/DatasetForm";
+import DatasetForm from "./components/DatasetForm/DatasetForm";
 import LoaderContainer from "../../shared/components/Loader/LoaderContainer";
 import Icon from "supercons";
 import clsx from "clsx";
-
 import "./home.css";
 import CreationModal from "./components/CreationModal/CreationModal";
 import { DatasetsContext } from "../../shared/context/DatasetsContext";
 import { DATASETS_ACTIONS } from "./helpers/reducer/ActionTypes";
 import { UserContext } from "../../shared/context/UserContext";
+import { DATA_TYPES } from "./helpers/datasetsUtils";
+import { returnDataMap } from "./helpers/dataMap";
 
 const Home = () => {
-  const { datasets, dispatch, config, noUserLimits } =
-    useContext(DatasetsContext);
+  const {
+    datasets,
+    dispatch,
+    config,
+    noUserLimits,
+    fieldsOptions,
+    getFieldsLoading,
+  } = useContext(DatasetsContext);
   const { actualUser } = useContext(UserContext);
 
-  const [fieldsOptions, setFieldsOptions] = useState([]);
   const [openCreationModal, setOpenCreationModal] = useState(false);
-
-  const { loading: getFieldsLoading } = useQuery({
-    url: apiRoutes.GET_FIELDS,
-    onCompleted: (data) => {
-      setFieldsOptions(dataMap(data.fields));
-    },
-    onError: (error) => console.log(error),
-  });
-
   const [createData, { loading: createDataLoading }] = usePost({
     onCompleted: (data) => {
       window.open(`${process.env.REACT_APP_API_URL}/${data.downUrl}`);
@@ -40,7 +35,7 @@ const Home = () => {
       toast.error("Hubo un error en la creacion de los datasets");
     },
     url: apiRoutes.CREATE_DATA,
-    body: { datasets: datasets, config },
+    body: { datasets: returnDataMap(datasets), config },
   });
 
   const handleCloseCreateModal = () => {
@@ -49,11 +44,33 @@ const Home = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     createData();
   };
 
   const handleOpenCreationModal = () => {
     try {
+      for (const dat of datasets) {
+        for (const field of dat.fields) {
+          if (field.dataType.type === DATA_TYPES.REF) {
+            if (!field.dataType.fieldRef)
+              throw new Error(
+                "Loas campos referenica deben tener un campo al que se pueda referenciar"
+              );
+          }
+        }
+      }
+
+      for (const dat of datasets) {
+        let cont = 0;
+        for (let j = 0; j < datasets.length; j++) {
+          if (datasets[j].name === dat) cont++;
+        }
+
+        if (cont >= 2)
+          throw Error("No puede haber datasets con los mismos nombres");
+      }
+
       for (let x = 0; x < datasets.length; x++) {
         const fields = datasets[x].fields;
 

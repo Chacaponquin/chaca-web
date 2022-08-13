@@ -34,10 +34,10 @@ const SideBar = ({ openSideBar, handleCloseSideBar }) => {
               className="w-[150px] h-[150px] object-cover rounded-full"
             />
 
-            <div className="flex flex-col w-full gap-5 mt-5">
+            <div className="flex flex-col w-full gap-3 mt-5">
               {sideBarOptions.map((el, i) => (
                 <NavLink
-                  className="flex gap-4 items-center"
+                  className="flex gap-4 items-center px-4 py-2"
                   to={el.url}
                   key={i}
                 >
@@ -46,7 +46,7 @@ const SideBar = ({ openSideBar, handleCloseSideBar }) => {
                 </NavLink>
               ))}
               <button
-                className="flex items-center gap-4"
+                className="flex items-center gap-4 px-4 py-2"
                 onClick={handleSignOut}
               >
                 <Icon glyph="door-leave" />

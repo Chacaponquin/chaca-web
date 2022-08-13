@@ -6,7 +6,7 @@ import SideBar from "./layout/SideBar/SideBar";
 import DatasetsProvider from "./shared/context/DatasetsContext";
 
 function App() {
-  const [openSideBar, setOpenSideBar] = useState(true);
+  const [openSideBar, setOpenSideBar] = useState(false);
 
   const handleCloseSideBar = () => {
     setOpenSideBar(false);

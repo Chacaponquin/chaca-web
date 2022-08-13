@@ -2,10 +2,11 @@ import React, { useContext, useState } from "react";
 import { DATA_TYPES } from "../../helpers/datasetsUtils";
 import { DATASETS_ACTIONS } from "../../helpers/reducer/ActionTypes";
 import OptionsButton from "../OptionsButton";
-import FieldOptionDiv from "./components/FieldOptionDiv";
-import ParentDiv from "./components/ParentDiv";
 import DataTypeSelect from "./components/DataTypeSelect";
 import { DatasetsContext } from "../../../../shared/context/DatasetsContext";
+import SingleValueForm from "./components/SingleValueForm";
+import MixedForm from "./components/MixedForm";
+import RefForm from "./components/RefForm";
 
 const Modal = ({
   datasetID,
@@ -13,13 +14,13 @@ const Modal = ({
   fieldsOptions = [],
   handleCloseModal,
 }) => {
-  const { dispatch } = useContext(DatasetsContext);
+  const { dispatch, datasets } = useContext(DatasetsContext);
 
   const [typeInfo, setTypeInfo] = useState({
     fieldID: fieldID,
     parent: fieldsOptions[0],
     type: fieldsOptions[0].fields[0],
-    dataType: DATA_TYPES.SINGLE_VALUE,
+    dataType: { type: DATA_TYPES.SINGLE_VALUE },
     args: [],
   });
 
@@ -40,11 +41,11 @@ const Modal = ({
       setTypeInfo({ ...typeInfo, args: [], type: field });
   };
 
-  const handleChangeDataType = (dat) => {
-    setTypeInfo({ ...typeInfo, dataType: dat });
+  const handleChangeDataType = (obj) => {
+    setTypeInfo({ ...typeInfo, dataType: obj });
   };
 
-  const selectFieldType = () => {
+  const handleSelectFieldType = () => {
     const { parent, type, ...rest } = typeInfo;
 
     dispatch({
@@ -63,40 +64,35 @@ const Modal = ({
     <div className="w-full h-screen fixed bg-black/50 flex justify-center items-center z-50 top-0 left-0">
       <div className="flex flex-col bg-white w-[95%] rounded-lg py-5 px-8 sm:h-[85%] h-[90%]">
         <DataTypeSelect
-          selectedDataType={typeInfo.dataType}
+          selectedDataType={typeInfo.dataType.type}
           handleChangeDataType={handleChangeDataType}
         />
 
         <div className="flex sm:flex-row flex-col gap-3 justify-start w-full h-[75%]">
-          <div className="flex sm:flex-col gap-3 sm:h-full overflow-auto sm:w-[25%] w-full sm:py-0 py-4">
-            {fieldsOptions.map((el, i) => (
-              <ParentDiv
-                key={i}
-                parent={el}
-                handleChangeParentSelected={handleChangeParentSelected}
-                isSelected={el.id === typeInfo.parent.id}
-              />
-            ))}
-          </div>
+          {typeInfo.dataType.type === DATA_TYPES.SINGLE_VALUE && (
+            <SingleValueForm
+              fieldsOptions={fieldsOptions}
+              handleChangeArguments={handleChangeArguments}
+              handleChangeOptionSelected={handleChangeOptionSelected}
+              handleChangeParentSelected={handleChangeParentSelected}
+              typeInfo={typeInfo}
+            />
+          )}
 
-          <div className="sm:h-full grid xl:grid-cols-3 grid-cols-2 esm:grid-cols-1 auto-rows-max overflow-auto gap-3 w-full sm:w-[75%]">
-            {typeInfo.parent &&
-              typeInfo.parent.fields.map((el, i) => (
-                <FieldOptionDiv
-                  field={el}
-                  key={i}
-                  isSelected={el.name === typeInfo.type.name}
-                  handleChangeOptionSelected={handleChangeOptionSelected}
-                  handleChangeArguments={handleChangeArguments}
-                  allArguments={typeInfo.args}
-                />
-              ))}
-          </div>
+          {typeInfo.dataType.type === DATA_TYPES.MIXED && <MixedForm />}
+
+          {typeInfo.dataType.type === DATA_TYPES.REF && datasets.length > 1 && (
+            <RefForm
+              typeInfoDataType={typeInfo.dataType}
+              datasetID={datasetID}
+              handleChangeDataType={handleChangeDataType}
+            />
+          )}
         </div>
 
         <OptionsButton
           handleCancel={handleCloseModal}
-          handleSubmit={selectFieldType}
+          handleSubmit={handleSelectFieldType}
           submitText={"Save"}
         />
       </div>

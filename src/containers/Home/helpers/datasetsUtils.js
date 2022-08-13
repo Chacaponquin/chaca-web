@@ -1,7 +1,8 @@
 export const DATA_TYPES = {
-  ARRAY: "ARRAY",
   SINGLE_VALUE: "SINGLE_VALUE",
+  ARRAY: "ARRAY",
   MIXED: "MIXED",
+  REF: "REF",
 };
 
 export const FIELDS_INPUT_TYPES = {
