@@ -5,7 +5,19 @@ import { DATA_TYPES } from "../../../helpers/datasetsUtils";
 const FieldTypeButton = ({ field, handleOpenModal }) => {
   const { datasets } = useContext(DatasetsContext);
 
-  const filterFildes = () => {
+  const pipeText = () => {
+    let text = "";
+
+    if (field.dataType.type === DATA_TYPES.REF) text += filterFields();
+    else if (field.dataType.type === DATA_TYPES.SINGLE_VALUE)
+      text += field.type.type;
+    else if (field.dataType.type === DATA_TYPES.ARRAY)
+      text += field.type.type + "[ ]";
+
+    return text;
+  };
+
+  const filterFields = () => {
     let value = "";
 
     for (const dat of datasets) {
@@ -35,9 +47,7 @@ const FieldTypeButton = ({ field, handleOpenModal }) => {
           type="button"
           onClick={() => handleOpenModal(field.id)}
         >
-          {field.dataType.type === DATA_TYPES.SINGLE_VALUE && field.type.type}
-          {field.dataType.type === DATA_TYPES.REF && filterFildes()}
-          {field.dataType.type === DATA_TYPES.ARRAY && "[ ]"}
+          {pipeText()}
         </button>
       ) : (
         <button
