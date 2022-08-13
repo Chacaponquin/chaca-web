@@ -14,8 +14,7 @@ const DataTypeSelect = ({ selectedDataType, handleChangeDataType }) => {
       {
         hidden:
           (dat === DATA_TYPES.REF && datasets.length < 2) ||
-          dat === DATA_TYPES.MIXED ||
-          dat === DATA_TYPES.ARRAY,
+          dat === DATA_TYPES.MIXED,
       }
     );
 

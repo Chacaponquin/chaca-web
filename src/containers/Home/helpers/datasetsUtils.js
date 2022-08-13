@@ -1,6 +1,5 @@
 export const DATA_TYPES = {
   SINGLE_VALUE: "SINGLE_VALUE",
-  ARRAY: "ARRAY",
   MIXED: "MIXED",
   REF: "REF",
 };

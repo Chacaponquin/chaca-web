@@ -11,10 +11,8 @@ const FieldTypeButton = ({ field, handleOpenModal }) => {
     if (field.dataType.type === DATA_TYPES.REF) text += filterFields();
     else if (field.dataType.type === DATA_TYPES.SINGLE_VALUE)
       text += field.type.type;
-    else if (field.dataType.type === DATA_TYPES.ARRAY)
-      text += field.type.type + "[ ]";
 
-    return text;
+    return (text += field.isArray ? "[ ]" : "");
   };
 
   const filterFields = () => {

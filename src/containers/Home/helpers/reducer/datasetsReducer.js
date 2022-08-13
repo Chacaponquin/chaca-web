@@ -1,4 +1,3 @@
-import { DATA_TYPES } from "../datasetsUtils";
 import { DATASETS_ACTIONS } from "./ActionTypes";
 import { createField, createInitialDataset } from "./createInitialFunctions";
 
@@ -114,11 +113,33 @@ export const datasetsReducer = (datasets, action) => {
           const newFields = dat.fields.map((f) => {
             if (f.id === action.payload.fieldID) {
               if (action.payload.value) {
-                f.dataType = {
-                  type: DATA_TYPES.ARRAY,
-                  limit: action.payload.limit,
+                f.isArray = {
+                  min: 0,
+                  max: 10,
                 };
-              } else f.dataType = { type: DATA_TYPES.SINGLE_VALUE };
+              } else f.isArray = false;
+            }
+
+            return f;
+          });
+
+          dat.fields = newFields;
+        }
+
+        return dat;
+      });
+
+      return newDatasets;
+    }
+    case DATASETS_ACTIONS.CHANGE_ARRAY_LIMITS: {
+      const newDatasets = datasets.map((dat) => {
+        if (dat.id === action.payload.datasetID) {
+          const newFields = dat.fields.map((f) => {
+            if (f.id === action.payload.fieldID) {
+              f.isArray = {
+                min: action.payload.min,
+                max: action.payload.max,
+              };
             }
 
             return f;
