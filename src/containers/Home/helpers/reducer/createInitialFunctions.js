@@ -33,5 +33,9 @@ const textFromNumber = (num) => {
   else if (num === 4) return "Forth";
   else if (num === 5) return "Fifth";
   else if (num === 6) return "Six";
+  else if (num === 7) return "Seven";
+  else if (num === 8) return "Eight";
+  else if (num === 9) return "Nine";
+  else if (num === 10) return "Ten";
   else return "";
 };

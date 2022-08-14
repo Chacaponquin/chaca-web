@@ -11,7 +11,7 @@ const SingleValueForm = ({
 }) => {
   return (
     <>
-      <div className="flex sm:flex-col gap-3 sm:h-full overflow-auto sm:w-[25%] w-full sm:py-0 py-4">
+      <div className="flex sm:flex-col gap-3 px-2 sm:h-full overflow-auto sm:w-[25%] w-full sm:py-0 py-4">
         {fieldsOptions.map((el, i) => (
           <ParentDiv
             key={i}

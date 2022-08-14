@@ -7,7 +7,7 @@ export const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (req) => {
     const token = localStorage.getItem("token");
-    req.headers.token = token ? token : null;
+    req.headers.authorization = token ? token : null;
 
     return req;
   },

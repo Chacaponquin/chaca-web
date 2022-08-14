@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import FieldInputArgument from "./FieldInputArgument";
+import { titlePipe } from "../helpers/titlePipe";
 
 const FieldOptionDiv = ({
   field,
@@ -28,12 +29,21 @@ const FieldOptionDiv = ({
         field.arguments &&
         field.arguments.length &&
         field.arguments.map((arg, i) => (
-          <FieldInputArgument
-            key={i}
-            handleChangeArguments={handleChangeArguments}
-            allArguments={allArguments}
-            arg={arg}
-          />
+          <>
+            <div
+              className="grid grid-rows-1 auto-cols-auto items-center gap-1 !text-sm"
+              key={i}
+            >
+              <p className="mb-0 font-fontBold w-max">
+                {titlePipe(arg.argument)}:
+              </p>
+              <FieldInputArgument
+                handleChangeArguments={handleChangeArguments}
+                allArguments={allArguments}
+                arg={arg}
+              />
+            </div>
+          </>
         ))}
     </div>
   );

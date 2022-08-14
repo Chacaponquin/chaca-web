@@ -10,6 +10,7 @@ import { apiRoutes } from "../../../shared/routes/api/apiRoutes";
 import LoaderContainer from "../../../shared/components/Loader/LoaderContainer";
 import { toast, ToastContainer } from "react-toastify";
 import { UserContext } from "../../../shared/context/UserContext";
+import { InputText } from "primereact/inputtext";
 
 const Login = () => {
   const { handleSignIn } = useContext(UserContext);
@@ -53,13 +54,14 @@ const Login = () => {
             <label htmlFor="" className={labelClass}>
               Email:
             </label>
-            <input
+            <InputText
               type="email"
               placeholder="Email..."
               name="email"
               className={inputClass}
               onChange={handleChange}
               required
+              value={loginData.email}
             />
           </div>
 
@@ -67,13 +69,14 @@ const Login = () => {
             <label htmlFor="" className={labelClass}>
               Password:
             </label>
-            <input
+            <InputText
               type="password"
               placeholder="Password..."
               name="password"
               className={inputClass}
               onChange={handleChange}
               required
+              value={loginData.password}
             />
           </div>
 

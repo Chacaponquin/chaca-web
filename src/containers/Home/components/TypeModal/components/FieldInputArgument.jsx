@@ -2,6 +2,7 @@ import { Dropdown } from "primereact/dropdown";
 import { InputNumber } from "primereact/inputnumber";
 import React, { useEffect, useState } from "react";
 import { FIELDS_INPUT_TYPES } from "../../../helpers/datasetsUtils";
+import { Calendar } from "primereact/calendar";
 import { titlePipe } from "../helpers/titlePipe";
 
 const FieldInputArgument = ({
@@ -19,40 +20,50 @@ const FieldInputArgument = ({
 
   if (arg.inputType === FIELDS_INPUT_TYPES.SELECT)
     return (
-      <div className="grid grid-rows-1 auto-cols-auto items-center gap-1 ">
-        <p className="mb-0 font-fontBold w-max">{titlePipe(arg.argument)}:</p>
-
-        <Dropdown
-          options={arg.selectValues}
-          placeholder={`Select ${arg.argument}`}
-          onChange={(e) => {
-            handleChangeArguments({
-              value: e.value,
-              field: arg.argument,
-            });
-          }}
-          value={value}
-        ></Dropdown>
-      </div>
+      <Dropdown
+        options={arg.selectValues}
+        placeholder={`Select ${titlePipe(arg.argument)}`}
+        onChange={(e) => {
+          handleChangeArguments({
+            value: e.value,
+            field: arg.argument,
+          });
+        }}
+        value={value}
+      ></Dropdown>
     );
-  else if (arg.inputType === FIELDS_INPUT_TYPES.NUMBER)
+  else if (
+    arg.inputType === FIELDS_INPUT_TYPES.NUMBER ||
+    arg.inputType === FIELDS_INPUT_TYPES.FLOAT
+  )
     return (
-      <div className="grid grid-rows-1 auto-cols-auto items-center gap-1">
-        <p className="mb-0 font-fontBold">{titlePipe(arg.argument)}:</p>
-
-        <InputNumber
-          value={value ? value : 1}
-          onValueChange={(e) => {
-            handleChangeArguments({
-              value: e.value,
-              field: arg.argument,
-            });
-          }}
-          min={1}
-          max={100}
-        />
-      </div>
+      <InputNumber
+        value={value ? value : 1}
+        onValueChange={(e) => {
+          handleChangeArguments({
+            value: e.value,
+            field: arg.argument,
+          });
+        }}
+        min={arg.inputType === FIELDS_INPUT_TYPES.FLOAT ? 0.1 : 1}
+        max={1000}
+        step={arg.inputType === FIELDS_INPUT_TYPES.NUMBER ? 1 : 0.1}
+      />
     );
+  else if (arg.inputType === FIELDS_INPUT_TYPES.DATE) {
+    return (
+      <Calendar
+        dateFormat="dd/mm/yy"
+        value={value}
+        onChange={(e) => {
+          handleChangeArguments({
+            value: e.value,
+            field: arg.argument,
+          });
+        }}
+      ></Calendar>
+    );
+  }
 
   return <></>;
 };

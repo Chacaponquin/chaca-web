@@ -8,6 +8,8 @@ export const FIELDS_INPUT_TYPES = {
   SELECT: "SELECT",
   NUMBER: "NUMBER",
   TEXT: "TEXT",
+  DATE: "DATE",
+  FLOAT: "FLOAT",
 };
 
 export const FILE_TYPE = {

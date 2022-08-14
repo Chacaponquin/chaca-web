@@ -15,8 +15,9 @@ const SideBar = ({ openSideBar, handleCloseSideBar }) => {
   );
 
   const containerClass = clsx(
-    "fixed w-full h-screen bg-black/50 z-50 top-0 right-0 overflow-hidden transition-all duration-300",
-    { "z-[-30] bg-transparent": !openSideBar }
+    "fixed w-screen h-screen top-0 right-0 overflow-hidden transition-all duration-300",
+    { "!-z-[30] bg-transparent": !openSideBar },
+    { "z-50 bg-black/50 ": openSideBar }
   );
 
   return (

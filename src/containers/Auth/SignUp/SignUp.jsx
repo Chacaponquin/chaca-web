@@ -11,6 +11,7 @@ import { apiRoutes } from "../../../shared/routes/api/apiRoutes";
 import LoaderContainer from "../../../shared/components/Loader/LoaderContainer";
 import { toast, ToastContainer } from "react-toastify";
 import { UserContext } from "../../../shared/context/UserContext";
+import { InputText } from "primereact/inputtext";
 
 const SignUp = () => {
   const [signUpData, setSignUpData] = useState({
@@ -48,24 +49,25 @@ const SignUp = () => {
   };
 
   return (
-    <div className="w-full h-screen flex justify-center items-center bg-second-bg bg-cover bg-no-repeat px-48">
+    <div className="w-full h-screen flex justify-center items-center bg-second-bg bg-cover bg-no-repeat lg:px-32 sm:px-20 esm:px-10">
       <ToastContainer />
-      <div className="w-full flex gap-10 items-center justify-between">
+      <div className="w-full flex gap-10 items-center lg:justify-between justify-center">
         <form
-          className="flex flex-col gap-3 w-80 bg-white px-8 py-5 shadow-lg rounded-md"
+          className="flex flex-col gap-3 w-96 bg-white px-8 py-5 shadow-lg rounded-md"
           onSubmit={handleSubmit}
         >
           <div className={formInputDivClass}>
             <label htmlFor="" className={labelClass}>
               Username:
             </label>
-            <input
+            <InputText
               type="text"
               className={inputClass}
               placeholder="Username..."
               required
               name="username"
               onChange={handleChange}
+              value={signUpData.username}
             />
           </div>
 
@@ -73,13 +75,14 @@ const SignUp = () => {
             <label htmlFor="" className={labelClass}>
               Email:
             </label>
-            <input
+            <InputText
               type="email"
               className={inputClass}
               placeholder="Email..."
               required
               name="email"
               onChange={handleChange}
+              value={signUpData.email}
             />
           </div>
 
@@ -87,13 +90,14 @@ const SignUp = () => {
             <label htmlFor="" className={labelClass}>
               Password:
             </label>
-            <input
+            <InputText
               type="password"
               className={inputClass}
               placeholder="Password..."
               required
               name="password"
               onChange={handleChange}
+              value={signUpData.password}
             />
           </div>
 
@@ -101,13 +105,14 @@ const SignUp = () => {
             <label htmlFor="" className={labelClass}>
               Comfirm Password:
             </label>
-            <input
+            <InputText
               type="password"
               className={inputClass}
               placeholder="Comfirm Password..."
               required
               name="comfirmPassword"
               onChange={handleChange}
+              value={signUpData.comfirmPassword}
             />
           </div>
 

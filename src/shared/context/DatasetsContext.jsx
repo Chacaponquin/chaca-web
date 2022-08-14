@@ -1,5 +1,6 @@
 import { createContext, useReducer, useState } from "react";
 import { initialDataMap } from "../../containers/Home/helpers/dataMap";
+import { FILE_TYPE } from "../../containers/Home/helpers/datasetsUtils";
 import { configReducer } from "../../containers/Home/helpers/reducer/configReducer";
 import { createInitialDataset } from "../../containers/Home/helpers/reducer/createInitialFunctions";
 import { datasetsReducer } from "../../containers/Home/helpers/reducer/datasetsReducer";
@@ -20,13 +21,10 @@ const DatasetsProvider = ({ children }) => {
   const [datasets, dispatch] = useReducer(datasetsReducer, [
     createInitialDataset(0),
   ]);
-
   const [config, configDispatch] = useReducer(configReducer, {
-    fileType: null,
+    fileType: FILE_TYPE.JSON,
   });
-
   const [noUserLimits, setNoUserLimits] = useState({});
-
   const [fieldsOptions, setFieldsOptions] = useState([]);
 
   const { loading: getFieldsLoading } = useQuery({
