@@ -30,5 +30,10 @@ export const dataMapToJsonTree = (datasets, fields) => {
     };
   });
 
-  return mapData;
+  let dataReturn = {};
+  for (const dat of mapData) {
+    dataReturn = { ...dataReturn, [dat.name]: dat.exampleField };
+  }
+
+  return dataReturn;
 };

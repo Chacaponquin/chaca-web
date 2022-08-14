@@ -10,7 +10,7 @@ const SideBar = ({ openSideBar, handleCloseSideBar }) => {
   const { handleSignOut } = useContext(UserContext);
 
   const sideBarClass = clsx(
-    "right-0 fixed top-0 h-screen w-[300px] bg-white px-8 py-5 transition-all duration-300 translate-x-full",
+    "right-0 fixed top-0 min-h-screen w-[300px] bg-white px-8 py-5 transition-all duration-300 translate-x-full",
     { "translate-x-0": openSideBar }
   );
 

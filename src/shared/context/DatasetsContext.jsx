@@ -23,6 +23,7 @@ const DatasetsProvider = ({ children }) => {
   ]);
   const [config, configDispatch] = useReducer(configReducer, {
     fileType: FILE_TYPE.JSON,
+    saveSchema: false,
   });
   const [noUserLimits, setNoUserLimits] = useState({});
   const [fieldsOptions, setFieldsOptions] = useState([]);

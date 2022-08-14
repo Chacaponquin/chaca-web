@@ -21,3 +21,7 @@
   background: #a29bfe;
   border-radius: 999px;
 }
+
+.p-inputtext {
+  font-size: 0.8rem !important;
+}

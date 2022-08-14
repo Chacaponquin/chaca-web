@@ -5,6 +5,9 @@ export const configReducer = (config, action) => {
     case CONFIG_ACTIONS.CHANGE_FILE_TYPE: {
       return { ...config, fileType: action.payload.value };
     }
+    case CONFIG_ACTIONS.CHANGE_SAVE_SCHEMA: {
+      return { ...config, saveSchema: action.payload.value };
+    }
     default:
       return config;
   }

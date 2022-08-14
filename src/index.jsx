@@ -2,7 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Login, Home, Api, Docs, SignUp, MySchema, Config } from "./containers";
+import {
+  Login,
+  Home,
+  Api,
+  Docs,
+  SignUp,
+  MySchema,
+  Config,
+  Landing,
+} from "./containers";
 import { appRoutes } from "./shared/routes/app/appRoutes";
 
 import UserProvider from "./shared/context/UserContext";
@@ -32,6 +41,7 @@ root.render(
           />
 
           <Route path="/" element={<App />}>
+            <Route path={appRoutes.ROOT} element={<Landing />} />
             <Route path={appRoutes.HOME} element={<Home />} />
             <Route path={appRoutes.API} element={<Api />} />
             <Route path={appRoutes.DOCS} element={<Docs />} />
