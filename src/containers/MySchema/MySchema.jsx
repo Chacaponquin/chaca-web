@@ -34,7 +34,6 @@ const MySchema = () => {
   });
 
   const handleDeleteSchema = (id) => {
-    console.log(id);
     deleteSchema({ body: id });
   };
 
@@ -59,9 +58,9 @@ const MySchema = () => {
             <img
               src={noDataImage}
               alt="noData"
-              className="object-contain w-[400px]"
+              className="object-contain w-[400px] esm:w-[300px]"
             />
-            <h1 className="text-5xl font-fontBold mb-0 mt-5 text-slate-400">
+            <h1 className="text-5xl font-fontBold mb-0 mt-5 text-slate-400 text-center esm:text-3xl">
               Sorry, not found schemas
             </h1>
           </div>

@@ -4,10 +4,10 @@ import { axiosInstance } from "../routes/api/apiRoutes";
 export const usePost = ({ onCompleted, onError, url, body: bodyFunction }) => {
   const [loading, setLoading] = useState(false);
 
-  const request = ({ body }) => {
+  const request = (data = {}) => {
     setLoading(true);
     axiosInstance
-      .post(url, { data: body ? body : bodyFunction })
+      .post(url, { data: data.body ? data.body : bodyFunction })
       .then(({ data }) => onCompleted(data))
       .catch((error) => onError(error))
       .finally(() => setLoading(false));

@@ -31,11 +31,8 @@ const FieldOptionDiv = ({
         field.arguments &&
         field.arguments.length &&
         field.arguments.map((arg, i) => (
-          <>
-            <div
-              className="grid grid-rows-1 auto-cols-auto items-center gap-1 !text-sm"
-              key={i}
-            >
+          <React.Fragment key={i}>
+            <div className="grid grid-rows-1 auto-cols-auto items-center gap-1 !text-sm arguments-container">
               <p className="mb-0 font-fontBold w-max">
                 {titlePipe(arg.argument)}:
               </p>
@@ -45,7 +42,7 @@ const FieldOptionDiv = ({
                 arg={arg}
               />
             </div>
-          </>
+          </React.Fragment>
         ))}
     </div>
   );

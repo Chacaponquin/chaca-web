@@ -3,8 +3,8 @@ import Icon from "supercons";
 import JSONTreeCont from "../../../shared/components/JsonTree/JSONTreeCont";
 import DeleteSchemaModal from "./DeleteSchemaModal";
 
-const SchemaCard = ({ _id, name, data, handleDeleteSchema }) => {
-  const [deleteModalOpen, setDeleteModalOpen] = useState(true);
+const SchemaCard = ({ name, data, handleDeleteSchema }) => {
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const handleOpenModal = () => {
     setDeleteModalOpen(true);

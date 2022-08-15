@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { inputClass } from "../../../helpers/classes";
+
 import { DATASETS_ACTIONS } from "../../../helpers/reducer/ActionTypes";
 import FieldTypeButton from "./FieldTypeButton";
 import Icon from "supercons";
 import FieldMenu from "./FieldMenu";
+import { InputText } from "primereact/inputtext";
 
 const InputDiv = ({ handleOpenModal, field, datasetID, dispatch }) => {
   const [openConfig, setOpenConfig] = useState(false);
@@ -11,9 +12,7 @@ const InputDiv = ({ handleOpenModal, field, datasetID, dispatch }) => {
   return (
     <div className="w-full flex flex-col gap-2">
       <div className="flex items-center gap-3">
-        <input
-          type="text"
-          className={inputClass}
+        <InputText
           placeholder="Field Name..."
           onChange={(e) =>
             dispatch({
@@ -21,6 +20,7 @@ const InputDiv = ({ handleOpenModal, field, datasetID, dispatch }) => {
               payload: { datasetID, value: e.target.value, fieldID: field.id },
             })
           }
+          value={field.name}
         />
 
         <FieldTypeButton field={field} handleOpenModal={handleOpenModal} />
