@@ -10,6 +10,7 @@ export const FIELDS_INPUT_TYPES = {
   TEXT: "TEXT",
   DATE: "DATE",
   FLOAT: "FLOAT",
+  BOOLEAN: "BOOLEAN",
 };
 
 export const FILE_TYPE = {

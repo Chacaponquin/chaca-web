@@ -1,15 +1,19 @@
 import { createContext, useState } from "react";
 import { useQuery } from "../hooks/useQuery";
 import { apiRoutes } from "../routes/api/apiRoutes";
+import io from "socket.io-client";
 
 const UserContext = createContext({
   actualUser: null,
   handleSignIn: () => {},
   handleSignOut: () => {},
   loading: true,
+  socket: null,
 });
 
 const UserProvider = ({ children }) => {
+  const socket = io.connect(process.env.REACT_APP_API_URL);
+
   const [actualUser, setActualUser] = useState(null);
 
   const handleSignIn = (token) => {
@@ -33,7 +37,7 @@ const UserProvider = ({ children }) => {
     window.location.reload(false);
   };
 
-  const data = { handleSignIn, actualUser, loading, handleSignOut };
+  const data = { handleSignIn, actualUser, loading, handleSignOut, socket };
 
   return <UserContext.Provider value={data}>{children}</UserContext.Provider>;
 };

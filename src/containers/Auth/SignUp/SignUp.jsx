@@ -12,6 +12,8 @@ import LoaderContainer from "../../../shared/components/Loader/LoaderContainer";
 import { toast, ToastContainer } from "react-toastify";
 import { UserContext } from "../../../shared/context/UserContext";
 import { InputText } from "primereact/inputtext";
+import { Link } from "react-router-dom";
+import { appRoutes } from "../../../shared/routes/app/appRoutes";
 
 const SignUp = () => {
   const [signUpData, setSignUpData] = useState({
@@ -28,7 +30,10 @@ const SignUp = () => {
     onCompleted: ({ userToken }) => {
       handleSignIn(userToken);
     },
-    onError: (error) => console.log(error),
+    onError: (error) => {
+      if (error.response.data) toast.error(error.response.data.error);
+      else toast.error("Hubo un error en la creacion del usuario");
+    },
     body: signUpData,
   });
 
@@ -120,6 +125,17 @@ const SignUp = () => {
             <LoaderContainer loading={loading} className="w-[55px]">
               <button className={buttonClass}>Sign Up</button>
             </LoaderContainer>
+          </div>
+
+          <div className="flex justify-end">
+            <Link to={appRoutes.AUTH_ROUTES.SIGN_UP}>
+              <button
+                type="button"
+                className="underline text-secondColor text-base"
+              >
+                No tienes Cuenta?
+              </button>
+            </Link>
           </div>
         </form>
 

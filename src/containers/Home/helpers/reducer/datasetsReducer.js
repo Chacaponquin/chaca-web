@@ -153,6 +153,18 @@ export const datasetsReducer = (datasets, action) => {
 
       return newDatasets;
     }
+
+    case DATASETS_ACTIONS.CHANGE_DATASET_NAME: {
+      const newDatasets = datasets.map((dat) => {
+        if (dat.id === action.payload.datasetID) {
+          dat.name = action.payload.value;
+        }
+
+        return dat;
+      });
+
+      return newDatasets;
+    }
     default:
       return datasets;
   }

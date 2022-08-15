@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { FIELDS_INPUT_TYPES } from "../../../helpers/datasetsUtils";
 import { Calendar } from "primereact/calendar";
 import { titlePipe } from "../helpers/titlePipe";
+import { Checkbox } from "primereact/checkbox";
 
 const FieldInputArgument = ({
   arg,
@@ -49,6 +50,18 @@ const FieldInputArgument = ({
         max={1000}
         step={arg.inputType === FIELDS_INPUT_TYPES.NUMBER ? 1 : 0.1}
         className="!text-sm"
+      />
+    );
+  else if (arg.inputType === FIELDS_INPUT_TYPES.BOOLEAN)
+    return (
+      <Checkbox
+        onValueChange={(e) => {
+          handleChangeArguments({
+            value: e.value,
+            field: arg.argument,
+          });
+        }}
+        checked={value}
       />
     );
   else if (arg.inputType === FIELDS_INPUT_TYPES.DATE) {

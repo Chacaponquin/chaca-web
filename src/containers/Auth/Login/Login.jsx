@@ -11,6 +11,8 @@ import LoaderContainer from "../../../shared/components/Loader/LoaderContainer";
 import { toast, ToastContainer } from "react-toastify";
 import { UserContext } from "../../../shared/context/UserContext";
 import { InputText } from "primereact/inputtext";
+import { Link } from "react-router-dom";
+import { appRoutes } from "../../../shared/routes/app/appRoutes";
 
 const Login = () => {
   const { handleSignIn } = useContext(UserContext);
@@ -84,6 +86,17 @@ const Login = () => {
             <LoaderContainer className={"w-[55px]"} loading={loading}>
               <button className={buttonClass}>Login</button>
             </LoaderContainer>
+          </div>
+
+          <div className="flex justify-end">
+            <Link to={appRoutes.AUTH_ROUTES.LOGIN}>
+              <button
+                type="button"
+                className="underline text-secondColor text-base"
+              >
+                Ya tienes cuenta?
+              </button>
+            </Link>
           </div>
         </form>
       </div>

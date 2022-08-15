@@ -21,7 +21,6 @@ export const apiRoutes = {
     GET_USER_BY_TOKEN: "/auth/getUserByToken",
   },
   GET_FIELDS: "/util/getFields",
-  CREATE_DATA: "/createData",
   GET_NO_USER_LIMITS: "/util/getNoUserLimits",
   GET_MY_SCHEMAS: "/user/getMySchemas",
   DELETE_SCHEMA: "/user/deleteSchema",
