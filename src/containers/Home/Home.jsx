@@ -34,11 +34,6 @@ const Home = () => {
 
     setCreateDataLoading(true);
 
-    socket.emit("createDatasets", {
-      datasets: returnDataMap(datasets),
-      config,
-    });
-
     socket.on("getDownUrl", (args) => {
       window.open(`${process.env.REACT_APP_API_URL}/${args.downUrl}`);
       setCreateDataLoading(false);
@@ -49,6 +44,15 @@ const Home = () => {
       toast.error("Hubo un error en la creacion de los datasets");
       setCreateDataLoading(false);
     });
+
+    if (socket.connected) {
+      socket.emit("createDatasets", {
+        datasets: returnDataMap(datasets),
+        config,
+      });
+    } else {
+      setCreateDataLoading(false);
+    }
   };
 
   const handleOpenCreationModal = () => {
