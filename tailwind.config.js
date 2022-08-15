@@ -7,12 +7,15 @@ module.exports = {
       colors: {
         principalColor: "#00CC99",
         secondColor: "#a29bfe",
+        dangerColor: "#fc5c65",
       },
       fontFamily: {
         fontBold: "Cairo Bold",
         fontExtraBold: "Cairo Extra Bold",
         fontLight: "Cairo Light",
         fontRegular: "Cairo Regular",
+        fontCodeRegular: "FiraCode Regular",
+        fontCodeBold: "FiraCode Bold",
       },
       backgroundImage: {
         "principal-bg": 'url("./assets/images/bg.svg")',

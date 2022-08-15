@@ -4,24 +4,38 @@
 
 @font-face {
   font-family: "Cairo Light";
-  src: url("./assets//font/Cairo-Light.ttf");
+  src: url("./assets//font/Cairo/Cairo-Light.ttf");
 }
 
 @font-face {
   font-family: "Cairo Regular";
-  src: url("./assets//font/Cairo-Regular.ttf");
+  src: url("./assets//font/Cairo/Cairo-Regular.ttf");
 }
 
 @font-face {
   font-family: "Cairo Bold";
-  src: url("./assets//font/Cairo-Bold.ttf");
+  src: url("./assets//font/Cairo/Cairo-Bold.ttf");
 }
 
 @font-face {
   font-family: "Cairo Extra Bold";
-  src: url("./assets//font/Cairo-ExtraBold.ttf");
+  src: url("./assets//font/Cairo/Cairo-ExtraBold.ttf");
+}
+
+@font-face {
+  font-family: "FiraCode Regular";
+  src: url("./assets//font/Fira/FiraCode-Regular.ttf");
+}
+
+@font-face {
+  font-family: "FiraCode Bold";
+  src: url("./assets//font/Fira/FiraCode-Bold.ttf");
 }
 
 * {
   font-family: "Cairo Regular";
+}
+
+.json-container * {
+  font-family: "FiraCode Regular";
 }

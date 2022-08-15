@@ -7,9 +7,9 @@ import OptionsButton from "../OptionsButton";
 import { DatasetsContext } from "../../../../shared/context/DatasetsContext";
 import { FILE_TYPE } from "../../helpers/datasetsUtils";
 import { CONFIG_ACTIONS } from "../../helpers/reducer/ActionTypes";
-import { JSONTree } from "react-json-tree";
 import { dataMapToJsonTree } from "./helpers/dataMapToJsonTree";
 import { Checkbox } from "primereact/checkbox";
+import JSONTreeCont from "../../../../shared/components/JsonTree/JSONTreeCont";
 
 const CreationModal = ({ handleSubmit, handleCloseCreateModal, loading }) => {
   const { configDispatch, config, datasets, fieldsOptions } =
@@ -29,26 +29,6 @@ const CreationModal = ({ handleSubmit, handleCloseCreateModal, loading }) => {
     });
   };
 
-  const theme = {
-    scheme: "monokai",
-    base00: "#272822",
-    base01: "#383830",
-    base02: "#49483e",
-    base03: "#000000",
-    base04: "#000000",
-    base05: "#f8f8f2",
-    base06: "#f5f4f1",
-    base07: "#f9f8f5",
-    base08: "#f92672",
-    base09: "#fd971f",
-    base0A: "#f4bf75",
-    base0B: "#00CC99",
-    base0C: "#a1efe4",
-    base0D: "#66d9ef",
-    base0E: "#ae81ff",
-    base0F: "#cc6633",
-  };
-
   const typeButton = (format) => {
     return clsx(
       "flex items-center gap-3 px-6 py-2 rounded-md",
@@ -64,18 +44,8 @@ const CreationModal = ({ handleSubmit, handleCloseCreateModal, loading }) => {
         <div className="w-full flex">
           <div className="w-[70%] flex flex-col">
             <h1 className="text-2xl font-fontBold">Example Data:</h1>
-            <JSONTree
-              data={dataMapToJsonTree(datasets, fieldsOptions)}
-              hideRoot={true}
-              theme={{ extend: theme }}
-              labelRenderer={([key]) => (
-                <h1 className="font-fontBold text-lg">{key}:</h1>
-              )}
-              shouldExpandNode={() => true}
-              valueRenderer={(value) => (
-                <p className="inline font-fontBold">{value}</p>
-              )}
-            />
+
+            <JSONTreeCont data={dataMapToJsonTree(datasets, fieldsOptions)} />
           </div>
 
           <ConfigFormSection />

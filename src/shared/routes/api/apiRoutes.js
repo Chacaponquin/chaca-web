@@ -24,4 +24,5 @@ export const apiRoutes = {
   CREATE_DATA: "/createData",
   GET_NO_USER_LIMITS: "/util/getNoUserLimits",
   GET_MY_SCHEMAS: "/user/getMySchemas",
+  DELETE_SCHEMA: "/user/deleteSchema",
 };

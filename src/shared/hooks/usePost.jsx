@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { axiosInstance } from "../routes/api/apiRoutes";
 
-export const usePost = ({ onCompleted, onError, url, body }) => {
+export const usePost = ({ onCompleted, onError, url, body: bodyFunction }) => {
   const [loading, setLoading] = useState(false);
 
-  const request = () => {
+  const request = ({ body }) => {
     setLoading(true);
     axiosInstance
-      .post(url, { data: body })
+      .post(url, { data: body ? body : bodyFunction })
       .then(({ data }) => onCompleted(data))
       .catch((error) => onError(error))
       .finally(() => setLoading(false));
