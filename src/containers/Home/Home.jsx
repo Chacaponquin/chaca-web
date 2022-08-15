@@ -46,11 +46,12 @@ const Home = () => {
     });
 
     if (socket.connected) {
-      socket.emit("createDatasets", {
+      socket.volatile.emit("createDatasets", {
         datasets: returnDataMap(datasets),
         config,
       });
     } else {
+      toast.error("Hubo un error en la creacion de los datasets");
       setCreateDataLoading(false);
     }
   };
