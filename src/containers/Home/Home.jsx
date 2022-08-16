@@ -9,8 +9,9 @@ import CreationModal from "./components/CreationModal/CreationModal";
 import { DatasetsContext } from "../../shared/context/DatasetsContext";
 import { DATASETS_ACTIONS } from "./helpers/reducer/ActionTypes";
 import { UserContext } from "../../shared/context/UserContext";
-import { DATA_TYPES } from "./helpers/datasetsUtils";
 import { returnDataMap } from "./helpers/dataMap";
+import { useEffect } from "react";
+import { validateDatasetsData } from "./helpers/validateDatasetsData";
 
 const Home = () => {
   const {
@@ -25,18 +26,20 @@ const Home = () => {
   const [createDataLoading, setCreateDataLoading] = useState(false);
   const [openCreationModal, setOpenCreationModal] = useState(false);
 
+  const [porcent, setPorcent] = useState(0);
+
   const handleCloseCreateModal = () => {
     setOpenCreationModal(false);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    setCreateDataLoading(true);
-
+  useEffect(() => {
     socket.on("getDownUrl", (args) => {
       window.open(`${process.env.REACT_APP_API_URL}/${args.downUrl}`);
       setCreateDataLoading(false);
+    });
+
+    socket.on("documentCreated", (data) => {
+      setPorcent(Number(data.porcent) || 0);
     });
 
     socket.on("createDatasetsError", (error) => {
@@ -45,61 +48,31 @@ const Home = () => {
       setCreateDataLoading(false);
     });
 
+    return () => {
+      socket.off("getDownUrl");
+      socket.off("createDatasetsError");
+    };
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     if (socket.connected) {
-      socket.volatile.emit("createDatasets", {
+      setCreateDataLoading(true);
+
+      socket.emit("createDatasets", {
         datasets: returnDataMap(datasets),
         config,
       });
     } else {
-      toast.error("Hubo un error en la creacion de los datasets");
+      toast.error("Revisa tu internet");
       setCreateDataLoading(false);
     }
   };
 
   const handleOpenCreationModal = () => {
     try {
-      for (const dat of datasets) {
-        for (const field of dat.fields) {
-          if (field.dataType.type === DATA_TYPES.REF) {
-            if (!field.dataType.fieldRef)
-              throw new Error(
-                "Loas campos referenica deben tener un campo al que se pueda referenciar"
-              );
-          }
-        }
-      }
-
-      for (const dat of datasets) {
-        let cont = 0;
-        for (let j = 0; j < datasets.length; j++) {
-          if (datasets[j].name === dat) cont++;
-        }
-
-        if (cont >= 2)
-          throw Error("No puede haber datasets con los mismos nombres");
-      }
-
-      for (let x = 0; x < datasets.length; x++) {
-        const fields = datasets[x].fields;
-
-        for (let i = 0; i < fields.length; i++) {
-          let error = null;
-
-          if (!fields[i].name)
-            error = "No puede quedarse ningun campo sin nombre";
-          else if (!fields[i].type)
-            error = "Todos los campos deben tener un tipo de dato";
-          else if (
-            fields.find(
-              (el) => el.id !== fields[i].id && fields[i].name === el.name
-            )
-          )
-            error = "No puede haber dos campos con los mismos nombres";
-
-          if (error) throw new Error(error);
-        }
-      }
-
+      validateDatasetsData(datasets);
       setOpenCreationModal(true);
     } catch (error) {
       toast.error(error.message, { autoClose: true });
@@ -125,6 +98,7 @@ const Home = () => {
           handleSubmit={handleSubmit}
           handleCloseCreateModal={handleCloseCreateModal}
           loading={createDataLoading}
+          porcent={porcent}
         />
       )}
 

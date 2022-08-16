@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import { useQuery } from "../hooks/useQuery";
 import { apiRoutes } from "../routes/api/apiRoutes";
 import io from "socket.io-client";
+import { useEffect } from "react";
 
 const UserContext = createContext({
   actualUser: null,
@@ -10,10 +11,9 @@ const UserContext = createContext({
   loading: true,
   socket: null,
 });
+const socket = io(process.env.REACT_APP_SOCKET_URL, {});
 
 const UserProvider = ({ children }) => {
-  const socket = io.connect(process.env.REACT_APP_API_URL);
-
   const [actualUser, setActualUser] = useState(null);
 
   const handleSignIn = (token) => {
@@ -21,10 +21,20 @@ const UserProvider = ({ children }) => {
     window.location.reload(false);
   };
 
+  useEffect(() => {
+    socket.on("connect_error", () => {
+      setTimeout(() => socket.connect(), 5000);
+    });
+
+    return () => {
+      socket.off("connect");
+      socket.off("disconnect");
+    };
+  }, []);
+
   const { loading } = useQuery({
     url: apiRoutes.AUTH_ROUTES.GET_USER_BY_TOKEN,
     onCompleted: (data) => {
-      console.log(data);
       setActualUser(data.user);
     },
     onError: (error) => {

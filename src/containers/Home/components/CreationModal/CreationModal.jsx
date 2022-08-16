@@ -10,8 +10,14 @@ import { CONFIG_ACTIONS } from "../../helpers/reducer/ActionTypes";
 import { dataMapToJsonTree } from "./helpers/dataMapToJsonTree";
 import { Checkbox } from "primereact/checkbox";
 import JSONTreeCont from "../../../../shared/components/JsonTree/JSONTreeCont";
+import CreationLoading from "./components/CreationLoading";
 
-const CreationModal = ({ handleSubmit, handleCloseCreateModal, loading }) => {
+const CreationModal = ({
+  handleSubmit,
+  handleCloseCreateModal,
+  loading,
+  porcent,
+}) => {
   const { configDispatch, config, datasets, fieldsOptions } =
     useContext(DatasetsContext);
 
@@ -38,11 +44,15 @@ const CreationModal = ({ handleSubmit, handleCloseCreateModal, loading }) => {
       { "bg-slate-200 text-black": format !== config.fileType }
     );
   };
+
+  console.log(porcent);
   return (
     <div className="fixed bg-black/50 w-screen min-h-screen top-0 left-0 flex items-center justify-center z-50">
+      {loading && <CreationLoading porcent={porcent} />}
+
       <div className="bg-white py-6 px-10 rounded-md w-[85%] min-h-[95%] flex flex-col gap-5 esm:w-[95%]">
-        <div className="w-full flex">
-          <div className="w-[70%] flex flex-col">
+        <div className="w-full flex esm:flex-col esm:gap-2">
+          <div className="w-[70%] esm:w-full flex flex-col">
             <h1 className="text-2xl font-fontBold">Example Data:</h1>
 
             <JSONTreeCont data={dataMapToJsonTree(datasets, fieldsOptions)} />
@@ -73,7 +83,6 @@ const CreationModal = ({ handleSubmit, handleCloseCreateModal, loading }) => {
           handleCancel={handleCloseCreateModal}
           handleSubmit={handleSubmit}
           submitText={"Create"}
-          loading={loading}
         />
       </div>
     </div>
@@ -87,7 +96,7 @@ const ConfigFormSection = () => {
   const { configDispatch, config } = useContext(DatasetsContext);
 
   return (
-    <div className="flex flex-col w-[30%] gap-4">
+    <div className="flex flex-col w-[30%] gap-2 esm:w-full">
       <h1 className="font-fontBold text-2xl">Options:</h1>
       <div className={divClass}>
         <Checkbox
