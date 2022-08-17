@@ -2,7 +2,6 @@ import React from "react";
 import LoaderContainer from "../../../../../shared/components/Loader/LoaderContainer";
 
 const CreationLoading = ({ porcent }) => {
-  console.log(porcent);
   return (
     <div className="w-screen h-screen fixed bg-white/50 top-0 left-0 z-[50] flex justify-center items-center">
       <div className="px-10 py-10 w-[80%] flex flex-col items-center bg-white">

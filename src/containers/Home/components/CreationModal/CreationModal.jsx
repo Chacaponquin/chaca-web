@@ -45,7 +45,6 @@ const CreationModal = ({
     );
   };
 
-  console.log(porcent);
   return (
     <div className="fixed bg-black/50 w-screen min-h-screen top-0 left-0 flex items-center justify-center z-50">
       {loading && <CreationLoading porcent={porcent} />}

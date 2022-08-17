@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { appRoutes } from "../../shared/routes/app/appRoutes";
 import { UserContext } from "../../shared/context/UserContext";
 import avatar from "../../assets/images/avatar.jpg";
+import AccountButton from "./components/AccountButton/AccountButton";
 
 const navBarOptions = [
   { icon: "home", label: "Home", url: appRoutes.HOME },
@@ -18,22 +19,28 @@ const NavBar = ({ handleOpenSideBar }) => {
   return (
     <div className="w-full p-4 px-8 mb-4 esm:px-3 bg-transparent z-50">
       <div className="flex w-full shadow-lg rounded-md px-5 py-3 bg-white z-50">
-        <div className="w-[25%] esm:hidden"></div>
+        <div className="w-[30%] esm:hidden"></div>
 
-        <div className="flex justify-center items-center gap-3 w-[50%] esm:w-[100%]">
+        <div className="flex justify-center items-center gap-3 w-[40%] esm:w-[100%]">
           {navBarOptions.map((el, i) => (
             <NavBarOption key={i} {...el} />
           ))}
         </div>
 
-        <div className="flex justify-end w-[25%] esm:hidden items-center gap-3">
+        <div className="flex justify-end w-[30%] esm:hidden items-center gap-3 text-lg">
           {!actualUser && (
-            <Link
-              className="px-7 py-2 font-fontBold text-secondColor shadow-md text-lg rounded-md lg:block hidden"
-              to={appRoutes.AUTH_ROUTES.LOGIN}
-            >
-              Get Full Access
-            </Link>
+            <>
+              <Link
+                className="px-7 py-2 font-fontBold text-secondColor shadow-md rounded-md lg:block hidden"
+                to={appRoutes.AUTH_ROUTES.LOGIN}
+              >
+                Get Full Access
+              </Link>
+
+              <Link to={appRoutes.AUTH_ROUTES.LOGIN}>
+                <AccountButton />
+              </Link>
+            </>
           )}
 
           {actualUser && (
