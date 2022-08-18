@@ -23,6 +23,7 @@ export const createField = (num) => {
     dataType: { type: DATA_TYPES.SINGLE_VALUE },
     isPosibleNull: false,
     isArray: false,
+    args: {},
   };
 };
 

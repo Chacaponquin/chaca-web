@@ -1,22 +1,25 @@
 import { Dropdown } from "primereact/dropdown";
 import { InputNumber } from "primereact/inputnumber";
 import React, { useEffect, useState } from "react";
-import { FIELDS_INPUT_TYPES } from "../../../helpers/datasetsUtils";
+import { FIELDS_INPUT_TYPES } from "../helpers/datasetsUtils";
 import { Calendar } from "primereact/calendar";
-import { titlePipe } from "../helpers/titlePipe";
+import { titlePipe } from "./TypeModal/helpers/titlePipe";
 import { Checkbox } from "primereact/checkbox";
 
 const FieldInputArgument = ({
   arg,
   handleChangeArguments,
-  allArguments = [],
+  allArguments = {},
 }) => {
   const [value, setValue] = useState("");
 
   useEffect(() => {
-    const found = allArguments.find((el) => el.field === arg.argument);
-
-    if (found) setValue(found.value);
+    const keys = Object.keys(allArguments);
+    for (let i = 0; i < keys.length; i++) {
+      if (keys[i] === arg.argument) {
+        setValue(Object.values(allArguments)[i]);
+      }
+    }
   }, [arg, allArguments]);
 
   if (arg.inputType === FIELDS_INPUT_TYPES.SELECT)

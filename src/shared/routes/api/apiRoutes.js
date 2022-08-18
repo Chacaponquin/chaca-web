@@ -24,4 +24,6 @@ export const apiRoutes = {
   GET_NO_USER_LIMITS: "/util/getNoUserLimits",
   GET_MY_SCHEMAS: "/user/getMySchemas",
   DELETE_SCHEMA: "/user/deleteSchema",
+  GET_API_OPTIONS: "/util/getApiOptions",
+  GET_FILE_OPTIONS: "/util/getFileConfigFileOptions",
 };

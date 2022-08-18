@@ -1,6 +1,6 @@
 import { createContext, useReducer, useState } from "react";
 import { initialDataMap } from "../../containers/Home/helpers/dataMap";
-import { FILE_TYPE } from "../../containers/Home/helpers/datasetsUtils";
+import { CONFIG_ACTIONS } from "../../containers/Home/helpers/reducer/ActionTypes";
 import { configReducer } from "../../containers/Home/helpers/reducer/configReducer";
 import { createInitialDataset } from "../../containers/Home/helpers/reducer/createInitialFunctions";
 import { datasetsReducer } from "../../containers/Home/helpers/reducer/datasetsReducer";
@@ -15,6 +15,7 @@ const DatasetsContext = createContext({
   configDispatch: () => {},
   fieldsOptions: [],
   getFieldsLoading: true,
+  fileConfigOptions: [],
 });
 
 const DatasetsProvider = ({ children }) => {
@@ -22,11 +23,12 @@ const DatasetsProvider = ({ children }) => {
     createInitialDataset(0),
   ]);
   const [config, configDispatch] = useReducer(configReducer, {
-    fileType: FILE_TYPE.JSON,
+    file: {},
     saveSchema: false,
   });
   const [noUserLimits, setNoUserLimits] = useState({});
   const [fieldsOptions, setFieldsOptions] = useState([]);
+  const [fileConfigOptions, setFileConfigOptions] = useState([]);
 
   const { loading: getFieldsLoading } = useQuery({
     url: apiRoutes.GET_FIELDS,
@@ -42,6 +44,26 @@ const DatasetsProvider = ({ children }) => {
     onError: () => {},
   });
 
+  useQuery({
+    url: apiRoutes.GET_FILE_OPTIONS,
+    onCompleted: (data) => {
+      setFileConfigOptions(data.options);
+
+      configDispatch({
+        type: CONFIG_ACTIONS.SET_INITIAL_CONFIG,
+        payload: {
+          value: {
+            file: {
+              fileType: data.options[0].fileType,
+              saveSchema: false,
+            },
+          },
+        },
+      });
+    },
+    onError: () => {},
+  });
+
   const data = {
     datasets,
     dispatch,
@@ -50,6 +72,7 @@ const DatasetsProvider = ({ children }) => {
     noUserLimits,
     fieldsOptions,
     getFieldsLoading,
+    fileConfigOptions,
   };
 
   return (

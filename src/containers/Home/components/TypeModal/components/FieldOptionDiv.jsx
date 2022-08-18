@@ -1,7 +1,7 @@
 import React from "react";
-import clsx from "clsx";
-import FieldInputArgument from "./FieldInputArgument";
+import FieldInputArgument from "../../FieldInputArgument";
 import { titlePipe } from "../helpers/titlePipe";
+import clsx from "clsx";
 
 const FieldOptionDiv = ({
   field,
@@ -28,8 +28,6 @@ const FieldOptionDiv = ({
       </p>
 
       {isSelected &&
-        field.arguments &&
-        field.arguments.length &&
         field.arguments.map((arg, i) => (
           <React.Fragment key={i}>
             <div className="grid grid-rows-1 auto-cols-auto items-center gap-1 !text-sm arguments-container">

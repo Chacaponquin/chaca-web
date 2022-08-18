@@ -30,13 +30,6 @@ const NavBar = ({ handleOpenSideBar }) => {
         <div className="flex justify-end w-[30%] esm:hidden items-center gap-3 text-lg">
           {!actualUser && (
             <>
-              <Link
-                className="px-7 py-2 font-fontBold text-secondColor shadow-md rounded-md lg:block hidden"
-                to={appRoutes.AUTH_ROUTES.LOGIN}
-              >
-                Get Full Access
-              </Link>
-
               <Link to={appRoutes.AUTH_ROUTES.LOGIN}>
                 <AccountButton />
               </Link>

@@ -21,24 +21,20 @@ const Modal = ({
     parent: fieldsOptions[0],
     type: fieldsOptions[0].fields[0],
     dataType: { type: DATA_TYPES.SINGLE_VALUE },
-    args: [],
+    args: {},
   });
 
   const handleChangeArguments = ({ value, field }) => {
     const { args } = typeInfo;
 
-    const filterArguments = args.filter((el) => el.field !== field);
-
-    filterArguments.push({ field, value });
-
-    let newData = { ...typeInfo, args: filterArguments };
+    let newData = { ...typeInfo, args: { ...args, [field]: value } };
 
     setTypeInfo(newData);
   };
 
   const handleChangeOptionSelected = (field) => {
     if (typeInfo.type.name !== field.name)
-      setTypeInfo({ ...typeInfo, args: [], type: field });
+      setTypeInfo({ ...typeInfo, args: {}, type: field });
   };
 
   const handleChangeDataType = (obj) => {
@@ -57,7 +53,7 @@ const Modal = ({
   };
 
   const handleChangeParentSelected = (parent) => {
-    setTypeInfo({ ...typeInfo, parent, type: parent.fields[0], args: [] });
+    setTypeInfo({ ...typeInfo, parent, type: parent.fields[0], args: {} });
   };
 
   return (

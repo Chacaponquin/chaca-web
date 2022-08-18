@@ -12,8 +12,3 @@ export const FIELDS_INPUT_TYPES = {
   FLOAT: "FLOAT",
   BOOLEAN: "BOOLEAN",
 };
-
-export const FILE_TYPE = {
-  JSON: "JSON",
-  CSV: "CSV",
-};
