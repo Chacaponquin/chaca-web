@@ -29,9 +29,15 @@ const JSONTreeCont = ({ data }) => {
       hideRoot={true}
       shouldExpandNode={() => true}
       theme={theme}
-      valueRenderer={(value) => <p className="text-black inline">{value}</p>}
+      valueRenderer={(value) => (
+        <p className="text-black inline text-base esm:text-sm font-fontCodeRegular">
+          {value}
+        </p>
+      )}
       labelRenderer={([key]) => (
-        <h1 className="font-fontCodeBold text-base text-secondColor">{key}:</h1>
+        <h1 className="font-fontCodeRegular text-lg esm:text-base text-secondColor">
+          {key}:
+        </h1>
       )}
     />
   );

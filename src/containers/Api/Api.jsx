@@ -27,7 +27,7 @@ const Api = () => {
         <ApiLeftPart />
       </div>
 
-      <div className="w-full flex border-l-2  esm:px-5 px-20">
+      <div className="w-full flex border-l-2 esm:px-7 px-20 py-5">
         <Documentation subSectionSelect={subSectionSelect} />
       </div>
     </div>

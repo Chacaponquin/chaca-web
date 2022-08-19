@@ -6,7 +6,7 @@ import ApiLeftPart from "../../shared/components/ApiLeftPart/ApiLeftPart";
 const ApiSideBar = ({ handleCloseSideBar, openApiSideBar }) => {
   const sideBarClass = () => {
     return clsx(
-      "w-[350px] flex flex-col bg-white h-screen overflow-y-auto py-5 px-8 duration-300 transition-all esm:px-3",
+      "w-[350px] esm:w-[300px] flex flex-col bg-white h-screen overflow-y-auto py-5 px-8 duration-300 transition-all esm:px-3 exsm:w-screen",
       {
         "-translate-x-full": !openApiSideBar,
       },
@@ -16,7 +16,7 @@ const ApiSideBar = ({ handleCloseSideBar, openApiSideBar }) => {
 
   const containerClass = () => {
     return clsx(
-      "w-screen h-screen fixed top-0 left-0 transition-all duration-300",
+      "w-screen h-screen fixed top-0 left-0 transition-all duration-300 ",
       { "-z-10 bg-transparent": !openApiSideBar },
       { "z-50 bg-black/50": openApiSideBar }
     );

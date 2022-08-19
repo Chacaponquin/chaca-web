@@ -11,7 +11,7 @@ import { useLocation } from "react-router-dom";
 const navBarOptions = [
   { icon: "home", label: "Home", url: appRoutes.HOME },
   { icon: "code", label: "Api", url: appRoutes.API },
-  { icon: "docs", label: "Docs", url: appRoutes.DOCS },
+  //{ icon: "docs", label: "Docs", url: appRoutes.DOCS },
 ];
 
 const NavBar = ({ handleOpenSideBar, handleOpenApiSideBar }) => {

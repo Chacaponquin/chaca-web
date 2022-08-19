@@ -11,7 +11,7 @@ const SingleValueForm = ({
 }) => {
   return (
     <>
-      <div className="flex sm:flex-col gap-3 px-2 sm:h-full overflow-auto sm:w-[25%] w-full sm:py-0 py-4">
+      <div className="flex sm:flex-col gap-3 px-2 sm:h-full overflow-auto sm:w-[230px] w-full sm:py-0 py-4 h-[80px]">
         {fieldsOptions.map((el, i) => (
           <ParentDiv
             key={i}
@@ -22,7 +22,7 @@ const SingleValueForm = ({
         ))}
       </div>
 
-      <div className="sm:h-full grid xl:grid-cols-3 grid-cols-2 esm:grid-cols-1 auto-rows-max overflow-auto gap-3 w-full sm:w-[75%]">
+      <div className="sm:h-full grid xl:grid-cols-3 grid-cols-2 esm:grid-cols-1 auto-rows-max overflow-auto gap-3 w-full">
         {typeInfo.parent &&
           typeInfo.parent.fields.map((el, i) => (
             <FieldOptionDiv

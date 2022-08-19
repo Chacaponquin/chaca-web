@@ -19,9 +19,11 @@ const CreationModal = ({
       {loading && <CreationLoading porcent={porcent} />}
 
       <div className="bg-white py-6 px-10 rounded-md w-[90%] min-h-[95%] flex flex-col gap-5 esm:w-[95%]">
-        <div className="w-full flex esm:flex-col-reverse gap-10 esm:gap-4">
+        <div className="w-full flex esm:flex-col-reverse gap-10 esm:gap-5">
           <div className="w-[60%] esm:w-full flex flex-col">
-            <h1 className="text-3xl font-fontBold">Example Data:</h1>
+            <h1 className="text-3xl font-fontBold esm:text-2xl">
+              Example Data:
+            </h1>
 
             <JSONTreeCont data={dataMapToJsonTree(datasets, fieldsOptions)} />
           </div>

@@ -19,7 +19,7 @@ const DataTypeSelect = ({ selectedDataType, handleChangeDataType }) => {
     );
 
   return (
-    <div className="w-full h-[15%] esm:h-[10%] flex items-center justify-center gap-5 overflow-auto">
+    <div className="w-full h-[80px] esm:h-[65px] flex items-center justify-center gap-5 overflow-auto">
       {Object.values(DATA_TYPES).map((dat, i) => (
         <div
           className={divClass(dat)}

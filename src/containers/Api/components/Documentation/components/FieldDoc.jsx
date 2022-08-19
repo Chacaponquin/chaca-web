@@ -3,10 +3,7 @@ import { titlePipe } from "../../../../../shared/helpers/titlePipe";
 import Icon from "supercons";
 import { useState } from "react";
 import { useEffect } from "react";
-import {
-  getSelectValues,
-  showDataTransform,
-} from "../../../helpers/showDataTransform";
+import { getSelectValues } from "../../../helpers/showDataTransform";
 import { FIELDS_INPUT_TYPES } from "../../../../../shared/helpers/datasetsUtils";
 
 const FieldDoc = ({ fieldData }) => {
@@ -14,27 +11,30 @@ const FieldDoc = ({ fieldData }) => {
     "text-left font-fontCodeBold px-4 py-2 text-base esm:text-sm";
   const separatorClass = "w-full border-t-[2px] border-slate-300";
   const cellTableClass = "font-fontCodeRegular px-4 py-2 text-base esm:text-sm";
-  const subHeaderClass = "md:text-2xl font-fontBold text-xl";
 
   return (
     <div className="flex flex-col w-full">
       {fieldData.fields.map((f, i) => (
         <div key={i} className="w-full flex flex-col">
-          <div className="w-full flex-col py-10 flex gap-5">
-            <DataHeader name={f.name} route={f.route} />
-
-            <div className="flex gap-4 items-center">
-              <h1 className={subHeaderClass}>Example:</h1>
-              <div className="px-3 py-1 bg-slate-100 rounded-md">
-                <p className="font-fontCodeBold mb-0 md:text-xl text-base flex items-center">
-                  {showDataTransform(f.exampleValue)}
-                </p>
+          <div className="w-full flex-col py-5 flex gap-5">
+            <div className="flex flex-col gap-1">
+              <DataHeader name={f.name} route={f.route} />
+              <div>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime
+                facilis doloribus corporis incidunt? Ut eaque vel nobis
+                doloremque fugit sint.
               </div>
             </div>
 
             {f.arguments.length > 0 && (
               <div className="flex flex-col gap-1">
-                <h1 className={subHeaderClass}>Parámetros:</h1>
+                <h1
+                  className={
+                    "md:text-xl font-fontBold text-lg whitespace-nowrap"
+                  }
+                >
+                  Parámetros:
+                </h1>
                 <table className="table-fixed border-2 rounded-md">
                   <thead className="bg-slate-100">
                     <tr>
@@ -73,9 +73,8 @@ const FieldDoc = ({ fieldData }) => {
 };
 
 const DataHeader = ({ name, route }) => {
-  const headerClass = "font-fontBold md:text-3xl esm:text-3xl sm:text-4xl";
-  const queryURLClass =
-    "text-white font-fontCodeBold xl:text-lg bg-principal-bg px-4 py-2 rounded-md text-base";
+  const headerClass =
+    "font-fontBold md:text-2xl esm:text-xl sm:text-xl whitespace-nowrap";
 
   const [isCopy, setIsCopy] = useState(false);
 
@@ -91,11 +90,17 @@ const DataHeader = ({ name, route }) => {
   };
 
   return (
-    <div className="flex md:gap-7 gap-3 items-center md:flex-row flex-col">
+    <div className="flex md:gap-7 gap-3 md:items-center items-start md:flex-row flex-col ">
       <h1 className={headerClass}>{name}</h1>
 
-      <div className="flex gap-4 items-center">
-        <div className={queryURLClass}>GET {route}</div>
+      <div className="flex gap-4 items-center esm:hidden">
+        <div
+          className={
+            "text-white font-fontCodeBold xl:text-base bg-principal-bg px-4 py-2 rounded-md text-sm whitespace-nowrap"
+          }
+        >
+          GET {route}
+        </div>
 
         <div className="flex items-center gap-2 xl:flex-row flex-col esm:hidden">
           <button

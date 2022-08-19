@@ -16,7 +16,7 @@ const ConfigFormSection = () => {
 
   return (
     <div className="flex flex-col w-[40%] gap-2 esm:w-full">
-      <h1 className="font-fontBold text-3xl">Options:</h1>
+      <h1 className="font-fontBold text-3xl esm:text-2xl">Options:</h1>
 
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-1">

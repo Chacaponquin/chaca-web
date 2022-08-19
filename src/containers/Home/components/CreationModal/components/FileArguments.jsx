@@ -34,7 +34,7 @@ const FileArguments = () => {
   return (
     <>
       {fileArguments.map((el, i) => (
-        <div className="flex items-center" key={i}>
+        <div className="flex items-center gap-3" key={i}>
           <p>{titlePipe(el.argument)}:</p>
           <FieldInputArgument
             arg={el}
