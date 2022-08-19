@@ -4,8 +4,8 @@ import Icon from "supercons";
 
 const PrincipalButton = () => {
   return (
-    <button class="cssbuttons-io rounded-full text-2xl ">
-      <span className="py-3 ">
+    <button className="cssbuttons-io rounded-full text-2xl ">
+      <span className="py-3 font-fontBold uppercase ">
         <Icon glyph="sam" />
         Let´s Create
       </span>

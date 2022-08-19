@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import clsx from "clsx";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
 import { RadioButton } from "primereact/radiobutton";
-import { DATA_TYPES } from "../../../helpers/datasetsUtils";
+import { DATA_TYPES } from "../../../../../shared/helpers/datasetsUtils";
 
 const RefForm = ({ datasetID, handleChangeDataType, typeInfoDataType }) => {
   const { datasets } = useContext(DatasetsContext);

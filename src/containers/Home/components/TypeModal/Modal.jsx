@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { DATA_TYPES } from "../../helpers/datasetsUtils";
 import { DATASETS_ACTIONS } from "../../helpers/reducer/ActionTypes";
 import OptionsButton from "../OptionsButton";
 import DataTypeSelect from "./components/DataTypeSelect";
@@ -7,6 +6,7 @@ import { DatasetsContext } from "../../../../shared/context/DatasetsContext";
 import SingleValueForm from "./components/SingleValueForm";
 import MixedForm from "./components/MixedForm";
 import RefForm from "./components/RefForm";
+import { DATA_TYPES } from "../../../../shared/helpers/datasetsUtils";
 
 const Modal = ({
   datasetID,

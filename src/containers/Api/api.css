@@ -1,0 +1,18 @@
+.search-input {
+  color: #495057;
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+    box-shadow 0.2s;
+  appearance: none;
+  border-radius: 6px;
+}
+.search-input:hover {
+  border-color: #6366f1;
+}
+.search-input-focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: 0 0 0 0.2rem #c7d2fe;
+  border-color: #6366f1;
+}

@@ -1,3 +1,4 @@
 export const API_SECTIONS = {
   INTRODUCCION: "INTRODUCCION",
+  FIELDS: "FIELDS",
 };

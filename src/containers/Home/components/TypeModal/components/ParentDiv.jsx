@@ -1,6 +1,6 @@
 import React from "react";
-import { titlePipe } from "../helpers/titlePipe";
 import clsx from "clsx";
+import { titlePipe } from "../../../../../shared/helpers/titlePipe";
 
 const ParentDiv = ({ parent, handleChangeParentSelected, isSelected }) => {
   const parentClass = () => {

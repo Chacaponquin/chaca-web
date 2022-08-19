@@ -1,14 +1,13 @@
 import React from "react";
-import { useQuery } from "../../shared/hooks/useQuery";
-import { apiRoutes } from "../../shared/routes/api/apiRoutes";
 import LoaderContainer from "../../shared/components/Loader/LoaderContainer";
+import Documentation from "./components/Documentation/Documentation";
+import "./api.css";
+import { ApiDocsContext } from "../../shared/context/ApiDocsContext";
+import { useContext } from "react";
+import ApiLeftPart from "../../shared/components/ApiLeftPart/ApiLeftPart";
 
 const Api = () => {
-  const { loading } = useQuery({
-    url: apiRoutes.GET_API_OPTIONS,
-    onCompleted: (data) => console.log(data),
-    onError: (error) => console.error(error),
-  });
+  const { loading, subSectionSelect } = useContext(ApiDocsContext);
 
   if (loading) {
     return (
@@ -22,7 +21,17 @@ const Api = () => {
     );
   }
 
-  return <div>Api</div>;
+  return (
+    <div className="w-full flex -translate-y-8 border-b-2">
+      <div className="w-[400px] min-w-[250px] lg:block hidden">
+        <ApiLeftPart />
+      </div>
+
+      <div className="w-full flex border-l-2  esm:px-5 px-20">
+        <Documentation subSectionSelect={subSectionSelect} />
+      </div>
+    </div>
+  );
 };
 
 export default Api;

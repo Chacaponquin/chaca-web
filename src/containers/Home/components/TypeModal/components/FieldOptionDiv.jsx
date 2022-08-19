@@ -1,7 +1,8 @@
 import React from "react";
 import FieldInputArgument from "../../FieldInputArgument";
-import { titlePipe } from "../helpers/titlePipe";
+
 import clsx from "clsx";
+import { titlePipe } from "../../../../../shared/helpers/titlePipe";
 
 const FieldOptionDiv = ({
   field,

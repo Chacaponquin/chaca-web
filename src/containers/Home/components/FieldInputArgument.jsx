@@ -1,10 +1,10 @@
 import { Dropdown } from "primereact/dropdown";
 import { InputNumber } from "primereact/inputnumber";
 import React, { useEffect, useState } from "react";
-import { FIELDS_INPUT_TYPES } from "../helpers/datasetsUtils";
 import { Calendar } from "primereact/calendar";
-import { titlePipe } from "./TypeModal/helpers/titlePipe";
 import { Checkbox } from "primereact/checkbox";
+import { titlePipe } from "../../../shared/helpers/titlePipe";
+import { FIELDS_INPUT_TYPES } from "../../../shared/helpers/datasetsUtils";
 
 const FieldInputArgument = ({
   arg,

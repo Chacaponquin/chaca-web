@@ -1,4 +1,4 @@
-import { DATA_TYPES } from "../datasetsUtils";
+import { DATA_TYPES } from "../../../../shared/helpers/datasetsUtils";
 
 export const createInitialDataset = (num) => {
   let fields = [];

@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React, { useContext } from "react";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
-import { DATA_TYPES } from "../../../helpers/datasetsUtils";
+import { DATA_TYPES } from "../../../../../shared/helpers/datasetsUtils";
 
 const DataTypeSelect = ({ selectedDataType, handleChangeDataType }) => {
   const { datasets } = useContext(DatasetsContext);
