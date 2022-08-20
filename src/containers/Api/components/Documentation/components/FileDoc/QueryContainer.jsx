@@ -95,7 +95,7 @@ const QueryContainer = ({ field }) => {
             <motion.div>
               <motion.div className="flex lg:flex-row w-full flex-col">
                 <SyntaxHighlighter
-                  className="z-50 w-full py-4 px-6 code-cont text-sm !bg-white"
+                  className="z-50 w-full py-4 px-6 code-cont text-sm !bg-white esm:px-3 esm:py-2 esm:text-xs"
                   language={languages["javascript"]}
                   style={themes["atomOneLight"]}
                 >
@@ -124,14 +124,14 @@ const QueryContainer = ({ field }) => {
             <motion.div className={buttonSectionClass()}>
               {result !== null && result !== undefined && (
                 <div className="flex items-center gap-1">
-                  <p className="mb-0 px-3 py-2 text-black rounded-md bg-slate-200 font-fontCodeBold text-sm">
+                  <p className="mb-0 px-3 py-2 text-black rounded-md bg-slate-200 font-fontCodeBold text-sm esm:px-2 esm:py-1 ">
                     {showDataTransform(result)}
                   </p>
                 </div>
               )}
               <LoaderContainer loading={loading} className="w-[30px]">
                 <button
-                  className="transition-all duration-300 py-2 px-4 text-base text-white font-fontBold bg-principalColor rounded-md hover:bg-principalColor/60"
+                  className="transition-all duration-300 py-2 px-4 text-base text-white font-fontBold bg-principalColor rounded-md hover:bg-principalColor/60 esm:px-3 esm:py-1 "
                   onClick={handleSubmit}
                 >
                   Submit

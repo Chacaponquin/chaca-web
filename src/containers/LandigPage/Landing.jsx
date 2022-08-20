@@ -1,5 +1,5 @@
 import React from "react";
-import BgSVG from "./assets/BgSVG";
+import BgSVG from "../../shared/components/CurveBg/BgSVG";
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../shared/routes/app/appRoutes";
 import PrincipalButton from "./components/Buttons/PrincipalButton/PrincipalButton";

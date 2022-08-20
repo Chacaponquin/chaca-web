@@ -1,11 +1,4 @@
 import React, { useContext, useState } from "react";
-import {
-  buttonClass,
-  formInputDivClass,
-  inputClass,
-  labelClass,
-} from "../helpers/classes";
-import image from "../../../assets/images/signUp-image.png";
 import { usePost } from "../../../shared/hooks/usePost";
 import { apiRoutes } from "../../../shared/routes/api/apiRoutes";
 import LoaderContainer from "../../../shared/components/Loader/LoaderContainer";
@@ -14,6 +7,8 @@ import { UserContext } from "../../../shared/context/UserContext";
 import { InputText } from "primereact/inputtext";
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../../shared/routes/app/appRoutes";
+
+import OtherOptionsSection from "../components/OtherOptionsSection";
 
 const SignUp = () => {
   const [signUpData, setSignUpData] = useState({
@@ -31,7 +26,7 @@ const SignUp = () => {
       handleSignIn(userToken);
     },
     onError: (error) => {
-      if (error.response.data) toast.error(error.response.data.error);
+      if (error?.response?.data) toast.error(error?.response?.data?.error);
       else toast.error("Hubo un error en la creacion del usuario");
     },
     body: signUpData,
@@ -53,99 +48,102 @@ const SignUp = () => {
     setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
   };
 
+  const inputClass =
+    "py-2 px-5 font-fontRegular text-base esm:px-3 esm:py-1 esm:text-sm";
+  const labelClass = "text-lg font-fontBold";
+
   return (
-    <div className="w-full h-screen flex justify-center items-center bg-second-bg bg-cover bg-no-repeat lg:px-32 sm:px-20 esm:px-10">
+    <div className="w-full h-screen flex">
       <ToastContainer />
-      <div className="w-full flex gap-10 items-center lg:justify-between justify-center">
-        <form
-          className="flex flex-col gap-3 w-96 bg-white px-8 py-5 shadow-lg rounded-md"
-          onSubmit={handleSubmit}
-        >
-          <div className={formInputDivClass}>
-            <label htmlFor="" className={labelClass}>
-              Username:
-            </label>
-            <InputText
-              type="text"
-              className={inputClass}
-              placeholder="Username..."
-              required
-              name="username"
-              onChange={handleChange}
-              value={signUpData.username}
-            />
-          </div>
-
-          <div className={formInputDivClass}>
-            <label htmlFor="" className={labelClass}>
-              Email:
-            </label>
-            <InputText
-              type="email"
-              className={inputClass}
-              placeholder="Email..."
-              required
-              name="email"
-              onChange={handleChange}
-              value={signUpData.email}
-            />
-          </div>
-
-          <div className={formInputDivClass}>
-            <label htmlFor="" className={labelClass}>
-              Password:
-            </label>
-            <InputText
-              type="password"
-              className={inputClass}
-              placeholder="Password..."
-              required
-              name="password"
-              onChange={handleChange}
-              value={signUpData.password}
-            />
-          </div>
-
-          <div className={formInputDivClass}>
-            <label htmlFor="" className={labelClass}>
-              Comfirm Password:
-            </label>
-            <InputText
-              type="password"
-              className={inputClass}
-              placeholder="Comfirm Password..."
-              required
-              name="comfirmPassword"
-              onChange={handleChange}
-              value={signUpData.comfirmPassword}
-            />
-          </div>
-
-          <div className="w-full flex justify-center">
-            <LoaderContainer loading={loading} className="w-[55px]">
-              <button className={buttonClass}>Sign Up</button>
-            </LoaderContainer>
-          </div>
-
-          <div className="flex justify-end">
-            <Link to={appRoutes.AUTH_ROUTES.SIGN_UP}>
-              <button
-                type="button"
-                className="underline text-secondColor text-base"
-              >
-                No tienes Cuenta?
-              </button>
+      <div className="py-5 px-20 esm:px-5 flex justify-center items-center xl:w-[50%] w-full">
+        <div>
+          <div className="flex justify-start w-full text-lg mb-6">
+            <p className="inline mb-0 whitespace-nowrap">You have account? </p>
+            <Link to={appRoutes.AUTH_ROUTES.LOGIN}>
+              <p className="inline mb-0 ml-2 text-secondColor">Login</p>
             </Link>
           </div>
-        </form>
 
-        <div className="lg:flex hidden flex-col items-center">
-          <img
-            src={image}
-            alt="signUp"
-            className="object-cover w-[650px] min-w-[300px]"
-          />
+          <form className="flex flex-col w-full" onSubmit={handleSubmit}>
+            <div className="w-full flex flex-col esm:items-center">
+              <div className="font-fontExtraBold text-6xl mb-3 whitespace-nowrap esm:text-5xl">
+                Welcome to
+                <h1 className="inline font-fontExtraBold ml-3">CH-DATA!</h1>
+              </div>
+              <p className="text-slate-400 text-2xl esm:text-xl">
+                Complete the form to continue
+              </p>
+            </div>
+
+            <div className="py-5 flex flex-col gap-3">
+              <div className="flex flex-col ">
+                <label htmlFor="" className={labelClass}>
+                  Username:
+                </label>
+                <InputText
+                  className={inputClass}
+                  required
+                  name="username"
+                  type={"text"}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label htmlFor="" className={labelClass}>
+                  Email:
+                </label>
+                <InputText
+                  className={inputClass}
+                  required
+                  name="email"
+                  type={"email"}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label htmlFor="" className={labelClass}>
+                  Password:
+                </label>
+                <InputText
+                  className={inputClass}
+                  required
+                  name="password"
+                  type={"password"}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label htmlFor="" className={labelClass}>
+                  Comfirm Password:
+                </label>
+                <InputText
+                  className={inputClass}
+                  required
+                  name="comfirmPassword"
+                  type={"password"}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+
+            <OtherOptionsSection loading={loading} />
+
+            <div className="flex justify-center">
+              <LoaderContainer loading={loading} className={"w-[50px]"}>
+                <button className="transition-all duration-300 rounded-md text-white bg-principal-bg hover:opacity-70 py-3 w-full text-2xl font-fontBold">
+                  Sign Up
+                </button>
+              </LoaderContainer>
+            </div>
+          </form>
         </div>
+      </div>
+
+      <div className="h-full xl:w-[50%]">
+        <div className="h-full w-full bg-principal-bg bg-cover bg-no-repeat"></div>
       </div>
     </div>
   );
