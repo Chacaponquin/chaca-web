@@ -14,7 +14,7 @@ const SectionParentDiv = ({ text, options, openOptions = false }) => {
 
   const parentDivClass = () => {
     return clsx(
-      "text-2xl px-8 py-2 w-full rounded-md flex cursor-pointer justify-between mb-2 transition-all duration-300 esm:text-xl",
+      "text-xl px-8 py-2 w-full rounded-md flex cursor-pointer justify-between mb-2 transition-all duration-300 esm:text-lg",
       {
         "bg-slate-200": seeOptions,
       }
@@ -23,14 +23,13 @@ const SectionParentDiv = ({ text, options, openOptions = false }) => {
 
   const fieldOptionClass = (id) => {
     const className =
-      "px-4 py-1 rounded-md text-xl font-fontBold cursor-pointer transition-all duration-300 esm:text-lg";
+      "px-4 py-1 rounded-md text-lg font-fontBold cursor-pointer transition-all duration-300 esm:text-base";
 
     if (subSectionSelect) {
       return clsx(
         className,
         {
-          "bg-gradient-to-r from-principalColor to-secondColor text-white":
-            subSectionSelect.subElement.id === id,
+          "bg-principalColor text-white": subSectionSelect.subElement.id === id,
         },
         {
           "text-slate-400 bg-white hover:bg-slate-200":

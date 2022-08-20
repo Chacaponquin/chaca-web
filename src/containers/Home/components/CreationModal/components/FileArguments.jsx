@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import FieldInputArgument from "../../../../../shared/components/FieldInputArgument/FieldInputArgument";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
 import { titlePipe } from "../../../../../shared/helpers/titlePipe";
 import { CONFIG_ACTIONS } from "../../../helpers/reducer/ActionTypes";
-import FieldInputArgument from "../../FieldInputArgument";
 
 const FileArguments = () => {
   const [fileArguments, setFileArguments] = useState([]);

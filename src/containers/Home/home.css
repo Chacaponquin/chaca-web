@@ -1,5 +1,19 @@
 .p-inputtext {
   padding: 0.2rem 1rem !important;
+  display: flex;
+  width: 100%;
+  font-family: "Cairo Regular" !important;
+}
+
+.p-dropdown {
+  display: flex;
+  width: 100%;
+  font-family: "Cairo Regular" !important;
+}
+
+.p-inputnumber {
+  display: flex;
+  width: 100%;
 }
 
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item {

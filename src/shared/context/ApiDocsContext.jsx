@@ -13,7 +13,6 @@ const ApiDocsContext = createContext({
 
 const ApiDocsProvider = ({ children }) => {
   const [apiFields, setApiFields] = useState([]);
-
   const [subSectionSelect, setSubSectionSelect] = useState(null);
 
   const handleChangeSubSection = (sub) => {
@@ -28,7 +27,12 @@ const ApiDocsProvider = ({ children }) => {
     onError: (error) => console.error(error),
   });
 
-  const data = { apiFields, loading, subSectionSelect, handleChangeSubSection };
+  const data = {
+    apiFields,
+    loading,
+    subSectionSelect,
+    handleChangeSubSection,
+  };
 
   return (
     <ApiDocsContext.Provider value={data}>{children}</ApiDocsContext.Provider>

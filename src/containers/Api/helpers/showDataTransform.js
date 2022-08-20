@@ -4,7 +4,7 @@ export const showDataTransform = (value) => {
   if (typeof value === "string" || typeof value === "number")
     returnString = `${value}`;
   else if (typeof value === "boolean") {
-    returnString = `${value ? "true" : "false"}`;
+    returnString = `${value === true ? "true" : "false"}`;
   } else if (typeof value === "object") {
     if (Array.isArray(value)) {
       returnString += `${getArrayString(value)}`;

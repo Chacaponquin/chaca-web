@@ -1,8 +1,7 @@
 import React from "react";
-import FieldInputArgument from "../../FieldInputArgument";
-
 import clsx from "clsx";
 import { titlePipe } from "../../../../../shared/helpers/titlePipe";
+import FieldInputArgument from "../../../../../shared/components/FieldInputArgument/FieldInputArgument";
 
 const FieldOptionDiv = ({
   field,
@@ -28,21 +27,23 @@ const FieldOptionDiv = ({
         {field.name}
       </p>
 
-      {isSelected &&
-        field.arguments.map((arg, i) => (
-          <React.Fragment key={i}>
-            <div className="grid grid-rows-1 auto-cols-auto items-center gap-1 !text-sm arguments-container">
-              <p className="mb-0 font-fontBold w-max">
-                {titlePipe(arg.argument)}:
-              </p>
-              <FieldInputArgument
-                handleChangeArguments={handleChangeArguments}
-                allArguments={allArguments}
-                arg={arg}
-              />
-            </div>
-          </React.Fragment>
-        ))}
+      <div className="grid grid-cols-2 justify-between gap-4 esm:grid-cols-1">
+        {isSelected &&
+          field.arguments.map((arg, i) => (
+            <React.Fragment key={i}>
+              <div className="flex items-center gap-1 !text-base arguments-container">
+                <p className="mb-0 font-fontBold w-max">
+                  {titlePipe(arg.argument)}:
+                </p>
+                <FieldInputArgument
+                  handleChangeArguments={handleChangeArguments}
+                  allArguments={allArguments}
+                  arg={arg}
+                />
+              </div>
+            </React.Fragment>
+          ))}
+      </div>
     </div>
   );
 };

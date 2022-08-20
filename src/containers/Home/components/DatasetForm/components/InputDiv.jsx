@@ -20,6 +20,7 @@ const InputDiv = ({ handleOpenModal, field, datasetID, dispatch }) => {
               payload: { datasetID, value: e.target.value, fieldID: field.id },
             })
           }
+          className="min-w-[200px]"
           value={field.name}
         />
 

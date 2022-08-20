@@ -3,8 +3,8 @@ import { InputNumber } from "primereact/inputnumber";
 import React, { useEffect, useState } from "react";
 import { Calendar } from "primereact/calendar";
 import { Checkbox } from "primereact/checkbox";
-import { titlePipe } from "../../../shared/helpers/titlePipe";
-import { FIELDS_INPUT_TYPES } from "../../../shared/helpers/datasetsUtils";
+import { titlePipe } from "../../helpers/titlePipe";
+import { FIELDS_INPUT_TYPES } from "../../helpers/datasetsUtils";
 
 const FieldInputArgument = ({
   arg,
@@ -52,7 +52,6 @@ const FieldInputArgument = ({
         min={arg.inputType === FIELDS_INPUT_TYPES.FLOAT ? 0.1 : 1}
         max={1000}
         step={arg.inputType === FIELDS_INPUT_TYPES.NUMBER ? 1 : 0.1}
-        className="!text-sm"
       />
     );
   else if (arg.inputType === FIELDS_INPUT_TYPES.BOOLEAN)

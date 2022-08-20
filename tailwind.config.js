@@ -8,6 +8,7 @@ module.exports = {
         principalColor: "#00CC99",
         secondColor: "#a29bfe",
         dangerColor: "#fc5c65",
+        darkColor: "#282c34",
       },
       fontFamily: {
         fontBold: "Cairo Bold",

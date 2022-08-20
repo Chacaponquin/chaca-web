@@ -34,7 +34,7 @@ const DatasetForm = ({ id, name, fields, limit, fieldsOptions }) => {
 
       <DatasetDivHeader name={name} datasetID={id} />
 
-      <div className="flex items-center gap-3 justify-center mb-3">
+      <div className="flex items-center gap-3 justify-center mb-3 px-10">
         <p className="mb-0 text-lg font-fontBold">Cant:</p>
         <InputNumber
           value={limit}

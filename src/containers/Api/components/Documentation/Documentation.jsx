@@ -1,6 +1,6 @@
 import React from "react";
 import { API_SECTIONS } from "../../helpers/SECTIONS";
-import FieldDoc from "./components/FieldDoc";
+import FieldDoc from "./components/FileDoc/FieldDoc";
 import Autorization from "./components/IntroductionDocs/Autorization";
 import Indications from "./components/IntroductionDocs/Indications";
 
