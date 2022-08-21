@@ -9,8 +9,6 @@ import { UserContext } from "../../shared/context/UserContext";
 const SideBar = ({ openSideBar, handleCloseSideBar }) => {
   const { handleSignOut } = useContext(UserContext);
 
-  console.log(openSideBar);
-
   const sideBarClass = () =>
     clsx(
       "right-0 fixed top-0 min-h-screen z-50 w-[300px] bg-white px-8 py-5 transition-all duration-300",

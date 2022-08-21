@@ -43,7 +43,7 @@ const FieldInputArgument = ({
     return (
       <InputNumber
         value={value ? value : 1}
-        onValueChange={(e) => {
+        onChange={(e) => {
           handleChangeArguments({
             value: e.value,
             field: arg.argument,
@@ -57,9 +57,9 @@ const FieldInputArgument = ({
   else if (arg.inputType === FIELDS_INPUT_TYPES.BOOLEAN)
     return (
       <Checkbox
-        onValueChange={(e) => {
+        onChange={(e) => {
           handleChangeArguments({
-            value: e.value,
+            value: e.checked,
             field: arg.argument,
           });
         }}

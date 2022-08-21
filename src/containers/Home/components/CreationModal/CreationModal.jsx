@@ -37,7 +37,7 @@ const CreationModal = ({
             submitText={"Create"}
           />
         </div>
-      </div>{" "}
+      </div>
     </>
   );
 };

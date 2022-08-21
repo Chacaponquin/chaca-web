@@ -1,4 +1,5 @@
 import React from "react";
+import { useRef } from "react";
 import LoaderContainer from "../../../../../shared/components/Loader/LoaderContainer";
 
 const CreationLoading = ({ porcent }) => {
@@ -16,13 +17,22 @@ const CreationLoading = ({ porcent }) => {
 };
 
 const ProgessBar = ({ porcent }) => {
+  const porcentDiv = useRef();
+
   return (
-    <div className="max-w-[700px] w-full rounded-full bg-slate-100 h-[17px]">
+    <div
+      className="max-w-[700px] w-full rounded-full bg-slate-100 h-[17px]"
+      ref={porcentDiv}
+    >
       <div
         className={
           "absolute rounded-full bg-gradient-to-r from-principalColor to-secondColor h-[17px] transition-all duration-75"
         }
-        style={{ width: `${Number((700 * porcent) / 100)}px` }}
+        style={{
+          width: `${Number(
+            (porcentDiv?.current?.clientWidth * porcent) / 100
+          )}px`,
+        }}
       ></div>
     </div>
   );
