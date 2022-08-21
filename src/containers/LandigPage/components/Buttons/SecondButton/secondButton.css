@@ -22,8 +22,8 @@
   position: relative;
   display: block;
   margin: 0;
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
   background: #282936;
   border-radius: 999px;
 }
@@ -39,7 +39,7 @@
 
 .secondButton .circle .icon.arrow {
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  left: 0.625rem;
+  left: 1.2rem;
   width: 1.125rem;
   height: 0.125rem;
   background: none;
@@ -63,9 +63,8 @@
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-
-  margin: 0 0 0 1.85rem;
+  bottom: 1px;
+  margin: 0 0 0 2.4rem;
   color: #282936;
   font-weight: 700;
   line-height: 1.6;

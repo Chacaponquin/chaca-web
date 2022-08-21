@@ -80,7 +80,7 @@ const Login = () => {
           </div>
 
           <form className="flex flex-col w-full" onSubmit={handleSubmit}>
-            <div className="flex flex-col w-full py-12 gap-5 esm:py-6">
+            <div className="flex flex-col w-full py-8 gap-5 esm:py-6">
               <InputDiv
                 type={"email"}
                 onChange={handleChange}
@@ -91,6 +91,10 @@ const Login = () => {
                 type={"password"}
                 icon={"private-outline"}
               />
+            </div>
+
+            <div className="mb-4">
+              <OtherOptionsSection loading={loading} />
             </div>
 
             <div className="flex lg:justify-start sm:justify-end w-full gap-5 flex-wrap esm:justify-center">
@@ -113,10 +117,6 @@ const Login = () => {
                   Forget Password?
                 </Link>
               )}
-            </div>
-
-            <div className="mt-10">
-              <OtherOptionsSection loading={loading} />
             </div>
           </form>
         </div>

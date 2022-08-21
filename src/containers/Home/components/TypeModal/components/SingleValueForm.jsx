@@ -22,7 +22,7 @@ const SingleValueForm = ({
         ))}
       </div>
 
-      <div className="sm:h-full grid xl:grid-cols-3 grid-cols-2 esm:grid-cols-1 auto-rows-max overflow-auto gap-3 w-full">
+      <div className="sm:h-full grid xl:grid-cols-4 grid-cols-2 esm:grid-cols-1 auto-rows-max overflow-auto gap-3 w-full">
         {typeInfo.parent &&
           typeInfo.parent.fields.map((el, i) => (
             <FieldOptionDiv

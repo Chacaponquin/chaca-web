@@ -3,7 +3,7 @@ import Icon from "supercons";
 
 const OtherOptionsSection = ({ loading }) => {
   const divClass =
-    "border-[3px] py-4 flex gap-3 rounded-md items-center justify-center transition-all duration-300 hover:text-white cursor-pointer esm:py-2";
+    "border-[3px] py-3 flex gap-3 rounded-md items-center justify-center transition-all duration-300 hover:text-white cursor-pointer esm:py-2";
 
   return (
     <>
@@ -12,7 +12,7 @@ const OtherOptionsSection = ({ loading }) => {
           <div
             className={
               divClass +
-              " border-dangerColor text-dangerColor hover:bg-dangerColor"
+              " border-secondColor text-secondColor hover:bg-secondColor"
             }
           >
             <Icon glyph="google" />

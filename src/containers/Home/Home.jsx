@@ -92,7 +92,7 @@ const Home = () => {
   }
 
   return (
-    <div className="w-full flex flex-col items-center justify-center gap-3 pb-40">
+    <div className="w-full flex flex-col items-center justify-center gap-3 pb-40 overflow-x-hidden">
       {openCreationModal && (
         <CreationModal
           handleSubmit={handleSubmit}

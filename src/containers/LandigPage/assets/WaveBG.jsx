@@ -9,9 +9,9 @@ const WaveBG = () => {
       className="w-full object-cover esm:translate-y-0 md:translate-y-10 lg:translate-y-24"
     >
       <defs>
-        <linearGradient gradientTransform="rotate(75)" id="waveGradient">
+        <linearGradient gradientTransform="rotate(30)" id="waveGradient">
           <stop offset="45%" stopColor="#00CC99"></stop>
-          <stop offset="99%" stopColor="#a29bfe"></stop>
+          <stop offset="99%" stopColor="#5352ed"></stop>
         </linearGradient>
       </defs>
 

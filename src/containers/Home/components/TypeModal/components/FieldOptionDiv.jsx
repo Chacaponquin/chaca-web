@@ -27,9 +27,9 @@ const FieldOptionDiv = ({
         {field.name}
       </p>
 
-      <div className="grid grid-cols-2 justify-between gap-4 esm:grid-cols-1">
-        {isSelected &&
-          field.arguments.map((arg, i) => (
+      {isSelected && field.arguments.length > 0 && (
+        <div className="grid grid-cols-2 justify-between gap-4 esm:grid-cols-1">
+          {field.arguments.map((arg, i) => (
             <React.Fragment key={i}>
               <div className="flex items-center gap-1 !text-base arguments-container">
                 <p className="mb-0 font-fontBold w-max">
@@ -43,7 +43,8 @@ const FieldOptionDiv = ({
               </div>
             </React.Fragment>
           ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

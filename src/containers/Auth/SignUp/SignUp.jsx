@@ -68,7 +68,9 @@ const SignUp = () => {
             <div className="w-full flex flex-col esm:items-center">
               <div className="font-fontExtraBold text-6xl mb-3 whitespace-nowrap esm:text-5xl">
                 Welcome to
-                <h1 className="inline font-fontExtraBold ml-3">CH-DATA!</h1>
+                <h1 className="inline font-fontExtraBold ml-3 text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor">
+                  CH-DATA!
+                </h1>
               </div>
               <p className="text-slate-400 text-2xl esm:text-xl">
                 Complete the form to continue

@@ -18,11 +18,13 @@ const Landing = () => {
       </div>
 
       <div className="w-full flex justify-center lg:justify-end xl:px-20 esm:px-4 md:px-10">
-        <div className="flex flex-col items-center xl:items-end lg:text-6xl gap-3 sm:text-5xl esm:text-5xl">
-          <h1 className="font-fontExtraBold">Only think your data</h1>
+        <div className="flex flex-col items-center xl:items-end lg:text-6xl gap-3 sm:text-5xl text-5xl exsm:!text-4xl">
+          <h1 className="font-fontExtraBold whitespace-nowrap">
+            Only think your data
+          </h1>
           <div className="flex gap-4 flex-wrap items-center esm:flex-col">
             <h1 className="font-fontExtraBold">and create it with</h1>
-            <h1 className="font-fontExtraBold text-transparent bg-clip-text bg-gradient-to-r from-principalColor to-secondColor text-7xl sm:text-6xl esm:text-6xl">
+            <h1 className="font-fontExtraBold text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor text-7xl sm:text-6xl exsm:text-6xl">
               CH-DATA
             </h1>
           </div>

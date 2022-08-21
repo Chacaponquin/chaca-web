@@ -2,20 +2,15 @@
 .cssbuttons-io {
   position: relative;
   border: none;
-  background: linear-gradient(to right, #00cc99, #a29bfe);
+  background: linear-gradient(30deg, #00cc99, #5352ed);
   color: black;
   overflow: hidden;
   width: 14rem;
+  height: 4rem;
 }
 
 .cssbuttons-io:hover {
   color: white;
-}
-
-.cssbuttons-io svg {
-  width: 1.2em;
-  height: 1.2em;
-  margin-right: 0.5em;
 }
 
 .cssbuttons-io span {

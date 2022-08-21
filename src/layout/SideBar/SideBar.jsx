@@ -9,20 +9,25 @@ import { UserContext } from "../../shared/context/UserContext";
 const SideBar = ({ openSideBar, handleCloseSideBar }) => {
   const { handleSignOut } = useContext(UserContext);
 
-  const sideBarClass = clsx(
-    "right-0 fixed top-0 min-h-screen w-[300px] bg-white px-8 py-5 transition-all duration-300 translate-x-full",
-    { "translate-x-0": openSideBar }
-  );
+  console.log(openSideBar);
 
-  const containerClass = clsx(
-    "fixed w-screen h-screen top-0 right-0 overflow-hidden transition-all duration-300",
-    { "!-z-[30] bg-transparent": !openSideBar },
-    { "z-50 bg-black/50 ": openSideBar }
-  );
+  const sideBarClass = () =>
+    clsx(
+      "right-0 fixed top-0 min-h-screen z-50 w-[300px] bg-white px-8 py-5 transition-all duration-300",
+      { "translate-x-full": !openSideBar },
+      { "translate-x-0": openSideBar }
+    );
+
+  const containerClass = () =>
+    clsx(
+      "fixed w-screen h-screen top-0 right-0 overflow-hidden transition-all duration-300",
+      { "!-z-[30] bg-transparent": !openSideBar },
+      { "z-50 bg-black/50 ": openSideBar }
+    );
 
   return (
-    <div className={containerClass}>
-      <div className={sideBarClass}>
+    <div className={containerClass()}>
+      <div className={sideBarClass()}>
         <div className="flex flex-col w-full">
           <div className="cursor-pointer" onClick={handleCloseSideBar}>
             <Icon glyph="view-close" />

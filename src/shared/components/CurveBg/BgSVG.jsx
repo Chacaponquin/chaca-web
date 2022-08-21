@@ -12,9 +12,9 @@ const BgSVG = () => {
         className="w-full h-full"
       >
         <defs>
-          <linearGradient gradientTransform="rotate(75)" id="gradient">
+          <linearGradient gradientTransform="rotate(60)" id="gradient">
             <stop offset="45%" stopColor="#00CC99"></stop>
-            <stop offset="99%" stopColor="#a29bfe"></stop>
+            <stop offset="99%" stopColor="#5352ed"></stop>
           </linearGradient>
         </defs>
 

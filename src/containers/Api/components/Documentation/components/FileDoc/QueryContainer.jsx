@@ -57,7 +57,7 @@ const QueryContainer = ({ field }) => {
 
   const buttonSectionClass = () => {
     return clsx(
-      "flex w-full border-t-2 gap-1 py-2 px-4 items-center",
+      "flex w-full border-t-2 gap-3 py-2 px-4 items-center",
       { "justify-between": result !== undefined && result !== null },
       { "justify-end": !(result !== undefined && result !== null) }
     );
