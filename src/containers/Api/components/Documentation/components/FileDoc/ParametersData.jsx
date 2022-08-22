@@ -20,7 +20,7 @@ const ParametersData = ({ args, openParams, onClick }) => {
             initial={{ height: 0 }}
             className="w-full border-2 rounded-br-md rounded-bl-md"
           >
-            <motion.table className="table-fixed w-full">
+            <motion.table className="table-auto w-full">
               <motion.thead className="bg-slate-100">
                 <motion.tr>
                   <motion.th className={tableHeaderClass}>Argument</motion.th>
@@ -45,8 +45,7 @@ const ParametersData = ({ args, openParams, onClick }) => {
                         : titlePipe(a.inputType)}
                     </motion.td>
                     <motion.td className={cellTableClass + " esm:hidden"}>
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                      Sed, dignissimos.
+                      {a.description}
                     </motion.td>
                   </motion.tr>
                 ))}

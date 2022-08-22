@@ -1,9 +1,9 @@
 import React from "react";
 import { useContext } from "react";
 import { ApiDocsContext } from "../../context/ApiDocsContext";
+import { SECTIONS_CONTENT } from "../../helpers/apiSectionsContent";
 import SearchSection from "./components/SearchSection";
 import SectionParentDiv from "./components/SectionParentDiv";
-import { SECTIONS_CONTENT } from "./helpers/SectionsContent";
 
 const ApiLeftPart = () => {
   const { apiFields } = useContext(ApiDocsContext);
@@ -12,7 +12,7 @@ const ApiLeftPart = () => {
     <div className="flex w-full flex-col pt-4 h-full">
       <SearchSection />
 
-      <div className="flex flex-col w-full py-5 gap-3">
+      <div className="flex flex-col w-full py-5 gap-1">
         <SectionParentDiv
           text={"Introduccion"}
           options={SECTIONS_CONTENT.INTRODUCCION}

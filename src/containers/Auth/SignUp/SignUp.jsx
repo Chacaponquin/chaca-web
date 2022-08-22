@@ -66,7 +66,7 @@ const SignUp = () => {
 
           <form className="flex flex-col w-full" onSubmit={handleSubmit}>
             <div className="w-full flex flex-col esm:items-center">
-              <div className="font-fontExtraBold text-6xl mb-3 whitespace-nowrap esm:text-5xl">
+              <div className="font-fontExtraBold sm:text-6xl mb-3 whitespace-nowrap text-4xl exsm:text-3xl">
                 Welcome to
                 <h1 className="inline font-fontExtraBold ml-3 text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor">
                   CH-DATA!

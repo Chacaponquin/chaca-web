@@ -1,3 +1,62 @@
+.doc-content {
+  line-height: 1.8;
+}
+
+.doc-content > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.doc-content a {
+  color: #6366f1;
+  margin-left: 5px;
+  text-decoration: underline;
+}
+
+.doc-content h1 {
+  font-family: "Cairo Bold";
+  font-size: 2.6rem;
+}
+
+.doc-content h2 {
+  display: inline;
+  margin-left: 3px;
+  font-family: "Cairo Bold";
+}
+
+.doc-content h3 {
+  display: inline;
+  margin-left: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  color: #6366f1;
+  border: 1px solid #6366f1;
+  padding: 1px 5px;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.doc-content * {
+  font-size: 1.2rem;
+}
+
+.doc-content p {
+  color: #1a1a1a;
+  font-size: 1.2rem;
+  display: block;
+}
+
+.doc-content code {
+  padding: 2px 0.6rem;
+  margin-left: 5px;
+  border: 1px solid #808080;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.1);
+  font-family: "FiraCode Regular";
+  font-size: 1rem;
+}
+
 .search-input {
   color: #495057;
   background: #ffffff;

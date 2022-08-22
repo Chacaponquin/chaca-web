@@ -4,8 +4,8 @@ import { appRoutes } from "../../../../../../shared/routes/app/appRoutes";
 
 const Autorization = () => {
   return (
-    <div>
-      <h1 className="font-fontBold text-4xl">Autorizacion</h1>
+    <div className="doc-content">
+      <h1>Autorización</h1>
       <p>
         Para acceder a más funcionalidades a la API debes
         <Link to={appRoutes.AUTH_ROUTES.LOGIN}>
@@ -18,9 +18,7 @@ const Autorization = () => {
         <code>authorization</code>
       </p>
 
-      <div>
-        <code>fetch('iheowihvow').then(data = console.log(data))</code>
-      </div>
+      <div></div>
     </div>
   );
 };

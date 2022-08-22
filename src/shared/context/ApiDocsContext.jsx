@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { createContext } from "react";
 import { initialDataMap } from "../../containers/Api/helpers/dataMap";
+import { API_SECTIONS } from "../../containers/Api/helpers/SECTIONS";
+import { SECTIONS_CONTENT } from "../helpers/apiSectionsContent";
 import { useQuery } from "../hooks/useQuery";
 import { apiRoutes } from "../routes/api/apiRoutes";
 
@@ -23,6 +25,10 @@ const ApiDocsProvider = ({ children }) => {
     url: apiRoutes.GET_API_OPTIONS,
     onCompleted: (data) => {
       setApiFields(initialDataMap(data.options));
+      setSubSectionSelect({
+        section: API_SECTIONS.INTRODUCCION,
+        subElement: SECTIONS_CONTENT.INTRODUCCION[0],
+      });
     },
     onError: (error) => console.error(error),
   });
