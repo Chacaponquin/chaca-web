@@ -12,7 +12,6 @@ const getTokenCookie = () => {
 
   if (tokenCookie) {
     localStorage.setItem("token", tokenCookie);
-    cookies.remove("jwt");
   }
 
   return localStorage.getItem("token") || null;

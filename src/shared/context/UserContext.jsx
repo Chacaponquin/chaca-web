@@ -35,7 +35,6 @@ const UserProvider = ({ children }) => {
   const { loading } = useQuery({
     url: apiRoutes.AUTH_ROUTES.GET_USER_BY_TOKEN,
     onCompleted: (data) => {
-      console.log(data.user);
       setActualUser(data.user);
     },
     onError: (error) => {
