@@ -97,7 +97,7 @@ const Login = () => {
               <OtherOptionsSection loading={loading} />
             </div>
 
-            <div className="flex lg:justify-start sm:justify-end w-full gap-5 flex-wrap esm:justify-center">
+            <div className="flex lg:justify-start w-full gap-5 flex-wrap justify-center">
               <LoaderContainer loading={loading} className="w-[50px]">
                 <button
                   className={

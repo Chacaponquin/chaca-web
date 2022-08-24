@@ -14,7 +14,7 @@ const SectionParentDiv = ({ text, options, openOptions = false }) => {
 
   const parentDivClass = () => {
     return clsx(
-      "text-xl px-8 py-2 w-full rounded-md flex cursor-pointer justify-between mb-2 transition-all duration-300 esm:text-lg",
+      "text-xl px-6 py-1 w-full rounded-md flex cursor-pointer justify-between mb-2 transition-all duration-300 esm:text-lg",
       {
         "bg-slate-200": seeOptions,
       }
@@ -53,7 +53,7 @@ const SectionParentDiv = ({ text, options, openOptions = false }) => {
         <div className={parentDivClass()}>
           <h1 className="font-fontBold">{text}</h1>
           <div className={iconClass()}>
-            <Icon glyph="view-forward" />
+            <Icon glyph="view-forward" size={28} />
           </div>
         </div>
       </div>

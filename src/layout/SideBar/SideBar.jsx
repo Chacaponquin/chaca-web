@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { UserContext } from "../../shared/context/UserContext";
 
 const SideBar = ({ openSideBar, handleCloseSideBar }) => {
-  const { handleSignOut } = useContext(UserContext);
+  const { handleSignOut, actualUser } = useContext(UserContext);
 
   const sideBarClass = () =>
     clsx(
@@ -33,7 +33,7 @@ const SideBar = ({ openSideBar, handleCloseSideBar }) => {
 
           <div className="flex flex-col w-full items-center">
             <img
-              src={avatar}
+              src={(actualUser && actualUser.image) || avatar}
               alt="avatar"
               className="w-[150px] h-[150px] object-cover rounded-full"
             />

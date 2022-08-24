@@ -1,13 +1,26 @@
 import axios from "axios";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 export const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 });
 
+const getTokenCookie = () => {
+  const tokenCookie = cookies.get("jwt");
+
+  if (tokenCookie) {
+    localStorage.setItem("token", tokenCookie);
+    cookies.remove("jwt");
+  }
+
+  return localStorage.getItem("token") || null;
+};
+
 axiosInstance.interceptors.request.use(
   (req) => {
-    const token = localStorage.getItem("token");
-    req.headers.authorization = token ? token : null;
+    req.headers.authorization = getTokenCookie();
 
     return req;
   },
@@ -19,6 +32,8 @@ export const apiRoutes = {
     LOGIN: "/auth/signInUser",
     SIGN_UP: "/auth/createUser",
     GET_USER_BY_TOKEN: "/auth/getUserByToken",
+    GOOGLE_AUTH: "/auth/googleAuth",
+    GITHUB_AUTH: "/auth/githubAuth",
   },
   GET_FIELDS: "/util/getFields",
   GET_NO_USER_LIMITS: "/util/getNoUserLimits",

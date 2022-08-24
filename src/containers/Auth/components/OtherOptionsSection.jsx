@@ -1,30 +1,76 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Icon from "supercons";
+import { apiRoutes } from "../../../shared/routes/api/apiRoutes";
+import { gapi } from "gapi-script";
+
+const divClass =
+  "border-[3px] py-3 flex gap-3 rounded-md items-center justify-center transition-all duration-300 hover:text-white cursor-pointer esm:py-2";
 
 const OtherOptionsSection = ({ loading }) => {
-  const divClass =
-    "border-[3px] py-3 flex gap-3 rounded-md items-center justify-center transition-all duration-300 hover:text-white cursor-pointer esm:py-2";
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId:
+          "910053819134-3lb9n36c1d9tmf4g6271n4u3qi4ij9bi.apps.googleusercontent.com",
+        scope: "email",
+      });
+    }
+
+    gapi.load("client:auth2", start);
+  }, []);
 
   return (
     <>
       {!loading && (
         <div className="grid grid-cols-2 w-full gap-2 mb-3 exsm:grid-cols-1">
-          <div
-            className={
-              divClass +
-              " border-secondColor text-secondColor hover:bg-secondColor"
-            }
-          >
-            <Icon glyph="google" />
-            <p className="mb-0 text-xl">Google</p>
-          </div>
-          <div className={divClass + " border-black text-black hover:bg-black"}>
-            <Icon glyph="github" />
-            <p className="mb-0 text-xl">Github</p>
-          </div>
+          <GoogleButton />
+          <GitHubButton />
         </div>
       )}
     </>
+  );
+};
+
+const GitHubButton = () => {
+  const handleLoginGitHub = async () => {
+    window.open(
+      `${process.env.REACT_APP_API_URL}${apiRoutes.AUTH_ROUTES.GITHUB_AUTH}`,
+      "_self"
+    );
+  };
+
+  return (
+    <button
+      className={divClass + " border-black text-black hover:bg-black"}
+      onClick={handleLoginGitHub}
+      type="button"
+    >
+      <Icon glyph="github" />
+      <p className="mb-0 text-xl">Github</p>
+    </button>
+  );
+};
+
+const GoogleButton = () => {
+  const handleGoogleLogin = () => {
+    window.open(
+      `${process.env.REACT_APP_API_URL}${apiRoutes.AUTH_ROUTES.GOOGLE_AUTH}`,
+      "_self"
+    );
+  };
+
+  return (
+    <button
+      className={
+        divClass + " border-secondColor text-secondColor hover:bg-secondColor"
+      }
+      type="button"
+      onClick={handleGoogleLogin}
+    >
+      <Icon glyph="google" />
+
+      <p className="mb-0 text-xl">Google</p>
+    </button>
   );
 };
 

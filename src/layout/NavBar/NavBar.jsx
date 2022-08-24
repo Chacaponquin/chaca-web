@@ -65,7 +65,7 @@ const NavBar = ({ handleOpenSideBar, handleOpenApiSideBar }) => {
 
             {actualUser && (
               <img
-                src={avatar}
+                src={(actualUser && actualUser.image) || avatar}
                 alt="avatar"
                 className="object-top object-cover rounded-full w-[50px] h-[50px] cursor-pointer"
                 onClick={handleOpenSideBar}
