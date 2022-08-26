@@ -10,9 +10,8 @@ import Icon from "supercons";
 import { InputText } from "primereact/inputtext";
 import { toast } from "react-toastify";
 
-const DatasetForm = ({ id, name, fields, limit, fieldsOptions }) => {
-  const { noUserLimits, dispatch } = useContext(DatasetsContext);
-  const { actualUser } = useContext(UserContext);
+const DatasetForm = ({ id, name, fields, fieldsOptions }) => {
+  const { dispatch } = useContext(DatasetsContext);
   const [openModal, setOpenModal] = useState(null);
 
   const handleOpenModal = (id) => {
@@ -22,66 +21,73 @@ const DatasetForm = ({ id, name, fields, limit, fieldsOptions }) => {
   const handleCloseModal = () => setOpenModal(null);
 
   return (
-    <div className="flex flex-col rounded-md bg-white shadow-md py-5 px-7 h-max border-2">
-      {openModal && (
-        <Modal
-          datasetID={id}
-          fieldID={openModal}
-          fieldsOptions={fieldsOptions}
-          handleCloseModal={handleCloseModal}
-        />
-      )}
-
-      <DatasetDivHeader name={name} datasetID={id} />
-
-      <div className="flex items-center gap-3 justify-center mb-3 px-10">
-        <p className="mb-0 text-lg font-fontBold">Cant:</p>
-        <InputNumber
-          value={limit}
-          onValueChange={(e) => {
-            dispatch({
-              type: DATASETS_ACTIONS.CHANGE_DATASET_LIMIT,
-              payload: {
-                datasetID: id,
-                value: e.value,
-              },
-            });
-          }}
-          min={1}
-          max={
-            actualUser
-              ? actualUser.limitDocuments
-              : noUserLimits.LIMIT_DOCUMENTS
-          }
-        />
-      </div>
-
-      <form action="" className="flex flex-col gap-3">
-        {fields.map((field, i) => (
-          <InputDiv
+    <div className="flex flex-col gap-3 w-full">
+      <div className="flex flex-col rounded-md h-max w-full">
+        {openModal && (
+          <Modal
             datasetID={id}
-            handleOpenModal={handleOpenModal}
-            key={i}
-            field={field}
-            dispatch={dispatch}
+            fieldID={openModal}
+            fieldsOptions={fieldsOptions}
+            handleCloseModal={handleCloseModal}
           />
-        ))}
+        )}
 
-        <AddFieldButton dispatch={dispatch} datasetID={id} />
-      </form>
+        <DatasetDivHeader name={name} datasetID={id} />
+
+        <table className="table-auto w-full" cellSpacing={5}>
+          <tbody>
+            {fields.map((field, i) => (
+              <InputDiv
+                datasetID={id}
+                handleOpenModal={handleOpenModal}
+                key={i}
+                field={field}
+                dispatch={dispatch}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+const InputCantDoc = () => {
+  const { selectedDataset, dispatch, noUserLimits } =
+    useContext(DatasetsContext);
+  const { actualUser } = useContext(UserContext);
+
+  return (
+    <div className="flex items-center gap-3 justify-center">
+      <p className="mb-0 text-lg font-fontBold">Cant:</p>
+      <InputNumber
+        value={selectedDataset.limit}
+        onValueChange={(e) => {
+          dispatch({
+            type: DATASETS_ACTIONS.CHANGE_DATASET_LIMIT,
+            payload: {
+              datasetID: selectedDataset.id,
+              value: e.value,
+            },
+          });
+        }}
+        min={1}
+        max={
+          actualUser ? actualUser.limitDocuments : noUserLimits.LIMIT_DOCUMENTS
+        }
+        className="w-[100px]"
+      />
     </div>
   );
 };
 
 const DatasetDivHeader = ({ name, datasetID }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [newName, setNewName] = useState("");
+  const [newName, setNewName] = useState(name);
 
   const { dispatch } = useContext(DatasetsContext);
 
   const handleChangeDatasetName = () => {
-    setNewName("");
-
     if (newName !== "") {
       dispatch({
         type: DATASETS_ACTIONS.CHANGE_DATASET_NAME,
@@ -96,34 +102,43 @@ const DatasetDivHeader = ({ name, datasetID }) => {
   };
 
   return (
-    <div className="flex justify-center gap-3 mb-4">
-      {!isEditing ? (
-        <h1 className="font-fontBold text-3xl text-center mb-0 flex items-center">
-          {name}
-        </h1>
-      ) : (
-        <InputText
-          placeholder="Dataset Name..."
-          value={newName}
-          onChange={(e) => setNewName(e.target.value)}
-        />
-      )}
+    <div className="flex gap-3 justify-between md:items-center items-end mb-3">
+      <div className="flex md:items-center gap-3 md:flex-row flex-col items-start">
+        <div className="flex items-center gap-3 ">
+          {!isEditing ? (
+            <h1 className="font-fontBold text-3xl text-center mb-0 flex items-center whitespace-nowrap ">
+              {name}
+            </h1>
+          ) : (
+            <InputText
+              placeholder="Dataset Name..."
+              value={newName}
+              onChange={(e) => setNewName(e.target.value)}
+              className="w-[150px] text-lg"
+            />
+          )}
 
-      {isEditing ? (
-        <button
-          className="px-3 rounded-md text-lg py-1 text-white bg-principalColor"
-          onClick={handleChangeDatasetName}
-        >
-          Save
-        </button>
-      ) : (
-        <button
-          className="py-1 px-2 border-2 border-secondColor flex justify-center items-center text-secondColor rounded-md hover:text-white hover:bg-secondColor transition-all duration-300"
-          onClick={() => setIsEditing(true)}
-        >
-          <Icon glyph="edit" size={25} />
-        </button>
-      )}
+          {isEditing ? (
+            <button
+              className="px-6 rounded-md text-lg py-1 text-white bg-principalColor transition-all duration-300 hover:bg-principalColor/70"
+              onClick={handleChangeDatasetName}
+            >
+              Save
+            </button>
+          ) : (
+            <button
+              className="py-1 px-2 border-2 border-secondColor flex justify-center items-center text-secondColor rounded-md hover:text-white hover:bg-secondColor transition-all duration-300"
+              onClick={() => setIsEditing(true)}
+            >
+              <Icon glyph="edit" size={25} />
+            </button>
+          )}
+        </div>
+
+        <InputCantDoc />
+      </div>
+
+      <AddFieldButton dispatch={dispatch} datasetID={datasetID} />
     </div>
   );
 };

@@ -8,7 +8,7 @@ const SearchSection = () => {
 
   const searchClass = () => {
     return clsx(
-      "rounded-md border-2 w-full flex search-input gap-3 items-center px-5 py-2 esm:px-3 esm:py-1",
+      "rounded-md border-2 w-full flex search-input gap-3 items-center px-5 py-1 esm:px-3 esm:py-1",
       { "search-input-focus": focus }
     );
   };

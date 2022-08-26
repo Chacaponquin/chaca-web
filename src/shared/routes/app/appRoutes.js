@@ -9,5 +9,4 @@ export const appRoutes = {
   API: "/api",
   DOCS: "/docs",
   MY_SCHEMA: "/mySchema",
-  CONFIG: "/config",
 };

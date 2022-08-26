@@ -2,6 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { titlePipe } from "../../../../../shared/helpers/titlePipe";
 import FieldInputArgument from "../../../../../shared/components/FieldInputArgument/FieldInputArgument";
+import { FIELDS_INPUT_TYPES } from "../../../../../shared/helpers/datasetsUtils";
 
 const FieldOptionDiv = ({
   field,
@@ -28,11 +29,19 @@ const FieldOptionDiv = ({
       </p>
 
       {isSelected && field.arguments.length > 0 && (
-        <div className="grid grid-cols-2 justify-between gap-4 esm:grid-cols-1">
+        <div className="grid grid-cols-1 justify-between gap-4 esm:grid-cols-1">
           {field.arguments.map((arg, i) => (
             <React.Fragment key={i}>
-              <div className="flex items-center gap-1 !text-base arguments-container">
-                <p className="mb-0 font-fontBold w-max">
+              <div className="flex items-center gap-1 !text-lg arguments-container">
+                <p
+                  className="mb-0 font-fontBold w-max"
+                  style={{
+                    display:
+                      arg.inputType === FIELDS_INPUT_TYPES.CUSTOM_ARRAY
+                        ? "none"
+                        : "block",
+                  }}
+                >
                   {titlePipe(arg.argument)}:
                 </p>
                 <FieldInputArgument

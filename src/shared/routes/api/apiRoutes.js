@@ -1,21 +1,9 @@
 import axios from "axios";
-import Cookies from "universal-cookie";
-
-const cookies = new Cookies();
+import { getTokenCookie } from "../../helpers/getTokenCookie";
 
 export const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 });
-
-const getTokenCookie = () => {
-  const tokenCookie = cookies.get("jwt");
-
-  if (tokenCookie) {
-    localStorage.setItem("token", tokenCookie);
-  }
-
-  return localStorage.getItem("token") || null;
-};
 
 axiosInstance.interceptors.request.use(
   (req) => {

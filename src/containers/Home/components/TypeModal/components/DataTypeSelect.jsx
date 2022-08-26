@@ -2,13 +2,14 @@ import clsx from "clsx";
 import React, { useContext } from "react";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
 import { DATA_TYPES } from "../../../../../shared/helpers/datasetsUtils";
+import { titlePipe } from "../../../../../shared/helpers/titlePipe";
 
 const DataTypeSelect = ({ selectedDataType, handleChangeDataType }) => {
   const { datasets } = useContext(DatasetsContext);
 
   const divClass = (dat) =>
     clsx(
-      "px-12 py-2 text-2xl rounded-lg font-fontExtraBold esm:px-7 esm:text-lg",
+      "px-12 py-2 text-2xl rounded-lg font-fontExtraBold esm:px-7 esm:text-lg uppercase",
       { "bg-secondColor text-white": selectedDataType === dat },
       { "bg-slate-200 text-black": !(selectedDataType === dat) },
       {
@@ -26,7 +27,7 @@ const DataTypeSelect = ({ selectedDataType, handleChangeDataType }) => {
           key={i}
           onClick={() => handleChangeDataType({ type: dat })}
         >
-          {dat}
+          {titlePipe(dat)}
         </div>
       ))}
     </div>

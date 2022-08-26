@@ -26,8 +26,8 @@ const NavBar = ({ handleOpenSideBar, handleOpenApiSideBar }) => {
   }, []);
 
   return (
-    <div className="w-full py-4 px-8 mb-4 esm:px-3 bg-transparent z-50">
-      <div className="flex w-full shadow-lg rounded-md px-8 py-3 bg-white z-50">
+    <div className="w-full py-4 px-8 esm:px-3 bg-transparent z-50 mb-8">
+      <div className="flex w-full shadow-lg rounded-md px-8 py-3 bg-white z-50 esm:px-4">
         <div className="w-[30%] esm:w-[50px] flex items-center">
           {location.pathname === appRoutes.API && (
             <button onClick={handleOpenApiSideBar} className="lg:hidden block">
@@ -67,7 +67,7 @@ const NavBar = ({ handleOpenSideBar, handleOpenApiSideBar }) => {
               <img
                 src={(actualUser && actualUser.image) || avatar}
                 alt="avatar"
-                className="object-top object-cover rounded-full w-[50px] h-[50px] cursor-pointer"
+                className="object-top object-cover rounded-full w-[50px] h-[50px] cursor-pointer esm:w-[40px] esm:h-[40px]"
                 onClick={handleOpenSideBar}
               />
             )}

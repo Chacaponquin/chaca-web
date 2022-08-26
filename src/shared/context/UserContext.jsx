@@ -3,6 +3,7 @@ import { useQuery } from "../hooks/useQuery";
 import { apiRoutes } from "../routes/api/apiRoutes";
 import io from "socket.io-client";
 import { useEffect } from "react";
+import { getTokenCookie } from "../helpers/getTokenCookie";
 
 const UserContext = createContext({
   actualUser: null,
@@ -11,7 +12,11 @@ const UserContext = createContext({
   loading: true,
   socket: null,
 });
-const socket = io(process.env.REACT_APP_SOCKET_URL, {});
+const socket = io(process.env.REACT_APP_SOCKET_URL, {
+  auth: {
+    token: getTokenCookie(),
+  },
+});
 
 const UserProvider = ({ children }) => {
   const [actualUser, setActualUser] = useState(null);

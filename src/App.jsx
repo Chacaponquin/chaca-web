@@ -6,10 +6,14 @@ import SideBar from "./layout/SideBar/SideBar";
 import DatasetsProvider from "./shared/context/DatasetsContext";
 import ApiDocsProvider from "./shared/context/ApiDocsContext";
 import ApiSideBar from "./layout/ApiSideBar/ApiSideBar";
+import { useLocation } from "react-router-dom";
+import { appRoutes } from "./shared/routes/app/appRoutes";
 
 function App() {
   const [openSideBar, setOpenSideBar] = useState(false);
   const [openApiSideBar, setOpenApiSideBar] = useState(false);
+
+  const location = useLocation();
 
   const handleCloseSideBar = () => {
     setOpenSideBar(false);
@@ -28,10 +32,14 @@ function App() {
   };
 
   return (
-    <div className="">
+    <div
+      className={
+        location.pathname === appRoutes.HOME ? "flex flex-col h-screen" : ""
+      }
+    >
       <DatasetsProvider>
         <ApiDocsProvider>
-          <ToastContainer />
+          <ToastContainer autoClose={5000} hideProgressBar={true} />
           <ApiSideBar
             openApiSideBar={openApiSideBar}
             handleCloseSideBar={handleCloseApiSideBar}
@@ -44,7 +52,10 @@ function App() {
             handleOpenSideBar={handleOpenSideBar}
             handleOpenApiSideBar={handleOpenApiSideBar}
           />
-          <Outlet />
+
+          <div className="px-10 h-full">
+            <Outlet />
+          </div>
         </ApiDocsProvider>
       </DatasetsProvider>
     </div>

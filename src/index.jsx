@@ -9,7 +9,6 @@ import {
   // Docs,
   SignUp,
   MySchema,
-  Config,
   Landing,
 } from "./containers";
 import { appRoutes } from "./shared/routes/app/appRoutes";
@@ -61,7 +60,6 @@ const AppRoutes = () => {
           <Route path={appRoutes.API} element={<Api />} />
           {/*<Route path={appRoutes.DOCS} element={<Docs />} />*/}
           <Route path={appRoutes.MY_SCHEMA} element={<MySchema />} />
-          <Route path={appRoutes.CONFIG} element={<Config />} />
         </Route>
       </Routes>
     </BrowserRouter>

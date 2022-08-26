@@ -19,7 +19,7 @@ const ConfigFormSection = () => {
       <h1 className="font-fontBold text-3xl esm:text-2xl">Options:</h1>
 
       <div className="flex flex-col gap-4">
-        <div className="flex flex-col gap-1">
+        <div className="flex gap-2">
           <h1 className="font-fontBold text-xl">Formato:</h1>
           <Dropdown
             options={fileConfigOptions.map((f) => f.fileType)}

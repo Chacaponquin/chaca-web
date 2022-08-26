@@ -20,67 +20,69 @@ const FieldMenu = ({ datasetID, field }) => {
   return (
     <div className="flex bg-white w-full py-1 rounded-md flex-col gap-1">
       <div className={arrayDivContainerClass}>
-        <div className={divClass}>
-          <Checkbox
-            onChange={(e) => {
-              dispatch({
-                type: DATASETS_ACTIONS.CHANGE_TO_ARRAY_TYPE,
-                payload: {
-                  datasetID,
-                  fieldID: field.id,
-                  value: e.checked,
-                },
-              });
-            }}
-            checked={field.isArray ? true : false}
-          />
-          <p className={textClass}>Array</p>
-        </div>
-
-        {field.isArray && (
-          <div className="flex flex-col gap-1 px-4 pb-3">
-            <div className="flex flex-col">
-              <p className="mb-0 text-base">Min:</p>
-              <InputNumber
-                className="!text-sm"
-                value={field.isArray.min}
-                min={0}
-                max={field.isArray.max}
-                onChange={(e) => {
-                  dispatch({
-                    type: DATASETS_ACTIONS.CHANGE_ARRAY_LIMITS,
-                    payload: {
-                      datasetID,
-                      fieldID: field.id,
-                      min: e.value,
-                      max: field.isArray.max,
-                    },
-                  });
-                }}
-              />
-            </div>
-            <div className="flex flex-col">
-              <p className="mb-0 text-base">Max:</p>
-              <InputNumber
-                className="!text-sm"
-                value={field.isArray.max}
-                min={field.isArray.min}
-                max={100}
-                onChange={(e) => {
-                  dispatch({
-                    type: DATASETS_ACTIONS.CHANGE_ARRAY_LIMITS,
-                    payload: {
-                      datasetID,
-                      fieldID: field.id,
-                      min: field.isArray.min,
-                      max: e.value,
-                    },
-                  });
-                }}
-              />
-            </div>
+        <div className={divClass + " !gap-16"}>
+          <div className="flex items-center gap-4">
+            <Checkbox
+              onChange={(e) => {
+                dispatch({
+                  type: DATASETS_ACTIONS.CHANGE_TO_ARRAY_TYPE,
+                  payload: {
+                    datasetID,
+                    fieldID: field.id,
+                    value: e.checked,
+                  },
+                });
+              }}
+              checked={field.isArray ? true : false}
+            />
+            <p className={textClass}>Array</p>
           </div>
-        )}
+
+          {field.isArray && (
+            <div className="flex items-center gap-5">
+              <div className="flex items-center gap-1">
+                <p className="mb-0 text-base">Min:</p>
+                <InputNumber
+                  className="!text-sm"
+                  value={field.isArray.min}
+                  min={0}
+                  max={field.isArray.max}
+                  onChange={(e) => {
+                    dispatch({
+                      type: DATASETS_ACTIONS.CHANGE_ARRAY_LIMITS,
+                      payload: {
+                        datasetID,
+                        fieldID: field.id,
+                        min: e.value,
+                        max: field.isArray.max,
+                      },
+                    });
+                  }}
+                />
+              </div>
+              <div className="flex items-center gap-1">
+                <p className="mb-0 text-base">Max:</p>
+                <InputNumber
+                  className="!text-sm"
+                  value={field.isArray.max}
+                  min={field.isArray.min}
+                  max={100}
+                  onChange={(e) => {
+                    dispatch({
+                      type: DATASETS_ACTIONS.CHANGE_ARRAY_LIMITS,
+                      payload: {
+                        datasetID,
+                        fieldID: field.id,
+                        min: field.isArray.min,
+                        max: e.value,
+                      },
+                    });
+                  }}
+                />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className={divClass}>

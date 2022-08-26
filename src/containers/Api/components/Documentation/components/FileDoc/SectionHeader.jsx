@@ -5,7 +5,7 @@ import Icon from "supercons";
 const SectionHeader = ({ header, onClick, open, children }) => {
   const buttonClass = () => {
     return clsx(
-      "w-full flex justify-between text-xl font-fontBold px-4 py-2 bg-slate-200 items-center",
+      "w-full flex justify-between text-xl font-fontBold px-4 py-1 bg-slate-200 items-center",
       { "rounded-tl-md rounded-tr-md": open },
       { "rounded-md": !open }
     );

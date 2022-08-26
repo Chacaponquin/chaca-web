@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { createContext, useReducer, useState } from "react";
 import { initialDataMap } from "../../containers/Home/helpers/dataMap";
 import { CONFIG_ACTIONS } from "../../containers/Home/helpers/reducer/ActionTypes";
@@ -16,6 +17,10 @@ const DatasetsContext = createContext({
   fieldsOptions: [],
   getFieldsLoading: true,
   fileConfigOptions: [],
+  selectedDataset: null,
+  handleSelectDataset: () => {},
+  handleNextDat: () => {},
+  handlePrevDat: () => {},
 });
 
 const DatasetsProvider = ({ children }) => {
@@ -26,6 +31,7 @@ const DatasetsProvider = ({ children }) => {
     file: {},
     saveSchema: false,
   });
+  const [selectedDataset, setSelectedDataset] = useState(datasets[0]);
   const [noUserLimits, setNoUserLimits] = useState({});
   const [fieldsOptions, setFieldsOptions] = useState([]);
   const [fileConfigOptions, setFileConfigOptions] = useState([]);
@@ -64,6 +70,28 @@ const DatasetsProvider = ({ children }) => {
     onError: () => {},
   });
 
+  useEffect(() => {
+    setSelectedDataset((prev) => datasets.find((el) => el.id === prev.id));
+  }, [datasets]);
+
+  const handleSelectDataset = (id) => {
+    setSelectedDataset(datasets.find((el) => el.id === id));
+  };
+
+  const handleNextDat = () => {
+    const index = datasets.map((el) => el.id).indexOf(selectedDataset.id);
+
+    if (index === datasets.length - 1) setSelectedDataset(datasets[0]);
+    else setSelectedDataset(datasets[index + 1]);
+  };
+
+  const handlePrevDat = () => {
+    const index = datasets.map((el) => el.id).indexOf(selectedDataset.id);
+
+    if (index === datasets.length - 1) setSelectedDataset(datasets[0]);
+    else setSelectedDataset(datasets[index - 1]);
+  };
+
   const data = {
     datasets,
     dispatch,
@@ -73,6 +101,10 @@ const DatasetsProvider = ({ children }) => {
     fieldsOptions,
     getFieldsLoading,
     fileConfigOptions,
+    selectedDataset,
+    handleSelectDataset,
+    handleNextDat,
+    handlePrevDat,
   };
 
   return (

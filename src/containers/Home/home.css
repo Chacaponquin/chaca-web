@@ -32,10 +32,6 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #a29bfe;
+  background: #5352ed;
   border-radius: 999px;
-}
-
-.arguments-container .p-inputtext {
-  font-size: 0.8rem !important;
 }

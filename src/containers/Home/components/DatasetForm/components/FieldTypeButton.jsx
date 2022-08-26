@@ -38,10 +38,10 @@ const FieldTypeButton = ({ field, handleOpenModal }) => {
   };
 
   return (
-    <>
+    <div className="px-6">
       {field.type ? (
         <button
-          className="bg-principal-bg text-white py-2 px-6 text-base rounded-md  w-full whitespace-nowrap"
+          className="bg-principal-bg text-white py-2 px-10 text-lg rounded-md w-[180px] whitespace-nowrap esm:px-5 esm:text-base esm:w-[100px]"
           type="button"
           onClick={() => handleOpenModal(field.id)}
         >
@@ -49,14 +49,14 @@ const FieldTypeButton = ({ field, handleOpenModal }) => {
         </button>
       ) : (
         <button
-          className="bg-principalColor text-white py-2 px-6 text-base rounded-md w-full "
+          className="bg-principalColor text-white py-2 px-10 text-lg rounded-md w-[180px] esm:px-5 esm:text-base esm:w-[100px]"
           type="button"
           onClick={() => handleOpenModal(field.id)}
         >
           Type
         </button>
       )}
-    </>
+    </div>
   );
 };
 

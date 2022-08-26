@@ -58,7 +58,7 @@ const Modal = ({
 
   return (
     <div className="w-screen h-screen fixed bg-black/50 flex justify-center items-center z-50 top-0 left-0">
-      <div className="flex flex-col bg-white w-[95%] rounded-lg py-5 px-8 gap-3">
+      <div className="flex flex-col bg-white w-[95%] rounded-md py-5 px-8 gap-3">
         <DataTypeSelect
           selectedDataType={typeInfo.dataType.type}
           handleChangeDataType={handleChangeDataType}

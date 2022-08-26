@@ -11,6 +11,7 @@ export const titlePipe = (text) => {
       mayus = false;
     } else {
       mayus = true;
+      returnString = returnString.concat(` `);
       continue;
     }
   }

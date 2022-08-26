@@ -12,16 +12,12 @@ const ApiLeftPart = () => {
     <div className="flex w-full flex-col pt-4 h-full">
       <SearchSection />
 
-      <div className="flex flex-col w-full py-5 gap-1">
+      <div className="flex flex-col w-full py-2 gap-7">
         <SectionParentDiv
-          text={"Introduccion"}
+          text={"Empezando"}
           options={SECTIONS_CONTENT.INTRODUCCION}
         />
-        <SectionParentDiv
-          text={"Fields"}
-          options={apiFields}
-          openOptions={true}
-        />
+        <SectionParentDiv text={"Fields"} options={apiFields} />
       </div>
     </div>
   );
