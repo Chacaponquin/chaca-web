@@ -6,82 +6,111 @@ import { DatasetsContext } from "../../../../shared/context/DatasetsContext";
 import SingleValueForm from "./components/SingleValueForm";
 import MixedForm from "./components/MixedForm";
 import RefForm from "./components/RefForm";
-import { DATA_TYPES } from "../../../../shared/helpers/datasetsUtils";
+import {
+  CUSTOM_CODE,
+  DATA_TYPES,
+} from "../../../../shared/helpers/datasetsUtils";
+import CustomForm from "./components/CustomForm";
+import { useEffect } from "react";
 
-const Modal = ({
-  datasetID,
-  fieldID,
-  fieldsOptions = [],
-  handleCloseModal,
-}) => {
-  const { dispatch, datasets } = useContext(DatasetsContext);
+const Modal = ({ fieldID, fieldsOptions = [], handleCloseModal }) => {
+  const { dispatch, datasets, selectedDataset } = useContext(DatasetsContext);
 
-  const [typeInfo, setTypeInfo] = useState({
-    fieldID: fieldID,
-    parent: fieldsOptions[0],
-    type: fieldsOptions[0].fields[0],
-    dataType: { type: DATA_TYPES.SINGLE_VALUE },
-    args: {},
+  const [fieldInfo, setFieldInfo] = useState({
+    fieldID,
+    dataType: {
+      type: DATA_TYPES.SINGLE_VALUE,
+      fieldType: {
+        type: fieldsOptions[0].fields[0],
+        parent: fieldsOptions[0],
+        args: {},
+      },
+    },
   });
 
-  const handleChangeArguments = ({ value, field }) => {
-    const { args } = typeInfo;
-
-    let newData = { ...typeInfo, args: { ...args, [field]: value } };
-
-    setTypeInfo(newData);
-  };
-
-  const handleChangeOptionSelected = (field) => {
-    if (typeInfo.type.name !== field.name)
-      setTypeInfo({ ...typeInfo, args: {}, type: field });
-  };
+  useEffect(() => {
+    for (const dat of datasets) {
+      for (const field of dat.fields) {
+        if (field.id === fieldID) {
+          if (field.dataType) {
+            setFieldInfo((prev) => ({ ...prev, dataType: field.dataType }));
+          }
+        }
+      }
+    }
+  }, [datasets, fieldID]);
 
   const handleChangeDataType = (obj) => {
-    setTypeInfo({ ...typeInfo, dataType: obj });
+    let saveObj = obj;
+
+    if (obj.type === DATA_TYPES.SINGLE_VALUE) {
+      if (!obj.fieldType) {
+        saveObj = {
+          ...obj,
+          fieldType: {
+            type: fieldsOptions[0].fields[0],
+            parent: fieldsOptions[0],
+            args: {},
+          },
+        };
+      }
+    } else if (obj.type === DATA_TYPES.CUSTOM) {
+      if (!obj.code) {
+        saveObj = {
+          ...obj,
+          code: "function getValue(){return 'Buenas'}",
+          codeType: CUSTOM_CODE.JAVASCRIPT,
+        };
+      }
+    }
+
+    setFieldInfo({ ...fieldInfo, dataType: saveObj });
   };
 
   const handleSelectFieldType = () => {
-    const { parent, type, ...rest } = typeInfo;
-
     dispatch({
-      type: DATASETS_ACTIONS.SELECT_FIELD_TYPE,
-      payload: { datasetID, parent: parent.name, type: type.name, ...rest },
+      type: DATASETS_ACTIONS.CHANGE_FIELD_DATATYPE,
+      payload: {
+        datasetID: selectedDataset.id,
+        dataType: fieldInfo.dataType,
+        fieldID: fieldInfo.fieldID,
+      },
     });
 
     handleCloseModal();
-  };
-
-  const handleChangeParentSelected = (parent) => {
-    setTypeInfo({ ...typeInfo, parent, type: parent.fields[0], args: {} });
   };
 
   return (
     <div className="w-screen h-screen fixed bg-black/50 flex justify-center items-center z-50 top-0 left-0">
       <div className="flex flex-col bg-white w-[95%] rounded-md py-5 px-8 gap-3">
         <DataTypeSelect
-          selectedDataType={typeInfo.dataType.type}
+          selectedDataType={fieldInfo.dataType.type}
           handleChangeDataType={handleChangeDataType}
         />
 
         <div className="flex sm:flex-row flex-col gap-3 justify-start w-full h-[500px]">
-          {typeInfo.dataType.type === DATA_TYPES.SINGLE_VALUE && (
+          {fieldInfo.dataType.type === DATA_TYPES.SINGLE_VALUE && (
             <SingleValueForm
+              fieldInfo={fieldInfo}
               fieldsOptions={fieldsOptions}
-              handleChangeArguments={handleChangeArguments}
-              handleChangeOptionSelected={handleChangeOptionSelected}
-              handleChangeParentSelected={handleChangeParentSelected}
-              typeInfo={typeInfo}
+              handleChangeDataType={handleChangeDataType}
             />
           )}
 
-          {typeInfo.dataType.type === DATA_TYPES.MIXED && <MixedForm />}
+          {fieldInfo.dataType.type === DATA_TYPES.MIXED && <MixedForm />}
 
-          {typeInfo.dataType.type === DATA_TYPES.REF && datasets.length > 1 && (
-            <RefForm
-              typeInfoDataType={typeInfo.dataType}
-              datasetID={datasetID}
+          {fieldInfo.dataType.type === DATA_TYPES.REF &&
+            datasets.length > 1 && (
+              <RefForm
+                typeInfoDataType={fieldInfo.dataType}
+                handleChangeDataType={handleChangeDataType}
+              />
+            )}
+
+          {fieldInfo.dataType.type === DATA_TYPES.CUSTOM && (
+            <CustomForm
               handleChangeDataType={handleChangeDataType}
+              dataType={fieldInfo.dataType}
             />
           )}
         </div>

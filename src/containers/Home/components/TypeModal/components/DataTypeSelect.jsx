@@ -9,7 +9,7 @@ const DataTypeSelect = ({ selectedDataType, handleChangeDataType }) => {
 
   const divClass = (dat) =>
     clsx(
-      "px-12 py-2 text-2xl rounded-lg font-fontExtraBold esm:px-7 esm:text-lg uppercase",
+      "px-12 py-2 text-2xl rounded-lg font-fontExtraBold esm:px-7 esm:text-lg uppercase whitespace-nowrap transition-all duration-300 hover:scale-105",
       { "bg-secondColor text-white": selectedDataType === dat },
       { "bg-slate-200 text-black": !(selectedDataType === dat) },
       {
@@ -22,13 +22,13 @@ const DataTypeSelect = ({ selectedDataType, handleChangeDataType }) => {
   return (
     <div className="w-full h-[80px] esm:h-[65px] flex items-center justify-center gap-5 overflow-auto">
       {Object.values(DATA_TYPES).map((dat, i) => (
-        <div
+        <button
           className={divClass(dat)}
           key={i}
           onClick={() => handleChangeDataType({ type: dat })}
         >
           {titlePipe(dat)}
-        </div>
+        </button>
       ))}
     </div>
   );

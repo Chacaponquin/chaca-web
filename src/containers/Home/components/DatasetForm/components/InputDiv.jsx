@@ -29,7 +29,7 @@ const InputDiv = ({ handleOpenModal, field, datasetID, dispatch }) => {
                     },
                   })
                 }
-                className="w-[150px] text-lg font-fontBold !border-0 esm:text-base"
+                className="w-full max-w-[150px] text-lg font-fontBold !border-0 esm:text-base"
                 value={field.name}
               />
             </td>

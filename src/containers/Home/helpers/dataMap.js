@@ -29,6 +29,9 @@ export const returnDataMap = (datasets) => {
             });
           }
         });
+      } else if (f.dataType.type === DATA_TYPES.SINGLE_VALUE) {
+        f.dataType.fieldType.parent = f.dataType.fieldType.parent.name;
+        f.dataType.fieldType.type = f.dataType.fieldType.type.name;
       }
 
       return f;

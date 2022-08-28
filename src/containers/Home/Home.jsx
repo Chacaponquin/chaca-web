@@ -85,7 +85,7 @@ const Home = () => {
   }
 
   return (
-    <div className="w-full flex h-full gap-8 flex-col overflow-x-hidden esm:px-5">
+    <div className="w-full flex h-full gap-8 flex-col overflow-x-hidden">
       <div className="flex gap-16 h-full">
         {openCreationModal && (
           <CreationModal

@@ -37,15 +37,11 @@ export const datasetsReducer = (datasets, action) => {
 
       return newDatasets;
     }
-    case DATASETS_ACTIONS.SELECT_FIELD_TYPE: {
+    case DATASETS_ACTIONS.CHANGE_FIELD_DATATYPE: {
       const newDatasets = datasets.map((dat) => {
         if (dat.id === action.payload.datasetID) {
           const newFields = dat.fields.map((f) => {
             if (f.id === action.payload.fieldID) {
-              f.type = {
-                parent: action.payload.parent,
-                type: action.payload.type,
-              };
               f.dataType = action.payload.dataType;
               f.args = action.payload.args;
             }

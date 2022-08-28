@@ -9,13 +9,14 @@ import Icon from "supercons";
 
 const ConfigFormSection = () => {
   const divClass = "flex items-center gap-3";
-  const textClass = "mb-0 font-fontRegular text-xl esm:text-lg";
+  const textClass =
+    "mb-0 font-fontRegular text-xl esm:text-lg whitespace-nowrap";
 
   const { configDispatch, config, fileConfigOptions } =
     useContext(DatasetsContext);
 
   return (
-    <div className="flex flex-col w-[40%] gap-2 esm:w-full">
+    <div className="flex flex-col w-full gap-2 esm:w-full">
       <h1 className="font-fontBold text-3xl esm:text-2xl">Options:</h1>
 
       <div className="flex flex-col gap-4">
@@ -38,7 +39,7 @@ const ConfigFormSection = () => {
           />
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4">
           <FileArguments />
 
           <div className={divClass}>

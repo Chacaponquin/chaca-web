@@ -1,5 +1,3 @@
-import { DATA_TYPES } from "../../../../shared/helpers/datasetsUtils";
-
 export const createInitialDataset = (num) => {
   let fields = [];
 
@@ -19,11 +17,9 @@ export const createField = (num) => {
   return {
     id: Date.now() + num,
     name: "",
-    type: null,
-    dataType: { type: DATA_TYPES.SINGLE_VALUE },
+    dataType: null,
     isPosibleNull: false,
     isArray: false,
-    args: {},
   };
 };
 

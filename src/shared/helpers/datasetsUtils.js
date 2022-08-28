@@ -2,6 +2,7 @@ export const DATA_TYPES = {
   SINGLE_VALUE: "SINGLE_VALUE",
   MIXED: "MIXED",
   REF: "REF",
+  CUSTOM: "CUSTOM",
 };
 
 export const FIELDS_INPUT_TYPES = {
@@ -12,4 +13,9 @@ export const FIELDS_INPUT_TYPES = {
   FLOAT: "FLOAT",
   BOOLEAN: "BOOLEAN",
   CUSTOM_ARRAY: "CUSTOM_ARRAY",
+};
+
+export const CUSTOM_CODE = {
+  JAVASCRIPT: "JAVASCRIPT",
+  PYTHON: "PYTHON",
 };

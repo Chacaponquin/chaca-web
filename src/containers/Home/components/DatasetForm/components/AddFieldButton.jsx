@@ -6,7 +6,7 @@ const AddFieldButton = ({ dispatch, datasetID }) => {
   return (
     <div className="w-full flex justify-end">
       <button
-        className="text-white px-4 rounded-md py-2 bg-secondColor items-center flex gap-3 exsm:px-2"
+        className="text-white px-7 rounded-full py-2 bg-secondColor items-center flex gap-3 esm:px-2"
         onClick={() =>
           dispatch({
             type: DATASETS_ACTIONS.ADD_NEW_FIELD,
@@ -15,10 +15,8 @@ const AddFieldButton = ({ dispatch, datasetID }) => {
         }
         type="button"
       >
-        <Icon glyph="plus" size={25} />
-        <p className="mb-0 text-lg whitespace-nowrap exsm:hidden esm:text-base">
-          Add Field
-        </p>
+        <Icon glyph="plus" size={28} />
+        <p className="mb-0 text-lg whitespace-nowrap esm:hidden ">Add Field</p>
       </button>
     </div>
   );

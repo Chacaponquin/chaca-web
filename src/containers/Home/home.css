@@ -35,3 +35,7 @@
   background: #5352ed;
   border-radius: 999px;
 }
+
+.code-container * {
+  font-family: "FiraCode Regular";
+}

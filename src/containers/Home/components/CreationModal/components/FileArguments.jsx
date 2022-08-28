@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import FieldInputArgument from "../../../../../shared/components/FieldInputArgument/FieldInputArgument";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
-import { descapitilizeArgument } from "../../../../../shared/helpers/titlePipe";
+import { titlePipe } from "../../../../../shared/helpers/titlePipe";
 import { CONFIG_ACTIONS } from "../../../helpers/reducer/ActionTypes";
 
 const FileArguments = () => {
@@ -34,8 +34,11 @@ const FileArguments = () => {
   return (
     <>
       {fileArguments.map((el, i) => (
-        <div className="flex items-center gap-3" key={i}>
-          <p>{descapitilizeArgument(el.argument)}:</p>
+        <div
+          className="flex items-center gap-3 text-xl whitespace-nowrap"
+          key={i}
+        >
+          <p className="mb-0">{titlePipe(el.argument)}:</p>
           <FieldInputArgument
             arg={el}
             handleChangeArguments={handleChangeArguments}

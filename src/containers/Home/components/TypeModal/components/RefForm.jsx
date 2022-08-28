@@ -4,10 +4,10 @@ import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
 import { RadioButton } from "primereact/radiobutton";
 import { DATA_TYPES } from "../../../../../shared/helpers/datasetsUtils";
 
-const RefForm = ({ datasetID, handleChangeDataType, typeInfoDataType }) => {
-  const { datasets } = useContext(DatasetsContext);
+const RefForm = ({ handleChangeDataType, typeInfoDataType }) => {
+  const { datasets, selectedDataset } = useContext(DatasetsContext);
 
-  const datasetsToRef = datasets.filter((el) => el.id !== datasetID);
+  const datasetsToRef = datasets.filter((el) => el.id !== selectedDataset.id);
 
   const handleChangeSelectedDataset = (id) => {
     if (id !== typeInfoDataType.datasetID)

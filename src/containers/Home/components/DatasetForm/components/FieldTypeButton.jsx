@@ -9,8 +9,9 @@ const FieldTypeButton = ({ field, handleOpenModal }) => {
     let text = "";
 
     if (field.dataType.type === DATA_TYPES.REF) text += filterFields();
+    else if (field.dataType.type === DATA_TYPES.CUSTOM) text += "Custom";
     else if (field.dataType.type === DATA_TYPES.SINGLE_VALUE)
-      text += field.type.type;
+      text += field.dataType.fieldType.type.name;
 
     return (text += field.isArray ? "[ ]" : "");
   };
@@ -39,7 +40,7 @@ const FieldTypeButton = ({ field, handleOpenModal }) => {
 
   return (
     <div className="px-6">
-      {field.type ? (
+      {field.dataType ? (
         <button
           className="bg-principal-bg text-white py-2 px-10 text-lg rounded-md w-[180px] whitespace-nowrap esm:px-5 esm:text-base esm:w-[100px]"
           type="button"

@@ -53,7 +53,11 @@ function App() {
             handleOpenApiSideBar={handleOpenApiSideBar}
           />
 
-          <div className="px-10 h-full">
+          <div
+            className={
+              location.pathname !== appRoutes.ROOT && "px-10 h-full esm:px-5"
+            }
+          >
             <Outlet />
           </div>
         </ApiDocsProvider>

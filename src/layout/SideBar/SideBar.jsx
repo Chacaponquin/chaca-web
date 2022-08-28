@@ -20,7 +20,7 @@ const SideBar = ({ openSideBar, handleCloseSideBar }) => {
     clsx(
       "fixed w-screen h-screen top-0 right-0 overflow-hidden transition-all duration-300",
       { "!-z-[30] bg-transparent": !openSideBar },
-      { "z-50 bg-black/50 ": openSideBar }
+      { "z-[99] bg-black/50 ": openSideBar }
     );
 
   return (

@@ -25,7 +25,6 @@ const DatasetForm = ({ id, name, fields, fieldsOptions }) => {
       <div className="flex flex-col rounded-md h-max w-full">
         {openModal && (
           <Modal
-            datasetID={id}
             fieldID={openModal}
             fieldsOptions={fieldsOptions}
             handleCloseModal={handleCloseModal}
