@@ -23,11 +23,11 @@ const Api = () => {
 
   return (
     <div className="w-full flex -translate-y-8 border-b-2">
-      <div className="w-[400px] min-w-[250px] lg:block hidden">
+      <div className="w-[320px] min-w-[250px] lg:block hidden">
         <ApiLeftPart />
       </div>
 
-      <div className="w-full flex border-l-2 esm:px-7 px-20 py-5">
+      <div className="w-full flex lg:border-l-2 esm:px-7 px-20 py-5">
         <Documentation subSectionSelect={subSectionSelect} />
       </div>
     </div>

@@ -1,8 +1,11 @@
+import { createField, createInitialDataset } from "../createInitialFunctions";
 import { DATASETS_ACTIONS } from "./ActionTypes";
-import { createField, createInitialDataset } from "./createInitialFunctions";
 
 export const datasetsReducer = (datasets, action) => {
   switch (action.type) {
+    case DATASETS_ACTIONS.SET_INIT_DATASETS: {
+      return [createInitialDataset(0, true, action.payload.options)];
+    }
     case DATASETS_ACTIONS.ADD_NEW_FIELD: {
       const newDatasets = datasets.map((el) => {
         if (el.id === action.payload.datasetID) {

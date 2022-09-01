@@ -58,7 +58,7 @@ const Modal = ({ fieldID, fieldsOptions = [], handleCloseModal }) => {
       if (!obj.code) {
         saveObj = {
           ...obj,
-          code: "function getValue(){return 'Buenas'}",
+          code: "function getValue(){\n\treturn 'Buenas'\n}",
           codeType: CUSTOM_CODE.JAVASCRIPT,
         };
       }

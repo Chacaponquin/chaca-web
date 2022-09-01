@@ -63,7 +63,6 @@ const Home = () => {
   };
 
   const handleOpenCreationModal = () => {
-    console.log(datasets);
     try {
       validateDatasetsData(datasets);
       setOpenCreationModal(true);
@@ -95,8 +94,13 @@ const Home = () => {
             porcent={porcent}
           />
         )}
-        <DatasetBar handleOpenCreationModal={handleOpenCreationModal} />
-        <DatasetForm {...selectedDataset} fieldsOptions={fieldsOptions} />
+
+        {selectedDataset && (
+          <>
+            <DatasetBar handleOpenCreationModal={handleOpenCreationModal} />
+            <DatasetForm {...selectedDataset} fieldsOptions={fieldsOptions} />
+          </>
+        )}
       </div>
 
       {datasets.length > 1 && <Pagination />}

@@ -26,7 +26,7 @@ const SectionHeader = ({ header, onClick, open, children }) => {
           {header}:
         </p>
         <div className={iconClass()}>
-          <Icon glyph="right-caret" />
+          <Icon glyph="right-caret" size={25} />
         </div>
       </button>
       {children}

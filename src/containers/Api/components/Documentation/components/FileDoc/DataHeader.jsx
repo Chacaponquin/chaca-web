@@ -21,7 +21,7 @@ const DataHeader = ({ name, route }) => {
     <div className="flex md:gap-7 gap-3 md:items-center items-start md:flex-row flex-col ">
       <h1
         className={
-          "font-fontBold md:text-2xl esm:text-xl sm:text-xl whitespace-nowrap px-4 rounded-md py-2 bg-principal-bg text-white"
+          "font-fontBold md:text-2xl esm:text-xl sm:text-xl whitespace-nowrap px-5 rounded-md py-2 bg-principal-bg text-white"
         }
       >
         {name}

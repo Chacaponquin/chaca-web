@@ -6,6 +6,7 @@ import { CONFIG_ACTIONS } from "../../../helpers/reducer/ActionTypes";
 import FileArguments from "./FileArguments";
 import { UserContext } from "../../../../../shared/context/UserContext";
 import Icon from "supercons";
+import BooleanInput from "../../../../../shared/components/FieldInputArgument/components/BooleanInput";
 
 const ConfigFormSection = () => {
   const divClass = "flex items-center gap-3";
@@ -44,6 +45,7 @@ const ConfigFormSection = () => {
 
           <div className={divClass}>
             <NoUserPrivateConfig>
+              <BooleanInput />
               <Checkbox
                 onChange={(e) => {
                   configDispatch({

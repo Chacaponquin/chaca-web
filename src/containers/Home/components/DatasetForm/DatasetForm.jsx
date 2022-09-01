@@ -10,7 +10,7 @@ import Icon from "supercons";
 import { InputText } from "primereact/inputtext";
 import { toast } from "react-toastify";
 
-const DatasetForm = ({ id, name, fields, fieldsOptions }) => {
+const DatasetForm = ({ id, name, fields = [], fieldsOptions }) => {
   const { dispatch } = useContext(DatasetsContext);
   const [openModal, setOpenModal] = useState(null);
 

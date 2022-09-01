@@ -23,7 +23,7 @@ const FieldDataCard = ({ f }) => {
       <div className="w-full flex-col py-5 flex gap-3">
         <div className="flex flex-col gap-1">
           <DataHeader name={f.name} route={f.route} />
-          <div className="mt-2 text-slate-400">
+          <div className="mt-2 text-gray-600">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime
             facilis doloribus corporis incidunt? Ut eaque vel nobis doloremque
             fugit sint.
