@@ -1,9 +1,9 @@
 import { Calendar } from "primereact/calendar";
-import { Checkbox } from "primereact/checkbox";
 import { InputNumber } from "primereact/inputnumber";
 import { InputText } from "primereact/inputtext";
 import React from "react";
 import { FIELDS_INPUT_TYPES } from "../../../helpers/datasetsUtils";
+import BooleanInput from "./BooleanInput";
 
 const FilterDataType = ({ value, handleChange, type, i }) => {
   switch (type) {
@@ -35,12 +35,7 @@ const FilterDataType = ({ value, handleChange, type, i }) => {
         />
       );
     case FIELDS_INPUT_TYPES.BOOLEAN:
-      return (
-        <Checkbox
-          onChange={(e) => handleChange(i, e.checked)}
-          checked={value}
-        />
-      );
+      return <BooleanInput onChange={(value) => handleChange(i, value)} />;
     default:
       return <></>;
   }

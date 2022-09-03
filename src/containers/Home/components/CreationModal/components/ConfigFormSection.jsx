@@ -1,4 +1,3 @@
-import { Checkbox } from "primereact/checkbox";
 import { Dropdown } from "primereact/dropdown";
 import React, { useContext } from "react";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
@@ -44,20 +43,17 @@ const ConfigFormSection = () => {
           <FileArguments />
 
           <div className={divClass}>
+            <p className={textClass}>Save Schema:</p>
             <NoUserPrivateConfig>
-              <BooleanInput />
-              <Checkbox
-                onChange={(e) => {
+              <BooleanInput
+                onChange={(value) => {
                   configDispatch({
                     type: CONFIG_ACTIONS.CHANGE_SAVE_SCHEMA,
-                    payload: { value: e.checked },
+                    payload: { value },
                   });
                 }}
-                checked={config.saveSchema}
               />
             </NoUserPrivateConfig>
-
-            <p className={textClass}>Save Schema</p>
           </div>
         </div>
       </div>

@@ -10,6 +10,7 @@ import {
   SignUp,
   MySchema,
   Landing,
+  ContactUs,
 } from "./containers";
 import { appRoutes } from "./shared/routes/app/appRoutes";
 
@@ -53,6 +54,7 @@ const AppRoutes = () => {
           path={appRoutes.AUTH_ROUTES.SIGN_UP}
           element={<NoUserRoute children={<SignUp />} />}
         />
+        <Route path={appRoutes.CONTACT_US} element={<ContactUs />} />
 
         <Route path="/" element={<App />}>
           <Route path={appRoutes.ROOT} element={<Landing />} />

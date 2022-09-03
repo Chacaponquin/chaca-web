@@ -13,8 +13,8 @@ const BgSVG = () => {
       >
         <defs>
           <linearGradient gradientTransform="rotate(60)" id="gradient">
-            <stop offset="45%" stopColor="#00CC99"></stop>
-            <stop offset="99%" stopColor="#5352ed"></stop>
+            <stop offset="45%" stopColor="#b645db"></stop>
+            <stop offset="99%" stopColor="#2b03a2"></stop>
           </linearGradient>
         </defs>
 

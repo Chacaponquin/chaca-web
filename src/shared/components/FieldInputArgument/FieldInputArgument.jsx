@@ -2,10 +2,10 @@ import { Dropdown } from "primereact/dropdown";
 import { InputNumber } from "primereact/inputnumber";
 import React, { useEffect, useState } from "react";
 import { Calendar } from "primereact/calendar";
-import { Checkbox } from "primereact/checkbox";
 import { titlePipe } from "../../helpers/titlePipe";
 import { FIELDS_INPUT_TYPES } from "../../helpers/datasetsUtils";
 import CustomArrayInput from "./components/CustomArrayInput";
+import BooleanInput from "./components/BooleanInput";
 
 const FieldInputArgument = ({
   arg,
@@ -57,14 +57,14 @@ const FieldInputArgument = ({
     );
   else if (arg.inputType === FIELDS_INPUT_TYPES.BOOLEAN)
     return (
-      <Checkbox
-        onChange={(e) => {
+      <BooleanInput
+        onChange={(value) => {
+          console.log(value);
           handleChangeArguments({
-            value: e.checked,
+            value: value,
             field: arg.argument,
           });
         }}
-        checked={value}
       />
     );
   else if (arg.inputType === FIELDS_INPUT_TYPES.DATE) {

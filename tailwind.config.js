@@ -5,9 +5,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        principalColor: "#00CC99",
-        secondColor: "#5352ed",
-        dangerColor: "#fc5c65",
+        principalColor: "#b645db",
+        secondColor: "#590ce8",
+        thirdColor: "#9900FF",
+        dangerColor: "#b645db",
         darkColor: "#282c34",
       },
       fontFamily: {
@@ -21,6 +22,7 @@ module.exports = {
       backgroundImage: {
         "principal-bg": 'url("./assets/images/bg.svg")',
         "second-bg": 'url("./assets/images/second-bg.svg")',
+        "third-bg": 'url("./assets/images/third-bg.svg")',
       },
       screens: {
         exsm: { max: "400px" },

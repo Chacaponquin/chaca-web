@@ -5,5 +5,6 @@ import Docs from "./Docs/Docs";
 import Home from "./Home/Home";
 import Landing from "./LandigPage/Landing";
 import MySchema from "./MySchema/MySchema";
+import ContactUs from "./ContactUs/ContactUs";
 
-export { Home, Login, Docs, Api, SignUp, MySchema, Landing };
+export { Home, Login, Docs, Api, SignUp, MySchema, Landing, ContactUs };

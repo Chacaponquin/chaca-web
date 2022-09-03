@@ -10,8 +10,8 @@ const WaveBG = () => {
     >
       <defs>
         <linearGradient gradientTransform="rotate(30)" id="waveGradient">
-          <stop offset="45%" stopColor="#00CC99"></stop>
-          <stop offset="99%" stopColor="#5352ed"></stop>
+          <stop offset="45%" stopColor="#b645db"></stop>
+          <stop offset="99%" stopColor="#590ce8"></stop>
         </linearGradient>
       </defs>
 

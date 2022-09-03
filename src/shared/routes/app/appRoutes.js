@@ -9,4 +9,5 @@ export const appRoutes = {
   API: "/api",
   DOCS: "/docs",
   MY_SCHEMA: "/mySchema",
+  CONTACT_US: "/contactUs",
 };

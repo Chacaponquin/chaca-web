@@ -28,4 +28,5 @@ export const apiRoutes = {
   DELETE_SCHEMA: "/user/deleteSchema",
   GET_API_OPTIONS: "/util/getApiOptions",
   GET_FILE_OPTIONS: "/util/getFileConfigFileOptions",
+  GET_FAQ: "/util/getFAQ",
 };
