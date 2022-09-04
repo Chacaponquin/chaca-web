@@ -29,4 +29,5 @@ export const apiRoutes = {
   GET_API_OPTIONS: "/util/getApiOptions",
   GET_FILE_OPTIONS: "/util/getFileConfigFileOptions",
   GET_FAQ: "/util/getFAQ",
+  CREATE_USER_MESSAGE: "/user/createUserMessage",
 };

@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
 import { useQuery } from "../../../shared/hooks/useQuery";
 import { apiRoutes } from "../../../shared/routes/api/apiRoutes";
+import { appRoutes } from "../../../shared/routes/app/appRoutes";
+import { Link } from "react-router-dom";
 
 const FAQ = () => {
   const [questions, setQuestions] = useState([1, 2, 3, 4, 5, 6]);
@@ -36,9 +38,12 @@ const FAQ = () => {
           </div>
 
           <div className="lg:block hidden">
-            <button className="flex items-center transition-all duration-300 bg-white rounded-md px-10 py-2 text-principalColor border-2 border-principalColor font-fontBold text-xl hover:bg-principalColor hover:text-white">
+            <Link
+              to={appRoutes.CONTACT_US}
+              className="flex items-center transition-all duration-300 bg-white rounded-md px-10 py-2 text-principalColor border-2 border-principalColor font-fontBold text-xl hover:bg-principalColor hover:text-white"
+            >
               New Question
-            </button>
+            </Link>
           </div>
         </div>
 

@@ -30,7 +30,7 @@ const FirstPage = () => {
             </h1>
           </div>
 
-          <div className="flex items-center gap-10 mt-5 text-2xl esm:gap-3 exsm:flex-col-reverse esm:text-xl">
+          <div className="flex flex-wrap justify-center items-center gap-10 mt-5 text-2xl esm:gap-3 exsm:flex-col-reverse esm:text-xl">
             <Link to={appRoutes.API}>
               <SecondButton />
             </Link>
