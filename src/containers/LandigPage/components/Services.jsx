@@ -28,7 +28,7 @@ const Services = () => {
   return (
     <div className="w-screen flex justify-center items-center flex-col gap-5 lg:px-20 px-14 esm:px-5 lg:py-20 sm:py-12 esm:py-6">
       <div className="flex flex-col items-start w-full">
-        <div className="flex items-center lg:text-6xl text-5xl esm:text-4xl uppercase gap-[10px]">
+        <div className="flex items-center lg:text-6xl text-5xl esm:text-4xl uppercase gap-x-[10px] flex-wrap">
           <h1 className="font-fontExtraBold">Nuestros</h1>
           <h1 className="font-fontExtraBold text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor whitespace-nowrap">
             Servicios

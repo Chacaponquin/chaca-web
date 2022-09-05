@@ -24,7 +24,7 @@ const FAQ = () => {
       <div className="flex flex-col w-full gap-5">
         <div className="flex items-start justify-between w-full">
           <div className="flex flex-col">
-            <div className="flex gap-[10px] lg:text-6xl text-5xl esm:text-4xl uppercase mb-2">
+            <div className="flex gap-x-[10px] lg:text-6xl text-5xl esm:text-4xl uppercase mb-2 flex-wrap ">
               <h1 className="font-fontExtraBold ">Preguntas</h1>
               <h1 className="font-fontExtraBold text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor whitespace-nowrap">
                 Frecuentes
@@ -61,9 +61,12 @@ const QuestionCard = ({ answer, question }) => {
   const [open, setOpen] = useState(false);
 
   const iconClass = () => {
-    return clsx("cursor-pointer transition-all duration-300", {
-      "rotate-45": !open,
-    });
+    return clsx(
+      "cursor-pointer transition-all duration-300 flex items-center",
+      {
+        "rotate-45": !open,
+      }
+    );
   };
 
   const divClass = () => {

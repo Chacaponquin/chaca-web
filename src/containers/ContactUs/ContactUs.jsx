@@ -114,18 +114,18 @@ const ContactUs = () => {
 
 const SuccessModal = () => {
   return (
-    <div className="fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-white/30">
-      <div className="py-6 px-20 bg-white shadow-lg rounded-md flex flex-col items-center">
+    <div className="fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-white/40 ">
+      <div className="py-6 px-20 bg-white shadow-lg rounded-md flex flex-col items-center esm:px-10 max-w-[95%]">
         <img src={modal} alt="" className="object-contain w-[250px]" />
-        <h1 className="uppercase text-4xl font-fontExtraBold mb-1">
+        <h1 className="uppercase text-4xl font-fontExtraBold mb-1 esm:text-3xl">
           Gracias por tu mensaje!!!
         </h1>
-        <p className="mb-5 text-xl text-gray-500">
+        <p className="mb-5 text-xl text-gray-500 esm:text-lg">
           Te responderemos lo más rápido posible
         </p>
         <Link
           to={appRoutes.ROOT}
-          className="bg-secondColor text-white font-fontBold px-10 text-2xl hover:bg-secondColor/70 transition-all duration-300 rounded-md py-2"
+          className="bg-secondColor text-white font-fontBold px-10 text-2xl hover:bg-secondColor/70 transition-all duration-300 rounded-md py-2 esm:text-xl"
         >
           Volver
         </Link>
