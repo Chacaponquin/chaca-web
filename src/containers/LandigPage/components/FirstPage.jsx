@@ -23,7 +23,7 @@ const FirstPage = () => {
         <div className="flex flex-col justify-center items-center xl:items-end lg:text-6xl gap-3 sm:text-7xl text-6xl exsm:text-5xl h-full">
           <div className="flex items-center gap-[10px] esm:flex-col">
             <h1 className="font-fontExtraBold whitespace-nowrap uppercase">
-              Welcome to
+              Bienvenido a
             </h1>
             <h1 className="font-fontExtraBold text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor whitespace-nowrap">
               CH-DATA

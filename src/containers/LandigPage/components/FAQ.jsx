@@ -22,7 +22,7 @@ const FAQ = () => {
   return (
     <div className="w-screen flex items-center lg:px-20 px-14 esm:px-5 lg:py-20 sm:py-12 esm:py-6">
       <div className="flex flex-col w-full gap-5">
-        <div className="flex items-center justify-between w-full">
+        <div className="flex items-start justify-between w-full">
           <div className="flex flex-col">
             <div className="flex gap-[10px] lg:text-6xl text-5xl esm:text-4xl uppercase mb-2">
               <h1 className="font-fontExtraBold ">Preguntas</h1>
@@ -40,7 +40,7 @@ const FAQ = () => {
           <div className="lg:block hidden">
             <Link
               to={appRoutes.CONTACT_US}
-              className="flex items-center transition-all duration-300 bg-white rounded-md px-10 py-2 text-principalColor border-2 border-principalColor font-fontBold text-xl hover:bg-principalColor hover:text-white"
+              className="flex items-center transition-all duration-300 bg-white rounded-md px-10 py-2 text-thirdColor border-2 border-thirdColor font-fontBold text-xl hover:bg-thirdColor hover:text-white"
             >
               New Question
             </Link>

@@ -59,7 +59,6 @@ const FieldInputArgument = ({
     return (
       <BooleanInput
         onChange={(value) => {
-          console.log(value);
           handleChangeArguments({
             value: value,
             field: arg.argument,

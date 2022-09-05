@@ -11,7 +11,7 @@ const CreationModal = ({
   return (
     <>
       {loading && <CreationLoading porcent={porcent} />}
-      <div className="fixed bg-black/50 w-screen min-h-screen top-0 left-0 flex items-center justify-center z-50">
+      <div className="fixed bg-black/50 w-screen min-h-screen top-0 left-0 flex items-center justify-center z-[70]">
         <div className="bg-white py-6 px-10 rounded-md w-[90%] max-w-[550px] min-h-[95%] flex flex-col gap-5 esm:w-[95%]">
           <div className="w-full flex esm:flex-col-reverse gap-10 esm:gap-5">
             <ConfigFormSection />
