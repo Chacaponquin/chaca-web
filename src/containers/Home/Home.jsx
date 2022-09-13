@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { validateDatasetsData } from "./helpers/validateDatasetsData";
 import DatasetBar from "./components/DatasetsBar/DatasetBar";
 import Pagination from "./components/Pagination/Pagination";
+import { DATASETS_ACTIONS } from "./helpers/reducer/ActionTypes";
 
 const Home = () => {
   const { datasets, config, fieldsOptions, getFieldsLoading, selectedDataset } =
@@ -84,8 +85,8 @@ const Home = () => {
   }
 
   return (
-    <div className="w-full flex h-full gap-8 flex-col overflow-x-hidden">
-      <div className="flex gap-16 h-full">
+    <div className="w-full flex h-max lg:h-full gap-8 flex-col overflow-x-hidden form-content">
+      <div className="flex gap-16 h-full overflow-y-auto ">
         {openCreationModal && (
           <CreationModal
             handleSubmit={handleSubmit}
@@ -103,7 +104,35 @@ const Home = () => {
         )}
       </div>
 
+      <DatasetsOptions handleOpenCreationModal={handleOpenCreationModal} />
+    </div>
+  );
+};
+
+const DatasetsOptions = ({ handleOpenCreationModal }) => {
+  const { dispatch, datasets } = useContext(DatasetsContext);
+
+  return (
+    <div className="flex flex-col gap-4">
       {datasets.length > 1 && <Pagination />}
+
+      <div className="flex items-center flex-wrap justify-end lg:hidden text-xl gap-4">
+        <button
+          className="flex items-center px-10 py-2 text-white bg-principalColor rounded-md transition-all duration-300 hover:opacity-70"
+          onClick={() =>
+            dispatch({ type: DATASETS_ACTIONS.CREATE_NEW_DATASET })
+          }
+        >
+          <p className="mb-0 font-fontBold">New Dataset</p>
+        </button>
+
+        <button
+          className="bg-principal-bg text-white font-fontBold px-10 py-2 rounded-md transition-all duration-300 hover:opacity-70"
+          onClick={handleOpenCreationModal}
+        >
+          Export
+        </button>
+      </div>
     </div>
   );
 };

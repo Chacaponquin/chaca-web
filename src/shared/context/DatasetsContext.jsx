@@ -97,8 +97,7 @@ const DatasetsProvider = ({ children }) => {
   const handlePrevDat = () => {
     const index = datasets.map((el) => el.id).indexOf(selectedDataset.id);
 
-    if (index === datasets.length - 1) setSelectedDataset(datasets[0]);
-    else setSelectedDataset(datasets[index - 1]);
+    setSelectedDataset(datasets[index - 1] || datasets[0]);
   };
 
   const data = {

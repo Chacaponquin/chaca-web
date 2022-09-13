@@ -8,18 +8,21 @@ const SearchSection = () => {
 
   const searchClass = () => {
     return clsx(
-      "rounded-md border-2 w-full flex search-input gap-3 items-center px-5 py-1 esm:px-3 esm:py-1",
+      "rounded-md border-2 w-full flex search-input gap-3 items-center px-3 py-1 esm:px-3 esm:py-1",
       { "search-input-focus": focus }
     );
   };
 
   return (
-    <div className="px-4 esm:px-1">
+    <div className="px-2 esm:px-1">
       <div className={searchClass()}>
-        <Icon glyph="search" />
+        <div className="w-max">
+          <Icon glyph="search" size={28} />
+        </div>
+
         <input
           type="text"
-          className="border-none outline-none"
+          className="border-none outline-none w-full"
           placeholder="Search..."
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}

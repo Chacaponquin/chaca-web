@@ -5,15 +5,23 @@ import Icon from "supercons";
 import FieldMenu from "./FieldMenu";
 import { InputText } from "primereact/inputtext";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
+import { AnimatePresence, motion } from "framer-motion";
+import clsx from "clsx";
 
 const InputDiv = ({ handleOpenModal, field, datasetID, dispatch }) => {
   const { selectedDataset } = useContext(DatasetsContext);
-
   const [openConfig, setOpenConfig] = useState(false);
 
+  const contClass = () => {
+    return clsx(
+      "flex flex-col w-full border-2 rounded-md border-separate py-1 px-4 mb-2",
+      { "border-secondColor": openConfig }
+    );
+  };
+
   return (
-    <tr className="flex flex-col w-full border-2 rounded-md border-separate py-1 px-4 mb-2">
-      <table className="table-auto w-full">
+    <motion.tr className={contClass()}>
+      <motion.table className="table-auto w-full">
         <tbody>
           <tr>
             <td className="w-full">
@@ -51,10 +59,12 @@ const InputDiv = ({ handleOpenModal, field, datasetID, dispatch }) => {
             </td>
           </tr>
         </tbody>
-      </table>
+      </motion.table>
 
-      {openConfig && <FieldMenu datasetID={datasetID} field={field} />}
-    </tr>
+      <AnimatePresence>
+        {openConfig && <FieldMenu datasetID={datasetID} field={field} />}
+      </AnimatePresence>
+    </motion.tr>
   );
 };
 

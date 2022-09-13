@@ -9,7 +9,7 @@ import { appRoutes } from "../../../shared/routes/app/appRoutes";
 import { Link } from "react-router-dom";
 
 const FAQ = () => {
-  const [questions, setQuestions] = useState([1, 2, 3, 4, 5, 6]);
+  const [questions, setQuestions] = useState([]);
 
   useQuery({
     url: apiRoutes.GET_FAQ,

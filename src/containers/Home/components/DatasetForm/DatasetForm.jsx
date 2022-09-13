@@ -1,9 +1,7 @@
 import React, { useContext, useState } from "react";
-import { InputNumber } from "primereact/inputnumber";
 import Modal from "../TypeModal/Modal";
 import { DATASETS_ACTIONS } from "../../helpers/reducer/ActionTypes";
 import { DatasetsContext } from "../../../../shared/context/DatasetsContext";
-import { UserContext } from "../../../../shared/context/UserContext";
 import InputDiv from "./components/InputDiv";
 import AddFieldButton from "./components/AddFieldButton";
 import Icon from "supercons";
@@ -47,35 +45,6 @@ const DatasetForm = ({ id, name, fields = [], fieldsOptions }) => {
           </tbody>
         </table>
       </div>
-    </div>
-  );
-};
-
-const InputCantDoc = () => {
-  const { selectedDataset, dispatch, noUserLimits } =
-    useContext(DatasetsContext);
-  const { actualUser } = useContext(UserContext);
-
-  return (
-    <div className="flex items-center gap-3 justify-center">
-      <p className="mb-0 text-lg font-fontBold">Cant:</p>
-      <InputNumber
-        value={selectedDataset.limit}
-        onValueChange={(e) => {
-          dispatch({
-            type: DATASETS_ACTIONS.CHANGE_DATASET_LIMIT,
-            payload: {
-              datasetID: selectedDataset.id,
-              value: e.value,
-            },
-          });
-        }}
-        min={1}
-        max={
-          actualUser ? actualUser.limitDocuments : noUserLimits.LIMIT_DOCUMENTS
-        }
-        className="w-[100px]"
-      />
     </div>
   );
 };
@@ -133,11 +102,9 @@ const DatasetDivHeader = ({ name, datasetID }) => {
             </button>
           )}
         </div>
-
-        <InputCantDoc />
       </div>
 
-      <AddFieldButton dispatch={dispatch} datasetID={datasetID} />
+      <AddFieldButton />
     </div>
   );
 };

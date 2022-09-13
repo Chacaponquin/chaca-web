@@ -34,7 +34,7 @@ const SectionParentDiv = ({ text, options }) => {
   };
 
   return (
-    <div className="px-10 esm:px-6">
+    <div className="px-6 esm:px-4">
       <div className={"flex items-center"}>
         <div className={parentDivClass()}>
           <h1 className="font-fontBold">{text}</h1>

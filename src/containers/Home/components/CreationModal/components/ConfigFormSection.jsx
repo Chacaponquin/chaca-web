@@ -9,8 +9,7 @@ import BooleanInput from "../../../../../shared/components/FieldInputArgument/co
 
 const ConfigFormSection = () => {
   const divClass = "flex items-center gap-3";
-  const textClass =
-    "mb-0 font-fontRegular text-xl esm:text-lg whitespace-nowrap";
+  const textClass = "mb-0 font-fontRegular whitespace-nowrap";
 
   const { configDispatch, config, fileConfigOptions } =
     useContext(DatasetsContext);
@@ -19,9 +18,9 @@ const ConfigFormSection = () => {
     <div className="flex flex-col w-full gap-2 esm:w-full">
       <h1 className="font-fontBold text-3xl esm:text-2xl">Options:</h1>
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 text-xl">
         <div className="flex gap-2">
-          <h1 className="font-fontBold text-xl">Formato:</h1>
+          <h1 className="font-fontBold">Formato:</h1>
           <Dropdown
             options={fileConfigOptions.map((f) => f.fileType)}
             value={config.file.fileType}

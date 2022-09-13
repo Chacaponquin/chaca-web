@@ -36,6 +36,10 @@
   border-radius: 999px;
 }
 
+.form-content::-webkit-scrollbar {
+  display: none;
+}
+
 .code-container * {
   font-family: "FiraCode Regular";
 }

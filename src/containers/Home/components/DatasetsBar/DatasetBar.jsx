@@ -30,7 +30,7 @@ const DatasetBar = ({ handleOpenCreationModal }) => {
     (actualUser ? actualUser.limitDatasets : noUserLimits.LIMIT_DATASETS);
 
   return (
-    <div className="w-max lg:flex h-full hidden px-6">
+    <div className="w-max lg:flex h-max hidden px-6">
       <div className="sticky w-max flex items-center top-0 flex-col pb-5">
         <div className="flex lg:justify-end justify-center w-full mb-4">
           <motion.button
@@ -66,9 +66,9 @@ const DatasetBar = ({ handleOpenCreationModal }) => {
           ))}
         </div>
 
-        <div className="relative bottom-0 flex justify-center w-full">
+        <div className="relative bottom-0 flex justify-center w-full mt-20">
           <button
-            className="bg-principalColor text-white font-fontBold text-2xl px-5 py-2 rounded-md w-full"
+            className="bg-principal-bg text-white font-fontBold text-2xl px-5 py-2 rounded-md w-full"
             onClick={handleOpenCreationModal}
           >
             Export

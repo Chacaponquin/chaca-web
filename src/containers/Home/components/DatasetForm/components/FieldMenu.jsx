@@ -5,6 +5,7 @@ import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
 import { DATASETS_ACTIONS } from "../../../helpers/reducer/ActionTypes";
 import Icon from "supercons";
 import clsx from "clsx";
+import { motion } from "framer-motion";
 
 const FieldMenu = ({ datasetID, field }) => {
   const { dispatch } = useContext(DatasetsContext);
@@ -18,7 +19,13 @@ const FieldMenu = ({ datasetID, field }) => {
   });
 
   return (
-    <div className="flex bg-white w-full py-1 rounded-md flex-col gap-1">
+    <motion.div
+      className="flex bg-white w-full py-1 rounded-md flex-col gap-1"
+      transition={{ duration: 0.3, type: "spring" }}
+      animate={{ height: "auto", opacity: 1 }}
+      initial={{ height: 0, opacity: 0 }}
+      exit={{ height: 0, opacity: 0 }}
+    >
       <div className={arrayDivContainerClass}>
         <div className={divClass + " !gap-16"}>
           <div className="flex items-center gap-4">
@@ -115,7 +122,7 @@ const FieldMenu = ({ datasetID, field }) => {
         <Icon glyph="delete" size={28} />
         <h1 className={textClass}>Delete Field</h1>
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default FieldMenu;
