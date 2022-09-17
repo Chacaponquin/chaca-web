@@ -16,12 +16,14 @@ const WhyUs = () => {
 
           <div className="leading-[1.2] text-lg">
             En el mundo del{" "}
-            <h2 className="inline font-fontBold">desarrollo de software</h2> es
-            común la necesidad de datos para probar algoritmos, pruebas,
+            <h2 className="inline font-fontBold text-secondColor">
+              desarrollo de software
+            </h2>{" "}
+            es común la necesidad de datos para probar algoritmos, pruebas,
             funcionalidades, entre otras partes. La creación de estos datos de
             forma tal que sean coherentes y cumplan las condiciones marcadas por
             el cliente o el desarrollador suele ser un proceso tedioso.{" "}
-            <h2 className="inline font-fontBold">
+            <h2 className="inline font-fontBold text-secondColor">
               Para eso te brindamos esta herramienta para que puedas crear la
               cantidad de datos que desees bajo tus condiciones y sobre todo{" "}
               completamente gratis.
@@ -29,7 +31,7 @@ const WhyUs = () => {
           </div>
 
           <div className="flex justify-end mt-4">
-            <button className="flex items-center text-white px-7 py-2 text-xl bg-secondColor rounded-md gap-3">
+            <button className="flex transition-all duration-300 hover:opacity-70 items-center text-white px-7 py-2 text-xl bg-principal-bg rounded-md gap-3">
               <PlayIcon />
               <p className="mb-0 whitespace-nowrap">Mirar Video</p>
             </button>

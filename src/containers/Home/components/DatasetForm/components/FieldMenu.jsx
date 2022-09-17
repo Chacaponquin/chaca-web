@@ -19,13 +19,7 @@ const FieldMenu = ({ datasetID, field }) => {
   });
 
   return (
-    <motion.div
-      className="flex bg-white w-full py-1 rounded-md flex-col gap-1"
-      transition={{ duration: 0.3, type: "spring" }}
-      animate={{ height: "auto", opacity: 1 }}
-      initial={{ height: 0, opacity: 0 }}
-      exit={{ height: 0, opacity: 0 }}
-    >
+    <motion.div className="flex bg-white w-full py-1 rounded-md flex-col gap-1">
       <div className={arrayDivContainerClass}>
         <div className={divClass + " !gap-16"}>
           <div className="flex items-center gap-4">

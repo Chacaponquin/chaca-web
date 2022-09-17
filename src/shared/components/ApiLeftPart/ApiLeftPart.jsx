@@ -17,6 +17,10 @@ const ApiLeftPart = () => {
           text={"Empezando"}
           options={SECTIONS_CONTENT.INTRODUCCION}
         />
+        <SectionParentDiv
+          text={"Herramienta"}
+          options={SECTIONS_CONTENT.TOOL}
+        />
         <SectionParentDiv text={"Fields"} options={apiFields} />
       </div>
     </div>

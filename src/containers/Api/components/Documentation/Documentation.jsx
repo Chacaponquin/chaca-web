@@ -4,6 +4,7 @@ import FieldDoc from "./components/FileDoc/FieldDoc";
 import AboutQuerys from "./components/IntroductionDocs/AboutQuerys";
 import Autorization from "./components/IntroductionDocs/Autorization";
 import Indications from "./components/IntroductionDocs/Indications";
+import FirstExample from "./components/ToolDocs/FirstExample";
 
 const Documentation = ({ subSectionSelect }) => {
   if (subSectionSelect) {
@@ -13,6 +14,8 @@ const Documentation = ({ subSectionSelect }) => {
       if (subSectionSelect.subElement.id === 2) return <Indications />;
       else if (subSectionSelect.subElement.id === 3) return <Autorization />;
       else if (subSectionSelect.subElement.id) return <AboutQuerys />;
+    } else if (subSectionSelect.section === API_SECTIONS.TOOL) {
+      if (subSectionSelect.subElement.id === 1) return <FirstExample />;
     }
   }
 

@@ -19,7 +19,7 @@ const DatasetBar = ({ handleOpenCreationModal }) => {
 
   const divClass = (id) => {
     return clsx(
-      "whitespace-nowrap py-3 px-10 text-xl transition-all duration-300 hover:scale-105 rounded-md font-fontBold",
+      "whitespace-nowrap py-3 px-10 text-xl transition-all duration-300 hover:scale-105 rounded-md font-fontBold !w-full",
       { "bg-slate-200 text-black": selectedDataset.id !== id },
       { "bg-secondColor text-white": selectedDataset.id === id }
     );
@@ -54,7 +54,7 @@ const DatasetBar = ({ handleOpenCreationModal }) => {
           </motion.button>
         </div>
 
-        <div className="flex flex-col gap-3 h-[80%] top-0">
+        <div className="flex flex-col gap-3 h-[80%] top-0 w-full">
           {datasets.map((d, i) => (
             <button
               key={i}

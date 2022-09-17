@@ -5,7 +5,7 @@ import Icon from "supercons";
 import FieldMenu from "./FieldMenu";
 import { InputText } from "primereact/inputtext";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import clsx from "clsx";
 
 const InputDiv = ({ handleOpenModal, field, datasetID, dispatch }) => {
@@ -61,9 +61,7 @@ const InputDiv = ({ handleOpenModal, field, datasetID, dispatch }) => {
         </tbody>
       </motion.table>
 
-      <AnimatePresence>
-        {openConfig && <FieldMenu datasetID={datasetID} field={field} />}
-      </AnimatePresence>
+      {openConfig && <FieldMenu datasetID={datasetID} field={field} />}
     </motion.tr>
   );
 };

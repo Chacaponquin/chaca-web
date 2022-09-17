@@ -38,7 +38,9 @@ const AboutQuerys = () => {
               <tr>
                 <th className={tableHeaderClass}>Argument</th>
                 <th className={tableHeaderClass}>Type</th>
-                <th className={tableHeaderClass}>Description</th>
+                <th className={tableHeaderClass + " lg:block hidden"}>
+                  Description
+                </th>
               </tr>
             </thead>
 
@@ -46,7 +48,11 @@ const AboutQuerys = () => {
               <tr>
                 <td className={cellTableClass}>isArray</td>
                 <td className={cellTableClass}>Boolean</td>
-                <td className={cellTableClass + " text-sm esm:text-xs"}>
+                <td
+                  className={
+                    cellTableClass + " text-sm esm:text-xs lg:block hidden"
+                  }
+                >
                   Indica si el valor a regresar debe ser un arreglo que contiene
                   valores aleatorios del tipo seleccionado
                 </td>
@@ -54,7 +60,7 @@ const AboutQuerys = () => {
               <tr>
                 <td className={cellTableClass}>limit</td>
                 <td className={cellTableClass}>Number</td>
-                <td className={cellTableClass + " text-sm"}>
+                <td className={cellTableClass + " text-sm lg:block hidden"}>
                   Indica el límite que no puede ser superado por el arreglo. Por
                   defecto el arreglo no superará los 10 valores
                 </td>

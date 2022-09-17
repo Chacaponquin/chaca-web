@@ -28,6 +28,7 @@ const ContactUs = () => {
       setModalOpen(true);
     },
     onError: (error) => {
+      console.log(error);
       toast.error("Hubo un error al enviar el mensaje");
     },
   });
@@ -38,6 +39,7 @@ const ContactUs = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(contactForm);
     createMessage({ body: contactForm });
   };
 

@@ -16,7 +16,9 @@ const ConfigFormSection = () => {
 
   return (
     <div className="flex flex-col w-full gap-2 esm:w-full">
-      <h1 className="font-fontBold text-3xl esm:text-2xl">Options:</h1>
+      <h1 className="font-fontBold text-4xl esm:text-3xl uppercase text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor whitespace-nowrap mb-3">
+        Options:
+      </h1>
 
       <div className="flex flex-col gap-4 text-xl">
         <div className="flex gap-2">

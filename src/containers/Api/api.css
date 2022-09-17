@@ -1,11 +1,9 @@
 .doc-content {
-  line-height: 1.8;
+  line-height: 1.6;
 }
 
-.doc-content > div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
+.doc-content * {
+  font-size: 1.2rem;
 }
 
 .doc-content a {
@@ -17,31 +15,44 @@
 .doc-content h1 {
   font-family: "Cairo Bold";
   font-size: 2.6rem;
+  line-height: 1.3;
 }
 
 .doc-content h2 {
   display: inline;
-  margin-left: 3px;
   font-family: "Cairo Bold";
 }
 
 .doc-content h3 {
   display: inline;
-  margin-left: 5px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
   color: #6366f1;
   font-family: "Cairo Bold";
-  white-space: nowrap;
 }
 
-.doc-content * {
-  font-size: 1.2rem;
+.doc-content h4 {
+  font-family: "Cairo Bold";
+  font-size: 2rem;
+}
+
+.doc-content li {
+  display: flex;
+}
+
+.doc-content li > span {
+  width: 10px;
+  height: 10px;
+  min-width: 10px;
+  border-radius: 999px;
+  background-color: black;
+  position: relative;
+  top: 10px;
+  margin-right: 12px;
 }
 
 .doc-content p {
   color: #1a1a1a;
-  font-size: 1.2rem;
   display: block;
 }
 

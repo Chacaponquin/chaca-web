@@ -6,8 +6,9 @@ import { DATA_TYPES } from "../../../../../shared/helpers/datasetsUtils";
 
 const RefForm = ({ handleChangeDataType, typeInfoDataType }) => {
   const { datasets, selectedDataset } = useContext(DatasetsContext);
-
-  const datasetsToRef = datasets.filter((el) => el.id !== selectedDataset.id);
+  const datasetsToRef = datasets.filter(
+    (el) => el.id !== selectedDataset.id && el.fields.length > 0
+  );
 
   const handleChangeSelectedDataset = (id) => {
     if (id !== typeInfoDataType.datasetID)
@@ -45,12 +46,7 @@ const RefForm = ({ handleChangeDataType, typeInfoDataType }) => {
             {dat.id === typeInfoDataType.datasetID &&
               dat.fields &&
               dat.fields.map((f, i) => {
-                if (
-                  f.name &&
-                  f.type &&
-                  f.type.type &&
-                  f.dataType.type !== DATA_TYPES.REF
-                )
+                if (f.name && f.dataType.type !== DATA_TYPES.REF)
                   return (
                     <div className="flex items-center gap-2" key={i}>
                       <RadioButton
