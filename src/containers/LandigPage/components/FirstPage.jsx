@@ -3,8 +3,8 @@ import BgSVG from "../../../shared/components/CurveBg/BgSVG";
 import WaveBG from "../assets/WaveBG";
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../../shared/routes/app/appRoutes";
-import SecondButton from "./Buttons/SecondButton/SecondButton";
-import PrincipalButton from "./Buttons/PrincipalButton/PrincipalButton";
+import PrincipalButton from "../../../shared/components/PrincipalButton/PrincipalButton";
+import SecondButton from "../../../shared/components/SecondButton/SecondButton";
 
 const FirstPage = () => {
   return (
@@ -32,11 +32,11 @@ const FirstPage = () => {
 
           <div className="flex flex-wrap justify-center items-center gap-10 mt-5 text-2xl esm:gap-3 exsm:flex-col-reverse esm:text-xl">
             <Link to={appRoutes.API}>
-              <SecondButton />
+              <SecondButton text={"Read Docs"} />
             </Link>
 
             <Link to={appRoutes.HOME}>
-              <PrincipalButton />
+              <PrincipalButton text={"Empieza"} />
             </Link>
           </div>
         </div>

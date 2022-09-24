@@ -6,6 +6,7 @@ import { appRoutes } from "../../shared/routes/app/appRoutes";
 import { UserContext } from "../../shared/context/UserContext";
 import avatar from "../../assets/images/avatar.jpg";
 import { useLocation } from "react-router-dom";
+import PrincipalButton from "../../shared/components/PrincipalButton/PrincipalButton";
 
 const navBarOptions = [
   { icon: "home", label: "Home", url: appRoutes.HOME },
@@ -47,10 +48,8 @@ const NavBar = ({ handleOpenSideBar, handleOpenApiSideBar }) => {
             {!actualUser && (
               <>
                 {windowSize > 640 ? (
-                  <Link to={appRoutes.AUTH_ROUTES.LOGIN}>
-                    <button className="py-2 px-7 border-2 border-secondColor text-secondColor rounded-md transition-all duration-300 hover:bg-secondColor/20">
-                      Account
-                    </button>
+                  <Link to={appRoutes.AUTH_ROUTES.LOGIN} className="text-xl">
+                    <PrincipalButton text={"Cuenta"} maxContent={true} />
                   </Link>
                 ) : (
                   <Link
