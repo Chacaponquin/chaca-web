@@ -1,0 +1,6 @@
+export enum DATA_TYPES {
+  SINGLE_VALUE = "SINGLE_VALUE",
+  MIXED = "MIXED",
+  REF = "REF",
+  CUSTOM = "CUSTOM",
+}
