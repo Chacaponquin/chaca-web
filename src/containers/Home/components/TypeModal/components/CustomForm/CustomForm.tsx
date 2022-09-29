@@ -1,8 +1,8 @@
 import Editor from "@monaco-editor/react";
-import LoaderContainer from "../../../../../shared/components/Loader/LoaderContainer";
-import { FieldDataType } from "../../../../../shared/interfaces/datasets.interface";
-import { DATA_TYPES } from "../../../../../shared/constant/DATA_TYPES";
-import JSDoc from "./Guides/JSDoc";
+import LoaderContainer from "../../../../../../shared/components/Loader/LoaderContainer";
+import { FieldDataType } from "../../../../../../shared/interfaces/datasets.interface";
+import { DATA_TYPES } from "../../../../../../shared/constant/DATA_TYPES";
+import JSDoc from "../Guides/JSDoc";
 
 const CustomForm = ({
   handleChangeDataType,

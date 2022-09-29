@@ -8,6 +8,7 @@ import LoaderContainer from "../../shared/components/Loader/LoaderContainer";
 import { Link } from "react-router-dom";
 import { APP_ROUTES } from "../../shared/routes/app/APP_ROUTES";
 import { toast, ToastContainer } from "react-toastify";
+import Send from "../../shared/assets/icons/Send";
 
 const ContactUs = () => {
   const [contactForm, setContactForm] = useState({
@@ -94,7 +95,7 @@ const ContactUs = () => {
             <div className="flex justify-end">
               <LoaderContainer loading={loading} className="w-[50px] mt-2">
                 <button className="flex gap-3 items-center text-white bg-secondColor px-7 py-3 rounded-md transition-all duration-300 hover:bg-secondColor/70 esm:py-2">
-                  <Icon glyph="send-fill" size={32} />
+                  <Send />
                   <p className="mb-0 text-xl font-fontBold">Enviar</p>
                 </button>
               </LoaderContainer>

@@ -1,10 +1,9 @@
-import React, { ReactElement } from "react";
 import Loader from "./Loader";
 
 interface LoaderProps {
   loading: boolean;
   className: string;
-  children?: ReactElement;
+  children?: JSX.Element;
 }
 
 const LoaderContainer = ({

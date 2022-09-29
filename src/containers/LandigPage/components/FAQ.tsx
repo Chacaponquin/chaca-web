@@ -7,6 +7,7 @@ import { APP_ROUTES } from "../../../shared/routes/app/APP_ROUTES";
 import { Link } from "react-router-dom";
 import SecondButton from "../../../shared/components/SecondButton/SecondButton";
 import { v4 as uuid } from "uuid";
+import X from "../../../shared/assets/icons/X";
 
 interface IFAQ {
   question: string;
@@ -88,7 +89,7 @@ const QuestionCard = ({
       <div className="flex justify-between w-full">
         <h1 className="font-fontBold text-xl esm:text-lg">{question}?</h1>
         <div className={iconClass()} onClick={() => setOpen(!open)}>
-          <Icon glyph="view-close" />
+          <X size={20} />
         </div>
       </div>
 

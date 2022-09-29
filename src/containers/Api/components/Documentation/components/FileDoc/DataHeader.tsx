@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import Copy from "../../../../../../shared/assets/icons/Copy";
 
 const DataHeader = ({ name, route }: { name: string; route: string }) => {
   const [isCopy, setIsCopy] = useState(false);
@@ -40,7 +41,7 @@ const DataHeader = ({ name, route }: { name: string; route: string }) => {
             className="w-[50px] h-[50px] rounded-full flex items-center justify-center transition-all duration-200 hover:bg-slate-100"
             onClick={handleCopy}
           >
-            <Icon glyph="copy" size={32} />
+            <Copy />
           </button>
 
           {isCopy && (

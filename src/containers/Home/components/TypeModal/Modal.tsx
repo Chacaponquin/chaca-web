@@ -1,20 +1,25 @@
 import React, { useContext, useState } from "react";
 import { DATASETS_ACTIONS } from "../../helpers/reducer/ACTION_TYPES";
 import OptionsButton from "../OptionsButton";
-import DataTypeSelect from "./components/DataTypeSelect";
+import DataTypeSelect from "./components/SingleValueForm/DataTypeSelect";
 import { DatasetsContext } from "../../../../shared/context/DatasetsContext";
-import SingleValueForm from "./components/SingleValueForm";
-import MixedForm from "./components/MixedForm";
-import RefForm from "./components/RefForm";
-import CustomForm from "./components/CustomForm";
+import SingleValueForm from "./components/SingleValueForm/SingleValueForm";
+import MixedForm from "./components/MixedForm/MixedForm";
+import RefForm from "./components/RefForm/RefForm";
+import CustomForm from "./components/CustomForm/CustomForm";
 import { useEffect } from "react";
 import { AppConfigContext } from "../../../../shared/context/AppConfigContext";
 import { DATA_TYPES } from "../../../../shared/constant/DATA_TYPES";
 import {
   Dataset,
   FieldDataType,
+  MixedDataType,
 } from "../../../../shared/interfaces/datasets.interface";
-import { CODE_TYPES } from "../../../../shared/constant/CODE_TYPES";
+
+export interface IFieldInfo<T = FieldDataType> {
+  fieldID: string;
+  dataType: T;
+}
 
 const Modal = ({
   fieldID,
@@ -28,10 +33,7 @@ const Modal = ({
   const { fieldsOptions } = useContext(AppConfigContext);
 
   const [toRef, setToRef] = useState<Dataset[]>([]);
-  const [fieldInfo, setFieldInfo] = useState<{
-    fieldID: string;
-    dataType: FieldDataType;
-  }>({
+  const [fieldInfo, setFieldInfo] = useState<IFieldInfo>({
     fieldID,
     dataType: {
       type: DATA_TYPES.SINGLE_VALUE,
@@ -73,30 +75,7 @@ const Modal = ({
   }, [datasets, fieldID, selectedDataset]);
 
   const handleChangeDataType = (obj: FieldDataType) => {
-    let saveObj: FieldDataType = obj;
-
-    if (obj.type === DATA_TYPES.SINGLE_VALUE) {
-      if (!obj.fieldType) {
-        saveObj = {
-          ...obj,
-          fieldType: {
-            type: fieldsOptions[0].fields[0].name,
-            parent: fieldsOptions[0].parent,
-            args: {},
-          },
-        };
-      }
-    } else if (obj.type === DATA_TYPES.CUSTOM) {
-      if (!obj.code) {
-        saveObj = {
-          ...obj,
-          code: "function getValue(){\n\treturn 'Buenas'\n}",
-          codeType: CODE_TYPES.JAVASCRIPT,
-        };
-      }
-    }
-
-    setFieldInfo({ ...fieldInfo, dataType: saveObj });
+    setFieldInfo({ ...fieldInfo, dataType: obj });
   };
 
   const handleSelectFieldType = () => {
@@ -118,7 +97,7 @@ const Modal = ({
         <DataTypeSelect
           selectedDataType={fieldInfo.dataType.type}
           handleChangeDataType={handleChangeDataType}
-          showRef={toRef.length !== 0}
+          toRef={toRef}
         />
 
         <div className="flex sm:flex-row flex-col gap-3 justify-start w-full h-[500px]">
@@ -129,7 +108,12 @@ const Modal = ({
             />
           )}
 
-          {fieldInfo.dataType.type === DATA_TYPES.MIXED && <MixedForm />}
+          {fieldInfo.dataType.type === DATA_TYPES.MIXED && (
+            <MixedForm
+              handleChangeDataType={handleChangeDataType}
+              fieldInfo={fieldInfo as IFieldInfo<MixedDataType>}
+            />
+          )}
 
           {fieldInfo.dataType.type === DATA_TYPES.REF &&
             datasets.length > 1 && (

@@ -1,6 +1,8 @@
 import {
   Dataset,
+  DatasetField,
   FieldDataType,
+  SingleValueDataType,
 } from "../../../../shared/interfaces/datasets.interface";
 import { CreateIntialData } from "../CreateData";
 import { DATASETS_ACTIONS } from "./ACTION_TYPES";
@@ -71,6 +73,15 @@ export type DatasetPayload =
         datasetID: string;
         value: string;
       };
+    }
+  | {
+      type: DATASETS_ACTIONS.NEW_FIELD_MIXED_TYPE;
+      payload: {
+        datasetID: string;
+        fieldID: string;
+        field: DatasetField<SingleValueDataType>;
+        options: FieldOptions[];
+      };
     };
 
 export const datasetsReducer: Reducer<Dataset[], DatasetPayload> = (
@@ -93,7 +104,7 @@ export const datasetsReducer: Reducer<Dataset[], DatasetPayload> = (
             ...el,
             fields: [
               ...el.fields,
-              new CreateIntialData(action.payload.options).createField(0),
+              new CreateIntialData(action.payload.options).createField(),
             ],
           };
         }

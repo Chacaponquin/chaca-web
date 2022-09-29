@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { DatasetsContext } from "../../../../shared/context/DatasetsContext";
 import clsx from "clsx";
+import ArrowRight from "../../../../shared/assets/icons/ArrowRight";
+import ArrowLeft from "../../../../shared/assets/icons/ArrowLeft";
 
 const Pagination = () => {
   const { datasets, selectedDataset, handleNextDat, handlePrevDat } =
@@ -21,7 +23,7 @@ const Pagination = () => {
           className="transition-all duration-300 hover:scale-110"
           onClick={handlePrevDat}
         >
-          <Icon glyph="view-back" size={50} />
+          <ArrowLeft />
         </button>
 
         <div className="flex items-center gap-4">
@@ -34,7 +36,7 @@ const Pagination = () => {
           className="transition-all duration-300 hover:scale-110"
           onClick={handleNextDat}
         >
-          <Icon glyph="view-forward" size={50} />
+          <ArrowRight />
         </button>
       </div>
     </div>

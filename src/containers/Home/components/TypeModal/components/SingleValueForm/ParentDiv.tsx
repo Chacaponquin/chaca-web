@@ -1,7 +1,5 @@
-import React from "react";
 import clsx from "clsx";
-import { DataTransform } from "../../../../../shared/helpers/DataTransform";
-
+import { DataTransform } from "../../../../../../shared/helpers/DataTransform";
 
 const ParentDiv = ({
   parent,

@@ -7,9 +7,10 @@ import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
 import { motion } from "framer-motion";
 import clsx from "clsx";
 import { DatasetField } from "../../../../../shared/interfaces/datasets.interface";
+import Config from "../../../../../shared/assets/icons/Config";
 
 interface InputDivProps {
-  handleOpenModal: (id: string | null) => void;
+  handleOpenModal: (id: string) => void;
   field: DatasetField;
   datasetID: string;
 }
@@ -60,14 +61,14 @@ const InputDiv = ({ handleOpenModal, field, datasetID }: InputDivProps) => {
                 className="cursor-pointer"
                 onClick={() => setOpenConfig(!openConfig)}
               >
-                <Icon glyph="controls" size={25} />
+                <Config />
               </div>
             </td>
           </tr>
         </tbody>
       </motion.table>
 
-      {openConfig && <FieldMenu datasetID={datasetID} field={field} />}
+      {openConfig && <FieldMenu field={field} />}
     </motion.tr>
   );
 };

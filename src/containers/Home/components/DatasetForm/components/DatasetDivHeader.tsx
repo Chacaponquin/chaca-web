@@ -1,6 +1,7 @@
 import { InputText } from "primereact/inputtext";
 import { useContext, useState } from "react";
 import { toast } from "react-toastify";
+import Edit from "../../../../../shared/assets/icons/Edit";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
 import { DATASETS_ACTIONS } from "../../../helpers/reducer/ACTION_TYPES";
 import AddFieldButton from "./AddFieldButton";
@@ -57,10 +58,10 @@ const DatasetDivHeader = ({
             </button>
           ) : (
             <button
-              className="py-1 px-2 border-2 border-secondColor flex justify-center items-center text-secondColor rounded-md hover:text-white hover:bg-secondColor transition-all duration-300"
+              className="py-1 px-2 border-2 border-secondColor flex justify-center items-center text-secondColor rounded-md hover:text-white hover:bg-secondColor hover:fill-white transition-all duration-300"
               onClick={() => setIsEditing(true)}
             >
-              <Icon glyph="edit" size={25} />
+              <Edit size={25} />
             </button>
           )}
         </div>

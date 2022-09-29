@@ -8,7 +8,7 @@ import { v4 as uuid } from "uuid";
 const DatasetForm = ({ id, name, fields }: Dataset) => {
   const [openModal, setOpenModal] = useState<string | null>(null);
 
-  const handleOpenModal = (id: string | null) => {
+  const handleOpenModal = (id: string) => {
     setOpenModal(id);
   };
 

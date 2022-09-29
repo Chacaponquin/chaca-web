@@ -2,6 +2,7 @@ import { DATA_TYPES } from "../../../shared/constant/DATA_TYPES";
 import {
   Dataset,
   DatasetField,
+  SingleValueDataType,
 } from "../../../shared/interfaces/datasets.interface";
 import { FieldOptions } from "../../../shared/interfaces/options.interface";
 import { v4 as uuid } from "uuid";
@@ -13,14 +14,14 @@ export class CreateIntialData {
     this.options = options;
   }
 
-  public createField = (num: number): DatasetField => {
+  public createField = (): DatasetField<SingleValueDataType> => {
     const option = this.options.find(
       (el) => el.parent === "ID"
     ) as FieldOptions;
 
     return {
       id: uuid(),
-      name: "",
+      name: `newField${uuid().slice(0, 3)}`,
       dataType: {
         type: DATA_TYPES.SINGLE_VALUE,
         fieldType: {
@@ -41,7 +42,7 @@ export class CreateIntialData {
     let returnfields = [];
 
     for (let i = 0; i < 3; i++) {
-      returnfields.push(this.createField(i));
+      returnfields.push(this.createField());
     }
 
     return {

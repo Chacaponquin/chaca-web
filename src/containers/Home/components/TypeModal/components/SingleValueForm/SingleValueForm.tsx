@@ -1,15 +1,15 @@
 import { useCallback, useContext } from "react";
-import { DATA_TYPES } from "../../../../../shared/constant/DATA_TYPES";
-import { AppConfigContext } from "../../../../../shared/context/AppConfigContext";
+import { DATA_TYPES } from "../../../../../../shared/constant/DATA_TYPES";
+import { AppConfigContext } from "../../../../../../shared/context/AppConfigContext";
 import {
   FieldArgument,
   FieldDataType,
-} from "../../../../../shared/interfaces/datasets.interface";
+} from "../../../../../../shared/interfaces/datasets.interface";
 import FieldOptionDiv from "./FieldOptionDiv";
 import ParentDiv from "./ParentDiv";
 import { v4 as uuid } from "uuid";
 import React from "react";
-import { FieldOptions } from "../../../../../shared/interfaces/options.interface";
+import { FieldOptions } from "../../../../../../shared/interfaces/options.interface";
 
 const SingleValueForm = ({
   handleChangeDataType,
@@ -100,7 +100,7 @@ const SingleValueForm = ({
             (el, i) => (
               <FieldOptionDiv
                 option={el}
-                key={uuid()}
+                key={i}
                 isSelected={
                   fieldInfo.dataType.type === DATA_TYPES.SINGLE_VALUE &&
                   el.name === fieldInfo.dataType.fieldType.type

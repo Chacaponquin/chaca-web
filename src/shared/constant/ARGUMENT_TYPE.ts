@@ -5,5 +5,4 @@ export enum ARGUMENT_TYPE {
   DATE = "DATE",
   FLOAT = "FLOAT",
   BOOLEAN = "BOOLEAN",
-  CUSTOM_ARRAY = "CUSTOM_ARRAY",
 }

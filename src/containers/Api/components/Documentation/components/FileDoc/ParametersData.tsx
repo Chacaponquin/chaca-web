@@ -1,5 +1,4 @@
 import React from "react";
-import { getSelectValues } from "../../../../helpers/showDataTransform";
 import SectionHeader from "./SectionHeader";
 import { motion, AnimatePresence } from "framer-motion";
 import { ARGUMENT_TYPE } from "../../../../../../shared/constant/ARGUMENT_TYPE";
@@ -51,7 +50,7 @@ const ParametersData = ({
                       className={cellTableClass + " whitespace-nowrap"}
                     >
                       {a.inputType === ARGUMENT_TYPE.SELECT
-                        ? getSelectValues(a.selectValues)
+                        ? DataTransform.getSelectValues(a.selectValues!)
                         : DataTransform.titlePipe(a.inputType)}
                     </motion.td>
                     <motion.td className={cellTableClass + " esm:hidden"}>

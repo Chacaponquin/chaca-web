@@ -7,6 +7,7 @@ import { UserContext } from "../../../../../shared/context/UserContext";
 import BooleanInput from "../../../../../shared/components/FieldInputArgument/components/BooleanInput";
 import { AppConfigContext } from "../../../../../shared/context/AppConfigContext";
 import { FILE_TYPE } from "../../../../../shared/constant/FILE_TYPE";
+import Private from "../../../../../shared/assets/icons/Private";
 
 const ConfigFormSection = () => {
   const divClass = "flex items-center gap-3";
@@ -67,7 +68,7 @@ const NoUserPrivateConfig = ({ children }: { children: ReactElement }) => {
     <>
       {!actualUser ? (
         <div>
-          <Icon glyph="private-outline" />
+          <Private />
         </div>
       ) : (
         children

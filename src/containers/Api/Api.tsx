@@ -9,7 +9,7 @@ const Api = () => {
         <ApiLeftPart />
       </div>
 
-      <div className="w-full flex lg:border-l-2 esm:px-7 px-20 py-5">
+      <div className="w-full flex lg:border-l-2 esm:px-7 px-12 lg:px-20 py-5">
         <Documentation />
       </div>
     </div>

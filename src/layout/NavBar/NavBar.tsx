@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import clsx from "clsx";
 import { APP_ROUTES } from "../../shared/routes/app/APP_ROUTES";
@@ -8,6 +8,8 @@ import PrincipalButton from "../../shared/components/PrincipalButton/PrincipalBu
 import Home from "../../shared/assets/icons/Home";
 import { v4 as uuid } from "uuid";
 import Code from "../../shared/assets/icons/Code";
+import Bars from "../../shared/assets/icons/Bars";
+import User from "../../shared/assets/icons/User";
 
 enum NavBarIcons {
   HOME = "HOME",
@@ -44,7 +46,7 @@ const NavBar = ({
         <div className="w-[30%] esm:w-[50px] flex items-center">
           {location.pathname === APP_ROUTES.API && (
             <button onClick={handleOpenApiSideBar} className="lg:hidden block">
-              <Icon glyph="menu" />
+              <Bars />
             </button>
           )}
         </div>
@@ -58,7 +60,7 @@ const NavBar = ({
         <div className="flex justify-end w-[30%] esm:w-[50px] items-center gap-3 text-lg">
           <div className="flex">
             {!actualUser && (
-              <>
+              <React.Fragment>
                 {windowSize > 640 ? (
                   <Link to={APP_ROUTES.AUTH_ROUTES.LOGIN} className="text-xl">
                     <PrincipalButton text={"Cuenta"} short={true} />
@@ -68,10 +70,10 @@ const NavBar = ({
                     className="w-[45px] rounded-full h-[45px] bg-slate-100 flex justify-center items-center"
                     to={APP_ROUTES.AUTH_ROUTES.LOGIN}
                   >
-                    <Icon glyph="person" />
+                    <User />
                   </Link>
                 )}
-              </>
+              </React.Fragment>
             )}
 
             {actualUser && (
@@ -104,7 +106,7 @@ const NavBarOption = ({
     return clsx(
       "flex rounded-full px-5 py-2 gap-2 items-center transition-all duration-300 esm:px-4",
       {
-        "bg-principal-bg !text-white": isActive,
+        "bg-principal-bg !text-white fill-white": isActive,
       },
       { "hover:shadow-md": !isActive }
     );
@@ -112,7 +114,7 @@ const NavBarOption = ({
 
   return (
     <NavLink className={optionClass} to={url}>
-      <IconFilter icon={icon} size={windowSize > 640 ? 32 : 27} />
+      <IconFilter icon={icon} size={windowSize > 640 ? 28 : 25} />
       <p className="mb-0 font-fontBold text-base pointer-events-none lg:block hidden">
         {label}
       </p>

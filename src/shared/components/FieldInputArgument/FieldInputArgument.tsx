@@ -2,12 +2,12 @@ import { Dropdown } from "primereact/dropdown";
 import { InputNumber } from "primereact/inputnumber";
 import React, { useEffect, useState } from "react";
 import { Calendar } from "primereact/calendar";
-import CustomArrayInput from "./components/CustomArrayInput";
 import BooleanInput from "./components/BooleanInput";
 import { ArgumentSchema } from "../../interfaces/options.interface";
 import { FieldArgument } from "../../interfaces/datasets.interface";
 import { ARGUMENT_TYPE } from "../../constant/ARGUMENT_TYPE";
 import { DataTransform } from "../../helpers/DataTransform";
+import { InputText } from "primereact/inputtext";
 
 interface ArgumentProps {
   arg: ArgumentSchema;
@@ -30,9 +30,9 @@ const FieldInputArgument = ({
 
   useEffect(() => {
     const keys = Object.keys(allArguments);
-    for (let i = 0; i < keys.length; i++) {
-      if (keys[i] === arg.argument) {
-        setValue(Object.values(allArguments)[i]);
+    for (const key of keys) {
+      if (key === arg.argument) {
+        setValue(allArguments[key]);
       }
     }
   }, [arg, allArguments]);
@@ -40,7 +40,7 @@ const FieldInputArgument = ({
   if (arg.inputType === ARGUMENT_TYPE.SELECT)
     return (
       <Dropdown
-        options={arg.selectValues}
+        options={arg.selectValues as string[]}
         placeholder={`Select ${DataTransform.titlePipe(arg.argument)}`}
         onChange={(e) => {
           handleChangeArguments({
@@ -69,7 +69,19 @@ const FieldInputArgument = ({
         step={arg.inputType === ARGUMENT_TYPE.NUMBER ? 1 : 0.1}
       />
     );
-  else if (arg.inputType === ARGUMENT_TYPE.BOOLEAN)
+  else if (arg.inputType === ARGUMENT_TYPE.TEXT) {
+    return (
+      <InputText
+        value={value as string}
+        onChange={(e) => {
+          handleChangeArguments({
+            value: e.target.value as string,
+            field: arg.argument,
+          });
+        }}
+      />
+    );
+  } else if (arg.inputType === ARGUMENT_TYPE.BOOLEAN)
     return (
       <BooleanInput
         onChange={(value) => {
@@ -92,13 +104,6 @@ const FieldInputArgument = ({
           });
         }}
       ></Calendar>
-    );
-  } else if (arg.inputType === ARGUMENT_TYPE.CUSTOM_ARRAY) {
-    return (
-      <CustomArrayInput
-        arg={arg}
-        handleChangeArguments={handleChangeArguments}
-      />
     );
   }
 

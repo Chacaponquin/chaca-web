@@ -71,6 +71,8 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
           saveSchema: false,
         },
       });
+
+      setSelectedDataset(datasets[0]);
     }
   }, [
     initialFetchLoading,

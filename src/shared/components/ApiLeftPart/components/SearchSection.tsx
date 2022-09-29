@@ -17,7 +17,7 @@ const SearchSection = () => {
     <div className="px-2 esm:px-1">
       <div className={searchClass()}>
         <div className="w-max">
-          <Search />
+          <Search size={20} />
         </div>
 
         <input

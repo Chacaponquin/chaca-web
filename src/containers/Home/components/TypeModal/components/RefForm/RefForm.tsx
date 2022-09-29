@@ -1,10 +1,10 @@
 import clsx from "clsx";
 import { RadioButton } from "primereact/radiobutton";
-import { DATA_TYPES } from "../../../../../shared/constant/DATA_TYPES";
+import { DATA_TYPES } from "../../../../../../shared/constant/DATA_TYPES";
 import {
   Dataset,
   FieldDataType,
-} from "../../../../../shared/interfaces/datasets.interface";
+} from "../../../../../../shared/interfaces/datasets.interface";
 import { v4 as uuid } from "uuid";
 
 const RefForm = ({

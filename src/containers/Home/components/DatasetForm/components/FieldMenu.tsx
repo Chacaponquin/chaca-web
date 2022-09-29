@@ -6,6 +6,7 @@ import { DATASETS_ACTIONS } from "../../../helpers/reducer/ACTION_TYPES";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import { DatasetField } from "../../../../../shared/interfaces/datasets.interface";
+import Delete from "../../../../../shared/assets/icons/Delete";
 
 const FieldMenu = ({ field }: { field: DatasetField }) => {
   const { datasetDispatch, selectedDataset } = useContext(DatasetsContext);
@@ -115,7 +116,7 @@ const FieldMenu = ({ field }: { field: DatasetField }) => {
           })
         }
       >
-        <Icon glyph="delete" size={28} />
+        <Delete size={25} />
         <h1 className={textClass}>Delete Field</h1>
       </div>
     </motion.div>

@@ -6,12 +6,12 @@ import { APP_ROUTES } from "../../../../../../shared/routes/app/APP_ROUTES";
 import { axiosInstance } from "../../../../../../shared/routes/api/API_ROUTES";
 import LoaderContainer from "../../../../../../shared/components/Loader/LoaderContainer";
 import clsx from "clsx";
-import { showDataTransform } from "../../../../helpers/showDataTransform";
 import { toast } from "react-toastify";
 import { DataTransform } from "../../../../../../shared/helpers/DataTransform";
 import { ApiFieldData } from "../../../../../../shared/interfaces/api.interface";
 import ExampleCode from "../../../../../../shared/components/ExampleCode/ExampleCode";
 import { FieldArgument } from "../../../../../../shared/interfaces/datasets.interface";
+import { v4 as uuid } from "uuid";
 
 const QueryContainer = ({ field }: { field: ApiFieldData }) => {
   const location = useLocation();
@@ -94,15 +94,17 @@ const QueryContainer = ({ field }: { field: ApiFieldData }) => {
           initial={{ height: 0 }}
           exit={{ height: 0 }}
         >
-          <motion.div>
-            <motion.div className="flex lg:flex-row w-full flex-col">
-              <ExampleCode code={codeConstructor()} />
+          <motion.div className="w-full">
+            <motion.div className="flex xl:flex-row w-full flex-col">
+              <div className="flex xl:w-[600px] w-full">
+                <ExampleCode code={codeConstructor()} />
+              </div>
 
               {field.arguments.length > 0 && (
-                <motion.div className="bg-white flex flex-col p-4 lg:w-[300px] overflow-auto w-full gap-3">
+                <motion.div className="bg-white flex flex-col py-4 lg:px-2 px-4 overflow-auto w-full gap-3">
                   <div className="lg:flex lg:flex-col gap-3 grid grid-cols-2 esm:grid-cols-1">
                     {field.arguments.map((arg, i) => (
-                      <div key={i} className="flex gap-2 items-center">
+                      <div key={uuid()} className="flex gap-2 items-center">
                         <p>{DataTransform.titlePipe(arg.argument)}:</p>
                         <FieldInputArgument
                           allArguments={allArguments}
@@ -121,13 +123,13 @@ const QueryContainer = ({ field }: { field: ApiFieldData }) => {
             {result !== null && result !== undefined && (
               <div className="flex items-center gap-1">
                 <p className="mb-0 px-3 py-2 text-black rounded-md bg-slate-200 font-fontCodeBold text-sm esm:px-2 esm:py-1 ">
-                  {showDataTransform(result)}
+                  {DataTransform.showDataTransform(result)}
                 </p>
               </div>
             )}
             <LoaderContainer loading={loading} className="w-[30px]">
               <button
-                className="transition-all duration-300 py-2 px-4 text-base text-white font-fontBold bg-principalColor rounded-md hover:bg-principalColor/60 esm:px-3 esm:py-1 "
+                className="transition-all duration-300 py-2 px-4 text-base text-white font-fontBold bg-secondColor rounded-md hover:bg-secondColor/60 esm:px-3 esm:py-1 "
                 onClick={handleSubmit}
               >
                 Submit

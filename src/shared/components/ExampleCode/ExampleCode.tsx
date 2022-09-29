@@ -1,12 +1,11 @@
 import Editor from "@monaco-editor/react";
 import { useState } from "react";
-import LoaderContainer from "../Loader/LoaderContainer";
 
 const ExampleCode = ({ code }: { code: string }) => {
   const [height, setHeight] = useState(0);
 
   return (
-    <div className="rounded-lg bg-white border-2 p-4 my-2">
+    <div className="rounded-lg flex w-full p-4 my-2">
       <Editor
         height={`${height}px`}
         options={{
@@ -20,19 +19,13 @@ const ExampleCode = ({ code }: { code: string }) => {
           lineNumbersMinChars: 0,
           readOnly: true,
         }}
+        width={"100%"}
         onMount={(editor, monaco) => {
           setHeight(editor.getModel()!.getLineCount() * 21);
         }}
-        className="code-container"
+        className="code-cont"
         language="javascript"
         defaultValue={code}
-        loading={
-          <LoaderContainer
-            className={"w-[80px]"}
-            loading={true}
-            children={<></>}
-          />
-        }
       />
     </div>
   );

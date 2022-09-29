@@ -12,6 +12,8 @@ import clsx from "clsx";
 import OtherOptionsSection from "../components/OtherOptionsSection";
 import { AxiosError } from "axios";
 import { DataTransform } from "../../../shared/helpers/DataTransform";
+import User from "../../../shared/assets/icons/User";
+import Private from "../../../shared/assets/icons/Private";
 
 const Login = () => {
   const { handleSignIn } = useContext(UserContext);
@@ -77,8 +79,12 @@ const Login = () => {
 
           <form className="flex flex-col w-full" onSubmit={handleSubmit}>
             <div className="flex flex-col w-full py-8 gap-5 esm:py-6">
-              <InputDiv type={"email"} onChange={handleChange} />
-              <InputDiv onChange={handleChange} type={"password"} />
+              <InputDiv type={"email"} onChange={handleChange} icon={"email"} />
+              <InputDiv
+                onChange={handleChange}
+                type={"password"}
+                icon={"password"}
+              />
             </div>
 
             <div className="mb-4">
@@ -116,7 +122,9 @@ const Login = () => {
 const InputDiv = ({
   type,
   onChange,
+  icon,
 }: {
+  icon: string;
   type: string;
   onChange: (e: any) => void;
 }) => {
@@ -131,7 +139,8 @@ const InputDiv = ({
   return (
     <div className={divClass()}>
       <div className="px-4 border-r-2 flex justify-center items-center">
-        <Icon glyph={""} />
+        {icon === "email" && <User />}
+        {icon === "password" && <Private />}
       </div>
 
       <input

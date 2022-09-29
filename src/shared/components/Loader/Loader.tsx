@@ -1,8 +1,7 @@
 const Loader = () => {
   return (
     <svg
-      width="135"
-      height="140"
+      width={"100%"}
       viewBox="0 0 135 140"
       xmlns="http://www.w3.org/2000/svg"
       fill="#590ce8"

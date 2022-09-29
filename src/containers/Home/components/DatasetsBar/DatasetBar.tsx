@@ -6,6 +6,8 @@ import { DATASETS_ACTIONS } from "../../helpers/reducer/ACTION_TYPES";
 import { motion } from "framer-motion";
 import { AppConfigContext } from "../../../../shared/context/AppConfigContext";
 import { v4 as uuid } from "uuid";
+import FolderPlus from "../../../../shared/assets/icons/FolderPlus";
+import Private from "../../../../shared/assets/icons/Private";
 
 const DatasetBar = ({
   handleOpenCreationModal,
@@ -46,10 +48,7 @@ const DatasetBar = ({
             disabled={isPosibleCreate ? false : true}
           >
             <div className="w-max">
-              <Icon
-                glyph={isPosibleCreate ? "event-add" : "private"}
-                size={28}
-              />
+              {isPosibleCreate ? <FolderPlus /> : <Private />}
             </div>
             {isPosibleCreate && (
               <motion.p className="mb-0">New Dataset</motion.p>

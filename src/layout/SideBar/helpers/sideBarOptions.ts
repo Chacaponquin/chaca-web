@@ -1,5 +1,9 @@
 import { APP_ROUTES } from "../../../shared/routes/app/APP_ROUTES";
 
+export enum SideBarIcons {
+  SCHEMA = "SCHEMA",
+}
+
 export const sideBarOptions = [
-  { icon: "attachment", label: "My Schemas", url: APP_ROUTES.MY_SCHEMA },
+  { icon: SideBarIcons.SCHEMA, label: "My Schemas", url: APP_ROUTES.MY_SCHEMA },
 ];

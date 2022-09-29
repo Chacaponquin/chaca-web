@@ -1,9 +1,12 @@
 import clsx from "clsx";
-import { sideBarOptions } from "./helpers/sideBarOptions";
+import { SideBarIcons, sideBarOptions } from "./helpers/sideBarOptions";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../shared/context/UserContext";
 import { v4 as uuid } from "uuid";
+import X from "../../shared/assets/icons/X";
+import SignOut from "../../shared/assets/icons/SignOut";
+import Schema from "../../shared/assets/icons/Schema";
 
 const SideBar = ({
   openSideBar,
@@ -33,7 +36,7 @@ const SideBar = ({
       <div className={sideBarClass()}>
         <div className="flex flex-col w-full">
           <div className="cursor-pointer" onClick={handleCloseSideBar}>
-            <Icon glyph="view-close" />
+            <X />
           </div>
 
           <div className="flex flex-col w-full items-center">
@@ -50,7 +53,7 @@ const SideBar = ({
                   to={el.url}
                   key={uuid()}
                 >
-                  <Icon glyph={el.icon} />
+                  <FilterIcon icon={el.icon} />
                   <h1 className="mb-0 text-xl font-fontBold">{el.label}</h1>
                 </NavLink>
               ))}
@@ -58,8 +61,7 @@ const SideBar = ({
                 className="flex items-center gap-4 px-4 py-2"
                 onClick={handleSignOut}
               >
-                <Icon glyph="door-leave" />
-                <h1 className="mb-0 text-xl font-fontBold">Sign Out</h1>
+                <SignOut />
               </button>
             </div>
           </div>
@@ -67,6 +69,11 @@ const SideBar = ({
       </div>
     </div>
   );
+};
+
+const FilterIcon = ({ icon }: { icon: SideBarIcons }) => {
+  if (icon === SideBarIcons.SCHEMA) return <Schema />;
+  return <></>;
 };
 
 export default SideBar;

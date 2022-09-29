@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import clsx from "clsx";
+import ArrowRight from "../../../../../../shared/assets/icons/ArrowRight";
 
 const SectionHeader = ({
   header,
@@ -35,7 +36,7 @@ const SectionHeader = ({
           {header}:
         </p>
         <div className={iconClass()}>
-          <Icon glyph="right-caret" size={25} />
+          <ArrowRight />
         </div>
       </button>
       {children}

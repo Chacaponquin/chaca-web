@@ -6,7 +6,7 @@ export interface FieldOptionsResp {
 }
 
 export interface FieldOptions extends FieldOptionsResp {
-  id: number;
+  id: string;
 }
 
 export interface FieldSchema {

@@ -1,6 +1,5 @@
 import { API_SECTIONS } from "../constant/API_SECTIONS";
 import { FieldOptionsResp, FieldSchema } from "./options.interface";
-import { ReactElement } from "react";
 
 export interface ApiFieldDocResp extends FieldOptionsResp {
   fields: ApiFieldData[];
@@ -14,7 +13,7 @@ export type ApiDocElement = {
   parent: string;
   id: string;
   section: API_SECTIONS;
-  subElement: ReactElement;
+  subElement: JSX.Element;
 };
 
 export interface ApiFieldData extends FieldSchema {
@@ -36,5 +35,5 @@ export type ApiSubSection =
     }
   | {
       section: API_SECTIONS.TOOL | API_SECTIONS.INTRODUCCION;
-      subElement: { element: ReactElement; id: string };
+      subElement: { element: JSX.Element; id: string };
     };

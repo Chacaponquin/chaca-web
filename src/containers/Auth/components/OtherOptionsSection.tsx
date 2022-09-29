@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { API_ROUTES } from "../../../shared/routes/api/API_ROUTES";
 import { gapi } from "gapi-script";
+import GitHub from "../../../shared/assets/icons/GitHub";
+import Google from "../../../shared/assets/icons/Google";
 
 const divClass =
   "border-[3px] py-3 flex gap-3 rounded-md items-center justify-center transition-all duration-300 hover:text-white cursor-pointer esm:py-2";
@@ -44,7 +46,7 @@ const GitHubButton = () => {
       onClick={handleLoginGitHub}
       type="button"
     >
-      <Icon glyph="github" />
+      <GitHub />
       <p className="mb-0 text-xl">Github</p>
     </button>
   );
@@ -66,8 +68,7 @@ const GoogleButton = () => {
       type="button"
       onClick={handleGoogleLogin}
     >
-      <Icon glyph="google" />
-
+      <Google />
       <p className="mb-0 text-xl">Google</p>
     </button>
   );

@@ -6,13 +6,14 @@ import { ApiField, ApiFieldDocResp } from "../interfaces/api.interface";
 import { API_SECTIONS } from "../constant/API_SECTIONS";
 import { Dataset } from "../interfaces/datasets.interface";
 import { DATA_TYPES } from "../constant/DATA_TYPES";
+import { v4 as uuid } from "uuid";
 
 export const DataTransform = {
   initialFieldsTransform: (fields: FieldOptionsResp[]): FieldOptions[] => {
     let returnData = [];
 
     returnData = fields.map((el, i) => {
-      return { id: Date.now() + i, fields: el.fields, parent: el.parent };
+      return { id: uuid(), fields: el.fields, parent: el.parent };
     });
 
     return returnData;
@@ -22,7 +23,7 @@ export const DataTransform = {
     return options.map((el, i) => ({
       ...el,
       section: API_SECTIONS.FIELDS,
-      id: Date.now() + i,
+      id: uuid(),
       fields: el.fields.map((f) => ({
         ...f,
         route: `${process.env.REACT_APP_API_URL as string}${f.route}`,
@@ -126,5 +127,51 @@ export const DataTransform = {
     }
 
     return returnString;
+  },
+
+  showDataTransform(value: any) {
+    let returnString = "";
+
+    if (typeof value === "string" || typeof value === "number")
+      returnString = `${value}`;
+    else if (typeof value === "boolean") {
+      returnString = `${value === true ? "true" : "false"}`;
+    } else if (typeof value === "object") {
+      if (Array.isArray(value)) {
+        returnString += `${this.getArrayString(value)}`;
+      }
+    }
+
+    return returnString;
+  },
+
+  getSelectValues(array: any[]) {
+    let returnArray = "";
+
+    for (let i = 0; i < array.length; i++) {
+      if (!(i === array.length - 1)) returnArray += `${array[i]} | `;
+      else returnArray += `${array[i]}`;
+    }
+
+    return returnArray;
+  },
+
+  getArrayString(array: any[]) {
+    let returnArray = "[";
+
+    for (let i = 0; i < array.length; i++) {
+      if (Array.isArray(array[i])) {
+        if (!(i === array.length - 1))
+          returnArray += `${this.getArrayString(array[i])}, `;
+        else returnArray += `${this.getArrayString(array[i])}`;
+      } else {
+        if (i === array.length - 1) returnArray += `${array[i]}`;
+        else returnArray += `${array[i]}, `;
+      }
+    }
+
+    returnArray += "]";
+
+    return returnArray;
   },
 };

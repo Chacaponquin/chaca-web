@@ -4,12 +4,19 @@ import { useContext } from "react";
 import { ApiDocsContext } from "../../../context/ApiDocsContext";
 import { DataTransform } from "../../../helpers/DataTransform";
 import { v4 as uuid } from "uuid";
-import { AppConfigContext } from "../../../context/AppConfigContext";
 
-const SectionParentDiv = ({ text }: { text: string }) => {
+import { ApiDocElement, ApiField } from "../../../interfaces/api.interface";
+import { API_SECTIONS } from "../../../constant/API_SECTIONS";
+
+const SectionParentDiv = ({
+  text,
+  options,
+}: {
+  text: string;
+  options: ApiDocElement[] | ApiField[];
+}) => {
   const { handleChangeSubSection, subSectionSelect } =
     useContext(ApiDocsContext);
-  const { apiFields } = useContext(AppConfigContext);
 
   const parentDivClass = () => {
     return clsx(
@@ -42,19 +49,29 @@ const SectionParentDiv = ({ text }: { text: string }) => {
       </div>
 
       <div className="flex flex-col gap-1">
-        {apiFields.map((el, i) => (
+        {options.map((el, i) => (
           <div key={uuid()} className="flex flex-col">
             <div
               className={fieldOptionClass(el.id)}
-              onClick={() =>
-                handleChangeSubSection({
-                  section: el.section,
-                  subElement: {
-                    element: el,
-                    id: el.id,
-                  },
-                })
-              }
+              onClick={() => {
+                if (el.section === API_SECTIONS.FIELDS) {
+                  handleChangeSubSection({
+                    section: el.section,
+                    subElement: {
+                      element: el as ApiField,
+                      id: el.id,
+                    },
+                  });
+                } else {
+                  handleChangeSubSection({
+                    section: el.section,
+                    subElement: {
+                      element: el.subElement,
+                      id: el.id,
+                    },
+                  });
+                }
+              }}
             >
               {DataTransform.titlePipe(el.parent)}
             </div>

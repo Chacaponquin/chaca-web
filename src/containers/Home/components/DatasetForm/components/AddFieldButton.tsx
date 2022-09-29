@@ -1,5 +1,7 @@
 import { InputNumber } from "primereact/inputnumber";
 import { useState, useContext } from "react";
+import File from "../../../../../shared/assets/icons/File";
+import Plus from "../../../../../shared/assets/icons/Plus";
 import { AppConfigContext } from "../../../../../shared/context/AppConfigContext";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
 import { UserContext } from "../../../../../shared/context/UserContext";
@@ -15,7 +17,7 @@ const AddFieldButton = () => {
           className="flex justify-center items-center w-[40px] h-[40px] rounded-full hover:bg-slate-100 transition-all duration-300 cursor-pointer"
           onClick={() => setOpenOptions(!openOptions)}
         >
-          <Icon glyph="more" />
+          <Plus />
         </div>
 
         {openOptions && (
@@ -44,7 +46,7 @@ const AddField = () => {
       }
       type="button"
     >
-      <Icon glyph="plus" size={25} />
+      <Plus />
       <p className="mb-0 whitespace-nowrap">Add Field</p>
     </button>
   );
@@ -57,7 +59,7 @@ const InputCantDoc = () => {
 
   return (
     <div className="flex items-center gap-3 justify-center">
-      <Icon glyph="docs" size={25} />
+      <File />
       <InputNumber
         value={selectedDataset.limit}
         onValueChange={(e) => {
