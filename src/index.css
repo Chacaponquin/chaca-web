@@ -47,3 +47,7 @@
 .landing-page::-webkit-scrollbar {
   display: none;
 }
+
+.no-scroll::-webkit-scrollbar {
+  display: none;
+}

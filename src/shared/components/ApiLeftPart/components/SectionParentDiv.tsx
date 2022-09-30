@@ -3,8 +3,6 @@ import clsx from "clsx";
 import { useContext } from "react";
 import { ApiDocsContext } from "../../../context/ApiDocsContext";
 import { DataTransform } from "../../../helpers/DataTransform";
-import { v4 as uuid } from "uuid";
-
 import { ApiDocElement, ApiField } from "../../../interfaces/api.interface";
 import { API_SECTIONS } from "../../../constant/API_SECTIONS";
 
@@ -50,7 +48,7 @@ const SectionParentDiv = ({
 
       <div className="flex flex-col gap-1">
         {options.map((el, i) => (
-          <div key={uuid()} className="flex flex-col">
+          <div key={el.id} className="flex flex-col">
             <div
               className={fieldOptionClass(el.id)}
               onClick={() => {

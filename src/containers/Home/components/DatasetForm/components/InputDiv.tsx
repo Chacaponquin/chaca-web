@@ -61,7 +61,7 @@ const InputDiv = ({ handleOpenModal, field, datasetID }: InputDivProps) => {
                 className="cursor-pointer"
                 onClick={() => setOpenConfig(!openConfig)}
               >
-                <Config />
+                <Config size={23} />
               </div>
             </td>
           </tr>

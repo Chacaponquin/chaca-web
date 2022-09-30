@@ -21,8 +21,8 @@
 }
 
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
 }
 
 /* Track */
@@ -34,10 +34,6 @@
 ::-webkit-scrollbar-thumb {
   background: #5352ed;
   border-radius: 999px;
-}
-
-.form-content::-webkit-scrollbar {
-  display: none;
 }
 
 .code-container * {

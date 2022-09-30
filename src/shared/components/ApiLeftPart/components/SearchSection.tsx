@@ -14,7 +14,7 @@ const SearchSection = () => {
   };
 
   return (
-    <div className="px-2 esm:px-1">
+    <div className="px-2 esm:px-1 mt-9">
       <div className={searchClass()}>
         <div className="w-max">
           <Search size={20} />

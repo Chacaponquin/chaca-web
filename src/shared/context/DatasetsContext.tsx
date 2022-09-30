@@ -1,5 +1,6 @@
 import { useEffect, ReactElement, useContext, Dispatch } from "react";
 import { createContext, useReducer, useState } from "react";
+import { CreateIntialData } from "../../containers/Home/helpers/CreateData";
 import {
   CONFIG_ACTIONS,
   DATASETS_ACTIONS,
@@ -56,10 +57,15 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
 
   useEffect(() => {
     if (!initialFetchLoading && !errorInitialFetch) {
+      const initDataset = [
+        new CreateIntialData(fieldsOptions).createDefaultDataset(0, true),
+      ];
+
       datasetDispatch({
         type: DATASETS_ACTIONS.SET_INIT_DATASETS,
-        payload: { options: fieldsOptions },
+        payload: { datasets: initDataset },
       });
+      setSelectedDataset(initDataset[0]);
 
       configDispatch({
         type: CONFIG_ACTIONS.SET_INITIAL_CONFIG,
@@ -71,8 +77,6 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
           saveSchema: false,
         },
       });
-
-      setSelectedDataset(datasets[0]);
     }
   }, [
     initialFetchLoading,

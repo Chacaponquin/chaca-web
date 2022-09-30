@@ -73,7 +73,7 @@ const Home = () => {
 
   return (
     <div className="w-full flex h-max lg:h-full gap-8 flex-col overflow-x-hidden form-content">
-      <div className="flex gap-16 h-full overflow-y-auto ">
+      <div className="flex gap-16 h-full overflow-y-auto">
         {openCreationModal && (
           <CreationModal
             handleSubmit={handleSubmit}

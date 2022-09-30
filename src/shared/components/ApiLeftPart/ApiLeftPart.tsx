@@ -8,10 +8,10 @@ const ApiLeftPart = () => {
   const { apiFields } = useContext(AppConfigContext);
 
   return (
-    <div className="flex w-full flex-col pt-4 h-full">
+    <div className="flex w-full flex-col h-full">
       <SearchSection />
 
-      <div className="flex flex-col w-full py-2 gap-7">
+      <div className="flex flex-col w-full py-2 gap-4">
         <SectionParentDiv
           text={"Empezando"}
           options={SECTIONS_CONTENT.INTRODUCCION}

@@ -11,6 +11,8 @@ import clsx from "clsx";
 import { DATA_TYPES } from "../../../../../../shared/constant/DATA_TYPES";
 import FieldInputArgument from "../../../../../../shared/components/FieldInputArgument/FieldInputArgument";
 import { FieldArgument } from "../../../../../../shared/interfaces/datasets.interface";
+import { Checkbox } from "primereact/checkbox";
+import { InputNumber } from "primereact/inputnumber";
 
 const FormData = ({
   selectField,
@@ -54,13 +56,14 @@ const FormData = ({
   };
 
   const handleChangeOption = (o: string) => {
-    handleChangeSelectField({
-      ...selectField,
-      dataType: {
-        ...selectField.dataType,
-        fieldType: { ...selectField.dataType.fieldType, args: {}, type: o },
-      },
-    });
+    if (selectField.dataType.fieldType.type !== o)
+      handleChangeSelectField({
+        ...selectField,
+        dataType: {
+          ...selectField.dataType,
+          fieldType: { ...selectField.dataType.fieldType, args: {}, type: o },
+        },
+      });
   };
 
   const handleChangeArguments = ({
@@ -101,7 +104,7 @@ const FormData = ({
 
   const optionClass = (oName: string) => {
     return clsx(
-      "rounded-md px-5 py-2 text-black flex text-base whitespace-nowrap cursor-pointer flex-col",
+      "rounded-md px-5 py-2 flex text-base whitespace-nowrap cursor-pointer flex-col",
       {
         "bg-secondColor text-white":
           selectField.dataType.fieldType.type === oName,
@@ -114,8 +117,8 @@ const FormData = ({
   };
 
   return (
-    <div className="flex">
-      <div className="flex flex-col h-full overflow-y-auto gap-2 px-4 w-[200px]">
+    <div className="flex xl:flex-row flex-col xl:gap-0 gap-3">
+      <div className="flex xl:flex-col flex-row w-full xl:h-full py-2 xl:py-0 overflow-auto gap-2 px-4 xl:w-[200px]">
         {fieldsOptions.map((el) => (
           <div
             key={uuid()}
@@ -127,7 +130,7 @@ const FormData = ({
         ))}
       </div>
 
-      <div className="flex flex-col h-full overflow-y-auto gap-3 px-8 w-[500px]">
+      <div className="xl:flex xl:flex-col grid grid-cols-1 md:grid-cols-2 xl:h-full overflow-y-auto gap-3 xl:px-8 w-full xl:w-[500px] pb-4 no-scroll">
         {findParent(selectField.dataType.fieldType.parent).fields.map(
           (el, i) => (
             <div
@@ -135,25 +138,103 @@ const FormData = ({
               className={optionClass(el.name)}
               onClick={() => handleChangeOption(el.name)}
             >
-              <p className="mb-0 text-lg"> {el.name}</p>
+              <p className="mb-0 text-lg font-fontBold"> {el.name}</p>
 
               {selectField.dataType.fieldType.type === el.name && (
-                <div className="flex flex-col gap-2">
-                  {findArguments(
-                    selectField.dataType.fieldType.parent,
-                    selectField.dataType.fieldType.type
-                  ).map((el, i) => (
-                    <div key={i} className="items-center flex text-base gap-2">
-                      <p className="mb-0">
-                        {DataTransform.titlePipe(el.argument)}:
-                      </p>
-                      <FieldInputArgument
-                        handleChangeArguments={handleChangeArguments}
-                        allArguments={selectField.dataType.fieldType.args}
-                        arg={el}
+                <div>
+                  <div className="flex flex-col gap-2">
+                    {findArguments(
+                      selectField.dataType.fieldType.parent,
+                      selectField.dataType.fieldType.type
+                    ).map((a, i) => (
+                      <div
+                        key={i}
+                        className="items-center flex text-base gap-2"
+                      >
+                        <p className="mb-0">
+                          {DataTransform.titlePipe(a.argument)}:
+                        </p>
+                        <FieldInputArgument
+                          handleChangeArguments={handleChangeArguments}
+                          allArguments={selectField.dataType.fieldType.args}
+                          arg={a}
+                        />
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-col gap-2 mt-3">
+                    <div className="flex items-center">
+                      <Checkbox
+                        checked={selectField.isArray ? true : false}
+                        onChange={(e) => {
+                          handleChangeSelectField({
+                            ...selectField,
+                            isArray: e.target.checked
+                              ? { min: 0, max: 10 }
+                              : false,
+                          });
+                        }}
                       />
+                      <p className="mb-0 ml-2 mr-4">IsArray:</p>
+
+                      {selectField.isArray && (
+                        <div className="flex items-center gap-2 text-sm">
+                          <div className="flex items-center gap-2">
+                            <p className="mb-0">Min:</p>
+                            <InputNumber
+                              step={1}
+                              min={1}
+                              value={selectField.isArray.min}
+                              max={selectField.isArray.max}
+                              onChange={(e) => {
+                                if (selectField.isArray)
+                                  handleChangeSelectField({
+                                    ...selectField,
+                                    isArray: {
+                                      ...selectField.isArray,
+                                      min: e.value || 1,
+                                    },
+                                  });
+                              }}
+                            />
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <p className="mb-0">Max:</p>
+                            <InputNumber
+                              step={1}
+                              value={selectField.isArray.max}
+                              max={150}
+                              min={selectField.isArray.min}
+                              onChange={(e) => {
+                                if (selectField.isArray)
+                                  handleChangeSelectField({
+                                    ...selectField,
+                                    isArray: {
+                                      ...selectField.isArray,
+                                      max: e.value || 10,
+                                    },
+                                  });
+                              }}
+                            />
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  ))}
+
+                    <div className="flex">
+                      <Checkbox
+                        checked={selectField.isPosibleNull}
+                        onChange={(e) => {
+                          handleChangeSelectField({
+                            ...selectField,
+                            isPosibleNull: e.target.checked,
+                          });
+                        }}
+                      />
+                      <p className="mb-0 ml-2">Possibly Null:</p>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>

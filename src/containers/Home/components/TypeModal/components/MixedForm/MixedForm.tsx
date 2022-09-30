@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { DATA_TYPES } from "../../../../../../shared/constant/DATA_TYPES";
 import {
   DatasetField,
@@ -22,30 +22,29 @@ const MixedForm = ({
   >(fieldInfo.dataType.object[0]);
 
   const handleChangeSelectField = (f: DatasetField<SingleValueDataType>) => {
-    setSelectField(f);
-  };
-
-  useEffect(() => {
     handleChangeDataType({
       ...fieldInfo,
       type: DATA_TYPES.MIXED,
-      object: fieldInfo.dataType.object.map((el) => {
-        if (el.id === selectField.id) {
-          el = selectField;
+      object: fieldInfo.dataType.object.map((el, i) => {
+        if (el.id === f.id) {
+          el = f;
         }
 
         return el;
       }),
     });
-  }, [selectField]);
+
+    setSelectField(f);
+  };
 
   return (
-    <div className="flex w-full">
+    <div className="flex w-full xl:flex-row flex-col">
       <FormData
         selectField={selectField}
         handleChangeSelectField={handleChangeSelectField}
       />
       <ObjectData
+        selectField={selectField}
         fieldInfo={fieldInfo}
         handleChangeSelectField={handleChangeSelectField}
         handleChangeDataType={handleChangeDataType}

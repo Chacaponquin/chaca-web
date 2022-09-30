@@ -25,28 +25,25 @@ import "primeicons/primeicons.css";
 
 import { useContext } from "react";
 import LoaderContainer from "./shared/components/Loader/LoaderContainer";
-import { AppConfigContext } from "./shared/context/AppConfigContext";
+import AppConfigProvider, {
+  AppConfigContext,
+} from "./shared/context/AppConfigContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 
-const Loader = () => {
+const AppCont = () => {
   const { loading } = useContext(UserContext);
   const { initialFetchLoading } = useContext(AppConfigContext);
 
-  return (
-    <div className="w-screen overflow-hidden h-screen flex justify-center items-center">
-      <LoaderContainer
-        className={"w-[200px] esm:w-[120px]"}
-        loading={loading || initialFetchLoading}
-      />
-    </div>
-  );
-};
-
-const AppCont = () => {
-  const { loading } = useContext(UserContext);
-
-  if (loading) return <Loader />;
+  if (loading || initialFetchLoading)
+    return (
+      <div className="w-screen overflow-hidden h-screen flex justify-center items-center">
+        <LoaderContainer
+          className={"w-[200px] esm:w-[120px]"}
+          loading={loading || initialFetchLoading}
+        />
+      </div>
+    );
 
   return (
     <BrowserRouter>
@@ -75,8 +72,10 @@ const AppCont = () => {
 
 root.render(
   <React.StrictMode>
-    <UserProvider>
-      <AppCont />
-    </UserProvider>
+    <AppConfigProvider>
+      <UserProvider>
+        <AppCont />
+      </UserProvider>
+    </AppConfigProvider>
   </React.StrictMode>
 );

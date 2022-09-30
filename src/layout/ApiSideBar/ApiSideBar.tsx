@@ -30,7 +30,7 @@ const ApiSideBar = ({
   return (
     <div className={containerClass()}>
       <div className={sideBarClass()}>
-        <div className="w-full flex justify-end mb-4">
+        <div className="w-full flex justify-end">
           <button onClick={handleCloseSideBar}>
             <X size={20} />
           </button>

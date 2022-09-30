@@ -1,6 +1,7 @@
 import { InputNumber } from "primereact/inputnumber";
 import { useState, useContext } from "react";
 import File from "../../../../../shared/assets/icons/File";
+import Menu from "../../../../../shared/assets/icons/Menu";
 import Plus from "../../../../../shared/assets/icons/Plus";
 import { AppConfigContext } from "../../../../../shared/context/AppConfigContext";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
@@ -17,7 +18,7 @@ const AddFieldButton = () => {
           className="flex justify-center items-center w-[40px] h-[40px] rounded-full hover:bg-slate-100 transition-all duration-300 cursor-pointer"
           onClick={() => setOpenOptions(!openOptions)}
         >
-          <Plus />
+          <Menu size={25} />
         </div>
 
         {openOptions && (
@@ -46,7 +47,7 @@ const AddField = () => {
       }
       type="button"
     >
-      <Plus />
+      <Plus size={20} />
       <p className="mb-0 whitespace-nowrap">Add Field</p>
     </button>
   );
@@ -59,7 +60,7 @@ const InputCantDoc = () => {
 
   return (
     <div className="flex items-center gap-3 justify-center">
-      <File />
+      <File size={20} />
       <InputNumber
         value={selectedDataset.limit}
         onValueChange={(e) => {

@@ -3,7 +3,6 @@ import Modal from "../TypeModal/Modal";
 import InputDiv from "./components/InputDiv";
 import { Dataset } from "../../../../shared/interfaces/datasets.interface";
 import DatasetDivHeader from "./components/DatasetDivHeader";
-import { v4 as uuid } from "uuid";
 
 const DatasetForm = ({ id, name, fields }: Dataset) => {
   const [openModal, setOpenModal] = useState<string | null>(null);
@@ -29,7 +28,7 @@ const DatasetForm = ({ id, name, fields }: Dataset) => {
               <InputDiv
                 datasetID={id}
                 handleOpenModal={handleOpenModal}
-                key={uuid()}
+                key={field.id}
                 field={field}
               />
             ))}

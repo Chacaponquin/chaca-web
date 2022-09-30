@@ -66,9 +66,7 @@ const Modal = ({
     for (const dat of datasets) {
       for (const field of dat.fields) {
         if (field.id === fieldID) {
-          if (field.dataType) {
-            setFieldInfo((prev) => ({ ...prev, dataType: field.dataType }));
-          }
+          setFieldInfo((prev) => ({ ...prev, dataType: field.dataType }));
         }
       }
     }
@@ -92,15 +90,15 @@ const Modal = ({
   };
 
   return (
-    <div className="w-screen h-screen fixed bg-black/50 flex justify-center items-center z-[70] top-0 left-0">
-      <div className="flex flex-col bg-white w-[95%] rounded-md py-5 px-8 gap-3">
+    <div className="w-screen min-h-screen fixed bg-black/50 flex justify-center items-center z-[70] top-0 left-0 pt-4 overflow-y-auto">
+      <div className="flex flex-col bg-white w-[95%] rounded-md py-5 px-8 gap-2 overflow-y-auto">
         <DataTypeSelect
           selectedDataType={fieldInfo.dataType.type}
           handleChangeDataType={handleChangeDataType}
           toRef={toRef}
         />
 
-        <div className="flex sm:flex-row flex-col gap-3 justify-start w-full h-[500px]">
+        <div className="flex sm:flex-row flex-col gap-3 justify-start w-full h-[500px] overflow-y-auto">
           {fieldInfo.dataType.type === DATA_TYPES.SINGLE_VALUE && (
             <SingleValueForm
               fieldInfo={fieldInfo}

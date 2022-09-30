@@ -12,7 +12,7 @@ import { FieldOptions } from "../../../../shared/interfaces/options.interface";
 export type DatasetPayload =
   | {
       type: DATASETS_ACTIONS.SET_INIT_DATASETS;
-      payload: { options: FieldOptions[] };
+      payload: { datasets: Dataset[] };
     }
   | {
       type: DATASETS_ACTIONS.ADD_NEW_FIELD;
@@ -90,12 +90,7 @@ export const datasetsReducer: Reducer<Dataset[], DatasetPayload> = (
 ): Dataset[] => {
   switch (action.type) {
     case DATASETS_ACTIONS.SET_INIT_DATASETS: {
-      return [
-        new CreateIntialData(action.payload.options).createDefaultDataset(
-          0,
-          true
-        ),
-      ];
+      return action.payload.datasets;
     }
     case DATASETS_ACTIONS.ADD_NEW_FIELD: {
       const newDatasets = datasets.map((el) => {

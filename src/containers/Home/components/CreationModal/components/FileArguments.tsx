@@ -8,7 +8,6 @@ import { DataTransform } from "../../../../../shared/helpers/DataTransform";
 import { FieldArgument } from "../../../../../shared/interfaces/datasets.interface";
 import { ArgumentSchema } from "../../../../../shared/interfaces/options.interface";
 import { CONFIG_ACTIONS } from "../../../helpers/reducer/ACTION_TYPES";
-import { v4 as uuid } from "uuid";
 
 const FileArguments = () => {
   const [fileArguments, setFileArguments] = useState<ArgumentSchema[]>([]);
@@ -44,7 +43,7 @@ const FileArguments = () => {
   return (
     <>
       {fileArguments.map((el, i) => (
-        <div className="flex items-center gap-3 whitespace-nowrap" key={uuid()}>
+        <div className="flex items-center gap-3 whitespace-nowrap" key={i}>
           <p className="mb-0">{DataTransform.titlePipe(el.argument)}:</p>
           <FieldInputArgument
             arg={el}

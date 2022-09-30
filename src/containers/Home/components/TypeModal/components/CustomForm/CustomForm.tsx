@@ -33,8 +33,8 @@ const CustomForm = ({
     <div className="w-full flex h-full">
       <div className="w-full flex flex-col rounded-lg lg:w-[50%] h-full">
         <Editor
-          height="100%"
-          defaultLanguage="python"
+          height={"500px"}
+          defaultLanguage="javascript"
           defaultValue={
             dataType.type === DATA_TYPES.CUSTOM ? dataType.code : ""
           }

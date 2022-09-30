@@ -12,24 +12,36 @@ import { DATA_TYPES } from "../../../../../../shared/constant/DATA_TYPES";
 import { CreateIntialData } from "../../../../helpers/CreateData";
 import { AppConfigContext } from "../../../../../../shared/context/AppConfigContext";
 import { DataTransform } from "../../../../../../shared/helpers/DataTransform";
+import clsx from "clsx";
 
 const ObjectData = ({
   fieldInfo,
   handleChangeSelectField,
   handleChangeDataType,
+  selectField,
 }: {
   fieldInfo: IFieldInfo<MixedDataType>;
   handleChangeSelectField: (f: DatasetField<SingleValueDataType>) => void;
   handleChangeDataType: (obj: FieldDataType) => void;
+  selectField: DatasetField<SingleValueDataType>;
 }) => {
   const { fieldsOptions } = useContext(AppConfigContext);
 
   const fieldClass = "flex gap-3 items-center text-base";
+  const typeClass = (id: string) => {
+    return clsx(
+      "py-2 px-5 rounded-md cursor-pointer whitespace-nowrap",
+      {
+        "bg-principal-bg text-white": selectField.id === id,
+      },
+      { "bg-white text-black": selectField.id !== id }
+    );
+  };
 
   const showType = (dat: DatasetField<SingleValueDataType>) => {
     return `${DataTransform.titlePipe(dat.dataType.fieldType.parent)} / ${
       dat.dataType.fieldType.type
-    }`;
+    } ${dat.isArray ? "[ ]" : ""}`;
   };
 
   const handleAddField = () => {
@@ -60,9 +72,9 @@ const ObjectData = ({
     <div className="flex flex-col px-10 py-5 rounded-md bg-slate-100 h-full overflow-y-auto w-full">
       <div className="text-2xl font-fontBold text-secondColor">{"{"}</div>
 
-      <div className="pl-7 flex flex-col gap-3">
+      <div className="pl-7 flex flex-col gap-2">
         {fieldInfo.dataType.object.map((el, i) => (
-          <div className={fieldClass} key={i}>
+          <div className={fieldClass} key={el.id}>
             <InputText
               className="w-[150px]"
               value={el.name}
@@ -70,7 +82,7 @@ const ObjectData = ({
             />
             <p className="mb-0 text-xl font-fontBold">:</p>
             <div
-              className="py-2 px-5 bg-principal-bg rounded-md text-white cursor-pointer whitespace-nowrap"
+              className={typeClass(el.id)}
               onClick={() => handleChangeSelectField(el)}
             >
               {showType(el)}

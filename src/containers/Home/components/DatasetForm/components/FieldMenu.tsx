@@ -47,7 +47,7 @@ const FieldMenu = ({ field }: { field: DatasetField }) => {
                 <InputNumber
                   className="!text-sm"
                   value={field.isArray.min}
-                  min={0}
+                  min={1}
                   max={field.isArray.max}
                   onChange={(e) => {
                     if (field.isArray)
@@ -69,7 +69,7 @@ const FieldMenu = ({ field }: { field: DatasetField }) => {
                   className="!text-sm"
                   value={field.isArray.max}
                   min={field.isArray.min}
-                  max={100}
+                  max={150}
                   onChange={(e) => {
                     if (field.isArray)
                       datasetDispatch({
@@ -107,16 +107,18 @@ const FieldMenu = ({ field }: { field: DatasetField }) => {
         <p className={textClass}>Posible Null</p>
       </div>
 
-      <div
-        className={divClass + " -translate-x-[4px]"}
-        onClick={() =>
-          datasetDispatch({
-            type: DATASETS_ACTIONS.DELETE_FIELD,
-            payload: { datasetID: selectedDataset.id, fieldID: field.id },
-          })
-        }
-      >
-        <Delete size={25} />
+      <div className={divClass + " -translate-x-[4px]"}>
+        <button
+          onClick={() =>
+            datasetDispatch({
+              type: DATASETS_ACTIONS.DELETE_FIELD,
+              payload: { datasetID: selectedDataset.id, fieldID: field.id },
+            })
+          }
+        >
+          <Delete size={25} />
+        </button>
+
         <h1 className={textClass}>Delete Field</h1>
       </div>
     </motion.div>

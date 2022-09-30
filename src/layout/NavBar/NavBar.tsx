@@ -41,12 +41,12 @@ const NavBar = ({
   }, []);
 
   return (
-    <div className="w-full py-4 px-8 esm:px-3 bg-transparent z-[53] mb-8">
+    <div className="w-full py-4 px-8 esm:px-3 bg-transparent z-[53] mb-6">
       <div className="flex w-full shadow-lg rounded-md px-8 py-3 bg-white z-50 esm:px-4">
         <div className="w-[30%] esm:w-[50px] flex items-center">
           {location.pathname === APP_ROUTES.API && (
             <button onClick={handleOpenApiSideBar} className="lg:hidden block">
-              <Bars />
+              <Bars size={20} />
             </button>
           )}
         </div>

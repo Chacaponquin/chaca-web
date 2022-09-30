@@ -8,7 +8,6 @@ import ApiDocsProvider from "./shared/context/ApiDocsContext";
 import ApiSideBar from "./layout/ApiSideBar/ApiSideBar";
 import { useLocation } from "react-router-dom";
 import { APP_ROUTES } from "./shared/routes/app/APP_ROUTES";
-import AppConfigProvider from "./shared/context/AppConfigContext";
 
 function App() {
   const [openSideBar, setOpenSideBar] = useState(false);
@@ -38,37 +37,35 @@ function App() {
         location.pathname === APP_ROUTES.HOME ? "flex flex-col h-screen" : ""
       }
     >
-      <AppConfigProvider>
-        <DatasetsProvider>
-          <ApiDocsProvider>
-            <React.Fragment>
-              <ToastContainer autoClose={5000} hideProgressBar={true} />
-              <ApiSideBar
-                openApiSideBar={openApiSideBar}
-                handleCloseSideBar={handleCloseApiSideBar}
-              />
-              <SideBar
-                openSideBar={openSideBar}
-                handleCloseSideBar={handleCloseSideBar}
-              />
-              <NavBar
-                handleOpenSideBar={handleOpenSideBar}
-                handleOpenApiSideBar={handleOpenApiSideBar}
-              />
+      <DatasetsProvider>
+        <ApiDocsProvider>
+          <React.Fragment>
+            <ToastContainer autoClose={5000} hideProgressBar={true} />
+            <ApiSideBar
+              openApiSideBar={openApiSideBar}
+              handleCloseSideBar={handleCloseApiSideBar}
+            />
+            <SideBar
+              openSideBar={openSideBar}
+              handleCloseSideBar={handleCloseSideBar}
+            />
+            <NavBar
+              handleOpenSideBar={handleOpenSideBar}
+              handleOpenApiSideBar={handleOpenApiSideBar}
+            />
 
-              <div
-                className={
-                  location.pathname !== APP_ROUTES.ROOT
-                    ? "px-10 h-full esm:px-5"
-                    : ""
-                }
-              >
-                <Outlet />
-              </div>
-            </React.Fragment>
-          </ApiDocsProvider>
-        </DatasetsProvider>
-      </AppConfigProvider>
+            <div
+              className={
+                location.pathname !== APP_ROUTES.ROOT
+                  ? "px-10 h-full esm:px-5 overflow-auto"
+                  : ""
+              }
+            >
+              <Outlet />
+            </div>
+          </React.Fragment>
+        </ApiDocsProvider>
+      </DatasetsProvider>
     </div>
   );
 }

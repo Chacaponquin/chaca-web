@@ -61,7 +61,8 @@ const SideBar = ({
                 className="flex items-center gap-4 px-4 py-2"
                 onClick={handleSignOut}
               >
-                <SignOut />
+                <SignOut size={32} />
+                <h1 className="mb-0 text-xl font-fontBold">Sign Out</h1>
               </button>
             </div>
           </div>
