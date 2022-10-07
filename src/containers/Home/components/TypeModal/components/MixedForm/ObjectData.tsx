@@ -27,10 +27,9 @@ const ObjectData = ({
 }) => {
   const { fieldsOptions } = useContext(AppConfigContext);
 
-  const fieldClass = "flex gap-3 items-center text-base";
   const typeClass = (id: string) => {
     return clsx(
-      "py-2 px-5 rounded-md cursor-pointer whitespace-nowrap",
+      "py-1 px-5 rounded-md cursor-pointer whitespace-nowrap",
       {
         "bg-principal-bg text-white": selectField.id === id,
       },
@@ -69,18 +68,20 @@ const ObjectData = ({
   };
 
   return (
-    <div className="flex flex-col px-10 py-5 rounded-md bg-slate-100 h-full overflow-y-auto w-full">
-      <div className="text-2xl font-fontBold text-secondColor">{"{"}</div>
+    <div className="flex flex-col px-10 py-5 rounded-md bg-slate-100 h-full overflow-y-auto w-full esm:px-4">
+      <div className="text-2xl esm:text-xl font-fontBold text-secondColor">
+        {"{"}
+      </div>
 
-      <div className="pl-7 flex flex-col gap-2">
+      <div className="pl-7 flex flex-col gap-2 esm:pl-5">
         {fieldInfo.dataType.object.map((el, i) => (
-          <div className={fieldClass} key={el.id}>
+          <div className={"flex gap-2 items-center text-base"} key={el.id}>
             <InputText
               className="w-[150px]"
               value={el.name}
               onChange={(e) => handleChangeFieldName(el.id, e.target.value)}
             />
-            <p className="mb-0 text-xl font-fontBold">:</p>
+            <p className="mb-0 text-lg font-fontBold">:</p>
             <div
               className={typeClass(el.id)}
               onClick={() => handleChangeSelectField(el)}
@@ -91,7 +92,9 @@ const ObjectData = ({
         ))}
       </div>
 
-      <div className="text-2xl font-fontBold text-secondColor">{"}"}</div>
+      <div className="text-2xl font-fontBold text-secondColor esm:text-xl">
+        {"}"}
+      </div>
 
       <div className="w-full flex justify-end">
         <button

@@ -98,7 +98,7 @@ const Modal = ({
           toRef={toRef}
         />
 
-        <div className="flex sm:flex-row flex-col gap-3 justify-start w-full h-[500px] overflow-y-auto">
+        <div className="flex sm:flex-row flex-col gap-3 justify-start w-full h-[500px] overflow-y-auto no-scroll">
           {fieldInfo.dataType.type === DATA_TYPES.SINGLE_VALUE && (
             <SingleValueForm
               fieldInfo={fieldInfo}

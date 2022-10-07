@@ -38,7 +38,7 @@ const MixedForm = ({
   };
 
   return (
-    <div className="flex w-full xl:flex-row flex-col">
+    <div className="flex w-full xl:flex-row flex-col-reverse">
       <FormData
         selectField={selectField}
         handleChangeSelectField={handleChangeSelectField}

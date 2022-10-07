@@ -13,7 +13,7 @@ const FieldMenu = ({ field }: { field: DatasetField }) => {
 
   const textClass = "text-base pointer-events-none";
   const divClass =
-    "flex items-center gap-4 px-4 py-2 transition-all duration-300 hover:bg-slate-200 w-full rounded-md";
+    "flex gap-4 px-4 py-2 transition-all duration-300 hover:bg-slate-200 w-full rounded-md";
 
   const arrayDivContainerClass = clsx("flex flex-col rounded-md", {
     "bg-slate-200": field.isArray,
@@ -22,7 +22,7 @@ const FieldMenu = ({ field }: { field: DatasetField }) => {
   return (
     <motion.div className="flex bg-white w-full py-1 rounded-md flex-col gap-1">
       <div className={arrayDivContainerClass}>
-        <div className={divClass + " !gap-16"}>
+        <div className={divClass + " !gap-16 !items-start"}>
           <div className="flex items-center gap-4">
             <Checkbox
               onChange={(e) => {
@@ -41,7 +41,7 @@ const FieldMenu = ({ field }: { field: DatasetField }) => {
           </div>
 
           {field.isArray && (
-            <div className="flex items-center gap-5">
+            <div className="flex items-center gap-5 esm:flex-col esm:gap-1">
               <div className="flex items-center gap-1">
                 <p className="mb-0 text-base">Min:</p>
                 <InputNumber
@@ -89,7 +89,7 @@ const FieldMenu = ({ field }: { field: DatasetField }) => {
         </div>
       </div>
 
-      <div className={divClass}>
+      <div className={divClass + "items-center"}>
         <Checkbox
           onChange={(e) =>
             datasetDispatch({
@@ -107,7 +107,7 @@ const FieldMenu = ({ field }: { field: DatasetField }) => {
         <p className={textClass}>Posible Null</p>
       </div>
 
-      <div className={divClass + " -translate-x-[4px]"}>
+      <div className={divClass + " -translate-x-[4px] items-center"}>
         <button
           onClick={() =>
             datasetDispatch({

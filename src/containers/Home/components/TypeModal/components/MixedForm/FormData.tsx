@@ -1,6 +1,5 @@
 import React, { useContext, useCallback } from "react";
 import { AppConfigContext } from "../../../../../../shared/context/AppConfigContext";
-import { v4 as uuid } from "uuid";
 import { DataTransform } from "../../../../../../shared/helpers/DataTransform";
 import { FieldOptions } from "../../../../../../shared/interfaces/options.interface";
 import {
@@ -121,7 +120,7 @@ const FormData = ({
       <div className="flex xl:flex-col flex-row w-full xl:h-full py-2 xl:py-0 overflow-auto gap-2 px-4 xl:w-[200px]">
         {fieldsOptions.map((el) => (
           <div
-            key={uuid()}
+            key={el.id}
             className={parentClass(el.parent)}
             onClick={() => handleChangeParent(el.id)}
           >
@@ -164,7 +163,7 @@ const FormData = ({
                   </div>
 
                   <div className="flex flex-col gap-2 mt-3">
-                    <div className="flex items-center">
+                    <div className="flex items-start">
                       <Checkbox
                         checked={selectField.isArray ? true : false}
                         onChange={(e) => {
@@ -179,7 +178,7 @@ const FormData = ({
                       <p className="mb-0 ml-2 mr-4">IsArray:</p>
 
                       {selectField.isArray && (
-                        <div className="flex items-center gap-2 text-sm">
+                        <div className="flex items-center gap-2 text-sm exsm:flex-col">
                           <div className="flex items-center gap-2">
                             <p className="mb-0">Min:</p>
                             <InputNumber

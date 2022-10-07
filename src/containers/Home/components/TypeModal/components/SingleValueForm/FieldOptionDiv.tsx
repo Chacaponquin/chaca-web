@@ -39,7 +39,7 @@ const FieldOptionDiv = ({
       className={optionCLass()}
       onClick={() => handleChangeOptionSelected(option.name)}
     >
-      <p className="mb-0 pointer-events-none text-center text-lg">
+      <p className="mb-0 pointer-events-none text-center text-lg font-fontBold">
         {option.name}
       </p>
 
