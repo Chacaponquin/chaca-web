@@ -17,7 +17,7 @@ const DatasetBar = ({
   const { datasets, handleSelectDataset, selectedDataset, datasetDispatch } =
     useContext(DatasetsContext);
   const { actualUser } = useContext(UserContext);
-  const { noUserLimits, fieldsOptions } = useContext(AppConfigContext);
+  const { noUserLimits, schemas } = useContext(AppConfigContext);
 
   const divClass = (id: string) => {
     return clsx(
@@ -40,7 +40,7 @@ const DatasetBar = ({
             onClick={() =>
               datasetDispatch({
                 type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
-                payload: { options: fieldsOptions },
+                payload: { options: schemas },
               })
             }
             layout

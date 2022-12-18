@@ -30,7 +30,7 @@ const Modal = ({
 }) => {
   const { datasetDispatch, datasets, selectedDataset } =
     useContext(DatasetsContext);
-  const { fieldsOptions } = useContext(AppConfigContext);
+  const { schemas } = useContext(AppConfigContext);
 
   const [toRef, setToRef] = useState<Dataset[]>([]);
   const [fieldInfo, setFieldInfo] = useState<IFieldInfo>({
@@ -38,8 +38,8 @@ const Modal = ({
     dataType: {
       type: DATA_TYPES.SINGLE_VALUE,
       fieldType: {
-        type: fieldsOptions[0].fields[0].name,
-        parent: fieldsOptions[0].parent,
+        type: schemas[0].options[0].name,
+        parent: schemas[0].parent,
         args: {},
       },
     },

@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import clsx from "clsx";
-import ArrowRight from "../../../../../../shared/assets/icons/ArrowRight";
+import ArrowRight from "../../../shared/assets/icons/ArrowRight";
 
 const SectionHeader = ({
   header,

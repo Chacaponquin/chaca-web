@@ -7,7 +7,7 @@ import {
 import { CreateIntialData } from "../CreateData";
 import { DATASETS_ACTIONS } from "./ACTION_TYPES";
 import { Reducer } from "react";
-import { FieldOptions } from "../../../../shared/interfaces/options.interface";
+import { Schema } from "../../../../shared/interfaces/options.interface";
 
 export type DatasetPayload =
   | {
@@ -16,11 +16,11 @@ export type DatasetPayload =
     }
   | {
       type: DATASETS_ACTIONS.ADD_NEW_FIELD;
-      payload: { options: FieldOptions[]; datasetID: string };
+      payload: { options: Schema[]; datasetID: string };
     }
   | {
       type: DATASETS_ACTIONS.CREATE_NEW_DATASET;
-      payload: { options: FieldOptions[] };
+      payload: { options: Schema[] };
     }
   | {
       type: DATASETS_ACTIONS.CHANGE_FIELD_NAME;
@@ -80,7 +80,7 @@ export type DatasetPayload =
         datasetID: string;
         fieldID: string;
         field: DatasetField<SingleValueDataType>;
-        options: FieldOptions[];
+        options: Schema[];
       };
     };
 
@@ -209,7 +209,7 @@ export const datasetsReducer: Reducer<Dataset[], DatasetPayload> = (
                   min: 0,
                   max: 10,
                 };
-              } else f.isArray = false;
+              } else f.isArray = null;
             }
 
             return f;

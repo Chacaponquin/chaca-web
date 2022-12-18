@@ -1,18 +1,20 @@
 import { ARGUMENT_TYPE } from "../constant/ARGUMENT_TYPE";
 
-export interface FieldOptionsResp {
+export interface SchemasResp {
   parent: string;
-  fields: FieldSchema[];
+  options: SubOption[];
 }
 
-export interface FieldOptions extends FieldOptionsResp {
+export interface Schema extends SchemasResp {
   id: string;
 }
 
-export interface FieldSchema {
+export interface SubOption {
   name: string;
   arguments: ArgumentSchema[];
-  exampleValue: any;
+  exampleValue: unknown;
+  description: string;
+  route: string;
 }
 
 export interface ArgumentSchema {

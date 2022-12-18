@@ -25,7 +25,7 @@ const ObjectData = ({
   handleChangeDataType: (obj: FieldDataType) => void;
   selectField: DatasetField<SingleValueDataType>;
 }) => {
-  const { fieldsOptions } = useContext(AppConfigContext);
+  const { schemas } = useContext(AppConfigContext);
 
   const typeClass = (id: string) => {
     return clsx(
@@ -45,7 +45,7 @@ const ObjectData = ({
 
   const handleAddField = () => {
     const actualObjects = fieldInfo.dataType.object;
-    actualObjects.push(new CreateIntialData(fieldsOptions).createField());
+    actualObjects.push(new CreateIntialData(schemas).createField());
 
     handleChangeDataType({ type: DATA_TYPES.MIXED, object: actualObjects });
   };

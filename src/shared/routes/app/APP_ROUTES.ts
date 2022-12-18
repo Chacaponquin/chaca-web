@@ -6,7 +6,7 @@ export const APP_ROUTES = {
     FORGOT_PASSWORD: "/forgotPassword",
   },
   HOME: "/home",
-  API: "/api",
+  API: "/api/:section/:subSection",
   DOCS: "/docs",
   MY_SCHEMA: "/mySchema",
   CONTACT_US: "/contactUs",

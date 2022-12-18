@@ -1,7 +1,7 @@
 import React, { useContext, useCallback } from "react";
 import { AppConfigContext } from "../../../../../../shared/context/AppConfigContext";
 import { DataTransform } from "../../../../../../shared/helpers/DataTransform";
-import { FieldOptions } from "../../../../../../shared/interfaces/options.interface";
+import { Schema } from "../../../../../../shared/interfaces/options.interface";
 import {
   DatasetField,
   SingleValueDataType,
@@ -20,26 +20,26 @@ const FormData = ({
   selectField: DatasetField<SingleValueDataType>;
   handleChangeSelectField: (f: DatasetField<SingleValueDataType>) => void;
 }) => {
-  const { fieldsOptions } = useContext(AppConfigContext);
+  const { schemas } = useContext(AppConfigContext);
 
   const findParent = useCallback(
-    (p: string): FieldOptions => {
-      return fieldsOptions.find((el) => el.parent === p)!;
+    (p: string): Schema => {
+      return schemas.find((el) => el.parent === p)!;
     },
-    [fieldsOptions]
+    [schemas]
   );
 
   const findArguments = useCallback(
     (p: string, op: string) => {
-      const foundParent = fieldsOptions.find((el) => el.parent === p)!;
+      const foundParent = schemas.find((el) => el.parent === p)!;
 
-      return foundParent.fields.find((el) => el.name === op)!.arguments;
+      return foundParent.options.find((el) => el.name === op)!.arguments;
     },
-    [fieldsOptions]
+    [schemas]
   );
 
   const handleChangeParent = (pID: string) => {
-    const parentFound = fieldsOptions.find((el) => el.id === pID)!;
+    const parentFound = schemas.find((el) => el.id === pID)!;
 
     handleChangeSelectField({
       ...selectField,
@@ -48,7 +48,7 @@ const FormData = ({
         fieldType: {
           args: {},
           parent: parentFound.parent,
-          type: parentFound.fields[0].name,
+          type: parentFound.options[0].name,
         },
       },
     });
@@ -118,7 +118,7 @@ const FormData = ({
   return (
     <div className="flex xl:flex-row flex-col xl:gap-0 gap-3">
       <div className="flex xl:flex-col flex-row w-full xl:h-full py-2 xl:py-0 overflow-auto gap-2 px-4 xl:w-[200px]">
-        {fieldsOptions.map((el) => (
+        {schemas.map((el) => (
           <div
             key={el.id}
             className={parentClass(el.parent)}
@@ -130,7 +130,7 @@ const FormData = ({
       </div>
 
       <div className="xl:flex xl:flex-col grid grid-cols-1 md:grid-cols-2 xl:h-full overflow-y-auto gap-3 xl:px-8 w-full xl:w-[500px] pb-4 no-scroll">
-        {findParent(selectField.dataType.fieldType.parent).fields.map(
+        {findParent(selectField.dataType.fieldType.parent).options.map(
           (el, i) => (
             <div
               key={i}
@@ -171,7 +171,7 @@ const FormData = ({
                             ...selectField,
                             isArray: e.target.checked
                               ? { min: 0, max: 10 }
-                              : false,
+                              : null,
                           });
                         }}
                       />

@@ -4,20 +4,18 @@ import {
   DatasetField,
   SingleValueDataType,
 } from "../../../shared/interfaces/datasets.interface";
-import { FieldOptions } from "../../../shared/interfaces/options.interface";
+import { Schema } from "../../../shared/interfaces/options.interface";
 import { v4 as uuid } from "uuid";
 
 export class CreateIntialData {
-  private options: FieldOptions[];
+  private options: Schema[];
 
-  constructor(options: FieldOptions[]) {
+  constructor(options: Schema[]) {
     this.options = options;
   }
 
   public createField = (): DatasetField<SingleValueDataType> => {
-    const option = this.options.find(
-      (el) => el.parent === "ID"
-    ) as FieldOptions;
+    const option = this.options.find((el) => el.parent === "ID") as Schema;
 
     return {
       id: uuid(),
@@ -27,11 +25,11 @@ export class CreateIntialData {
         fieldType: {
           args: {},
           parent: option.parent,
-          type: option.fields[0].name,
+          type: option.options[0].name,
         },
       },
       isPosibleNull: false,
-      isArray: false,
+      isArray: null,
     };
   };
 
@@ -54,15 +52,13 @@ export class CreateIntialData {
   };
 
   public createDefaultFields = (): DatasetField[] => {
-    const idParent = this.options.find(
-      (el) => el.parent === "ID"
-    ) as FieldOptions;
+    const idParent = this.options.find((el) => el.parent === "ID") as Schema;
     const nameParent = this.options.find(
       (el) => el.parent === "NAME"
-    ) as FieldOptions;
+    ) as Schema;
     const imageParent = this.options.find(
       (el) => el.parent === "IMAGE"
-    ) as FieldOptions;
+    ) as Schema;
 
     const idField: DatasetField = {
       id: uuid(),
@@ -71,11 +67,11 @@ export class CreateIntialData {
         type: DATA_TYPES.SINGLE_VALUE,
         fieldType: {
           parent: idParent.parent,
-          type: idParent.fields[0].name,
+          type: idParent.options[0].name,
           args: {},
         },
       },
-      isArray: false,
+      isArray: null,
       isPosibleNull: false,
     };
 
@@ -86,11 +82,11 @@ export class CreateIntialData {
         type: DATA_TYPES.SINGLE_VALUE,
         fieldType: {
           parent: nameParent.parent,
-          type: nameParent.fields.find((el) => el.name === "First Name")!.name,
+          type: nameParent.options.find((el) => el.name === "First Name")!.name,
           args: {},
         },
       },
-      isArray: false,
+      isArray: null,
       isPosibleNull: false,
     };
 
@@ -101,12 +97,12 @@ export class CreateIntialData {
         type: DATA_TYPES.SINGLE_VALUE,
         fieldType: {
           parent: imageParent.parent,
-          type: imageParent.fields.find((el) => el.name === "Avatar Icon")!
+          type: imageParent.options.find((el) => el.name === "Avatar Icon")!
             .name,
           args: {},
         },
       },
-      isArray: false,
+      isArray: null,
       isPosibleNull: false,
     };
 

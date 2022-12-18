@@ -1,9 +1,9 @@
 import React from "react";
 import SectionHeader from "./SectionHeader";
 import { motion, AnimatePresence } from "framer-motion";
-import { ARGUMENT_TYPE } from "../../../../../../shared/constant/ARGUMENT_TYPE";
-import { DataTransform } from "../../../../../../shared/helpers/DataTransform";
-import { ArgumentSchema } from "../../../../../../shared/interfaces/options.interface";
+import { ARGUMENT_TYPE } from "../../../shared/constant/ARGUMENT_TYPE";
+import { DataTransform } from "../../../shared/helpers/DataTransform";
+import { ArgumentSchema } from "../../../shared/interfaces/options.interface";
 import { v4 as uuid } from "uuid";
 
 const ParametersData = ({

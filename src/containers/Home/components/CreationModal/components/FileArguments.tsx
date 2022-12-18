@@ -12,17 +12,17 @@ import { CONFIG_ACTIONS } from "../../../helpers/reducer/ACTION_TYPES";
 const FileArguments = () => {
   const [fileArguments, setFileArguments] = useState<ArgumentSchema[]>([]);
   const { config, configDispatch } = useContext(DatasetsContext);
-  const { fileConfigOptions } = useContext(AppConfigContext);
+  const { fileConfig } = useContext(AppConfigContext);
 
   useEffect(() => {
-    const fileFound = fileConfigOptions.find(
+    const fileFound = fileConfig.find(
       (el) => el.fileType === config.file.fileType
     );
 
     if (fileFound) {
       setFileArguments(fileFound.arguments);
     }
-  }, [config, fileConfigOptions]);
+  }, [config, fileConfig]);
 
   const handleChangeArguments = ({
     value,

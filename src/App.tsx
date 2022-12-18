@@ -4,7 +4,6 @@ import { ToastContainer } from "react-toastify";
 import NavBar from "./layout/NavBar/NavBar";
 import SideBar from "./layout/SideBar/SideBar";
 import DatasetsProvider from "./shared/context/DatasetsContext";
-import ApiDocsProvider from "./shared/context/ApiDocsContext";
 import ApiSideBar from "./layout/ApiSideBar/ApiSideBar";
 import { useLocation } from "react-router-dom";
 import { APP_ROUTES } from "./shared/routes/app/APP_ROUTES";
@@ -38,33 +37,31 @@ function App() {
       }
     >
       <DatasetsProvider>
-        <ApiDocsProvider>
-          <React.Fragment>
-            <ToastContainer autoClose={5000} hideProgressBar={true} />
-            <ApiSideBar
-              openApiSideBar={openApiSideBar}
-              handleCloseSideBar={handleCloseApiSideBar}
-            />
-            <SideBar
-              openSideBar={openSideBar}
-              handleCloseSideBar={handleCloseSideBar}
-            />
-            <NavBar
-              handleOpenSideBar={handleOpenSideBar}
-              handleOpenApiSideBar={handleOpenApiSideBar}
-            />
+        <React.Fragment>
+          <ToastContainer autoClose={5000} hideProgressBar={true} />
+          <ApiSideBar
+            openApiSideBar={openApiSideBar}
+            handleCloseSideBar={handleCloseApiSideBar}
+          />
+          <SideBar
+            openSideBar={openSideBar}
+            handleCloseSideBar={handleCloseSideBar}
+          />
+          <NavBar
+            handleOpenSideBar={handleOpenSideBar}
+            handleOpenApiSideBar={handleOpenApiSideBar}
+          />
 
-            <div
-              className={
-                location.pathname !== APP_ROUTES.ROOT
-                  ? "px-10 h-full esm:px-5 overflow-auto"
-                  : ""
-              }
-            >
-              <Outlet />
-            </div>
-          </React.Fragment>
-        </ApiDocsProvider>
+          <div
+            className={
+              location.pathname !== APP_ROUTES.ROOT
+                ? "px-10 h-full esm:px-5 overflow-auto"
+                : ""
+            }
+          >
+            <Outlet />
+          </div>
+        </React.Fragment>
       </DatasetsProvider>
     </div>
   );

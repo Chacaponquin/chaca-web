@@ -1,41 +1,29 @@
-import {
-  FieldOptionsResp,
-  FieldOptions,
-} from "../interfaces/options.interface";
-import { ApiField, ApiFieldDocResp } from "../interfaces/api.interface";
-import { API_SECTIONS } from "../constant/API_SECTIONS";
+import { SchemasResp, Schema } from "../interfaces/options.interface";
 import { Dataset } from "../interfaces/datasets.interface";
 import { DATA_TYPES } from "../constant/DATA_TYPES";
 import { v4 as uuid } from "uuid";
 
 export const DataTransform = {
-  initialFieldsTransform: (fields: FieldOptionsResp[]): FieldOptions[] => {
+  initialFieldsTransform: (fields: SchemasResp[]): Schema[] => {
     let returnData = [];
 
     returnData = fields.map((el, i) => {
-      return { id: uuid(), fields: el.fields, parent: el.parent };
+      return {
+        ...el,
+        id: uuid(),
+        options: el.options.map((s) => ({
+          ...s,
+          route: `${process.env.REACT_APP_API_URL as string}${s.route}`,
+        })),
+      };
     });
 
     return returnData;
   },
 
-  apiDocTransform: (options: ApiFieldDocResp[]): ApiField[] => {
-    return options.map((el, i) => ({
-      ...el,
-      section: API_SECTIONS.FIELDS,
-      id: uuid(),
-      fields: el.fields.map((f) => ({
-        ...f,
-        route: `${process.env.REACT_APP_API_URL as string}${f.route}`,
-      })),
-    }));
-  },
-
-  dataMapToJsonTree: (datasets: Dataset[], fields: FieldOptions[]) => {
+  dataMapToJsonTree: (datasets: Dataset[], fields: Schema[]) => {
     const dataToTransform = JSON.parse(JSON.stringify(datasets)) as Dataset[];
-    const fieldsTransform = JSON.parse(
-      JSON.stringify(fields)
-    ) as FieldOptions[];
+    const fieldsTransform = JSON.parse(JSON.stringify(fields)) as Schema[];
 
     const mapData = dataToTransform.map((d) => {
       const fieldMap = d.fields.map((f) => {
@@ -46,7 +34,7 @@ export const DataTransform = {
             f.dataType.type === DATA_TYPES.SINGLE_VALUE &&
             field.parent === f.dataType.fieldType.parent
           ) {
-            field.fields.forEach((fAnid) => {
+            field.options.forEach((fAnid) => {
               if (
                 f.dataType.type === DATA_TYPES.SINGLE_VALUE &&
                 fAnid.name === f.dataType.fieldType.type

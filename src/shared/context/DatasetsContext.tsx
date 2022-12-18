@@ -41,24 +41,25 @@ const DatasetsContext = createContext<DatasetContext>({
 });
 
 const DatasetsProvider = ({ children }: { children: ReactElement }) => {
-  const {
-    initialFetchLoading,
-    errorInitialFetch,
-    fieldsOptions,
-    fileConfigOptions,
-  } = useContext(AppConfigContext);
+  const { initialFetchLoading, errorInitialFetch, schemas, fileConfig } =
+    useContext(AppConfigContext);
 
+  // created datasets
   const [datasets, datasetDispatch] = useReducer(datasetsReducer, []);
+
+  // configuration of the file to export
   const [config, configDispatch] = useReducer(configReducer, {
     file: { fileType: FILE_TYPE.JSON, arguments: {} },
     saveSchema: false,
   });
+
+  // select dataset
   const [selectedDataset, setSelectedDataset] = useState<Dataset>(datasets[0]);
 
   useEffect(() => {
     if (!initialFetchLoading && !errorInitialFetch) {
       const initDataset = [
-        new CreateIntialData(fieldsOptions).createDefaultDataset(0, true),
+        new CreateIntialData(schemas).createDefaultDataset(0, true),
       ];
 
       datasetDispatch({
@@ -71,19 +72,14 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
         type: CONFIG_ACTIONS.SET_INITIAL_CONFIG,
         payload: {
           file: {
-            fileType: fileConfigOptions[0].fileType,
+            fileType: fileConfig[0].fileType,
             arguments: {},
           },
           saveSchema: false,
         },
       });
     }
-  }, [
-    initialFetchLoading,
-    errorInitialFetch,
-    fieldsOptions,
-    fileConfigOptions,
-  ]);
+  }, [initialFetchLoading, errorInitialFetch, schemas, fileConfig]);
 
   useEffect(() => {
     setSelectedDataset((prev) => {

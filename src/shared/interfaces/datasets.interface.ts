@@ -38,12 +38,10 @@ export interface DatasetField<T = FieldDataType> {
   id: string;
   dataType: T;
   isPosibleNull: boolean;
-  isArray:
-    | {
-        min: number;
-        max: number;
-      }
-    | false;
+  isArray: {
+    min: number;
+    max: number;
+  } | null;
 }
 
 export type FieldArgument = string | number | Date | boolean | FieldArgument[];

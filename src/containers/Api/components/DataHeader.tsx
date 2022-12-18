@@ -1,7 +1,6 @@
-import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import Copy from "../../../../../../shared/assets/icons/Copy";
+import Copy from "../../../shared/assets/icons/Copy";
 
 const DataHeader = ({ name, route }: { name: string; route: string }) => {
   const [isCopy, setIsCopy] = useState(false);

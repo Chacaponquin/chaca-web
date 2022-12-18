@@ -1,25 +1,24 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import DataHeader from "./DataHeader";
 import ParametersData from "./ParametersData";
 import QueryContainer from "./QueryContainer";
 import SectionHeader from "./SectionHeader";
-import { v4 as uuid } from "uuid";
 import {
-  ApiField,
-  ApiFieldData,
-} from "../../../../../../shared/interfaces/api.interface";
+  Schema,
+  SubOption,
+} from "../../../shared/interfaces/options.interface";
 
-const FieldDoc = ({ fieldData }: { fieldData: ApiField }) => {
+const SchemaDoc = ({ schema }: { schema: Schema }) => {
   return (
     <div className="flex flex-col w-full">
-      {fieldData.fields.map((f) => (
-        <FieldDataCard key={uuid()} f={f} />
+      {schema.options.map((f, i) => (
+        <FieldDataCard key={i} f={f} />
       ))}
     </div>
   );
 };
 
-const FieldDataCard = ({ f }: { f: ApiFieldData }) => {
+const FieldDataCard = ({ f }: { f: SubOption }) => {
   const [openEndpoint, setOpenEndpoint] = useState(false);
   const [openParams, setOpenParams] = useState(false);
 
@@ -28,11 +27,7 @@ const FieldDataCard = ({ f }: { f: ApiFieldData }) => {
       <div className="w-full flex-col py-5 flex gap-3">
         <div className="flex flex-col gap-1">
           <DataHeader name={f.name} route={f.route} />
-          <div className="mt-2 text-gray-600">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime
-            facilis doloribus corporis incidunt? Ut eaque vel nobis doloremque
-            fugit sint.
-          </div>
+          <div className="mt-2 text-gray-600">{f.description}</div>
         </div>
 
         {f.arguments.length > 0 && (
@@ -57,4 +52,4 @@ const FieldDataCard = ({ f }: { f: ApiFieldData }) => {
   );
 };
 
-export default FieldDoc;
+export default SchemaDoc;

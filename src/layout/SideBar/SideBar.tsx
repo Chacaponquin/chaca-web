@@ -73,7 +73,7 @@ const SideBar = ({
 };
 
 const FilterIcon = ({ icon }: { icon: SideBarIcons }) => {
-  if (icon === SideBarIcons.SCHEMA) return <Schema />;
+  if (icon === SideBarIcons.SCHEMA) return <Schema size={32} />;
   return <></>;
 };
 

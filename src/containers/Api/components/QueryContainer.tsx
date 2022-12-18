@@ -1,19 +1,19 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import FieldInputArgument from "../../../../../../shared/components/FieldInputArgument/FieldInputArgument";
+import FieldInputArgument from "../../../shared/components/FieldInputArgument/FieldInputArgument";
 import { useLocation } from "react-router-dom";
-import { APP_ROUTES } from "../../../../../../shared/routes/app/APP_ROUTES";
-import { axiosInstance } from "../../../../../../shared/routes/api/API_ROUTES";
-import LoaderContainer from "../../../../../../shared/components/Loader/LoaderContainer";
+import { APP_ROUTES } from "../../../shared/routes/app/APP_ROUTES";
+import { axiosInstance } from "../../../shared/routes/api/API_ROUTES";
+import LoaderContainer from "../../../shared/components/Loader/LoaderContainer";
 import clsx from "clsx";
+import { SubOption } from "../../../shared/interfaces/options.interface";
 import { toast } from "react-toastify";
-import { DataTransform } from "../../../../../../shared/helpers/DataTransform";
-import { ApiFieldData } from "../../../../../../shared/interfaces/api.interface";
-import ExampleCode from "../../../../../../shared/components/ExampleCode/ExampleCode";
-import { FieldArgument } from "../../../../../../shared/interfaces/datasets.interface";
+import { DataTransform } from "../../../shared/helpers/DataTransform";
+import ExampleCode from "../../../shared/components/ExampleCode/ExampleCode";
+import { FieldArgument } from "../../../shared/interfaces/datasets.interface";
 import { v4 as uuid } from "uuid";
 
-const QueryContainer = ({ field }: { field: ApiFieldData }) => {
+const QueryContainer = ({ field }: { field: SubOption }) => {
   const location = useLocation();
   const [allArguments, setAllArguments] = useState({});
   const [result, setResult] = useState(null);

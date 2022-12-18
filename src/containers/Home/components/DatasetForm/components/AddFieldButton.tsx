@@ -34,7 +34,7 @@ const AddFieldButton = () => {
 
 const AddField = () => {
   const { datasetDispatch, selectedDataset } = useContext(DatasetsContext);
-  const { fieldsOptions } = useContext(AppConfigContext);
+  const { schemas } = useContext(AppConfigContext);
 
   return (
     <button
@@ -42,7 +42,7 @@ const AddField = () => {
       onClick={() =>
         datasetDispatch({
           type: DATASETS_ACTIONS.ADD_NEW_FIELD,
-          payload: { datasetID: selectedDataset.id, options: fieldsOptions },
+          payload: { datasetID: selectedDataset.id, options: schemas },
         })
       }
       type="button"

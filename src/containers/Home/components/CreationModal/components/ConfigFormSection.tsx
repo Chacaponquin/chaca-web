@@ -14,7 +14,7 @@ const ConfigFormSection = () => {
   const textClass = "mb-0 font-fontRegular whitespace-nowrap";
 
   const { configDispatch, config } = useContext(DatasetsContext);
-  const { fileConfigOptions } = useContext(AppConfigContext);
+  const { fileConfig } = useContext(AppConfigContext);
 
   return (
     <div className="flex flex-col w-full gap-2 esm:w-full">
@@ -26,7 +26,7 @@ const ConfigFormSection = () => {
         <div className="flex gap-2 items-center">
           <h1 className="font-fontBold text-xl">Formato:</h1>
           <Dropdown
-            options={fileConfigOptions.map((f) => f.fileType)}
+            options={fileConfig.map((f) => f.fileType)}
             value={config.file.fileType}
             onChange={(e) => {
               configDispatch({

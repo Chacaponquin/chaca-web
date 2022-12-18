@@ -2,11 +2,11 @@ import React from "react";
 import clsx from "clsx";
 import FieldInputArgument from "../../../../../../shared/components/FieldInputArgument/FieldInputArgument";
 import { FieldArgument } from "../../../../../../shared/interfaces/datasets.interface";
-import { FieldSchema } from "../../../../../../shared/interfaces/options.interface";
+import { SubOption } from "../../../../../../shared/interfaces/options.interface";
 import { DataTransform } from "../../../../../../shared/helpers/DataTransform";
 
 interface FieldOptionProps {
-  option: FieldSchema;
+  option: SubOption;
   isSelected: boolean;
   allArguments: { [key: string]: FieldArgument };
   handleChangeArguments: ({

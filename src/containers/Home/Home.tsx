@@ -102,7 +102,7 @@ const DatasetsOptions = ({
   handleOpenCreationModal: () => void;
 }) => {
   const { datasetDispatch, datasets } = useContext(DatasetsContext);
-  const { fieldsOptions } = useContext(AppConfigContext);
+  const { schemas } = useContext(AppConfigContext);
 
   return (
     <div className="flex flex-col gap-4">
@@ -114,7 +114,7 @@ const DatasetsOptions = ({
           onClick={() =>
             datasetDispatch({
               type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
-              payload: { options: fieldsOptions },
+              payload: { options: schemas },
             })
           }
         >

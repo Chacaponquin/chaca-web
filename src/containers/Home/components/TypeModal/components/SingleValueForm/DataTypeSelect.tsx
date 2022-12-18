@@ -21,7 +21,7 @@ const DataTypeSelect = ({
   selectedDataType: DATA_TYPES;
   toRef: Dataset[];
 }) => {
-  const { fieldsOptions } = useContext(AppConfigContext);
+  const { schemas } = useContext(AppConfigContext);
 
   const handleIntitDataType = (type: DATA_TYPES) => {
     let saveObj: FieldDataType;
@@ -30,8 +30,8 @@ const DataTypeSelect = ({
       saveObj = {
         type,
         fieldType: {
-          type: fieldsOptions[0].fields[0].name,
-          parent: fieldsOptions[0].parent,
+          type: schemas[0].options[0].name,
+          parent: schemas[0].parent,
           args: {},
         },
       };
@@ -50,14 +50,14 @@ const DataTypeSelect = ({
     } else if (type === DATA_TYPES.MIXED) {
       saveObj = {
         type,
-        object: [new CreateIntialData(fieldsOptions).createField()],
+        object: [new CreateIntialData(schemas).createField()],
       };
     } else {
       saveObj = {
         type,
         fieldType: {
-          type: fieldsOptions[0].fields[0].name,
-          parent: fieldsOptions[0].parent,
+          type: schemas[0].options[0].name,
+          parent: schemas[0].parent,
           args: {},
         },
       };

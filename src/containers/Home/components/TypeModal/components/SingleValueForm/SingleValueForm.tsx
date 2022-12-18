@@ -9,7 +9,7 @@ import FieldOptionDiv from "./FieldOptionDiv";
 import ParentDiv from "./ParentDiv";
 import { v4 as uuid } from "uuid";
 import React from "react";
-import { FieldOptions } from "../../../../../../shared/interfaces/options.interface";
+import { Schema } from "../../../../../../shared/interfaces/options.interface";
 
 const SingleValueForm = ({
   handleChangeDataType,
@@ -21,7 +21,7 @@ const SingleValueForm = ({
     dataType: FieldDataType;
   };
 }) => {
-  const { fieldsOptions } = useContext(AppConfigContext);
+  const { schemas } = useContext(AppConfigContext);
 
   const handleChangeArguments = ({
     value,
@@ -57,14 +57,14 @@ const SingleValueForm = ({
   };
 
   const handleChangeParentSelected = (parent: string) => {
-    const foundParent = fieldsOptions.find((el) => el.parent === parent)!;
+    const foundParent = schemas.find((el) => el.parent === parent)!;
 
     const newDataType: FieldDataType = {
       type: DATA_TYPES.SINGLE_VALUE,
       fieldType: {
         parent: foundParent.parent,
         args: {},
-        type: foundParent.fields[0].name,
+        type: foundParent.options[0].name,
       },
     };
 
@@ -72,16 +72,16 @@ const SingleValueForm = ({
   };
 
   const findParent = useCallback(
-    (p: string): FieldOptions => {
-      return fieldsOptions.find((el) => el.parent === p)!;
+    (p: string): Schema => {
+      return schemas.find((el) => el.parent === p)!;
     },
-    [fieldsOptions]
+    [schemas]
   );
 
   return (
     <React.Fragment>
       <div className="flex sm:flex-col items-center gap-3 px-2 sm:h-full overflow-auto sm:w-[230px] w-full sm:py-0 py-2 min-h-[80px]">
-        {fieldsOptions.map((el, i) => (
+        {schemas.map((el, i) => (
           <ParentDiv
             key={uuid()}
             parent={el.parent}
@@ -96,7 +96,7 @@ const SingleValueForm = ({
 
       <div className="sm:h-full grid xl:grid-cols-4 grid-cols-2 esm:grid-cols-1 auto-rows-max overflow-auto gap-3 w-full">
         {fieldInfo.dataType.type === DATA_TYPES.SINGLE_VALUE &&
-          findParent(fieldInfo.dataType.fieldType.parent).fields.map(
+          findParent(fieldInfo.dataType.fieldType.parent).options.map(
             (el, i) => (
               <FieldOptionDiv
                 option={el}
