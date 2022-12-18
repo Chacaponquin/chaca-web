@@ -11,6 +11,8 @@ import DatasetBar from "./components/DatasetsBar/DatasetBar";
 import Pagination from "./components/Pagination/Pagination";
 import { DATASETS_ACTIONS } from "./helpers/reducer/ACTION_TYPES";
 import { AppConfigContext } from "../../shared/context/AppConfigContext";
+import FieldsMenu from "./components/FieldsMenu/FieldsMenu";
+import FormContent from "./components/FormContent/FormContent";
 
 const Home = () => {
   const { datasets, config, selectedDataset } = useContext(DatasetsContext);
@@ -72,8 +74,11 @@ const Home = () => {
   };
 
   return (
-    <div className="w-full flex h-max lg:h-full gap-8 flex-col overflow-x-hidden form-content">
-      <div className="flex gap-16 h-full overflow-y-auto">
+    <div className="flex w-full">
+      <FieldsMenu />
+      <FormContent />
+
+      <div className="gap-16 hidden overflow-y-auto">
         {openCreationModal && (
           <CreationModal
             handleSubmit={handleSubmit}
@@ -89,44 +94,6 @@ const Home = () => {
             <DatasetForm {...selectedDataset} />
           </React.Fragment>
         )}
-      </div>
-
-      <DatasetsOptions handleOpenCreationModal={handleOpenCreationModal} />
-    </div>
-  );
-};
-
-const DatasetsOptions = ({
-  handleOpenCreationModal,
-}: {
-  handleOpenCreationModal: () => void;
-}) => {
-  const { datasetDispatch, datasets } = useContext(DatasetsContext);
-  const { schemas } = useContext(AppConfigContext);
-
-  return (
-    <div className="flex flex-col gap-4">
-      {datasets.length > 1 && <Pagination />}
-
-      <div className="flex items-center flex-wrap justify-end lg:hidden text-xl gap-4">
-        <button
-          className="flex items-center px-10 py-2 text-white bg-principalColor rounded-md transition-all duration-300 hover:opacity-70"
-          onClick={() =>
-            datasetDispatch({
-              type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
-              payload: { options: schemas },
-            })
-          }
-        >
-          <p className="mb-0 font-fontBold">New Dataset</p>
-        </button>
-
-        <button
-          className="bg-principal-bg text-white font-fontBold px-10 py-2 rounded-md transition-all duration-300 hover:opacity-70"
-          onClick={handleOpenCreationModal}
-        >
-          Export
-        </button>
       </div>
     </div>
   );

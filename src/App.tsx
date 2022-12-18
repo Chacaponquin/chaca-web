@@ -7,6 +7,7 @@ import DatasetsProvider from "./shared/context/DatasetsContext";
 import ApiSideBar from "./layout/ApiSideBar/ApiSideBar";
 import { useLocation } from "react-router-dom";
 import { APP_ROUTES } from "./shared/routes/app/APP_ROUTES";
+import OptionsBar from "./layout/OptionsBar/OptionsBar";
 
 function App() {
   const [openSideBar, setOpenSideBar] = useState(false);
@@ -47,18 +48,17 @@ function App() {
             openSideBar={openSideBar}
             handleCloseSideBar={handleCloseSideBar}
           />
-          <NavBar
-            handleOpenSideBar={handleOpenSideBar}
-            handleOpenApiSideBar={handleOpenApiSideBar}
-          />
 
-          <div
-            className={
-              location.pathname !== APP_ROUTES.ROOT
-                ? "px-10 h-full esm:px-5 overflow-auto"
-                : ""
-            }
-          >
+          <div className="flex">
+            {location.pathname !== APP_ROUTES.ROOT ? (
+              <OptionsBar />
+            ) : (
+              <NavBar
+                handleOpenSideBar={handleOpenSideBar}
+                handleOpenApiSideBar={handleOpenApiSideBar}
+              />
+            )}
+
             <Outlet />
           </div>
         </React.Fragment>
