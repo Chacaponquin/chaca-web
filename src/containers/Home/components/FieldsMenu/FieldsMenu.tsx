@@ -1,5 +1,6 @@
 import React from "react";
-import { ArrowRight } from "../../../../shared/assets/icons";
+import { ArrowRight, Config } from "../../../../shared/assets/icons";
+import DatasetsHeader from "./components/DatasetsHeader";
 
 const FieldsMenu = () => {
   const folders = [
@@ -30,15 +31,21 @@ const FieldsMenu = () => {
   ];
 
   return (
-    <div className="h-screen w-[300px] bg-gray-600">
-      <div className="py-5 w-full bg-red-100"></div>
+    <div className="h-screen w-[300px] bg-white px-2">
+      <DatasetsHeader />
 
-      <div className="h-full bg-blue-300 w-full flex flex-col pl-2">
+      <div className="h-full bg-white w-full flex flex-col">
         {folders.map((el, i) => (
-          <div className="py-1 flex flex-col" key={i}>
-            <div className="flex items-center">
-              <ArrowRight size={20} />
-              <p className="ml-2">{el.name}</p>
+          <div className="flex flex-col" key={i}>
+            <div className="flex items-center justify-between py-1">
+              <div className="flex items-center">
+                <ArrowRight size={20} />
+                <p className="ml-2">{el.name}</p>
+              </div>
+
+              <div className="">
+                <Config size={18} />
+              </div>
             </div>
 
             <div className="flex flex-col">

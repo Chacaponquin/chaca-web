@@ -17,6 +17,7 @@ import { FILE_TYPE } from "../constant/FILE_TYPE";
 import { ConfigSchema } from "../interfaces/config.iterface";
 import { Dataset } from "../interfaces/datasets.interface";
 import { AppConfigContext } from "./AppConfigContext";
+import { v4 as uuid } from "uuid";
 
 interface DatasetContext {
   datasets: Dataset[];
@@ -58,7 +59,15 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
 
   useEffect(() => {
     if (!initialFetchLoading && !errorInitialFetch) {
-      const initDataset = [
+      datasetDispatch({
+        type: DATASETS_ACTIONS.SET_INIT_DATASETS,
+        payload: {
+          datasets: [
+            { id: uuid(), fields: [], limit: 50, name: "New Dataset" },
+          ],
+        },
+      });
+      /*const initDataset = [
         new CreateIntialData(schemas).createDefaultDataset(0, true),
       ];
 
@@ -77,7 +86,7 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
           },
           saveSchema: false,
         },
-      });
+      });*/
     }
   }, [initialFetchLoading, errorInitialFetch, schemas, fileConfig]);
 

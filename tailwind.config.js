@@ -8,7 +8,7 @@ module.exports = {
         principalColor: "#b645db",
         secondColor: "#590ce8",
         thirdColor: "#9900FF",
-        dangerColor: "#b645db",
+        dangerColor: "#eb4d4b",
         darkColor: "#282c34",
       },
       fontFamily: {

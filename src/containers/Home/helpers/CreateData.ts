@@ -15,7 +15,7 @@ export class CreateIntialData {
   }
 
   public createField = (): DatasetField<SingleValueDataType> => {
-    const option = this.options.find((el) => el.parent === "ID") as Schema;
+    const option = this.options.find((el) => el.parent === "Id") as Schema;
 
     return {
       id: uuid(),
@@ -52,12 +52,12 @@ export class CreateIntialData {
   };
 
   public createDefaultFields = (): DatasetField[] => {
-    const idParent = this.options.find((el) => el.parent === "ID") as Schema;
+    const idParent = this.options.find((el) => el.parent === "Id") as Schema;
     const nameParent = this.options.find(
-      (el) => el.parent === "NAME"
+      (el) => el.parent === "Person"
     ) as Schema;
     const imageParent = this.options.find(
-      (el) => el.parent === "IMAGE"
+      (el) => el.parent === "Image"
     ) as Schema;
 
     const idField: DatasetField = {

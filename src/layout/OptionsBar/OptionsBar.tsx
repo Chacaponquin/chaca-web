@@ -1,24 +1,37 @@
-import React from "react";
-import { Code, Home } from "../../shared/assets/icons";
+import { Code, Home, Schema } from "../../shared/assets/icons";
+import clsx from "clsx";
+import { NavLink } from "react-router-dom";
+import { APP_ROUTES } from "../../shared/routes/app/APP_ROUTES";
 
 const OptionsBar = () => {
-  const divClass =
-    "flex flex-col bg-white items-center py-1 cursor-pointer rounded-sm";
+  const divClass = ({ isActive }: { isActive: boolean }): string => {
+    return clsx(
+      "flex flex-col items-center py-1 cursor-pointer rounded-md",
+      { "bg-principal-bg fill-white text-white": isActive },
+      { "bg-white fill-black text-black": !isActive }
+    );
+  };
+
   const textClass = "text-sm";
   const iconSize = 25;
 
   return (
-    <div className="top-0 left-0 w-[110px] h-screen bg-black">
-      <div className="flex flex-col px-2 py-2 gap-1">
-        <div className={divClass}>
+    <div className="w-[110px] h-screen bg-white">
+      <div className="flex flex-col px-2 py-4 gap-1">
+        <NavLink className={divClass} to={APP_ROUTES.HOME}>
           <Home size={iconSize} />
           <p className={textClass}>Home</p>
-        </div>
+        </NavLink>
 
-        <div className={divClass}>
+        <NavLink className={divClass} to={"/api"}>
           <Code size={iconSize} />
           <p className={textClass}>Api</p>
-        </div>
+        </NavLink>
+
+        <NavLink className={divClass} to={"/mySchemas"}>
+          <Schema size={iconSize} />
+          <p className={textClass}>Schemas</p>
+        </NavLink>
       </div>
     </div>
   );
