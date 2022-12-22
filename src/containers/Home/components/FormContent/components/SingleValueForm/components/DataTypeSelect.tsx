@@ -1,5 +1,5 @@
 import React from "react";
-import { DATA_TYPES } from "../../../../../shared/constant/DATA_TYPES";
+import { DATA_TYPES } from "../../../../../../../shared/constant/DATA_TYPES";
 
 const DataTypeSelect = () => {
   return (

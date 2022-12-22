@@ -1,30 +1,34 @@
 import {
-  Dataset,
   DatasetField,
   FieldDataType,
   SingleValueDataType,
 } from "../../../../shared/interfaces/datasets.interface";
-import { CreateIntialData } from "../CreateData";
 import { DATASETS_ACTIONS } from "./ACTION_TYPES";
 import { Reducer } from "react";
 import { Schema } from "../../../../shared/interfaces/options.interface";
+import { DatasetTree, FieldNode } from "../../../../shared/helpers/DatasetTree";
+import { DATA_TYPES } from "../../../../shared/constant/DATA_TYPES";
 
 export type DatasetPayload =
   | {
       type: DATASETS_ACTIONS.SET_INIT_DATASETS;
-      payload: { datasets: Dataset[] };
+      payload: { datasets: DatasetTree[] };
     }
   | {
       type: DATASETS_ACTIONS.ADD_NEW_FIELD;
-      payload: { options: Schema[]; datasetID: string };
+      payload: {
+        fieldName: string;
+        location: string[];
+        schemas: Schema[];
+      };
     }
   | {
       type: DATASETS_ACTIONS.CREATE_NEW_DATASET;
-      payload: { options: Schema[] };
+      payload: { datasetName: string };
     }
   | {
       type: DATASETS_ACTIONS.CHANGE_FIELD_NAME;
-      payload: { datasetID: string; fieldID: string; value: string };
+      payload: { datasetID: string; fieldID: string; newName: string };
     }
   | {
       type: DATASETS_ACTIONS.CHANGE_FIELD_DATATYPE;
@@ -36,7 +40,7 @@ export type DatasetPayload =
     }
   | {
       type: DATASETS_ACTIONS.CHANGE_DATASET_LIMIT;
-      payload: { datasetID: string; value: number };
+      payload: { datasetID: string; newLimit: number };
     }
   | {
       type: DATASETS_ACTIONS.DELETE_FIELD;
@@ -55,7 +59,7 @@ export type DatasetPayload =
       payload: {
         datasetID: string;
         fieldID: string;
-        value: boolean;
+        isArray: boolean;
       };
     }
   | {
@@ -71,7 +75,7 @@ export type DatasetPayload =
       type: DATASETS_ACTIONS.CHANGE_DATASET_NAME;
       payload: {
         datasetID: string;
-        value: string;
+        newName: string;
       };
     }
   | {
@@ -84,52 +88,59 @@ export type DatasetPayload =
       };
     };
 
-export const datasetsReducer: Reducer<Dataset[], DatasetPayload> = (
-  datasets: Dataset[],
+export const datasetsReducer: Reducer<DatasetTree[], DatasetPayload> = (
+  datasets: DatasetTree[],
   action: DatasetPayload
-): Dataset[] => {
+): DatasetTree[] => {
   switch (action.type) {
     case DATASETS_ACTIONS.SET_INIT_DATASETS: {
       return action.payload.datasets;
     }
-    case DATASETS_ACTIONS.ADD_NEW_FIELD: {
-      const newDatasets = datasets.map((el) => {
-        if (el.id === action.payload.datasetID) {
-          return {
-            ...el,
-            fields: [
-              ...el.fields,
-              new CreateIntialData(action.payload.options).createField(),
-            ],
-          };
-        }
 
-        return el;
+    case DATASETS_ACTIONS.ADD_NEW_FIELD: {
+      const newDatasets = datasets.map((d) => {
+        if (d.id === action.payload.fieldName) {
+          const newNode = new FieldNode<SingleValueDataType>(
+            action.payload.fieldName,
+            {
+              isArray: null,
+              isPosibleNull: false,
+              dataType: {
+                type: DATA_TYPES.SINGLE_VALUE,
+                fieldType: {
+                  args: {},
+                  parent: action.payload.schemas[0].parent,
+                  type: action.payload.schemas[0].options[0].name,
+                },
+              },
+            }
+          );
+
+          d.setNodeByLocation(newNode, action.payload.location);
+        }
+        return d;
       });
 
       return newDatasets;
     }
+
     case DATASETS_ACTIONS.CREATE_NEW_DATASET: {
-      return [
-        ...datasets,
-        new CreateIntialData(action.payload.options).createDefaultDataset(
-          datasets.length
-        ),
-      ];
+      const dataset = new DatasetTree(action.payload.datasetName, 50);
+      return [...datasets, dataset];
     }
+
     case DATASETS_ACTIONS.CHANGE_FIELD_NAME: {
-      const newDatasets = datasets.map((dat) => {
-        if (dat.id === action.payload.datasetID) {
-          const newFields = dat.fields.map((f) => {
-            if (f.id === action.payload.fieldID) f.name = action.payload.value;
+      const newDatasets = datasets.map((d) => {
+        if (d.id === action.payload.datasetID) {
+          const foundField = d.findFieldByID(action.payload.fieldID);
 
-            return f;
-          });
-
-          dat.fields = newFields;
+          // cambiar nombre del field
+          if (foundField) {
+            foundField.name = action.payload.newName;
+          }
         }
 
-        return dat;
+        return d;
       });
 
       return newDatasets;
@@ -137,15 +148,12 @@ export const datasetsReducer: Reducer<Dataset[], DatasetPayload> = (
     case DATASETS_ACTIONS.CHANGE_FIELD_DATATYPE: {
       const newDatasets = datasets.map((dat) => {
         if (dat.id === action.payload.datasetID) {
-          const newFields = dat.fields.map((f) => {
-            if (f.id === action.payload.fieldID) {
-              f.dataType = action.payload.dataType;
-            }
+          const foundField = dat.findFieldByID(action.payload.fieldID);
 
-            return f;
-          });
-
-          dat.fields = newFields;
+          // cambiar dataType del field
+          if (foundField) {
+            foundField.info.dataType = action.payload.dataType;
+          }
         }
 
         return dat;
@@ -156,7 +164,7 @@ export const datasetsReducer: Reducer<Dataset[], DatasetPayload> = (
     case DATASETS_ACTIONS.CHANGE_DATASET_LIMIT: {
       const newDatasets = datasets.map((dat) => {
         if (dat.id === action.payload.datasetID) {
-          dat.limit = action.payload.value;
+          dat.setLimit(action.payload.newLimit);
         }
 
         return dat;
@@ -168,11 +176,8 @@ export const datasetsReducer: Reducer<Dataset[], DatasetPayload> = (
     case DATASETS_ACTIONS.DELETE_FIELD: {
       const newDatasets = datasets.map((dat) => {
         if (dat.id === action.payload.datasetID) {
-          const newFields = dat.fields.filter(
-            (f) => f.id !== action.payload.fieldID
-          );
-
-          dat.fields = newFields;
+          // borrar el field
+          dat.deleteField(action.payload.fieldID);
         }
 
         return dat;
@@ -180,18 +185,15 @@ export const datasetsReducer: Reducer<Dataset[], DatasetPayload> = (
 
       return newDatasets;
     }
+
     case DATASETS_ACTIONS.CHANGE_POSIBLE_NULL: {
       const newDatasets = datasets.map((dat) => {
         if (dat.id === action.payload.datasetID) {
-          const newFields = dat.fields.map((f) => {
-            if (f.id === action.payload.fieldID) {
-              f.isPosibleNull = action.payload.value;
-            }
+          const foundField = dat.findFieldByID(action.payload.fieldID);
 
-            return f;
-          });
-
-          dat.fields = newFields;
+          if (foundField) {
+            foundField.info.isPosibleNull = action.payload.value;
+          }
         }
 
         return dat;
@@ -199,23 +201,17 @@ export const datasetsReducer: Reducer<Dataset[], DatasetPayload> = (
 
       return newDatasets;
     }
+
     case DATASETS_ACTIONS.CHANGE_TO_ARRAY_TYPE: {
       const newDatasets = datasets.map((dat) => {
         if (dat.id === action.payload.datasetID) {
-          const newFields = dat.fields.map((f) => {
-            if (f.id === action.payload.fieldID) {
-              if (action.payload.value) {
-                f.isArray = {
-                  min: 0,
-                  max: 10,
-                };
-              } else f.isArray = null;
-            }
+          const foundField = dat.findFieldByID(action.payload.fieldID);
 
-            return f;
-          });
-
-          dat.fields = newFields;
+          if (foundField) {
+            if (action.payload.isArray)
+              foundField.info.isArray = { min: 0, max: 10 };
+            else foundField.info.isArray = null;
+          }
         }
 
         return dat;
@@ -223,21 +219,18 @@ export const datasetsReducer: Reducer<Dataset[], DatasetPayload> = (
 
       return newDatasets;
     }
+
     case DATASETS_ACTIONS.CHANGE_ARRAY_LIMITS: {
       const newDatasets = datasets.map((dat) => {
         if (dat.id === action.payload.datasetID) {
-          const newFields = dat.fields.map((f) => {
-            if (f.id === action.payload.fieldID) {
-              f.isArray = {
-                min: action.payload.min,
-                max: action.payload.max,
-              };
-            }
+          const foundField = dat.findFieldByID(action.payload.fieldID);
 
-            return f;
-          });
-
-          dat.fields = newFields;
+          if (foundField) {
+            foundField.info.isArray = {
+              min: action.payload.min,
+              max: action.payload.max,
+            };
+          }
         }
 
         return dat;
@@ -249,7 +242,7 @@ export const datasetsReducer: Reducer<Dataset[], DatasetPayload> = (
     case DATASETS_ACTIONS.CHANGE_DATASET_NAME: {
       const newDatasets = datasets.map((dat) => {
         if (dat.id === action.payload.datasetID) {
-          dat.name = action.payload.value;
+          dat.setName(action.payload.newName);
         }
 
         return dat;

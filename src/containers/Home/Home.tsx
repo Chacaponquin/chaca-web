@@ -1,21 +1,24 @@
 import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
-import DatasetForm from "./components/DatasetForm/DatasetForm";
 import "./home.css";
-import CreationModal from "./components/CreationModal/CreationModal";
 import { DatasetsContext } from "../../shared/context/DatasetsContext";
 import { UserContext } from "../../shared/context/UserContext";
 import { useEffect } from "react";
-import { validateDatasetsData } from "./helpers/validateDatasetsData";
-import DatasetBar from "./components/DatasetsBar/DatasetBar";
-import Pagination from "./components/Pagination/Pagination";
-import { DATASETS_ACTIONS } from "./helpers/reducer/ACTION_TYPES";
-import { AppConfigContext } from "../../shared/context/AppConfigContext";
 import FieldsMenu from "./components/FieldsMenu/FieldsMenu";
 import FormContent from "./components/FormContent/FormContent";
+import SingleValueForm from "./components/FormContent/components/SingleValueForm/SingleValueForm";
+import { DATA_TYPES } from "../../shared/constant/DATA_TYPES";
+import {
+  CustomDataType,
+  DatasetField,
+  RefDataType,
+  SingleValueDataType,
+} from "../../shared/interfaces/datasets.interface";
+import CustomForm from "./components/FormContent/components/CustomForm/CustomForm";
+import RefForm from "./components/FormContent/components/RefForm/RefForm";
 
 const Home = () => {
-  const { datasets, config, selectedDataset } = useContext(DatasetsContext);
+  const { datasets, config, selectField } = useContext(DatasetsContext);
   const { socket } = useContext(UserContext);
 
   const [createDataLoading, setCreateDataLoading] = useState(false);
@@ -66,7 +69,6 @@ const Home = () => {
 
   const handleOpenCreationModal = () => {
     try {
-      validateDatasetsData(datasets);
       setOpenCreationModal(true);
     } catch (error: any) {
       toast.error(error.message);
@@ -79,24 +81,38 @@ const Home = () => {
       <FormContent />
 
       <div className="gap-16 hidden overflow-y-auto">
-        {openCreationModal && (
-          <CreationModal
-            handleSubmit={handleSubmit}
-            handleCloseCreateModal={handleCloseCreateModal}
-            loading={createDataLoading}
-            porcent={porcent}
-          />
-        )}
-
-        {selectedDataset && (
+        {selectField === null ? (
+          <NoSelectField />
+        ) : (
           <React.Fragment>
-            <DatasetBar handleOpenCreationModal={handleOpenCreationModal} />
-            <DatasetForm {...selectedDataset} />
+            {selectField.info.dataType.type === DATA_TYPES.SINGLE_VALUE && (
+              <SingleValueForm
+                field={
+                  selectField.getNodeObject() as DatasetField<SingleValueDataType>
+                }
+              />
+            )}
+            {selectField.info.dataType.type === DATA_TYPES.CUSTOM && (
+              <CustomForm
+                field={
+                  selectField.getNodeObject() as DatasetField<CustomDataType>
+                }
+              />
+            )}
+            {selectField.info.dataType.type === DATA_TYPES.REF && (
+              <RefForm
+                field={selectField.getNodeObject() as DatasetField<RefDataType>}
+              />
+            )}
           </React.Fragment>
         )}
       </div>
     </div>
   );
+};
+
+const NoSelectField = () => {
+  return <div>No selected field</div>;
 };
 
 export default Home;

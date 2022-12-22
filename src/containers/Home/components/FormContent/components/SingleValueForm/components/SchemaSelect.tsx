@@ -1,6 +1,6 @@
 import { Dropdown } from "primereact/dropdown";
 import { useContext } from "react";
-import { AppConfigContext } from "../../../../../shared/context/AppConfigContext";
+import { AppConfigContext } from "../../../../../../../shared/context/AppConfigContext";
 
 const SchemaSelect = () => {
   const { schemas } = useContext(AppConfigContext);

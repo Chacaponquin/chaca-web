@@ -21,7 +21,7 @@ export type CustomDataType = {
 };
 export type MixedDataType = {
   type: DATA_TYPES.MIXED;
-  object: DatasetField<SingleValueDataType>[];
+  object: DatasetField[];
 };
 export type SingleValueDataType = {
   type: DATA_TYPES.SINGLE_VALUE;
@@ -29,8 +29,7 @@ export type SingleValueDataType = {
 };
 export type RefDataType = {
   type: DATA_TYPES.REF;
-  ref: string;
-  fieldRef: string;
+  ref: string[];
 };
 
 export interface DatasetField<T = FieldDataType> {

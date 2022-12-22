@@ -1,6 +1,5 @@
-import { useEffect, ReactElement, useContext, Dispatch } from "react";
+import { useEffect, ReactElement, useContext, Dispatch, Reducer } from "react";
 import { createContext, useReducer, useState } from "react";
-import { CreateIntialData } from "../../containers/Home/helpers/CreateData";
 import {
   CONFIG_ACTIONS,
   DATASETS_ACTIONS,
@@ -15,19 +14,18 @@ import {
 } from "../../containers/Home/helpers/reducer/datasetsReducer";
 import { FILE_TYPE } from "../constant/FILE_TYPE";
 import { ConfigSchema } from "../interfaces/config.iterface";
-import { Dataset } from "../interfaces/datasets.interface";
 import { AppConfigContext } from "./AppConfigContext";
-import { v4 as uuid } from "uuid";
+import { DatasetTree, FieldNode } from "../helpers/DatasetTree";
 
 interface DatasetContext {
-  datasets: Dataset[];
+  datasets: DatasetTree[];
   config: ConfigSchema;
   datasetDispatch: Dispatch<DatasetPayload>;
   configDispatch: Dispatch<ConfigPayload>;
-  selectedDataset: Dataset;
+  selectedDataset: DatasetTree;
+  selectField: FieldNode | null;
   handleSelectDataset: (id: string) => void;
-  handleNextDat: () => void;
-  handlePrevDat: () => void;
+  handleSelectField: (datasetID: string, fieldID: string) => void;
 }
 
 const DatasetsContext = createContext<DatasetContext>({
@@ -36,17 +34,19 @@ const DatasetsContext = createContext<DatasetContext>({
   datasetDispatch: (() => {}) as any,
   configDispatch: (() => {}) as any,
   selectedDataset: null!,
+  selectField: null,
   handleSelectDataset: () => {},
-  handleNextDat: () => {},
-  handlePrevDat: () => {},
+  handleSelectField: () => {},
 });
 
 const DatasetsProvider = ({ children }: { children: ReactElement }) => {
-  const { initialFetchLoading, errorInitialFetch, schemas, fileConfig } =
+  const { initialFetchLoading, errorInitialFetch, fileConfig } =
     useContext(AppConfigContext);
 
   // created datasets
-  const [datasets, datasetDispatch] = useReducer(datasetsReducer, []);
+  const [datasets, datasetDispatch] = useReducer<
+    Reducer<DatasetTree[], DatasetPayload>
+  >(datasetsReducer, []);
 
   // configuration of the file to export
   const [config, configDispatch] = useReducer(configReducer, {
@@ -55,27 +55,24 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
   });
 
   // select dataset
-  const [selectedDataset, setSelectedDataset] = useState<Dataset>(datasets[0]);
+  const [selectedDataset, setSelectedDataset] = useState<DatasetTree>(
+    datasets[0]
+  );
+
+  const [selectField, setSelectField] = useState<FieldNode | null>(null);
 
   useEffect(() => {
     if (!initialFetchLoading && !errorInitialFetch) {
-      datasetDispatch({
-        type: DATASETS_ACTIONS.SET_INIT_DATASETS,
-        payload: {
-          datasets: [
-            { id: uuid(), fields: [], limit: 50, name: "New Dataset" },
-          ],
-        },
-      });
-      /*const initDataset = [
-        new CreateIntialData(schemas).createDefaultDataset(0, true),
-      ];
+      const initDataset = new DatasetTree("New Dataset", 50);
 
       datasetDispatch({
         type: DATASETS_ACTIONS.SET_INIT_DATASETS,
-        payload: { datasets: initDataset },
+        payload: {
+          datasets: [initDataset],
+        },
       });
-      setSelectedDataset(initDataset[0]);
+
+      setSelectedDataset(initDataset);
 
       configDispatch({
         type: CONFIG_ACTIONS.SET_INITIAL_CONFIG,
@@ -86,37 +83,17 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
           },
           saveSchema: false,
         },
-      });*/
+      });
     }
-  }, [initialFetchLoading, errorInitialFetch, schemas, fileConfig]);
-
-  useEffect(() => {
-    setSelectedDataset((prev) => {
-      if (prev) {
-        return datasets.find((el) => el.id === prev.id)!;
-      } else return datasets[0];
-    });
-  }, [datasets]);
+  }, [initialFetchLoading, errorInitialFetch, fileConfig]);
 
   const handleSelectDataset = (id: string) => {
     setSelectedDataset(datasets.find((el) => el.id === id)!);
   };
 
-  const handleNextDat = () => {
-    if (selectedDataset) {
-      const index = datasets.map((el) => el.id).indexOf(selectedDataset.id);
-
-      if (index === datasets.length - 1) setSelectedDataset(datasets[0]);
-      else setSelectedDataset(datasets[index + 1]);
-    }
-  };
-
-  const handlePrevDat = () => {
-    if (selectedDataset) {
-      const index = datasets.map((el) => el.id).indexOf(selectedDataset.id);
-
-      setSelectedDataset(datasets[index - 1] || datasets[0]);
-    }
+  const handleSelectField = (datasetID: string, fieldID: string) => {
+    const foundDataset = datasets.find((el) => el.id === datasetID)!;
+    setSelectField(foundDataset.findFieldByID(fieldID));
   };
 
   const data = {
@@ -125,9 +102,9 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
     config,
     configDispatch,
     selectedDataset,
+    selectField,
     handleSelectDataset,
-    handleNextDat,
-    handlePrevDat,
+    handleSelectField,
   };
 
   return (
