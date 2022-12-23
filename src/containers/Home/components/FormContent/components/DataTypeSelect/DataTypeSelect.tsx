@@ -77,9 +77,8 @@ const DataTypeSelect = () => {
       {Object.values(DATA_TYPES)
         .filter((el) => el !== DATA_TYPES.MIXED)
         .map((el) => (
-          <Fragment>
+          <Fragment key={uuid()}>
             <button
-              key={uuid()}
               className="px-3 font-fontBold uppercase flex flex-col w-[150px] cursor-pointer"
               onClick={() => handleChangeDataType(el)}
             >

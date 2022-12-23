@@ -1,6 +1,6 @@
 export interface NodeInfo<T> {
   dataType: T;
-  isPosibleNull: boolean;
+  isPosibleNull: number;
   isArray: {
     min: number;
     max: number;

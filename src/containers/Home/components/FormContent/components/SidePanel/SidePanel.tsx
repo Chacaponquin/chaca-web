@@ -14,7 +14,7 @@ const SidePanel = ({
 
   const sectionClass = () => {
     return clsx(
-      "flex h-full bg-white transition-all duration-300 flex-col px-3 py-3",
+      "flex h-full bg-white transition-all duration-300 flex-col px-3 py-3 border-l-2",
       { "w-[30%]": docsOpen },
       { "w-[0%]": !docsOpen }
     );

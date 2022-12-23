@@ -30,6 +30,10 @@ export const useHome = () => {
     setOpenModal(action);
   };
 
+  const handleCloseModal = () => {
+    setOpenModal(null);
+  };
+
   useEffect(() => {
     socket.on("getDownUrl", (args) => {
       window.open(`${process.env.REACT_APP_API_URL}/${args.downUrl}`);
@@ -90,5 +94,5 @@ export const useHome = () => {
     [schemas]
   );
 
-  return { openModal, handleOpenModal, findParent, findType };
+  return { openModal, handleOpenModal, handleCloseModal, findParent, findType };
 };

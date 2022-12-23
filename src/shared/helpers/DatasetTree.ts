@@ -67,7 +67,7 @@ export class DatasetTree {
   public getFieldLocation(fieldID: string): string[] {
     const ret = this.root.getFieldLocation(fieldID, []);
 
-    if (ret) return ret;
+    if (ret) return [this.name, ...ret];
     else return [];
   }
 }

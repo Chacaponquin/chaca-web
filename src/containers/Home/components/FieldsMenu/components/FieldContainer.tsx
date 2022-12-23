@@ -1,4 +1,4 @@
-import { useContext, Fragment } from "react";
+import { useContext, Fragment, useState } from "react";
 import { ArrowRight, Config } from "../../../../../shared/assets/icons";
 import { DATA_TYPES } from "../../../../../shared/constant/DATA_TYPES";
 import {
@@ -7,6 +7,7 @@ import {
 } from "../../../../../shared/interfaces/datasets.interface";
 import clsx from "clsx";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
+import FieldConfigMenu from "./FieldConfigMenu";
 
 const Point = () => {
   return <div className="bg-principal-bg w-[8px] h-[8px] rounded-full"></div>;
@@ -21,6 +22,7 @@ const FieldContainer = ({
 }) => {
   const { selectField, handleSelectField, selectedDataset } =
     useContext(DatasetsContext);
+  const [openMenu, setOpenMenu] = useState(false);
 
   const divClass = () => {
     return clsx(
@@ -48,15 +50,23 @@ const FieldContainer = ({
           <p className="ml-3">{field.name}</p>
         </div>
 
-        <div className="">
-          <Config size={18} />
+        <div className="flex flex-col">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setOpenMenu(!openMenu);
+            }}
+          >
+            <Config size={18} />
+            {openMenu && <FieldConfigMenu />}
+          </button>
         </div>
       </div>
 
       {field.dataType.type === DATA_TYPES.MIXED && (
         <Fragment>
           {field.dataType.object.map((s) => (
-            <FieldContainer field={s} margin={margin + 4} />
+            <FieldContainer field={s} margin={margin + 4} key={s.id} />
           ))}
         </Fragment>
       )}

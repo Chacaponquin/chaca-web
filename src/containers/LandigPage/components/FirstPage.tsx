@@ -25,7 +25,7 @@ const FirstPage = () => {
               Bienvenido a
             </h1>
             <h1 className="font-fontExtraBold text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor whitespace-nowrap">
-              CH-DATA
+              CHACA
             </h1>
           </div>
 

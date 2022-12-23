@@ -12,7 +12,7 @@ const FieldInfoHeader = () => {
   const handleDelete = () => {};
 
   const location = selectField
-    ? selectedDataset.getFieldLocation(selectField.id)
+    ? [...selectedDataset.getFieldLocation(selectField.id), selectField.name]
     : [];
 
   return (

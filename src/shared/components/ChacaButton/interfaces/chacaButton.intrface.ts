@@ -3,7 +3,7 @@ export interface ChacaButtonProps {
   onClick: () => void;
   className?: string;
   size: "small" | "medium" | "large";
-  color: "primary" | "gradient" | "danger";
+  color: "primary" | "gradient" | "danger" | "secondary" | "cancel";
 }
 
 export interface ChacaSimpleButtonInterface extends ChacaButtonProps {}

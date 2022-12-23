@@ -7,7 +7,7 @@ import { DATASETS_ACTIONS } from "../../constants/ACTION_TYPES";
 import { Reducer } from "react";
 import { Schema } from "../../../../shared/interfaces/options.interface";
 import { DatasetTree, FieldNode } from "../../../../shared/helpers/DatasetTree";
-import { DATA_TYPES } from "../../../../shared/constant/DATA_TYPES";
+import { NodeInfo } from "../../../../shared/interfaces/tree.interface";
 
 export type DatasetPayload =
   | {
@@ -19,7 +19,7 @@ export type DatasetPayload =
       payload: {
         fieldName: string;
         location: string[];
-        schemas: Schema[];
+        fieldInfo: NodeInfo<FieldDataType>;
       };
     }
   | {
@@ -51,7 +51,7 @@ export type DatasetPayload =
       payload: {
         datasetID: string;
         fieldID: string;
-        value: boolean;
+        value: number;
       };
     }
   | {
@@ -98,23 +98,11 @@ export const datasetsReducer: Reducer<DatasetTree[], DatasetPayload> = (
     }
 
     case DATASETS_ACTIONS.ADD_NEW_FIELD: {
-      console.log("Hola");
       const newDatasets = datasets.map((d) => {
         if (d.name === action.payload.location[0]) {
-          const newNode = new FieldNode<SingleValueDataType>(
+          const newNode = new FieldNode(
             action.payload.fieldName,
-            {
-              isArray: null,
-              isPosibleNull: false,
-              dataType: {
-                type: DATA_TYPES.SINGLE_VALUE,
-                fieldType: {
-                  args: {},
-                  parent: action.payload.schemas[0].parent,
-                  type: action.payload.schemas[0].options[0].name,
-                },
-              },
-            }
+            action.payload.fieldInfo
           );
 
           d.setNodeByLocation(newNode, action.payload.location.slice(1));

@@ -36,7 +36,7 @@ export interface DatasetField<T = FieldDataType> {
   name: string;
   id: string;
   dataType: T;
-  isPosibleNull: boolean;
+  isPosibleNull: number;
   isArray: {
     min: number;
     max: number;

@@ -6,7 +6,7 @@ import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES";
 import ConfigMenu from "./ConfigMenu";
 
 const DatasetsHeader = () => {
-  const [openConfig, setOpenConfig] = useState(true);
+  const [openConfig, setOpenConfig] = useState(false);
 
   const { datasets, handleSelectDataset, selectedDataset, datasetDispatch } =
     useContext(DatasetsContext);
