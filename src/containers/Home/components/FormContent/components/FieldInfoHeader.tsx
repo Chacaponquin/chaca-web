@@ -1,11 +1,10 @@
-import React from "react";
 import { Delete } from "../../../../../shared/assets/icons";
 
 const FieldInfoHeader = () => {
   const text = ["Dataset", "buenas", "tardes"];
 
   return (
-    <div className="w-full bg-white py-3 flex justify-between items-center px-5">
+    <div className="w-full bg-white py-2 flex justify-between items-center px-5 border-b-2">
       <div className="flex gap-3">
         {text.map((el, i) => (
           <>

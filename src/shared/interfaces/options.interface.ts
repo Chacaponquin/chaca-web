@@ -11,13 +11,13 @@ export interface Schema extends SchemasResp {
 
 export interface SubOption {
   name: string;
-  arguments: ArgumentSchema[];
+  arguments: Argument[];
   exampleValue: unknown;
   description: string;
   route: string;
 }
 
-export interface ArgumentSchema {
+export interface Argument {
   argument: string;
   inputType: ARGUMENT_TYPE;
   selectValues?: string[];

@@ -6,16 +6,6 @@ import { UserContext } from "../../shared/context/UserContext";
 import { useEffect } from "react";
 import FieldsMenu from "./components/FieldsMenu/FieldsMenu";
 import FormContent from "./components/FormContent/FormContent";
-import SingleValueForm from "./components/FormContent/components/SingleValueForm/SingleValueForm";
-import { DATA_TYPES } from "../../shared/constant/DATA_TYPES";
-import {
-  CustomDataType,
-  DatasetField,
-  RefDataType,
-  SingleValueDataType,
-} from "../../shared/interfaces/datasets.interface";
-import CustomForm from "./components/FormContent/components/CustomForm/CustomForm";
-import RefForm from "./components/FormContent/components/RefForm/RefForm";
 
 const Home = () => {
   const { datasets, config, selectField } = useContext(DatasetsContext);
@@ -79,40 +69,8 @@ const Home = () => {
     <div className="flex w-full">
       <FieldsMenu />
       <FormContent />
-
-      <div className="gap-16 hidden overflow-y-auto">
-        {selectField === null ? (
-          <NoSelectField />
-        ) : (
-          <React.Fragment>
-            {selectField.info.dataType.type === DATA_TYPES.SINGLE_VALUE && (
-              <SingleValueForm
-                field={
-                  selectField.getNodeObject() as DatasetField<SingleValueDataType>
-                }
-              />
-            )}
-            {selectField.info.dataType.type === DATA_TYPES.CUSTOM && (
-              <CustomForm
-                field={
-                  selectField.getNodeObject() as DatasetField<CustomDataType>
-                }
-              />
-            )}
-            {selectField.info.dataType.type === DATA_TYPES.REF && (
-              <RefForm
-                field={selectField.getNodeObject() as DatasetField<RefDataType>}
-              />
-            )}
-          </React.Fragment>
-        )}
-      </div>
     </div>
   );
-};
-
-const NoSelectField = () => {
-  return <div>No selected field</div>;
 };
 
 export default Home;

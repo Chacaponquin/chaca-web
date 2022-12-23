@@ -6,9 +6,9 @@ import { APP_ROUTES } from "../../shared/routes/app/APP_ROUTES";
 const OptionsBar = () => {
   const divClass = ({ isActive }: { isActive: boolean }): string => {
     return clsx(
-      "flex flex-col items-center py-1 cursor-pointer rounded-md",
+      "flex flex-col items-center py-1 cursor-pointer rounded-md duration-300 transition-all",
       { "bg-principal-bg fill-white text-white": isActive },
-      { "bg-white fill-black text-black": !isActive }
+      { "bg-white fill-black text-black hover:bg-slate-100": !isActive }
     );
   };
 

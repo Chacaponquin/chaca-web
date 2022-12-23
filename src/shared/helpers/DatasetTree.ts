@@ -1,4 +1,8 @@
-import { DatasetField, FieldDataType } from "../interfaces/datasets.interface";
+import {
+  Dataset,
+  DatasetField,
+  FieldDataType,
+} from "../interfaces/datasets.interface";
 import { NodeInfo } from "../interfaces/tree.interface";
 import { v4 as uuid } from "uuid";
 
@@ -37,8 +41,13 @@ export class DatasetTree {
     return this.root.findFieldByID(fieldID);
   }
 
-  public getDatasetObject() {
-    if (this.root === null) return {};
+  public getDatasetObject(): Dataset {
+    return {
+      id: this.id,
+      name: this.name,
+      fields: this.fields,
+      limit: this.limit,
+    };
   }
 
   public setNodeByLocation(
@@ -129,19 +138,28 @@ export class Node {
       }
     }
   }
+
+  public setFieldByLocation(field: FieldNode, location: string[]): boolean {
+    if (location.length === 0) {
+      this.nodes.push(field);
+      return true;
+    } else {
+      let set = false;
+
+      for (let i = 0; i < this.nodes.length && !set; i++) {
+        if (this.nodes[i].name === location[0]) {
+          set = this.nodes[i].setFieldByLocation(field, location.slice(1));
+        }
+      }
+
+      return set;
+    }
+  }
 }
 
 class RootNode extends Node {
   constructor(public limit: number, name: string) {
     super(name);
-  }
-
-  public setFieldByLocation(field: FieldNode, location: string[]) {
-    let set = false;
-
-    for (let i = 0; i < this.nodes.length && !set; i++) {
-      if (this.nodes[i].setFieldByLocation(field, location)) set = true;
-    }
   }
 
   public getFields(): DatasetField[] {
@@ -174,23 +192,6 @@ export class FieldNode<T = FieldDataType> extends Node {
           object: this.nodes.map((el) => el.getNodeObject()),
         },
       } as DatasetField<T>;
-    }
-  }
-
-  public setFieldByLocation(field: FieldNode, location: string[]): boolean {
-    if (location.length === 0) {
-      this.nodes.push(field);
-      return true;
-    } else {
-      let set = false;
-
-      for (let i = 0; i < this.nodes.length && !set; i++) {
-        if (this.nodes[i].name === location[0]) {
-          set = this.nodes[i].setFieldByLocation(field, location.slice(1));
-        }
-      }
-
-      return set;
     }
   }
 }

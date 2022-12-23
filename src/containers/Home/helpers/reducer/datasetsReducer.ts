@@ -98,8 +98,9 @@ export const datasetsReducer: Reducer<DatasetTree[], DatasetPayload> = (
     }
 
     case DATASETS_ACTIONS.ADD_NEW_FIELD: {
+      console.log("Hola");
       const newDatasets = datasets.map((d) => {
-        if (d.id === action.payload.fieldName) {
+        if (d.name === action.payload.location[0]) {
           const newNode = new FieldNode<SingleValueDataType>(
             action.payload.fieldName,
             {
@@ -116,8 +117,11 @@ export const datasetsReducer: Reducer<DatasetTree[], DatasetPayload> = (
             }
           );
 
-          d.setNodeByLocation(newNode, action.payload.location);
+          d.setNodeByLocation(newNode, action.payload.location.slice(1));
+
+          console.log(d.getDatasetObject());
         }
+
         return d;
       });
 
