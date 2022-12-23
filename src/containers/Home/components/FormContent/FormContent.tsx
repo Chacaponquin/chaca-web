@@ -13,6 +13,7 @@ import CustomForm from "./components/CustomForm/CustomForm";
 import RefForm from "./components/RefForm/RefForm";
 import SingleValueForm from "./components/SingleValueForm/SingleValueForm";
 import clsx from "clsx";
+import DataTypeSelect from "./components/DataTypeSelect/DataTypeSelect";
 
 const FormContent = () => {
   const [docsOpen, setDocsOpen] = useState(true);
@@ -32,11 +33,13 @@ const FormContent = () => {
 
       <div className={containerClass()}>
         <div className="w-[70%] h-full flex">
-          <div className="gap-16 overflow-y-auto h-full bg-white w-full flex">
+          <div className="gap-4 overflow-y-auto h-full bg-white w-full flex flex-col">
             {selectField === null ? (
               <NoSelectField />
             ) : (
               <Fragment>
+                <DataTypeSelect />
+
                 {selectField.info.dataType.type === DATA_TYPES.SINGLE_VALUE && (
                   <SingleValueForm
                     field={
@@ -70,7 +73,9 @@ const FormContent = () => {
 };
 
 const NoSelectField = () => {
-  return <div>No selected field</div>;
+  return (
+    <div className="flex items-center justify-center">No selected field</div>
+  );
 };
 
 export default FormContent;

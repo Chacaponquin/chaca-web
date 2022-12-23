@@ -3,7 +3,7 @@ import { createContext, useReducer, useState } from "react";
 import {
   CONFIG_ACTIONS,
   DATASETS_ACTIONS,
-} from "../../containers/Home/helpers/reducer/ACTION_TYPES";
+} from "../../containers/Home/constants/ACTION_TYPES";
 import {
   ConfigPayload,
   configReducer,

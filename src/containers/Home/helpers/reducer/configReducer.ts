@@ -1,5 +1,5 @@
 import { ConfigSchema } from "../../../../shared/interfaces/config.iterface";
-import { CONFIG_ACTIONS } from "./ACTION_TYPES";
+import { CONFIG_ACTIONS } from "../../constants/ACTION_TYPES";
 import { Reducer } from "react";
 import { FILE_TYPE } from "../../../../shared/constant/FILE_TYPE";
 import { FieldArgument } from "../../../../shared/interfaces/datasets.interface";

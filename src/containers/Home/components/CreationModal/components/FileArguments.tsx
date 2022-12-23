@@ -7,7 +7,7 @@ import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
 import { DataTransform } from "../../../../../shared/helpers/DataTransform";
 import { FieldArgument } from "../../../../../shared/interfaces/datasets.interface";
 import { ArgumentSchema } from "../../../../../shared/interfaces/options.interface";
-import { CONFIG_ACTIONS } from "../../../helpers/reducer/ACTION_TYPES";
+import { CONFIG_ACTIONS } from "../../../constants/ACTION_TYPES";
 
 const FileArguments = () => {
   const [fileArguments, setFileArguments] = useState<ArgumentSchema[]>([]);

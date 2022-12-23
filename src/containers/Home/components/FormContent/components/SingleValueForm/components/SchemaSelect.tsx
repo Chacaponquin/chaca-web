@@ -7,7 +7,7 @@ import {
   DatasetField,
   SingleValueDataType,
 } from "../../../../../../../shared/interfaces/datasets.interface";
-import { DATASETS_ACTIONS } from "../../../../../helpers/reducer/ACTION_TYPES";
+import { DATASETS_ACTIONS } from "../../../../../constants/ACTION_TYPES";
 import { useHome } from "../../../../../hooks/useHome";
 
 const SchemaSelect = ({

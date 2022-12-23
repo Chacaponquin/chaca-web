@@ -3,7 +3,7 @@ import {
   FieldDataType,
   SingleValueDataType,
 } from "../../../../shared/interfaces/datasets.interface";
-import { DATASETS_ACTIONS } from "./ACTION_TYPES";
+import { DATASETS_ACTIONS } from "../../constants/ACTION_TYPES";
 import { Reducer } from "react";
 import { Schema } from "../../../../shared/interfaces/options.interface";
 import { DatasetTree, FieldNode } from "../../../../shared/helpers/DatasetTree";

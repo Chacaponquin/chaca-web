@@ -51,3 +51,12 @@
 .no-scroll::-webkit-scrollbar {
   display: none;
 }
+
+.p-inputtext {
+  font-size: inherit !important;
+  padding: 0.1rem 1rem !important;
+}
+
+.p-component {
+  font-size: inherit;
+}

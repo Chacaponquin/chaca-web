@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { DATASETS_ACTIONS } from "../../helpers/reducer/ACTION_TYPES";
+import { DATASETS_ACTIONS } from "../../constants/ACTION_TYPES";
 import OptionsButton from "../OptionsButton";
 import DataTypeSelect from "./components/SingleValueForm/DataTypeSelect";
 import { DatasetsContext } from "../../../../shared/context/DatasetsContext";

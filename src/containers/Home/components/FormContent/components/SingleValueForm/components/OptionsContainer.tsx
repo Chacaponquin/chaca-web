@@ -9,7 +9,7 @@ import {
   SingleValueDataType,
 } from "../../../../../../../shared/interfaces/datasets.interface";
 import { DatasetsContext } from "../../../../../../../shared/context/DatasetsContext";
-import { DATASETS_ACTIONS } from "../../../../../helpers/reducer/ACTION_TYPES";
+import { DATASETS_ACTIONS } from "../../../../../constants/ACTION_TYPES";
 import { DATA_TYPES } from "../../../../../../../shared/constant/DATA_TYPES";
 import OptionArguments from "./OptionArguments";
 import { useHome } from "../../../../../hooks/useHome";

@@ -1,10 +1,15 @@
 import { useContext } from "react";
 import { DatasetsContext } from "../../../../shared/context/DatasetsContext";
+import { MODAL_ACTIONS } from "../../constants/MODAL_ACTIONS";
 import DatasetsHeader from "./components/DatasetsHeader";
 import FieldContainer from "./components/FieldContainer";
 import NoFieldsMessage from "./components/NoFieldsMessage";
 
-const FieldsMenu = () => {
+const FieldsMenu = ({
+  handleOpenModal,
+}: {
+  handleOpenModal: (a: MODAL_ACTIONS) => void;
+}) => {
   const { selectedDataset } = useContext(DatasetsContext);
 
   return (
@@ -17,7 +22,7 @@ const FieldsMenu = () => {
             <FieldContainer key={f.id} margin={0} field={f} />
           ))
         ) : (
-          <NoFieldsMessage />
+          <NoFieldsMessage handleOpenModal={handleOpenModal} />
         )}
       </div>
     </div>

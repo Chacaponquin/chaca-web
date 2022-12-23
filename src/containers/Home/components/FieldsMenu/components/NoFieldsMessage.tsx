@@ -1,13 +1,20 @@
 import { useContext } from "react";
 import { AppConfigContext } from "../../../../../shared/context/AppConfigContext";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
-import { DATASETS_ACTIONS } from "../../../helpers/reducer/ACTION_TYPES";
+import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES";
+import { MODAL_ACTIONS } from "../../../constants/MODAL_ACTIONS";
 
-const NoFieldsMessage = () => {
+const NoFieldsMessage = ({
+  handleOpenModal,
+}: {
+  handleOpenModal: (a: MODAL_ACTIONS) => void;
+}) => {
   const { datasetDispatch, selectedDataset } = useContext(DatasetsContext);
   const { schemas } = useContext(AppConfigContext);
 
   const handleNewField = () => {
+    handleOpenModal(MODAL_ACTIONS.ADD_FIELD);
+
     datasetDispatch({
       type: DATASETS_ACTIONS.ADD_NEW_FIELD,
       payload: {

@@ -1,7 +1,7 @@
 import { Dropdown } from "primereact/dropdown";
 import { useContext, ReactElement } from "react";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
-import { CONFIG_ACTIONS } from "../../../helpers/reducer/ACTION_TYPES";
+import { CONFIG_ACTIONS } from "../../../constants/ACTION_TYPES";
 import FileArguments from "./FileArguments";
 import { UserContext } from "../../../../../shared/context/UserContext";
 import BooleanInput from "../../../../../shared/components/FieldInputArgument/components/BooleanInput";

@@ -1,6 +1,7 @@
 import ArrowLeft from "./ArrowLeft";
 import ArrowRight from "./ArrowRight";
 import Bars from "./Bars";
+import Change from "./Change";
 import Code from "./Code";
 import Config from "./Config";
 import Copy from "./Copy";
@@ -46,4 +47,5 @@ export {
   Plus,
   Private,
   Schema,
+  Change,
 };

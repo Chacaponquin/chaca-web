@@ -1,10 +1,13 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Dropdown } from "primereact/dropdown";
-import { Config, Plus } from "../../../../../shared/assets/icons";
+import { Bars, Plus } from "../../../../../shared/assets/icons";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
-import { DATASETS_ACTIONS } from "../../../helpers/reducer/ACTION_TYPES";
+import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES";
+import ConfigMenu from "./ConfigMenu";
 
 const DatasetsHeader = () => {
+  const [openConfig, setOpenConfig] = useState(true);
+
   const { datasets, handleSelectDataset, selectedDataset, datasetDispatch } =
     useContext(DatasetsContext);
 
@@ -21,6 +24,7 @@ const DatasetsHeader = () => {
         <button onClick={handleNewDataset}>
           <Plus size={18} />
         </button>
+
         <Dropdown
           className="w-[170px] !text-sm"
           placeholder="Select a Dataset"
@@ -34,9 +38,13 @@ const DatasetsHeader = () => {
         />
       </div>
 
-      <button>
-        <Config size={18} />
-      </button>
+      <div className="flex flex-col items-end">
+        <button onClick={() => setOpenConfig(!openConfig)}>
+          <Bars size={18} />
+        </button>
+
+        {openConfig && <ConfigMenu />}
+      </div>
     </div>
   );
 };
