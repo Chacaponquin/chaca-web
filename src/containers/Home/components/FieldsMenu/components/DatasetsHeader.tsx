@@ -2,20 +2,31 @@ import { useContext, useState } from "react";
 import { Dropdown } from "primereact/dropdown";
 import { Bars, Plus } from "../../../../../shared/assets/icons";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
-import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES";
 import ConfigMenu from "./ConfigMenu";
+import { ModalProps } from "../../../interfaces/modal.interface";
+import { MODAL_ACTIONS } from "../../../constants/MODAL_ACTIONS";
 
-const DatasetsHeader = () => {
+const DatasetsHeader = ({
+  handleOpenModal,
+}: {
+  handleOpenModal: (props: ModalProps) => void;
+}) => {
   const [openConfig, setOpenConfig] = useState(false);
 
-  const { datasets, handleSelectDataset, selectedDataset, datasetDispatch } =
+  const { datasets, handleSelectDataset, selectedDataset } =
     useContext(DatasetsContext);
 
   const handleNewDataset = () => {
-    datasetDispatch({
-      type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
-      payload: { datasetName: "Que pasa wey" },
+    handleOpenModal({ type: MODAL_ACTIONS.ADD_DATASET });
+    setOpenConfig(false);
+  };
+
+  const handleAddDatasetField = () => {
+    handleOpenModal({
+      type: MODAL_ACTIONS.ADD_FIELD,
+      location: [selectedDataset.name],
     });
+    setOpenConfig(false);
   };
 
   return (
@@ -43,7 +54,9 @@ const DatasetsHeader = () => {
           <Bars size={18} />
         </button>
 
-        {openConfig && <ConfigMenu />}
+        {openConfig && (
+          <ConfigMenu handleAddDatasetField={handleAddDatasetField} />
+        )}
       </div>
     </div>
   );

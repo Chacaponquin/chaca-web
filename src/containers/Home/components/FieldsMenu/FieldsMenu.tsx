@@ -14,7 +14,7 @@ const FieldsMenu = ({
 
   return (
     <div className="h-screen w-[370px] bg-white border-2">
-      <DatasetsHeader />
+      <DatasetsHeader handleOpenModal={handleOpenModal} />
 
       <div className="h-full bg-white w-full flex flex-col">
         {selectedDataset.fields.length > 0 ? (

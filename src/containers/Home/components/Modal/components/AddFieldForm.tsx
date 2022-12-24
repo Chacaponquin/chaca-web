@@ -10,8 +10,8 @@ import { Slider } from "primereact/slider";
 import { InputNumber } from "primereact/inputnumber";
 import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES";
 import { ModalAddFieldProps } from "../../../interfaces/modal.interface";
-import ModalButtons from "./shared/components/ModalButtons";
-import ModalTitle from "./shared/components/ModalTitle";
+import ModalTitle from "../shared/components/ModalTitle";
+import ModalButtons from "../shared/components/ModalButtons";
 
 const AddFieldForm = ({
   props,

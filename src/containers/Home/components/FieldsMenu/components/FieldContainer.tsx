@@ -11,7 +11,7 @@ import FieldConfigMenu from "./FieldConfigMenu";
 import { ModalProps } from "../../../interfaces/modal.interface";
 
 const Point = () => {
-  return <div className="bg-principal-bg w-[8px] h-[8px] rounded-full"></div>;
+  return <div className="bg-principal-bg w-[7px] h-[7px] rounded-full"></div>;
 };
 
 const FieldContainer = ({
@@ -25,7 +25,10 @@ const FieldContainer = ({
 }) => {
   const { selectField, handleSelectField, selectedDataset } =
     useContext(DatasetsContext);
+
   const [openMenu, setOpenMenu] = useState(false);
+
+  const [subFieldsOpen, setSubFieldsOpen] = useState(false);
 
   const divClass = () => {
     return clsx(
@@ -51,7 +54,14 @@ const FieldContainer = ({
         <div className={divClass()}>
           <div className="flex items-center">
             {field.dataType.type === DATA_TYPES.MIXED ? (
-              <ArrowRight size={18} />
+              <button
+                style={{
+                  transform: subFieldsOpen ? "rotate(90deg)" : "rotate(0deg)",
+                }}
+                onClick={() => setSubFieldsOpen(!subFieldsOpen)}
+              >
+                <ArrowRight size={18} />
+              </button>
             ) : (
               <div className="pl-[5px]">
                 <Point />
@@ -80,7 +90,7 @@ const FieldContainer = ({
         </div>
       </div>
 
-      {field.dataType.type === DATA_TYPES.MIXED && (
+      {field.dataType.type === DATA_TYPES.MIXED && subFieldsOpen && (
         <Fragment>
           {field.dataType.object.map((s) => (
             <FieldContainer

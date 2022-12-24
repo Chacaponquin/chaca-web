@@ -12,7 +12,7 @@ const OptionsBar = () => {
     );
   };
 
-  const textClass = "text-sm";
+  const textClass = "text-sm font-fontBold";
   const iconSize = 25;
 
   return (

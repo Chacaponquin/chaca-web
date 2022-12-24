@@ -1,5 +1,6 @@
 import { MODAL_ACTIONS } from "../../constants/MODAL_ACTIONS";
 import { ModalProps } from "../../interfaces/modal.interface";
+import AddDatasetForm from "./components/AddDatasetForm";
 import AddFieldForm from "./components/AddFieldForm";
 
 const Modal = ({
@@ -14,6 +15,9 @@ const Modal = ({
       <div className="bg-white rounded-md px-10 py-5 shadow-md w-[500px]">
         {props.type === MODAL_ACTIONS.ADD_FIELD && (
           <AddFieldForm handleCloseModal={handleCloseModal} props={props} />
+        )}
+        {props.type === MODAL_ACTIONS.ADD_DATASET && (
+          <AddDatasetForm handleCloseModal={handleCloseModal} />
         )}
       </div>
     </div>

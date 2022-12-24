@@ -1,13 +1,16 @@
 import { useContext } from "react";
 import { InputNumber } from "primereact/inputnumber";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
-import { File } from "../../../../../shared/assets/icons";
 import clsx from "clsx";
 import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES";
 import { UserContext } from "../../../../../shared/context/UserContext";
 import { AppConfigContext } from "../../../../../shared/context/AppConfigContext";
 
-const ConfigMenu = () => {
+const ConfigMenu = ({
+  handleAddDatasetField,
+}: {
+  handleAddDatasetField: () => void;
+}) => {
   const { selectedDataset, datasetDispatch } = useContext(DatasetsContext);
   const { actualUser } = useContext(UserContext);
   const { noUserLimits } = useContext(AppConfigContext);
@@ -19,12 +22,16 @@ const ConfigMenu = () => {
     );
   };
 
+  const textDivClass = () => {
+    return commonClass(commonClass("flex items-center text-sm text-center"));
+  };
+
   return (
     <div className="absolute flex flex-col -translate-x-0 translate-y-5 rounded-md bg-white shadow-md">
       <div className={commonClass("gap-5")}>
-        <File size={18} />
+        <p className="mb-0 text-sm">Documents:</p>
         <InputNumber
-          className="!text-sm w-[100px]"
+          className="!text-sm w-[60px]"
           min={1}
           max={
             actualUser
@@ -44,9 +51,11 @@ const ConfigMenu = () => {
         />
       </div>
 
-      <div className={commonClass("flex items-center text-sm text-center")}>
-        Export
+      <div className={textDivClass()} onClick={handleAddDatasetField}>
+        New Field
       </div>
+
+      <div className={textDivClass()}>Export</div>
     </div>
   );
 };

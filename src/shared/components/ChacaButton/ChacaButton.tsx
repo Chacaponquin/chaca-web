@@ -20,7 +20,7 @@ const buttonClass = ({ size, className, color }: ChacaButtonProps) => {
       "bg-principal-bg": color === "gradient",
       "bg-dangerColor": color === "danger",
       "bg-secondColor": color === "secondary",
-      "bg-slate-100 !text-black": color === "cancel",
+      "bg-slate-200 !text-black": color === "cancel",
     }
   );
 };
