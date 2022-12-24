@@ -5,6 +5,7 @@ import {
 } from "../interfaces/datasets.interface";
 import { NodeInfo } from "../interfaces/tree.interface";
 import { v4 as uuid } from "uuid";
+import { DATA_TYPES } from "../constant/DATA_TYPES";
 
 export class DatasetTree {
   private root: RootNode;
@@ -67,7 +68,7 @@ export class DatasetTree {
   public getFieldLocation(fieldID: string): string[] {
     const ret = this.root.getFieldLocation(fieldID, []);
 
-    if (ret) return [this.name, ...ret];
+    if (ret) return ret;
     else return [];
   }
 }
@@ -120,10 +121,10 @@ export class Node {
   ): string[] | null {
     if (this.nodes.length === 0) return null;
     else {
-      let found = this.nodes.find((el) => el.id === fieldID);
+      let found = this.nodes.find((n) => n.id === fieldID);
 
       if (found) {
-        return [];
+        return [...location, this.name];
       } else {
         let ret: string[] | null = null;
 
@@ -134,14 +135,18 @@ export class Node {
           ]);
         }
 
-        return ret ? [...location, ...ret] : null;
+        return ret ? ret : null;
       }
     }
   }
 
   public setFieldByLocation(field: FieldNode, location: string[]): boolean {
     if (location.length === 0) {
-      this.nodes.push(field);
+      // verificar que no existe otro field con ese nombre dentro del nodo
+      // en caso de que no este repetido se guarda
+      const found = this.nodes.find((n) => n.name === field.name);
+      if (!found) this.nodes.push(field);
+
       return true;
     } else {
       let set = false;
@@ -188,8 +193,8 @@ export class FieldNode<T = FieldDataType> extends Node {
         id: this.id,
         name: this.name,
         dataType: {
-          ...this.info.dataType,
           object: this.nodes.map((el) => el.getNodeObject()),
+          type: DATA_TYPES.MIXED,
         },
       } as DatasetField<T>;
     }

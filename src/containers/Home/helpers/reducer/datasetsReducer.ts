@@ -106,8 +106,6 @@ export const datasetsReducer: Reducer<DatasetTree[], DatasetPayload> = (
           );
 
           d.setNodeByLocation(newNode, action.payload.location.slice(1));
-
-          console.log(d.getDatasetObject());
         }
 
         return d;

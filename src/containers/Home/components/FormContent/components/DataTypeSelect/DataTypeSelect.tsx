@@ -14,7 +14,7 @@ const DataTypeSelect = () => {
 
   const barClass = (select: boolean) => {
     return clsx(
-      "h-[5px] w-full rounded-full bg-secondColor mt-2 transition-all duration-200",
+      "h-[5px] w-full rounded-full bg-secondColor mt-1 transition-all duration-300",
       { "opacity-100": select },
       { "opacity-0": !select }
     );

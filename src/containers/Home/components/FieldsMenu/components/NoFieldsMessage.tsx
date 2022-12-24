@@ -1,13 +1,21 @@
 import { ChacaSimpleButton } from "../../../../../shared/components/ChacaButton/ChacaButton";
 import { MODAL_ACTIONS } from "../../../constants/MODAL_ACTIONS";
+import { ModalProps } from "../../../interfaces/modal.interface";
+import { useContext } from "react";
+import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
 
 const NoFieldsMessage = ({
   handleOpenModal,
 }: {
-  handleOpenModal: (a: MODAL_ACTIONS) => void;
+  handleOpenModal: (a: ModalProps) => void;
 }) => {
+  const { selectedDataset } = useContext(DatasetsContext);
+
   const handleNewField = () => {
-    handleOpenModal(MODAL_ACTIONS.ADD_FIELD);
+    handleOpenModal({
+      type: MODAL_ACTIONS.ADD_FIELD,
+      location: [selectedDataset.name],
+    });
   };
 
   return (

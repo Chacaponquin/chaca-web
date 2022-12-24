@@ -70,9 +70,9 @@ const Option = ({
     return clsx(
       "w-full rounded-md flex items-center flex-col py-2 px-4",
       {
-        "bg-slate-300": isSelected,
+        "bg-slate-200": isSelected,
       },
-      { "bg-slate-200": !isSelected }
+      { "bg-slate-100": !isSelected }
     );
   };
 

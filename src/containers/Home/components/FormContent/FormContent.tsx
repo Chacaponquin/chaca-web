@@ -32,7 +32,7 @@ const FormContent = () => {
       <FieldInfoHeader />
 
       <div className={containerClass()}>
-        <div className="w-[70%] h-full flex">
+        <div className="w-[60%] h-full flex">
           <div className="gap-4 overflow-y-auto h-full bg-white w-full flex flex-col">
             {selectField === null ? (
               <NoSelectField />

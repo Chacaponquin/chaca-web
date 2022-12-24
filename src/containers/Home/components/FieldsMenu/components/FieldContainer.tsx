@@ -8,6 +8,7 @@ import {
 import clsx from "clsx";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
 import FieldConfigMenu from "./FieldConfigMenu";
+import { ModalProps } from "../../../interfaces/modal.interface";
 
 const Point = () => {
   return <div className="bg-principal-bg w-[8px] h-[8px] rounded-full"></div>;
@@ -16,9 +17,11 @@ const Point = () => {
 const FieldContainer = ({
   margin,
   field,
+  handleOpenModal,
 }: {
   field: DatasetField<FieldDataType>;
   margin: number;
+  handleOpenModal: (props: ModalProps) => void;
 }) => {
   const { selectField, handleSelectField, selectedDataset } =
     useContext(DatasetsContext);
@@ -26,47 +29,66 @@ const FieldContainer = ({
 
   const divClass = () => {
     return clsx(
-      "flex flex-col w-full cursor-pointer transition-all duration-300 hover:bg-slate-100 px-2",
+      "w-full flex items-center cursor-pointer justify-between py-1 transition-all duration-300 hover:bg-slate-100 px-2",
       {
         "bg-slate-100": selectField && selectField.id === field.id,
       }
     );
   };
 
-  const handleSelect = () => {
-    handleSelectField(selectedDataset.id, field.id);
+  const handleSelect = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation();
+    if (!(field.dataType.type === DATA_TYPES.MIXED))
+      handleSelectField(selectedDataset.id, field.id);
   };
 
   return (
-    <div className={divClass()} onClick={handleSelect}>
-      <div className={`flex items-center justify-between py-1 ml-${margin}`}>
-        <div className="flex items-center">
-          {field.dataType.type === DATA_TYPES.MIXED ? (
-            <ArrowRight size={20} />
-          ) : (
-            <Point />
-          )}
+    <div className={"flex flex-col w-full"} onClick={handleSelect}>
+      <div
+        className={"flex items-center justify-between"}
+        style={{ paddingLeft: `${margin}px` }}
+      >
+        <div className={divClass()}>
+          <div className="flex items-center">
+            {field.dataType.type === DATA_TYPES.MIXED ? (
+              <ArrowRight size={18} />
+            ) : (
+              <div className="pl-[5px]">
+                <Point />
+              </div>
+            )}
 
-          <p className="ml-3">{field.name}</p>
-        </div>
+            <p className="ml-3">{field.name}</p>
+          </div>
 
-        <div className="flex flex-col">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              setOpenMenu(!openMenu);
-            }}
-          >
-            <Config size={18} />
-            {openMenu && <FieldConfigMenu />}
-          </button>
+          <div className="flex flex-col">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setOpenMenu(!openMenu);
+              }}
+            >
+              <Config size={18} />
+              {openMenu && (
+                <FieldConfigMenu
+                  handleOpenModal={handleOpenModal}
+                  field={field}
+                />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
       {field.dataType.type === DATA_TYPES.MIXED && (
         <Fragment>
           {field.dataType.object.map((s) => (
-            <FieldContainer field={s} margin={margin + 4} key={s.id} />
+            <FieldContainer
+              field={s}
+              margin={margin + 6}
+              key={s.id}
+              handleOpenModal={handleOpenModal}
+            />
           ))}
         </Fragment>
       )}

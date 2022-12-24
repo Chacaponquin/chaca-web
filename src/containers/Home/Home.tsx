@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div className="flex w-full">
       {openModal !== null && (
-        <Modal action={openModal} handleCloseModal={handleCloseModal} />
+        <Modal props={openModal} handleCloseModal={handleCloseModal} />
       )}
 
       <FieldsMenu handleOpenModal={handleOpenModal} />

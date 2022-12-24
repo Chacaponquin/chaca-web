@@ -1,5 +1,4 @@
 import { useState, useContext } from "react";
-import { ChacaSimpleButton } from "../../../../../shared/components/ChacaButton/ChacaButton";
 import { InputText } from "primereact/inputtext";
 import { Checkbox } from "primereact/checkbox";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
@@ -10,13 +9,19 @@ import { DATA_TYPES } from "../../../../../shared/constant/DATA_TYPES";
 import { Slider } from "primereact/slider";
 import { InputNumber } from "primereact/inputnumber";
 import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES";
+import { ModalAddFieldProps } from "../../../interfaces/modal.interface";
+import ModalButtons from "./shared/components/ModalButtons";
+import ModalTitle from "./shared/components/ModalTitle";
 
 const AddFieldForm = ({
+  props,
   handleCloseModal,
 }: {
+  props: ModalAddFieldProps;
   handleCloseModal: () => void;
 }) => {
-  const { datasetDispatch } = useContext(DatasetsContext);
+  const { datasetDispatch, handleDeleteSelectField } =
+    useContext(DatasetsContext);
   const { schemas } = useContext(AppConfigContext);
 
   const [name, setName] = useState("");
@@ -39,18 +44,17 @@ const AddFieldForm = ({
       payload: {
         fieldName: name,
         fieldInfo: field,
-        location: ["New Dataset"],
+        location: props.location,
       },
     });
 
+    handleDeleteSelectField();
     handleCloseModal();
   };
 
   return (
     <div className="flex flex-col w-full">
-      <div className="mb-4">
-        <h1 className="font-fontExtraBold text-3xl">New Field</h1>
-      </div>
+      <ModalTitle titleText="New Field" handleCloseModal={handleCloseModal} />
 
       <div className="flex flex-col gap-4">
         <div className="flex flex-col">
@@ -163,21 +167,11 @@ const AddFieldForm = ({
         </div>
       </div>
 
-      <div className="flex gap-5 justify-end mt-5">
-        <ChacaSimpleButton
-          color="primary"
-          size="large"
-          onClick={handleAddField}
-          text="Add Field"
-        />
-
-        <ChacaSimpleButton
-          color="cancel"
-          size="large"
-          onClick={handleCloseModal}
-          text="Cancel"
-        />
-      </div>
+      <ModalButtons
+        nextText="Add Field"
+        handleCancel={handleCloseModal}
+        handleNext={handleAddField}
+      />
     </div>
   );
 };

@@ -26,6 +26,7 @@ interface DatasetContext {
   selectField: FieldNode | null;
   handleSelectDataset: (id: string) => void;
   handleSelectField: (datasetID: string, fieldID: string) => void;
+  handleDeleteSelectField: () => void;
 }
 
 const DatasetsContext = createContext<DatasetContext>({
@@ -37,6 +38,7 @@ const DatasetsContext = createContext<DatasetContext>({
   selectField: null,
   handleSelectDataset: () => {},
   handleSelectField: () => {},
+  handleDeleteSelectField: () => {},
 });
 
 const DatasetsProvider = ({ children }: { children: ReactElement }) => {
@@ -96,6 +98,10 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
     setSelectField(foundDataset.findFieldByID(fieldID));
   };
 
+  const handleDeleteSelectField = () => {
+    setSelectField(null);
+  };
+
   const data = {
     datasets,
     datasetDispatch,
@@ -105,6 +111,7 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
     selectField,
     handleSelectDataset,
     handleSelectField,
+    handleDeleteSelectField,
   };
 
   return (

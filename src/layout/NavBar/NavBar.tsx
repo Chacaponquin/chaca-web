@@ -22,13 +22,7 @@ const navBarOptions = [
   //{ icon: "docs", label: "Docs", url: APP_ROUTES.DOCS },
 ];
 
-const NavBar = ({
-  handleOpenSideBar,
-  handleOpenApiSideBar,
-}: {
-  handleOpenApiSideBar: () => void;
-  handleOpenSideBar: () => void;
-}) => {
+const NavBar = ({ handleOpenSideBar }: { handleOpenSideBar: () => void }) => {
   const { actualUser } = useContext(UserContext);
   const [windowSize, setWindowSize] = useState(window.innerWidth);
 
@@ -43,13 +37,7 @@ const NavBar = ({
   return (
     <div className="w-full py-4 px-8 esm:px-0 esm:py-0 bg-transparent z-[53] mb-6">
       <div className="flex w-full shadow-lg rounded-md px-8 py-3 bg-white z-50 esm:px-0">
-        <div className="w-[30%] esm:w-[50px] flex items-center">
-          {location.pathname === APP_ROUTES.API && (
-            <button onClick={handleOpenApiSideBar} className="lg:hidden block">
-              <Bars size={20} />
-            </button>
-          )}
-        </div>
+        <div className="w-[30%] esm:w-[50px] flex items-center"></div>
 
         <div className="flex justify-center items-center gap-3 w-[40%] esm:w-[100%]">
           {navBarOptions.map((el, i) => (

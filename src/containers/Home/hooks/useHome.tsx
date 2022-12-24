@@ -7,7 +7,7 @@ import {
   SubOption,
 } from "../../../shared/interfaces/options.interface";
 import { toast } from "react-toastify";
-import { MODAL_ACTIONS } from "../constants/MODAL_ACTIONS";
+import { ModalProps } from "../interfaces/modal.interface";
 
 export const useHome = () => {
   const { schemas } = useContext(AppConfigContext);
@@ -15,7 +15,7 @@ export const useHome = () => {
   const { datasets, config, selectField } = useContext(DatasetsContext);
   const { socket } = useContext(UserContext);
 
-  const [openModal, setOpenModal] = useState<null | MODAL_ACTIONS>(null);
+  const [openModal, setOpenModal] = useState<null | ModalProps>(null);
 
   const [createDataLoading, setCreateDataLoading] = useState(false);
   const [openCreationModal, setOpenCreationModal] = useState(false);
@@ -26,8 +26,8 @@ export const useHome = () => {
     setOpenCreationModal(false);
   };
 
-  const handleOpenModal = (action: MODAL_ACTIONS) => {
-    setOpenModal(action);
+  const handleOpenModal = (props: ModalProps) => {
+    setOpenModal(props);
   };
 
   const handleCloseModal = () => {
@@ -94,5 +94,12 @@ export const useHome = () => {
     [schemas]
   );
 
-  return { openModal, handleOpenModal, handleCloseModal, findParent, findType };
+  return {
+    openModal,
+    handleOpenModal,
+    handleCloseModal,
+    findParent,
+    findType,
+    porcent,
+  };
 };
