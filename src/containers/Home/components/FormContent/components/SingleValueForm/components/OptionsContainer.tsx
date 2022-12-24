@@ -12,7 +12,7 @@ import { DatasetsContext } from "../../../../../../../shared/context/DatasetsCon
 import { DATASETS_ACTIONS } from "../../../../../constants/ACTION_TYPES";
 import { DATA_TYPES } from "../../../../../../../shared/constant/DATA_TYPES";
 import OptionArguments from "./OptionArguments";
-import { useHome } from "../../../../../hooks/useHome";
+import { useUtils } from "../../../../../hooks/useUtils";
 
 const OptionsContainer = ({
   options,
@@ -44,7 +44,7 @@ const Option = ({
   field: DatasetField<SingleValueDataType>;
   isSelected: boolean;
 }) => {
-  const { findType } = useHome();
+  const { findType } = useUtils();
   const { selectedDataset, datasetDispatch } = useContext(DatasetsContext);
   const [openArguments, setOpenArguments] = useState(isSelected);
 

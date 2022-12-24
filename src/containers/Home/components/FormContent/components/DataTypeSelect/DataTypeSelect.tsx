@@ -22,7 +22,7 @@ const DataTypeSelect = () => {
 
   const textClass = (select: boolean) => {
     return clsx(
-      "mb-0 w-full text-center font-fontBold text-lg pointer-events-none transition-all duration-300",
+      "mb-0 w-full text-center font-fontBold text-lg transition-all duration-300 hover:text-black",
       { "text-black": select },
       { "text-slate-400": !select }
     );

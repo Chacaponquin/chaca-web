@@ -11,7 +11,7 @@ const buttonClass = ({ size, className, color }: ChacaButtonProps) => {
     "font-fontBold text-white flex items-center fill-white transition-all duration-300 hover:opacity-70",
     className,
     {
-      "py-1 px-5 text-base rounded-md": size === "small",
+      "py-1 px-5 text-base rounded": size === "small",
       "py-1 px-5 text-base rounded-sm": size === "medium",
       "py-1 px-6 text-lg rounded-sm": size === "large",
     },

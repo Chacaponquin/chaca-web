@@ -66,7 +66,13 @@ const FormContent = () => {
           </div>
         </div>
 
-        <SidePanel docsOpen={docsOpen} handleCloseDocs={handleCloseDocs} />
+        {selectField && (
+          <SidePanel
+            docsOpen={docsOpen}
+            handleCloseDocs={handleCloseDocs}
+            field={selectField}
+          />
+        )}
       </div>
     </div>
   );

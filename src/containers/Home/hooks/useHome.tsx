@@ -1,18 +1,11 @@
-import { useCallback, useContext, useEffect, useState } from "react";
-import { AppConfigContext } from "../../../shared/context/AppConfigContext";
+import { useContext, useEffect, useState } from "react";
 import { DatasetsContext } from "../../../shared/context/DatasetsContext";
 import { UserContext } from "../../../shared/context/UserContext";
-import {
-  Schema,
-  SubOption,
-} from "../../../shared/interfaces/options.interface";
 import { toast } from "react-toastify";
 import { ModalProps } from "../interfaces/modal.interface";
 
 export const useHome = () => {
-  const { schemas } = useContext(AppConfigContext);
-
-  const { datasets, config, selectField } = useContext(DatasetsContext);
+  const { datasets, config } = useContext(DatasetsContext);
   const { socket } = useContext(UserContext);
 
   const [openModal, setOpenModal] = useState<null | ModalProps>(null);
@@ -79,27 +72,10 @@ export const useHome = () => {
     }
   };
 
-  const findParent = useCallback(
-    (p: string): Schema => {
-      return schemas.find((el) => el.parent === p)!;
-    },
-    [schemas]
-  );
-
-  const findType = useCallback(
-    (p: string, t: string): SubOption => {
-      const foundParent = schemas.find((el) => el.parent === p)!;
-      return foundParent.options.find((el) => el.name === t)!;
-    },
-    [schemas]
-  );
-
   return {
     openModal,
     handleOpenModal,
     handleCloseModal,
-    findParent,
-    findType,
     porcent,
   };
 };

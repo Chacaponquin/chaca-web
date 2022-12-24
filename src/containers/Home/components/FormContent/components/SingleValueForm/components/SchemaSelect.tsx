@@ -8,7 +8,7 @@ import {
   SingleValueDataType,
 } from "../../../../../../../shared/interfaces/datasets.interface";
 import { DATASETS_ACTIONS } from "../../../../../constants/ACTION_TYPES";
-import { useHome } from "../../../../../hooks/useHome";
+import { useUtils } from "../../../../../hooks/useUtils";
 
 const SchemaSelect = ({
   field,
@@ -17,7 +17,7 @@ const SchemaSelect = ({
 }) => {
   const { schemas } = useContext(AppConfigContext);
   const { datasetDispatch, selectedDataset } = useContext(DatasetsContext);
-  const { findParent } = useHome();
+  const { findParent } = useUtils();
 
   return (
     <div className="flex px-5">
