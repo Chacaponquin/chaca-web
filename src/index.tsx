@@ -11,9 +11,13 @@ import {
   MySchema,
   Landing,
   ContactUs,
+  Error404,
 } from "./containers";
-import UserProvider, { UserContext } from "./shared/context/UserContext";
+
+import UserProvider from "./shared/context/UserContext";
+import AppConfigProvider from "./shared/context/AppConfigContext";
 import NoUserRoute from "./shared/routes/protected/NoUserRoute";
+
 import { APP_ROUTES } from "./shared/routes/app/APP_ROUTES";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -23,28 +27,9 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 
-import { useContext } from "react";
-import LoaderContainer from "./shared/components/Loader/LoaderContainer";
-import AppConfigProvider, {
-  AppConfigContext,
-} from "./shared/context/AppConfigContext";
-
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 
 const AppCont = () => {
-  const { loading } = useContext(UserContext);
-  const { initialFetchLoading } = useContext(AppConfigContext);
-
-  if (loading || initialFetchLoading)
-    return (
-      <div className="w-screen overflow-hidden h-screen flex justify-center items-center">
-        <LoaderContainer
-          className={"w-[200px] esm:w-[120px]"}
-          loading={loading || initialFetchLoading}
-        />
-      </div>
-    );
-
   return (
     <BrowserRouter>
       <Routes>
@@ -65,6 +50,8 @@ const AppCont = () => {
           {/*<Route path={APP_ROUTES.DOCS} element={<Docs />} />*/}
           <Route path={APP_ROUTES.MY_SCHEMA} element={<MySchema />} />
         </Route>
+
+        <Route path="*" element={<Error404 />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,9 +1,9 @@
 import { Dropdown } from "primereact/dropdown";
 import { InputNumber } from "primereact/inputnumber";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Calendar } from "primereact/calendar";
 import BooleanInput from "./components/BooleanInput";
-import { ArgumentSchema } from "../../interfaces/options.interface";
+import { Argument } from "../../interfaces/options.interface";
 import { FieldArgument } from "../../interfaces/datasets.interface";
 import { ARGUMENT_TYPE } from "../../constant/ARGUMENT_TYPE";
 import { DataTransform } from "../../helpers/DataTransform";

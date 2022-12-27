@@ -17,7 +17,7 @@ const FieldsMenu = ({
       <DatasetsHeader handleOpenModal={handleOpenModal} />
 
       <div className="h-full bg-white w-full flex flex-col">
-        {selectedDataset.fields.length > 0 ? (
+        {selectedDataset && selectedDataset.fields.length > 0 ? (
           selectedDataset.fields.map((f) => (
             <FieldContainer
               key={f.id}

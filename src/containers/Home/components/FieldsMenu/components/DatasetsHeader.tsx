@@ -45,7 +45,7 @@ const DatasetsHeader = ({
           onChange={(e) => {
             handleSelectDataset(e.value);
           }}
-          value={selectedDataset.id}
+          value={selectedDataset ? selectedDataset.id : null}
         />
       </div>
 

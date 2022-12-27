@@ -105,6 +105,7 @@ const Option = ({
               field.dataType.fieldType.type
             ).arguments
           }
+          field={field}
         />
       )}
     </div>

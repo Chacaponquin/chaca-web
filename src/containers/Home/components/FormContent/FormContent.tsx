@@ -23,6 +23,10 @@ const FormContent = () => {
     return clsx("h-full w-full flex", { "justify-center": !docsOpen });
   };
 
+  const formClass = () => {
+    return clsx("h-full flex", { "w-[60%]": docsOpen, "w-[70%]": !docsOpen });
+  };
+
   const handleCloseDocs = () => {
     setDocsOpen(false);
   };
@@ -32,7 +36,7 @@ const FormContent = () => {
       <FieldInfoHeader />
 
       <div className={containerClass()}>
-        <div className="w-[60%] h-full flex">
+        <div className={formClass()}>
           <div className="gap-4 overflow-y-auto h-full bg-white w-full flex flex-col">
             {selectField === null ? (
               <NoSelectField />
@@ -66,12 +70,8 @@ const FormContent = () => {
           </div>
         </div>
 
-        {selectField && (
-          <SidePanel
-            docsOpen={docsOpen}
-            handleCloseDocs={handleCloseDocs}
-            field={selectField}
-          />
+        {selectField && docsOpen && (
+          <SidePanel handleCloseDocs={handleCloseDocs} field={selectField} />
         )}
       </div>
     </div>

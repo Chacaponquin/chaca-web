@@ -31,4 +31,7 @@ export const API_ROUTES = {
   GET_FAQ: "/util/getFAQ",
   CREATE_USER_MESSAGE: "/user/createUserMessage",
   GET_API_DOC: "/docs/getApiSections",
+  DOCS: {
+    GET_CUSTOM_FORM_GUIDES: "/docs/getCustomFormGuides",
+  },
 };

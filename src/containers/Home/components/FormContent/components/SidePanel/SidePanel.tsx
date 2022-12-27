@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { DATA_TYPES } from "../../../../../../shared/constant/DATA_TYPES";
 import { FieldNode } from "../../../../../../shared/helpers/DatasetTree";
 import {
@@ -6,30 +5,25 @@ import {
   SingleValueDataType,
 } from "../../../../../../shared/interfaces/datasets.interface";
 import { useUtils } from "../../../../hooks/useUtils";
+import CustomFormDocs from "./components/CustomFormDocs";
 import SidePanelHeader from "./components/SidePanelHeader";
 import SingleValueDocs from "./components/SingleValueDocs";
 
 const SidePanel = ({
-  docsOpen,
   field,
   handleCloseDocs,
 }: {
   field: FieldNode<FieldDataType>;
-  docsOpen: boolean;
   handleCloseDocs: () => void;
 }) => {
   const { findParent, findType } = useUtils();
 
-  const sectionClass = () => {
-    return clsx(
-      "flex h-full bg-white transition-all duration-300 flex-col px-5 py-3 border-l-2",
-      { "w-[40%]": docsOpen },
-      { "w-[0%]": !docsOpen }
-    );
-  };
-
   return (
-    <div className={sectionClass()}>
+    <div
+      className={
+        "flex h-full bg-white transition-all duration-300 flex-col px-5 py-3 border-l-2 w-[40%]"
+      }
+    >
       <SidePanelHeader
         title="Documentation"
         handleCloseDocs={handleCloseDocs}
@@ -49,6 +43,8 @@ const SidePanel = ({
           )}
         />
       )}
+
+      {field.info.dataType.type === DATA_TYPES.CUSTOM && <CustomFormDocs />}
     </div>
   );
 };
