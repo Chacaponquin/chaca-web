@@ -1,19 +1,44 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useMemo } from "react";
 import { Change, Delete } from "../../../../../shared/assets/icons";
 import { v4 as uuid } from "uuid";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
 import { ChacaIconButton } from "../../../../../shared/components/ChacaButton/ChacaButton";
+import { ModalProps } from "../../../interfaces/modal.interface";
+import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES";
+import { FieldNode } from "../../../../../shared/helpers/DatasetTree";
+import { FieldDataType } from "../../../../../shared/interfaces/datasets.interface";
+import { MODAL_ACTIONS } from "../../../constants/MODAL_ACTIONS";
 
-const FieldInfoHeader = () => {
-  const { selectField, selectedDataset } = useContext(DatasetsContext);
+const FieldInfoHeader = ({
+  handleOpenModal,
+  selectField,
+}: {
+  selectField: FieldNode<FieldDataType>;
+  handleOpenModal: (props: ModalProps) => void;
+}) => {
+  const { selectedDataset, datasetDispatch } = useContext(DatasetsContext);
 
-  const handleRename = () => {};
+  const handleEdit = () => {
+    handleOpenModal({
+      type: MODAL_ACTIONS.EDIT_FIELD,
+      fieldID: selectField.id,
+    });
+  };
 
-  const handleDelete = () => {};
+  const handleDelete = () => {
+    datasetDispatch({
+      type: DATASETS_ACTIONS.DELETE_FIELD,
+      payload: { datasetID: selectedDataset.id, fieldID: selectField!.id },
+    });
+  };
 
-  const location = selectField
-    ? [...selectedDataset.getFieldLocation(selectField.id), selectField.name]
-    : [];
+  const location = useMemo(
+    () => [
+      ...selectedDataset.getFieldLocation(selectField.id),
+      selectField.name,
+    ],
+    [selectField, selectedDataset]
+  );
 
   return (
     <div className="w-full bg-white py-2 flex justify-between items-center px-5 border-b-2">
@@ -33,8 +58,8 @@ const FieldInfoHeader = () => {
           icon={<Change size={19} />}
           color={"primary"}
           size={"small"}
-          text={"Rename"}
-          onClick={handleRename}
+          text={"Edit"}
+          onClick={handleEdit}
         />
 
         <ChacaIconButton

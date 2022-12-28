@@ -14,8 +14,13 @@ import RefForm from "./components/RefForm/RefForm";
 import SingleValueForm from "./components/SingleValueForm/SingleValueForm";
 import clsx from "clsx";
 import DataTypeSelect from "./components/DataTypeSelect/DataTypeSelect";
+import { ModalProps } from "../../interfaces/modal.interface";
 
-const FormContent = () => {
+const FormContent = ({
+  handleOpenModal,
+}: {
+  handleOpenModal: (props: ModalProps) => void;
+}) => {
   const [docsOpen, setDocsOpen] = useState(true);
   const { selectField } = useContext(DatasetsContext);
 
@@ -33,7 +38,12 @@ const FormContent = () => {
 
   return (
     <div className={"flex flex-col w-full h-screen"}>
-      <FieldInfoHeader />
+      {selectField !== null && (
+        <FieldInfoHeader
+          handleOpenModal={handleOpenModal}
+          selectField={selectField}
+        />
+      )}
 
       <div className={containerClass()}>
         <div className={formClass()}>

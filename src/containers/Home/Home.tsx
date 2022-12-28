@@ -15,7 +15,7 @@ const Home = () => {
       )}
 
       <FieldsMenu handleOpenModal={handleOpenModal} />
-      <FormContent />
+      <FormContent handleOpenModal={handleOpenModal} />
     </div>
   );
 };

@@ -13,7 +13,8 @@ const ConfigMenu = ({
   handleAddDatasetField: () => void;
   handleDeleteDataset: () => void;
 }) => {
-  const { selectedDataset, datasetDispatch } = useContext(DatasetsContext);
+  const { selectedDataset, datasetDispatch, datasets } =
+    useContext(DatasetsContext);
   const { actualUser } = useContext(UserContext);
   const { noUserLimits } = useContext(AppConfigContext);
 
@@ -57,9 +58,11 @@ const ConfigMenu = ({
         New Field
       </div>
 
-      <div className={textDivClass()} onClick={handleDeleteDataset}>
-        Delete
-      </div>
+      {datasets.length > 1 && (
+        <div className={textDivClass()} onClick={handleDeleteDataset}>
+          Delete
+        </div>
+      )}
 
       <div className={textDivClass()}>Export</div>
     </div>
