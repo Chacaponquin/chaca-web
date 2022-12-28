@@ -37,7 +37,7 @@ const FormContent = () => {
 
       <div className={containerClass()}>
         <div className={formClass()}>
-          <div className="gap-4 overflow-y-auto h-full bg-white w-full flex flex-col">
+          <div className="gap-2 overflow-y-auto h-full bg-white w-full flex flex-col">
             {selectField === null ? (
               <NoSelectField />
             ) : (
@@ -63,6 +63,7 @@ const FormContent = () => {
                     field={
                       selectField.getNodeObject() as DatasetField<RefDataType>
                     }
+                    docsOpen={docsOpen}
                   />
                 )}
               </Fragment>

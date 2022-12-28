@@ -8,8 +8,10 @@ import { AppConfigContext } from "../../../../../shared/context/AppConfigContext
 
 const ConfigMenu = ({
   handleAddDatasetField,
+  handleDeleteDataset,
 }: {
   handleAddDatasetField: () => void;
+  handleDeleteDataset: () => void;
 }) => {
   const { selectedDataset, datasetDispatch } = useContext(DatasetsContext);
   const { actualUser } = useContext(UserContext);
@@ -53,6 +55,10 @@ const ConfigMenu = ({
 
       <div className={textDivClass()} onClick={handleAddDatasetField}>
         New Field
+      </div>
+
+      <div className={textDivClass()} onClick={handleDeleteDataset}>
+        Delete
       </div>
 
       <div className={textDivClass()}>Export</div>

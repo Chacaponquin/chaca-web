@@ -49,6 +49,7 @@ const AppCont = () => {
           <Route path={APP_ROUTES.API} element={<Api />} />
           {/*<Route path={APP_ROUTES.DOCS} element={<Docs />} />*/}
           <Route path={APP_ROUTES.MY_SCHEMA} element={<MySchema />} />
+          <Route path={APP_ROUTES.NOT_FOUND} element={<Error404 />} />
         </Route>
 
         <Route path="*" element={<Error404 />} />

@@ -91,6 +91,7 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
 
   const handleSelectDataset = (id: string) => {
     setSelectedDataset(datasets.find((el) => el.id === id)!);
+    setSelectField(null);
   };
 
   const handleSelectField = (datasetID: string, fieldID: string) => {

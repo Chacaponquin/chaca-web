@@ -1,4 +1,3 @@
-import ApiLeftPart from "../../shared/components/ApiLeftPart/ApiLeftPart";
 import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Schema } from "../../shared/interfaces/options.interface";
@@ -40,10 +39,6 @@ const Api = () => {
 
   return (
     <div className="w-full flex -translate-y-8 border-b-2">
-      <div className="w-[250px] min-w-[200px] lg:block hidden">
-        <ApiLeftPart />
-      </div>
-
       <div className="w-full flex lg:border-l-2 esm:px-7 px-12 lg:px-20 py-5">
         {findError ? (
           <FetchError />

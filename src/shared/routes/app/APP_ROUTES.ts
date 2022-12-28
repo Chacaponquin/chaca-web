@@ -10,4 +10,5 @@ export const APP_ROUTES = {
   DOCS: "/docs",
   MY_SCHEMA: "/mySchema",
   CONTACT_US: "/contactUs",
+  NOT_FOUND: "/notFound",
 };

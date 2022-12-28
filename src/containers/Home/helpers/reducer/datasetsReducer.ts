@@ -10,6 +10,7 @@ import { DatasetTree, FieldNode } from "../../../../shared/helpers/DatasetTree";
 import { NodeInfo } from "../../../../shared/interfaces/tree.interface";
 
 export type DatasetPayload =
+  | { type: DATASETS_ACTIONS.DELETE_DATASET; payload: { datasetID: string } }
   | {
       type: DATASETS_ACTIONS.SET_INIT_DATASETS;
       payload: { datasets: DatasetTree[] };
@@ -93,6 +94,10 @@ export const datasetsReducer: Reducer<DatasetTree[], DatasetPayload> = (
   action: DatasetPayload
 ): DatasetTree[] => {
   switch (action.type) {
+    case DATASETS_ACTIONS.DELETE_DATASET: {
+      return datasets.filter((d) => d.id !== action.payload.datasetID);
+    }
+
     case DATASETS_ACTIONS.SET_INIT_DATASETS: {
       return action.payload.datasets;
     }

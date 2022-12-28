@@ -56,9 +56,9 @@ const AddFieldForm = ({
     <div className="flex flex-col w-full">
       <ModalTitle titleText="New Field" handleCloseModal={handleCloseModal} />
 
-      <div className="flex flex-col gap-4">
-        <div className="flex flex-col">
-          <label htmlFor="" className="font-fontBold text-lg">
+      <div className="flex flex-col gap-3">
+        <div className="flex items-center gap-3">
+          <label htmlFor="" className="font-fontBold text-lg whitespace-nowrap">
             Field name:
           </label>
           <InputText
@@ -168,6 +168,7 @@ const AddFieldForm = ({
       </div>
 
       <ModalButtons
+        type="edit"
         nextText="Add Field"
         handleCancel={handleCloseModal}
         handleNext={handleAddField}

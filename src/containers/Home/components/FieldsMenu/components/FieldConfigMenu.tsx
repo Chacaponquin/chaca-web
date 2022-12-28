@@ -4,6 +4,7 @@ import {
   DatasetField,
   FieldDataType,
 } from "../../../../../shared/interfaces/datasets.interface";
+import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES";
 import { MODAL_ACTIONS } from "../../../constants/MODAL_ACTIONS";
 import { ModalProps } from "../../../interfaces/modal.interface";
 
@@ -17,7 +18,7 @@ const FieldConfigMenu = ({
   const divClass =
     "cursor-pointer duration-300 w-full transition-all px-3 py-1 hover:bg-slate-200 text-sm";
 
-  const { selectedDataset } = useContext(DatasetsContext);
+  const { selectedDataset, datasetDispatch } = useContext(DatasetsContext);
 
   const handleEditField = () => {
     handleOpenModal({ type: MODAL_ACTIONS.EDIT_FIELD, fieldID: field.id });
@@ -30,6 +31,13 @@ const FieldConfigMenu = ({
     });
   };
 
+  const handleDeleteField = () => {
+    datasetDispatch({
+      type: DATASETS_ACTIONS.DELETE_FIELD,
+      payload: { fieldID: field.id, datasetID: selectedDataset.id },
+    });
+  };
+
   return (
     <div className="absolute bg-white shadow-md rounded-sm -translate-x-[85px] w-[100px]">
       <div className={divClass} onClick={handleEditField}>
@@ -37,6 +45,9 @@ const FieldConfigMenu = ({
       </div>
       <div className={divClass} onClick={handleAddField}>
         Add Field
+      </div>
+      <div className={divClass} onClick={handleDeleteField}>
+        Delete
       </div>
     </div>
   );

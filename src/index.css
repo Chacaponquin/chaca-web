@@ -60,3 +60,13 @@
 .p-component {
   font-size: inherit;
 }
+
+.p-radiobutton {
+  width: 15px !important;
+  height: 15px !important;
+}
+
+.p-radiobutton .p-radiobutton-box {
+  width: 15px !important;
+  height: 15px !important;
+}

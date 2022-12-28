@@ -25,8 +25,8 @@ const AddDatasetForm = ({
     <div className="flex flex-col w-full">
       <ModalTitle titleText="New Dataset" handleCloseModal={handleCloseModal} />
 
-      <div className="flex flex-col">
-        <label htmlFor="" className="font-fontBold text-lg">
+      <div className="flex items-center gap-3">
+        <label htmlFor="" className="font-fontBold text-lg whitespace-nowrap">
           Dataset name:
         </label>
         <InputText
@@ -38,6 +38,7 @@ const AddDatasetForm = ({
       </div>
 
       <ModalButtons
+        type="edit"
         nextText="Create Dataset"
         handleCancel={handleCloseModal}
         handleNext={handleAddDataset}

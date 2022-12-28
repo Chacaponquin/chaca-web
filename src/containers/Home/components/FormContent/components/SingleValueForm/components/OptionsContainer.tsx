@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { SubOption } from "../../../../../../../shared/interfaces/options.interface";
 import { v4 as uuid } from "uuid";
-import { RadioButton } from "primereact/radiobutton";
 import { Config } from "../../../../../../../shared/assets/icons";
 import clsx from "clsx";
 import {
@@ -13,6 +12,7 @@ import { DATASETS_ACTIONS } from "../../../../../constants/ACTION_TYPES";
 import { DATA_TYPES } from "../../../../../../../shared/constant/DATA_TYPES";
 import OptionArguments from "./OptionArguments";
 import { useUtils } from "../../../../../hooks/useUtils";
+import ChacaRadioButton from "../../../../../../../shared/components/ChacaRadioButton/ChacaRadioButton";
 
 const OptionsContainer = ({
   options,
@@ -80,12 +80,13 @@ const Option = ({
     <div className={divClass()} key={uuid()}>
       <div className="flex items-center w-full justify-between">
         <div className="flex text-black items-center">
-          <RadioButton
-            checked={isSelected}
-            onChange={(e) => {
+          <ChacaRadioButton
+            value={isSelected}
+            onChange={() => {
               handleSelectOption();
             }}
           />
+
           <p className="text-base ml-4">{option.name}</p>
         </div>
 

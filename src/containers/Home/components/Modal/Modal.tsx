@@ -2,6 +2,7 @@ import { MODAL_ACTIONS } from "../../constants/MODAL_ACTIONS";
 import { ModalProps } from "../../interfaces/modal.interface";
 import AddDatasetForm from "./components/AddDatasetForm";
 import AddFieldForm from "./components/AddFieldForm";
+import DeleteDatasetForm from "./components/DeleteDatasetForm";
 
 const Modal = ({
   props,
@@ -18,6 +19,9 @@ const Modal = ({
         )}
         {props.type === MODAL_ACTIONS.ADD_DATASET && (
           <AddDatasetForm handleCloseModal={handleCloseModal} />
+        )}
+        {props.type === MODAL_ACTIONS.DELETE_DATASET && (
+          <DeleteDatasetForm handleCloseModal={handleCloseModal} />
         )}
       </div>
     </div>

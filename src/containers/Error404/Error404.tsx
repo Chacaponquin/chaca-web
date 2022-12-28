@@ -22,7 +22,7 @@ const Error404 = () => {
 
           <div className="flex gap-7 esm:mt-3 esm:flex-col items-center esm:gap-3">
             <Link
-              className="px-12 py-3 rounded-full border-4 border-solid border-principalColor font-bold bg-principal-bg flex items-center hover:opacity-70 transition-all duration-300"
+              className="px-12 py-3 rounded-full border-4 border-solid border-principalColor font-bold bg-principalColor flex items-center hover:opacity-70 transition-all duration-300"
               to={APP_ROUTES.HOME}
             >
               <p className="uppercase text-white text-xl mb-0 text-center esm:text-base">

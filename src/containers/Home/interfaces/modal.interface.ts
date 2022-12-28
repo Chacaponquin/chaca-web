@@ -9,12 +9,9 @@ export type ModalAddDataset = {
   type: MODAL_ACTIONS.ADD_DATASET;
 };
 
-export type ModalDeleteSelectField = {
-  type: MODAL_ACTIONS.DELETE_SELECT_FIELD;
-};
-
-export type ModalDeleteField = {
-  type: MODAL_ACTIONS.DELETE_FIELD;
+export type ModalDeleteDataset = {
+  type: MODAL_ACTIONS.DELETE_DATASET;
+  datasetName: string;
 };
 
 export type ModalEditField = {
@@ -25,6 +22,5 @@ export type ModalEditField = {
 export type ModalProps =
   | ModalAddFieldProps
   | ModalAddDataset
-  | ModalDeleteField
-  | ModalDeleteSelectField
-  | ModalEditField;
+  | ModalEditField
+  | ModalDeleteDataset;

@@ -29,6 +29,14 @@ const DatasetsHeader = ({
     setOpenConfig(false);
   };
 
+  const handleDeleteDataset = () => {
+    handleOpenModal({
+      type: MODAL_ACTIONS.DELETE_DATASET,
+      datasetName: selectedDataset.name,
+    });
+    setOpenConfig(false);
+  };
+
   return (
     <div className="pt-3 mb-2 w-full bg-white flex items-center justify-between px-2">
       <div className="gap-1 flex items-center">
@@ -55,7 +63,10 @@ const DatasetsHeader = ({
         </button>
 
         {openConfig && (
-          <ConfigMenu handleAddDatasetField={handleAddDatasetField} />
+          <ConfigMenu
+            handleAddDatasetField={handleAddDatasetField}
+            handleDeleteDataset={handleDeleteDataset}
+          />
         )}
       </div>
     </div>
