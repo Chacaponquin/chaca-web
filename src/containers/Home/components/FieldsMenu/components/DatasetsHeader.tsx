@@ -39,7 +39,7 @@ const DatasetsHeader = ({
 
   return (
     <div className="pt-3 mb-2 w-full bg-white flex items-center justify-between px-2">
-      <div className="gap-1 flex items-center">
+      <div className="gap-3 flex items-center">
         <button onClick={handleNewDataset}>
           <Plus size={18} />
         </button>

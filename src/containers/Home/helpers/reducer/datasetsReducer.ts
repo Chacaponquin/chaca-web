@@ -28,6 +28,14 @@ export type DatasetPayload =
       payload: { datasetName: string };
     }
   | {
+      type: DATASETS_ACTIONS.EDIT_FIELD;
+      payload: {
+        field: DatasetField;
+        location: string[];
+        datasetID: string;
+      };
+    }
+  | {
       type: DATASETS_ACTIONS.CHANGE_FIELD_NAME;
       payload: { datasetID: string; fieldID: string; newName: string };
     }
@@ -94,6 +102,25 @@ export const datasetsReducer: Reducer<DatasetTree[], DatasetPayload> = (
   action: DatasetPayload
 ): DatasetTree[] => {
   switch (action.type) {
+    case DATASETS_ACTIONS.EDIT_FIELD: {
+      const newDatasets = datasets.map((d) => {
+        if (d.id === action.payload.datasetID) {
+          const findField = d.findFieldByID(action.payload.field.id);
+
+          if (findField) {
+            findField.name = action.payload.field.name;
+            findField.info.isArray = action.payload.field.isArray;
+            findField.info.isPosibleNull = action.payload.field.isPosibleNull;
+            findField.info.dataType = action.payload.field.dataType;
+          }
+        }
+
+        return d;
+      });
+
+      return newDatasets;
+    }
+
     case DATASETS_ACTIONS.DELETE_DATASET: {
       return datasets.filter((d) => d.id !== action.payload.datasetID);
     }

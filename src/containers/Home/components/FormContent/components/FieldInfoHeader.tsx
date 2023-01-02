@@ -16,12 +16,14 @@ const FieldInfoHeader = ({
   selectField: FieldNode<FieldDataType>;
   handleOpenModal: (props: ModalProps) => void;
 }) => {
-  const { selectedDataset, datasetDispatch } = useContext(DatasetsContext);
+  const { selectedDataset, datasetDispatch, handleDeleteSelectField } =
+    useContext(DatasetsContext);
 
   const handleEdit = () => {
     handleOpenModal({
       type: MODAL_ACTIONS.EDIT_FIELD,
-      fieldID: selectField.id,
+      field: selectField,
+      location: selectedDataset.getFieldLocation(selectField.id),
     });
   };
 
@@ -30,6 +32,8 @@ const FieldInfoHeader = ({
       type: DATASETS_ACTIONS.DELETE_FIELD,
       payload: { datasetID: selectedDataset.id, fieldID: selectField!.id },
     });
+
+    handleDeleteSelectField();
   };
 
   const location = useMemo(

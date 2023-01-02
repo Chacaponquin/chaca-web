@@ -26,7 +26,7 @@ const NoFieldsMessage = ({
       <ChacaSimpleButton
         onClick={handleNewField}
         text="Add Field"
-        color="secondary"
+        color="primary"
         size="medium"
         className="mt-2"
       />

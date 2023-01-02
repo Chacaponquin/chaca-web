@@ -21,7 +21,7 @@ const OptionsBar = () => {
   const iconSize = 25;
 
   return (
-    <div className="w-[100px] h-screen bg-white flex flex-col justify-between">
+    <div className="w-[100px] min-w-[100px] h-screen bg-white flex flex-col justify-between">
       <div className="flex flex-col px-2 py-4 gap-1">
         <NavLink className={divClass} to={APP_ROUTES.HOME}>
           <Home size={iconSize} />
