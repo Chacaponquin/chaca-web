@@ -82,9 +82,7 @@ const Option = ({
         <div className="flex text-black items-center">
           <ChacaRadioButton
             value={isSelected}
-            onChange={() => {
-              handleSelectOption();
-            }}
+            onChange={() => handleSelectOption()}
           />
 
           <p className="text-base ml-4">{option.name}</p>

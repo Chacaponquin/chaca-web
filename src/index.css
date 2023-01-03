@@ -70,3 +70,25 @@
   width: 15px !important;
   height: 15px !important;
 }
+
+.p-dropdown-panel .p-dropdown-items {
+  padding: 0rem 0 !important;
+}
+
+.p-inputtext {
+  padding: 0.2rem 1rem !important;
+  display: flex;
+  width: 100%;
+  font-family: "Cairo Regular" !important;
+}
+
+.p-dropdown {
+  display: flex;
+  width: 100%;
+  font-family: "Cairo Regular" !important;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  padding: 0.2rem 0.9rem !important;
+  font-size: 0.9rem !important;
+}

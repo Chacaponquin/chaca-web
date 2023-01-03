@@ -9,7 +9,7 @@ const Home = () => {
   const { openModal, handleOpenModal, handleCloseModal } = useHome();
 
   return (
-    <div className="flex w-full">
+    <div className="flex w-full h-screen">
       {openModal !== null && (
         <Modal props={openModal} handleCloseModal={handleCloseModal} />
       )}

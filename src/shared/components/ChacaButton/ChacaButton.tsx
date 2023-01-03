@@ -7,7 +7,7 @@ import clsx from "clsx";
 
 const buttonClass = ({ size, className, color }: ChacaButtonProps) => {
   return clsx(
-    "font-fontBold text-white flex items-center fill-white transition-all duration-300 hover:opacity-70",
+    "font-fontBold flex items-center fill-white transition-all duration-300 hover:opacity-70",
     className,
     {
       "py-1 px-5 text-base rounded": size === "small",
@@ -15,11 +15,11 @@ const buttonClass = ({ size, className, color }: ChacaButtonProps) => {
       "py-1 px-6 text-lg rounded-sm": size === "large",
     },
     {
-      "bg-principalColor": color === "primary",
-      "bg-principal-bg": color === "gradient",
-      "bg-dangerColor": color === "danger",
-      "bg-secondColor": color === "secondary",
-      "bg-slate-200 !text-black": color === "cancel",
+      "bg-principalColor text-white": color === "primary",
+      "bg-principal-bg text-white": color === "gradient",
+      "bg-dangerColor text-white": color === "danger",
+      "bg-secondColor text-white": color === "secondary",
+      "bg-slate-200 text-black": color === "cancel",
     }
   );
 };

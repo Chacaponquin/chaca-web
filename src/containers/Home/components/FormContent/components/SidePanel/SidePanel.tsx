@@ -19,11 +19,7 @@ const SidePanel = ({
   const { findParent, findType } = useUtils();
 
   return (
-    <div
-      className={
-        "flex h-full bg-white transition-all duration-300 flex-col px-5 py-3 border-l-2 w-[40%]"
-      }
-    >
+    <div className="bg-white transition-all duration-300 px-5 py-3 border-l-2 w-[40%] overflow-y-auto">
       <SidePanelHeader
         title="Documentation"
         handleCloseDocs={handleCloseDocs}

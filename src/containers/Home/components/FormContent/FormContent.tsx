@@ -25,11 +25,16 @@ const FormContent = ({
   const { selectField } = useContext(DatasetsContext);
 
   const containerClass = () => {
-    return clsx("h-full w-full flex", { "justify-center": !docsOpen });
+    return clsx("w-full flex flex-grow", {
+      "justify-center": !docsOpen,
+    });
   };
 
   const formClass = () => {
-    return clsx("h-full flex", { "w-[60%]": docsOpen, "w-[70%]": !docsOpen });
+    return clsx("", {
+      "w-[60%]": docsOpen,
+      "w-[70%]": !docsOpen,
+    });
   };
 
   const handleCloseDocs = () => {
@@ -37,7 +42,7 @@ const FormContent = ({
   };
 
   return (
-    <div className={"flex flex-col w-full h-screen"}>
+    <div className="flex flex-col w-full h-screen">
       {selectField !== null && (
         <FieldInfoHeader
           handleOpenModal={handleOpenModal}
@@ -47,7 +52,7 @@ const FormContent = ({
 
       <div className={containerClass()}>
         <div className={formClass()}>
-          <div className="gap-2 overflow-y-auto h-full bg-white w-full flex flex-col">
+          <div className="gap-2 overflow-y-auto bg-white w-full flex flex-col">
             {selectField === null ? (
               <NoSelectField />
             ) : (

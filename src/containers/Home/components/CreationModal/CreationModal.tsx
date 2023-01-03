@@ -1,4 +1,3 @@
-import OptionsButton from "../OptionsButton";
 import CreationLoading from "./components/CreationLoading";
 import ConfigFormSection from "./components/ConfigFormSection";
 
@@ -21,12 +20,6 @@ const CreationModal = ({
           <div className="w-full flex esm:flex-col-reverse gap-10 esm:gap-5">
             <ConfigFormSection />
           </div>
-
-          <OptionsButton
-            handleCancel={handleCloseCreateModal}
-            handleSubmit={handleSubmit}
-            submitText={"Create"}
-          />
         </div>
       </div>
     </>

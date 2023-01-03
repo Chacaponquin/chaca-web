@@ -17,28 +17,30 @@ const CustomForm = ({ field }: { field: DatasetField<CustomDataType> }) => {
   };
 
   return (
-    <div className="w-full flex">
-      <Editor
-        height={`600px`}
-        options={{
-          minimap: { enabled: false },
-          fontSize: 15,
-          glyphMargin: false,
-          folding: false,
-        }}
-        width={"100%"}
-        onChange={handleChange}
-        className="code-cont p-2 w-full"
-        language="javascript"
-        defaultValue={code}
-        loading={
-          <LoaderContainer
-            className={"w-[100px] esm:w-[60px]"}
-            loading={true}
-            children={<></>}
-          />
-        }
-      />
+    <div className="w-full flex px-5">
+      <div className="w-full py-3 rounded border-2">
+        <Editor
+          height={`550px`}
+          options={{
+            minimap: { enabled: false },
+            fontSize: 15,
+            glyphMargin: false,
+            folding: false,
+          }}
+          width={"100%"}
+          onChange={handleChange}
+          className="code-cont w-full"
+          language="javascript"
+          defaultValue={code}
+          loading={
+            <LoaderContainer
+              className={"w-[100px] esm:w-[60px]"}
+              loading={true}
+              children={<></>}
+            />
+          }
+        />
+      </div>
     </div>
   );
 };

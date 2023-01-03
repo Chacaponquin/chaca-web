@@ -1,6 +1,6 @@
 import { FILE_TYPE } from "../constant/FILE_TYPE";
 import { FieldArgument } from "./datasets.interface";
-import { ArgumentSchema } from "./options.interface";
+import { Argument } from "./options.interface";
 
 export interface ConfigSchema {
   file: ConfigFile;
@@ -14,7 +14,7 @@ export interface ConfigFile {
 
 export interface FileConfigOption {
   fileType: FILE_TYPE;
-  arguments: ArgumentSchema[];
+  arguments: Argument[];
 }
 
 export interface NoUserLimits {

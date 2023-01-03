@@ -73,7 +73,7 @@ const DataTypeSelect = () => {
   };
 
   return (
-    <div className="bg-white flex w-full py-2 h-max justify-center gap-3 mt-4">
+    <div className="bg-white flex w-full py-2 h-max justify-center gap-3 mt-2">
       {Object.values(DATA_TYPES)
         .filter((el) => el !== DATA_TYPES.MIXED)
         .map((el) => (

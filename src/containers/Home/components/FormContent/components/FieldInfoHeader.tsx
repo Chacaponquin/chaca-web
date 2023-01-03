@@ -45,13 +45,13 @@ const FieldInfoHeader = ({
   );
 
   return (
-    <div className="w-full bg-white py-2 flex justify-between items-center px-5 border-b-2">
+    <div className="w-full bg-white py-2 flex justify-between items-center px-5 border-b-2 h-[50px]">
       <div className="flex gap-3 text-lg">
         {location.map((el, i) => (
           <Fragment key={uuid()}>
             <p className="mb-0 font-fontBold">{el}</p>
             {i !== location.length - 1 && (
-              <p className="mb-0 font-fontBold">{">"}</p>
+              <p className="mb-0 font-fontBold">{"/"}</p>
             )}
           </Fragment>
         ))}

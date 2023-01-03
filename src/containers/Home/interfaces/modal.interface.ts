@@ -21,8 +21,13 @@ export type ModalEditField = {
   location: string[];
 };
 
+export type ModalExportSelectDataset = {
+  type: MODAL_ACTIONS.EXPORT_SELECT_DATASET;
+};
+
 export type ModalProps =
   | ModalAddFieldProps
   | ModalAddDataset
   | ModalEditField
-  | ModalDeleteDataset;
+  | ModalDeleteDataset
+  | ModalExportSelectDataset;

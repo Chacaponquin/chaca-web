@@ -42,7 +42,9 @@ const GitHubButton = () => {
 
   return (
     <button
-      className={divClass + " border-black text-black hover:bg-black"}
+      className={
+        divClass + " border-black text-black hover:bg-black hover:fill-white"
+      }
       onClick={handleLoginGitHub}
       type="button"
     >
@@ -63,7 +65,8 @@ const GoogleButton = () => {
   return (
     <button
       className={
-        divClass + " border-secondColor text-secondColor hover:bg-secondColor"
+        divClass +
+        " border-secondColor fill-secondColor text-secondColor hover:bg-secondColor hover:fill-white"
       }
       type="button"
       onClick={handleGoogleLogin}

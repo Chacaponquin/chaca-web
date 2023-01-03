@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import FieldInputArgument from "../../../shared/components/FieldInputArgument/FieldInputArgument";
 import { useLocation } from "react-router-dom";
 import { APP_ROUTES } from "../../../shared/routes/app/APP_ROUTES";
 import { axiosInstance } from "../../../shared/routes/api/API_ROUTES";
@@ -106,11 +105,6 @@ const QueryContainer = ({ field }: { field: SubOption }) => {
                     {field.arguments.map((arg, i) => (
                       <div key={uuid()} className="flex gap-2 items-center">
                         <p>{DataTransform.titlePipe(arg.argument)}:</p>
-                        <FieldInputArgument
-                          allArguments={allArguments}
-                          arg={arg}
-                          handleChangeArguments={handleChangeArguments}
-                        />
                       </div>
                     ))}
                   </div>
