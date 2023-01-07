@@ -9,9 +9,13 @@ import ExportSelectDatasetForm from "./components/ExportSelectDatasetForm";
 const Modal = ({
   props,
   handleCloseModal,
+  handleCreateSelectDataset,
+  handleCreateAllDatasets,
 }: {
   props: ModalProps;
   handleCloseModal: () => void;
+  handleCreateSelectDataset: () => void;
+  handleCreateAllDatasets: () => void;
 }) => {
   return (
     <div className="w-full fixed top-0 left-0 h-screen bg-slate-500/50 z-50 flex justify-center items-center">
@@ -29,7 +33,10 @@ const Modal = ({
           <EditFieldForm handleCloseModal={handleCloseModal} props={props} />
         )}
         {props.type === MODAL_ACTIONS.EXPORT_SELECT_DATASET && (
-          <ExportSelectDatasetForm handleCloseModal={handleCloseModal} />
+          <ExportSelectDatasetForm
+            handleCloseModal={handleCloseModal}
+            handleCreateSelectDataset={handleCreateSelectDataset}
+          />
         )}
       </div>
     </div>

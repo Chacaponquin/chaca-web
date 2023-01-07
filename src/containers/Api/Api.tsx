@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Schema } from "../../shared/interfaces/options.interface";
 import { AppConfigContext } from "../../shared/context/AppConfigContext";
@@ -6,7 +6,6 @@ import { DataTransform } from "../../shared/helpers/DataTransform";
 
 import "./api.css";
 import { axiosInstance } from "../../shared/routes/api/API_ROUTES";
-import SchemaDoc from "./components/SchemaDoc";
 
 const Api = () => {
   const [findLoading, setFindLoading] = useState(false);
@@ -37,23 +36,7 @@ const Api = () => {
     }
   }, [section, schemas, option]);
 
-  return (
-    <div className="w-full flex -translate-y-8 border-b-2">
-      <div className="w-full flex lg:border-l-2 esm:px-7 px-12 lg:px-20 py-5">
-        {findError ? (
-          <FetchError />
-        ) : (
-          <React.Fragment>
-            {section === "schemas" ? (
-              <SchemaDoc schema={content as Schema} />
-            ) : (
-              <div>{content as string}</div>
-            )}
-          </React.Fragment>
-        )}
-      </div>
-    </div>
-  );
+  return <div className="w-full flex -translate-y-8 border-b-2">Api</div>;
 };
 
 const FetchError = () => {

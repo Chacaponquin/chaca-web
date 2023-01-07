@@ -5,7 +5,6 @@ import clsx from "clsx";
 import { DatasetsContext } from "../../../../../../shared/context/DatasetsContext";
 import { DATASETS_ACTIONS } from "../../../../constants/ACTION_TYPES";
 import { AppConfigContext } from "../../../../../../shared/context/AppConfigContext";
-import { CODE_TYPES } from "../../../../../../shared/constant/CODE_TYPES";
 
 const DataTypeSelect = () => {
   const { selectField, datasetDispatch, selectedDataset } =
@@ -63,8 +62,7 @@ const DataTypeSelect = () => {
             fieldID: selectField.id,
             dataType: {
               type: dataType,
-              codeType: CODE_TYPES.JAVASCRIPT,
-              code: "",
+              code: "function getValue(fields, utils){\n\t// logic of your function\n}",
             },
           },
         });

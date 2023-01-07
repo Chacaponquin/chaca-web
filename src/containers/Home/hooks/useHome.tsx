@@ -3,21 +3,17 @@ import { DatasetsContext } from "../../../shared/context/DatasetsContext";
 import { UserContext } from "../../../shared/context/UserContext";
 import { toast } from "react-toastify";
 import { ModalProps } from "../interfaces/modal.interface";
+import { SOCKET_EVENTS } from "../constants/SOCKET_EVENTS";
 
 export const useHome = () => {
-  const { datasets, config } = useContext(DatasetsContext);
+  const { datasets, config, selectedDataset } = useContext(DatasetsContext);
   const { socket } = useContext(UserContext);
 
   const [openModal, setOpenModal] = useState<null | ModalProps>(null);
 
   const [createDataLoading, setCreateDataLoading] = useState(false);
-  const [openCreationModal, setOpenCreationModal] = useState(false);
 
   const [porcent, setPorcent] = useState(0);
-
-  const handleCloseCreateModal = () => {
-    setOpenCreationModal(false);
-  };
 
   const handleOpenModal = (props: ModalProps) => {
     setOpenModal(props);
@@ -28,34 +24,32 @@ export const useHome = () => {
   };
 
   useEffect(() => {
-    socket.on("getDownUrl", (args) => {
+    socket.on(SOCKET_EVENTS.GET_DOWN_URL, (args) => {
       window.open(`${process.env.REACT_APP_API_URL}/${args.downUrl}`);
       setCreateDataLoading(false);
     });
 
-    socket.on("documentCreated", (data) => {
+    socket.on(SOCKET_EVENTS.DOCUMENT_CREATED, (data) => {
       setPorcent(Number(data.porcent) || 0);
     });
 
-    socket.on("createDatasetsError", (error) => {
+    socket.on(SOCKET_EVENTS.CREATE_DATASET_ERROR, (error) => {
       toast.error("Hubo un error en la creacion de los datasets");
       setCreateDataLoading(false);
     });
 
     return () => {
-      socket.off("getDownUrl");
-      socket.off("createDatasetsError");
+      socket.off(SOCKET_EVENTS.GET_DOWN_URL);
+      socket.off(SOCKET_EVENTS.CREATE_DATASET_ERROR);
     };
-  }, []);
+  }, [socket]);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-
+  const handleCreateAllDatasets = async () => {
     if (socket.connected) {
       setCreateDataLoading(true);
 
-      socket.emit("createDatasets", {
-        datasets,
+      socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {
+        datasets: datasets.map((d) => d.getDatasetObject),
         config,
       });
     } else {
@@ -64,11 +58,14 @@ export const useHome = () => {
     }
   };
 
-  const handleOpenCreationModal = () => {
-    try {
-      setOpenCreationModal(true);
-    } catch (error: any) {
-      toast.error(error.message);
+  const handleCreateSelectDataset = () => {
+    if (socket.connected) {
+      setCreateDataLoading(true);
+
+      socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {
+        datasets: [selectedDataset.getDatasetObject()],
+        config,
+      });
     }
   };
 
@@ -77,5 +74,8 @@ export const useHome = () => {
     handleOpenModal,
     handleCloseModal,
     porcent,
+    handleCreateSelectDataset,
+    handleCreateAllDatasets,
+    createDataLoading,
   };
 };

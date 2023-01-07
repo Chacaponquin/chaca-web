@@ -1,4 +1,3 @@
-import { CODE_TYPES } from "../constant/CODE_TYPES";
 import { DATA_TYPES } from "../constant/DATA_TYPES";
 
 export interface Dataset {
@@ -17,7 +16,6 @@ export type FieldDataType =
 export type CustomDataType = {
   type: DATA_TYPES.CUSTOM;
   code: string;
-  codeType: CODE_TYPES;
 };
 export type MixedDataType = {
   type: DATA_TYPES.MIXED;

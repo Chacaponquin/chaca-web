@@ -19,9 +19,9 @@ const EditFieldForm = ({
   const fieldActions = useFieldForm({
     id: props.field.id,
     name: props.field.name,
-    dataType: props.field.info.dataType,
-    isArray: props.field.info.isArray,
-    isPosibleNull: props.field.info.isPosibleNull,
+    dataType: props.field.dataType,
+    isArray: props.field.isArray,
+    isPosibleNull: props.field.isPosibleNull,
   });
 
   const handleEditField = () => {

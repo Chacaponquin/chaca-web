@@ -30,7 +30,7 @@ const FieldToRef = ({
         style={{ paddingLeft: `${margin}px` }}
       >
         <ChacaRadioButton
-          value={selectField.dataType.ref.at(-1) === field.name}
+          value={selectField.dataType.ref.at(-1) === field.id}
           onChange={(e) => {
             datasetDispatch({
               type: DATASETS_ACTIONS.CHANGE_FIELD_DATATYPE,
@@ -39,7 +39,7 @@ const FieldToRef = ({
                 fieldID: selectField.id,
                 dataType: {
                   type: DATA_TYPES.REF,
-                  ref: [...location, field.name],
+                  ref: [...location, field.id],
                 },
               },
             });
@@ -54,8 +54,8 @@ const FieldToRef = ({
           <FieldToRef
             key={uuid()}
             field={f}
-            margin={margin + 3}
-            location={[...location, f.name]}
+            margin={margin + 7}
+            location={[...location, f.id]}
             selectField={selectField}
           />
         ))}

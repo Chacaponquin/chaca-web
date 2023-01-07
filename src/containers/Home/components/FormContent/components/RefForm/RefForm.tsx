@@ -1,7 +1,6 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useMemo } from "react";
 import { DATA_TYPES } from "../../../../../../shared/constant/DATA_TYPES";
 import { DatasetsContext } from "../../../../../../shared/context/DatasetsContext";
-import { DatasetTree } from "../../../../../../shared/helpers/DatasetTree";
 import {
   DatasetField,
   RefDataType,
@@ -18,7 +17,22 @@ const RefForm = ({
   field: DatasetField<RefDataType>;
 }) => {
   const { datasets, selectedDataset } = useContext(DatasetsContext);
-  const [toRef, setToRef] = useState<DatasetTree[]>([]);
+  const toRef = useMemo(() => {
+    return datasets.filter((d) => {
+      let availible = true;
+
+      if (d.id === selectedDataset.id) availible = false;
+      else {
+        const fieldsAvailable = d.fields.filter((f) => {
+          return f.dataType.type !== DATA_TYPES.REF && f.name && !f.isArray;
+        });
+
+        if (fieldsAvailable.length === 0) availible = false;
+      }
+
+      return availible;
+    });
+  }, [datasets, selectedDataset.id]);
 
   const gridClass = () => {
     return clsx("grid w-full gap-x-5 gap-y-4", {
@@ -26,25 +40,6 @@ const RefForm = ({
       "grid-cols-1": docsOpen,
     });
   };
-
-  useEffect(() => {
-    setToRef(
-      datasets.filter((d) => {
-        let availible = true;
-
-        if (d.id === selectedDataset.id) availible = false;
-        else {
-          const fieldsAvailable = d.fields.filter((f) => {
-            return f.dataType.type !== DATA_TYPES.REF && f.name && !f.isArray;
-          });
-
-          if (fieldsAvailable.length === 0) availible = false;
-        }
-
-        return availible;
-      })
-    );
-  }, [datasets, selectedDataset.id]);
 
   return (
     <div className="flex w-full px-3">

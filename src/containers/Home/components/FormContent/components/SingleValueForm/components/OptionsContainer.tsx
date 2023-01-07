@@ -46,6 +46,11 @@ const Option = ({
 }) => {
   const { findType } = useUtils();
   const { selectedDataset, datasetDispatch } = useContext(DatasetsContext);
+  const args = findType(
+    field.dataType.fieldType.parent,
+    field.dataType.fieldType.type
+  ).arguments;
+
   const [openArguments, setOpenArguments] = useState(isSelected);
 
   const handleSelectOption = () => {
@@ -70,16 +75,16 @@ const Option = ({
     return clsx(
       "w-full rounded-md flex items-center flex-col py-2 px-4",
       {
-        "bg-slate-200": isSelected,
+        "bg-principalColor text-white fill-white": isSelected,
       },
-      { "bg-slate-100": !isSelected }
+      { "bg-slate-100 text-block fill-black": !isSelected }
     );
   };
 
   return (
     <div className={divClass()} key={uuid()}>
-      <div className="flex items-center w-full justify-between">
-        <div className="flex text-black items-center">
+      <div className="flex items-center w-full justify-between ">
+        <div className="flex items-center">
           <ChacaRadioButton
             value={isSelected}
             onChange={() => handleSelectOption()}
@@ -89,23 +94,15 @@ const Option = ({
         </div>
 
         <button
-          className="fill-black cursor-pointer"
+          className="cursor-pointer"
           onClick={() => setOpenArguments(!openArguments)}
         >
           <Config size={20} />
         </button>
       </div>
 
-      {openArguments && (
-        <OptionArguments
-          args={
-            findType(
-              field.dataType.fieldType.parent,
-              field.dataType.fieldType.type
-            ).arguments
-          }
-          field={field}
-        />
+      {openArguments && args.length > 0 && (
+        <OptionArguments args={args} field={field} />
       )}
     </div>
   );

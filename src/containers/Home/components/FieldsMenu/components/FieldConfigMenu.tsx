@@ -21,7 +21,7 @@ const FieldConfigMenu = ({
   const { selectedDataset, datasetDispatch } = useContext(DatasetsContext);
 
   const handleEditField = () => {
-    handleOpenModal({ type: MODAL_ACTIONS.EDIT_FIELD, fieldID: field.id });
+    handleOpenModal({ type: MODAL_ACTIONS.EDIT_FIELD, field, location: [] });
   };
 
   const handleAddField = () => {

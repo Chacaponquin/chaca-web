@@ -1,4 +1,7 @@
-import { FieldNode } from "../../../shared/helpers/DatasetTree";
+import {
+  DatasetField,
+  FieldDataType,
+} from "../../../shared/interfaces/datasets.interface";
 import { MODAL_ACTIONS } from "../constants/MODAL_ACTIONS";
 
 export type ModalAddFieldProps = {
@@ -17,7 +20,7 @@ export type ModalDeleteDataset = {
 
 export type ModalEditField = {
   type: MODAL_ACTIONS.EDIT_FIELD;
-  field: FieldNode;
+  field: DatasetField<FieldDataType>;
   location: string[];
 };
 

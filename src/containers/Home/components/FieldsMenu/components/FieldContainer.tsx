@@ -46,7 +46,7 @@ const FieldContainer = ({
   };
 
   return (
-    <div className={"flex flex-col w-full"} onClick={handleSelect}>
+    <div className="flex flex-col w-full" onClick={handleSelect}>
       <div
         className={"flex items-center justify-between"}
         style={{ paddingLeft: `${margin}px` }}
@@ -95,7 +95,7 @@ const FieldContainer = ({
           {field.dataType.object.map((s) => (
             <FieldContainer
               field={s}
-              margin={margin + 6}
+              margin={margin + 12}
               key={s.id}
               handleOpenModal={handleOpenModal}
             />

@@ -1,4 +1,0 @@
-export enum CODE_TYPES {
-  JAVASCRIPT = "JAVASCRIPT",
-  PYTHON = "PYTHON",
-}

@@ -14,14 +14,14 @@ import { DataTransform } from "../../../../../shared/helpers/DataTransform";
 
 const ExportSelectDatasetForm = ({
   handleCloseModal,
+  handleCreateSelectDataset,
 }: {
   handleCloseModal: () => void;
+  handleCreateSelectDataset: () => void;
 }) => {
   const { fileConfig } = useContext(AppConfigContext);
   const { configDispatch, config } = useContext(DatasetsContext);
   const { actualUser } = useContext(UserContext);
-
-  const handleExportDataset = () => {};
 
   const fileArguments = useMemo(() => {
     const fileFound = fileConfig.find(
@@ -107,7 +107,7 @@ const ExportSelectDatasetForm = ({
 
       <ModalButtons
         handleCancel={handleCloseModal}
-        handleNext={handleExportDataset}
+        handleNext={handleCreateSelectDataset}
         nextText="Export"
         type="edit"
       />

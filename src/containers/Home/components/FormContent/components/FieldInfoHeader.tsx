@@ -22,7 +22,7 @@ const FieldInfoHeader = ({
   const handleEdit = () => {
     handleOpenModal({
       type: MODAL_ACTIONS.EDIT_FIELD,
-      field: selectField,
+      field: selectField.getNodeObject(),
       location: selectedDataset.getFieldLocation(selectField.id),
     });
   };

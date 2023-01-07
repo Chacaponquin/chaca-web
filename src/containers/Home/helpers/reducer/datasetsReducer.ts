@@ -1,11 +1,9 @@
 import {
   DatasetField,
   FieldDataType,
-  SingleValueDataType,
 } from "../../../../shared/interfaces/datasets.interface";
 import { DATASETS_ACTIONS } from "../../constants/ACTION_TYPES";
 import { Reducer } from "react";
-import { Schema } from "../../../../shared/interfaces/options.interface";
 import { DatasetTree, FieldNode } from "../../../../shared/helpers/DatasetTree";
 import { NodeInfo } from "../../../../shared/interfaces/tree.interface";
 
@@ -85,15 +83,6 @@ export type DatasetPayload =
       payload: {
         datasetID: string;
         newName: string;
-      };
-    }
-  | {
-      type: DATASETS_ACTIONS.NEW_FIELD_MIXED_TYPE;
-      payload: {
-        datasetID: string;
-        fieldID: string;
-        field: DatasetField<SingleValueDataType>;
-        options: Schema[];
       };
     };
 
