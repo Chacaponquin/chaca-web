@@ -13,7 +13,7 @@
 }
 
 .secondButton {
-  width: 14rem;
+  width: 15rem;
   height: auto;
 }
 
@@ -25,7 +25,7 @@
   width: 3.5rem;
   height: 3.5rem;
   background: #282936;
-  border-radius: 0.375rem;
+  border-radius: 0.125rem;
 }
 
 .secondButton .circle .icon {

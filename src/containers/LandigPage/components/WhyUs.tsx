@@ -1,6 +1,5 @@
-import React from "react";
-import PlayIcon from "../../../shared/assets/icons/PlayIcon";
-import { ChacaIconButton } from "../../../shared/components/ChacaButton/ChacaButton";
+import { PlayIcon } from "../../../shared/assets/icons";
+import { ChacaIconButton } from "../../../shared/components/ChacaButton";
 
 const WhyUs = () => {
   return (

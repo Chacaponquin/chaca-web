@@ -1,5 +1,4 @@
-import React from "react";
-import { ChacaSimpleButton } from "../../../../../../shared/components/ChacaButton/ChacaButton";
+import { ChacaSimpleButton } from "../../../../../../shared/components/ChacaButton";
 
 const ModalButtons = ({
   nextText,

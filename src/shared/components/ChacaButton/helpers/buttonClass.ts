@@ -1,11 +1,7 @@
-import {
-  ChacaSimpleButtonInterface,
-  ChacaIconButtonInterface,
-  ChacaButtonProps,
-} from "./interfaces/chacaButton.intrface";
 import clsx from "clsx";
+import { ChacaButtonProps } from "../interfaces/chacaButton.intrface";
 
-const buttonClass = ({ size, className, color }: ChacaButtonProps) => {
+export const buttonClass = ({ size, className, color }: ChacaButtonProps) => {
   return clsx(
     "font-fontBold flex items-center fill-white transition-all duration-300 hover:opacity-70",
     className,
@@ -24,22 +20,3 @@ const buttonClass = ({ size, className, color }: ChacaButtonProps) => {
     }
   );
 };
-
-const ChacaSimpleButton = (props: ChacaSimpleButtonInterface) => {
-  return (
-    <button onClick={props.onClick} className={buttonClass(props)}>
-      {props.text}
-    </button>
-  );
-};
-
-const ChacaIconButton = (props: ChacaIconButtonInterface) => {
-  return (
-    <button onClick={props.onClick} className={buttonClass(props)}>
-      {props.icon}
-      <p className="mb-0 ml-2"> {props.text}</p>
-    </button>
-  );
-};
-
-export { ChacaSimpleButton, ChacaIconButton };

@@ -1,8 +1,8 @@
-import { ChacaSimpleButton } from "../../../../../shared/components/ChacaButton/ChacaButton";
 import { MODAL_ACTIONS } from "../../../constants/MODAL_ACTIONS";
 import { ModalProps } from "../../../interfaces/modal.interface";
 import { useContext } from "react";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
+import { ChacaSimpleButton } from "../../../../../shared/components/ChacaButton";
 
 const NoFieldsMessage = ({
   handleOpenModal,

@@ -2,12 +2,12 @@ import { Fragment, useContext, useMemo } from "react";
 import { Change, Delete } from "../../../../../shared/assets/icons";
 import { v4 as uuid } from "uuid";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
-import { ChacaIconButton } from "../../../../../shared/components/ChacaButton/ChacaButton";
 import { ModalProps } from "../../../interfaces/modal.interface";
 import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES";
 import { FieldNode } from "../../../../../shared/helpers/DatasetTree";
 import { FieldDataType } from "../../../../../shared/interfaces/datasets.interface";
 import { MODAL_ACTIONS } from "../../../constants/MODAL_ACTIONS";
+import { ChacaIconButton } from "../../../../../shared/components/ChacaButton";
 
 const FieldInfoHeader = ({
   handleOpenModal,

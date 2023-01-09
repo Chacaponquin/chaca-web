@@ -1,6 +1,6 @@
 import "./secondButton.css";
 
-const SecondButton = ({ text }: { text: string }) => {
+const ChacaArrowButton = ({ text }: { text: string }) => {
   return (
     <button className="secondButton">
       <span className="circle" aria-hidden="true">
@@ -13,4 +13,4 @@ const SecondButton = ({ text }: { text: string }) => {
   );
 };
 
-export default SecondButton;
+export default ChacaArrowButton;

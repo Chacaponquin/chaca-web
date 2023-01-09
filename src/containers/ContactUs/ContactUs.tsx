@@ -1,4 +1,3 @@
-import React from "react";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { useState } from "react";
@@ -8,7 +7,8 @@ import LoaderContainer from "../../shared/components/Loader/LoaderContainer";
 import { Link } from "react-router-dom";
 import { APP_ROUTES } from "../../shared/routes/app/APP_ROUTES";
 import { toast, ToastContainer } from "react-toastify";
-import Send from "../../shared/assets/icons/Send";
+import { ChacaIconButton } from "../../shared/components/ChacaButton";
+import { Send } from "../../shared/assets/icons";
 
 const ContactUs = () => {
   const [contactForm, setContactForm] = useState({
@@ -94,10 +94,13 @@ const ContactUs = () => {
 
             <div className="flex justify-end">
               <LoaderContainer loading={loading} className="w-[50px] mt-2">
-                <button className="flex gap-3 items-center text-white bg-secondColor px-7 py-3 rounded-md transition-all duration-300 hover:bg-secondColor/70 esm:py-2">
-                  <Send />
-                  <p className="mb-0 text-xl font-fontBold">Enviar</p>
-                </button>
+                <ChacaIconButton
+                  color="primary"
+                  icon={<Send size={23} />}
+                  size="extra-large"
+                  onClick={() => {}}
+                  text="Send"
+                />
               </LoaderContainer>
             </div>
           </form>
@@ -130,6 +133,7 @@ const SuccessModal = () => {
         <p className="mb-5 text-xl text-gray-500 esm:text-lg">
           Te responderemos lo más rápido posible
         </p>
+
         <Link
           to={APP_ROUTES.ROOT}
           className="bg-secondColor text-white font-fontBold px-10 text-2xl hover:bg-secondColor/70 transition-all duration-300 rounded-md py-2 esm:text-xl"

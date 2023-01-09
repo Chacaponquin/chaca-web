@@ -2,8 +2,10 @@ import BgSVG from "../../../shared/components/CurveBg/BgSVG";
 import WaveBG from "../assets/WaveBG";
 import { Link } from "react-router-dom";
 import { APP_ROUTES } from "../../../shared/routes/app/APP_ROUTES";
-import PrincipalButton from "../../../shared/components/PrincipalButton/PrincipalButton";
-import SecondButton from "../../../shared/components/SecondButton/SecondButton";
+import {
+  ChacaGradientButton,
+  ChacaArrowButton,
+} from "../../../shared/components/ChacaButton";
 
 const FirstPage = () => {
   return (
@@ -31,11 +33,11 @@ const FirstPage = () => {
 
           <div className="flex flex-wrap justify-center items-center gap-10 mt-5 text-2xl esm:gap-3 exsm:flex-col-reverse esm:text-xl">
             <Link to={APP_ROUTES.API}>
-              <SecondButton text={"Read Docs"} />
+              <ChacaArrowButton text={"Read Docs"} />
             </Link>
 
             <Link to={APP_ROUTES.HOME}>
-              <PrincipalButton text={"Empieza"} />
+              <ChacaGradientButton text={"Empieza"} />
             </Link>
           </div>
         </div>

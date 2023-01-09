@@ -4,7 +4,6 @@ import { Schema } from "../../shared/interfaces/options.interface";
 import { AppConfigContext } from "../../shared/context/AppConfigContext";
 import { DataTransform } from "../../shared/helpers/DataTransform";
 
-import "./api.css";
 import { axiosInstance } from "../../shared/routes/api/API_ROUTES";
 
 const Api = () => {

@@ -5,7 +5,7 @@ import { useQuery } from "../../../shared/hooks/useQuery";
 import { API_ROUTES } from "../../../shared/routes/api/API_ROUTES";
 import { APP_ROUTES } from "../../../shared/routes/app/APP_ROUTES";
 import { Link } from "react-router-dom";
-import SecondButton from "../../../shared/components/SecondButton/SecondButton";
+import SecondButton from "../../../shared/components/ChacaButton/components/ChacaArrowButton/ChacaArrowButton";
 import { v4 as uuid } from "uuid";
 import X from "../../../shared/assets/icons/X";
 
