@@ -20,7 +20,7 @@ export const useFieldForm = (f: DatasetField) => {
       ...field,
       isArray: {
         min: field.isArray!.min,
-        max: max ? max : field.isArray!.max,
+        max: max ? max : field.isArray!.min + 1,
       },
     });
   };
@@ -30,7 +30,7 @@ export const useFieldForm = (f: DatasetField) => {
       ...field,
       isArray: {
         max: field.isArray!.max,
-        min: min ? min : field.isArray!.min,
+        min: min ? min : 0,
       },
     });
   };

@@ -39,7 +39,7 @@ const CustomForm = ({ field }: { field: DatasetField<CustomDataType> }) => {
           }}
           width={"100%"}
           onChange={handleChange}
-          className="code-cont w-full"
+          className="code-container w-full"
           language="javascript"
           defaultValue={field.dataType.code}
           loading={

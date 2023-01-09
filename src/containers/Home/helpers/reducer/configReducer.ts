@@ -1,4 +1,7 @@
-import { ConfigSchema } from "../../../../shared/interfaces/config.iterface";
+import {
+  ConfigSchema,
+  FileConfigOption,
+} from "../../../../shared/interfaces/config.iterface";
 import { CONFIG_ACTIONS } from "../../constants/ACTION_TYPES";
 import { Reducer } from "react";
 import { FILE_TYPE } from "../../../../shared/constant/FILE_TYPE";
@@ -15,7 +18,10 @@ export type ConfigPayload =
       type: CONFIG_ACTIONS.CHANGE_SAVE_SCHEMA;
       payload: { value: boolean };
     }
-  | { type: CONFIG_ACTIONS.SET_INITIAL_CONFIG; payload: ConfigSchema }
+  | {
+      type: CONFIG_ACTIONS.SET_INITIAL_CONFIG;
+      payload: { fileConfig: FileConfigOption[] };
+    }
   | {
       type: CONFIG_ACTIONS.CHANGE_FILE_ARGUMENTS;
       payload: {
@@ -42,7 +48,13 @@ export const configReducer: Reducer<ConfigSchema, ConfigPayload> = (
       return { ...config, saveSchema: action.payload.value };
     }
     case CONFIG_ACTIONS.SET_INITIAL_CONFIG: {
-      return action.payload;
+      return {
+        file: {
+          fileType: action.payload.fileConfig[0].fileType,
+          arguments: {},
+        },
+        saveSchema: false,
+      };
     }
     case CONFIG_ACTIONS.CHANGE_FILE_ARGUMENTS: {
       const { file } = config;

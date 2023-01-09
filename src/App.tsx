@@ -51,28 +51,26 @@ function App() {
 
   return (
     <AppLoader loading={initialFetchLoading || loading}>
-      <div className="flex flex-col h-screen">
-        <DatasetsProvider>
-          <Fragment>
-            <ToastContainer autoClose={5000} hideProgressBar={true} />
+      <DatasetsProvider>
+        <Fragment>
+          <ToastContainer autoClose={5000} hideProgressBar={true} />
 
-            <SideBar
-              openSideBar={openSideBar}
-              handleCloseSideBar={handleCloseSideBar}
-            />
+          <SideBar
+            openSideBar={openSideBar}
+            handleCloseSideBar={handleCloseSideBar}
+          />
 
-            <div className="flex">
-              {location.pathname !== APP_ROUTES.ROOT ? (
-                <OptionsBar />
-              ) : (
-                <NavBar handleOpenSideBar={handleOpenSideBar} />
-              )}
+          <div className="flex">
+            {location.pathname !== APP_ROUTES.ROOT ? (
+              <OptionsBar />
+            ) : (
+              <NavBar handleOpenSideBar={handleOpenSideBar} />
+            )}
 
-              <Outlet />
-            </div>
-          </Fragment>
-        </DatasetsProvider>
-      </div>
+            <Outlet />
+          </div>
+        </Fragment>
+      </DatasetsProvider>
     </AppLoader>
   );
 }

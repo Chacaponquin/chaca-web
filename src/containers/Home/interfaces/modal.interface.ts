@@ -28,9 +28,14 @@ export type ModalExportSelectDataset = {
   type: MODAL_ACTIONS.EXPORT_SELECT_DATASET;
 };
 
+export type ModalExportAllDatasets = {
+  type: MODAL_ACTIONS.EXPORT_ALL_DATASETS;
+};
+
 export type ModalProps =
   | ModalAddFieldProps
   | ModalAddDataset
   | ModalEditField
   | ModalDeleteDataset
-  | ModalExportSelectDataset;
+  | ModalExportSelectDataset
+  | ModalExportAllDatasets;

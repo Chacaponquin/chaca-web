@@ -1,5 +1,5 @@
-import { useRef } from "react";
 import LoaderContainer from "../../../../shared/components/Loader/LoaderContainer";
+import ProgessBar from "./components/ProgressBar";
 
 const CreationLoadingModal = ({ porcent }: { porcent: number }) => {
   return (
@@ -11,30 +11,6 @@ const CreationLoadingModal = ({ porcent }: { porcent: number }) => {
         />
         <ProgessBar porcent={porcent} />
       </div>
-    </div>
-  );
-};
-
-const ProgessBar = ({ porcent }: { porcent: number }) => {
-  const porcentDiv = useRef<HTMLDivElement>(null);
-
-  return (
-    <div
-      className="max-w-[700px] w-full rounded-full bg-slate-100 h-[17px]"
-      ref={porcentDiv}
-    >
-      <div
-        className={
-          "absolute rounded-full bg-gradient-to-r from-principalColor to-secondColor h-[17px] transition-all duration-75"
-        }
-        style={{
-          width: `${
-            porcentDiv.current
-              ? Number((porcentDiv.current.clientWidth! * porcent) / 100)
-              : 0
-          }px`,
-        }}
-      ></div>
     </div>
   );
 };

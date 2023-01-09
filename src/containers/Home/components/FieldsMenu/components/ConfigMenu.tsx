@@ -33,10 +33,10 @@ const ConfigMenu = ({
 
   return (
     <div className="absolute flex flex-col -translate-x-0 translate-y-5 rounded-md bg-white shadow-md">
-      <div className={commonClass("gap-5")}>
+      <div className={commonClass("gap-4")}>
         <p className="mb-0 text-sm">Documents:</p>
         <InputNumber
-          className="!text-sm w-[60px]"
+          className="!text-sm w-[80px]"
           min={1}
           max={
             actualUser

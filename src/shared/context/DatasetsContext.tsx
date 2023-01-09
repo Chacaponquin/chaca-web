@@ -44,7 +44,6 @@ const DatasetsContext = createContext<DatasetContext>({
 const DatasetsProvider = ({ children }: { children: ReactElement }) => {
   const { initialFetchLoading, errorInitialFetch, fileConfig } =
     useContext(AppConfigContext);
-  
 
   // created datasets
   const [datasets, datasetDispatch] = useReducer<
@@ -80,11 +79,7 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
       configDispatch({
         type: CONFIG_ACTIONS.SET_INITIAL_CONFIG,
         payload: {
-          file: {
-            fileType: fileConfig[0].fileType,
-            arguments: {},
-          },
-          saveSchema: false,
+          fileConfig,
         },
       });
     }

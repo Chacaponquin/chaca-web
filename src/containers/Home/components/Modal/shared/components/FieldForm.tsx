@@ -38,10 +38,6 @@ const FieldForm = ({
       </div>
 
       <div className="flex flex-col">
-        <label htmlFor="" className="font-fontBold text-lg">
-          Options:
-        </label>
-
         <div className="flex flex-col gap-2">
           <div className="flex justify-between items-center">
             <div className="flex gap-3 items-center">
@@ -57,7 +53,7 @@ const FieldForm = ({
                 <div className="flex items-center gap-1">
                   <p className="mb-0">Min:</p>
                   <InputNumber
-                    className="w-[60px] !text-sm"
+                    className="w-[75px] !text-sm"
                     value={field.isArray.min}
                     min={0}
                     max={field.isArray.max}
@@ -68,7 +64,7 @@ const FieldForm = ({
                 <div className="flex items-center gap-1">
                   <p className="mb-0">Max:</p>
                   <InputNumber
-                    className="w-[60px] !text-sm"
+                    className="w-[75px] !text-sm"
                     value={field.isArray.max}
                     min={field.isArray.min}
                     max={1000}

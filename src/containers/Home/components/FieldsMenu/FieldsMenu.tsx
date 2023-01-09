@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import { DatasetsContext } from "../../../../shared/context/DatasetsContext";
+import { MODAL_ACTIONS } from "../../constants/MODAL_ACTIONS";
 import { ModalProps } from "../../interfaces/modal.interface";
 import DatasetsHeader from "./components/DatasetsHeader";
+import ExportButton from "./components/ExportButton";
 import FieldContainer from "./components/FieldContainer";
 import NoFieldsMessage from "./components/NoFieldsMessage";
 
@@ -11,6 +13,10 @@ const FieldsMenu = ({
   handleOpenModal: (a: ModalProps) => void;
 }) => {
   const { selectedDataset } = useContext(DatasetsContext);
+
+  const handleExportAllDatasets = () => {
+    handleOpenModal({ type: MODAL_ACTIONS.EXPORT_ALL_DATASETS });
+  };
 
   return (
     <div className="h-screen min-w-[300px] max-w-[300px] bg-white border-2 flex flex-col justify-between">
@@ -33,11 +39,7 @@ const FieldsMenu = ({
         </div>
       </div>
 
-      <div className="w-full px-3 py-2">
-        <button className="px-3 py-1 text-white font-fontBold rounded-sm bg-secondColor text-lg w-full transition-all duration-300 hover:opacity-70">
-          Export All
-        </button>
-      </div>
+      <ExportButton handleExportAllDatasets={handleExportAllDatasets} />
     </div>
   );
 };

@@ -1,31 +1,34 @@
+import { ModalExportAllDatasets } from "../../../interfaces/modal.interface";
+import ExportForm from "../shared/components/ExportForm";
 import ModalButtons from "../shared/components/ModalButtons";
 import ModalTitle from "../shared/components/ModalTitle";
-import ExportForm from "../shared/components/ExportForm";
 
-const ExportSelectDatasetForm = ({
+const ExportAllDatasetForm = ({
+  props,
   handleCloseModal,
-  handleCreateSelectDataset,
+  handleCreateAllDatasets,
 }: {
   handleCloseModal: () => void;
-  handleCreateSelectDataset: () => void;
+  props: ModalExportAllDatasets;
+  handleCreateAllDatasets: () => void;
 }) => {
   return (
     <div className="flex flex-col w-full">
       <ModalTitle
         handleCloseModal={handleCloseModal}
-        titleText="Export Dataset"
+        titleText="Export All Datasets"
       />
 
       <ExportForm />
 
       <ModalButtons
+        nextText="Export Datasets"
         handleCancel={handleCloseModal}
-        handleNext={handleCreateSelectDataset}
-        nextText="Export"
+        handleNext={handleCreateAllDatasets}
         type="edit"
       />
     </div>
   );
 };
 
-export default ExportSelectDatasetForm;
+export default ExportAllDatasetForm;

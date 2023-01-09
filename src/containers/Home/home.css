@@ -1,3 +1,15 @@
+.code-container * {
+  font-family: "FiraCode Regular";
+}
+
+.code-container {
+  overflow-x: auto;
+}
+
+.code-container::-webkit-scrollbar {
+  display: none;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;

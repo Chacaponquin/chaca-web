@@ -4,15 +4,20 @@ import { UserContext } from "../../../shared/context/UserContext";
 import { toast } from "react-toastify";
 import { ModalProps } from "../interfaces/modal.interface";
 import { SOCKET_EVENTS } from "../constants/SOCKET_EVENTS";
+import { CONFIG_ACTIONS } from "../constants/ACTION_TYPES";
+import { AppConfigContext } from "../../../shared/context/AppConfigContext";
 
 export const useHome = () => {
-  const { datasets, config, selectedDataset } = useContext(DatasetsContext);
+  const { datasets, config, selectedDataset, configDispatch } =
+    useContext(DatasetsContext);
   const { socket } = useContext(UserContext);
+  const { fileConfig } = useContext(AppConfigContext);
 
   const [openModal, setOpenModal] = useState<null | ModalProps>(null);
 
   const [createDataLoading, setCreateDataLoading] = useState(false);
 
+  // porciento de completado de la creacion de los datasets
   const [porcent, setPorcent] = useState(0);
 
   const handleOpenModal = (props: ModalProps) => {
@@ -27,9 +32,15 @@ export const useHome = () => {
     socket.on(SOCKET_EVENTS.GET_DOWN_URL, (args) => {
       window.open(`${process.env.REACT_APP_API_URL}/${args.downUrl}`);
       setCreateDataLoading(false);
+      setPorcent(0);
+      configDispatch({
+        type: CONFIG_ACTIONS.SET_INITIAL_CONFIG,
+        payload: { fileConfig },
+      });
     });
 
     socket.on(SOCKET_EVENTS.DOCUMENT_CREATED, (data) => {
+      console.log(data.porcent);
       setPorcent(Number(data.porcent) || 0);
     });
 
@@ -41,8 +52,9 @@ export const useHome = () => {
     return () => {
       socket.off(SOCKET_EVENTS.GET_DOWN_URL);
       socket.off(SOCKET_EVENTS.CREATE_DATASET_ERROR);
+      socket.off(SOCKET_EVENTS.DOCUMENT_CREATED);
     };
-  }, [socket]);
+  }, []);
 
   const handleCreateAllDatasets = async () => {
     if (socket.connected) {
@@ -66,6 +78,9 @@ export const useHome = () => {
         datasets: [selectedDataset.getDatasetObject()],
         config,
       });
+    } else {
+      toast.error("Error en la conexión");
+      setCreateDataLoading(false);
     }
   };
 

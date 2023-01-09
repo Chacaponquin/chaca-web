@@ -52,7 +52,7 @@ const FormContent = ({
 
       <div className={containerClass()}>
         <div className={formClass()}>
-          <div className="gap-2 overflow-y-auto bg-white w-full flex flex-col">
+          <div className="gap-2 overflow-y-auto h-full bg-white w-full flex flex-col">
             {selectField === null ? (
               <NoSelectField />
             ) : (
@@ -96,7 +96,9 @@ const FormContent = ({
 
 const NoSelectField = () => {
   return (
-    <div className="flex items-center justify-center">No selected field</div>
+    <div className="flex items-center justify-center h-full">
+      No selected field
+    </div>
   );
 };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import PlayIcon from "../../../shared/assets/icons/PlayIcon";
+import { ChacaIconButton } from "../../../shared/components/ChacaButton/ChacaButton";
 
 const WhyUs = () => {
   return (
@@ -30,10 +31,13 @@ const WhyUs = () => {
           </div>
 
           <div className="flex justify-end mt-4">
-            <button className="flex transition-all duration-300 hover:opacity-70 items-center text-white px-7 py-2 text-xl bg-principal-bg rounded-md gap-3">
-              <PlayIcon />
-              <p className="mb-0 whitespace-nowrap">Mirar Video</p>
-            </button>
+            <ChacaIconButton
+              color="gradient"
+              icon={<PlayIcon size={20} />}
+              text="Mirar Video"
+              size="extra-large"
+              onClick={() => {}}
+            />
           </div>
         </div>
 

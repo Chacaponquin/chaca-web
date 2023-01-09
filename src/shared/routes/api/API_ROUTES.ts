@@ -33,5 +33,6 @@ export const API_ROUTES = {
   GET_API_DOC: "/docs/getApiSections",
   DOCS: {
     GET_CUSTOM_FORM_GUIDES: "/docs/getCustomFormGuides",
+    GET_REF_FORM_GUIDES: "/docs/getRefFormGuides",
   },
 };

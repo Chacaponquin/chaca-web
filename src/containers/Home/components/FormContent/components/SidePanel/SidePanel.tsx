@@ -6,6 +6,7 @@ import {
 } from "../../../../../../shared/interfaces/datasets.interface";
 import { useUtils } from "../../../../hooks/useUtils";
 import CustomFormDocs from "./components/CustomFormDocs";
+import RefFormDocs from "./components/RefFormDocs";
 import SidePanelHeader from "./components/SidePanelHeader";
 import SingleValueDocs from "./components/SingleValueDocs";
 
@@ -19,7 +20,7 @@ const SidePanel = ({
   const { findParent, findType } = useUtils();
 
   return (
-    <div className="bg-white transition-all duration-300 px-5 py-3 border-l-2 w-[40%] overflow-y-auto">
+    <div className="bg-white transition-all duration-300 px-5 py-3 border-l-2 min-w-[460px] max-w-[460px] overflow-y-auto">
       <SidePanelHeader
         title="Documentation"
         handleCloseDocs={handleCloseDocs}
@@ -41,6 +42,7 @@ const SidePanel = ({
       )}
 
       {field.info.dataType.type === DATA_TYPES.CUSTOM && <CustomFormDocs />}
+      {field.info.dataType.type === DATA_TYPES.REF && <RefFormDocs />}
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { SubOption } from "../../../../../../../shared/interfaces/options.interface";
-import { v4 as uuid } from "uuid";
 import { Config } from "../../../../../../../shared/assets/icons";
 import clsx from "clsx";
 import {
@@ -26,7 +25,7 @@ const OptionsContainer = ({
       {options.map((o, i) => (
         <Option
           option={o}
-          key={uuid()}
+          key={i}
           field={field}
           isSelected={field.dataType.fieldType.type === o.name}
         />
@@ -82,7 +81,7 @@ const Option = ({
   };
 
   return (
-    <div className={divClass()} key={uuid()}>
+    <div className={divClass()}>
       <div className="flex items-center w-full justify-between ">
         <div className="flex items-center">
           <ChacaRadioButton

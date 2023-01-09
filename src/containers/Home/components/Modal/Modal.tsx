@@ -4,6 +4,7 @@ import AddDatasetForm from "./components/AddDatasetForm";
 import AddFieldForm from "./components/AddFieldForm";
 import DeleteDatasetForm from "./components/DeleteDatasetForm";
 import EditFieldForm from "./components/EditFieldForm";
+import ExportAllDatasetForm from "./components/ExportAllDatasetForm";
 import ExportSelectDatasetForm from "./components/ExportSelectDatasetForm";
 
 const Modal = ({
@@ -36,6 +37,13 @@ const Modal = ({
           <ExportSelectDatasetForm
             handleCloseModal={handleCloseModal}
             handleCreateSelectDataset={handleCreateSelectDataset}
+          />
+        )}
+        {props.type === MODAL_ACTIONS.EXPORT_ALL_DATASETS && (
+          <ExportAllDatasetForm
+            handleCloseModal={handleCloseModal}
+            handleCreateAllDatasets={handleCreateAllDatasets}
+            props={props}
           />
         )}
       </div>
