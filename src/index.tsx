@@ -26,6 +26,7 @@ import "./index.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
+import { ErrorBoundary } from "./layout";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 
@@ -60,10 +61,12 @@ const AppCont = () => {
 
 root.render(
   <React.StrictMode>
-    <AppConfigProvider>
-      <UserProvider>
-        <AppCont />
-      </UserProvider>
-    </AppConfigProvider>
+    <ErrorBoundary>
+      <AppConfigProvider>
+        <UserProvider>
+          <AppCont />
+        </UserProvider>
+      </AppConfigProvider>
+    </ErrorBoundary>
   </React.StrictMode>
 );

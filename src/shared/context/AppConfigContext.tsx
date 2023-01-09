@@ -1,4 +1,5 @@
 import { createContext, ReactElement, useEffect, useState } from "react";
+import { InitialFetchError } from "../errors/errors";
 import { DataTransform } from "../helpers/DataTransform";
 import { FileConfigOption, NoUserLimits } from "../interfaces/config.iterface";
 import { Schema, SchemasResp } from "../interfaces/options.interface";
@@ -8,11 +9,9 @@ const AppConfigContext = createContext<{
   noUserLimits: NoUserLimits;
   schemas: Schema[];
   initialFetchLoading: boolean;
-  errorInitialFetch: boolean;
   fileConfig: FileConfigOption[];
 }>({
   noUserLimits: {} as any,
-  errorInitialFetch: false,
   initialFetchLoading: true,
   schemas: [],
   fileConfig: [],
@@ -38,9 +37,6 @@ const AppConfigProvider = ({
   // loading de la carga inicial de informacion
   const [initialFetchLoading, setInitialFetchLoading] = useState(true);
 
-  // estado por si hay un error en la carga inicial
-  const [errorInitialFetch, setErrorInitialFetch] = useState(false);
-
   useEffect(() => {
     Promise.all([
       InitialFetchs.NO_USER_LIMITS(),
@@ -52,13 +48,14 @@ const AppConfigProvider = ({
         setSchemas(DataTransform.initialFieldsTransform(data[2]));
         setFileConfig(data[1]);
       })
-      .catch((error) => setErrorInitialFetch(true))
+      .catch((error) => {
+        throw new InitialFetchError();
+      })
       .finally(() => setInitialFetchLoading(false));
   }, []);
 
   const data = {
     initialFetchLoading,
-    errorInitialFetch,
     schemas,
     fileConfig,
     noUserLimits,
@@ -73,10 +70,9 @@ const AppConfigProvider = ({
 
 const InitialFetchs = {
   NO_USER_LIMITS: async () => {
-    const { data } = await axiosInstance.get<NoUserLimits>(
-      API_ROUTES.GET_NO_USER_LIMITS
-    );
-    return data;
+    return (
+      await axiosInstance.get<NoUserLimits>(API_ROUTES.GET_NO_USER_LIMITS)
+    ).data;
   },
   FILE_CONFIG: async () => {
     return (

@@ -42,8 +42,7 @@ const DatasetsContext = createContext<DatasetContext>({
 });
 
 const DatasetsProvider = ({ children }: { children: ReactElement }) => {
-  const { initialFetchLoading, errorInitialFetch, fileConfig } =
-    useContext(AppConfigContext);
+  const { initialFetchLoading, fileConfig } = useContext(AppConfigContext);
 
   // created datasets
   const [datasets, datasetDispatch] = useReducer<
@@ -65,7 +64,7 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
   const [selectField, setSelectField] = useState<FieldNode | null>(null);
 
   useEffect(() => {
-    if (!initialFetchLoading && !errorInitialFetch) {
+    if (!initialFetchLoading) {
       const initDataset = new DatasetTree("New Dataset", 50);
 
       datasetDispatch({
@@ -84,7 +83,7 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
         },
       });
     }
-  }, [initialFetchLoading, errorInitialFetch, fileConfig]);
+  }, [initialFetchLoading, fileConfig]);
 
   const handleSelectDataset = (id: string) => {
     setSelectedDataset(datasets.find((el) => el.id === id)!);

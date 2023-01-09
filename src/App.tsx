@@ -1,13 +1,12 @@
 import { Fragment, useContext } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import NavBar from "./layout/NavBar/NavBar";
 import DatasetsProvider from "./shared/context/DatasetsContext";
 import { APP_ROUTES } from "./shared/routes/app/APP_ROUTES";
-import OptionsBar from "./layout/OptionsBar/OptionsBar";
 import LoaderContainer from "./shared/components/Loader/LoaderContainer";
 import { UserContext } from "./shared/context/UserContext";
 import { AppConfigContext } from "./shared/context/AppConfigContext";
+import { NavBar, OptionsBar } from "./layout";
 
 const AppLoader = ({
   loading,
