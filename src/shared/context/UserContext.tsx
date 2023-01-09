@@ -5,6 +5,7 @@ import io, { Socket } from "socket.io-client";
 import { useEffect } from "react";
 import { getTokenCookie } from "../helpers/getTokenCookie";
 import { LoginUser } from "../interfaces/user.interface";
+import { Languages } from "../interfaces/language.interface";
 
 const UserContext = createContext<{
   actualUser: LoginUser | null;
@@ -12,12 +13,14 @@ const UserContext = createContext<{
   handleSignOut: () => void;
   loading: boolean;
   socket: Socket;
+  language: Languages;
 }>({
   actualUser: null,
   handleSignIn: () => {},
   handleSignOut: () => {},
   loading: true,
   socket: null!,
+  language: "en",
 });
 
 const socket = io(process.env.REACT_APP_SOCKET_URL as string, {
@@ -29,6 +32,8 @@ const socket = io(process.env.REACT_APP_SOCKET_URL as string, {
 const UserProvider = ({ children }: { children: ReactElement }) => {
   const [actualUser, setActualUser] = useState<LoginUser | null>(null);
 
+  const [language, setLanguage] = useState<Languages>("en");
+
   const handleSignIn = (token: string) => {
     localStorage.setItem("token", token);
     window.location.reload();
@@ -38,6 +43,15 @@ const UserProvider = ({ children }: { children: ReactElement }) => {
     socket.on("connect_error", () => {
       setTimeout(() => socket.connect(), 5000);
     });
+
+    const navigatorLanguage = window.navigator.language;
+    if (navigatorLanguage.includes("en")) {
+      setLanguage("en");
+    } else if (navigatorLanguage.includes("es")) {
+      setLanguage("es");
+    } else {
+      setLanguage("en");
+    }
 
     return () => {
       socket.off("connect");
@@ -60,7 +74,14 @@ const UserProvider = ({ children }: { children: ReactElement }) => {
     window.location.reload();
   };
 
-  const data = { handleSignIn, actualUser, loading, handleSignOut, socket };
+  const data = {
+    handleSignIn,
+    actualUser,
+    loading,
+    handleSignOut,
+    socket,
+    language,
+  };
 
   return <UserContext.Provider value={data}>{children}</UserContext.Provider>;
 };
