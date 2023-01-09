@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { ChacaLinkButton } from "../../shared/components/ChacaButton";
 import { APP_ROUTES } from "../../shared/routes/app/APP_ROUTES";
 
 const Error404 = () => {
@@ -21,23 +21,17 @@ const Error404 = () => {
           </p>
 
           <div className="flex gap-7 esm:mt-3 esm:flex-col items-center esm:gap-3">
-            <Link
-              className="px-12 py-3 rounded-full border-4 border-solid border-principalColor font-bold bg-principalColor flex items-center hover:opacity-70 transition-all duration-300"
-              to={APP_ROUTES.HOME}
-            >
-              <p className="uppercase text-white text-xl mb-0 text-center esm:text-base">
-                Return Home
-              </p>
-            </Link>
+            <ChacaLinkButton
+              route={APP_ROUTES.HOME}
+              text="Return Home"
+              type="link"
+            />
 
-            <Link
-              className="px-12 py-3 rounded-full border-4 border-solid border-primary_color font-bold bg-white flex items-center esm:hidden hover:opacity-70 transition-all duration-300"
-              to={APP_ROUTES.CONTACT_US}
-            >
-              <p className="uppercase text-primary_color text-xl mb-0 text-center esm:text-base">
-                Report Problem
-              </p>
-            </Link>
+            <ChacaLinkButton
+              text="Report Problem"
+              route={APP_ROUTES.CONTACT_US}
+              type="cancel"
+            />
           </div>
         </div>
       </div>

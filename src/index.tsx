@@ -32,41 +32,41 @@ const root = ReactDOM.createRoot(document.getElementById("root")!);
 
 const AppCont = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path={APP_ROUTES.AUTH_ROUTES.LOGIN}
-          element={<NoUserRoute children={<Login />} />}
-        />
-        <Route
-          path={APP_ROUTES.AUTH_ROUTES.SIGN_UP}
-          element={<NoUserRoute children={<SignUp />} />}
-        />
-        <Route path={APP_ROUTES.CONTACT_US} element={<ContactUs />} />
+    <Routes>
+      <Route
+        path={APP_ROUTES.AUTH_ROUTES.LOGIN}
+        element={<NoUserRoute children={<Login />} />}
+      />
+      <Route
+        path={APP_ROUTES.AUTH_ROUTES.SIGN_UP}
+        element={<NoUserRoute children={<SignUp />} />}
+      />
+      <Route path={APP_ROUTES.CONTACT_US} element={<ContactUs />} />
 
-        <Route path="/" element={<App />}>
-          <Route path={APP_ROUTES.ROOT} element={<Landing />} />
-          <Route path={APP_ROUTES.HOME} element={<Home />} />
-          <Route path={APP_ROUTES.API} element={<Api />} />
-          {/*<Route path={APP_ROUTES.DOCS} element={<Docs />} />*/}
-          <Route path={APP_ROUTES.MY_SCHEMA} element={<MySchema />} />
-          <Route path={APP_ROUTES.NOT_FOUND} element={<Error404 />} />
-        </Route>
+      <Route path="/" element={<App />}>
+        <Route path={APP_ROUTES.ROOT} element={<Landing />} />
+        <Route path={APP_ROUTES.HOME} element={<Home />} />
+        <Route path={APP_ROUTES.API} element={<Api />} />
+        {/*<Route path={APP_ROUTES.DOCS} element={<Docs />} />*/}
+        <Route path={APP_ROUTES.MY_SCHEMA} element={<MySchema />} />
+        <Route path={APP_ROUTES.NOT_FOUND} element={<Error404 />} />
+      </Route>
 
-        <Route path="*" element={<Error404 />} />
-      </Routes>
-    </BrowserRouter>
+      <Route path="*" element={<Error404 />} />
+    </Routes>
   );
 };
 
 root.render(
   <React.StrictMode>
-    <ErrorBoundary>
-      <AppConfigProvider>
-        <UserProvider>
-          <AppCont />
-        </UserProvider>
-      </AppConfigProvider>
-    </ErrorBoundary>
+    <BrowserRouter>
+      <ErrorBoundary>
+        <AppConfigProvider>
+          <UserProvider>
+            <AppCont />
+          </UserProvider>
+        </AppConfigProvider>
+      </ErrorBoundary>
+    </BrowserRouter>
   </React.StrictMode>
 );

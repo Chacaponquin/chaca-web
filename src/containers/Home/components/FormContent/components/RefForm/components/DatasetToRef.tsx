@@ -1,4 +1,4 @@
-import { DatasetTree } from "../../../../../../../shared/helpers/DatasetTree";
+import { DatasetTree } from "../../../../../../../shared/helpers/DatasetTree/DatasetTree";
 import { v4 as uuid } from "uuid";
 import FieldToRef from "./FieldToRef";
 import {

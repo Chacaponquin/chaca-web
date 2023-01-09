@@ -44,7 +44,7 @@ const ContactUs = () => {
     <div className="flex justify-center items-center w-screen h-screen bg-third-bg bg-cover bg-no-repeat">
       <ToastContainer autoClose={5000} hideProgressBar={true} />
       {modalOpen && <SuccessModal />}
-      <div className="bg-white rounded-md shadow-lg flex gap-10 px-5 py-10 esm:w-[95%] exsm:py-6">
+      <div className="bg-white rounded shadow-lg flex gap-10 px-5 py-10 esm:w-[95%] exsm:py-6">
         <div className="flex flex-col gap-6 pl-10 w-[550px] lg:pr-0 pr-10 esm:w-full esm:pl-4 esm:pr-4">
           <div>
             <h1 className="uppercase font-fontExtraBold sm:text-7xl text-5xl exsm:text-4xl">

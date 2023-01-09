@@ -8,8 +8,8 @@ import ModalTitle from "../shared/components/ModalTitle";
 import ModalButtons from "../shared/components/ModalButtons";
 import FieldForm from "../shared/components/FieldForm";
 import { useFieldForm } from "../shared/hooks/useFieldForm";
-import { FieldNode } from "../../../../../shared/helpers/DatasetTree";
 import { SingleValueDataType } from "../../../../../shared/interfaces/datasets.interface";
+import { FieldNode } from "../../../../../shared/helpers/DatasetTree";
 
 const AddFieldForm = ({
   props,
