@@ -8,8 +8,8 @@ import ModalTitle from "../shared/components/ModalTitle";
 import ModalButtons from "../shared/components/ModalButtons";
 import FieldForm from "../shared/components/FieldForm";
 import { useFieldForm } from "../shared/hooks/useFieldForm";
-import { SingleValueDataType } from "../../../../../shared/interfaces/datasets.interface";
-import { FieldNode } from "../../../../../shared/helpers/DatasetTree";
+import { v4 as uuid } from "uuid";
+import { toast } from "react-toastify";
 
 const AddFieldForm = ({
   props,
@@ -18,37 +18,46 @@ const AddFieldForm = ({
   props: ModalAddFieldProps;
   handleCloseModal: () => void;
 }) => {
-  const { datasetDispatch, handleDeleteSelectField } =
+  const { datasetDispatch, handleDeleteSelectField, selectedDataset } =
     useContext(DatasetsContext);
-
   const { schemas } = useContext(AppConfigContext);
-  const fieldActions = useFieldForm(
-    new FieldNode<SingleValueDataType>("", {
-      dataType: {
-        fieldType: {
-          args: {},
-          parent: schemas[0].parent,
-          type: schemas[0].options[1].name,
-        },
-        type: DATA_TYPES.SINGLE_VALUE,
+
+  const fieldActions = useFieldForm({
+    id: uuid(),
+    name: "",
+    dataType: {
+      fieldType: {
+        args: {},
+        parent: schemas[0].parent,
+        type: schemas[0].options[1].name,
       },
-      isArray: null,
-      isPosibleNull: 0,
-    }).getNodeObject()
-  );
+      type: DATA_TYPES.SINGLE_VALUE,
+    },
+    isArray: null,
+    isPosibleNull: 0,
+  });
 
   const handleAddField = () => {
-    datasetDispatch({
-      type: DATASETS_ACTIONS.ADD_NEW_FIELD,
-      payload: {
-        fieldName: fieldActions.field.name,
-        fieldInfo: fieldActions.field,
-        location: props.location,
-      },
-    });
+    if (fieldActions.field.name) {
+      // crear el field
+      datasetDispatch({
+        type: DATASETS_ACTIONS.ADD_NEW_FIELD,
+        payload: {
+          fieldName: fieldActions.field.name,
+          fieldInfo: fieldActions.field,
+          parentFieldID: props.parentFieldID,
+          datasetID: selectedDataset.id,
+        },
+      });
 
-    handleDeleteSelectField();
-    handleCloseModal();
+      // quitar el selected field (ponerlo en null)
+      handleDeleteSelectField();
+
+      // close modal
+      handleCloseModal();
+    } else {
+      toast.error("The field name can not be an empty string");
+    }
   };
 
   return (

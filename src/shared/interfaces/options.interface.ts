@@ -10,6 +10,7 @@ export interface Schema extends SchemasResp {
 }
 
 export interface SubOption {
+  id: string;
   name: string;
   arguments: Argument[];
   exampleValue: unknown;

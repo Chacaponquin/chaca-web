@@ -29,3 +29,7 @@
 .code-container * {
   font-family: "FiraCode Regular";
 }
+
+.form-content {
+  height: calc(100vh - 50px);
+}

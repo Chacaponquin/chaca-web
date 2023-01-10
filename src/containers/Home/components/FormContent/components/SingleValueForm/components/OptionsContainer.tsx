@@ -1,5 +1,8 @@
 import { useContext, useState } from "react";
-import { SubOption } from "../../../../../../../shared/interfaces/options.interface";
+import {
+  Argument,
+  SubOption,
+} from "../../../../../../../shared/interfaces/options.interface";
 import { Config } from "../../../../../../../shared/assets/icons";
 import clsx from "clsx";
 import {
@@ -20,39 +23,27 @@ const OptionsContainer = ({
   options: SubOption[];
   field: DatasetField<SingleValueDataType>;
 }) => {
-  return (
-    <div className="flex flex-col gap-1 px-5">
-      {options.map((o, i) => (
-        <Option
-          option={o}
-          key={i}
-          field={field}
-          isSelected={field.dataType.fieldType.type === o.name}
-        />
-      ))}
-    </div>
-  );
-};
+  const { datasetDispatch, selectedDataset } = useContext(DatasetsContext);
 
-const Option = ({
-  option,
-  field,
-  isSelected,
-}: {
-  option: SubOption;
-  field: DatasetField<SingleValueDataType>;
-  isSelected: boolean;
-}) => {
+  const [optionsWithOpenArguments, setOptionsWithOpenArguments] = useState<
+    string[]
+  >([]);
+
   const { findType } = useUtils();
-  const { selectedDataset, datasetDispatch } = useContext(DatasetsContext);
-  const args = findType(
-    field.dataType.fieldType.parent,
-    field.dataType.fieldType.type
-  ).arguments;
 
-  const [openArguments, setOpenArguments] = useState(isSelected);
+  const handleOpenArguments = (id: string) => {
+    if (!optionsWithOpenArguments.some((o) => o === id)) {
+      setOptionsWithOpenArguments([...optionsWithOpenArguments, id]);
+    }
+  };
 
-  const handleSelectOption = () => {
+  const handleCloseArguments = (id: string) => {
+    setOptionsWithOpenArguments(
+      optionsWithOpenArguments.filter((o) => o !== id)
+    );
+  };
+
+  const handleSelectOption = (option: SubOption) => {
     datasetDispatch({
       type: DATASETS_ACTIONS.CHANGE_FIELD_DATATYPE,
       payload: {
@@ -68,8 +59,53 @@ const Option = ({
         },
       },
     });
+
+    setOptionsWithOpenArguments([option.id]);
   };
 
+  return (
+    <div className="flex flex-col gap-1 px-5">
+      {options.map((o, i) => (
+        <Option
+          option={o}
+          key={o.id}
+          args={
+            findType(
+              field.dataType.fieldType.parent,
+              field.dataType.fieldType.type
+            ).arguments
+          }
+          field={field}
+          handleCloseArguments={() => handleCloseArguments(o.id)}
+          handleOpenArguments={() => handleOpenArguments(o.id)}
+          handleSelectOption={() => handleSelectOption(o)}
+          isSelected={field.dataType.fieldType.type === o.name}
+          openArguments={optionsWithOpenArguments.some((op) => op === o.id)}
+        />
+      ))}
+    </div>
+  );
+};
+
+const Option = ({
+  option,
+  openArguments,
+  args,
+  handleSelectOption,
+  handleCloseArguments,
+  handleOpenArguments,
+  isSelected,
+  field,
+}: {
+  handleSelectOption: () => void;
+  handleCloseArguments: () => void;
+  handleOpenArguments: () => void;
+  openArguments: boolean;
+  option: SubOption;
+  args: Argument[];
+  isSelected: boolean;
+  field: DatasetField<SingleValueDataType>;
+}) => {
   const divClass = () => {
     return clsx(
       "w-full rounded-md flex items-center flex-col py-2 px-4",
@@ -94,7 +130,9 @@ const Option = ({
 
         <button
           className="cursor-pointer"
-          onClick={() => setOpenArguments(!openArguments)}
+          onClick={() => {
+            openArguments ? handleCloseArguments() : handleOpenArguments();
+          }}
         >
           <Config size={20} />
         </button>

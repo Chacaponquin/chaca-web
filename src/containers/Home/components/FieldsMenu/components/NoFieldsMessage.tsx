@@ -14,7 +14,7 @@ const NoFieldsMessage = ({
   const handleNewField = () => {
     handleOpenModal({
       type: MODAL_ACTIONS.ADD_FIELD,
-      location: [selectedDataset.name],
+      parentFieldID: selectedDataset.id,
     });
   };
 

@@ -1,12 +1,6 @@
-import { X, File } from "../../../../../../../shared/assets/icons";
+import { File } from "../../../../../../../shared/assets/icons";
 
-const SidePanelHeader = ({
-  title,
-  handleCloseDocs,
-}: {
-  title: string;
-  handleCloseDocs: () => void;
-}) => {
+const SidePanelHeader = ({ title }: { title: string }) => {
   return (
     <div className="flex justify-between w-full mb-3">
       <div className="flex items-center gap-3">
@@ -16,10 +10,6 @@ const SidePanelHeader = ({
 
         <p className="mb-0 font-fontExtraBold text-lg">{title}</p>
       </div>
-
-      <button onClick={handleCloseDocs}>
-        <X size={20} />
-      </button>
     </div>
   );
 };

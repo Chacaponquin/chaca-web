@@ -6,17 +6,10 @@ import {
   RefDataType,
 } from "../../../../../../shared/interfaces/datasets.interface";
 import DatasetToRef from "./components/DatasetToRef";
-import { v4 as uuid } from "uuid";
-import clsx from "clsx";
 
-const RefForm = ({
-  field,
-  docsOpen,
-}: {
-  docsOpen: boolean;
-  field: DatasetField<RefDataType>;
-}) => {
+const RefForm = ({ field }: { field: DatasetField<RefDataType> }) => {
   const { datasets, selectedDataset } = useContext(DatasetsContext);
+
   const toRef = useMemo(() => {
     return datasets.filter((d) => {
       let availible = true;
@@ -34,19 +27,12 @@ const RefForm = ({
     });
   }, [datasets, selectedDataset.id]);
 
-  const gridClass = () => {
-    return clsx("grid w-full gap-x-5 gap-y-4", {
-      "grid-cols-2": !docsOpen,
-      "grid-cols-1": docsOpen,
-    });
-  };
-
   return (
     <div className="flex w-full px-3">
       {toRef.length > 0 ? (
-        <div className={gridClass()}>
+        <div className="grid w-full gap-x-5 gap-y-4 grid-cols-1">
           {toRef.map((d) => (
-            <DatasetToRef key={uuid()} dataset={d} selectField={field} />
+            <DatasetToRef key={d.id} dataset={d} selectField={field} />
           ))}
         </div>
       ) : (

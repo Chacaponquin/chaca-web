@@ -1,6 +1,6 @@
-import React, { ErrorInfo, ReactNode } from "react";
+import { ErrorInfo, ReactNode, Component } from "react";
 
-class ErrorBoundary extends React.Component<
+class ErrorBoundary extends Component<
   { children: ReactNode },
   { hasError: boolean }
 > {
@@ -8,7 +8,7 @@ class ErrorBoundary extends React.Component<
     hasError: false,
   };
 
-  public static getDerivedStateFromError(_: Error) {
+  public static getDerivedStateFromError(error: Error) {
     return { hasError: true };
   }
 

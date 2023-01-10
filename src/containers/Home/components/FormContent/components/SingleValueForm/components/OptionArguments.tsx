@@ -20,7 +20,7 @@ const OptionArguments = ({
 }) => {
   return (
     <div className="grid grid-cols-2 gap-x-5 w-full px-5 mt-1">
-      {args.map((a) => (
+      {args.map((a, i) => (
         <FieldArgumentContainer key={uuid()} arg={a} field={field} />
       ))}
     </div>

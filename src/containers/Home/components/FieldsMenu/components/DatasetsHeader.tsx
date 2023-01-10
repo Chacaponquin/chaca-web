@@ -24,7 +24,7 @@ const DatasetsHeader = ({
   const handleAddDatasetField = () => {
     handleOpenModal({
       type: MODAL_ACTIONS.ADD_FIELD,
-      location: [selectedDataset.name],
+      parentFieldID: selectedDataset.id,
     });
     setOpenConfig(false);
   };

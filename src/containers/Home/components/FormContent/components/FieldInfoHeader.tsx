@@ -37,10 +37,7 @@ const FieldInfoHeader = ({
   };
 
   const location = useMemo(
-    () => [
-      ...selectedDataset.getFieldLocation(selectField.id),
-      selectField.name,
-    ],
+    () => selectedDataset.getFieldLocation(selectField.id),
     [selectField, selectedDataset]
   );
 

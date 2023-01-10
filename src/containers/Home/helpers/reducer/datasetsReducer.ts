@@ -17,8 +17,9 @@ export type DatasetPayload =
       type: DATASETS_ACTIONS.ADD_NEW_FIELD;
       payload: {
         fieldName: string;
-        location: string[];
+        parentFieldID: string;
         fieldInfo: NodeInfo<FieldDataType>;
+        datasetID: string;
       };
     }
   | {
@@ -97,7 +98,7 @@ export const datasetsReducer: Reducer<DatasetTree[], DatasetPayload> = (
           const findField = d.findFieldByID(action.payload.field.id);
 
           if (findField) {
-            findField.name = action.payload.field.name;
+            findField.setName(action.payload.field.name);
             findField.info.isArray = action.payload.field.isArray;
             findField.info.isPosibleNull = action.payload.field.isPosibleNull;
             findField.info.dataType = action.payload.field.dataType;
@@ -119,14 +120,27 @@ export const datasetsReducer: Reducer<DatasetTree[], DatasetPayload> = (
     }
 
     case DATASETS_ACTIONS.ADD_NEW_FIELD: {
-      const newDatasets = datasets.map((d) => {
-        if (d.name === action.payload.location[0]) {
-          const newNode = new FieldNode(
-            action.payload.fieldName,
-            action.payload.fieldInfo
-          );
+      // crear nuevo field node
+      const newNode = new FieldNode(
+        action.payload.fieldName,
+        action.payload.fieldInfo
+      );
 
-          d.setNodeByLocation(newNode, action.payload.location.slice(1));
+      const newDatasets = datasets.map((d) => {
+        if (d.id === action.payload.datasetID) {
+          // si el id del dataset y del parent son iguales significa que se tiene que insertar en el root
+          if (action.payload.datasetID === action.payload.parentFieldID) {
+            d.insertField(newNode);
+          }
+
+          // se busca el parent field y si se encuentra se inserta en nuevo nodo en el
+          else {
+            const findParent = d.findFieldByID(action.payload.parentFieldID);
+
+            if (findParent) {
+              findParent.insertNode(newNode);
+            }
+          }
         }
 
         return d;
@@ -136,6 +150,7 @@ export const datasetsReducer: Reducer<DatasetTree[], DatasetPayload> = (
     }
 
     case DATASETS_ACTIONS.CREATE_NEW_DATASET: {
+      console.log(action.payload.datasetName);
       const dataset = new DatasetTree(action.payload.datasetName, 50);
       return [...datasets, dataset];
     }
@@ -147,7 +162,7 @@ export const datasetsReducer: Reducer<DatasetTree[], DatasetPayload> = (
 
           // cambiar nombre del field
           if (foundField) {
-            foundField.name = action.payload.newName;
+            foundField.setName(action.payload.newName);
           }
         }
 

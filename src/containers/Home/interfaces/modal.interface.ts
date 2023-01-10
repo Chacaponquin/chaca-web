@@ -6,7 +6,7 @@ import { MODAL_ACTIONS } from "../constants/MODAL_ACTIONS";
 
 export type ModalAddFieldProps = {
   type: MODAL_ACTIONS.ADD_FIELD;
-  location: string[];
+  parentFieldID: string;
 };
 
 export type ModalAddDataset = {

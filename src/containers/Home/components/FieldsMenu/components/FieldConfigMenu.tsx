@@ -27,7 +27,7 @@ const FieldConfigMenu = ({
   const handleAddField = () => {
     handleOpenModal({
       type: MODAL_ACTIONS.ADD_FIELD,
-      location: [...selectedDataset.getFieldLocation(field.id), field.name],
+      parentFieldID: field.id,
     });
   };
 

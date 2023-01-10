@@ -1,6 +1,4 @@
 import { SchemasResp, Schema } from "../interfaces/options.interface";
-import { Dataset } from "../interfaces/datasets.interface";
-import { DATA_TYPES } from "../constant/DATA_TYPES";
 import { v4 as uuid } from "uuid";
 
 export const DataTransform = {
@@ -13,58 +11,13 @@ export const DataTransform = {
         id: uuid(),
         options: el.options.map((s) => ({
           ...s,
+          id: uuid(),
           route: `${process.env.REACT_APP_API_URL as string}${s.route}`,
         })),
       };
     });
 
     return returnData;
-  },
-
-  dataMapToJsonTree: (datasets: Dataset[], fields: Schema[]) => {
-    const dataToTransform = JSON.parse(JSON.stringify(datasets)) as Dataset[];
-    const fieldsTransform = JSON.parse(JSON.stringify(fields)) as Schema[];
-
-    const mapData = dataToTransform.map((d) => {
-      const fieldMap = d.fields.map((f) => {
-        let dataReturn = null;
-
-        fieldsTransform.forEach((field) => {
-          if (
-            f.dataType.type === DATA_TYPES.SINGLE_VALUE &&
-            field.parent === f.dataType.fieldType.parent
-          ) {
-            field.options.forEach((fAnid) => {
-              if (
-                f.dataType.type === DATA_TYPES.SINGLE_VALUE &&
-                fAnid.name === f.dataType.fieldType.type
-              ) {
-                dataReturn = fAnid.exampleValue;
-              }
-            });
-          }
-        });
-
-        return { ...f, value: dataReturn };
-      });
-
-      let objectReturn = {};
-      for (const data of fieldMap) {
-        objectReturn = { ...objectReturn, [data.name]: data.value };
-      }
-
-      return {
-        name: d.name,
-        exampleField: objectReturn,
-      };
-    });
-
-    let dataReturn = {};
-    for (const dat of mapData) {
-      dataReturn = { ...dataReturn, [dat.name]: dat.exampleField };
-    }
-
-    return dataReturn;
   },
 
   descapitilizeArgument: (text: string): string => {

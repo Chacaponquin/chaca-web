@@ -1,5 +1,6 @@
 import { InputText } from "primereact/inputtext";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
+import { toast } from "react-toastify";
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
 import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES";
 import ModalButtons from "../shared/components/ModalButtons";
@@ -14,11 +15,16 @@ const AddDatasetForm = ({
   const [datasetName, setDatasetName] = useState("");
 
   const handleAddDataset = () => {
-    datasetDispatch({
-      type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
-      payload: { datasetName },
-    });
-    handleCloseModal();
+    if (datasetName !== "") {
+      // create dataset
+      datasetDispatch({
+        type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
+        payload: { datasetName },
+      });
+
+      // close modal
+      handleCloseModal();
+    } else toast("The dataset name can not be an empty string");
   };
 
   return (

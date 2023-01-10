@@ -1,4 +1,4 @@
-import { useContext, useState, Fragment } from "react";
+import { useContext, Fragment } from "react";
 import FieldInfoHeader from "./components/FieldInfoHeader";
 import SidePanel from "./components/SidePanel/SidePanel";
 import { DATA_TYPES } from "../../../../shared/constant/DATA_TYPES";
@@ -12,7 +12,6 @@ import { DatasetsContext } from "../../../../shared/context/DatasetsContext";
 import CustomForm from "./components/CustomForm/CustomForm";
 import RefForm from "./components/RefForm/RefForm";
 import SingleValueForm from "./components/SingleValueForm/SingleValueForm";
-import clsx from "clsx";
 import DataTypeSelect from "./components/DataTypeSelect/DataTypeSelect";
 import { ModalProps } from "../../interfaces/modal.interface";
 
@@ -21,25 +20,7 @@ const FormContent = ({
 }: {
   handleOpenModal: (props: ModalProps) => void;
 }) => {
-  const [docsOpen, setDocsOpen] = useState(true);
   const { selectField } = useContext(DatasetsContext);
-
-  const containerClass = () => {
-    return clsx("w-full flex flex-grow", {
-      "justify-center": !docsOpen,
-    });
-  };
-
-  const formClass = () => {
-    return clsx("", {
-      "w-[60%]": docsOpen,
-      "w-[70%]": !docsOpen,
-    });
-  };
-
-  const handleCloseDocs = () => {
-    setDocsOpen(false);
-  };
 
   return (
     <div className="flex flex-col w-full h-screen">
@@ -50,8 +31,8 @@ const FormContent = ({
         />
       )}
 
-      <div className={containerClass()}>
-        <div className={formClass()}>
+      <div className="w-full flex form-content">
+        <div className="w-full h-full">
           <div className="gap-2 overflow-y-auto h-full bg-white w-full flex flex-col">
             {selectField === null ? (
               <NoSelectField />
@@ -78,7 +59,6 @@ const FormContent = ({
                     field={
                       selectField.getNodeObject() as DatasetField<RefDataType>
                     }
-                    docsOpen={docsOpen}
                   />
                 )}
               </Fragment>
@@ -86,9 +66,7 @@ const FormContent = ({
           </div>
         </div>
 
-        {selectField && docsOpen && (
-          <SidePanel handleCloseDocs={handleCloseDocs} field={selectField} />
-        )}
+        {selectField && <SidePanel field={selectField} />}
       </div>
     </div>
   );

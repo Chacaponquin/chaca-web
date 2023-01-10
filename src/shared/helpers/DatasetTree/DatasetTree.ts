@@ -30,11 +30,15 @@ export class DatasetTree {
   }
 
   public setName(name: string) {
-    this.root.name = name;
+    this.root.setName(name);
+  }
+
+  public insertField(node: FieldNode) {
+    this.root.insertNode(node);
   }
 
   public findFieldByID(fieldID: string): FieldNode | null {
-    return this.root.findFieldByID(fieldID);
+    return this.root.findNodeByID(fieldID);
   }
 
   public getDatasetObject(): Dataset {
@@ -44,16 +48,6 @@ export class DatasetTree {
       fields: this.fields,
       limit: this.limit,
     };
-  }
-
-  public setNodeByLocation(
-    field: FieldNode | string,
-    location: string[]
-  ): void {
-    if (typeof field === "string") {
-      const found = this.findFieldByID(field);
-      if (found) this.root.setFieldByLocation(found, location);
-    } else this.root.setFieldByLocation(field, location);
   }
 
   public deleteField(fieldID: string) {
