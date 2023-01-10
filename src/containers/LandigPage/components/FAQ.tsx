@@ -1,13 +1,13 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import clsx from 'clsx'
-import { useQuery } from '../../../shared/hooks/useQuery'
-import { API_ROUTES } from '../../../shared/routes/api/API_ROUTES'
-import { APP_ROUTES } from '../../../shared/routes/app/APP_ROUTES'
-import { Link } from 'react-router-dom'
-import SecondButton from '../../../shared/components/ChacaButton/components/ChacaArrowButton/ChacaArrowButton'
-import { v4 as uuid } from 'uuid'
-import X from '../../../shared/assets/icons/X'
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import clsx from "clsx"
+import { useQuery } from "../../../shared/hooks/useQuery"
+import { API_ROUTES } from "../../../shared/routes/api/API_ROUTES"
+import { APP_ROUTES } from "../../../shared/routes/app/APP_ROUTES"
+import { Link } from "react-router-dom"
+import { v4 as uuid } from "uuid"
+import { X } from "../../../shared/assets/icons"
+import { ChacaArrowButton } from "../../../shared/components/ChacaButton"
 
 interface IFAQ {
   question: string
@@ -22,7 +22,6 @@ const FAQ = () => {
     onCompleted: (data) => {
       setQuestions(data)
     },
-    onError: () => {},
   })
 
   return (
@@ -44,13 +43,13 @@ const FAQ = () => {
 
           <div className='lg:block hidden'>
             <Link to={APP_ROUTES.CONTACT_US} className='text-xl'>
-              <SecondButton text={'New Question'} />
+              <ChacaArrowButton text={"New Question"} />
             </Link>
           </div>
         </div>
 
         <div className='grid lg:grid-cols-2 gap-4 grid-cols-1'>
-          {questions.map((el, i) => (
+          {questions.map((el) => (
             <QuestionCard key={uuid()} {...el} />
           ))}
         </div>
@@ -63,14 +62,14 @@ const QuestionCard = ({ answer, question }: { answer: string; question: string }
   const [open, setOpen] = useState(false)
 
   const iconClass = () => {
-    return clsx('cursor-pointer transition-all duration-300 flex items-center', {
-      'rotate-45': !open,
+    return clsx("cursor-pointer transition-all duration-300 flex items-center", {
+      "rotate-45": !open,
     })
   }
 
   const divClass = () => {
-    return clsx('border-2 py-3 px-8 rounded-md flex flex-col h-max esm:px-6', {
-      'border-secondColor': open,
+    return clsx("border-2 py-3 px-8 rounded-md flex flex-col h-max esm:px-6", {
+      "border-secondColor": open,
     })
   }
 
@@ -87,8 +86,8 @@ const QuestionCard = ({ answer, question }: { answer: string; question: string }
         {open && (
           <motion.div
             className=''
-            transition={{ type: 'spring', duration: 0.3 }}
-            animate={{ height: 'auto', opacity: 1 }}
+            transition={{ type: "spring", duration: 0.3 }}
+            animate={{ height: "auto", opacity: 1 }}
             initial={{ height: 0, opacity: 0 }}
             exit={{ height: 0, opacity: 0 }}
           >

@@ -1,6 +1,6 @@
-import React from 'react'
-import { DEFAULT_ICON_SIZE } from '../constants/icons.enum'
-import { IconProps } from '../interfaces/icon.interface'
+import React from "react"
+import { DEFAULT_ICON_SIZE } from "../constants/icons.enum"
+import { IconProps } from "../interfaces/icon.interface"
 
 const Send = ({ size = DEFAULT_ICON_SIZE }: IconProps) => {
   return (

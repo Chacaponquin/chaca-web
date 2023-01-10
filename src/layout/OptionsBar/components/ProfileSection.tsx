@@ -1,8 +1,8 @@
-import { useContext, useState } from 'react'
-import { SignOut, User } from '../../../shared/assets/icons'
-import { UserContext } from '../../../shared/context/UserContext'
-import { Link } from 'react-router-dom'
-import { APP_ROUTES } from '../../../shared/routes/app/APP_ROUTES'
+import { useContext, useState } from "react"
+import { SignOut, User } from "../../../shared/assets/icons"
+import { UserContext } from "../../../shared/context/UserContext"
+import { Link } from "react-router-dom"
+import { APP_ROUTES } from "../../../shared/routes/app/APP_ROUTES"
 
 const ProfileSection = () => {
   const { actualUser } = useContext(UserContext)
@@ -23,7 +23,7 @@ const ProfileSection = () => {
             onClick={handleChangeOpenMenu}
           >
             <img
-              src={(actualUser && actualUser.image) || '/images/avatar.jpg'}
+              src={(actualUser && actualUser.image) || "/images/avatar.jpg"}
               alt='avatar'
               className='object-top object-cover rounded-full w-[50px] h-[50px] esm:w-[40px] esm:h-[40px]'
             />

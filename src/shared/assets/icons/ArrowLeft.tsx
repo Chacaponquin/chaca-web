@@ -1,12 +1,12 @@
-import React from 'react'
-import { DEFAULT_ICON_SIZE } from '../constants/icons.enum'
-import { IconProps } from '../interfaces/icon.interface'
+import React from "react"
+import { DEFAULT_ICON_SIZE } from "../constants/icons.enum"
+import { IconProps } from "../interfaces/icon.interface"
 
 const ArrowLeft = ({ size = DEFAULT_ICON_SIZE }: IconProps) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
-      enable-background='new 0 0 24 24'
+      enableBackground='new 0 0 24 24'
       viewBox='0 0 24 24'
       width={size}
       height={size}

@@ -1,15 +1,12 @@
-import { ModalExportAllDatasets } from '../../../interfaces/modal.interface'
-import ExportForm from '../shared/components/ExportForm'
-import ModalButtons from '../shared/components/ModalButtons'
-import ModalTitle from '../shared/components/ModalTitle'
+import ExportForm from "../shared/components/ExportForm"
+import ModalButtons from "../shared/components/ModalButtons"
+import ModalTitle from "../shared/components/ModalTitle"
 
 const ExportAllDatasetForm = ({
-  props,
   handleCloseModal,
   handleCreateAllDatasets,
 }: {
   handleCloseModal: () => void
-  props: ModalExportAllDatasets
   handleCreateAllDatasets: () => void
 }) => {
   return (

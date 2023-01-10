@@ -1,7 +1,7 @@
-import FirstPage from './components/FirstPage'
-import WhyUs from './components/WhyUs'
-import Services from './components/Services'
-import FAQ from './components/FAQ'
+import FirstPage from "./components/FirstPage"
+import WhyUs from "./components/WhyUs"
+import Services from "./components/Services"
+import FAQ from "./components/FAQ"
 
 const Landing = () => {
   return (

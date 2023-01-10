@@ -1,4 +1,4 @@
-import './secondButton.css'
+import "./secondButton.css"
 
 const ChacaArrowButton = ({ text }: { text: string }) => {
   return (

@@ -1,4 +1,4 @@
-import { ARGUMENT_TYPE } from '../constant/ARGUMENT_TYPE'
+import { ARGUMENT_TYPE } from "../constant/ARGUMENT_TYPE"
 
 export interface SchemasResp {
   parent: string

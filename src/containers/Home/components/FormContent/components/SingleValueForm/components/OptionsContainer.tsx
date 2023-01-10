@@ -1,17 +1,17 @@
-import { useContext, useState } from 'react'
-import { Argument, SubOption } from '../../../../../../../shared/interfaces/options.interface'
-import { Config } from '../../../../../../../shared/assets/icons'
-import clsx from 'clsx'
+import { useContext, useState } from "react"
+import { Argument, SubOption } from "../../../../../../../shared/interfaces/options.interface"
+import { Config } from "../../../../../../../shared/assets/icons"
+import clsx from "clsx"
 import {
   DatasetField,
   SingleValueDataType,
-} from '../../../../../../../shared/interfaces/datasets.interface'
-import { DatasetsContext } from '../../../../../../../shared/context/DatasetsContext'
-import { DATASETS_ACTIONS } from '../../../../../constants/ACTION_TYPES'
-import { DATA_TYPES } from '../../../../../../../shared/constant/DATA_TYPES'
-import OptionArguments from './OptionArguments'
-import { useUtils } from '../../../../../hooks/useUtils'
-import ChacaRadioButton from '../../../../../../../shared/components/ChacaRadioButton/ChacaRadioButton'
+} from "../../../../../../../shared/interfaces/datasets.interface"
+import { DatasetsContext } from "../../../../../../../shared/context/DatasetsContext"
+import { DATASETS_ACTIONS } from "../../../../../constants/ACTION_TYPES"
+import { DATA_TYPES } from "../../../../../../../shared/constant/DATA_TYPES"
+import OptionArguments from "./OptionArguments"
+import { useUtils } from "../../../../../hooks/useUtils"
+import ChacaRadioButton from "../../../../../../../shared/components/ChacaRadioButton/ChacaRadioButton"
 
 const OptionsContainer = ({
   options,
@@ -96,11 +96,11 @@ const Option = ({
 }) => {
   const divClass = () => {
     return clsx(
-      'w-full rounded-md flex items-center flex-col py-2 px-4',
+      "w-full rounded-md flex items-center flex-col py-2 px-4",
       {
-        'bg-principalColor text-white fill-white': isSelected,
+        "bg-principalColor text-white fill-white": isSelected,
       },
-      { 'bg-slate-100 text-block fill-black': !isSelected },
+      { "bg-slate-100 text-block fill-black": !isSelected },
     )
   }
 

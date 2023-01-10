@@ -1,5 +1,5 @@
-import { ChacaLinkButton } from '../../shared/components/ChacaButton'
-import { APP_ROUTES } from '../../shared/routes/app/APP_ROUTES'
+import { ChacaLinkButton } from "../../shared/components/ChacaButton"
+import { APP_ROUTES } from "../../shared/routes/app/APP_ROUTES"
 
 const Error404 = () => {
   return (

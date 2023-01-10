@@ -1,8 +1,8 @@
-import { DatasetField, FieldDataType } from '../../../../shared/interfaces/datasets.interface'
-import { DATASETS_ACTIONS } from '../../constants/ACTION_TYPES'
-import { Reducer } from 'react'
-import { DatasetTree, FieldNode } from '../../../../shared/helpers/DatasetTree'
-import { NodeInfo } from '../../../../shared/interfaces/tree.interface'
+import { DatasetField, FieldDataType } from "../../../../shared/interfaces/datasets.interface"
+import { DATASETS_ACTIONS } from "../../constants/ACTION_TYPES"
+import { Reducer } from "react"
+import { DatasetTree, FieldNode } from "../../../../shared/helpers/DatasetTree"
+import { NodeInfo } from "../../../../shared/interfaces/tree.interface"
 
 export type DatasetPayload =
   | { type: DATASETS_ACTIONS.DELETE_DATASET; payload: { datasetID: string } }

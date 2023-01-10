@@ -1,4 +1,4 @@
-import { Schema, SubOption } from '../../../../../../../shared/interfaces/options.interface'
+import { Schema, SubOption } from "../../../../../../../shared/interfaces/options.interface"
 
 const SingleValueDocs = ({ option, parent }: { option: SubOption; parent: Schema }) => {
   return (

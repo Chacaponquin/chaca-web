@@ -1,15 +1,15 @@
-import { useMemo } from 'react'
-import { DATA_TYPES } from '../../../../../../shared/constant/DATA_TYPES'
-import { FieldNode } from '../../../../../../shared/helpers/DatasetTree'
+import { useMemo } from "react"
+import { DATA_TYPES } from "../../../../../../shared/constant/DATA_TYPES"
+import { FieldNode } from "../../../../../../shared/helpers/DatasetTree"
 import {
   FieldDataType,
   SingleValueDataType,
-} from '../../../../../../shared/interfaces/datasets.interface'
-import { useUtils } from '../../../../hooks/useUtils'
-import CustomFormDocs from './components/CustomFormDocs'
-import RefFormDocs from './components/RefFormDocs'
-import SidePanelHeader from './components/SidePanelHeader'
-import SingleValueDocs from './components/SingleValueDocs'
+} from "../../../../../../shared/interfaces/datasets.interface"
+import { API_ROUTES } from "../../../../../../shared/routes/api/API_ROUTES"
+import { useUtils } from "../../../../hooks/useUtils"
+import SidePanelHeader from "./components/SidePanelHeader"
+import SingleValueDocs from "./components/SingleValueDocs"
+import GuideContainer from "./components/GuideContainer"
 
 const SidePanel = ({ field }: { field: FieldNode<FieldDataType> }) => {
   const { findParent, findType } = useUtils()
@@ -33,8 +33,12 @@ const SidePanel = ({ field }: { field: FieldNode<FieldDataType> }) => {
         <SingleValueDocs option={type} parent={parent} />
       )}
 
-      {field.info.dataType.type === DATA_TYPES.CUSTOM && <CustomFormDocs />}
-      {field.info.dataType.type === DATA_TYPES.REF && <RefFormDocs />}
+      {field.info.dataType.type === DATA_TYPES.CUSTOM && (
+        <GuideContainer route={API_ROUTES.DOCS.GET_CUSTOM_FORM_GUIDES} />
+      )}
+      {field.info.dataType.type === DATA_TYPES.REF && (
+        <GuideContainer route={API_ROUTES.DOCS.GET_REF_FORM_GUIDES} />
+      )}
     </div>
   )
 }

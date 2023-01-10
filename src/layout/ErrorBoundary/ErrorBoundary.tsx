@@ -1,4 +1,4 @@
-import { ErrorInfo, ReactNode, Component } from 'react'
+import { ErrorInfo, ReactNode, Component } from "react"
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
   state = {

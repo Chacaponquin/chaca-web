@@ -1,21 +1,21 @@
-import { useContext } from 'react'
-import { DatasetsContext } from '../../../../../shared/context/DatasetsContext'
-import { AppConfigContext } from '../../../../../shared/context/AppConfigContext'
-import { DATA_TYPES } from '../../../../../shared/constant/DATA_TYPES'
-import { DATASETS_ACTIONS } from '../../../constants/ACTION_TYPES'
-import { ModalAddFieldProps } from '../../../interfaces/modal.interface'
-import ModalTitle from '../shared/components/ModalTitle'
-import ModalButtons from '../shared/components/ModalButtons'
-import FieldForm from '../shared/components/FieldForm'
-import { useFieldForm } from '../shared/hooks/useFieldForm'
-import { v4 as uuid } from 'uuid'
-import { toast } from 'react-toastify'
+import { useContext } from "react"
+import { DatasetsContext } from "../../../../../shared/context/DatasetsContext"
+import { AppConfigContext } from "../../../../../shared/context/AppConfigContext"
+import { DATA_TYPES } from "../../../../../shared/constant/DATA_TYPES"
+import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES"
+import { ModalAddFieldProps } from "../../../interfaces/modal.interface"
+import ModalTitle from "../shared/components/ModalTitle"
+import ModalButtons from "../shared/components/ModalButtons"
+import FieldForm from "../shared/components/FieldForm"
+import { useFieldForm } from "../shared/hooks/useFieldForm"
+import { v4 as uuid } from "uuid"
+import { toast } from "react-toastify"
 
 const AddFieldForm = ({
-  props,
+  modalProps,
   handleCloseModal,
 }: {
-  props: ModalAddFieldProps
+  modalProps: ModalAddFieldProps
   handleCloseModal: () => void
 }) => {
   const { datasetDispatch, handleDeleteSelectField, selectedDataset } = useContext(DatasetsContext)
@@ -23,7 +23,7 @@ const AddFieldForm = ({
 
   const fieldActions = useFieldForm({
     id: uuid(),
-    name: '',
+    name: "",
     dataType: {
       fieldType: {
         args: {},
@@ -44,7 +44,7 @@ const AddFieldForm = ({
         payload: {
           fieldName: fieldActions.field.name,
           fieldInfo: fieldActions.field,
-          parentFieldID: props.parentFieldID,
+          parentFieldID: modalProps.parentFieldID,
           datasetID: selectedDataset.id,
         },
       })
@@ -55,7 +55,7 @@ const AddFieldForm = ({
       // close modal
       handleCloseModal()
     } else {
-      toast.error('The field name can not be an empty string')
+      toast.error("The field name can not be an empty string")
     }
   }
 

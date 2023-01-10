@@ -1,10 +1,10 @@
-import { DatasetTree } from '../../../../../../../shared/helpers/DatasetTree/DatasetTree'
-import { v4 as uuid } from 'uuid'
-import FieldToRef from './FieldToRef'
+import { DatasetTree } from "../../../../../../../shared/helpers/DatasetTree/DatasetTree"
+import { v4 as uuid } from "uuid"
+import FieldToRef from "./FieldToRef"
 import {
   DatasetField,
   RefDataType,
-} from '../../../../../../../shared/interfaces/datasets.interface'
+} from "../../../../../../../shared/interfaces/datasets.interface"
 
 const DatasetToRef = ({
   dataset,

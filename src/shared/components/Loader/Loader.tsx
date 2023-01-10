@@ -1,6 +1,6 @@
 const Loader = () => {
   return (
-    <svg width={'100%'} viewBox='0 0 135 140' xmlns='http://www.w3.org/2000/svg' fill='#590ce8'>
+    <svg width={"100%"} viewBox='0 0 135 140' xmlns='http://www.w3.org/2000/svg' fill='#590ce8'>
       <rect y='10' width='15' height='120' rx='6'>
         <animate
           attributeName='height'

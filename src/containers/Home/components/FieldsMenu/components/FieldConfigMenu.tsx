@@ -1,9 +1,9 @@
-import { useContext } from 'react'
-import { DatasetsContext } from '../../../../../shared/context/DatasetsContext'
-import { DatasetField, FieldDataType } from '../../../../../shared/interfaces/datasets.interface'
-import { DATASETS_ACTIONS } from '../../../constants/ACTION_TYPES'
-import { MODAL_ACTIONS } from '../../../constants/MODAL_ACTIONS'
-import { ModalProps } from '../../../interfaces/modal.interface'
+import { useContext } from "react"
+import { DatasetsContext } from "../../../../../shared/context/DatasetsContext"
+import { DatasetField, FieldDataType } from "../../../../../shared/interfaces/datasets.interface"
+import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES"
+import { MODAL_ACTIONS } from "../../../constants/MODAL_ACTIONS"
+import { ModalProps } from "../../../interfaces/modal.interface"
 
 const FieldConfigMenu = ({
   handleOpenModal,
@@ -13,7 +13,7 @@ const FieldConfigMenu = ({
   field: DatasetField<FieldDataType>
 }) => {
   const divClass =
-    'cursor-pointer duration-300 w-full transition-all px-3 py-1 hover:bg-slate-200 text-sm'
+    "cursor-pointer duration-300 w-full transition-all px-3 py-1 hover:bg-slate-200 text-sm"
 
   const { selectedDataset, datasetDispatch } = useContext(DatasetsContext)
 

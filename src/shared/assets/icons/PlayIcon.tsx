@@ -1,6 +1,6 @@
-import React from 'react'
-import { DEFAULT_ICON_SIZE } from '../constants/icons.enum'
-import { IconProps } from '../interfaces/icon.interface'
+import React from "react"
+import { DEFAULT_ICON_SIZE } from "../constants/icons.enum"
+import { IconProps } from "../interfaces/icon.interface"
 
 const PlayIcon = ({ size = DEFAULT_ICON_SIZE }: IconProps) => {
   return (
@@ -9,7 +9,7 @@ const PlayIcon = ({ size = DEFAULT_ICON_SIZE }: IconProps) => {
       enableBackground='new 0 0 100 100'
       viewBox='0 0 100 100'
       width={25}
-      fill={'white'}
+      fill={"white"}
     >
       <switch>
         <g>

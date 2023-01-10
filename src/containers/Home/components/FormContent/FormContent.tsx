@@ -1,19 +1,19 @@
-import { useContext, Fragment } from 'react'
-import FieldInfoHeader from './components/FieldInfoHeader'
-import SidePanel from './components/SidePanel/SidePanel'
-import { DATA_TYPES } from '../../../../shared/constant/DATA_TYPES'
+import { useContext, Fragment } from "react"
+import FieldInfoHeader from "./components/FieldInfoHeader"
+import SidePanel from "./components/SidePanel/SidePanel"
+import { DATA_TYPES } from "../../../../shared/constant/DATA_TYPES"
 import {
   CustomDataType,
   DatasetField,
   RefDataType,
   SingleValueDataType,
-} from '../../../../shared/interfaces/datasets.interface'
-import { DatasetsContext } from '../../../../shared/context/DatasetsContext'
-import CustomForm from './components/CustomForm/CustomForm'
-import RefForm from './components/RefForm/RefForm'
-import SingleValueForm from './components/SingleValueForm/SingleValueForm'
-import DataTypeSelect from './components/DataTypeSelect/DataTypeSelect'
-import { ModalProps } from '../../interfaces/modal.interface'
+} from "../../../../shared/interfaces/datasets.interface"
+import { DatasetsContext } from "../../../../shared/context/DatasetsContext"
+import CustomForm from "./components/CustomForm/CustomForm"
+import RefForm from "./components/RefForm/RefForm"
+import SingleValueForm from "./components/SingleValueForm/SingleValueForm"
+import DataTypeSelect from "./components/DataTypeSelect/DataTypeSelect"
+import { ModalProps } from "../../interfaces/modal.interface"
 
 const FormContent = ({ handleOpenModal }: { handleOpenModal: (props: ModalProps) => void }) => {
   const { selectField } = useContext(DatasetsContext)

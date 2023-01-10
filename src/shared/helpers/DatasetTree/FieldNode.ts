@@ -1,7 +1,7 @@
-import { DATA_TYPES } from '../../constant/DATA_TYPES'
-import { DatasetField, FieldDataType } from '../../interfaces/datasets.interface'
-import { NodeInfo } from '../../interfaces/tree.interface'
-import { Node } from './Node'
+import { DATA_TYPES } from "../../constant/DATA_TYPES"
+import { DatasetField, FieldDataType } from "../../interfaces/datasets.interface"
+import { NodeInfo } from "../../interfaces/tree.interface"
+import { Node } from "./Node"
 
 export class FieldNode<T = FieldDataType> extends Node {
   public info: NodeInfo<T>

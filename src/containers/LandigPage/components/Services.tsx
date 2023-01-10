@@ -1,24 +1,24 @@
-import { v4 as uuid } from 'uuid'
+import { v4 as uuid } from "uuid"
 
 const Services = () => {
   const services = [
     {
-      image: '/images/services/969.jpg',
-      title: 'Configura tus propios datos',
+      image: "/images/services/969.jpg",
+      title: "Configura tus propios datos",
       description:
-        'No tendrás límite de opciones para los campos de tus esquemas. Escribe las reglas y las condiciones que estos deben cumplir',
+        "No tendrás límite de opciones para los campos de tus esquemas. Escribe las reglas y las condiciones que estos deben cumplir",
     },
     {
-      image: '/images/services/971.jpg',
-      title: 'Exportalos en diferentes formatos',
+      image: "/images/services/971.jpg",
+      title: "Exportalos en diferentes formatos",
       description:
-        'Ten la capacidad de exportar tus datos creados en el formato que necesites, incluso en código',
+        "Ten la capacidad de exportar tus datos creados en el formato que necesites, incluso en código",
     },
     {
-      image: '/images/services/984.jpg',
-      title: 'Comparte tus esquemas con la comunidad',
+      image: "/images/services/984.jpg",
+      title: "Comparte tus esquemas con la comunidad",
       description:
-        'Compara y busca esquemas de datos acordes a lo que quieres crear en la pestaña de comunidad, y también comparte los tuyos para ayudar a mas usuarios',
+        "Compara y busca esquemas de datos acordes a lo que quieres crear en la pestaña de comunidad, y también comparte los tuyos para ayudar a mas usuarios",
     },
   ]
 

@@ -1,12 +1,13 @@
-import { v4 as uuid } from 'uuid'
-import { FieldNode } from './FieldNode'
+import { v4 as uuid } from "uuid"
+import { FieldNode } from "./FieldNode"
 
 export class Node {
   protected nodes: Array<FieldNode> = []
   public readonly id: string = uuid()
-  private nodeName: string = ''
+  private nodeName: string
 
   constructor(name: string) {
+    this.nodeName = name
     this.setName(name)
   }
 
@@ -19,7 +20,7 @@ export class Node {
   }
 
   public setName(newName: string) {
-    if (newName !== '') this.nodeName = newName
+    if (newName !== "") this.nodeName = newName
   }
 
   public findNodeByID(nodeID: string): null | FieldNode {
@@ -65,7 +66,7 @@ export class Node {
   public getFieldLocation(fieldID: string, location: string[]): string[] | null {
     if (this.nodes.length === 0) return null
     else {
-      let found = this.nodes.find((n) => n.id === fieldID)
+      const found = this.nodes.find((n) => n.id === fieldID)
 
       if (found) {
         return [...location, this.name, found.name]

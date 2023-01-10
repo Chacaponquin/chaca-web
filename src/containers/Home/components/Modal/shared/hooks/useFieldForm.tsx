@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { DatasetField } from '../../../../../../shared/interfaces/datasets.interface'
+import { useState } from "react"
+import { DatasetField } from "../../../../../../shared/interfaces/datasets.interface"
 
 export const useFieldForm = (f: DatasetField) => {
   const [field, setField] = useState<DatasetField>(f)

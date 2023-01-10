@@ -1,22 +1,22 @@
-import { useContext, useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { Schema } from '../../shared/interfaces/options.interface'
-import { AppConfigContext } from '../../shared/context/AppConfigContext'
-import { DataTransform } from '../../shared/helpers/DataTransform'
+import { useContext, useState, useEffect } from "react"
+import { useParams } from "react-router-dom"
+import { Schema } from "../../shared/interfaces/options.interface"
+import { AppConfigContext } from "../../shared/context/AppConfigContext"
+import { DataTransform } from "../../shared/helpers/DataTransform"
 
-import { axiosInstance } from '../../shared/routes/api/API_ROUTES'
+import { axiosInstance } from "../../shared/routes/api/API_ROUTES"
 
 const Api = () => {
   const [findLoading, setFindLoading] = useState(false)
   const [findError, setFindError] = useState(false)
 
-  const [content, setContent] = useState<string | Schema>('')
+  const [content, setContent] = useState<string | Schema>("")
 
   const { section, option } = useParams()
   const { schemas } = useContext(AppConfigContext)
 
   useEffect(() => {
-    if (section === 'schemas') {
+    if (section === "schemas") {
       const findSchema = schemas.find((s) => DataTransform.titlePipe(s.parent) === section)
 
       if (findSchema) {

@@ -1,15 +1,25 @@
-import { useEffect, ReactElement, useContext, Dispatch, Reducer } from 'react'
-import { createContext, useReducer, useState } from 'react'
-import { CONFIG_ACTIONS, DATASETS_ACTIONS } from '../../containers/Home/constants/ACTION_TYPES'
-import { ConfigPayload, configReducer } from '../../containers/Home/helpers/reducer/configReducer'
+/*eslint-disable */
+
+import {
+  useEffect,
+  ReactElement,
+  useContext,
+  Dispatch,
+  Reducer,
+  createContext,
+  useReducer,
+  useState,
+} from "react"
+import { CONFIG_ACTIONS, DATASETS_ACTIONS } from "../../containers/Home/constants/ACTION_TYPES"
+import { ConfigPayload, configReducer } from "../../containers/Home/helpers/reducer/configReducer"
 import {
   DatasetPayload,
   datasetsReducer,
-} from '../../containers/Home/helpers/reducer/datasetsReducer'
-import { FILE_TYPE } from '../constant/FILE_TYPE'
-import { ConfigSchema } from '../interfaces/config.iterface'
-import { AppConfigContext } from './AppConfigContext'
-import { DatasetTree, FieldNode } from '../helpers/DatasetTree'
+} from "../../containers/Home/helpers/reducer/datasetsReducer"
+import { FILE_TYPE } from "../constant/FILE_TYPE"
+import { ConfigSchema } from "../interfaces/config.iterface"
+import { AppConfigContext } from "./AppConfigContext"
+import { DatasetTree, FieldNode } from "../helpers/DatasetTree"
 
 interface DatasetContext {
   datasets: DatasetTree[]
@@ -58,7 +68,7 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
 
   useEffect(() => {
     if (!initialFetchLoading) {
-      const initDataset = new DatasetTree('New Dataset', 50)
+      const initDataset = new DatasetTree("New Dataset", 50)
 
       datasetDispatch({
         type: DATASETS_ACTIONS.SET_INIT_DATASETS,
@@ -79,13 +89,20 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
   }, [initialFetchLoading, fileConfig])
 
   const handleSelectDataset = (id: string) => {
-    setSelectedDataset(datasets.find((el) => el.id === id)!)
-    setSelectField(null)
+    const findDataset = datasets.find((el) => el.id === id)
+
+    if (findDataset) {
+      setSelectedDataset(findDataset)
+      setSelectField(null)
+    }
   }
 
   const handleSelectField = (datasetID: string, fieldID: string) => {
-    const foundDataset = datasets.find((el) => el.id === datasetID)!
-    setSelectField(foundDataset.findFieldByID(fieldID))
+    const foundDataset = datasets.find((el) => el.id === datasetID)
+
+    if (foundDataset) {
+      setSelectField(foundDataset.findFieldByID(fieldID))
+    }
   }
 
   const handleDeleteSelectField = () => {

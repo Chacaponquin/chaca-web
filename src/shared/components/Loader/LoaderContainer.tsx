@@ -1,4 +1,4 @@
-import Loader from './Loader'
+import Loader from "./Loader"
 
 interface LoaderProps {
   loading: boolean

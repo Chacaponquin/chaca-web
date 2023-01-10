@@ -1,10 +1,10 @@
-import FieldsMenu from './components/FieldsMenu/FieldsMenu'
-import FormContent from './components/FormContent/FormContent'
-import Modal from './components/Modal/Modal'
-import { useHome } from './hooks/useHome'
+import FieldsMenu from "./components/FieldsMenu/FieldsMenu"
+import FormContent from "./components/FormContent/FormContent"
+import Modal from "./components/Modal/Modal"
+import CreationLoadingModal from "./components/CreationLoadingModal/CreationLoadingModal"
+import { useHome } from "./hooks/useHome"
 
-import './home.css'
-import CreationLoadingModal from './components/CreationLoadingModal/CreationLoadingModal'
+import "./home.css"
 
 const Home = () => {
   const {
@@ -23,7 +23,7 @@ const Home = () => {
 
       {openModal !== null && (
         <Modal
-          props={openModal}
+          modalProps={openModal}
           handleCloseModal={handleCloseModal}
           handleCreateSelectDataset={handleCreateSelectDataset}
           handleCreateAllDatasets={handleCreateAllDatasets}

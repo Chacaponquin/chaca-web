@@ -1,16 +1,16 @@
-import { useState } from 'react'
-import { axiosInstance } from '../routes/api/API_ROUTES'
-import { AxiosError } from 'axios'
+import { useState } from "react"
+import { axiosInstance } from "../routes/api/API_ROUTES"
+import { AxiosError } from "axios"
 
 interface UsePostProps<T> {
   onCompleted: (data: T) => void
   onError: (error: AxiosError) => void
   url: string
-  body?: { [path: string]: any }
+  body?: { [path: string]: unknown }
 }
 
 interface OverwriteProps {
-  body?: { [path: string]: any }
+  body?: { [path: string]: unknown }
 }
 
 export function usePost<T>({

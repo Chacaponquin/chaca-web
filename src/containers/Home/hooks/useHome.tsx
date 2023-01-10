@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from 'react'
-import { DatasetsContext } from '../../../shared/context/DatasetsContext'
-import { UserContext } from '../../../shared/context/UserContext'
-import { toast } from 'react-toastify'
-import { ModalProps } from '../interfaces/modal.interface'
-import { SOCKET_EVENTS } from '../constants/SOCKET_EVENTS'
-import { CONFIG_ACTIONS } from '../constants/ACTION_TYPES'
-import { AppConfigContext } from '../../../shared/context/AppConfigContext'
+import { useContext, useEffect, useState } from "react"
+import { DatasetsContext } from "../../../shared/context/DatasetsContext"
+import { UserContext } from "../../../shared/context/UserContext"
+import { toast } from "react-toastify"
+import { ModalProps } from "../interfaces/modal.interface"
+import { SOCKET_EVENTS } from "../constants/SOCKET_EVENTS"
+import { CONFIG_ACTIONS } from "../constants/ACTION_TYPES"
+import { AppConfigContext } from "../../../shared/context/AppConfigContext"
 
 export const useHome = () => {
   const { datasets, config, selectedDataset, configDispatch } = useContext(DatasetsContext)
@@ -44,7 +44,7 @@ export const useHome = () => {
     })
 
     socket.on(SOCKET_EVENTS.CREATE_DATASET_ERROR, (error) => {
-      toast.error('Hubo un error en la creacion de los datasets')
+      toast.error("Hubo un error en la creacion de los datasets")
       setCreateDataLoading(false)
     })
 
@@ -64,7 +64,7 @@ export const useHome = () => {
         config,
       })
     } else {
-      toast.error('Error en la conexión')
+      toast.error("Error en la conexión")
       setCreateDataLoading(false)
     }
   }
@@ -78,7 +78,7 @@ export const useHome = () => {
         config,
       })
     } else {
-      toast.error('Error en la conexión')
+      toast.error("Error en la conexión")
       setCreateDataLoading(false)
     }
   }

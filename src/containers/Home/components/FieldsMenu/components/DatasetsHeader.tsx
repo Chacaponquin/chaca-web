@@ -1,10 +1,10 @@
-import { useContext, useState } from 'react'
-import { Dropdown } from 'primereact/dropdown'
-import { Bars, Plus } from '../../../../../shared/assets/icons'
-import { DatasetsContext } from '../../../../../shared/context/DatasetsContext'
-import ConfigMenu from './ConfigMenu'
-import { ModalProps } from '../../../interfaces/modal.interface'
-import { MODAL_ACTIONS } from '../../../constants/MODAL_ACTIONS'
+import { useContext, useState } from "react"
+import { Dropdown } from "primereact/dropdown"
+import { Bars, Plus } from "../../../../../shared/assets/icons"
+import { DatasetsContext } from "../../../../../shared/context/DatasetsContext"
+import ConfigMenu from "./ConfigMenu"
+import { ModalProps } from "../../../interfaces/modal.interface"
+import { MODAL_ACTIONS } from "../../../constants/MODAL_ACTIONS"
 
 const DatasetsHeader = ({ handleOpenModal }: { handleOpenModal: (props: ModalProps) => void }) => {
   const [openConfig, setOpenConfig] = useState(false)
@@ -48,8 +48,8 @@ const DatasetsHeader = ({ handleOpenModal }: { handleOpenModal: (props: ModalPro
           className='w-[170px] !text-sm'
           placeholder='Select a Dataset'
           options={datasets}
-          optionValue={'id'}
-          optionLabel={'name'}
+          optionValue={"id"}
+          optionLabel={"name"}
           onChange={(e) => {
             handleSelectDataset(e.value)
           }}

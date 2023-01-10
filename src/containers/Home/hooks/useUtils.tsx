@@ -1,6 +1,6 @@
-import { Schema, SubOption } from '../../../shared/interfaces/options.interface'
-import { useCallback, useContext } from 'react'
-import { AppConfigContext } from '../../../shared/context/AppConfigContext'
+import { Schema, SubOption } from "../../../shared/interfaces/options.interface"
+import { useCallback, useContext } from "react"
+import { AppConfigContext } from "../../../shared/context/AppConfigContext"
 
 export const useUtils = () => {
   const { schemas } = useContext(AppConfigContext)

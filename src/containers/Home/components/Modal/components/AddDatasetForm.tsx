@@ -1,17 +1,17 @@
-import { InputText } from 'primereact/inputtext'
-import { useContext, useState } from 'react'
-import { toast } from 'react-toastify'
-import { DatasetsContext } from '../../../../../shared/context/DatasetsContext'
-import { DATASETS_ACTIONS } from '../../../constants/ACTION_TYPES'
-import ModalButtons from '../shared/components/ModalButtons'
-import ModalTitle from '../shared/components/ModalTitle'
+import { InputText } from "primereact/inputtext"
+import { useContext, useState } from "react"
+import { toast } from "react-toastify"
+import { DatasetsContext } from "../../../../../shared/context/DatasetsContext"
+import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES"
+import ModalButtons from "../shared/components/ModalButtons"
+import ModalTitle from "../shared/components/ModalTitle"
 
 const AddDatasetForm = ({ handleCloseModal }: { handleCloseModal: () => void }) => {
   const { datasetDispatch } = useContext(DatasetsContext)
-  const [datasetName, setDatasetName] = useState('')
+  const [datasetName, setDatasetName] = useState("")
 
   const handleAddDataset = () => {
-    if (datasetName !== '') {
+    if (datasetName !== "") {
       // create dataset
       datasetDispatch({
         type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
@@ -20,7 +20,7 @@ const AddDatasetForm = ({ handleCloseModal }: { handleCloseModal: () => void }) 
 
       // close modal
       handleCloseModal()
-    } else toast('The dataset name can not be an empty string')
+    } else toast("The dataset name can not be an empty string")
   }
 
   return (

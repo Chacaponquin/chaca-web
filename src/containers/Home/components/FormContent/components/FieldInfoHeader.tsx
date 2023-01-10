@@ -1,13 +1,13 @@
-import { Fragment, useContext, useMemo } from 'react'
-import { Change, Delete } from '../../../../../shared/assets/icons'
-import { v4 as uuid } from 'uuid'
-import { DatasetsContext } from '../../../../../shared/context/DatasetsContext'
-import { ModalProps } from '../../../interfaces/modal.interface'
-import { DATASETS_ACTIONS } from '../../../constants/ACTION_TYPES'
-import { FieldNode } from '../../../../../shared/helpers/DatasetTree'
-import { FieldDataType } from '../../../../../shared/interfaces/datasets.interface'
-import { MODAL_ACTIONS } from '../../../constants/MODAL_ACTIONS'
-import { ChacaIconButton } from '../../../../../shared/components/ChacaButton'
+import { Fragment, useContext, useMemo } from "react"
+import { Change, Delete } from "../../../../../shared/assets/icons"
+import { v4 as uuid } from "uuid"
+import { DatasetsContext } from "../../../../../shared/context/DatasetsContext"
+import { ModalProps } from "../../../interfaces/modal.interface"
+import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES"
+import { FieldNode } from "../../../../../shared/helpers/DatasetTree"
+import { FieldDataType } from "../../../../../shared/interfaces/datasets.interface"
+import { MODAL_ACTIONS } from "../../../constants/MODAL_ACTIONS"
+import { ChacaIconButton } from "../../../../../shared/components/ChacaButton"
 
 const FieldInfoHeader = ({
   handleOpenModal,
@@ -46,7 +46,7 @@ const FieldInfoHeader = ({
         {location.map((el, i) => (
           <Fragment key={uuid()}>
             <p className='mb-0 font-fontBold'>{el}</p>
-            {i !== location.length - 1 && <p className='mb-0 font-fontBold'>{'/'}</p>}
+            {i !== location.length - 1 && <p className='mb-0 font-fontBold'>{"/"}</p>}
           </Fragment>
         ))}
       </div>
@@ -54,17 +54,17 @@ const FieldInfoHeader = ({
       <div className='flex gap-3 items-center'>
         <ChacaIconButton
           icon={<Change size={19} />}
-          color={'primary'}
-          size={'small'}
-          text={'Edit'}
+          color={"primary"}
+          size={"small"}
+          text={"Edit"}
           onClick={handleEdit}
         />
 
         <ChacaIconButton
           icon={<Delete size={19} />}
-          color={'danger'}
-          size={'small'}
-          text={'Delete'}
+          color={"danger"}
+          size={"small"}
+          text={"Delete"}
           onClick={handleDelete}
         />
       </div>

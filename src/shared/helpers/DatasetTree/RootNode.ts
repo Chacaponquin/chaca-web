@@ -1,6 +1,6 @@
-import { DatasetField } from '../../interfaces/datasets.interface'
-import { FieldNode } from './FieldNode'
-import { Node } from './Node'
+import { DatasetField } from "../../interfaces/datasets.interface"
+import { FieldNode } from "./FieldNode"
+import { Node } from "./Node"
 
 export class RootNode extends Node {
   constructor(public limit: number, name: string) {

@@ -1,18 +1,14 @@
-import { useContext } from 'react'
-import { UserContext } from '../../shared/context/UserContext'
-import { v4 as uuid } from 'uuid'
-import { Link } from 'react-router-dom'
-import { ChacaSimpleButton } from '../../shared/components/ChacaButton'
-import { APP_ROUTES } from '../../shared/routes/app/APP_ROUTES'
+import { v4 as uuid } from "uuid"
+import { Link } from "react-router-dom"
+import { ChacaSimpleButton } from "../../shared/components/ChacaButton"
+import { APP_ROUTES } from "../../shared/routes/app/APP_ROUTES"
 
 const NavBar = () => {
-  const { actualUser } = useContext(UserContext)
-
   const links = [
-    { route: APP_ROUTES.HOME, title: 'Home' },
-    { route: APP_ROUTES.DOCS, title: 'Docs' },
-    { route: APP_ROUTES.API, title: 'Api' },
-    { route: APP_ROUTES.CONTACT_US, title: 'Contact Us' },
+    { route: APP_ROUTES.HOME, title: "Home" },
+    { route: APP_ROUTES.DOCS, title: "Docs" },
+    { route: APP_ROUTES.API, title: "Api" },
+    { route: APP_ROUTES.CONTACT_US, title: "Contact Us" },
   ]
 
   return (
@@ -21,11 +17,8 @@ const NavBar = () => {
         <div className='flex items-center gap-8'>
           <div className='flex items-center gap-11'>
             {links.map((link) => (
-              <Link to={link.route}>
-                <div
-                  className='font-fontBold text-lg transition-all duration-300 hover:text-black text-slate-500'
-                  key={uuid()}
-                >
+              <Link to={link.route} key={uuid()}>
+                <div className='font-fontBold text-lg transition-all duration-300 hover:text-black text-slate-500'>
                   {link.title}
                 </div>
               </Link>
@@ -33,7 +26,7 @@ const NavBar = () => {
           </div>
 
           <Link to={APP_ROUTES.AUTH_ROUTES.LOGIN}>
-            <ChacaSimpleButton onClick={() => {}} color='primary' size='large' text='Account' />
+            <ChacaSimpleButton color='primary' size='large' text='Account' />
           </Link>
         </div>
       </div>

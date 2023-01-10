@@ -1,10 +1,10 @@
-import { useContext, Fragment } from 'react'
-import { DATA_TYPES } from '../../../../../../shared/constant/DATA_TYPES'
-import { v4 as uuid } from 'uuid'
-import clsx from 'clsx'
-import { DatasetsContext } from '../../../../../../shared/context/DatasetsContext'
-import { DATASETS_ACTIONS } from '../../../../constants/ACTION_TYPES'
-import { AppConfigContext } from '../../../../../../shared/context/AppConfigContext'
+import { useContext, Fragment } from "react"
+import { DATA_TYPES } from "../../../../../../shared/constant/DATA_TYPES"
+import { v4 as uuid } from "uuid"
+import clsx from "clsx"
+import { DatasetsContext } from "../../../../../../shared/context/DatasetsContext"
+import { DATASETS_ACTIONS } from "../../../../constants/ACTION_TYPES"
+import { AppConfigContext } from "../../../../../../shared/context/AppConfigContext"
 
 const DataTypeSelect = () => {
   const { selectField, datasetDispatch, selectedDataset } = useContext(DatasetsContext)
@@ -12,17 +12,17 @@ const DataTypeSelect = () => {
 
   const barClass = (select: boolean) => {
     return clsx(
-      'h-[5px] w-full rounded-full bg-secondColor mt-1 transition-all duration-300',
-      { 'opacity-100': select },
-      { 'opacity-0': !select },
+      "h-[5px] w-full rounded-full bg-secondColor mt-1 transition-all duration-300",
+      { "opacity-100": select },
+      { "opacity-0": !select },
     )
   }
 
   const textClass = (select: boolean) => {
     return clsx(
-      'mb-0 w-full text-center font-fontBold text-lg transition-all duration-300 hover:text-black',
-      { 'text-black': select },
-      { 'text-slate-400': !select },
+      "mb-0 w-full text-center font-fontBold text-lg transition-all duration-300 hover:text-black",
+      { "text-black": select },
+      { "text-slate-400": !select },
     )
   }
 
@@ -61,7 +61,7 @@ const DataTypeSelect = () => {
             fieldID: selectField.id,
             dataType: {
               type: dataType,
-              code: 'function getValue(fields, utils){\n\t// logic of your function\n}',
+              code: "function getValue(fields, utils){\n\t// logic of your function\n}",
             },
           },
         })

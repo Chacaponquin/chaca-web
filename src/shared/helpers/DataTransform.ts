@@ -1,5 +1,5 @@
-import { SchemasResp, Schema } from '../interfaces/options.interface'
-import { v4 as uuid } from 'uuid'
+import { SchemasResp, Schema } from "../interfaces/options.interface"
+import { v4 as uuid } from "uuid"
 
 export const DataTransform = {
   initialFieldsTransform: (fields: SchemasResp[]): Schema[] => {
@@ -21,7 +21,7 @@ export const DataTransform = {
   },
 
   descapitilizeArgument: (text: string): string => {
-    let returnString = ''
+    let returnString = ""
     let mayus = false
 
     for (let i = 0; i < text.length; i++) {
@@ -46,12 +46,12 @@ export const DataTransform = {
   },
 
   titlePipe: (text: string): string => {
-    let returnString = ''
+    let returnString = ""
 
     let mayus = true
 
     for (let i = 0; i < text.length; i++) {
-      if (text[i] !== ' ' && text[i] !== '_' && text[i] !== '-') {
+      if (text[i] !== " " && text[i] !== "_" && text[i] !== "-") {
         returnString = returnString.concat(mayus ? text[i].toUpperCase() : text[i].toLowerCase())
         mayus = false
       } else {
@@ -65,12 +65,12 @@ export const DataTransform = {
   },
 
   showDataTransform(value: any) {
-    let returnString = ''
+    let returnString = ""
 
-    if (typeof value === 'string' || typeof value === 'number') returnString = `${value}`
-    else if (typeof value === 'boolean') {
-      returnString = `${value === true ? 'true' : 'false'}`
-    } else if (typeof value === 'object') {
+    if (typeof value === "string" || typeof value === "number") returnString = `${value}`
+    else if (typeof value === "boolean") {
+      returnString = `${value === true ? "true" : "false"}`
+    } else if (typeof value === "object") {
       if (Array.isArray(value)) {
         returnString += `${this.getArrayString(value)}`
       }
@@ -80,7 +80,7 @@ export const DataTransform = {
   },
 
   getSelectValues(array: any[]) {
-    let returnArray = ''
+    let returnArray = ""
 
     for (let i = 0; i < array.length; i++) {
       if (!(i === array.length - 1)) returnArray += `${array[i]} | `
@@ -91,7 +91,7 @@ export const DataTransform = {
   },
 
   getArrayString(array: any[]) {
-    let returnArray = '['
+    let returnArray = "["
 
     for (let i = 0; i < array.length; i++) {
       if (Array.isArray(array[i])) {
@@ -103,7 +103,7 @@ export const DataTransform = {
       }
     }
 
-    returnArray += ']'
+    returnArray += "]"
 
     return returnArray
   },

@@ -3,41 +3,41 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Cairo Light';
-  src: url('./assets//font/Cairo/Cairo-Light.ttf');
+  font-family: "Cairo Light";
+  src: url("./assets//font/Cairo/Cairo-Light.ttf");
 }
 
 @font-face {
-  font-family: 'Cairo Regular';
-  src: url('./assets//font/Cairo/Cairo-Regular.ttf');
+  font-family: "Cairo Regular";
+  src: url("./assets//font/Cairo/Cairo-Regular.ttf");
 }
 
 @font-face {
-  font-family: 'Cairo Bold';
-  src: url('./assets//font/Cairo/Cairo-Bold.ttf');
+  font-family: "Cairo Bold";
+  src: url("./assets//font/Cairo/Cairo-Bold.ttf");
 }
 
 @font-face {
-  font-family: 'Cairo Extra Bold';
-  src: url('./assets//font/Cairo/Cairo-ExtraBold.ttf');
+  font-family: "Cairo Extra Bold";
+  src: url("./assets//font/Cairo/Cairo-ExtraBold.ttf");
 }
 
 @font-face {
-  font-family: 'FiraCode Regular';
-  src: url('./assets//font/Fira/FiraCode-Regular.ttf');
+  font-family: "FiraCode Regular";
+  src: url("./assets//font/Fira/FiraCode-Regular.ttf");
 }
 
 @font-face {
-  font-family: 'FiraCode Bold';
-  src: url('./assets//font/Fira/FiraCode-Bold.ttf');
+  font-family: "FiraCode Bold";
+  src: url("./assets//font/Fira/FiraCode-Bold.ttf");
 }
 
 * {
-  font-family: 'Cairo Regular';
+  font-family: "Cairo Regular";
 }
 
 .json-container * {
-  font-family: 'FiraCode Regular';
+  font-family: "FiraCode Regular";
 }
 
 .landing-page::-webkit-scrollbar {
@@ -75,13 +75,13 @@
   padding: 0.2rem 1rem !important;
   display: flex;
   width: 100%;
-  font-family: 'Cairo Regular' !important;
+  font-family: "Cairo Regular" !important;
 }
 
 .p-dropdown {
   display: flex;
   width: 100%;
-  font-family: 'Cairo Regular' !important;
+  font-family: "Cairo Regular" !important;
 }
 
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item {

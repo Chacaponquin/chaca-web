@@ -1,7 +1,7 @@
-import { buttonClass } from '../../helpers/buttonClass'
-import { ChacaSimpleButtonInterface } from '../../interfaces/chacaButton.intrface'
+import { buttonClass } from "../../helpers/buttonClass"
+import { ChacaButtonProps } from "../../interfaces/chacaButton.intrface"
 
-const ChacaSimpleButton = (props: ChacaSimpleButtonInterface) => {
+const ChacaSimpleButton = (props: ChacaButtonProps) => {
   return (
     <button onClick={props.onClick} className={buttonClass(props)}>
       {props.text}

@@ -1,6 +1,6 @@
-import { Dataset } from '../../interfaces/datasets.interface'
-import { FieldNode } from './FieldNode'
-import { RootNode } from './RootNode'
+import { Dataset } from "../../interfaces/datasets.interface"
+import { FieldNode } from "./FieldNode"
+import { RootNode } from "./RootNode"
 
 export class DatasetTree {
   private root: RootNode

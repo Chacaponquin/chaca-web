@@ -1,20 +1,20 @@
-import React, { useContext, useState } from 'react'
-import { usePost } from '../../../shared/hooks/usePost'
-import { API_ROUTES } from '../../../shared/routes/api/API_ROUTES'
-import LoaderContainer from '../../../shared/components/Loader/LoaderContainer'
-import { toast, ToastContainer } from 'react-toastify'
-import { UserContext } from '../../../shared/context/UserContext'
-import { InputText } from 'primereact/inputtext'
-import { Link } from 'react-router-dom'
-import { APP_ROUTES } from '../../../shared/routes/app/APP_ROUTES'
-import OtherOptionsSection from '../components/OtherOptionsSection'
+import React, { useContext, useState } from "react"
+import { usePost } from "../../../shared/hooks/usePost"
+import { API_ROUTES } from "../../../shared/routes/api/API_ROUTES"
+import LoaderContainer from "../../../shared/components/Loader/LoaderContainer"
+import { toast, ToastContainer } from "react-toastify"
+import { UserContext } from "../../../shared/context/UserContext"
+import { InputText } from "primereact/inputtext"
+import { Link } from "react-router-dom"
+import { APP_ROUTES } from "../../../shared/routes/app/APP_ROUTES"
+import OtherOptionsSection from "../components/OtherOptionsSection"
 
 const SignUp = () => {
   const [signUpData, setSignUpData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    comfirmPassword: '',
+    username: "",
+    email: "",
+    password: "",
+    comfirmPassword: "",
   })
 
   const { handleSignIn } = useContext(UserContext)
@@ -27,7 +27,7 @@ const SignUp = () => {
     onError: (error) => {
       const errorObject = error?.response?.data as any
       if (errorObject) toast.error(errorObject.error)
-      else toast.error('Hubo un error en la creacion del usuario')
+      else toast.error("Hubo un error en la creacion del usuario")
     },
     body: signUpData,
   })
@@ -37,15 +37,15 @@ const SignUp = () => {
 
     if (signUpData.password === signUpData.comfirmPassword) {
       signUpUser()
-    } else throw toast.error('No coinciden las contraseñas', {})
+    } else throw toast.error("No coinciden las contraseñas", {})
   }
 
   const handleChange = (e: any) => {
     setSignUpData({ ...signUpData, [e.target.name]: e.target.value })
   }
 
-  const inputClass = 'py-2 px-5 font-fontRegular text-base esm:px-3 esm:py-1 esm:text-sm'
-  const labelClass = 'text-lg font-fontBold'
+  const inputClass = "py-2 px-5 font-fontRegular text-base esm:px-3 esm:py-1 esm:text-sm"
+  const labelClass = "text-lg font-fontBold"
 
   return (
     <div className='w-full h-screen flex'>
@@ -79,7 +79,7 @@ const SignUp = () => {
                   className={inputClass}
                   required
                   name='username'
-                  type={'text'}
+                  type={"text"}
                   onChange={handleChange}
                 />
               </div>
@@ -92,7 +92,7 @@ const SignUp = () => {
                   className={inputClass}
                   required
                   name='email'
-                  type={'email'}
+                  type={"email"}
                   onChange={handleChange}
                 />
               </div>
@@ -105,7 +105,7 @@ const SignUp = () => {
                   className={inputClass}
                   required
                   name='password'
-                  type={'password'}
+                  type={"password"}
                   onChange={handleChange}
                 />
               </div>
@@ -118,7 +118,7 @@ const SignUp = () => {
                   className={inputClass}
                   required
                   name='comfirmPassword'
-                  type={'password'}
+                  type={"password"}
                   onChange={handleChange}
                 />
               </div>
@@ -127,7 +127,7 @@ const SignUp = () => {
             <OtherOptionsSection loading={loading} />
 
             <div className='flex justify-center'>
-              <LoaderContainer loading={loading} className={'w-[50px]'}>
+              <LoaderContainer loading={loading} className={"w-[50px]"}>
                 <button className='transition-all duration-300 rounded-md text-white bg-principal-bg hover:opacity-70 py-3 w-full text-2xl font-fontBold'>
                   Sign Up
                 </button>

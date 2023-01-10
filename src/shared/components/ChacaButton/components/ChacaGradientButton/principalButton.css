@@ -32,7 +32,7 @@
 }
 
 .cssbuttons-io::before {
-  content: '';
+  content: "";
   background: rgb(226 232 240);
   width: 120%;
   left: -10%;

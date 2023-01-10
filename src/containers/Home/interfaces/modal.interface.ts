@@ -1,5 +1,5 @@
-import { DatasetField, FieldDataType } from '../../../shared/interfaces/datasets.interface'
-import { MODAL_ACTIONS } from '../constants/MODAL_ACTIONS'
+import { DatasetField, FieldDataType } from "../../../shared/interfaces/datasets.interface"
+import { MODAL_ACTIONS } from "../constants/MODAL_ACTIONS"
 
 export type ModalAddFieldProps = {
   type: MODAL_ACTIONS.ADD_FIELD

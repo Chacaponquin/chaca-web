@@ -1,29 +1,29 @@
-import React, { useContext, useState } from 'react'
-import { usePost } from '../../../shared/hooks/usePost'
-import { API_ROUTES } from '../../../shared/routes/api/API_ROUTES'
-import LoaderContainer from '../../../shared/components/Loader/LoaderContainer'
-import { toast, ToastContainer } from 'react-toastify'
-import { UserContext } from '../../../shared/context/UserContext'
-import { Link } from 'react-router-dom'
-import { APP_ROUTES } from '../../../shared/routes/app/APP_ROUTES'
-import '../auth.css'
-import BgSVG from '../../../shared/components/CurveBg/BgSVG'
-import clsx from 'clsx'
-import OtherOptionsSection from '../components/OtherOptionsSection'
-import { AxiosError } from 'axios'
-import { DataTransform } from '../../../shared/helpers/DataTransform'
-import User from '../../../shared/assets/icons/User'
-import Private from '../../../shared/assets/icons/Private'
+import React, { useContext, useState } from "react"
+import { usePost } from "../../../shared/hooks/usePost"
+import { API_ROUTES } from "../../../shared/routes/api/API_ROUTES"
+import LoaderContainer from "../../../shared/components/Loader/LoaderContainer"
+import { toast, ToastContainer } from "react-toastify"
+import { UserContext } from "../../../shared/context/UserContext"
+import { Link } from "react-router-dom"
+import { APP_ROUTES } from "../../../shared/routes/app/APP_ROUTES"
+import "../auth.css"
+import BgSVG from "../../../shared/components/CurveBg/BgSVG"
+import clsx from "clsx"
+import OtherOptionsSection from "../components/OtherOptionsSection"
+import { AxiosError } from "axios"
+import { DataTransform } from "../../../shared/helpers/DataTransform"
+import User from "../../../shared/assets/icons/User"
+import Private from "../../../shared/assets/icons/Private"
 
 const Login = () => {
   const { handleSignIn } = useContext(UserContext)
 
   const buttonClass =
-    'rounded-full flex justify-center items-center py-4 esm:py-3 w-[250px] esm:w-[200px] esm:text-lg text-xl font-fontBold uppercase transition-all duration-300'
+    "rounded-full flex justify-center items-center py-4 esm:py-3 w-[250px] esm:w-[200px] esm:text-lg text-xl font-fontBold uppercase transition-all duration-300"
 
   const [loginData, setLoginData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   })
 
   const [loginUser, { loading }] = usePost<{ token: string }>({
@@ -31,7 +31,7 @@ const Login = () => {
     body: loginData,
     onError: (error: AxiosError) => {
       const errorMessage = error.response?.data as any
-      toast.error(errorMessage.error || 'Hubo un error')
+      toast.error(errorMessage.error || "Hubo un error")
     },
     onCompleted: (data) => handleSignIn(data.token),
   })
@@ -60,7 +60,7 @@ const Login = () => {
           </div>
 
           <img
-            src={'/images/signUp-image.png'}
+            src={"/images/signUp-image.png"}
             alt=''
             className='object-contain z-20 -translate-x-[50px] max-w-full'
           />
@@ -76,8 +76,8 @@ const Login = () => {
 
           <form className='flex flex-col w-full' onSubmit={handleSubmit}>
             <div className='flex flex-col w-full py-8 gap-5 esm:py-6'>
-              <InputDiv type={'email'} onChange={handleChange} icon={'email'} />
-              <InputDiv onChange={handleChange} type={'password'} icon={'password'} />
+              <InputDiv type={"email"} onChange={handleChange} icon={"email"} />
+              <InputDiv onChange={handleChange} type={"password"} icon={"password"} />
             </div>
 
             <div className='mb-4'>
@@ -87,7 +87,7 @@ const Login = () => {
             <div className='flex lg:justify-start w-full gap-5 flex-wrap justify-center'>
               <LoaderContainer loading={loading} className='w-[50px]'>
                 <button
-                  className={buttonClass + ' bg-principal-bg text-white hover:opacity-70'}
+                  className={buttonClass + " bg-principal-bg text-white hover:opacity-70"}
                   type='submit'
                 >
                   Login
@@ -97,7 +97,7 @@ const Login = () => {
               {!loading && (
                 <Link
                   to={APP_ROUTES.AUTH_ROUTES.FORGOT_PASSWORD}
-                  className={buttonClass + ' bg-slate-200 text-black'}
+                  className={buttonClass + " bg-slate-200 text-black"}
                 >
                   Forget Password?
                 </Link>
@@ -122,21 +122,21 @@ const InputDiv = ({
   const [focus, setFocus] = useState(false)
 
   const divClass = () => {
-    return clsx('rounded-md flex w-full inputText', {
-      'inputText-focus': focus,
+    return clsx("rounded-md flex w-full inputText", {
+      "inputText-focus": focus,
     })
   }
 
   return (
     <div className={divClass()}>
       <div className='px-4 border-r-2 flex justify-center items-center'>
-        {icon === 'email' && <User />}
-        {icon === 'password' && <Private />}
+        {icon === "email" && <User />}
+        {icon === "password" && <Private />}
       </div>
 
       <input
         type={type}
-        className={'w-full outline-none py-3 px-5'}
+        className={"w-full outline-none py-3 px-5"}
         placeholder={DataTransform.titlePipe(type)}
         onChange={onChange}
         onBlur={() => setFocus(false)}

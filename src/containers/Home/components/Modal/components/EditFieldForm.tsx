@@ -1,27 +1,27 @@
-import { useContext } from 'react'
-import { DatasetsContext } from '../../../../../shared/context/DatasetsContext'
-import { DATASETS_ACTIONS } from '../../../constants/ACTION_TYPES'
-import { ModalEditField } from '../../../interfaces/modal.interface'
-import FieldForm from '../shared/components/FieldForm'
-import ModalButtons from '../shared/components/ModalButtons'
-import ModalTitle from '../shared/components/ModalTitle'
-import { useFieldForm } from '../shared/hooks/useFieldForm'
+import { useContext } from "react"
+import { DatasetsContext } from "../../../../../shared/context/DatasetsContext"
+import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES"
+import { ModalEditField } from "../../../interfaces/modal.interface"
+import FieldForm from "../shared/components/FieldForm"
+import ModalButtons from "../shared/components/ModalButtons"
+import ModalTitle from "../shared/components/ModalTitle"
+import { useFieldForm } from "../shared/hooks/useFieldForm"
 
 const EditFieldForm = ({
   handleCloseModal,
-  props,
+  modalProps,
 }: {
   handleCloseModal: () => void
-  props: ModalEditField
+  modalProps: ModalEditField
 }) => {
   const { datasetDispatch, selectedDataset } = useContext(DatasetsContext)
 
   const fieldActions = useFieldForm({
-    id: props.field.id,
-    name: props.field.name,
-    dataType: props.field.dataType,
-    isArray: props.field.isArray,
-    isPosibleNull: props.field.isPosibleNull,
+    id: modalProps.field.id,
+    name: modalProps.field.name,
+    dataType: modalProps.field.dataType,
+    isArray: modalProps.field.isArray,
+    isPosibleNull: modalProps.field.isPosibleNull,
   })
 
   const handleEditField = () => {
@@ -29,7 +29,7 @@ const EditFieldForm = ({
       type: DATASETS_ACTIONS.EDIT_FIELD,
       payload: {
         field: fieldActions.field,
-        location: props.location,
+        location: modalProps.location,
         datasetID: selectedDataset.id,
       },
     })

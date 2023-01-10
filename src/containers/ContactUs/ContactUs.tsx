@@ -1,40 +1,42 @@
-import { InputText } from 'primereact/inputtext'
-import { InputTextarea } from 'primereact/inputtextarea'
-import { useState } from 'react'
-import { usePost } from '../../shared/hooks/usePost'
-import { API_ROUTES } from '../../shared/routes/api/API_ROUTES'
-import LoaderContainer from '../../shared/components/Loader/LoaderContainer'
-import { Link } from 'react-router-dom'
-import { APP_ROUTES } from '../../shared/routes/app/APP_ROUTES'
-import { toast, ToastContainer } from 'react-toastify'
-import { ChacaIconButton } from '../../shared/components/ChacaButton'
-import { Send } from '../../shared/assets/icons'
+import { InputText } from "primereact/inputtext"
+import { InputTextarea } from "primereact/inputtextarea"
+import React, { useState } from "react"
+import { usePost } from "../../shared/hooks/usePost"
+import { API_ROUTES } from "../../shared/routes/api/API_ROUTES"
+import LoaderContainer from "../../shared/components/Loader/LoaderContainer"
+import { Link } from "react-router-dom"
+import { APP_ROUTES } from "../../shared/routes/app/APP_ROUTES"
+import { toast, ToastContainer } from "react-toastify"
+import { ChacaIconButton } from "../../shared/components/ChacaButton"
+import { Send } from "../../shared/assets/icons"
 
 const ContactUs = () => {
   const [contactForm, setContactForm] = useState({
-    name: '',
-    email: '',
-    message: '',
+    name: "",
+    email: "",
+    message: "",
   })
   const [modalOpen, setModalOpen] = useState(false)
 
-  const labelClass = 'text-xl font-fontBold mb-1 esm:text-lg'
+  const labelClass = "text-xl font-fontBold mb-1 esm:text-lg"
 
   const [createMessage, { loading }] = usePost<void>({
     url: API_ROUTES.CREATE_USER_MESSAGE,
     onCompleted: () => {
       setModalOpen(true)
     },
-    onError: (error) => {
-      toast.error('Hubo un error al enviar el mensaje')
+    onError: () => {
+      toast.error("Hubo un error al enviar el mensaje")
     },
   })
 
-  const handleChange = (e: any) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>,
+  ) => {
     setContactForm({ ...contactForm, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log(contactForm)
     createMessage({ body: contactForm })
@@ -61,18 +63,18 @@ const ContactUs = () => {
               <label htmlFor='' className={labelClass}>
                 Name:
               </label>
-              <InputText className='text-base' name='name' type={'text'} onChange={handleChange} />
+              <InputText className='text-base' name='name' type={"text"} onChange={handleChange} />
             </div>
 
             <div className='flex flex-col'>
-              <label htmlFor='' className={labelClass} onChange={handleChange}>
+              <label htmlFor='' className={labelClass}>
                 Email:
               </label>
               <InputText
                 className='text-base'
                 onChange={handleChange}
                 name='email'
-                type={'email'}
+                type={"email"}
               />
             </div>
 
@@ -93,7 +95,6 @@ const ContactUs = () => {
                   color='primary'
                   icon={<Send size={23} />}
                   size='extra-large'
-                  onClick={() => {}}
                   text='Send'
                 />
               </LoaderContainer>
@@ -102,7 +103,7 @@ const ContactUs = () => {
         </div>
 
         <div className='flex-col items-center justify-center w-[450px] lg:flex hidden'>
-          <img src={'/images/contact.png'} alt='contact-us' className='object-contain w-full' />
+          <img src={"/images/contact.png"} alt='contact-us' className='object-contain w-full' />
         </div>
       </div>
     </div>
@@ -113,7 +114,7 @@ const SuccessModal = () => {
   return (
     <div className='fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-white/40 '>
       <div className='py-6 px-20 bg-white shadow-lg rounded-md flex flex-col items-center esm:px-10 max-w-[95%]'>
-        <img src={'/images/modeal.png'} alt='' className='object-contain w-[250px]' />
+        <img src={"/images/modeal.png"} alt='' className='object-contain w-[250px]' />
         <h1 className='uppercase text-4xl font-fontExtraBold mb-1 esm:text-3xl'>
           Gracias por tu mensaje!!!
         </h1>

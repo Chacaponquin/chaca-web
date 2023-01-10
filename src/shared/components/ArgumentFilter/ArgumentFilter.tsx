@@ -1,13 +1,13 @@
-import { useMemo, Fragment } from 'react'
-import { Calendar } from 'primereact/calendar'
-import { InputText } from 'primereact/inputtext'
-import { InputSwitch } from 'primereact/inputswitch'
-import { FieldArgument } from '../../interfaces/datasets.interface'
-import { Argument } from '../../interfaces/options.interface'
-import { ARGUMENT_TYPE } from '../../constant/ARGUMENT_TYPE'
-import { InputNumber } from 'primereact/inputnumber'
-import { Dropdown } from 'primereact/dropdown'
-import { DataTransform } from '../../helpers/DataTransform'
+import { useMemo, Fragment } from "react"
+import { Calendar } from "primereact/calendar"
+import { InputText } from "primereact/inputtext"
+import { InputSwitch } from "primereact/inputswitch"
+import { FieldArgument } from "../../interfaces/datasets.interface"
+import { Argument } from "../../interfaces/options.interface"
+import { ARGUMENT_TYPE } from "../../constant/ARGUMENT_TYPE"
+import { InputNumber } from "primereact/inputnumber"
+import { Dropdown } from "primereact/dropdown"
+import { DataTransform } from "../../helpers/DataTransform"
 
 const ArgumentFilter = ({
   arg,
@@ -19,7 +19,7 @@ const ArgumentFilter = ({
   handleChangeArgumentValue: (v: FieldArgument) => void
 }) => {
   const filterArgument = useMemo(() => {
-    const textClass = 'text-sm'
+    const textClass = "text-sm"
 
     switch (arg.inputType) {
       case ARGUMENT_TYPE.SELECT: {

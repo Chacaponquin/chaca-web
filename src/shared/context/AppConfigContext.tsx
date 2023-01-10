@@ -1,9 +1,11 @@
-import { createContext, ReactElement, useEffect, useState } from 'react'
-import { InitialFetchError } from '../errors/errors'
-import { DataTransform } from '../helpers/DataTransform'
-import { FileConfigOption, NoUserLimits } from '../interfaces/config.iterface'
-import { Schema, SchemasResp } from '../interfaces/options.interface'
-import { API_ROUTES, axiosInstance } from '../routes/api/API_ROUTES'
+/*eslint-disable */
+
+import { createContext, ReactElement, useEffect, useState } from "react"
+import { InitialFetchError } from "../errors/errors"
+import { DataTransform } from "../helpers/DataTransform"
+import { FileConfigOption, NoUserLimits } from "../interfaces/config.iterface"
+import { Schema, SchemasResp } from "../interfaces/options.interface"
+import { API_ROUTES, axiosInstance } from "../routes/api/API_ROUTES"
 
 const AppConfigContext = createContext<{
   noUserLimits: NoUserLimits
@@ -44,7 +46,7 @@ const AppConfigProvider = ({ children = <></> }: { children: ReactElement }) => 
         setSchemas(DataTransform.initialFieldsTransform(data[2]))
         setFileConfig(data[1])
       })
-      .catch((error) => {
+      .catch(() => {
         throw new InitialFetchError()
       })
       .finally(() => setInitialFetchLoading(false))
