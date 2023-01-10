@@ -1,13 +1,13 @@
-import Cookies from "universal-cookie";
+import Cookies from 'universal-cookie'
 
-const cookies = new Cookies();
+const cookies = new Cookies()
 
 export const getTokenCookie = (): string | null => {
-  const tokenCookie = cookies.get("jwt");
+  const tokenCookie = cookies.get('jwt')
 
   if (tokenCookie) {
-    localStorage.setItem("token", tokenCookie);
+    localStorage.setItem('token', tokenCookie)
   }
 
-  return localStorage.getItem("token");
-};
+  return localStorage.getItem('token')
+}

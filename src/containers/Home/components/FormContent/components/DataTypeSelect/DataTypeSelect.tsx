@@ -1,31 +1,30 @@
-import { useContext, Fragment } from "react";
-import { DATA_TYPES } from "../../../../../../shared/constant/DATA_TYPES";
-import { v4 as uuid } from "uuid";
-import clsx from "clsx";
-import { DatasetsContext } from "../../../../../../shared/context/DatasetsContext";
-import { DATASETS_ACTIONS } from "../../../../constants/ACTION_TYPES";
-import { AppConfigContext } from "../../../../../../shared/context/AppConfigContext";
+import { useContext, Fragment } from 'react'
+import { DATA_TYPES } from '../../../../../../shared/constant/DATA_TYPES'
+import { v4 as uuid } from 'uuid'
+import clsx from 'clsx'
+import { DatasetsContext } from '../../../../../../shared/context/DatasetsContext'
+import { DATASETS_ACTIONS } from '../../../../constants/ACTION_TYPES'
+import { AppConfigContext } from '../../../../../../shared/context/AppConfigContext'
 
 const DataTypeSelect = () => {
-  const { selectField, datasetDispatch, selectedDataset } =
-    useContext(DatasetsContext);
-  const { schemas } = useContext(AppConfigContext);
+  const { selectField, datasetDispatch, selectedDataset } = useContext(DatasetsContext)
+  const { schemas } = useContext(AppConfigContext)
 
   const barClass = (select: boolean) => {
     return clsx(
-      "h-[5px] w-full rounded-full bg-secondColor mt-1 transition-all duration-300",
-      { "opacity-100": select },
-      { "opacity-0": !select }
-    );
-  };
+      'h-[5px] w-full rounded-full bg-secondColor mt-1 transition-all duration-300',
+      { 'opacity-100': select },
+      { 'opacity-0': !select },
+    )
+  }
 
   const textClass = (select: boolean) => {
     return clsx(
-      "mb-0 w-full text-center font-fontBold text-lg transition-all duration-300 hover:text-black",
-      { "text-black": select },
-      { "text-slate-400": !select }
-    );
-  };
+      'mb-0 w-full text-center font-fontBold text-lg transition-all duration-300 hover:text-black',
+      { 'text-black': select },
+      { 'text-slate-400': !select },
+    )
+  }
 
   const handleChangeDataType = (dataType: DATA_TYPES) => {
     if (selectField) {
@@ -44,7 +43,7 @@ const DataTypeSelect = () => {
               },
             },
           },
-        });
+        })
       } else if (dataType === DATA_TYPES.REF) {
         datasetDispatch({
           type: DATASETS_ACTIONS.CHANGE_FIELD_DATATYPE,
@@ -53,7 +52,7 @@ const DataTypeSelect = () => {
             fieldID: selectField.id,
             dataType: { type: dataType, ref: [] },
           },
-        });
+        })
       } else if (dataType === DATA_TYPES.CUSTOM) {
         datasetDispatch({
           type: DATASETS_ACTIONS.CHANGE_FIELD_DATATYPE,
@@ -62,41 +61,35 @@ const DataTypeSelect = () => {
             fieldID: selectField.id,
             dataType: {
               type: dataType,
-              code: "function getValue(fields, utils){\n\t// logic of your function\n}",
+              code: 'function getValue(fields, utils){\n\t// logic of your function\n}',
             },
           },
-        });
+        })
       }
     }
-  };
+  }
 
   return (
-    <div className="bg-white flex w-full py-2 h-max justify-center gap-3 mt-2">
+    <div className='bg-white flex w-full py-2 h-max justify-center gap-3 mt-2'>
       {Object.values(DATA_TYPES)
         .filter((el) => el !== DATA_TYPES.MIXED)
         .map((el) => (
           <Fragment key={uuid()}>
             <button
-              className="px-3 font-fontBold uppercase flex flex-col w-[150px] cursor-pointer"
+              className='px-3 font-fontBold uppercase flex flex-col w-[150px] cursor-pointer'
               onClick={() => handleChangeDataType(el)}
             >
-              <p
-                className={textClass(
-                  selectField ? selectField.info.dataType.type === el : false
-                )}
-              >
+              <p className={textClass(selectField ? selectField.info.dataType.type === el : false)}>
                 {el}
               </p>
               <div
-                className={barClass(
-                  selectField ? selectField.info.dataType.type === el : false
-                )}
+                className={barClass(selectField ? selectField.info.dataType.type === el : false)}
               ></div>
             </button>
           </Fragment>
         ))}
     </div>
-  );
-};
+  )
+}
 
-export default DataTypeSelect;
+export default DataTypeSelect

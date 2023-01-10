@@ -1,13 +1,13 @@
 export interface ChacaButtonProps {
-  text: string;
-  onClick: () => void;
-  size: "small" | "medium" | "large" | "extra-large";
-  color: "primary" | "gradient" | "danger" | "secondary" | "cancel";
-  className?: string;
+  text: string
+  onClick: () => void
+  size: 'small' | 'medium' | 'large' | 'extra-large'
+  color: 'primary' | 'gradient' | 'danger' | 'secondary' | 'cancel'
+  className?: string
 }
 
 export interface ChacaSimpleButtonInterface extends ChacaButtonProps {}
 
 export interface ChacaIconButtonInterface extends ChacaButtonProps {
-  icon: JSX.Element;
+  icon: JSX.Element
 }

@@ -1,5 +1,5 @@
-import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
-import NavBar from "./NavBar/NavBar";
-import OptionsBar from "./OptionsBar/OptionsBar";
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
+import NavBar from './NavBar/NavBar'
+import OptionsBar from './OptionsBar/OptionsBar'
 
-export { ErrorBoundary, NavBar, OptionsBar };
+export { ErrorBoundary, NavBar, OptionsBar }

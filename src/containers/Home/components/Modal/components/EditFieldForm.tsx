@@ -1,20 +1,20 @@
-import { useContext } from "react";
-import { DatasetsContext } from "../../../../../shared/context/DatasetsContext";
-import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES";
-import { ModalEditField } from "../../../interfaces/modal.interface";
-import FieldForm from "../shared/components/FieldForm";
-import ModalButtons from "../shared/components/ModalButtons";
-import ModalTitle from "../shared/components/ModalTitle";
-import { useFieldForm } from "../shared/hooks/useFieldForm";
+import { useContext } from 'react'
+import { DatasetsContext } from '../../../../../shared/context/DatasetsContext'
+import { DATASETS_ACTIONS } from '../../../constants/ACTION_TYPES'
+import { ModalEditField } from '../../../interfaces/modal.interface'
+import FieldForm from '../shared/components/FieldForm'
+import ModalButtons from '../shared/components/ModalButtons'
+import ModalTitle from '../shared/components/ModalTitle'
+import { useFieldForm } from '../shared/hooks/useFieldForm'
 
 const EditFieldForm = ({
   handleCloseModal,
   props,
 }: {
-  handleCloseModal: () => void;
-  props: ModalEditField;
+  handleCloseModal: () => void
+  props: ModalEditField
 }) => {
-  const { datasetDispatch, selectedDataset } = useContext(DatasetsContext);
+  const { datasetDispatch, selectedDataset } = useContext(DatasetsContext)
 
   const fieldActions = useFieldForm({
     id: props.field.id,
@@ -22,7 +22,7 @@ const EditFieldForm = ({
     dataType: props.field.dataType,
     isArray: props.field.isArray,
     isPosibleNull: props.field.isPosibleNull,
-  });
+  })
 
   const handleEditField = () => {
     datasetDispatch({
@@ -32,23 +32,23 @@ const EditFieldForm = ({
         location: props.location,
         datasetID: selectedDataset.id,
       },
-    });
+    })
 
-    handleCloseModal();
-  };
+    handleCloseModal()
+  }
 
   return (
-    <div className="w-full flex flex-col">
-      <ModalTitle titleText="Edit Field" handleCloseModal={handleCloseModal} />
+    <div className='w-full flex flex-col'>
+      <ModalTitle titleText='Edit Field' handleCloseModal={handleCloseModal} />
       <FieldForm {...fieldActions} />
       <ModalButtons
         handleCancel={handleCloseModal}
         handleNext={handleEditField}
-        nextText="Edit Field"
-        type="edit"
+        nextText='Edit Field'
+        type='edit'
       />
     </div>
-  );
-};
+  )
+}
 
-export default EditFieldForm;
+export default EditFieldForm

@@ -1,27 +1,24 @@
-import {
-  Schema,
-  SubOption,
-} from "../../../shared/interfaces/options.interface";
-import { useCallback, useContext } from "react";
-import { AppConfigContext } from "../../../shared/context/AppConfigContext";
+import { Schema, SubOption } from '../../../shared/interfaces/options.interface'
+import { useCallback, useContext } from 'react'
+import { AppConfigContext } from '../../../shared/context/AppConfigContext'
 
 export const useUtils = () => {
-  const { schemas } = useContext(AppConfigContext);
+  const { schemas } = useContext(AppConfigContext)
 
   const findParent = useCallback(
     (p: string): Schema => {
-      return schemas.find((el) => el.parent === p)!;
+      return schemas.find((el) => el.parent === p)!
     },
-    [schemas]
-  );
+    [schemas],
+  )
 
   const findType = useCallback(
     (p: string, t: string): SubOption => {
-      const foundParent = schemas.find((el) => el.parent === p)!;
-      return foundParent.options.find((el) => el.name === t)!;
+      const foundParent = schemas.find((el) => el.parent === p)!
+      return foundParent.options.find((el) => el.name === t)!
     },
-    [schemas]
-  );
+    [schemas],
+  )
 
-  return { findParent, findType };
-};
+  return { findParent, findType }
+}

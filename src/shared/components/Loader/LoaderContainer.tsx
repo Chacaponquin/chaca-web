@@ -1,16 +1,12 @@
-import Loader from "./Loader";
+import Loader from './Loader'
 
 interface LoaderProps {
-  loading: boolean;
-  className: string;
-  children?: JSX.Element;
+  loading: boolean
+  className: string
+  children?: JSX.Element
 }
 
-const LoaderContainer = ({
-  loading,
-  className,
-  children = <></>,
-}: LoaderProps) => {
+const LoaderContainer = ({ loading, className, children = <></> }: LoaderProps) => {
   return (
     <>
       {loading ? (
@@ -21,7 +17,7 @@ const LoaderContainer = ({
         children
       )}
     </>
-  );
-};
+  )
+}
 
-export default LoaderContainer;
+export default LoaderContainer

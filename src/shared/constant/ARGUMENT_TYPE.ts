@@ -1,8 +1,8 @@
 export enum ARGUMENT_TYPE {
-  SELECT = "SELECT",
-  NUMBER = "NUMBER",
-  TEXT = "TEXT",
-  DATE = "DATE",
-  FLOAT = "FLOAT",
-  BOOLEAN = "BOOLEAN",
+  SELECT = 'SELECT',
+  NUMBER = 'NUMBER',
+  TEXT = 'TEXT',
+  DATE = 'DATE',
+  FLOAT = 'FLOAT',
+  BOOLEAN = 'BOOLEAN',
 }
