@@ -5,7 +5,7 @@ export const DataTransform = {
   initialFieldsTransform: (fields: SchemasResp[]): Schema[] => {
     let returnData = []
 
-    returnData = fields.map((el, i) => {
+    returnData = fields.map((el) => {
       return {
         ...el,
         id: uuid(),
@@ -64,46 +64,13 @@ export const DataTransform = {
     return returnString
   },
 
-  showDataTransform(value: any) {
-    let returnString = ""
-
-    if (typeof value === "string" || typeof value === "number") returnString = `${value}`
-    else if (typeof value === "boolean") {
-      returnString = `${value === true ? "true" : "false"}`
-    } else if (typeof value === "object") {
-      if (Array.isArray(value)) {
-        returnString += `${this.getArrayString(value)}`
-      }
-    }
-
-    return returnString
-  },
-
-  getSelectValues(array: any[]) {
+  getSelectValues(array: unknown[]) {
     let returnArray = ""
 
     for (let i = 0; i < array.length; i++) {
       if (!(i === array.length - 1)) returnArray += `${array[i]} | `
       else returnArray += `${array[i]}`
     }
-
-    return returnArray
-  },
-
-  getArrayString(array: any[]) {
-    let returnArray = "["
-
-    for (let i = 0; i < array.length; i++) {
-      if (Array.isArray(array[i])) {
-        if (!(i === array.length - 1)) returnArray += `${this.getArrayString(array[i])}, `
-        else returnArray += `${this.getArrayString(array[i])}`
-      } else {
-        if (i === array.length - 1) returnArray += `${array[i]}`
-        else returnArray += `${array[i]}, `
-      }
-    }
-
-    returnArray += "]"
 
     return returnArray
   },

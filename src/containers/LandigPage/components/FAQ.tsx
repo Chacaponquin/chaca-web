@@ -1,13 +1,13 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import clsx from "clsx"
-import { useQuery } from "../../../shared/hooks/useQuery"
 import { API_ROUTES } from "../../../shared/routes/api/API_ROUTES"
 import { APP_ROUTES } from "../../../shared/routes/app/APP_ROUTES"
 import { Link } from "react-router-dom"
 import { v4 as uuid } from "uuid"
 import { X } from "../../../shared/assets/icons"
 import { ChacaArrowButton } from "../../../shared/components/ChacaButton"
+import { useQuery, useLanguage } from "../../../shared/hooks"
 
 interface IFAQ {
   question: string
@@ -24,26 +24,34 @@ const FAQ = () => {
     },
   })
 
+  const UI_TEXT = useLanguage({
+    TITLE_DESCRIPTION: {
+      en: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, suscipit?",
+      es: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, suscipit?",
+    },
+    FIRST_TEXT: { en: "Frecuent", es: "Preguntas" },
+    GRADIENT_TEXT: { en: "Questions", es: "Frecuentes" },
+    NEW_QUESTION: { en: "new question", es: "pregunta" },
+  })
+
   return (
     <div className='w-screen flex items-center lg:px-20 px-14 esm:px-5 lg:py-20 sm:py-12 esm:py-6'>
       <div className='flex flex-col w-full gap-5'>
         <div className='flex items-start justify-between w-full'>
           <div className='flex flex-col'>
             <div className='flex gap-x-[10px] lg:text-6xl text-5xl esm:text-4xl uppercase mb-2 flex-wrap '>
-              <h1 className='font-fontExtraBold '>Preguntas</h1>
+              <h1 className='font-fontExtraBold '>{UI_TEXT.FIRST_TEXT}</h1>
               <h1 className='font-fontExtraBold text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor whitespace-nowrap'>
-                Frecuentes
+                {UI_TEXT.GRADIENT_TEXT}
               </h1>
             </div>
 
-            <p className='text-gray-500 text-lg esm:text-base'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, suscipit?
-            </p>
+            <p className='text-gray-500 text-lg esm:text-base'>{UI_TEXT.TITLE_DESCRIPTION}</p>
           </div>
 
           <div className='lg:block hidden'>
             <Link to={APP_ROUTES.CONTACT_US} className='text-xl'>
-              <ChacaArrowButton text={"New Question"} />
+              <ChacaArrowButton text={UI_TEXT.NEW_QUESTION} />
             </Link>
           </div>
         </div>

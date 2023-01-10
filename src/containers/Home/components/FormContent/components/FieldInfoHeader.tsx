@@ -8,6 +8,7 @@ import { FieldNode } from "../../../../../shared/helpers/DatasetTree"
 import { FieldDataType } from "../../../../../shared/interfaces/datasets.interface"
 import { MODAL_ACTIONS } from "../../../constants/MODAL_ACTIONS"
 import { ChacaIconButton } from "../../../../../shared/components/ChacaButton"
+import { useLanguage } from "../../../../../shared/hooks"
 
 const FieldInfoHeader = ({
   handleOpenModal,
@@ -17,6 +18,11 @@ const FieldInfoHeader = ({
   handleOpenModal: (props: ModalProps) => void
 }) => {
   const { selectedDataset, datasetDispatch, handleDeleteSelectField } = useContext(DatasetsContext)
+
+  const UI_TEXT = useLanguage({
+    EDIT_TEXT: { en: "Edit", es: "Editar" },
+    DELETE_TEXT: { en: "Delete", es: "Borrar" },
+  })
 
   const handleEdit = () => {
     handleOpenModal({
@@ -29,7 +35,7 @@ const FieldInfoHeader = ({
   const handleDelete = () => {
     datasetDispatch({
       type: DATASETS_ACTIONS.DELETE_FIELD,
-      payload: { datasetID: selectedDataset.id, fieldID: selectField!.id },
+      payload: { datasetID: selectedDataset.id, fieldID: selectField.id },
     })
 
     handleDeleteSelectField()
@@ -56,7 +62,7 @@ const FieldInfoHeader = ({
           icon={<Change size={19} />}
           color={"primary"}
           size={"small"}
-          text={"Edit"}
+          text={UI_TEXT.EDIT_TEXT}
           onClick={handleEdit}
         />
 
@@ -64,7 +70,7 @@ const FieldInfoHeader = ({
           icon={<Delete size={19} />}
           color={"danger"}
           size={"small"}
-          text={"Delete"}
+          text={UI_TEXT.DELETE_TEXT}
           onClick={handleDelete}
         />
       </div>

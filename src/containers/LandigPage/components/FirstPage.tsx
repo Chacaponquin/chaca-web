@@ -3,8 +3,15 @@ import WaveBG from "../assets/WaveBG"
 import { Link } from "react-router-dom"
 import { APP_ROUTES } from "../../../shared/routes/app/APP_ROUTES"
 import { ChacaGradientButton, ChacaArrowButton } from "../../../shared/components/ChacaButton"
+import { useLanguage } from "../../../shared/hooks/useLanguage"
 
 const FirstPage = () => {
+  const UI_TEXT = useLanguage({
+    WELCOME_TEXT: { en: "Welcome to", es: "Bienvenido a" },
+    DOCS_TEXT: { en: "Read Docs", es: "Api Docs" },
+    HOME_TEXT: { en: "Get Started", es: "Empezar" },
+  })
+
   return (
     <div className='h-screen w-screen flex flex-col justify-center'>
       <div className='h-screen w-full absolute top-0 left-0 -z-10 xl:block hidden'>
@@ -20,7 +27,9 @@ const FirstPage = () => {
       <div className='w-screen flex justify-center lg:justify-end xl:px-20 esm:px-4 md:px-10 h-full'>
         <div className='flex flex-col justify-center items-center xl:items-end lg:text-6xl gap-3 sm:text-7xl text-6xl exsm:text-5xl h-full'>
           <div className='flex items-center gap-[10px] esm:flex-col'>
-            <h1 className='font-fontExtraBold whitespace-nowrap uppercase'>Bienvenido a</h1>
+            <h1 className='font-fontExtraBold whitespace-nowrap uppercase'>
+              {UI_TEXT.WELCOME_TEXT}
+            </h1>
             <h1 className='font-fontExtraBold text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor whitespace-nowrap'>
               CHACA
             </h1>
@@ -28,11 +37,11 @@ const FirstPage = () => {
 
           <div className='flex flex-wrap justify-center items-center gap-10 mt-5 text-2xl esm:gap-3 exsm:flex-col-reverse esm:text-xl'>
             <Link to={APP_ROUTES.API}>
-              <ChacaArrowButton text={"Read Docs"} />
+              <ChacaArrowButton text={UI_TEXT.DOCS_TEXT} />
             </Link>
 
             <Link to={APP_ROUTES.HOME}>
-              <ChacaGradientButton text={"Empieza"} />
+              <ChacaGradientButton text={UI_TEXT.HOME_TEXT} />
             </Link>
           </div>
         </div>

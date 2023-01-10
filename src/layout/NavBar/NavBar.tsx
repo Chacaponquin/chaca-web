@@ -2,8 +2,11 @@ import { v4 as uuid } from "uuid"
 import { Link } from "react-router-dom"
 import { ChacaSimpleButton } from "../../shared/components/ChacaButton"
 import { APP_ROUTES } from "../../shared/routes/app/APP_ROUTES"
+import { useLanguage } from "../../shared/hooks"
 
 const NavBar = () => {
+  const UI_TEXT = useLanguage({ ACCOUNT_TEXT: { en: "Account", es: "Cuenta" } })
+
   const links = [
     { route: APP_ROUTES.HOME, title: "Home" },
     { route: APP_ROUTES.DOCS, title: "Docs" },
@@ -26,7 +29,7 @@ const NavBar = () => {
           </div>
 
           <Link to={APP_ROUTES.AUTH_ROUTES.LOGIN}>
-            <ChacaSimpleButton color='primary' size='large' text='Account' />
+            <ChacaSimpleButton color='primary' size='large' text={UI_TEXT.ACCOUNT_TEXT} />
           </Link>
         </div>
       </div>

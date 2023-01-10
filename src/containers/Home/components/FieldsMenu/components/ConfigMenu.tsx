@@ -5,6 +5,7 @@ import clsx from "clsx"
 import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES"
 import { UserContext } from "../../../../../shared/context/UserContext"
 import { AppConfigContext } from "../../../../../shared/context/AppConfigContext"
+import { useLanguage } from "../../../../../shared/hooks"
 
 const ConfigMenu = ({
   handleAddDatasetField,
@@ -18,6 +19,13 @@ const ConfigMenu = ({
   const { selectedDataset, datasetDispatch, datasets } = useContext(DatasetsContext)
   const { actualUser } = useContext(UserContext)
   const { noUserLimits } = useContext(AppConfigContext)
+
+  const UI_TEXT = useLanguage({
+    DOCUMENTS_OPTION: { en: "Documents", es: "Documentos" },
+    NEW_FIELD_OPTION: { en: "New Field", es: "Nuevo Campo" },
+    DELETE_OPTION: { en: "Delete", es: "Borrar" },
+    EXPORT_OPTION: { en: "Export", es: "Exportar" },
+  })
 
   const commonClass = (c: string) => {
     return clsx(
@@ -33,7 +41,7 @@ const ConfigMenu = ({
   return (
     <div className='absolute flex flex-col -translate-x-0 translate-y-5 rounded-md bg-white shadow-md'>
       <div className={commonClass("gap-4")}>
-        <p className='mb-0 text-sm'>Documents:</p>
+        <p className='mb-0 text-sm'>{UI_TEXT.DOCUMENTS_OPTION}</p>
         <InputNumber
           className='!text-sm w-[80px]'
           min={1}
@@ -52,17 +60,17 @@ const ConfigMenu = ({
       </div>
 
       <div className={textDivClass()} onClick={handleAddDatasetField}>
-        New Field
+        {UI_TEXT.NEW_FIELD_OPTION}
       </div>
 
       {datasets.length > 1 && (
         <div className={textDivClass()} onClick={handleDeleteDataset}>
-          Delete
+          {UI_TEXT.DELETE_OPTION}
         </div>
       )}
 
       <div className={textDivClass()} onClick={handleExportDataset}>
-        Export
+        {UI_TEXT.EXPORT_OPTION}
       </div>
     </div>
   )
