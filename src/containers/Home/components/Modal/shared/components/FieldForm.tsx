@@ -2,6 +2,7 @@ import { Checkbox } from "primereact/checkbox"
 import { InputNumber } from "primereact/inputnumber"
 import { InputText } from "primereact/inputtext"
 import { Slider } from "primereact/slider"
+import { useLanguage } from "../../../../../../shared/hooks"
 import { DatasetField } from "../../../../../../shared/interfaces/datasets.interface"
 
 export interface FieldFormProps {
@@ -23,11 +24,15 @@ const FieldForm = ({
   handleChangePossibleNull,
   handleChangePossibleNullValue,
 }: FieldFormProps) => {
+  const { FIELD_NAME_TEXT } = useLanguage({
+    FIELD_NAME_TEXT: { en: "Field name", es: "Nombre del campo" },
+  })
+
   return (
     <div className='flex flex-col gap-3'>
       <div className='flex items-center gap-3'>
         <label htmlFor='' className='font-fontBold text-lg whitespace-nowrap'>
-          Field name:
+          {FIELD_NAME_TEXT}:
         </label>
         <InputText
           className='w-full'

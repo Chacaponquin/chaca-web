@@ -2,7 +2,6 @@ import { useMemo, Fragment } from "react"
 import { Calendar } from "primereact/calendar"
 import { InputText } from "primereact/inputtext"
 import { InputSwitch } from "primereact/inputswitch"
-import { FieldArgument } from "../../interfaces/datasets.interface"
 import { Argument } from "../../interfaces/options.interface"
 import { ARGUMENT_TYPE } from "../../constant/ARGUMENT_TYPE"
 import { InputNumber } from "primereact/inputnumber"
@@ -15,8 +14,8 @@ const ArgumentFilter = ({
   handleChangeArgumentValue,
 }: {
   arg: Argument
-  value: FieldArgument
-  handleChangeArgumentValue: (v: FieldArgument) => void
+  value: unknown
+  handleChangeArgumentValue: (v: unknown) => void
 }) => {
   const filterArgument = useMemo(() => {
     const textClass = "text-sm"

@@ -7,7 +7,7 @@ import { UserContext } from "../../../../../shared/context/UserContext"
 import { AppConfigContext } from "../../../../../shared/context/AppConfigContext"
 import { useLanguage } from "../../../../../shared/hooks"
 
-const ConfigMenu = ({
+const DatasetConfigMenu = ({
   handleAddDatasetField,
   handleDeleteDataset,
   handleExportDataset,
@@ -76,4 +76,4 @@ const ConfigMenu = ({
   )
 }
 
-export default ConfigMenu
+export default DatasetConfigMenu

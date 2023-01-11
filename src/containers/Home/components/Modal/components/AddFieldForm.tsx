@@ -10,6 +10,7 @@ import FieldForm from "../shared/components/FieldForm"
 import { useFieldForm } from "../shared/hooks/useFieldForm"
 import { v4 as uuid } from "uuid"
 import { toast } from "react-toastify"
+import { useLanguage } from "../../../../../shared/hooks"
 
 const AddFieldForm = ({
   modalProps,
@@ -20,6 +21,10 @@ const AddFieldForm = ({
 }) => {
   const { datasetDispatch, handleDeleteSelectField, selectedDataset } = useContext(DatasetsContext)
   const { schemas } = useContext(AppConfigContext)
+  const { NEW_FIELD_TEXT, SUBMIT_TEXT } = useLanguage({
+    NEW_FIELD_TEXT: { en: "New Field", es: "Nuevo Campo" },
+    SUBMIT_TEXT: { en: "Add Field", es: "Añadir Campo" },
+  })
 
   const fieldActions = useFieldForm({
     id: uuid(),
@@ -61,13 +66,13 @@ const AddFieldForm = ({
 
   return (
     <div className='flex flex-col w-full'>
-      <ModalTitle titleText='New Field' handleCloseModal={handleCloseModal} />
+      <ModalTitle titleText={NEW_FIELD_TEXT} handleCloseModal={handleCloseModal} />
 
       <FieldForm {...fieldActions} />
 
       <ModalButtons
         type='edit'
-        nextText='Add Field'
+        nextText={SUBMIT_TEXT}
         handleCancel={handleCloseModal}
         handleNext={handleAddField}
       />

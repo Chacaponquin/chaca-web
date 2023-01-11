@@ -1,5 +1,4 @@
 import { FILE_TYPE } from "../constant/FILE_TYPE"
-import { FieldArgument } from "./datasets.interface"
 import { Argument } from "./options.interface"
 
 export interface ConfigSchema {
@@ -9,7 +8,7 @@ export interface ConfigSchema {
 
 export interface ConfigFile {
   fileType: FILE_TYPE
-  arguments: { [path: string]: FieldArgument }
+  arguments: { [path: string]: unknown }
 }
 
 export interface FileConfigOption {

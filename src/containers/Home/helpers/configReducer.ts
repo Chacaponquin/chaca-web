@@ -2,7 +2,6 @@ import { ConfigSchema, FileConfigOption } from "../../../shared/interfaces/confi
 import { CONFIG_ACTIONS } from "../constants/ACTION_TYPES"
 import { Reducer } from "react"
 import { FILE_TYPE } from "../../../shared/constant/FILE_TYPE"
-import { FieldArgument } from "../../../shared/interfaces/datasets.interface"
 
 export type ConfigPayload =
   | {
@@ -23,7 +22,7 @@ export type ConfigPayload =
       type: CONFIG_ACTIONS.CHANGE_FILE_ARGUMENTS
       payload: {
         field: string
-        value: FieldArgument
+        value: unknown
       }
     }
 

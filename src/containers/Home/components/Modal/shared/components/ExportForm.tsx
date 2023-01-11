@@ -8,6 +8,7 @@ import { AppConfigContext } from "../../../../../../shared/context/AppConfigCont
 import { DatasetsContext } from "../../../../../../shared/context/DatasetsContext"
 import { UserContext } from "../../../../../../shared/context/UserContext"
 import { DataTransform } from "../../../../../../shared/helpers/DataTransform"
+import { useLanguage } from "../../../../../../shared/hooks"
 import { CONFIG_ACTIONS } from "../../../../constants/ACTION_TYPES"
 
 const ExportForm = () => {
@@ -15,7 +16,12 @@ const ExportForm = () => {
   const { configDispatch, config } = useContext(DatasetsContext)
   const { fileConfig } = useContext(AppConfigContext)
 
-  const handleChangeFileArgument = (argument: string, value: any) => {
+  const { SAVE_SCHEMA_TEXT, FORMAT_TEXT } = useLanguage({
+    SAVE_SCHEMA_TEXT: { en: "Save Model", es: "Guardar Modelo" },
+    FORMAT_TEXT: { en: "Format", es: "Formato" },
+  })
+
+  const handleChangeFileArgument = (argument: string, value: unknown) => {
     configDispatch({
       type: CONFIG_ACTIONS.CHANGE_FILE_ARGUMENTS,
       payload: { field: argument, value },
@@ -33,7 +39,7 @@ const ExportForm = () => {
     <div className='flex flex-col'>
       <div className='flex items-center gap-2'>
         <label htmlFor='' className='font-fontBold text-lg'>
-          Format:
+          {FORMAT_TEXT}:
         </label>
         <Dropdown
           options={fileConfig.map((f) => f.fileType)}
@@ -65,7 +71,7 @@ const ExportForm = () => {
 
         <div className='flex items-center gap-2 justify-between'>
           <label htmlFor='' className='font-fontBold text-lg'>
-            Save Schema:
+            {SAVE_SCHEMA_TEXT}:
           </label>
           {actualUser ? (
             <InputSwitch

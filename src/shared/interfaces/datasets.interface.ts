@@ -37,10 +37,8 @@ export interface DatasetField<T = FieldDataType> {
   } | null
 }
 
-export type FieldArgument = string | number | Date | boolean | FieldArgument[]
-
 export interface TypeSchema {
   parent: string
   type: string
-  args: { [key: string]: FieldArgument }
+  args: { [key: string]: unknown }
 }

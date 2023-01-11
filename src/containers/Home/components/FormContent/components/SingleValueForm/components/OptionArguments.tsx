@@ -3,7 +3,6 @@ import { useContext } from "react"
 import { DatasetsContext } from "../../../../../../../shared/context/DatasetsContext"
 import {
   DatasetField,
-  FieldArgument,
   SingleValueDataType,
 } from "../../../../../../../shared/interfaces/datasets.interface"
 import { DATASETS_ACTIONS } from "../../../../../constants/ACTION_TYPES"
@@ -36,7 +35,7 @@ const FieldArgumentContainer = ({
 }) => {
   const { datasetDispatch, selectedDataset } = useContext(DatasetsContext)
 
-  const handleChangeArgumentValue = (value: FieldArgument) => {
+  const handleChangeArgumentValue = (value: unknown) => {
     datasetDispatch({
       type: DATASETS_ACTIONS.CHANGE_FIELD_DATATYPE,
       payload: {

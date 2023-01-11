@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import { Dropdown } from "primereact/dropdown"
 import { Bars, Plus } from "../../../../../shared/assets/icons"
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext"
-import ConfigMenu from "./ConfigMenu"
+import DatasetConfigMenu from "./DatasetConfigMenu"
 import { ModalProps } from "../../../interfaces/modal.interface"
 import { MODAL_ACTIONS } from "../../../constants/MODAL_ACTIONS"
 
@@ -63,7 +63,7 @@ const DatasetsHeader = ({ handleOpenModal }: { handleOpenModal: (props: ModalPro
         </button>
 
         {openConfig && (
-          <ConfigMenu
+          <DatasetConfigMenu
             handleAddDatasetField={handleAddDatasetField}
             handleDeleteDataset={handleDeleteDataset}
             handleExportDataset={handleExportDataset}

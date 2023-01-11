@@ -1,4 +1,5 @@
 import { ChacaSimpleButton } from "../../../../../../shared/components/ChacaButton"
+import { useLanguage } from "../../../../../../shared/hooks"
 
 const ModalButtons = ({
   nextText,
@@ -11,6 +12,8 @@ const ModalButtons = ({
   nextText: string
   type: "delete" | "edit"
 }) => {
+  const { CANCEL_TEXT } = useLanguage({ CANCEL_TEXT: { en: "Cancel", es: "Cancelar" } })
+
   return (
     <div className='flex w-full justify-end gap-5 mt-5'>
       <ChacaSimpleButton
@@ -20,7 +23,7 @@ const ModalButtons = ({
         onClick={handleNext}
       />
 
-      <ChacaSimpleButton color='cancel' size='medium' text={"Cancel"} onClick={handleCancel} />
+      <ChacaSimpleButton color='cancel' size='medium' text={CANCEL_TEXT} onClick={handleCancel} />
     </div>
   )
 }

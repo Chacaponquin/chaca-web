@@ -52,7 +52,7 @@ const Option = ({
         </button>
       </div>
 
-      {openArgs && args.length > 0 && <OptionArguments args={args} field={field} />}
+      {openArgs && isSelected && args.length > 0 && <OptionArguments args={args} field={field} />}
     </div>
   )
 }

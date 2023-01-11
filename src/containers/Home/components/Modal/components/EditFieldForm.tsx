@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext"
+import { useLanguage } from "../../../../../shared/hooks"
 import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES"
 import { ModalEditField } from "../../../interfaces/modal.interface"
 import FieldForm from "../shared/components/FieldForm"
@@ -15,6 +16,11 @@ const EditFieldForm = ({
   modalProps: ModalEditField
 }) => {
   const { datasetDispatch, selectedDataset } = useContext(DatasetsContext)
+
+  const { EDIT_FIELD_TEXT, SUBMIT_TEXT } = useLanguage({
+    EDIT_FIELD_TEXT: { en: "Edit Field", es: "Editar Campo" },
+    SUBMIT_TEXT: { en: "Edit", es: "Editar" },
+  })
 
   const fieldActions = useFieldForm({
     id: modalProps.field.id,
@@ -39,12 +45,12 @@ const EditFieldForm = ({
 
   return (
     <div className='w-full flex flex-col'>
-      <ModalTitle titleText='Edit Field' handleCloseModal={handleCloseModal} />
+      <ModalTitle titleText={EDIT_FIELD_TEXT} handleCloseModal={handleCloseModal} />
       <FieldForm {...fieldActions} />
       <ModalButtons
         handleCancel={handleCloseModal}
         handleNext={handleEditField}
-        nextText='Edit Field'
+        nextText={SUBMIT_TEXT}
         type='edit'
       />
     </div>
