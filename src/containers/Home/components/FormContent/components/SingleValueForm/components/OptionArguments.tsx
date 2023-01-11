@@ -20,7 +20,7 @@ const OptionArguments = ({
 }) => {
   return (
     <div className='grid grid-cols-2 gap-x-5 w-full px-5 mt-1'>
-      {args.map((a, i) => (
+      {args.map((a) => (
         <FieldArgumentContainer key={uuid()} arg={a} field={field} />
       ))}
     </div>
@@ -55,7 +55,7 @@ const FieldArgumentContainer = ({
 
   return (
     <div className='flex py-1 gap-1 items-center'>
-      <p className='mb-0 text-sm'>{arg.argument}: </p>
+      <p className='mb-0 text-base'>{arg.argument}: </p>
       <ArgumentFilter
         arg={arg}
         handleChangeArgumentValue={handleChangeArgumentValue}

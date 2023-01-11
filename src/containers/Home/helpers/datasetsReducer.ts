@@ -1,8 +1,8 @@
-import { DatasetField, FieldDataType } from "../../../../shared/interfaces/datasets.interface"
-import { DATASETS_ACTIONS } from "../../constants/ACTION_TYPES"
+import { DatasetField, FieldDataType } from "../../../shared/interfaces/datasets.interface"
+import { DATASETS_ACTIONS } from "../constants/ACTION_TYPES"
 import { Reducer } from "react"
-import { DatasetTree, FieldNode } from "../../../../shared/helpers/DatasetTree"
-import { NodeInfo } from "../../../../shared/interfaces/tree.interface"
+import { DatasetTree, FieldNode } from "../../../shared/helpers/DatasetTree"
+import { NodeInfo } from "../../../shared/interfaces/tree.interface"
 
 export type DatasetPayload =
   | { type: DATASETS_ACTIONS.DELETE_DATASET; payload: { datasetID: string } }
@@ -120,6 +120,8 @@ export const datasetsReducer: Reducer<DatasetTree[], DatasetPayload> = (
       // crear nuevo field node
       const newNode = new FieldNode(action.payload.fieldName, action.payload.fieldInfo)
 
+      console.log(newNode)
+
       const newDatasets = datasets.map((d) => {
         if (d.id === action.payload.datasetID) {
           // si el id del dataset y del parent son iguales significa que se tiene que insertar en el root
@@ -144,7 +146,6 @@ export const datasetsReducer: Reducer<DatasetTree[], DatasetPayload> = (
     }
 
     case DATASETS_ACTIONS.CREATE_NEW_DATASET: {
-      console.log(action.payload.datasetName)
       const dataset = new DatasetTree(action.payload.datasetName, 50)
       return [...datasets, dataset]
     }

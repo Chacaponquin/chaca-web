@@ -25,7 +25,7 @@ const FormContent = ({ handleOpenModal }: { handleOpenModal: (props: ModalProps)
       )}
 
       <div className='w-full flex form-content'>
-        <div className='w-full h-full'>
+        <div className='w-full h-full overflow-y-auto'>
           <div className='gap-2 overflow-y-auto h-full bg-white w-full flex flex-col'>
             {selectField === null ? (
               <NoSelectField />
@@ -49,7 +49,7 @@ const FormContent = ({ handleOpenModal }: { handleOpenModal: (props: ModalProps)
           </div>
         </div>
 
-        {selectField && <SidePanel field={selectField} />}
+        {selectField && <SidePanel selectField={selectField.getNodeObject()} />}
       </div>
     </div>
   )

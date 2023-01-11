@@ -2,12 +2,21 @@ import { InputText } from "primereact/inputtext"
 import { useContext, useState } from "react"
 import { toast } from "react-toastify"
 import { DatasetsContext } from "../../../../../shared/context/DatasetsContext"
+import { useLanguage } from "../../../../../shared/hooks"
 import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES"
 import ModalButtons from "../shared/components/ModalButtons"
 import ModalTitle from "../shared/components/ModalTitle"
 
 const AddDatasetForm = ({ handleCloseModal }: { handleCloseModal: () => void }) => {
   const { datasetDispatch } = useContext(DatasetsContext)
+
+  const { TITLE, DATASET_NAME_LABEL, CREATE_DATASET_TEXT, FIELD_NAME_TEXT } = useLanguage({
+    TITLE: { en: "New Dataset", es: "Crear Dataset" },
+    DATASET_NAME_LABEL: { en: "Dataset name", es: "Nombre de dataset" },
+    CREATE_DATASET_TEXT: { en: "Create Dataset", es: "Crear Dataset" },
+    FIELD_NAME_TEXT: { en: "Field name", es: "Nombre del campo" },
+  })
+
   const [datasetName, setDatasetName] = useState("")
 
   const handleAddDataset = () => {
@@ -25,15 +34,15 @@ const AddDatasetForm = ({ handleCloseModal }: { handleCloseModal: () => void }) 
 
   return (
     <div className='flex flex-col w-full'>
-      <ModalTitle titleText='New Dataset' handleCloseModal={handleCloseModal} />
+      <ModalTitle titleText={TITLE} handleCloseModal={handleCloseModal} />
 
       <div className='flex items-center gap-3'>
         <label htmlFor='' className='font-fontBold text-lg whitespace-nowrap'>
-          Dataset name:
+          {DATASET_NAME_LABEL}:
         </label>
         <InputText
           className='w-full'
-          placeholder='Field name...'
+          placeholder={FIELD_NAME_TEXT}
           value={datasetName}
           onChange={(e) => setDatasetName(e.target.value)}
         />
@@ -41,7 +50,7 @@ const AddDatasetForm = ({ handleCloseModal }: { handleCloseModal: () => void }) 
 
       <ModalButtons
         type='edit'
-        nextText='Create Dataset'
+        nextText={CREATE_DATASET_TEXT}
         handleCancel={handleCloseModal}
         handleNext={handleAddDataset}
       />

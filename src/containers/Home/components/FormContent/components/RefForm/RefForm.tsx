@@ -3,6 +3,7 @@ import { DATA_TYPES } from "../../../../../../shared/constant/DATA_TYPES"
 import { DatasetsContext } from "../../../../../../shared/context/DatasetsContext"
 import { DatasetField, RefDataType } from "../../../../../../shared/interfaces/datasets.interface"
 import DatasetToRef from "./components/DatasetToRef"
+import NoFieldsToRef from "./components/NoFieldsToRef"
 
 const RefForm = ({ field }: { field: DatasetField<RefDataType> }) => {
   const { datasets, selectedDataset } = useContext(DatasetsContext)
@@ -35,17 +36,6 @@ const RefForm = ({ field }: { field: DatasetField<RefDataType> }) => {
       ) : (
         <NoFieldsToRef />
       )}
-    </div>
-  )
-}
-
-const NoFieldsToRef = () => {
-  return (
-    <div className='flex flex-col w-full justify-center items-center'>
-      <img src='./images/404_Not_Found.svg' alt='not-found' className='w-[300px]' />
-      <p className='mb-0 -mt-5 text-2xl font-fontBold text-slate-500'>
-        No existen campos para referenciar
-      </p>
     </div>
   )
 }

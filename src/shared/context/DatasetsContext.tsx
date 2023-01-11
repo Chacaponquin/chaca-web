@@ -11,11 +11,8 @@ import {
   useState,
 } from "react"
 import { CONFIG_ACTIONS, DATASETS_ACTIONS } from "../../containers/Home/constants/ACTION_TYPES"
-import { ConfigPayload, configReducer } from "../../containers/Home/helpers/reducer/configReducer"
-import {
-  DatasetPayload,
-  datasetsReducer,
-} from "../../containers/Home/helpers/reducer/datasetsReducer"
+import { ConfigPayload, configReducer } from "../../containers/Home/helpers/configReducer"
+import { DatasetPayload, datasetsReducer } from "../../containers/Home/helpers/datasetsReducer"
 import { FILE_TYPE } from "../constant/FILE_TYPE"
 import { ConfigSchema } from "../interfaces/config.iterface"
 import { AppConfigContext } from "./AppConfigContext"

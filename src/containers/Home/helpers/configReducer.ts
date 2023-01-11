@@ -1,8 +1,8 @@
-import { ConfigSchema, FileConfigOption } from "../../../../shared/interfaces/config.iterface"
-import { CONFIG_ACTIONS } from "../../constants/ACTION_TYPES"
+import { ConfigSchema, FileConfigOption } from "../../../shared/interfaces/config.iterface"
+import { CONFIG_ACTIONS } from "../constants/ACTION_TYPES"
 import { Reducer } from "react"
-import { FILE_TYPE } from "../../../../shared/constant/FILE_TYPE"
-import { FieldArgument } from "../../../../shared/interfaces/datasets.interface"
+import { FILE_TYPE } from "../../../shared/constant/FILE_TYPE"
+import { FieldArgument } from "../../../shared/interfaces/datasets.interface"
 
 export type ConfigPayload =
   | {
