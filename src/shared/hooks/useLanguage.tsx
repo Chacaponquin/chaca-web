@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { UserContext } from "../context/UserContext"
+import { AppConfigContext } from "../context/AppConfigContext"
 import {
   LanguageConfig,
   LanguageObject,
@@ -8,7 +8,7 @@ import {
 } from "../interfaces/language.interface"
 
 export function useLanguage<T>(languageObject: LanguageObject<T>) {
-  const { language } = useContext(UserContext)
+  const { language } = useContext(AppConfigContext)
 
   function filterLanguage(
     languageObject: LanguageObject<T>,

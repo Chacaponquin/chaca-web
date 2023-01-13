@@ -1,10 +1,10 @@
 import { useState } from "react"
-import { axiosInstance } from "../routes/api/API_ROUTES"
 import { AxiosError } from "axios"
+import { useConfig } from "./useConfig"
 
 interface UsePostProps<T> {
   onCompleted: (data: T) => void
-  onError: (error: AxiosError) => void
+  onError?: (error: AxiosError) => void
   url: string
   body?: { [path: string]: unknown }
 }
@@ -13,22 +13,29 @@ interface OverwriteProps {
   body?: { [path: string]: unknown }
 }
 
+type PostReturn = [(body?: OverwriteProps) => void, { loading: boolean; error: boolean }]
+
 export function usePost<T>({
   onCompleted,
   onError,
   url,
   body: bodyFunction,
-}: UsePostProps<T>): [(data?: OverwriteProps) => void, { loading: boolean }] {
+}: UsePostProps<T>): PostReturn {
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
+  const { axiosInstance } = useConfig()
 
   const request = ({ body }: OverwriteProps = {}): void => {
     setLoading(true)
     axiosInstance
       .post<T>(url, { data: body || bodyFunction })
       .then(({ data }) => onCompleted(data))
-      .catch((error) => onError(error))
+      .catch((error) => {
+        setError(true)
+        if (onError) onError(error)
+      })
       .finally(() => setLoading(false))
   }
 
-  return [request, { loading }]
+  return [request, { loading, error }]
 }

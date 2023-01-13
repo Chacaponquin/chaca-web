@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { axiosInstance } from "../routes/api/API_ROUTES"
+import { useConfig } from "./useConfig"
 
 interface UsePostProps<T> {
   onCompleted: (data: T) => void
@@ -10,6 +10,7 @@ interface UsePostProps<T> {
 export function useQuery<T>({ onCompleted, onError, url }: UsePostProps<T>) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
+  const { axiosInstance } = useConfig()
 
   useEffect(() => {
     if (url) {
@@ -23,6 +24,10 @@ export function useQuery<T>({ onCompleted, onError, url }: UsePostProps<T>) {
         })
         .finally(() => setLoading(false))
     }
+
+    return () => {
+      return
+    }
   }, [url])
 
   return { loading, error }
@@ -31,6 +36,7 @@ export function useQuery<T>({ onCompleted, onError, url }: UsePostProps<T>) {
 export function useLazyQuery<T>({ url, onCompleted, onError }: UsePostProps<T>) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
+  const { axiosInstance } = useConfig()
 
   const request = () => {
     setLoading(true)

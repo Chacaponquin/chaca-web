@@ -32,7 +32,7 @@ const SignUp = () => {
     body: signUpData,
   })
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
     if (signUpData.password === signUpData.comfirmPassword) {
@@ -40,7 +40,7 @@ const SignUp = () => {
     } else throw toast.error("No coinciden las contraseñas", {})
   }
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSignUpData({ ...signUpData, [e.target.name]: e.target.value })
   }
 
