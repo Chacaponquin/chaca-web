@@ -1,13 +1,12 @@
-import React, { useContext, useState } from "react"
-import { usePost } from "../../../shared/hooks/usePost"
-import { API_ROUTES } from "../../../shared/routes/api/API_ROUTES"
-import LoaderContainer from "../../../shared/components/Loader/LoaderContainer"
-import { toast, ToastContainer } from "react-toastify"
-import { UserContext } from "../../../shared/context/UserContext"
+import { useContext, useState } from "react"
+import { useLanguage, usePost } from "../../../../shared/hooks"
+import { API_ROUTES, APP_ROUTES } from "../../../../shared/routes"
+import LoaderContainer from "../../../../shared/components/Loader/LoaderContainer"
+import { toast } from "react-toastify"
+import { UserContext } from "../../../../shared/context/UserContext"
 import { InputText } from "primereact/inputtext"
 import { Link } from "react-router-dom"
-import { APP_ROUTES } from "../../../shared/routes/app/APP_ROUTES"
-import OtherOptionsSection from "../components/OtherOptionsSection"
+import OtherOptionsSection from "../../shared/components/OtherOptionsSection"
 
 const SignUp = () => {
   const [signUpData, setSignUpData] = useState({
@@ -17,11 +16,34 @@ const SignUp = () => {
     comfirmPassword: "",
   })
 
+  const {
+    COMPLETE_FORM_TEXT,
+    LOGIN_TEXT,
+    WELCOME_TEXT,
+    COMFIRM_PASSWORD_TEXT,
+    EMAIL_TEXT,
+    PASSWORD_TEXT,
+    USERNAME_TEXT,
+    QUESTION_TEXT,
+  } = useLanguage({
+    QUESTION_TEXT: { en: "You have account?", es: "Tienes una cuenta?" },
+    COMPLETE_FORM_TEXT: {
+      en: "Complete the form to continue",
+      es: "Completa el formulario para continuar",
+    },
+    LOGIN_TEXT: { en: "Login", es: "Login" },
+    WELCOME_TEXT: { en: "Welcome to", es: "Bienvenido a" },
+    USERNAME_TEXT: { en: "Username", es: "Usuario" },
+    EMAIL_TEXT: { en: "Email", es: "Email" },
+    PASSWORD_TEXT: { en: "Password", es: "Contraseña" },
+    COMFIRM_PASSWORD_TEXT: { en: "Comfirm Password", es: "Confirma tu contraseña" },
+  })
+
   const { handleSignIn } = useContext(UserContext)
 
-  const [signUpUser, { loading }] = usePost<{ userToken: string }>({
+  const [signUpUser, { loading }] = usePost<string>({
     url: API_ROUTES.AUTH_ROUTES.SIGN_UP,
-    onCompleted: ({ userToken }) => {
+    onCompleted: (userToken) => {
       handleSignIn(userToken)
     },
     onError: (error) => {
@@ -49,31 +71,30 @@ const SignUp = () => {
 
   return (
     <div className='w-full h-screen flex'>
-      <ToastContainer />
       <div className='py-5 px-20 esm:px-5 flex justify-center items-center xl:w-[50%] w-full'>
         <div>
           <div className='flex justify-start w-full text-lg mb-6'>
-            <p className='inline mb-0 whitespace-nowrap'>You have account? </p>
+            <p className='inline mb-0 whitespace-nowrap'>{QUESTION_TEXT} </p>
             <Link to={APP_ROUTES.AUTH_ROUTES.LOGIN}>
-              <p className='inline mb-0 ml-2 text-secondColor'>Login</p>
+              <p className='inline mb-0 ml-2 text-secondColor'>{LOGIN_TEXT}</p>
             </Link>
           </div>
 
           <form className='flex flex-col w-full' onSubmit={handleSubmit}>
             <div className='w-full flex flex-col esm:items-center'>
               <div className='font-fontExtraBold sm:text-6xl mb-3 whitespace-nowrap text-4xl exsm:text-3xl'>
-                Welcome to
+                {WELCOME_TEXT}
                 <h1 className='inline font-fontExtraBold ml-3 text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor'>
                   CH-DATA!
                 </h1>
               </div>
-              <p className='text-slate-400 text-2xl esm:text-xl'>Complete the form to continue</p>
+              <p className='text-slate-400 text-2xl esm:text-xl'>{COMPLETE_FORM_TEXT}</p>
             </div>
 
             <div className='py-5 flex flex-col gap-3'>
               <div className='flex flex-col '>
                 <label htmlFor='' className={labelClass}>
-                  Username:
+                  {USERNAME_TEXT}:
                 </label>
                 <InputText
                   className={inputClass}
@@ -86,7 +107,7 @@ const SignUp = () => {
 
               <div className='flex flex-col'>
                 <label htmlFor='' className={labelClass}>
-                  Email:
+                  {EMAIL_TEXT}:
                 </label>
                 <InputText
                   className={inputClass}
@@ -99,7 +120,7 @@ const SignUp = () => {
 
               <div className='flex flex-col'>
                 <label htmlFor='' className={labelClass}>
-                  Password:
+                  {PASSWORD_TEXT}:
                 </label>
                 <InputText
                   className={inputClass}
@@ -112,7 +133,7 @@ const SignUp = () => {
 
               <div className='flex flex-col'>
                 <label htmlFor='' className={labelClass}>
-                  Comfirm Password:
+                  {COMFIRM_PASSWORD_TEXT}:
                 </label>
                 <InputText
                   className={inputClass}
@@ -128,7 +149,7 @@ const SignUp = () => {
 
             <div className='flex justify-center'>
               <LoaderContainer loading={loading} className={"w-[50px]"}>
-                <button className='transition-all duration-300 rounded-md text-white bg-principal-bg hover:opacity-70 py-3 w-full text-2xl font-fontBold'>
+                <button className='transition-all duration-300 rounded-sm text-white bg-principal-bg hover:opacity-70 py-3 w-full text-2xl font-fontBold'>
                   Sign Up
                 </button>
               </LoaderContainer>

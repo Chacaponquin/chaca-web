@@ -1,55 +1,69 @@
-import React, { useContext, useState } from "react"
-import { usePost } from "../../../shared/hooks/usePost"
-import { API_ROUTES } from "../../../shared/routes/api/API_ROUTES"
-import LoaderContainer from "../../../shared/components/Loader/LoaderContainer"
-import { toast, ToastContainer } from "react-toastify"
-import { UserContext } from "../../../shared/context/UserContext"
+import { useContext, useState } from "react"
+import { useLanguage, usePost } from "../../../../shared/hooks"
+import { API_ROUTES } from "../../../../shared/routes/api/API_ROUTES"
+import LoaderContainer from "../../../../shared/components/Loader/LoaderContainer"
+import { toast } from "react-toastify"
+import { UserContext } from "../../../../shared/context/UserContext"
 import { Link } from "react-router-dom"
-import { APP_ROUTES } from "../../../shared/routes/app/APP_ROUTES"
-import "../auth.css"
-import BgSVG from "../../../shared/components/CurveBg/BgSVG"
+import { APP_ROUTES } from "../../../../shared/routes/app/APP_ROUTES"
+import BgSVG from "../../../../shared/components/CurveBg/BgSVG"
 import clsx from "clsx"
-import OtherOptionsSection from "../components/OtherOptionsSection"
-import { AxiosError } from "axios"
-import { DataTransform } from "../../../shared/helpers/DataTransform"
-import User from "../../../shared/assets/icons/User"
-import Private from "../../../shared/assets/icons/Private"
+import OtherOptionsSection from "../../shared/components/OtherOptionsSection"
+import { DataTransform } from "../../../../shared/helpers/DataTransform"
+import { User, Private } from "../../../../shared/assets/icons"
+
+import "../../auth.css"
 
 const Login = () => {
   const { handleSignIn } = useContext(UserContext)
 
+  const {
+    NEW_USER_TEXT,
+    SIGN_UP_TEXT,
+    WELCOME_BACK_TEXT,
+    LOGIN_TEXT,
+    LOGIN_BUTTON_TEXT,
+    FORGET_PASSWORD_BUTTON_TEXT,
+  } = useLanguage({
+    NEW_USER_TEXT: { en: "New User?", es: "Eres nuevo?" },
+    SIGN_UP_TEXT: { es: "Regístrate", en: "Sign Up" },
+    WELCOME_BACK_TEXT: { en: "Welcome Back!", es: "Bienvenido!" },
+    LOGIN_TEXT: { en: "Login to continue", es: "Pon tus datos para continuar" },
+    LOGIN_BUTTON_TEXT: { en: "Login", es: "Login" },
+    FORGET_PASSWORD_BUTTON_TEXT: { en: "Forget Password?", es: "Olvidaste tu contraseña?" },
+  })
+
   const buttonClass =
-    "rounded-full flex justify-center items-center py-4 esm:py-3 w-[250px] esm:w-[200px] esm:text-lg text-xl font-fontBold uppercase transition-all duration-300"
+    "rounded-full flex justify-center items-center py-4 esm:py-3 w-[330px] esm:w-[280px] esm:text-lg text-xl font-fontBold uppercase transition-all duration-300 whitespace-nowrap hover:opacity-70"
 
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   })
 
-  const [loginUser, { loading }] = usePost<{ token: string }>({
+  const [loginUser, { loading }] = usePost<string>({
     url: API_ROUTES.AUTH_ROUTES.LOGIN,
-    body: loginData,
-    onError: (error: AxiosError) => {
+    onError: (error) => {
       const errorMessage = error.response?.data as any
       toast.error(errorMessage.error || "Hubo un error")
     },
-    onCompleted: (data) => handleSignIn(data.token),
+    onCompleted: (token) => handleSignIn(token),
   })
 
-  const handleChange = (e: any) => setLoginData({ ...loginData, [e.target.name]: e.target.value })
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setLoginData({ ...loginData, [e.target.name]: e.target.value })
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    loginUser()
+    loginUser({ body: loginData })
   }
 
   return (
     <div className='w-full h-screen flex flex-col py-8 px-20 esm:px-5'>
-      <ToastContainer />
       <div className='flex justify-end w-full text-lg'>
-        <p className='inline mb-0'>New User? </p>
+        <p className='inline mb-0'>{NEW_USER_TEXT}</p>
         <Link to={APP_ROUTES.AUTH_ROUTES.SIGN_UP}>
-          <p className='inline mb-0 ml-2 text-secondColor'>Sign Up</p>
+          <p className='inline mb-0 ml-2 text-secondColor'>{SIGN_UP_TEXT}</p>
         </Link>
       </div>
 
@@ -69,9 +83,9 @@ const Login = () => {
         <div className='flex flex-col h-full justify-center z-20'>
           <div className='w-full flex flex-col esm:items-center'>
             <h1 className='font-fontExtraBold text-6xl mb-3 whitespace-nowrap esm:text-5xl'>
-              Welcome Back!
+              {WELCOME_BACK_TEXT}
             </h1>
-            <p className='text-slate-400 text-2xl esm:text-xl'>Login to continue</p>
+            <p className='text-slate-400 text-2xl esm:text-xl'>{LOGIN_TEXT}</p>
           </div>
 
           <form className='flex flex-col w-full' onSubmit={handleSubmit}>
@@ -84,13 +98,10 @@ const Login = () => {
               <OtherOptionsSection loading={loading} />
             </div>
 
-            <div className='flex lg:justify-start w-full gap-5 flex-wrap justify-center'>
+            <div className='flex w-full gap-5 flex-wrap justify-center'>
               <LoaderContainer loading={loading} className='w-[50px]'>
-                <button
-                  className={buttonClass + " bg-principal-bg text-white hover:opacity-70"}
-                  type='submit'
-                >
-                  Login
+                <button className={buttonClass + " bg-principal-bg text-white"} type='submit'>
+                  {LOGIN_BUTTON_TEXT}
                 </button>
               </LoaderContainer>
 
@@ -99,7 +110,7 @@ const Login = () => {
                   to={APP_ROUTES.AUTH_ROUTES.FORGOT_PASSWORD}
                   className={buttonClass + " bg-slate-200 text-black"}
                 >
-                  Forget Password?
+                  {FORGET_PASSWORD_BUTTON_TEXT}
                 </Link>
               )}
             </div>
@@ -117,7 +128,7 @@ const InputDiv = ({
 }: {
   icon: string
   type: string
-  onChange: (e: any) => void
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }) => {
   const [focus, setFocus] = useState(false)
 

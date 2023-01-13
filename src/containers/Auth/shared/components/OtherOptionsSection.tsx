@@ -1,11 +1,11 @@
-import React, { useEffect } from "react"
-import { API_ROUTES } from "../../../shared/routes/api/API_ROUTES"
+import { useEffect, Fragment } from "react"
+import { API_ROUTES } from "../../../../shared/routes/api/API_ROUTES"
 import { gapi } from "gapi-script"
-import GitHub from "../../../shared/assets/icons/GitHub"
-import Google from "../../../shared/assets/icons/Google"
+import GitHub from "../../../../shared/assets/icons/GitHub"
+import Google from "../../../../shared/assets/icons/Google"
 
 const divClass =
-  "border-[3px] py-3 flex gap-3 rounded-md items-center justify-center transition-all duration-300 hover:text-white cursor-pointer esm:py-2"
+  "border-[3px] py-3 flex gap-3 rounded items-center justify-center transition-all duration-300 hover:text-white cursor-pointer esm:py-2"
 
 const OtherOptionsSection = ({ loading }: { loading: boolean }) => {
   useEffect(() => {
@@ -20,14 +20,14 @@ const OtherOptionsSection = ({ loading }: { loading: boolean }) => {
   }, [])
 
   return (
-    <>
+    <Fragment>
       {!loading && (
         <div className='grid grid-cols-2 w-full gap-2 mb-3 exsm:grid-cols-1'>
           <GoogleButton />
           <GitHubButton />
         </div>
       )}
-    </>
+    </Fragment>
   )
 }
 
