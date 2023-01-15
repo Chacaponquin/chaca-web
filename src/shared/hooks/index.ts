@@ -1,6 +1,7 @@
 import { useConfig } from "./useConfig"
 import { useLanguage } from "./useLanguage"
+import { useLazyQuery } from "./useLazyQuery"
 import { usePost } from "./usePost"
-import { useLazyQuery, useQuery } from "./useQuery"
+import { useQuery } from "./useQuery"
 
 export { useConfig, useLanguage, useLazyQuery, usePost, useQuery }

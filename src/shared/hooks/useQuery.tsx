@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
 import { useConfig } from "./useConfig"
 
-interface UsePostProps<T> {
+interface QueryProps<T> {
   onCompleted: (data: T) => void
   onError?: (error: Error) => void
   url: string
 }
 
-export function useQuery<T>({ onCompleted, onError, url }: UsePostProps<T>) {
+export function useQuery<T>({ onCompleted, onError, url }: QueryProps<T>) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
   const { axiosInstance } = useConfig()
@@ -31,24 +31,4 @@ export function useQuery<T>({ onCompleted, onError, url }: UsePostProps<T>) {
   }, [url])
 
   return { loading, error }
-}
-
-export function useLazyQuery<T>({ url, onCompleted, onError }: UsePostProps<T>) {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
-  const { axiosInstance } = useConfig()
-
-  const request = () => {
-    setLoading(true)
-    axiosInstance
-      .get<T>(url)
-      .then(({ data }) => onCompleted(data))
-      .catch((err) => {
-        setError(true)
-        if (onError) onError(err)
-      })
-      .finally(() => setLoading(false))
-  }
-
-  return [request, { loading, error }]
 }

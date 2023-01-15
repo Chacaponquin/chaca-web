@@ -8,7 +8,6 @@ import {
 import { DATASETS_ACTIONS } from "../../../../../constants/ACTION_TYPES"
 import { DATA_TYPES } from "../../../../../../../shared/constant/DATA_TYPES"
 import ArgumentFilter from "../../../../../../../shared/components/ArgumentFilter/ArgumentFilter"
-import { v4 as uuid } from "uuid"
 
 const OptionArguments = ({
   args,
@@ -19,8 +18,8 @@ const OptionArguments = ({
 }) => {
   return (
     <div className='grid grid-cols-2 gap-x-5 w-full px-5 mt-1'>
-      {args.map((a) => (
-        <FieldArgumentContainer key={uuid()} arg={a} field={field} />
+      {args.map((a, i) => (
+        <FieldArgumentContainer key={i} arg={a} field={field} />
       ))}
     </div>
   )

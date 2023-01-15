@@ -43,7 +43,7 @@ const FieldForm = ({
       </div>
 
       <div className='flex flex-col'>
-        <div className='flex flex-col gap-2'>
+        <div className='flex flex-col gap-3'>
           <div className='flex justify-between items-center'>
             <div className='flex gap-3 items-center'>
               <Checkbox
@@ -91,7 +91,7 @@ const FieldForm = ({
             </div>
 
             {field.isPosibleNull > 0 && (
-              <div>
+              <div className='flex gap-4 items-center'>
                 <Slider
                   value={field.isPosibleNull}
                   orientation='horizontal'
@@ -101,6 +101,8 @@ const FieldForm = ({
                   className='w-[200px]'
                   onChange={(e) => handleChangePossibleNullValue(Number(e.value.toString()))}
                 />
+
+                <p className='mb-0'>{field.isPosibleNull}%</p>
               </div>
             )}
           </div>

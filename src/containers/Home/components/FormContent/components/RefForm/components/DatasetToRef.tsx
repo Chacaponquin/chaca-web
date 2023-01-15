@@ -14,7 +14,7 @@ const DatasetToRef = ({
   selectField: DatasetField<RefDataType>
 }) => {
   return (
-    <div className='w-full flex flex-col '>
+    <div className='w-full flex flex-col'>
       <div className='flex rounded-tr rounded-tl bg-principalColor text-white w-full px-4 py-1'>
         <p className='text-lg font-fontBold'>{dataset.name}</p>
       </div>

@@ -30,7 +30,7 @@ const Option = ({
 
   const divClass = () => {
     return clsx(
-      "w-full rounded-md flex items-center flex-col py-2 px-4",
+      "w-full rounded-sm flex items-center flex-col py-2 px-4",
       {
         "bg-principalColor text-white fill-white": isSelected,
       },

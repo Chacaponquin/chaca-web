@@ -12,7 +12,7 @@ const DataTypeSelect = () => {
 
   const barClass = (select: boolean) => {
     return clsx(
-      "h-[5px] w-full rounded-full bg-secondColor mt-1 transition-all duration-300",
+      "h-[3px] w-full rounded-full bg-secondColor mt-1 transition-all duration-300",
       { "opacity-100": select },
       { "opacity-0": !select },
     )
@@ -20,7 +20,7 @@ const DataTypeSelect = () => {
 
   const textClass = (select: boolean) => {
     return clsx(
-      "mb-0 w-full text-center font-fontBold text-lg transition-all duration-300 hover:text-black",
+      "mb-1 w-full text-center font-fontBold text-lg transition-all duration-300 hover:text-black",
       { "text-black": select },
       { "text-slate-400": !select },
     )
@@ -70,13 +70,13 @@ const DataTypeSelect = () => {
   }
 
   return (
-    <div className='bg-white flex w-full py-2 h-max justify-center gap-3 mt-2'>
+    <div className='bg-slate-100 flex w-full h-max justify-center gap-3 mb-2'>
       {Object.values(DATA_TYPES)
         .filter((el) => el !== DATA_TYPES.MIXED)
         .map((el) => (
           <Fragment key={uuid()}>
             <button
-              className='px-3 font-fontBold uppercase flex flex-col w-[150px] cursor-pointer'
+              className='px-3 pt-2 font-fontBold uppercase flex flex-col w-[150px] cursor-pointer'
               onClick={() => handleChangeDataType(el)}
             >
               <p className={textClass(selectField ? selectField.info.dataType.type === el : false)}>

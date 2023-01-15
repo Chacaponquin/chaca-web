@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useCallback, useContext } from "react"
+import { useCallback, useContext, useEffect } from "react"
 import Cookies from "universal-cookie"
 import { AppConfigContext } from "../context/AppConfigContext"
 
@@ -21,21 +21,23 @@ export const useConfig = () => {
     baseURL: process.env.REACT_APP_API_URL,
   })
 
-  axiosInstance.interceptors.request.use(
-    (req) => {
-      const token = getTokenCookie()
+  useEffect(() => {
+    axiosInstance.interceptors.request.use(
+      (req) => {
+        const token = getTokenCookie()
 
-      if (!req.headers) {
-        req.headers = {}
-      }
+        if (!req.headers) {
+          req.headers = {}
+        }
 
-      req.headers.language = language
-      req.headers.authorization = `Bearer ${token}`
+        req.headers.language = language
+        req.headers.authorization = `Bearer ${token}`
 
-      return req
-    },
-    (error) => Promise.reject(error),
-  )
+        return req
+      },
+      (error) => Promise.reject(error),
+    )
+  }, [language])
 
   return { axiosInstance, getTokenCookie }
 }

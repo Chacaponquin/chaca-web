@@ -11,8 +11,8 @@ const OptionsBar = () => {
 
   const divClass = ({ isActive }: { isActive: boolean }): string => {
     return clsx(
-      "flex flex-col items-center py-1 cursor-pointer rounded-md duration-300 transition-all",
-      { "bg-principal-bg fill-white text-white": isActive },
+      "flex flex-col items-center py-1 cursor-pointer rounded duration-300 transition-all",
+      { "bg-gradient-to-br from-principalColor to-secondColor fill-white text-white": isActive },
       { "bg-white fill-black text-black hover:bg-slate-100": !isActive },
     )
   }
@@ -21,7 +21,7 @@ const OptionsBar = () => {
   const iconSize = 25
 
   return (
-    <div className='w-[100px] min-w-[100px] h-screen bg-white flex flex-col justify-between'>
+    <div className='w-[100px] min-w-[100px] h-screen bg-white flex flex-col justify-between border-r-2'>
       <div className='flex flex-col px-2 py-4 gap-1'>
         <NavLink className={divClass} to={APP_ROUTES.HOME}>
           <Home size={iconSize} />

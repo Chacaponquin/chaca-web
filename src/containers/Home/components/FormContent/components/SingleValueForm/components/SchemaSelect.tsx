@@ -36,7 +36,7 @@ const SchemaSelect = ({ field }: { field: DatasetField<SingleValueDataType> }) =
                 fieldType: {
                   args: {},
                   parent: e.value,
-                  type: findParent(e.value)!.options[0].name,
+                  type: findParent(e.value).options[0].name,
                 },
               },
             },

@@ -42,10 +42,8 @@ const SingleValueDocs = ({ field }: { field: DatasetField<SingleValueDataType> }
           <table className='table-auto w-full border-2 rounded'>
             <thead>
               <tr>
-                <th className='bg-slate-200 py-1 pl-4 text-left text-base'>
-                  {TABLE_ARGUMENT_TEXT}
-                </th>
-                <th className='bg-slate-200 py-1 pl-4 text-left text-base'>
+                <th className='bg-slate-200 py-1 pl-4 text-left text-sm'>{TABLE_ARGUMENT_TEXT}</th>
+                <th className='bg-slate-200 py-1 pl-4 text-left text-sm'>
                   {TABLE_DESCRIPTION_TEXT}
                 </th>
               </tr>

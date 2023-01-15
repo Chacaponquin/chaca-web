@@ -1,4 +1,4 @@
-import { useContext, Fragment } from "react"
+import { useContext } from "react"
 import FieldInfoHeader from "./components/FieldInfoHeader"
 import SidePanel from "./components/SidePanel/SidePanel"
 import { DATA_TYPES } from "../../../../shared/constant/DATA_TYPES"
@@ -25,26 +25,30 @@ const FormContent = ({ handleOpenModal }: { handleOpenModal: (props: ModalProps)
       )}
 
       <div className='w-full flex form-content'>
-        <div className='w-full h-full overflow-y-auto'>
-          <div className='gap-2 overflow-y-auto h-full bg-white w-full flex flex-col'>
+        <div className='w-full h-full overflow-y-auto flex justify-center'>
+          <div className='overflow-y-auto h-full bg-white flex flex-col w-full'>
             {selectField === null ? (
               <NoSelectField />
             ) : (
-              <Fragment>
+              <div className='w-full flex flex-col items-center gap-2'>
                 <DataTypeSelect />
 
-                {selectField.info.dataType.type === DATA_TYPES.SINGLE_VALUE && (
-                  <SingleValueForm
-                    field={selectField.getNodeObject() as DatasetField<SingleValueDataType>}
-                  />
-                )}
-                {selectField.info.dataType.type === DATA_TYPES.CUSTOM && (
-                  <CustomForm field={selectField.getNodeObject() as DatasetField<CustomDataType>} />
-                )}
-                {selectField.info.dataType.type === DATA_TYPES.REF && (
-                  <RefForm field={selectField.getNodeObject() as DatasetField<RefDataType>} />
-                )}
-              </Fragment>
+                <div className='flex flex-col items-center w-full px-12'>
+                  {selectField.info.dataType.type === DATA_TYPES.SINGLE_VALUE && (
+                    <SingleValueForm
+                      field={selectField.getNodeObject() as DatasetField<SingleValueDataType>}
+                    />
+                  )}
+                  {selectField.info.dataType.type === DATA_TYPES.CUSTOM && (
+                    <CustomForm
+                      field={selectField.getNodeObject() as DatasetField<CustomDataType>}
+                    />
+                  )}
+                  {selectField.info.dataType.type === DATA_TYPES.REF && (
+                    <RefForm field={selectField.getNodeObject() as DatasetField<RefDataType>} />
+                  )}
+                </div>
+              </div>
             )}
           </div>
         </div>
