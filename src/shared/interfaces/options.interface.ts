@@ -1,11 +1,8 @@
 import { ARGUMENT_TYPE } from "../constant/ARGUMENT_TYPE"
 
-export interface SchemasResp {
+export interface Schema {
   parent: string
   options: SubOption[]
-}
-
-export interface Schema extends SchemasResp {
   id: string
 }
 

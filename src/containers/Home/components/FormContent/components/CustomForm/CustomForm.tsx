@@ -27,7 +27,7 @@ const CustomForm = ({ field }: { field: DatasetField<CustomDataType> }) => {
   }
 
   return (
-    <div className='w-full flex px-5'>
+    <div className='w-full flex'>
       <div className='w-full py-3 rounded border-2'>
         <Editor
           height={"550px"}

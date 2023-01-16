@@ -27,8 +27,9 @@ module.exports = {
       screens: {
         exsm: { max: "400px" },
         esm: { max: "640px" },
+        "2xl": { min: "1400px" },
       },
     },
   },
   plugins: [],
-};
+}

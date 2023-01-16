@@ -1,6 +1,7 @@
 export enum SOCKET_EVENTS {
-  GET_DOWN_URL = "getDownUrl",
-  DOCUMENT_CREATED = "documentCreated",
-  CREATE_DATASET_ERROR = "createDatasetError",
   CREATE_DATASETS = "createDatasets",
+  GET_FILE_URL = "getFileUrl",
+  GET_PORCENT_TO_FINISH = "getPorcentToFinish",
+  CREATION_ERROR = "creationError",
+  DOCUMENT_CREATED = "documentCreated",
 }

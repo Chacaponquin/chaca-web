@@ -28,29 +28,31 @@ export const useHome = () => {
   }
 
   useEffect(() => {
-    socket.on(SOCKET_EVENTS.GET_DOWN_URL, (args) => {
-      window.open(`${process.env.REACT_APP_API_URL}/${args.downUrl}`)
+    socket.on(SOCKET_EVENTS.GET_FILE_URL, (downUrl) => {
+      window.open(`${process.env.REACT_APP_API_URL}/${downUrl}`)
       setCreateDataLoading(false)
+
       setPorcent(0)
+
       configDispatch({
         type: CONFIG_ACTIONS.SET_INITIAL_CONFIG,
         payload: { fileConfig },
       })
     })
 
-    socket.on(SOCKET_EVENTS.DOCUMENT_CREATED, (data) => {
-      console.log(data.porcent)
-      setPorcent(Number(data.porcent) || 0)
+    socket.on(SOCKET_EVENTS.DOCUMENT_CREATED, (porcent) => {
+      console.log(porcent)
+      setPorcent(Number(porcent) || 0)
     })
 
-    socket.on(SOCKET_EVENTS.CREATE_DATASET_ERROR, (error) => {
+    socket.on(SOCKET_EVENTS.CREATION_ERROR, () => {
       toast.error("Hubo un error en la creacion de los datasets")
       setCreateDataLoading(false)
     })
 
     return () => {
-      socket.off(SOCKET_EVENTS.GET_DOWN_URL)
-      socket.off(SOCKET_EVENTS.CREATE_DATASET_ERROR)
+      socket.off(SOCKET_EVENTS.GET_FILE_URL)
+      socket.off(SOCKET_EVENTS.CREATION_ERROR)
       socket.off(SOCKET_EVENTS.DOCUMENT_CREATED)
     }
   }, [])
@@ -60,7 +62,7 @@ export const useHome = () => {
       setCreateDataLoading(true)
 
       socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {
-        datasets: datasets.map((d) => d.getDatasetObject),
+        datasets: datasets.map((d) => d.getDatasetObject()),
         config,
       })
     } else {

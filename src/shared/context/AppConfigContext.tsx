@@ -2,12 +2,11 @@
 
 import { createContext, ReactElement, useEffect, useState, useMemo } from "react"
 import { InitialFetchError } from "../errors/errors"
-import { DataTransform } from "../helpers/DataTransform"
 import { useConfig } from "../hooks"
 import { FileConfigOption, NoUserLimits } from "../interfaces/config.iterface"
 import { Languages } from "../interfaces/language.interface"
-import { Schema, SchemasResp } from "../interfaces/options.interface"
-import { API_ROUTES } from "../routes/api/API_ROUTES"
+import { Schema } from "../interfaces/options.interface"
+import { API_ROUTES } from "../routes/"
 
 const AppConfigContext = createContext<{
   noUserLimits: NoUserLimits
@@ -54,7 +53,7 @@ const AppConfigProvider = ({ children = <></> }: { children: ReactElement }) => 
         return (await axiosInstance.get<FileConfigOption[]>(API_ROUTES.GET_FILE_OPTIONS)).data
       },
       API_OPTIONS: async () => {
-        return (await axiosInstance.get<SchemasResp[]>(API_ROUTES.GET_API_OPTIONS)).data
+        return (await axiosInstance.get<Schema[]>(API_ROUTES.GET_API_OPTIONS)).data
       },
     }
   }, [])
@@ -76,10 +75,10 @@ const AppConfigProvider = ({ children = <></> }: { children: ReactElement }) => 
       InitialFetchs.FILE_CONFIG(),
       InitialFetchs.API_OPTIONS(),
     ])
-      .then(([userLimits, respFileConfig, respSchemas]) => {
+      .then(([userLimits, respFileConfig, schemas]) => {
         setNoUserLimits(userLimits)
         setFileConfig(respFileConfig)
-        setSchemas(DataTransform.initialFieldsTransform(respSchemas))
+        setSchemas(schemas)
       })
       .catch(() => {
         throw new InitialFetchError()

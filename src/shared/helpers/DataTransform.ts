@@ -1,25 +1,4 @@
-import { SchemasResp, Schema } from "../interfaces/options.interface"
-import { v4 as uuid } from "uuid"
-
 export const DataTransform = {
-  initialFieldsTransform: (fields: SchemasResp[]): Schema[] => {
-    let returnData = []
-
-    returnData = fields.map((el) => {
-      return {
-        ...el,
-        id: uuid(),
-        options: el.options.map((s) => ({
-          ...s,
-          id: uuid(),
-          route: `${process.env.REACT_APP_API_URL as string}${s.route}`,
-        })),
-      }
-    })
-
-    return returnData
-  },
-
   descapitilizeArgument: (text: string): string => {
     let returnString = ""
     let mayus = false
