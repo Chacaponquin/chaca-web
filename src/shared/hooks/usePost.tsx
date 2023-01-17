@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useCallback } from "react"
 import { AxiosError } from "axios"
 import { useConfig } from "./useConfig"
 
@@ -25,19 +25,22 @@ export function usePost<T>({
   const [error, setError] = useState(false)
   const { axiosInstance } = useConfig()
 
-  const request = ({ body }: OverwriteProps = {}): void => {
-    setLoading(true)
-    setError(false)
+  const request = useCallback(
+    ({ body }: OverwriteProps = {}): void => {
+      setLoading(true)
+      setError(false)
 
-    axiosInstance
-      .post<T>(url, body || bodyFunction)
-      .then(({ data }) => onCompleted(data))
-      .catch((error) => {
-        setError(true)
-        if (onError) onError(error)
-      })
-      .finally(() => setLoading(false))
-  }
+      axiosInstance
+        .post<T>(url, body || bodyFunction)
+        .then(({ data }) => onCompleted(data))
+        .catch((error) => {
+          setError(true)
+          if (onError) onError(error)
+        })
+        .finally(() => setLoading(false))
+    },
+    [bodyFunction, axiosInstance],
+  )
 
   return [request, { loading, error }]
 }

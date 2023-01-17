@@ -7,7 +7,7 @@ export const API_ROUTES = {
     GITHUB_AUTH: "/auth/githubAuth",
   },
   GET_NO_USER_LIMITS: "/util/noUserLimits",
-  GET_MY_SCHEMAS: "/user/getMySchemas",
+  GET_MY_MODELS: "/user/datasetModels",
   DELETE_SCHEMA: "/user/deleteSchema",
   GET_API_OPTIONS: "/util/schemas",
   GET_FILE_OPTIONS: "/util/fileConfig",

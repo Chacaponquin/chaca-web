@@ -12,6 +12,7 @@ import FolderPlus from "./FolderPlus"
 import GitHub from "./GitHub"
 import Google from "./Google"
 import Home from "./Home"
+import Like from "./Like"
 import Menu from "./Menu"
 import PlayIcon from "./PlayIcon"
 import Plus from "./Plus"
@@ -19,11 +20,13 @@ import Private from "./Private"
 import Schema from "./Schema"
 import Search from "./Search"
 import Send from "./Send"
+import Share from "./Share"
 import SignOut from "./SignOut"
 import User from "./User"
 import X from "./X"
 
 export {
+  Share,
   Search,
   Send,
   SignOut,
@@ -48,4 +51,5 @@ export {
   Private,
   Schema,
   Change,
+  Like,
 }

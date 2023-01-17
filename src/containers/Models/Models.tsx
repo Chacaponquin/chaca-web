@@ -1,5 +1,16 @@
+import { ModelsFilter, SearchResult, SelectModelContent } from "./components"
+import { useModels } from "./hooks/useModels"
+
 const Models = () => {
-  return <div className='w-full lg:px-20 px-4 md:px-10 flex justify-center'></div>
+  const { userModels, loading, error } = useModels()
+
+  return (
+    <div className='w-full flex h-screen'>
+      <ModelsFilter />
+      <SearchResult />
+      <SelectModelContent />
+    </div>
+  )
 }
 
 export default Models

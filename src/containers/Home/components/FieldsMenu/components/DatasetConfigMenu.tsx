@@ -35,13 +35,13 @@ const DatasetConfigMenu = ({
   }
 
   const textDivClass = () => {
-    return commonClass(commonClass("flex items-center text-sm text-center"))
+    return commonClass(commonClass("flex items-center text-sm text-center font-fontBold"))
   }
 
   return (
-    <div className='absolute flex flex-col -translate-x-0 translate-y-5 rounded-md bg-white shadow-md'>
+    <div className='absolute flex flex-col -translate-x-0 translate-y-5 rounded bg-white shadow-lg'>
       <div className={commonClass("gap-4")}>
-        <p className='mb-0 text-sm'>{UI_TEXT.DOCUMENTS_OPTION}</p>
+        <p className='mb-0 text-sm font-fontBold'>{UI_TEXT.DOCUMENTS_OPTION}</p>
         <InputNumber
           className='!text-sm w-[80px]'
           min={1}
