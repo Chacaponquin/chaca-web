@@ -38,7 +38,7 @@ const DatasetsHeader = ({ handleOpenModal }: { handleOpenModal: (props: ModalPro
   }
 
   return (
-    <div className='pt-3 mb-2 w-full bg-white flex items-center justify-between px-2'>
+    <div className='pt-3 px-4 mb-2 w-full bg-white flex items-center justify-between'>
       <div className='gap-3 flex items-center'>
         <button onClick={handleNewDataset}>
           <Plus size={18} />

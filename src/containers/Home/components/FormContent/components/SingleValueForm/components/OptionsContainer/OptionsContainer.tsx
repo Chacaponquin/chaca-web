@@ -1,14 +1,11 @@
 import { useContext, useState } from "react"
-import { Argument, SubOption } from "../../../../../../../shared/interfaces/options.interface"
-import {
-  DatasetField,
-  SingleValueDataType,
-} from "../../../../../../../shared/interfaces/datasets.interface"
-import { DatasetsContext } from "../../../../../../../shared/context/DatasetsContext"
-import { DATASETS_ACTIONS } from "../../../../../constants/ACTION_TYPES"
-import { DATA_TYPES } from "../../../../../../../shared/constant/DATA_TYPES"
-import { useUtils } from "../../../../../hooks/useUtils"
-import Option from "./Option"
+import { Argument, SubOption } from "@shared/interfaces/options.interface"
+import { DatasetField, SingleValueDataType } from "@shared/interfaces/datasets.interface"
+import { DatasetsContext } from "@shared/context"
+import { DATASETS_ACTIONS } from "@containers/Home/constants"
+import { DATA_TYPES } from "@shared/constant"
+import { useUtils } from "@containers/Home/hooks"
+import { Option } from "./components"
 
 const OptionsContainer = ({
   options,

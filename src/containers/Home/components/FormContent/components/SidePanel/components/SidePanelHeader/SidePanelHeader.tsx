@@ -1,4 +1,4 @@
-import { File } from "../../../../../../../shared/assets/icons"
+import { File } from "../../../../../../../../shared/assets/icons"
 
 const SidePanelHeader = ({ title }: { title: string }) => {
   return (

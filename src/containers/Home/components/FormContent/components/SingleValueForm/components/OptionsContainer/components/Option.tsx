@@ -1,13 +1,10 @@
 import { useState } from "react"
-import { Config } from "../../../../../../../shared/assets/icons"
-import ChacaRadioButton from "../../../../../../../shared/components/ChacaForm/components/ChacaRadioButton/ChacaRadioButton"
+import { Config } from "@shared/assets/icons"
+import { ChacaRadioButton } from "@form"
 import OptionArguments from "./OptionArguments"
 import clsx from "clsx"
-import { Argument, SubOption } from "../../../../../../../shared/interfaces/options.interface"
-import {
-  DatasetField,
-  SingleValueDataType,
-} from "../../../../../../../shared/interfaces/datasets.interface"
+import { Argument, SubOption } from "@shared/interfaces/options.interface"
+import { DatasetField, SingleValueDataType } from "@shared/interfaces/datasets.interface"
 
 const Option = ({
   option,
@@ -28,18 +25,16 @@ const Option = ({
     if (isSelected) setOpenArgs(!openArgs)
   }
 
-  const divClass = () => {
-    return clsx(
-      "w-full rounded-sm flex items-center flex-col py-2 px-4",
-      {
-        "bg-principalColor text-white fill-white": isSelected,
-      },
-      { "bg-slate-100 text-block fill-black": !isSelected },
-    )
-  }
+  const divClass = clsx(
+    "w-full rounded-sm flex items-center flex-col py-2 px-4",
+    {
+      "bg-principalColor text-white fill-white": isSelected,
+    },
+    { "bg-slate-100 text-block fill-black": !isSelected },
+  )
 
   return (
-    <div className={divClass()}>
+    <div className={divClass}>
       <div className='flex items-center w-full justify-between '>
         <div className='flex items-center'>
           <ChacaRadioButton value={isSelected} onChange={() => handleSelectOption()} />

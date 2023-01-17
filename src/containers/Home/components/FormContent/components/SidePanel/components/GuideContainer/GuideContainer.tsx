@@ -5,8 +5,8 @@ import Highlight, { defaultProps } from "prism-react-renderer"
 import { v4 as uuid } from "uuid"
 
 import theme from "prism-react-renderer/themes/duotoneDark"
-import LoaderContainer from "../../../../../../../shared/components/Loader/LoaderContainer"
-import { useQuery } from "../../../../../../../shared/hooks/useQuery"
+import LoaderContainer from "../../../../../../../../shared/components/Loader/LoaderContainer"
+import { useQuery } from "../../../../../../../../shared/hooks/useQuery"
 
 const GuideContainer = ({ route }: { route: string }) => {
   const [content, setContent] = useState("")

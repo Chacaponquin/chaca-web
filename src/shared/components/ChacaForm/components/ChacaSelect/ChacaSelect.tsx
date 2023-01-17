@@ -90,7 +90,7 @@ export default function ChacaSelect<T>({
 
       {openOptions && (
         <div
-          className='flex flex-col z-[999] bg-white rounded-sm shadow-lg absolute'
+          className='flex flex-col z-[999] bg-white rounded-sm shadow-lg absolute h-[300px] overflow-y-auto'
           style={{
             width: optionsStyle.width,
             transform: `translateY(${optionsStyle.translateY})`,

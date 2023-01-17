@@ -1,13 +1,13 @@
 import { useMemo, Fragment } from "react"
-import { useLanguage } from "../../../../../../../shared/hooks"
+import { useLanguage } from "../../../../../../../../shared/hooks"
 import { v4 as uuid } from "uuid"
-import { useUtils } from "../../../../../hooks/useUtils"
+import { useUtils } from "../../../../../../hooks/useUtils"
 import {
   DatasetField,
   SingleValueDataType,
-} from "../../../../../../../shared/interfaces/datasets.interface"
+} from "../../../../../../../../shared/interfaces/datasets.interface"
 
-const SingleValueDocs = ({ field }: { field: DatasetField<SingleValueDataType> }) => {
+export default function SingleValueGuide  ({ field }: { field: DatasetField<SingleValueDataType> })  {
   const { ARGUMENTS_TITLE_TEXT, TABLE_ARGUMENT_TEXT, TABLE_DESCRIPTION_TEXT } = useLanguage({
     ARGUMENTS_TITLE_TEXT: { en: "Arguments", es: "Parámetros" },
     TABLE_ARGUMENT_TEXT: { en: "Argument", es: "Parámetro" },
@@ -66,4 +66,4 @@ const SingleValueDocs = ({ field }: { field: DatasetField<SingleValueDataType> }
   )
 }
 
-export default SingleValueDocs
+
