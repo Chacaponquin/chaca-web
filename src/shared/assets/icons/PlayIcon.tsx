@@ -1,4 +1,3 @@
-import React from "react"
 import { DEFAULT_ICON_SIZE } from "../constants/icons.enum"
 import { IconProps } from "../interfaces/icon.interface"
 
@@ -8,7 +7,7 @@ const PlayIcon = ({ size = DEFAULT_ICON_SIZE }: IconProps) => {
       xmlns='http://www.w3.org/2000/svg'
       enableBackground='new 0 0 100 100'
       viewBox='0 0 100 100'
-      width={25}
+      width={size}
       fill={"white"}
     >
       <switch>

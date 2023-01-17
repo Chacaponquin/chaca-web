@@ -1,25 +1,17 @@
 import { Dropdown } from "primereact/dropdown"
-import { InputSwitch } from "primereact/inputswitch"
 import { useContext, useMemo } from "react"
-import { Private } from "../../../../../../shared/assets/icons"
 import ArgumentFilter from "../../../../../../shared/components/ArgumentFilter/ArgumentFilter"
 import { FILE_TYPE } from "../../../../../../shared/constant/FILE_TYPE"
 import { AppConfigContext } from "../../../../../../shared/context/AppConfigContext"
 import { DatasetsContext } from "../../../../../../shared/context/DatasetsContext"
-import { UserContext } from "../../../../../../shared/context/UserContext"
 import { DataTransform } from "../../../../../../shared/helpers/DataTransform"
 import { useLanguage } from "../../../../../../shared/hooks"
 import { CONFIG_ACTIONS } from "../../../../constants/ACTION_TYPES"
+import SaveModelForm from "./SaveModelForm"
 
 const ExportForm = () => {
-  const { actualUser } = useContext(UserContext)
   const { configDispatch, config } = useContext(DatasetsContext)
   const { fileConfig } = useContext(AppConfigContext)
-
-  const { SAVE_SCHEMA_TEXT, FORMAT_TEXT } = useLanguage({
-    SAVE_SCHEMA_TEXT: { en: "Save Model", es: "Guardar Modelo" },
-    FORMAT_TEXT: { en: "Format", es: "Formato" },
-  })
 
   const handleChangeFileArgument = (argument: string, value: unknown) => {
     configDispatch({
@@ -34,6 +26,10 @@ const ExportForm = () => {
     if (fileFound) return fileFound.arguments
     else return []
   }, [fileConfig, config.file.fileType])
+
+  const { FORMAT_TEXT } = useLanguage({
+    FORMAT_TEXT: { en: "Format", es: "Formato" },
+  })
 
   return (
     <div className='flex flex-col'>
@@ -69,24 +65,7 @@ const ExportForm = () => {
           </div>
         ))}
 
-        <div className='flex items-center gap-2 justify-between'>
-          <label htmlFor='' className='font-fontBold text-lg'>
-            {SAVE_SCHEMA_TEXT}:
-          </label>
-          {actualUser ? (
-            <InputSwitch
-              checked={config.saveSchema}
-              onChange={(e) => {
-                configDispatch({
-                  type: CONFIG_ACTIONS.CHANGE_SAVE_SCHEMA,
-                  payload: { value: e.value },
-                })
-              }}
-            />
-          ) : (
-            <Private size={23} />
-          )}
-        </div>
+        <SaveModelForm />
       </div>
     </div>
   )
