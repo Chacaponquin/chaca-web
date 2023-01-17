@@ -1,5 +1,5 @@
-import { ChacaSimpleButton } from "../../../../../../shared/components/ChacaButton"
-import { useLanguage } from "../../../../../../shared/hooks"
+import { ChacaSimpleButton } from "../../../../../../../shared/components/ChacaButton"
+import { useLanguage } from "../../../../../../../shared/hooks"
 
 const ModalButtons = ({
   nextText,

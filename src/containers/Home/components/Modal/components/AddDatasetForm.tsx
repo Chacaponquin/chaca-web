@@ -1,11 +1,10 @@
 import { InputText } from "primereact/inputtext"
 import { useContext, useState } from "react"
 import { toast } from "react-toastify"
-import { DatasetsContext } from "../../../../../shared/context/DatasetsContext"
-import { useLanguage } from "../../../../../shared/hooks"
-import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES"
-import ModalButtons from "../shared/components/ModalButtons"
-import ModalTitle from "../shared/components/ModalTitle"
+import { DatasetsContext } from "@shared/context"
+import { useLanguage } from "@shared/hooks"
+import { DATASETS_ACTIONS } from "@containers/Home/constants"
+import { ModalButtons, ModalTitle } from "../shared/components"
 
 const AddDatasetForm = ({ handleCloseModal }: { handleCloseModal: () => void }) => {
   const { datasetDispatch } = useContext(DatasetsContext)

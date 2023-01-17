@@ -1,4 +1,4 @@
-import { X } from "../../../../../../shared/assets/icons"
+import { X } from "@shared/assets/icons"
 
 const ModalTitle = ({
   titleText,

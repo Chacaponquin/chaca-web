@@ -1,7 +1,5 @@
-import ModalButtons from "../shared/components/ModalButtons"
-import ModalTitle from "../shared/components/ModalTitle"
-import ExportForm from "../shared/components/ExportForm"
-import { useLanguage } from "../../../../../shared/hooks"
+import { ExportForm, ModalTitle, ModalButtons } from "../shared/components"
+import { useLanguage } from "@shared/hooks"
 
 const ExportSelectDatasetForm = ({
   handleCloseModal,

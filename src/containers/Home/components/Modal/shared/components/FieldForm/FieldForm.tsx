@@ -2,8 +2,8 @@ import { Checkbox } from "primereact/checkbox"
 import { InputNumber } from "primereact/inputnumber"
 import { InputText } from "primereact/inputtext"
 import { Slider } from "primereact/slider"
-import { useLanguage } from "../../../../../../shared/hooks"
-import { DatasetField } from "../../../../../../shared/interfaces/datasets.interface"
+import { useLanguage } from "@shared/hooks"
+import { DatasetField } from "@shared/interfaces/datasets.interface"
 
 export interface FieldFormProps {
   field: DatasetField

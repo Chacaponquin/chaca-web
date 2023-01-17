@@ -1,13 +1,12 @@
 import { Dropdown } from "primereact/dropdown"
 import { useContext, useMemo } from "react"
-import ArgumentFilter from "../../../../../../shared/components/ArgumentFilter/ArgumentFilter"
-import { FILE_TYPE } from "../../../../../../shared/constant/FILE_TYPE"
-import { AppConfigContext } from "../../../../../../shared/context/AppConfigContext"
-import { DatasetsContext } from "../../../../../../shared/context/DatasetsContext"
-import { DataTransform } from "../../../../../../shared/helpers/DataTransform"
-import { useLanguage } from "../../../../../../shared/hooks"
-import { CONFIG_ACTIONS } from "../../../../constants/ACTION_TYPES"
-import SaveModelForm from "./SaveModelForm"
+import ArgumentFilter from "@shared/components/ArgumentFilter/ArgumentFilter"
+import { FILE_TYPE } from "@shared/constant"
+import { DatasetsContext, AppConfigContext } from "@shared/context"
+import { DataTransform } from "@shared/helpers/DataTransform"
+import { useLanguage } from "@shared/hooks"
+import { CONFIG_ACTIONS } from "@containers/Home/constants/ACTION_TYPES"
+import SaveModelForm from "../SaveModelForm/SaveModelForm"
 
 const ExportForm = () => {
   const { configDispatch, config } = useContext(DatasetsContext)

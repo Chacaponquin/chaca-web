@@ -1,11 +1,11 @@
+import { Private } from "@shared/assets/icons"
+import { DatasetsContext, UserContext } from "@shared/context"
+import { useLanguage } from "@shared/hooks"
 import { InputSwitch } from "primereact/inputswitch"
 import { useContext } from "react"
-import { Private } from "../../../../../../shared/assets/icons"
-import { DatasetsContext, UserContext } from "../../../../../../shared/context"
-import { useLanguage } from "@shared/hooks"
-import { CONFIG_ACTIONS } from "../../../../constants/ACTION_TYPES"
+import { CONFIG_ACTIONS } from "@containers/Home/constants/ACTION_TYPES"
 
-export default function SaveModelForm() {
+export default function SaveModelInput() {
   const { SAVE_SCHEMA_TEXT } = useLanguage({
     SAVE_SCHEMA_TEXT: { en: "Save Model", es: "Guardar Modelo" },
   })
@@ -14,7 +14,7 @@ export default function SaveModelForm() {
   const { configDispatch, config } = useContext(DatasetsContext)
 
   return (
-    <div className='flex items-center gap-2 justify-between'>
+    <div className='flex items-center gap-2 justify-between w-full'>
       <label htmlFor='' className='font-fontBold text-lg'>
         {SAVE_SCHEMA_TEXT}:
       </label>
@@ -29,7 +29,7 @@ export default function SaveModelForm() {
           }}
         />
       ) : (
-        <Private size={23} />
+        <Private size={20} />
       )}
     </div>
   )

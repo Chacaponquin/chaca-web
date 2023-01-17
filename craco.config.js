@@ -3,6 +3,7 @@ module.exports = {
   webpack: {
     alias: {
       "@shared": path.resolve(__dirname, "src/shared"),
+      "@containers": path.resolve(__dirname, "src/containers"),
     },
   },
 }

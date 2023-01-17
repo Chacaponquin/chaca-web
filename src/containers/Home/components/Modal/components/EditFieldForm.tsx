@@ -1,12 +1,10 @@
 import { useContext } from "react"
-import { DatasetsContext } from "../../../../../shared/context/DatasetsContext"
-import { useLanguage } from "../../../../../shared/hooks"
-import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES"
-import { ModalEditField } from "../../../interfaces/modal.interface"
-import FieldForm from "../shared/components/FieldForm"
-import ModalButtons from "../shared/components/ModalButtons"
-import ModalTitle from "../shared/components/ModalTitle"
-import { useFieldForm } from "../shared/hooks/useFieldForm"
+import { DatasetsContext } from "@shared/context/DatasetsContext"
+import { useLanguage } from "@shared/hooks"
+import { DATASETS_ACTIONS } from "@containers/Home/constants"
+import { ModalEditField } from "@containers/Home/interfaces/modal.interface"
+import { ModalButtons, ModalTitle, FieldForm } from "../shared/components"
+import { useFieldForm } from "../shared/hooks"
 
 const EditFieldForm = ({
   handleCloseModal,
