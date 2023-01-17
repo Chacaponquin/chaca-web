@@ -1,7 +1,7 @@
 import { useContext } from "react"
-import { DatasetsContext } from "../../../../shared/context/DatasetsContext"
-import { MODAL_ACTIONS } from "../../constants/MODAL_ACTIONS"
-import { ModalProps } from "../../interfaces/modal.interface"
+import { DatasetsContext } from "@shared/context/DatasetsContext"
+import { MODAL_ACTIONS } from "@containers/Home/constants/MODAL_ACTIONS"
+import { ModalProps } from "@containers/Home/interfaces/modal.interface"
 import { DatasetsHeader, ExportButton, FieldContainer, NoFieldsMessage } from "./components"
 
 const FieldsMenu = ({ handleOpenModal }: { handleOpenModal: (a: ModalProps) => void }) => {

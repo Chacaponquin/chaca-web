@@ -1,13 +1,13 @@
 import { useContext } from "react"
-import { DATA_TYPES } from "../../../../shared/constant"
+import { DATA_TYPES } from "@shared/constant"
 import {
   CustomDataType,
   DatasetField,
   RefDataType,
   SingleValueDataType,
-} from "../../../../shared/interfaces/datasets.interface"
-import { DatasetsContext } from "../../../../shared/context/DatasetsContext"
-import { ModalProps } from "../../interfaces/modal.interface"
+} from "@shared/interfaces/datasets.interface"
+import { DatasetsContext } from "@shared/context"
+import { ModalProps } from "@containers/Home/interfaces/modal.interface"
 import {
   CustomForm,
   DataTypeSelect,
@@ -29,7 +29,7 @@ const FormContent = ({ handleOpenModal }: { handleOpenModal: (props: ModalProps)
 
       <div className='w-full flex form-content'>
         <div className='w-full h-full overflow-y-auto flex justify-center'>
-          <div className='overflow-y-auto h-full bg-white flex flex-col w-full'>
+          <div className='overflow-y-auto h-full bg-white flex flex-col w-full min-w-[500px]'>
             {selectField === null ? (
               <NoSelectFieldMessage />
             ) : (

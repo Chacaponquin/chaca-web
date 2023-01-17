@@ -1,10 +1,10 @@
 import { useContext, useState } from "react"
-import { Dropdown } from "primereact/dropdown"
-import { Bars, Plus } from "../../../../../shared/assets/icons"
-import { DatasetsContext } from "../../../../../shared/context/DatasetsContext"
+import { Bars, Plus } from "@shared/assets/icons"
+import { DatasetsContext } from "@shared/context"
 import DatasetConfigMenu from "./DatasetConfigMenu"
-import { ModalProps } from "../../../interfaces/modal.interface"
-import { MODAL_ACTIONS } from "../../../constants/MODAL_ACTIONS"
+import { ModalProps } from "@containers/Home/interfaces/modal.interface"
+import { MODAL_ACTIONS } from "@containers/Home/constants/MODAL_ACTIONS"
+import { ChacaSelect } from "@form"
 
 const DatasetsHeader = ({ handleOpenModal }: { handleOpenModal: (props: ModalProps) => void }) => {
   const [openConfig, setOpenConfig] = useState(false)
@@ -44,16 +44,17 @@ const DatasetsHeader = ({ handleOpenModal }: { handleOpenModal: (props: ModalPro
           <Plus size={18} />
         </button>
 
-        <Dropdown
-          className='w-[170px] !text-sm'
-          placeholder='Select a Dataset'
+        <ChacaSelect
+          size={170}
+          placeholder={"Select a Dataset"}
           options={datasets}
-          optionValue={"id"}
-          optionLabel={"name"}
-          onChange={(e) => {
-            handleSelectDataset(e.value)
-          }}
+          labelKey={"name"}
+          valueKey={"id"}
           value={selectedDataset ? selectedDataset.id : null}
+          onChange={(value) => {
+            handleSelectDataset(value as string)
+          }}
+          dimension='small'
         />
       </div>
 

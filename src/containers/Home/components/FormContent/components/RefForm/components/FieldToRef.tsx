@@ -8,7 +8,7 @@ import {
 import { v4 as uuid } from "uuid"
 import { DatasetsContext } from "../../../../../../../shared/context/DatasetsContext"
 import { DATASETS_ACTIONS } from "../../../../../constants/ACTION_TYPES"
-import ChacaRadioButton from "../../../../../../../shared/components/ChacaRadioButton/ChacaRadioButton"
+import ChacaRadioButton from "../../../../../../../shared/components/ChacaForm/components/ChacaRadioButton/ChacaRadioButton"
 
 const FieldToRef = ({
   field,

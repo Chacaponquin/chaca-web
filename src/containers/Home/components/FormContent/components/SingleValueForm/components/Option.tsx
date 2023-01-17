@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Config } from "../../../../../../../shared/assets/icons"
-import ChacaRadioButton from "../../../../../../../shared/components/ChacaRadioButton/ChacaRadioButton"
+import ChacaRadioButton from "../../../../../../../shared/components/ChacaForm/components/ChacaRadioButton/ChacaRadioButton"
 import OptionArguments from "./OptionArguments"
 import clsx from "clsx"
 import { Argument, SubOption } from "../../../../../../../shared/interfaces/options.interface"

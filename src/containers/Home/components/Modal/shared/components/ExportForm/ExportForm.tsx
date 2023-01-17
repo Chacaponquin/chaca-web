@@ -1,4 +1,3 @@
-import { Dropdown } from "primereact/dropdown"
 import { useContext, useMemo } from "react"
 import ArgumentFilter from "@shared/components/ArgumentFilter/ArgumentFilter"
 import { FILE_TYPE } from "@shared/constant"
@@ -7,6 +6,7 @@ import { DataTransform } from "@shared/helpers/DataTransform"
 import { useLanguage } from "@shared/hooks"
 import { CONFIG_ACTIONS } from "@containers/Home/constants/ACTION_TYPES"
 import SaveModelForm from "../SaveModelForm/SaveModelForm"
+import { ChacaSelect } from "@form"
 
 const ExportForm = () => {
   const { configDispatch, config } = useContext(DatasetsContext)
@@ -32,21 +32,24 @@ const ExportForm = () => {
 
   return (
     <div className='flex flex-col'>
-      <div className='flex items-center gap-2'>
+      <div className='flex items-center gap-4'>
         <label htmlFor='' className='font-fontBold text-lg'>
           {FORMAT_TEXT}:
         </label>
-        <Dropdown
-          options={fileConfig.map((f) => f.fileType)}
-          value={config.file.fileType}
-          onChange={(e) => {
+        <ChacaSelect
+          options={fileConfig}
+          labelKey={"fileType"}
+          valueKey={"fileType"}
+          placeholder={"Select a file format"}
+          onChange={(value) => {
             configDispatch({
               type: CONFIG_ACTIONS.CHANGE_FILE_TYPE,
               payload: {
-                value: e.value as FILE_TYPE,
+                value: value as FILE_TYPE,
               },
             })
           }}
+          value={config.file.fileType}
         />
       </div>
 
