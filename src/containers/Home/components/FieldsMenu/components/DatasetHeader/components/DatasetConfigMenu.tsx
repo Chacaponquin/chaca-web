@@ -1,11 +1,11 @@
 import { useContext } from "react"
 import { InputNumber } from "primereact/inputnumber"
-import { DatasetsContext } from "../../../../../shared/context/DatasetsContext"
+import { DatasetsContext } from "../../../../../../../shared/context/DatasetsContext"
 import clsx from "clsx"
-import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES"
-import { UserContext } from "../../../../../shared/context/UserContext"
-import { AppConfigContext } from "../../../../../shared/context/AppConfigContext"
-import { useLanguage } from "../../../../../shared/hooks"
+import { DATASETS_ACTIONS } from "../../../../../constants/ACTION_TYPES"
+import { UserContext } from "../../../../../../../shared/context/UserContext"
+import { AppConfigContext } from "../../../../../../../shared/context/AppConfigContext"
+import { useLanguage } from "../../../../../../../shared/hooks"
 
 const DatasetConfigMenu = ({
   handleAddDatasetField,

@@ -1,9 +1,9 @@
-import { MODAL_ACTIONS } from "../../../constants/MODAL_ACTIONS"
-import { ModalProps } from "../../../interfaces/modal.interface"
+import { MODAL_ACTIONS } from "@containers/Home/constants/MODAL_ACTIONS"
+import { ModalProps } from "@containers/Home/interfaces/modal.interface"
 import { useContext } from "react"
-import { DatasetsContext } from "../../../../../shared/context/DatasetsContext"
-import { ChacaSimpleButton } from "../../../../../shared/components/ChacaButton"
-import { useLanguage } from "../../../../../shared/hooks"
+import { DatasetsContext } from "@shared/context"
+import { ChacaSimpleButton } from "@shared/components/ChacaButton"
+import { useLanguage } from "@shared/hooks"
 
 const NoFieldsMessage = ({ handleOpenModal }: { handleOpenModal: (a: ModalProps) => void }) => {
   const { selectedDataset } = useContext(DatasetsContext)

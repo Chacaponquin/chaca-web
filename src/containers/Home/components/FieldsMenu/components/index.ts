@@ -1,6 +1,6 @@
-import DatasetsHeader from "./DatasetsHeader"
-import ExportButton from "./ExportButton"
-import FieldContainer from "./FieldContainer"
-import NoFieldsMessage from "./NoFieldsMessage"
+import DatasetsHeader from "./DatasetHeader/DatasetsHeader"
+import ExportButton from "./ExportButton/ExportButton"
+import FieldContainer from "./FieldContainer/FieldContainer"
+import NoFieldsMessage from "./NoFieldsMessage/NoFieldsMessage"
 
 export { DatasetsHeader, ExportButton, FieldContainer, NoFieldsMessage }

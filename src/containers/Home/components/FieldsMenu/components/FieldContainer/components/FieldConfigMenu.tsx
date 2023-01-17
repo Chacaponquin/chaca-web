@@ -1,10 +1,13 @@
 import { useContext } from "react"
-import { DatasetsContext } from "../../../../../shared/context/DatasetsContext"
-import { useLanguage } from "../../../../../shared/hooks"
-import { DatasetField, FieldDataType } from "../../../../../shared/interfaces/datasets.interface"
-import { DATASETS_ACTIONS } from "../../../constants/ACTION_TYPES"
-import { MODAL_ACTIONS } from "../../../constants/MODAL_ACTIONS"
-import { ModalProps } from "../../../interfaces/modal.interface"
+import { DatasetsContext } from "../../../../../../../shared/context/DatasetsContext"
+import { useLanguage } from "../../../../../../../shared/hooks"
+import {
+  DatasetField,
+  FieldDataType,
+} from "../../../../../../../shared/interfaces/datasets.interface"
+import { DATASETS_ACTIONS } from "../../../../../constants/ACTION_TYPES"
+import { MODAL_ACTIONS } from "../../../../../constants/MODAL_ACTIONS"
+import { ModalProps } from "../../../../../interfaces/modal.interface"
 
 const FieldConfigMenu = ({
   handleOpenModal,

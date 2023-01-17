@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import { Bars, Plus } from "@shared/assets/icons"
 import { DatasetsContext } from "@shared/context"
-import DatasetConfigMenu from "./DatasetConfigMenu"
+import { DatasetConfigMenu } from "./components"
 import { ModalProps } from "@containers/Home/interfaces/modal.interface"
 import { MODAL_ACTIONS } from "@containers/Home/constants/MODAL_ACTIONS"
 import { ChacaSelect } from "@form"

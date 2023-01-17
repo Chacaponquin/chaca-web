@@ -1,11 +1,11 @@
 import { useContext, Fragment, useState } from "react"
-import { ArrowRight, Config } from "../../../../../shared/assets/icons"
-import { DATA_TYPES } from "../../../../../shared/constant/DATA_TYPES"
-import { DatasetField, FieldDataType } from "../../../../../shared/interfaces/datasets.interface"
+import { ArrowRight, Config } from "@shared/assets/icons"
+import { DATA_TYPES } from "@shared/constant/DATA_TYPES"
+import { DatasetField, FieldDataType } from "@shared/interfaces/datasets.interface"
 import clsx from "clsx"
-import { DatasetsContext } from "../../../../../shared/context/DatasetsContext"
-import FieldConfigMenu from "./FieldConfigMenu"
-import { ModalProps } from "../../../interfaces/modal.interface"
+import { DatasetsContext } from "@shared/context"
+import { FieldConfigMenu } from "./components"
+import { ModalProps } from "@containers/Home/interfaces/modal.interface"
 
 const Point = () => {
   return <div className='bg-principal-bg w-[7px] h-[7px] rounded-full'></div>
