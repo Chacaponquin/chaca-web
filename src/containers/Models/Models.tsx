@@ -1,5 +1,5 @@
-const MySchema = () => {
+const Models = () => {
   return <div className='w-full lg:px-20 px-4 md:px-10 flex justify-center'></div>
 }
 
-export default MySchema
+export default Models

@@ -27,8 +27,10 @@ export function usePost<T>({
 
   const request = ({ body }: OverwriteProps = {}): void => {
     setLoading(true)
+    setError(false)
+
     axiosInstance
-      .post<T>(url, { data: body || bodyFunction })
+      .post<T>(url, body || bodyFunction)
       .then(({ data }) => onCompleted(data))
       .catch((error) => {
         setError(true)

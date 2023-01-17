@@ -9,7 +9,7 @@ export const API_ROUTES = {
   GET_NO_USER_LIMITS: "/util/noUserLimits",
   GET_MY_SCHEMAS: "/user/getMySchemas",
   DELETE_SCHEMA: "/user/deleteSchema",
-  GET_API_OPTIONS: "/util/apiOptions",
+  GET_API_OPTIONS: "/util/schemas",
   GET_FILE_OPTIONS: "/util/fileConfig",
   GET_FAQ: "/util/faq",
   CREATE_USER_MESSAGE: "/userMessage/newMessage",

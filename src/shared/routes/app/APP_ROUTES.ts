@@ -8,7 +8,7 @@ export const APP_ROUTES = {
   HOME: "/home",
   API: "/api",
   DOCS: "/docs",
-  MY_SCHEMA: "/mySchema",
+  MODELS: "/models",
   CONTACT_US: "/contactUs",
   NOT_FOUND: "/notFound",
 }

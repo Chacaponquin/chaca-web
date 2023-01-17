@@ -8,7 +8,7 @@ import {
   Api,
   // Docs,
   SignUp,
-  MySchema,
+  Models,
   Landing,
   ContactUs,
   Error404,
@@ -18,7 +18,8 @@ import UserProvider from "./shared/context/UserContext"
 import AppConfigProvider from "./shared/context/AppConfigContext"
 import NoUserRoute from "./shared/routes/protected/NoUserRoute"
 
-import { APP_ROUTES } from "./shared/routes/app/APP_ROUTES"
+import { ErrorBoundary } from "./layout"
+import { APP_ROUTES } from "./shared/routes/"
 
 import "react-toastify/dist/ReactToastify.css"
 import "./index.css"
@@ -26,7 +27,6 @@ import "./index.css"
 import "primereact/resources/themes/lara-light-indigo/theme.css"
 import "primereact/resources/primereact.min.css"
 import "primeicons/primeicons.css"
-import { ErrorBoundary } from "./layout"
 
 const root = ReactDOM.createRoot(document.getElementById("root")!)
 
@@ -55,7 +55,7 @@ const AppCont = () => {
         <Route path={APP_ROUTES.ROOT} element={<Landing />} />
         <Route path={APP_ROUTES.HOME} element={<Home />} />
         <Route path={APP_ROUTES.API} element={<Api />} />
-        <Route path={APP_ROUTES.MY_SCHEMA} element={<MySchema />} />
+        <Route path={APP_ROUTES.MODELS} element={<Models />} />
         <Route path={APP_ROUTES.NOT_FOUND} element={<Error404 />} />
       </Route>
 
