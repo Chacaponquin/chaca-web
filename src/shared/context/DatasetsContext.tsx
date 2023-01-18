@@ -54,7 +54,7 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
   // configuration of the file to export
   const [config, configDispatch] = useReducer(configReducer, {
     file: { fileType: FILE_TYPE.JSON, arguments: {} },
-    saveSchema: false,
+    saveSchema: null,
   })
 
   // select dataset

@@ -1,14 +1,14 @@
 import { ModelsFilter, SearchResult, SelectModelContent } from "./components"
-import { useModels } from "./hooks/useModels"
+import { useModels } from "./hooks"
 
 const Models = () => {
-  const { userModels, loading, error } = useModels()
+  const { userModels, loading, error, selectModel } = useModels()
 
   return (
     <div className='w-full flex h-screen'>
       <ModelsFilter />
-      <SearchResult />
-      <SelectModelContent />
+      <SearchResult models={userModels} />
+      <SelectModelContent selectModel={selectModel} />
     </div>
   )
 }

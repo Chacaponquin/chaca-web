@@ -1,12 +1,8 @@
 import { useState } from "react"
-
 import Markdown from "markdown-to-jsx"
-import Highlight, { defaultProps } from "prism-react-renderer"
-import { v4 as uuid } from "uuid"
-
-import theme from "prism-react-renderer/themes/duotoneDark"
-import LoaderContainer from "../../../../../../../../shared/components/Loader/LoaderContainer"
-import { useQuery } from "../../../../../../../../shared/hooks/useQuery"
+import LoaderContainer from "@shared/components/Loader/LoaderContainer"
+import { useQuery } from "@shared/hooks"
+import ExampleCode from "@shared/components/ExampleCode/ExampleCode"
 
 const GuideContainer = ({ route }: { route: string }) => {
   const [content, setContent] = useState("")
@@ -33,7 +29,7 @@ const GuideContainer = ({ route }: { route: string }) => {
               h3: { props: { className: "text-xl font-fontBold mt-3" } },
               h2: { props: { className: "text-2xl font-fontBold" } },
               code: {
-                component: ExampleCode,
+                component: Code,
                 props: {
                   className: "bg-slate-100 border-2 rounded-sm px-1 mt-3 py-2 font-fontCodeRegular",
                 },
@@ -63,22 +59,8 @@ const ListItem = ({ children }: { children: JSX.Element }) => {
   )
 }
 
-const ExampleCode = ({ children }: { children: string }) => {
-  return (
-    <div className='code-container bg-darkColor px-3 py-2 rounded-sm text-base'>
-      <Highlight {...defaultProps} language='jsx' code={children} theme={theme}>
-        {({ tokens, getLineProps, getTokenProps }) => {
-          return tokens.map((line, i) => (
-            <div {...getLineProps({ line, key: i, className: "buenas" })} key={uuid()}>
-              {line.map((token, key) => (
-                <span {...getTokenProps({ token, key })} key={key} />
-              ))}
-            </div>
-          ))
-        }}
-      </Highlight>
-    </div>
-  )
+const Code = ({ children }: { children: string }) => {
+  return <ExampleCode code={children} />
 }
 
 export default GuideContainer

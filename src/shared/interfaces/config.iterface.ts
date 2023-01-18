@@ -1,9 +1,14 @@
 import { FILE_TYPE } from "../constant/FILE_TYPE"
 import { Argument } from "./options.interface"
 
+export type SaveSchemaValue = null | {
+  tags: Array<string>
+  name: string
+  description: string
+}
 export interface ConfigSchema {
   file: ConfigFile
-  saveSchema: boolean
+  saveSchema: SaveSchemaValue
 }
 
 export interface ConfigFile {

@@ -61,7 +61,7 @@ const FieldInfoHeader = ({
         <ChacaIconButton
           icon={<Change size={19} />}
           color={"primary"}
-          size={"small"}
+          size={"medium"}
           text={UI_TEXT.EDIT_TEXT}
           onClick={handleEdit}
         />
@@ -69,7 +69,7 @@ const FieldInfoHeader = ({
         <ChacaIconButton
           icon={<Delete size={19} />}
           color={"danger"}
-          size={"small"}
+          size={"medium"}
           text={UI_TEXT.DELETE_TEXT}
           onClick={handleDelete}
         />

@@ -1,4 +1,5 @@
 export interface UserDatasetModel {
+  _id: string
   name: string
   descripttion: string
   model: string

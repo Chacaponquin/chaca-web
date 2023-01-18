@@ -1,9 +1,9 @@
 import { Private } from "@shared/assets/icons"
 import { DatasetsContext, UserContext } from "@shared/context"
 import { useLanguage } from "@shared/hooks"
-import { InputSwitch } from "primereact/inputswitch"
 import { useContext } from "react"
-import { CONFIG_ACTIONS } from "@containers/Home/constants/ACTION_TYPES"
+import { CONFIG_ACTIONS } from "@containers/Home/constants"
+import { ChacaSwitchButton } from "@form"
 
 export default function SaveModelInput() {
   const { SAVE_SCHEMA_TEXT } = useLanguage({
@@ -19,12 +19,20 @@ export default function SaveModelInput() {
         {SAVE_SCHEMA_TEXT}:
       </label>
       {actualUser ? (
-        <InputSwitch
-          checked={config.saveSchema}
-          onChange={(e) => {
+        <ChacaSwitchButton
+          value={config.saveSchema !== null}
+          onChange={(value) => {
             configDispatch({
               type: CONFIG_ACTIONS.CHANGE_SAVE_SCHEMA,
-              payload: { value: e.value },
+              payload: {
+                value: value
+                  ? {
+                      description: "",
+                      name: "Buenas",
+                      tags: [],
+                    }
+                  : null,
+              },
             })
           }}
         />

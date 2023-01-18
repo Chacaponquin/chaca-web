@@ -1,9 +1,10 @@
-import { Like, Share, X } from "../../../../../shared/assets/icons"
+import { Like, Share, X } from "@shared/assets/icons"
 import { useState } from "react"
 import clsx from "clsx"
-import { ChacaSimpleButton } from "../../../../../shared/components/ChacaButton"
+import { ChacaSimpleButton } from "@shared/components/ChacaButton"
+import { UserDatasetModel } from "@containers/Models/interfaces/models.interface"
 
-export default function SearchResultCard() {
+export default function SearchResultCard({ model }: { model: UserDatasetModel }) {
   const [openCard, setOpenCard] = useState(false)
 
   const cardClass = clsx("flex flex-col rounded px-4 gap-1 border-2 border-solid", {
@@ -27,7 +28,7 @@ export default function SearchResultCard() {
   return (
     <div className={cardClass}>
       <div className='flex items-center justify-between gap-3'>
-        <h1 className='font-fontBold text-lg mb-0'>Lorem ipsum dolor sit.</h1>
+        <h1 className='font-fontBold text-lg mb-0'>{model.name}</h1>
         <button className={buttonClass} onClick={handleInteractiveCard}>
           <X size={14} />
         </button>

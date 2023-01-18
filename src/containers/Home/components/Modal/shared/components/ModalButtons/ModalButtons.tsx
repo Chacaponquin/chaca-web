@@ -22,7 +22,7 @@ const ModalButtons = ({
           size='extra-large'
           text={nextText}
           onClick={handleNext}
-          className='w-full text-center flex justify-center'
+          className='w-full text-center flex justify-center !rounded'
         />
       </div>
 
@@ -32,7 +32,7 @@ const ModalButtons = ({
           size='extra-large'
           text={CANCEL_TEXT}
           onClick={handleCancel}
-          className='w-full text-center flex justify-center'
+          className='w-full text-center flex justify-center !rounded'
         />
       </div>
     </div>

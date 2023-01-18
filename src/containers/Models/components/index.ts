@@ -1,4 +1,4 @@
-import SelectModelContent from "./ModelContent/SelectModelContent"
+import SelectModelContent from "./SelectModelContent/SelectModelContent"
 import ModelsFilter from "./ModelsFilter/ModelsFilter"
 import SearchResult from "./SearchResult/SearchResult"
 

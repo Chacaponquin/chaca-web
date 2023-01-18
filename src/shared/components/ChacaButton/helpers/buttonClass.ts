@@ -6,7 +6,7 @@ export const buttonClass = ({ size, className, color }: ChacaButtonProps) => {
     "font-fontBold flex items-center fill-white transition-all duration-300 hover:opacity-70",
     className,
     {
-      "py-1 px-4 text-sm rounded-sm": size === "small",
+      "py-[3px] px-4 text-sm rounded-sm": size === "small",
       "py-1 px-5 text-base rounded-sm": size === "medium",
       "py-1 px-6 text-lg rounded-sm": size === "large",
       "py-2 px-7 rounded-sm text-lg": size === "extra-large",
