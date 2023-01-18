@@ -1,12 +1,11 @@
 import { useMemo, Fragment } from "react"
 import { Calendar } from "primereact/calendar"
-import { InputText } from "primereact/inputtext"
 import { InputSwitch } from "primereact/inputswitch"
-import { Argument } from "../../interfaces/options.interface"
-import { ARGUMENT_TYPE } from "../../constant/ARGUMENT_TYPE"
+import { Argument } from "@shared/interfaces/options.interface"
+import { ARGUMENT_TYPE } from "@shared/constant"
 import { InputNumber } from "primereact/inputnumber"
-import { Dropdown } from "primereact/dropdown"
-import { DataTransform } from "../../helpers/DataTransform"
+import { DataTransform } from "@shared/helpers/DataTransform"
+import { ChacaTextInput, ChacaSelect } from "@form"
 
 const ArgumentFilter = ({
   arg,
@@ -22,15 +21,19 @@ const ArgumentFilter = ({
 
     switch (arg.inputType) {
       case ARGUMENT_TYPE.SELECT: {
+        const options = arg.selectValues as string[]
+
         return (
-          <Dropdown
-            options={arg.selectValues as string[]}
+          <ChacaSelect
+            options={options.map((o) => ({ label: o, value: o }))}
+            labelKey='label'
             placeholder={`Select ${DataTransform.titlePipe(arg.argument)}`}
-            onChange={(e) => {
-              handleChangeArgumentValue(e.value)
+            onChange={(value) => {
+              handleChangeArgumentValue(value)
             }}
-            className={textClass}
             value={value}
+            dimension='small'
+            valueKey='value'
           />
         )
       }
@@ -77,10 +80,12 @@ const ArgumentFilter = ({
 
       case ARGUMENT_TYPE.TEXT: {
         return (
-          <InputText
+          <ChacaTextInput
+            dimension='small'
+            onChange={(value) => handleChangeArgumentValue(value)}
+            placeholder={DataTransform.titlePipe(arg.argument)}
             value={value as string}
-            onChange={(e) => handleChangeArgumentValue(e.target.value)}
-            className={textClass}
+            size={"full"}
           />
         )
       }

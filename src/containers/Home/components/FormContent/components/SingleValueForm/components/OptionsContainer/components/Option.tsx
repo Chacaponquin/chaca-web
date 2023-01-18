@@ -6,19 +6,15 @@ import clsx from "clsx"
 import { Argument, SubOption } from "@shared/interfaces/options.interface"
 import { DatasetField, SingleValueDataType } from "@shared/interfaces/datasets.interface"
 
-const Option = ({
-  option,
-  args,
-  handleSelectOption,
-  isSelected,
-  field,
-}: {
+interface OptionProps {
   handleSelectOption: () => void
   option: SubOption
   args: Argument[]
   isSelected: boolean
   field: DatasetField<SingleValueDataType>
-}) => {
+}
+
+const Option = ({ option, args, handleSelectOption, isSelected, field }: OptionProps) => {
   const [openArgs, setOpenArgs] = useState(isSelected)
 
   const handleChangeOpenArguments = () => {
@@ -26,11 +22,10 @@ const Option = ({
   }
 
   const divClass = clsx(
-    "w-full rounded-sm flex items-center flex-col py-2 px-4",
+    "w-full rounded flex items-center flex-col py-2 px-4 bg-slate-100 box-content",
     {
-      "bg-principalColor text-white fill-white": isSelected,
+      "border-principalColor border-2 border-solid": isSelected,
     },
-    { "bg-slate-100 text-block fill-black": !isSelected },
   )
 
   return (
@@ -39,7 +34,7 @@ const Option = ({
         <div className='flex items-center'>
           <ChacaRadioButton value={isSelected} onChange={() => handleSelectOption()} />
 
-          <p className='text-base ml-4'>{option.name}</p>
+          <p className='text-base ml-4 font-fontBold'>{option.name}</p>
         </div>
 
         <button className='cursor-pointer' onClick={handleChangeOpenArguments}>

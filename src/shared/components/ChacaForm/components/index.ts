@@ -1,4 +1,6 @@
 import ChacaRadioButton from "./ChacaRadioButton/ChacaRadioButton"
 import ChacaSelect from "./ChacaSelect/ChacaSelect"
+import ChacaTextarea from "./ChacaTextarea/ChacaTextarea"
+import ChacaTextInput from "./ChacaTextInput/ChacaTextInput"
 
-export { ChacaRadioButton, ChacaSelect }
+export { ChacaRadioButton, ChacaSelect, ChacaTextInput, ChacaTextarea }

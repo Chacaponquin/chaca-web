@@ -2,16 +2,15 @@ import { ArrowRight } from "@shared/assets/icons"
 import { useState, useRef, useMemo, useEffect } from "react"
 import { v4 as uuid } from "uuid"
 import clsx from "clsx"
+import { useFilters } from "../../hooks"
+import { ChacaFormProps } from "../../interfaces/chacaForm.interface"
 
-interface ChacaSelectProps<T> {
+interface ChacaSelectProps<T> extends ChacaFormProps<unknown> {
   placeholder: string
   options: Array<T>
   labelKey: keyof T
   valueKey: keyof T
   size?: "full" | number
-  dimension?: "normal" | "large" | "small"
-  value: unknown
-  onChange: (value: unknown) => void
 }
 
 export default function ChacaSelect<T>({
@@ -33,7 +32,9 @@ export default function ChacaSelect<T>({
         setSelectIndex(index)
       }
     })
-  }, [value])
+  }, [value, options])
+
+  const { paddingClass, textClass } = useFilters({ dimension })
 
   const parentDiv = useRef<null | HTMLDivElement>(null)
 
@@ -61,25 +62,25 @@ export default function ChacaSelect<T>({
   const parentClass = clsx(
     "w-full flex items-center border-solid transition-all duration-300 justify-between bg-white py-[2px] border-2 cursor-pointer rounded-sm gap-5",
     { "border-principalColor": openOptions, "hover:border-principalColor": !openOptions },
-    { "text-sm": dimension === "small", "text-base": dimension === "normal" },
-    { "px-3": dimension === "small", "px-4": dimension === "normal" },
+    textClass,
+    paddingClass,
   )
 
   const optionClass = (index: number) =>
     clsx(
       "px-4 py-1 cursor-pointer duration-300 transition-all",
       {
-        "bg-slate-200": index === selectIndex,
-        "hover:bg-slate-200": index !== selectIndex,
+        "bg-slate-100": index === selectIndex,
+        "hover:bg-slate-100": index !== selectIndex,
       },
-      { "text-sm": dimension === "small", "text-base": dimension === "normal" },
-      { "px-3": dimension === "small", "px-4": dimension === "normal" },
+      textClass,
+      paddingClass,
     )
 
   return (
     <div className='flex flex-col' style={{ width: size === "full" ? "100%" : `${size}px` }}>
       <div className={parentClass} onClick={handleInteractiveOptions} ref={parentDiv}>
-        <p className='pointer-events-none'>
+        <p className='pointer-events-none '>
           {selectIndex !== null ? String(options[selectIndex][labelKey]) : placeholder}
         </p>
 
@@ -90,7 +91,7 @@ export default function ChacaSelect<T>({
 
       {openOptions && (
         <div
-          className='flex flex-col z-[999] bg-white rounded-sm shadow-lg absolute h-[300px] overflow-y-auto'
+          className='flex flex-col z-[999] bg-white rounded-sm shadow-lg absolute max-h-[300px] overflow-y-auto'
           style={{
             width: optionsStyle.width,
             transform: `translateY(${optionsStyle.translateY})`,

@@ -1,10 +1,10 @@
 import { useContext } from "react"
-import { Code, Home, Schema } from "../../shared/assets/icons"
+import { Code, Home, Schema } from "@shared/assets/icons"
 import clsx from "clsx"
 import { NavLink } from "react-router-dom"
-import { APP_ROUTES } from "../../shared/routes"
-import { UserContext } from "../../shared/context/UserContext"
-import ProfileSection from "./components/ProfileSection"
+import { APP_ROUTES } from "@shared/routes"
+import { UserContext } from "@shared/context"
+import { ProfileSection } from "./components"
 import { useLanguage } from "../../shared/hooks"
 
 const OptionsBar = () => {
