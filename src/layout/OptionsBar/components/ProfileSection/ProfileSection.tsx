@@ -1,9 +1,9 @@
 import { useContext, useState } from "react"
-import { SignOut, User } from "@shared/assets/icons"
-import { UserContext } from "@shared/context"
+import { SignOut, User } from "@modules/shared/assets/icons"
 import { Link } from "react-router-dom"
-import { APP_ROUTES } from "@shared/routes"
+import { APP_ROUTES } from "@modules/shared/routes"
 import { userServices } from "@modules/user/services"
+import { UserContext } from "@modules/user/context"
 
 const ProfileSection = () => {
   const { actualUser } = useContext(UserContext)

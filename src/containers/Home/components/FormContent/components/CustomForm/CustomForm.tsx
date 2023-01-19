@@ -1,6 +1,6 @@
 import Editor from "@monaco-editor/react"
 import { CustomDataType, DatasetField } from "@modules/datasets/interfaces/datasets.interface"
-import { LoaderContainer } from "@shared/components/Loader"
+import { LoaderContainer } from "@modules/shared/components/Loader"
 import { datasetServices } from "@modules/datasets/services"
 
 const CustomForm = ({ field }: { field: DatasetField<CustomDataType> }) => {

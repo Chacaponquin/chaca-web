@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
-import { useLazyQuery, useQuery } from "../../../shared/hooks"
-import { API_ROUTES } from "../../../shared/routes"
+import { useLazyQuery, useQuery } from "@modules/shared/hooks"
+import { API_ROUTES } from "@modules/shared/routes"
 import { ApiSection } from "../interfaces/apiSections.interface"
 
 export function useApi() {

@@ -1,4 +1,4 @@
-import { useLanguage } from "@shared/hooks"
+import { useLanguage } from "@modules/shared/hooks"
 import { ExportForm, ModalButtons, ModalTitle } from "../../shared/components"
 
 const ExportAllDatasetForm = ({

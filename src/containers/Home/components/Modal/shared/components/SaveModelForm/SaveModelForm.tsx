@@ -1,4 +1,4 @@
-import { DatasetsContext } from "@shared/context"
+import { DatasetsContext } from "@modules/datasets/context"
 import { useContext } from "react"
 import { FormContent, SaveModelInput } from "./components"
 
@@ -8,7 +8,7 @@ export default function SaveModelForm() {
   return (
     <div className='flex items-center flex-col'>
       <SaveModelInput />
-      {config.saveSchema && <FormContent />}
+      {config.saveSchema && <FormContent saveSchemaForm={config.saveSchema} />}
     </div>
   )
 }

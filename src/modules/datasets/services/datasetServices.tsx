@@ -3,7 +3,7 @@ import { useContext } from "react"
 import { DATASETS_ACTIONS } from "../constants"
 import { EmptyFieldNameError, RepeatDatasetNameError } from "../errors"
 import { DATA_TYPES } from "@modules/schemas/constants"
-import { AppConfigContext } from "@shared/context"
+import { AppConfigContext } from "@modules/shared/context"
 import { FieldInfoDTO } from "../dto/fieldInfo.dto"
 import { schemasServices } from "@modules/schemas/services"
 import { DatasetField, SingleValueDataType } from "../interfaces/datasets.interface"
@@ -169,6 +169,16 @@ export function datasetServices() {
     })
   }
 
+  const changeDocumentsLimit = (limit: number) => {
+    datasetDispatch({
+      type: DATASETS_ACTIONS.CHANGE_DATASET_LIMIT,
+      payload: {
+        datasetID: selectedDataset.id,
+        newLimit: limit,
+      },
+    })
+  }
+
   const changeFieldDataType = (fieldID: string, dataType: DATA_TYPES) => {
     if (dataType === DATA_TYPES.SINGLE_VALUE) {
       datasetDispatch({
@@ -221,5 +231,6 @@ export function datasetServices() {
     updateRefField,
     changeFieldDataType,
     updateCustomField,
+    changeDocumentsLimit,
   }
 }

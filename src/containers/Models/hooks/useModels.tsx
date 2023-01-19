@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { useQuery } from "@shared/hooks"
-import { API_ROUTES } from "@shared/routes"
+import { useQuery } from "@modules/shared/hooks"
+import { API_ROUTES } from "@modules/shared/routes"
 import { UserDatasetModel } from "../interfaces/models.interface"
 
 export function useModels() {

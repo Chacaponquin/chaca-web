@@ -1,10 +1,10 @@
 import { Fragment } from "react"
-import { Change, Delete } from "@shared/assets/icons"
+import { Change, Delete } from "@modules/shared/assets/icons"
 import { v4 as uuid } from "uuid"
-import { FieldNode } from "@shared/helpers/DatasetTree"
+import { FieldNode } from "@modules/shared/classes"
 import { FieldDataType } from "@modules/datasets/interfaces/datasets.interface"
-import { ChacaIconButton } from "@shared/components/ChacaButton"
-import { useLanguage } from "@shared/hooks"
+import { ChacaIconButton } from "@modules/shared/components/ChacaButton"
+import { useLanguage } from "@modules/shared/hooks"
 import { useFieldInfoHeader } from "./hooks"
 
 const FieldInfoHeader = ({ selectField }: { selectField: FieldNode<FieldDataType> }) => {

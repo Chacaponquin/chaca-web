@@ -1,6 +1,6 @@
 import { DatasetField, SingleValueDataType } from "@modules/datasets/interfaces/datasets.interface"
-import { Argument } from "@modules/schemas/interfaces/schema.interface"
-import ArgumentFilter from "@shared/components/ArgumentFilter/ArgumentFilter"
+import { Argument } from "@modules/schemas/interfaces/argument.interface"
+import ArgumentFilter from "@modules/shared/components/ArgumentFilter/ArgumentFilter"
 import { useFieldArgument } from "./hooks"
 
 export default function FieldArgumentContainer({

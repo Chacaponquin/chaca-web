@@ -1,4 +1,4 @@
-import { LoaderContainer } from "@shared/components/Loader"
+import { LoaderContainer } from "@modules/shared/components/Loader"
 import ProgessBar from "./components/ProgressBar"
 
 const CreationLoadingModal = ({ porcent }: { porcent: number }) => {

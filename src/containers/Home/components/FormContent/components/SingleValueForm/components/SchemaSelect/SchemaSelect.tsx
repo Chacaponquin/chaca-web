@@ -1,8 +1,8 @@
 import { useContext } from "react"
-import { AppConfigContext } from "@shared/context"
+import { AppConfigContext } from "@modules/shared/context"
 import { DatasetField, SingleValueDataType } from "@modules/datasets/interfaces/datasets.interface"
 import { ChacaSelect } from "@form"
-import { useLanguage } from "@shared/hooks"
+import { useLanguage } from "@modules/shared/hooks"
 import { useSchemaSelect } from "./hooks"
 
 const SchemaSelect = ({ field }: { field: DatasetField<SingleValueDataType> }) => {

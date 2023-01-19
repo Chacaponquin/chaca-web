@@ -1,11 +1,11 @@
 import { useContext } from "react"
 import { InputNumber } from "primereact/inputnumber"
-import { DatasetsContext } from "../../../../../../../modules/datasets/context/DatasetsContext"
+import { DatasetsContext } from "@modules/datasets/context/DatasetsContext"
 import clsx from "clsx"
-import { DATASETS_ACTIONS } from "../../../../../constants/ACTION_TYPES"
-import { UserContext } from "../../../../../../../shared/context/UserContext"
-import { AppConfigContext } from "../../../../../../../shared/context/AppConfigContext"
-import { useLanguage } from "../../../../../../../shared/hooks"
+import { UserContext } from "@modules/user/context/UserContext"
+import { useLanguage } from "@modules/shared/hooks"
+import { AppConfigContext } from "@modules/shared/context"
+import { datasetServices } from "@modules/datasets/services"
 
 const DatasetConfigMenu = ({
   handleAddDatasetField,
@@ -16,9 +16,10 @@ const DatasetConfigMenu = ({
   handleDeleteDataset: () => void
   handleExportDataset: () => void
 }) => {
-  const { selectedDataset, datasetDispatch, datasets } = useContext(DatasetsContext)
+  const { selectedDataset, datasets } = useContext(DatasetsContext)
   const { actualUser } = useContext(UserContext)
   const { noUserLimits } = useContext(AppConfigContext)
+  const { changeDocumentsLimit } = datasetServices()
 
   const UI_TEXT = useLanguage({
     DOCUMENTS_OPTION: { en: "Documents", es: "Documentos" },
@@ -26,6 +27,10 @@ const DatasetConfigMenu = ({
     DELETE_OPTION: { en: "Delete", es: "Borrar" },
     EXPORT_OPTION: { en: "Export", es: "Exportar" },
   })
+
+  const handleChangeDocumentsLimit = (limit: number) => {
+    changeDocumentsLimit(limit)
+  }
 
   const commonClass = (c: string) => {
     return clsx(
@@ -48,13 +53,7 @@ const DatasetConfigMenu = ({
           max={actualUser ? actualUser.limitDocuments : noUserLimits.LIMIT_DOCUMENTS}
           value={selectedDataset.limit}
           onChange={(e) => {
-            datasetDispatch({
-              type: DATASETS_ACTIONS.CHANGE_DATASET_LIMIT,
-              payload: {
-                datasetID: selectedDataset.id,
-                newLimit: e.value || selectedDataset.limit,
-              },
-            })
+            handleChangeDocumentsLimit(e.value || selectedDataset.limit)
           }}
         />
       </div>

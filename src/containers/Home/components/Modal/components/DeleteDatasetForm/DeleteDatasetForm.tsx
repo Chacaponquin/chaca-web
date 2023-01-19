@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { DatasetsContext } from "@modules/datasets/context"
-import { useLanguage } from "@shared/hooks"
+import { useLanguage } from "@modules/shared/hooks"
 import { ModalButtons, ModalTitle } from "../../shared/components"
 import { useDeleteDatasetForm } from "./hooks"
 

@@ -1,5 +1,5 @@
 import { ExportForm, ModalTitle, ModalButtons } from "../../shared/components"
-import { useLanguage } from "@shared/hooks"
+import { useLanguage } from "@modules/shared/hooks"
 
 const ExportSelectDatasetForm = ({
   handleCreateSelectDataset,

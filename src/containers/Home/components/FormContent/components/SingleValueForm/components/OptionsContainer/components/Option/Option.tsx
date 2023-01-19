@@ -1,9 +1,10 @@
 import { useState } from "react"
-import { Config } from "@shared/assets/icons"
+import { Config } from "@modules/shared/assets/icons"
 import { ChacaRadioButton } from "@form"
 import OptionArguments from "../OptionArguments/OptionArguments"
 import clsx from "clsx"
-import { SubOption, Argument } from "@modules/schemas/interfaces/schema.interface"
+import { Argument } from "@modules/schemas/interfaces/argument.interface"
+import { SubOption } from "@modules/schemas/interfaces/schema.interface"
 import { DatasetField, SingleValueDataType } from "@modules/datasets/interfaces/datasets.interface"
 
 interface OptionProps {

@@ -1,13 +1,12 @@
 import { useState } from "react"
-import { useLanguage } from "@shared/hooks"
-import { APP_ROUTES } from "@shared/routes"
-import { LoaderContainer } from "@shared/components/Loader"
+import { useLanguage } from "@modules/shared/hooks"
+import { APP_ROUTES } from "@modules/shared/routes"
+import { LoaderContainer } from "@modules/shared/components/Loader"
 import { Link } from "react-router-dom"
-import BgSVG from "@shared/components/CurveBg/BgSVG"
+import { CurveBg } from "@modules/shared/assets/background"
 import clsx from "clsx"
-import OtherOptionsSection from "../../shared/components/OtherOptionsSection"
-import { DataTransform } from "@shared/helpers/DataTransform"
-import { User, Private } from "@shared/assets/icons"
+import { OtherOptionsSection } from "../../shared/components"
+import { User, Private } from "@modules/shared/assets/icons"
 
 import "../../auth.css"
 import { useLogin } from "./hooks"
@@ -46,7 +45,7 @@ const Login = () => {
       <div className='w-full h-full grid lg:grid-cols-2 grid-cols-1 gap-3'>
         <div className='h-full lg:flex items-center hidden'>
           <div className='absolute top-0 left-0 h-screen -translate-x-[200px]'>
-            <BgSVG />
+            <CurveBg />
           </div>
 
           <img
@@ -124,7 +123,7 @@ const InputDiv = ({
       <input
         type={type}
         className={"w-full outline-none py-3 px-5"}
-        placeholder={DataTransform.titlePipe(type)}
+        placeholder={type}
         onChange={onChange}
         onBlur={() => setFocus(false)}
         onFocus={() => setFocus(true)}

@@ -1,4 +1,4 @@
-import { DatasetTree } from "@shared/helpers/DatasetTree/DatasetTree"
+import { DatasetTree } from "@modules/shared/classes"
 import { v4 as uuid } from "uuid"
 import FieldToRef from "../FieldToRef/FieldToRef"
 import { DatasetField, RefDataType } from "@modules/datasets/interfaces/datasets.interface"

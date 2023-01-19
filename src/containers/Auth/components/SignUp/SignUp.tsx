@@ -1,9 +1,9 @@
-import { useLanguage } from "@shared/hooks"
-import { APP_ROUTES } from "@shared/routes"
-import { LoaderContainer } from "@shared/components/Loader"
+import { useLanguage } from "@modules/shared/hooks"
+import { APP_ROUTES } from "@modules/shared/routes"
+import { LoaderContainer } from "@modules/shared/components/Loader"
 import { InputText } from "primereact/inputtext"
 import { Link } from "react-router-dom"
-import OtherOptionsSection from "../../shared/components/OtherOptionsSection"
+import { OtherOptionsSection } from "../../shared/components"
 import { useSignUp } from "./hooks"
 
 const SignUp = () => {

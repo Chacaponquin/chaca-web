@@ -2,7 +2,7 @@ import { Checkbox } from "primereact/checkbox"
 import { InputNumber } from "primereact/inputnumber"
 import { InputText } from "primereact/inputtext"
 import { Slider } from "primereact/slider"
-import { useLanguage } from "@shared/hooks"
+import { useLanguage } from "@modules/shared/hooks"
 import { FieldInfoDTO } from "@modules/datasets/dto/fieldInfo.dto"
 
 export interface FieldFormProps {

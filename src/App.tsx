@@ -1,10 +1,11 @@
 import { Fragment, useContext } from "react"
 import { Outlet, useLocation } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
-import { APP_ROUTES } from "./shared/routes"
-import { AppConfigContext, UserContext } from "./shared/context"
+import { APP_ROUTES } from "@modules/shared/routes"
 import { NavBar, OptionsBar } from "./layout"
-import { AppLoader } from "@shared/components/Loader"
+import { AppLoader } from "@modules/shared/components/Loader"
+import { AppConfigContext } from "@modules/shared/context"
+import { UserContext } from "@modules/user/context"
 
 function App() {
   const { loading } = useContext(UserContext)

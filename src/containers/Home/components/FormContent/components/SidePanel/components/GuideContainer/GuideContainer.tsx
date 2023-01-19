@@ -1,8 +1,8 @@
 import { useState } from "react"
 import Markdown from "markdown-to-jsx"
-import LoaderContainer from "@shared/components/Loader/LoaderContainer/LoaderContainer"
-import { useQuery } from "@shared/hooks"
-import ExampleCode from "@shared/components/ExampleCode/ExampleCode"
+import LoaderContainer from "@modules/shared/components/Loader/LoaderContainer/LoaderContainer"
+import { useQuery } from "@modules/shared/hooks"
+import ExampleCode from "@modules/shared/components/ExampleCode/ExampleCode"
 
 const GuideContainer = ({ route }: { route: string }) => {
   const [content, setContent] = useState("")

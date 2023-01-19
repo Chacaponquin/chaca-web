@@ -1,10 +1,10 @@
 import { MODAL_ACTIONS } from "@modules/modal/constants/MODAL_ACTIONS"
 import { useContext } from "react"
-import { DatasetsContext } from "@shared/context"
-import { ChacaSimpleButton } from "@shared/components/ChacaButton"
-import { useLanguage } from "@shared/hooks"
+import { DatasetsContext } from "@modules/datasets/context"
+import { ChacaSimpleButton } from "@modules/shared/components/ChacaButton"
+import { useLanguage } from "@modules/shared/hooks"
 import { ModalContext } from "@modules/modal/context"
-import { APP_IMAGES } from "@shared/constant"
+import { APP_IMAGES } from "@modules/shared/constant"
 
 const NoFieldsMessage = () => {
   const { selectedDataset } = useContext(DatasetsContext)

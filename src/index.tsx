@@ -14,12 +14,13 @@ import {
   Error404,
 } from "./containers"
 
-import UserProvider from "./shared/context/UserContext"
-import AppConfigProvider from "./shared/context/AppConfigContext"
-import NoUserRoute from "./shared/routes/protected/NoUserRoute"
+import { AppConfigProvider } from "@modules/shared/context"
+import { DatasetsProvider } from "@modules/datasets/context"
+import { UserProvider } from "@modules/user/context/UserContext"
+
+import { NoUserRoute, APP_ROUTES } from "@modules/shared/routes"
 
 import { ErrorBoundary } from "./layout"
-import { APP_ROUTES } from "./shared/routes/"
 
 import "react-toastify/dist/ReactToastify.css"
 import "./index.css"
@@ -27,7 +28,6 @@ import "./index.css"
 import "primereact/resources/themes/lara-light-indigo/theme.css"
 import "primereact/resources/primereact.min.css"
 import "primeicons/primeicons.css"
-import DatasetsProvider from "@modules/datasets/context/DatasetsContext"
 
 const root = ReactDOM.createRoot(document.getElementById("root")!)
 

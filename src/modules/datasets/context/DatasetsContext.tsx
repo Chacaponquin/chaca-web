@@ -11,13 +11,13 @@ import {
   useState,
 } from "react"
 import { DATASETS_ACTIONS } from "../constants"
-import { CONFIG_ACTIONS } from "../../../containers/Home/constants/ACTION_TYPES"
-import { ConfigPayload, configReducer } from "../../../containers/Home/helpers/configReducer"
+import { ConfigPayload, configReducer } from "@modules/config/reducer/configReducer"
 import { DatasetPayload, datasetsReducer } from "./reducer/datasetsReducer"
-import { FILE_TYPE } from "../../../shared/constant/FILE_TYPE"
-import { ConfigSchema } from "../../../shared/interfaces/config.iterface"
-import { AppConfigContext } from "../../../shared/context/AppConfigContext"
-import { DatasetTree, FieldNode } from "../../../shared/helpers/DatasetTree"
+import { FILE_TYPE } from "@modules/config/constants"
+import { ConfigSchema } from "@modules/config/interfaces/config.iterface"
+import { AppConfigContext } from "@modules/shared/context"
+import { DatasetTree, FieldNode } from "@modules/shared/classes"
+import { CONFIG_ACTIONS } from "@modules/config/constants"
 
 interface DatasetContext {
   datasets: DatasetTree[]

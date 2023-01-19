@@ -1,6 +1,6 @@
 import { datasetServices } from "@modules/datasets/services"
 import { DATA_TYPES } from "@modules/schemas/constants"
-import { FieldNode } from "@shared/helpers/DatasetTree"
+import { FieldNode } from "@modules/shared/classes"
 import clsx from "clsx"
 import { useCallback } from "react"
 

@@ -1,5 +1,5 @@
 import { Fragment } from "react"
-import { ArrowRight, Config } from "@shared/assets/icons"
+import { ArrowRight, Config } from "@modules/shared/assets/icons"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets.interface"
 import { FieldConfigMenu } from "./components"

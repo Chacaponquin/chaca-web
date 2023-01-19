@@ -2,9 +2,8 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@shared/*": ["src/shared/*"],
       "@containers/*": ["src/containers/*"],
-      "@form": ["src/shared/components/ChacaForm/components"],
+      "@form": ["src/modules/shared/components/ChacaForm/components"],
       "@modules/*": ["src/modules/*"]
     }
   }

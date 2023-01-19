@@ -2,7 +2,7 @@ import { DATASETS_ACTIONS } from "@modules/datasets/constants"
 import { DatasetsContext } from "@modules/datasets/context"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { ModalContext } from "@modules/modal/context"
-import { FieldNode } from "@shared/helpers/DatasetTree"
+import { FieldNode } from "@modules/shared/classes"
 import { useContext, useMemo } from "react"
 
 export function useFieldInfoHeader(selectField: FieldNode) {

@@ -1,4 +1,4 @@
-import { RouteContentLoader } from "@shared/components/Loader"
+import { RouteContentLoader } from "@modules/shared/components/Loader"
 import { ModelsFilter, SearchResult, SelectModelContent } from "./components"
 import { useModels } from "./hooks"
 

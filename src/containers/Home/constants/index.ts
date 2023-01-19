@@ -1,4 +1,3 @@
-import { CONFIG_ACTIONS } from "./ACTION_TYPES"
 import { SOCKET_EVENTS } from "./SOCKET_EVENTS"
 
-export { CONFIG_ACTIONS, SOCKET_EVENTS }
+export { SOCKET_EVENTS }

@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { Bars, Plus } from "@shared/assets/icons"
+import { Bars, Plus } from "@modules/shared/assets/icons"
 import { DatasetsContext } from "@modules/datasets/context"
 import { DatasetConfigMenu } from "./components"
 import { ChacaSelect } from "@form"

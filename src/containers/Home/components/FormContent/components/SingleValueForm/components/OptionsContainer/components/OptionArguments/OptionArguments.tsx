@@ -1,4 +1,4 @@
-import { Argument } from "@modules/schemas/interfaces/schema.interface"
+import { Argument } from "@modules/schemas/interfaces/argument.interface"
 import { DatasetField, SingleValueDataType } from "@modules/datasets/interfaces/datasets.interface"
 import { FieldArgumentContainer } from "./components"
 

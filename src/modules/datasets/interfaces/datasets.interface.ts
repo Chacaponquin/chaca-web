@@ -1,4 +1,4 @@
-import { DATA_TYPES } from "../../schemas/constants/DATA_TYPES"
+import { DATA_TYPES } from "../../schemas/constants"
 
 export interface Dataset {
   name: string

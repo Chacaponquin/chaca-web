@@ -3,9 +3,9 @@ import {
   FieldDataType,
   SingleValueDataType,
 } from "@modules/datasets/interfaces/datasets.interface"
-import { API_ROUTES } from "@shared/routes"
+import { API_ROUTES } from "@modules/shared/routes"
 import { GuideContainer, SidePanelHeader, SingleValueGuide } from "./components"
-import { useLanguage } from "@shared/hooks"
+import { useLanguage } from "@modules/shared/hooks"
 import { DATA_TYPES } from "@modules/schemas/constants"
 
 const SidePanel = ({ selectField }: { selectField: DatasetField<FieldDataType> }) => {

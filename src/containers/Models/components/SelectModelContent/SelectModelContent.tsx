@@ -1,5 +1,5 @@
 import { UserDatasetModel } from "@containers/Models/interfaces/models.interface"
-import ExampleCode from "@shared/components/ExampleCode/ExampleCode"
+import ExampleCode from "@modules/shared/components/ExampleCode/ExampleCode"
 import prettier from "prettier"
 import tsParser from "prettier/parser-typescript"
 import babelParser from "prettier/parser-babel"

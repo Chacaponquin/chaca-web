@@ -1,8 +1,8 @@
 import { FieldDataType } from "../../interfaces/datasets.interface"
 import { DATASETS_ACTIONS } from "../../constants"
 import { Reducer } from "react"
-import { DatasetTree, FieldNode } from "../../../../shared/helpers/DatasetTree"
-import { NodeInfo } from "@shared/interfaces/tree.interface"
+import { DatasetTree, FieldNode } from "@modules/shared/classes"
+import { NodeInfo } from "@modules/shared/interfaces/tree.interface"
 import { FieldInfoDTO } from "@modules/datasets/dto/fieldInfo.dto"
 
 export type DatasetPayload =

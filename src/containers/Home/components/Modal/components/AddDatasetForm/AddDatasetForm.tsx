@@ -1,5 +1,5 @@
 import { InputText } from "primereact/inputtext"
-import { useLanguage } from "@shared/hooks"
+import { useLanguage } from "@modules/shared/hooks"
 import { ModalButtons, ModalTitle } from "../../shared/components"
 import { useAddDatasetForm } from "./hooks/useAddDatasetForm"
 

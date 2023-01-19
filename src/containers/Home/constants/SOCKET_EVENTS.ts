@@ -4,4 +4,7 @@ export enum SOCKET_EVENTS {
   GET_PORCENT_TO_FINISH = "getPorcentToFinish",
   CREATION_ERROR = "creationError",
   DOCUMENT_CREATED = "documentCreated",
+  CONNECT = "connect",
+  DISCONNECT = "disconnect",
+  CONNECT_ERROR = "connect_error",
 }

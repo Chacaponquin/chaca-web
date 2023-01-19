@@ -1,5 +1,5 @@
 import { Fragment } from "react"
-import { RouteContentLoader, LoaderContainer } from "@shared/components/Loader"
+import { RouteContentLoader, LoaderContainer } from "@modules/shared/components/Loader"
 import { useApi } from "./hooks"
 import {
   ApiSections,

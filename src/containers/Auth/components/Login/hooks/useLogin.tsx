@@ -1,6 +1,6 @@
 import { userServices } from "@modules/user/services"
-import { usePost } from "@shared/hooks"
-import { API_ROUTES } from "@shared/routes"
+import { usePost } from "@modules/shared/hooks"
+import { API_ROUTES } from "@modules/shared/routes"
 import { useState } from "react"
 import { toast } from "react-toastify"
 

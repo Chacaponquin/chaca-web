@@ -1,22 +1,24 @@
 import { useContext, useMemo } from "react"
-import ArgumentFilter from "@shared/components/ArgumentFilter/ArgumentFilter"
-import { FILE_TYPE } from "@shared/constant"
-import { DatasetsContext, AppConfigContext } from "@shared/context"
-import { DataTransform } from "@shared/helpers/DataTransform"
-import { useLanguage } from "@shared/hooks"
-import { CONFIG_ACTIONS } from "@containers/Home/constants/ACTION_TYPES"
+import ArgumentFilter from "@modules/shared/components/ArgumentFilter/ArgumentFilter"
+import { useLanguage } from "@modules/shared/hooks"
 import SaveModelForm from "../SaveModelForm/SaveModelForm"
 import { ChacaSelect } from "@form"
+import { DatasetsContext } from "@modules/datasets/context"
+import { AppConfigContext } from "@modules/shared/context"
+import { FILE_TYPE } from "@modules/config/constants"
+import { configServices } from "@modules/config/services"
 
 const ExportForm = () => {
-  const { configDispatch, config } = useContext(DatasetsContext)
+  const { config } = useContext(DatasetsContext)
   const { fileConfig } = useContext(AppConfigContext)
+  const { changeFileArgument, changeFileType } = configServices()
 
   const handleChangeFileArgument = (argument: string, value: unknown) => {
-    configDispatch({
-      type: CONFIG_ACTIONS.CHANGE_FILE_ARGUMENTS,
-      payload: { field: argument, value },
-    })
+    changeFileArgument(argument, value)
+  }
+
+  const handleChangeFileType = (fileType: FILE_TYPE) => {
+    changeFileType(fileType)
   }
 
   const fileArguments = useMemo(() => {
@@ -42,12 +44,7 @@ const ExportForm = () => {
           valueKey={"fileType"}
           placeholder={"Select a file format"}
           onChange={(value) => {
-            configDispatch({
-              type: CONFIG_ACTIONS.CHANGE_FILE_TYPE,
-              payload: {
-                value: value as FILE_TYPE,
-              },
-            })
+            handleChangeFileType(value as FILE_TYPE)
           }}
           value={config.file.fileType}
         />
@@ -57,7 +54,7 @@ const ExportForm = () => {
         {fileArguments.map((a, i) => (
           <div className='flex items-center justify-between gap-2' key={i}>
             <label htmlFor='' className='font-fontBold text-lg whitespace-nowrap'>
-              {DataTransform.titlePipe(a.argument)}:
+              {a.argument}:
             </label>
             <ArgumentFilter
               arg={a}

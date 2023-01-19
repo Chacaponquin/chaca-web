@@ -1,4 +1,4 @@
-import { ARGUMENT_TYPE } from "../constants/ARGUMENT_TYPE"
+import { Argument } from "./argument.interface"
 
 export interface Schema {
   parent: string
@@ -13,11 +13,4 @@ export interface SubOption {
   exampleValue: unknown
   description: string
   route: string
-}
-
-export interface Argument {
-  argument: string
-  inputType: ARGUMENT_TYPE
-  selectValues?: string[]
-  description: string
 }

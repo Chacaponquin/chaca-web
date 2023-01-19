@@ -1,14 +1,13 @@
 import { InputText } from "primereact/inputtext"
 import { InputTextarea } from "primereact/inputtextarea"
 import React, { useState } from "react"
-import { usePost } from "../../shared/hooks/usePost"
-import { API_ROUTES } from "../../shared/routes/api/API_ROUTES"
-import LoaderContainer from "../../shared/components/Loader/LoaderContainer/LoaderContainer"
+import { usePost } from "@modules/shared/hooks"
+import { API_ROUTES, APP_ROUTES } from "@modules/shared/routes"
+import { LoaderContainer } from "@modules/shared/components/Loader"
 import { Link } from "react-router-dom"
-import { APP_ROUTES } from "../../shared/routes/app/APP_ROUTES"
-import { toast, ToastContainer } from "react-toastify"
-import { ChacaIconButton } from "../../shared/components/ChacaButton"
-import { Send } from "../../shared/assets/icons"
+import { toast } from "react-toastify"
+import { ChacaIconButton } from "@modules/shared/components/ChacaButton"
+import { Send } from "@modules/shared/assets/icons"
 
 const ContactUs = () => {
   const [contactForm, setContactForm] = useState({
@@ -38,13 +37,11 @@ const ContactUs = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(contactForm)
     createMessage({ body: contactForm })
   }
 
   return (
     <div className='flex justify-center items-center w-screen h-screen bg-third-bg bg-cover bg-no-repeat'>
-      <ToastContainer autoClose={5000} hideProgressBar={true} />
       {modalOpen && <SuccessModal />}
       <div className='bg-white rounded shadow-lg flex gap-10 px-5 py-10 esm:w-[95%] exsm:py-6'>
         <div className='flex flex-col gap-6 pl-10 w-[550px] lg:pr-0 pr-10 esm:w-full esm:pl-4 esm:pr-4'>
