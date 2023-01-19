@@ -4,7 +4,13 @@ import clsx from "clsx"
 import { ChacaSimpleButton } from "@shared/components/ChacaButton"
 import { UserDatasetModel } from "@containers/Models/interfaces/models.interface"
 
-export default function SearchResultCard({ model }: { model: UserDatasetModel }) {
+export default function SearchResultCard({
+  model,
+  handleSelectModel,
+}: {
+  model: UserDatasetModel
+  handleSelectModel: (id: string) => void
+}) {
   const [openCard, setOpenCard] = useState(false)
 
   const cardClass = clsx("flex flex-col rounded px-4 gap-1 border-2 border-solid", {
@@ -59,6 +65,7 @@ export default function SearchResultCard({ model }: { model: UserDatasetModel })
                 color='primary'
                 size='small'
                 text='See Model'
+                onClick={() => handleSelectModel(model._id)}
               />
 
               <ChacaSimpleButton

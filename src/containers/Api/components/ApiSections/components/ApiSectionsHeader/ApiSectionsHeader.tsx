@@ -1,4 +1,4 @@
-import { APP_IMAGES } from "../../../../../shared/constant"
+import { APP_IMAGES } from "../../../../../../shared/constant"
 
 export default function ApiSectionsHeader() {
   return (

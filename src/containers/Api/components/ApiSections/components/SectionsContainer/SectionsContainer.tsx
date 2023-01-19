@@ -1,6 +1,6 @@
-import SubSection from "./SubSection"
+import SubSection from "../SubSection/SubSection"
 import { v4 as uuid } from "uuid"
-import { ApiSection } from "../../../interfaces/apiSections.interface"
+import { ApiSection } from "../../../../interfaces/apiSections.interface"
 
 function SectionsContainer({
   sections,

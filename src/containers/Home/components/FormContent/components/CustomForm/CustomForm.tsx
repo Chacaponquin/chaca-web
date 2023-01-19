@@ -4,7 +4,7 @@ import {
   CustomDataType,
   DatasetField,
 } from "../../../../../../shared/interfaces/datasets.interface"
-import LoaderContainer from "../../../../../../shared/components/Loader/LoaderContainer"
+import LoaderContainer from "../../../../../../shared/components/Loader/LoaderContainer/LoaderContainer"
 import { DatasetsContext } from "../../../../../../shared/context/DatasetsContext"
 import { DATASETS_ACTIONS } from "../../../../constants/ACTION_TYPES"
 import { DATA_TYPES } from "../../../../../../shared/constant/DATA_TYPES"

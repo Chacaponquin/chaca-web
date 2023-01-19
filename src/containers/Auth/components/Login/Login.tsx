@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import { useLanguage, usePost } from "../../../../shared/hooks"
 import { API_ROUTES } from "../../../../shared/routes/api/API_ROUTES"
-import LoaderContainer from "../../../../shared/components/Loader/LoaderContainer"
+import LoaderContainer from "../../../../shared/components/Loader/LoaderContainer/LoaderContainer"
 import { toast } from "react-toastify"
 import { UserContext } from "../../../../shared/context/UserContext"
 import { Link } from "react-router-dom"

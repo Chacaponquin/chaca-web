@@ -1,5 +1,5 @@
-import ApiSearch from "./ApiSearch"
-import ApiSectionsHeader from "./ApiSectionsHeader"
-import SectionsContainer from "./SectionsContainer"
+import ApiSearch from "./ApiSearch/ApiSearch"
+import ApiSectionsHeader from "./ApiSectionsHeader/ApiSectionsHeader"
+import SectionsContainer from "./SectionsContainer/SectionsContainer"
 
 export { ApiSearch, ApiSectionsHeader, SectionsContainer }

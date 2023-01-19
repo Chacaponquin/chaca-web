@@ -1,4 +1,4 @@
-import { ApiSubSection } from "../../../interfaces/apiSections.interface"
+import { ApiSubSection } from "../../../../interfaces/apiSections.interface"
 import clsx from "clsx"
 
 export default function SubSection({

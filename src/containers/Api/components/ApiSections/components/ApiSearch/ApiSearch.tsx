@@ -1,4 +1,4 @@
-import { Search } from "../../../../../shared/assets/icons"
+import { Search } from "../../../../../../shared/assets/icons"
 
 export default function ApiSearch() {
   return (

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Markdown from "markdown-to-jsx"
-import LoaderContainer from "@shared/components/Loader/LoaderContainer"
+import LoaderContainer from "@shared/components/Loader/LoaderContainer/LoaderContainer"
 import { useQuery } from "@shared/hooks"
 import ExampleCode from "@shared/components/ExampleCode/ExampleCode"
 

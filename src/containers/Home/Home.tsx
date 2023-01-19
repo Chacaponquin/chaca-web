@@ -18,7 +18,7 @@ const Home = () => {
   } = useHome()
 
   return (
-    <div className='flex w-full h-screen'>
+    <div className='flex w-full h-full'>
       {createDataLoading && <CreationLoadingModal porcent={porcent} />}
 
       {openModal !== null && (

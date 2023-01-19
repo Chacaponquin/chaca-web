@@ -27,6 +27,7 @@ import "./index.css"
 import "primereact/resources/themes/lara-light-indigo/theme.css"
 import "primereact/resources/primereact.min.css"
 import "primeicons/primeicons.css"
+import DatasetsProvider from "@shared/context/DatasetsContext"
 
 const root = ReactDOM.createRoot(document.getElementById("root")!)
 
@@ -70,7 +71,9 @@ root.render(
       <ErrorBoundary>
         <AppConfigProvider>
           <UserProvider>
-            <AppCont />
+            <DatasetsProvider>
+              <AppCont />
+            </DatasetsProvider>
           </UserProvider>
         </AppConfigProvider>
       </ErrorBoundary>

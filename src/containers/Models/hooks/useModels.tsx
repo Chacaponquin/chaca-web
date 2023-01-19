@@ -18,5 +18,11 @@ export function useModels() {
     },
   })
 
-  return { userModels, loading, error, selectModel }
+  const handleSelectModel = (id: string) => {
+    const foundModel = userModels.find((m) => m._id === id)
+
+    if (foundModel) setSelectModel(foundModel)
+  }
+
+  return { userModels, loading, error, selectModel, handleSelectModel }
 }

@@ -1,15 +1,18 @@
+import { RouteContentLoader } from "@shared/components/Loader"
 import { ModelsFilter, SearchResult, SelectModelContent } from "./components"
 import { useModels } from "./hooks"
 
 const Models = () => {
-  const { userModels, loading, error, selectModel } = useModels()
+  const { userModels, loading, error, selectModel, handleSelectModel } = useModels()
 
   return (
-    <div className='w-full flex h-screen'>
-      <ModelsFilter />
-      <SearchResult models={userModels} />
-      <SelectModelContent selectModel={selectModel} />
-    </div>
+    <RouteContentLoader loading={loading}>
+      <div className='w-full flex h-screen'>
+        <ModelsFilter />
+        <SearchResult models={userModels} handleSelectModel={handleSelectModel} />
+        <SelectModelContent selectModel={selectModel} />
+      </div>
+    </RouteContentLoader>
   )
 }
 

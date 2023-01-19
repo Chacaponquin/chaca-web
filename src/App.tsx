@@ -1,26 +1,10 @@
 import { Fragment, useContext } from "react"
 import { Outlet, useLocation } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
-import DatasetsProvider from "./shared/context/DatasetsContext"
-import { APP_ROUTES } from "./shared/routes/app/APP_ROUTES"
-import LoaderContainer from "./shared/components/Loader/LoaderContainer"
-import { UserContext } from "./shared/context/UserContext"
-import { AppConfigContext } from "./shared/context/AppConfigContext"
+import { APP_ROUTES } from "./shared/routes"
+import { AppConfigContext, UserContext } from "./shared/context"
 import { NavBar, OptionsBar } from "./layout"
-
-const AppLoader = ({ loading, children }: { loading: boolean; children: JSX.Element }) => {
-  return (
-    <Fragment>
-      {loading ? (
-        <div className='w-screen overflow-hidden h-screen flex justify-center items-center'>
-          <LoaderContainer className={"w-[200px] esm:w-[120px]"} loading={loading} />
-        </div>
-      ) : (
-        children
-      )}
-    </Fragment>
-  )
-}
+import { AppLoader } from "@shared/components/Loader"
 
 function App() {
   const { loading } = useContext(UserContext)
@@ -30,17 +14,17 @@ function App() {
 
   return (
     <AppLoader loading={initialFetchLoading || loading}>
-      <DatasetsProvider>
-        <Fragment>
-          <ToastContainer autoClose={5000} hideProgressBar={true} />
+      <Fragment>
+        <ToastContainer autoClose={5000} hideProgressBar={true} />
 
-          <div className='flex'>
-            {location.pathname !== APP_ROUTES.ROOT ? <OptionsBar /> : <NavBar />}
+        <div className='flex w-full min-h-screen h-screen'>
+          {location.pathname !== APP_ROUTES.ROOT ? <OptionsBar /> : <NavBar />}
 
+          <div className='w-full h-full'>
             <Outlet />
           </div>
-        </Fragment>
-      </DatasetsProvider>
+        </div>
+      </Fragment>
     </AppLoader>
   )
 }
