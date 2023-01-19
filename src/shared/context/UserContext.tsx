@@ -9,14 +9,10 @@ import { useConfig } from "../hooks"
 
 const UserContext = createContext<{
   actualUser: LoginUser | null
-  handleSignIn: (token: string) => void
-  handleSignOut: () => void
   loading: boolean
   socket: Socket
 }>({
   actualUser: null,
-  handleSignIn: () => {},
-  handleSignOut: () => {},
   loading: true,
   socket: null!,
 })
@@ -25,11 +21,6 @@ const UserProvider = ({ children }: { children: ReactElement }) => {
   const [actualUser, setActualUser] = useState<LoginUser | null>(null)
 
   const { getTokenCookie } = useConfig()
-
-  const handleSignIn = (token: string) => {
-    localStorage.setItem("token", token)
-    window.location.reload()
-  }
 
   const socket = useMemo(
     () =>
@@ -62,16 +53,9 @@ const UserProvider = ({ children }: { children: ReactElement }) => {
     },
   })
 
-  const handleSignOut = () => {
-    localStorage.removeItem("token")
-    window.location.reload()
-  }
-
   const data = {
-    handleSignIn,
     actualUser,
     loading,
-    handleSignOut,
     socket,
   }
 

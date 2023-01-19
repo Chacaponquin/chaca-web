@@ -1,21 +1,12 @@
-import { useContext, useState } from "react"
-import { useLanguage, usePost } from "../../../../shared/hooks"
-import { API_ROUTES, APP_ROUTES } from "../../../../shared/routes"
-import LoaderContainer from "../../../../shared/components/Loader/LoaderContainer/LoaderContainer"
-import { toast } from "react-toastify"
-import { UserContext } from "../../../../shared/context/UserContext"
+import { useLanguage } from "@shared/hooks"
+import { APP_ROUTES } from "@shared/routes"
+import { LoaderContainer } from "@shared/components/Loader"
 import { InputText } from "primereact/inputtext"
 import { Link } from "react-router-dom"
 import OtherOptionsSection from "../../shared/components/OtherOptionsSection"
+import { useSignUp } from "./hooks"
 
 const SignUp = () => {
-  const [signUpData, setSignUpData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    comfirmPassword: "",
-  })
-
   const {
     COMPLETE_FORM_TEXT,
     LOGIN_TEXT,
@@ -39,32 +30,7 @@ const SignUp = () => {
     COMFIRM_PASSWORD_TEXT: { en: "Comfirm Password", es: "Confirma tu contraseña" },
   })
 
-  const { handleSignIn } = useContext(UserContext)
-
-  const [signUpUser, { loading }] = usePost<string>({
-    url: API_ROUTES.AUTH_ROUTES.SIGN_UP,
-    onCompleted: (userToken) => {
-      handleSignIn(userToken)
-    },
-    onError: (error) => {
-      const errorObject = error?.response?.data as any
-      if (errorObject) toast.error(errorObject.error)
-      else toast.error("Hubo un error en la creacion del usuario")
-    },
-    body: signUpData,
-  })
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (signUpData.password === signUpData.comfirmPassword) {
-      signUpUser()
-    } else throw toast.error("No coinciden las contraseñas", {})
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSignUpData({ ...signUpData, [e.target.name]: e.target.value })
-  }
+  const { handleChange, handleSubmit, loading } = useSignUp()
 
   const inputClass = "py-2 px-5 font-fontRegular text-base esm:px-3 esm:py-1 esm:text-sm"
   const labelClass = "text-lg font-fontBold"

@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom"
 import { APP_ROUTES } from "@shared/routes"
 import { UserContext } from "@shared/context"
 import { ProfileSection } from "./components"
-import { useLanguage } from "../../shared/hooks"
+import { useLanguage } from "@shared/hooks"
 
 const OptionsBar = () => {
   const { actualUser } = useContext(UserContext)

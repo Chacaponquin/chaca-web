@@ -1,21 +1,19 @@
-import { useContext, useState } from "react"
-import { useLanguage, usePost } from "../../../../shared/hooks"
-import { API_ROUTES } from "../../../../shared/routes/api/API_ROUTES"
-import LoaderContainer from "../../../../shared/components/Loader/LoaderContainer/LoaderContainer"
-import { toast } from "react-toastify"
-import { UserContext } from "../../../../shared/context/UserContext"
+import { useState } from "react"
+import { useLanguage } from "@shared/hooks"
+import { APP_ROUTES } from "@shared/routes"
+import { LoaderContainer } from "@shared/components/Loader"
 import { Link } from "react-router-dom"
-import { APP_ROUTES } from "../../../../shared/routes/app/APP_ROUTES"
-import BgSVG from "../../../../shared/components/CurveBg/BgSVG"
+import BgSVG from "@shared/components/CurveBg/BgSVG"
 import clsx from "clsx"
 import OtherOptionsSection from "../../shared/components/OtherOptionsSection"
-import { DataTransform } from "../../../../shared/helpers/DataTransform"
-import { User, Private } from "../../../../shared/assets/icons"
+import { DataTransform } from "@shared/helpers/DataTransform"
+import { User, Private } from "@shared/assets/icons"
 
 import "../../auth.css"
+import { useLogin } from "./hooks"
 
 const Login = () => {
-  const { handleSignIn } = useContext(UserContext)
+  const { handleChange, handleSubmit, loading } = useLogin()
 
   const {
     NEW_USER_TEXT,
@@ -35,28 +33,6 @@ const Login = () => {
 
   const buttonClass =
     "rounded-full flex justify-center items-center py-4 esm:py-3 w-[330px] esm:w-[280px] esm:text-lg text-xl font-fontBold uppercase transition-all duration-300 whitespace-nowrap hover:opacity-70"
-
-  const [loginData, setLoginData] = useState({
-    email: "",
-    password: "",
-  })
-
-  const [loginUser, { loading }] = usePost<string>({
-    url: API_ROUTES.AUTH_ROUTES.LOGIN,
-    onError: (error) => {
-      const errorMessage = error.response?.data as any
-      toast.error(errorMessage.error || "Hubo un error")
-    },
-    onCompleted: (token) => handleSignIn(token),
-  })
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setLoginData({ ...loginData, [e.target.name]: e.target.value })
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    loginUser({ body: loginData })
-  }
 
   return (
     <div className='w-full h-screen flex flex-col py-8 px-20 esm:px-5'>

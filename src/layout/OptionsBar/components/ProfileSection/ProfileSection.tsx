@@ -1,8 +1,9 @@
 import { useContext, useState } from "react"
-import { SignOut, User } from "../../../shared/assets/icons"
-import { UserContext } from "../../../shared/context/UserContext"
+import { SignOut, User } from "@shared/assets/icons"
+import { UserContext } from "@shared/context"
 import { Link } from "react-router-dom"
-import { APP_ROUTES } from "../../../shared/routes/app/APP_ROUTES"
+import { APP_ROUTES } from "@shared/routes"
+import { userServices } from "@modules/user/services"
 
 const ProfileSection = () => {
   const { actualUser } = useContext(UserContext)
@@ -42,7 +43,7 @@ const ProfileSection = () => {
 }
 
 const ProfileMenu = () => {
-  const { handleSignOut } = useContext(UserContext)
+  const { handleSignOut } = userServices()
 
   return (
     <div className='rounded-sm flex flex-col bg-white absolute shadow-md translate-x-20 -translate-y-5'>

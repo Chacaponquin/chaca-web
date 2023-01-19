@@ -5,6 +5,7 @@ module.exports = {
       "@shared": path.resolve(__dirname, "src/shared"),
       "@containers": path.resolve(__dirname, "src/containers"),
       "@form": path.resolve(__dirname, "src/shared/components/ChacaForm/components/index.ts"),
+      "@modules": path.resolve(__dirname, "src/modules"),
     },
   },
 }

@@ -1,3 +1,3 @@
-import ProfileSection from "./ProfileSection"
+import ProfileSection from "./ProfileSection/ProfileSection"
 
 export { ProfileSection }
