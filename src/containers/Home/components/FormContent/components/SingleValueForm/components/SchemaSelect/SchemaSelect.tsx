@@ -1,35 +1,14 @@
 import { useContext } from "react"
-import { DATA_TYPES } from "@shared/constant"
-import { AppConfigContext, DatasetsContext } from "@shared/context"
-import { DatasetField, SingleValueDataType } from "@shared/interfaces/datasets.interface"
-import { DATASETS_ACTIONS } from "@containers/Home/constants"
-import { useUtils } from "@containers/Home/hooks"
+import { AppConfigContext } from "@shared/context"
+import { DatasetField, SingleValueDataType } from "@modules/datasets/interfaces/datasets.interface"
 import { ChacaSelect } from "@form"
 import { useLanguage } from "@shared/hooks"
+import { useSchemaSelect } from "./hooks"
 
 const SchemaSelect = ({ field }: { field: DatasetField<SingleValueDataType> }) => {
-  const { schemas } = useContext(AppConfigContext)
-  const { datasetDispatch, selectedDataset } = useContext(DatasetsContext)
-  const { findParent } = useUtils()
   const { SCHEMA_TEXT } = useLanguage({ SCHEMA_TEXT: { en: "Schema", es: "Esquema" } })
-
-  const handleSelectSchema = (parent: string) => {
-    datasetDispatch({
-      type: DATASETS_ACTIONS.CHANGE_FIELD_DATATYPE,
-      payload: {
-        datasetID: selectedDataset.id,
-        fieldID: field.id,
-        dataType: {
-          type: DATA_TYPES.SINGLE_VALUE,
-          fieldType: {
-            args: {},
-            parent: parent,
-            type: findParent(parent).options[0].name,
-          },
-        },
-      },
-    })
-  }
+  const { schemas } = useContext(AppConfigContext)
+  const { handleSelectSchema } = useSchemaSelect(field)
 
   return (
     <div className='flex px-5'>

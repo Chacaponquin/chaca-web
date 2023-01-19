@@ -1,8 +1,8 @@
+import { FieldInfoDTO } from "@modules/datasets/dto/fieldInfo.dto"
 import { useState } from "react"
-import { DatasetField } from "../../../../../../shared/interfaces/datasets.interface"
 
-export const useFieldForm = (f: DatasetField) => {
-  const [field, setField] = useState<DatasetField>(f)
+export const useFieldForm = (f: FieldInfoDTO) => {
+  const [field, setField] = useState<FieldInfoDTO>(f)
 
   const handleChangeName = (name: string) => {
     setField({ ...field, name })

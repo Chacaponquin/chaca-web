@@ -1,12 +1,12 @@
-import { DATA_TYPES } from "@shared/constant"
 import {
   DatasetField,
   FieldDataType,
   SingleValueDataType,
-} from "@shared/interfaces/datasets.interface"
+} from "@modules/datasets/interfaces/datasets.interface"
 import { API_ROUTES } from "@shared/routes"
 import { GuideContainer, SidePanelHeader, SingleValueGuide } from "./components"
 import { useLanguage } from "@shared/hooks"
+import { DATA_TYPES } from "@modules/schemas/constants"
 
 const SidePanel = ({ selectField }: { selectField: DatasetField<FieldDataType> }) => {
   const { HEADER_TEXT } = useLanguage({ HEADER_TEXT: { en: "Documentation", es: "Documentación" } })

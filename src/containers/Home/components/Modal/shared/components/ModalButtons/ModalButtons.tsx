@@ -1,17 +1,19 @@
-import { ChacaSimpleButton } from "../../../../../../../shared/components/ChacaButton"
-import { useLanguage } from "../../../../../../../shared/hooks"
+import { ModalContext } from "@modules/modal/context"
+import { ChacaSimpleButton } from "@shared/components/ChacaButton"
+import { useLanguage } from "@shared/hooks"
+import { useContext } from "react"
 
 const ModalButtons = ({
   nextText,
-  handleCancel,
   handleNext,
   type,
 }: {
   handleNext: () => void
-  handleCancel: () => void
   nextText: string
   type: "delete" | "edit"
 }) => {
+  const { handleCloseModal } = useContext(ModalContext)
+
   const { CANCEL_TEXT } = useLanguage({ CANCEL_TEXT: { en: "Cancel", es: "Cancelar" } })
 
   return (
@@ -31,7 +33,7 @@ const ModalButtons = ({
           color='cancel'
           size='extra-large'
           text={CANCEL_TEXT}
-          onClick={handleCancel}
+          onClick={handleCloseModal}
           className='w-full text-center flex justify-center !rounded'
         />
       </div>

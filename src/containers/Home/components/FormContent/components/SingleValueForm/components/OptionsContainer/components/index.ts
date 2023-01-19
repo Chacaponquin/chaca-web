@@ -1,3 +1,3 @@
-import Option from "./Option"
+import Option from "./Option/Option"
 
 export { Option }

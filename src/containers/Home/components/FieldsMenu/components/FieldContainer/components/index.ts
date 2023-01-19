@@ -1,3 +1,3 @@
-import FieldConfigMenu from "./FieldConfigMenu"
+import FieldConfigMenu from "./FieldConfigMenu/FieldConfigMenu"
 
 export { FieldConfigMenu }

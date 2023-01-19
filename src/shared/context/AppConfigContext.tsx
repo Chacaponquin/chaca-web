@@ -5,7 +5,7 @@ import { InitialFetchError } from "../errors/errors"
 import { useConfig } from "../hooks"
 import { FileConfigOption, NoUserLimits } from "../interfaces/config.iterface"
 import { Languages } from "../interfaces/language.interface"
-import { Schema } from "../interfaces/options.interface"
+import { Schema } from "@modules/schemas/interfaces/schema.interface"
 import { API_ROUTES } from "../routes/"
 
 const AppConfigContext = createContext<{

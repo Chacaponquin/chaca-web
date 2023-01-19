@@ -1,13 +1,10 @@
 import { useContext } from "react"
-import { DATA_TYPES } from "@shared/constant"
 import {
   CustomDataType,
   DatasetField,
   RefDataType,
   SingleValueDataType,
-} from "@shared/interfaces/datasets.interface"
-import { DatasetsContext } from "@shared/context"
-import { ModalProps } from "@containers/Home/interfaces/modal.interface"
+} from "@modules/datasets/interfaces/datasets.interface"
 import {
   CustomForm,
   DataTypeSelect,
@@ -17,15 +14,15 @@ import {
   SingleValueForm,
   NoSelectFieldMessage,
 } from "./components"
+import { DatasetsContext } from "@modules/datasets/context"
+import { DATA_TYPES } from "@modules/schemas/constants"
 
-const FormContent = ({ handleOpenModal }: { handleOpenModal: (props: ModalProps) => void }) => {
+const FormContent = () => {
   const { selectField } = useContext(DatasetsContext)
 
   return (
     <div className='flex flex-col w-full h-screen'>
-      {selectField !== null && (
-        <FieldInfoHeader handleOpenModal={handleOpenModal} selectField={selectField} />
-      )}
+      {selectField !== null && <FieldInfoHeader selectField={selectField} />}
 
       <div className='w-full flex form-content'>
         <div className='w-full h-full overflow-y-auto flex justify-center'>
@@ -34,7 +31,7 @@ const FormContent = ({ handleOpenModal }: { handleOpenModal: (props: ModalProps)
               <NoSelectFieldMessage />
             ) : (
               <div className='w-full flex flex-col items-center gap-2'>
-                <DataTypeSelect />
+                <DataTypeSelect selectField={selectField} />
 
                 <div className='flex flex-col items-center w-full px-12'>
                   {selectField.info.dataType.type === DATA_TYPES.SINGLE_VALUE && (

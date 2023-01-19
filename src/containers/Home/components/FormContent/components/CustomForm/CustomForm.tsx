@@ -1,29 +1,13 @@
-import { useContext } from "react"
 import Editor from "@monaco-editor/react"
-import {
-  CustomDataType,
-  DatasetField,
-} from "../../../../../../shared/interfaces/datasets.interface"
-import LoaderContainer from "../../../../../../shared/components/Loader/LoaderContainer/LoaderContainer"
-import { DatasetsContext } from "../../../../../../shared/context/DatasetsContext"
-import { DATASETS_ACTIONS } from "../../../../constants/ACTION_TYPES"
-import { DATA_TYPES } from "../../../../../../shared/constant/DATA_TYPES"
+import { CustomDataType, DatasetField } from "@modules/datasets/interfaces/datasets.interface"
+import { LoaderContainer } from "@shared/components/Loader"
+import { datasetServices } from "@modules/datasets/services"
 
 const CustomForm = ({ field }: { field: DatasetField<CustomDataType> }) => {
-  const { datasetDispatch, selectedDataset } = useContext(DatasetsContext)
+  const { updateCustomField } = datasetServices()
 
   const handleChange = (c: string | undefined) => {
-    datasetDispatch({
-      type: DATASETS_ACTIONS.CHANGE_FIELD_DATATYPE,
-      payload: {
-        datasetID: selectedDataset.id,
-        fieldID: field.id,
-        dataType: {
-          type: DATA_TYPES.CUSTOM,
-          code: c || field.dataType.code,
-        },
-      },
-    })
+    updateCustomField(field.id, c || field.dataType.code)
   }
 
   return (

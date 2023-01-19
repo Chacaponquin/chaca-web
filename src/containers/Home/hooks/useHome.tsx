@@ -1,31 +1,18 @@
 import { useContext, useEffect, useState } from "react"
-import { DatasetsContext } from "../../../shared/context/DatasetsContext"
-import { UserContext } from "../../../shared/context/UserContext"
+import { UserContext, AppConfigContext, DatasetsContext } from "../../../shared/context"
 import { toast } from "react-toastify"
-import { ModalProps } from "../interfaces/modal.interface"
 import { SOCKET_EVENTS } from "../constants/SOCKET_EVENTS"
 import { CONFIG_ACTIONS } from "../constants/ACTION_TYPES"
-import { AppConfigContext } from "../../../shared/context/AppConfigContext"
 
 export const useHome = () => {
   const { datasets, config, selectedDataset, configDispatch } = useContext(DatasetsContext)
   const { socket } = useContext(UserContext)
   const { fileConfig } = useContext(AppConfigContext)
 
-  const [openModal, setOpenModal] = useState<null | ModalProps>(null)
-
   const [createDataLoading, setCreateDataLoading] = useState(false)
 
   // porciento de completado de la creacion de los datasets
   const [porcent, setPorcent] = useState(0)
-
-  const handleOpenModal = (props: ModalProps) => {
-    setOpenModal(props)
-  }
-
-  const handleCloseModal = () => {
-    setOpenModal(null)
-  }
 
   useEffect(() => {
     socket.on(SOCKET_EVENTS.GET_FILE_URL, (downUrl) => {
@@ -86,9 +73,6 @@ export const useHome = () => {
   }
 
   return {
-    openModal,
-    handleOpenModal,
-    handleCloseModal,
     porcent,
     handleCreateSelectDataset,
     handleCreateAllDatasets,

@@ -1,11 +1,9 @@
-import { useContext, Fragment, useState } from "react"
+import { Fragment } from "react"
 import { ArrowRight, Config } from "@shared/assets/icons"
-import { DATA_TYPES } from "@shared/constant/DATA_TYPES"
-import { DatasetField, FieldDataType } from "@shared/interfaces/datasets.interface"
-import clsx from "clsx"
-import { DatasetsContext } from "@shared/context"
+import { DATA_TYPES } from "@modules/schemas/constants"
+import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets.interface"
 import { FieldConfigMenu } from "./components"
-import { ModalProps } from "@containers/Home/interfaces/modal.interface"
+import { useFieldContainer } from "./hooks"
 
 const Point = () => {
   return <div className='bg-principal-bg w-[7px] h-[7px] rounded-full'></div>
@@ -14,43 +12,30 @@ const Point = () => {
 const FieldContainer = ({
   margin,
   field,
-  handleOpenModal,
 }: {
   field: DatasetField<FieldDataType>
   margin: number
-  handleOpenModal: (props: ModalProps) => void
 }) => {
-  const { selectField, handleSelectField, selectedDataset } = useContext(DatasetsContext)
-
-  const [openMenu, setOpenMenu] = useState(false)
-
-  const [subFieldsOpen, setSubFieldsOpen] = useState(false)
-
-  const divClass = () => {
-    return clsx(
-      "w-full flex items-center cursor-pointer justify-between py-1 transition-all duration-300 hover:bg-slate-100 px-2",
-      {
-        "bg-slate-100": selectField && selectField.id === field.id,
-      },
-    )
-  }
-
-  const handleSelect = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    e.stopPropagation()
-    if (!(field.dataType.type === DATA_TYPES.MIXED)) handleSelectField(selectedDataset.id, field.id)
-  }
+  const {
+    divClass,
+    handleSelect,
+    subFieldsOpen,
+    openMenu,
+    handleInteractSubFields,
+    handleInteractOpenMenu,
+  } = useFieldContainer(field)
 
   return (
     <div className='flex flex-col w-full' onClick={handleSelect}>
       <div className={"flex items-center justify-between"} style={{ paddingLeft: `${margin}px` }}>
-        <div className={divClass()}>
+        <div className={divClass}>
           <div className='flex items-center'>
             {field.dataType.type === DATA_TYPES.MIXED ? (
               <button
                 style={{
                   transform: subFieldsOpen ? "rotate(90deg)" : "rotate(0deg)",
                 }}
-                onClick={() => setSubFieldsOpen(!subFieldsOpen)}
+                onClick={handleInteractSubFields}
               >
                 <ArrowRight size={18} />
               </button>
@@ -64,14 +49,9 @@ const FieldContainer = ({
           </div>
 
           <div className='flex flex-col'>
-            <button
-              onClick={(e) => {
-                e.stopPropagation()
-                setOpenMenu(!openMenu)
-              }}
-            >
+            <button onClick={handleInteractOpenMenu}>
               <Config size={18} />
-              {openMenu && <FieldConfigMenu handleOpenModal={handleOpenModal} field={field} />}
+              {openMenu && <FieldConfigMenu field={field} />}
             </button>
           </div>
         </div>
@@ -80,12 +60,7 @@ const FieldContainer = ({
       {field.dataType.type === DATA_TYPES.MIXED && subFieldsOpen && (
         <Fragment>
           {field.dataType.object.map((s) => (
-            <FieldContainer
-              field={s}
-              margin={margin + 12}
-              key={s.id}
-              handleOpenModal={handleOpenModal}
-            />
+            <FieldContainer field={s} margin={margin + 12} key={s.id} />
           ))}
         </Fragment>
       )}

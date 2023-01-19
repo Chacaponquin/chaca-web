@@ -1,9 +1,9 @@
-import { DatasetField, SingleValueDataType } from "@shared/interfaces/datasets.interface"
+import { DatasetField, SingleValueDataType } from "@modules/datasets/interfaces/datasets.interface"
+import { schemasServices } from "@modules/schemas/services"
 import { OptionsContainer, SchemaSelect } from "./components"
-import { useUtils } from "@containers/Home/hooks/useUtils"
 
 const SingleValueForm = ({ field }: { field: DatasetField<SingleValueDataType> }) => {
-  const { findParent } = useUtils()
+  const { findParent } = schemasServices()
 
   return (
     <div className='flex w-full h-full flex-col bg-white gap-3'>

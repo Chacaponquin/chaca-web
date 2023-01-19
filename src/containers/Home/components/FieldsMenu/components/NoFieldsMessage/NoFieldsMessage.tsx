@@ -1,12 +1,14 @@
-import { MODAL_ACTIONS } from "@containers/Home/constants/MODAL_ACTIONS"
-import { ModalProps } from "@containers/Home/interfaces/modal.interface"
+import { MODAL_ACTIONS } from "@modules/modal/constants/MODAL_ACTIONS"
 import { useContext } from "react"
 import { DatasetsContext } from "@shared/context"
 import { ChacaSimpleButton } from "@shared/components/ChacaButton"
 import { useLanguage } from "@shared/hooks"
+import { ModalContext } from "@modules/modal/context"
+import { APP_IMAGES } from "@shared/constant"
 
-const NoFieldsMessage = ({ handleOpenModal }: { handleOpenModal: (a: ModalProps) => void }) => {
+const NoFieldsMessage = () => {
   const { selectedDataset } = useContext(DatasetsContext)
+  const { handleOpenModal } = useContext(ModalContext)
 
   const UI_TEXT = useLanguage({
     ADD_FIELD_TEXT: { en: "Add Field", es: "Nuevo Campo" },
@@ -22,7 +24,11 @@ const NoFieldsMessage = ({ handleOpenModal }: { handleOpenModal: (a: ModalProps)
 
   return (
     <div className='flex justify-center flex-col items-center'>
-      <img src='./images/Bored.svg' alt='empty-fields' className='w-[200px] my-5' />
+      <img
+        src={APP_IMAGES.EMPTY_FIELDS.image}
+        alt={APP_IMAGES.EMPTY_FIELDS.alt}
+        className='w-[200px] my-5'
+      />
       <p className='text-xl text-slate-500 font-fontBold'>{UI_TEXT.NO_FIELDS_TEXT}</p>
 
       <ChacaSimpleButton

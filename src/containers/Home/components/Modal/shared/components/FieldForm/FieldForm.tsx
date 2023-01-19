@@ -3,10 +3,10 @@ import { InputNumber } from "primereact/inputnumber"
 import { InputText } from "primereact/inputtext"
 import { Slider } from "primereact/slider"
 import { useLanguage } from "@shared/hooks"
-import { DatasetField } from "@shared/interfaces/datasets.interface"
+import { FieldInfoDTO } from "@modules/datasets/dto/fieldInfo.dto"
 
 export interface FieldFormProps {
-  field: DatasetField
+  field: FieldInfoDTO
   handleChangeName: (n: string) => void
   handleChangeIsArray: (v: boolean) => void
   handleChangeMinIsArray: (m: number | null) => void

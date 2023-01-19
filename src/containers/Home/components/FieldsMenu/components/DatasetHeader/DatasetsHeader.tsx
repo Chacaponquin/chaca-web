@@ -1,41 +1,20 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { Bars, Plus } from "@shared/assets/icons"
-import { DatasetsContext } from "@shared/context"
+import { DatasetsContext } from "@modules/datasets/context"
 import { DatasetConfigMenu } from "./components"
-import { ModalProps } from "@containers/Home/interfaces/modal.interface"
-import { MODAL_ACTIONS } from "@containers/Home/constants/MODAL_ACTIONS"
 import { ChacaSelect } from "@form"
+import { useDatasetsHeader } from "./hooks"
 
-const DatasetsHeader = ({ handleOpenModal }: { handleOpenModal: (props: ModalProps) => void }) => {
-  const [openConfig, setOpenConfig] = useState(false)
-
-  const { datasets, handleSelectDataset, selectedDataset } = useContext(DatasetsContext)
-
-  const handleNewDataset = () => {
-    handleOpenModal({ type: MODAL_ACTIONS.ADD_DATASET })
-    setOpenConfig(false)
-  }
-
-  const handleAddDatasetField = () => {
-    handleOpenModal({
-      type: MODAL_ACTIONS.ADD_FIELD,
-      parentFieldID: selectedDataset.id,
-    })
-    setOpenConfig(false)
-  }
-
-  const handleDeleteDataset = () => {
-    handleOpenModal({
-      type: MODAL_ACTIONS.DELETE_DATASET,
-      datasetName: selectedDataset.name,
-    })
-    setOpenConfig(false)
-  }
-
-  const handleExportDataset = () => {
-    handleOpenModal({ type: MODAL_ACTIONS.EXPORT_SELECT_DATASET })
-    setOpenConfig(false)
-  }
+const DatasetsHeader = () => {
+  const { datasets, selectedDataset, handleSelectDataset } = useContext(DatasetsContext)
+  const {
+    handleAddDatasetField,
+    handleDeleteDataset,
+    handleExportDataset,
+    handleNewDataset,
+    openConfig,
+    handleInteractOpenConfig,
+  } = useDatasetsHeader()
 
   return (
     <div className='pt-3 px-4 mb-2 w-full bg-white flex items-center justify-between'>
@@ -45,7 +24,7 @@ const DatasetsHeader = ({ handleOpenModal }: { handleOpenModal: (props: ModalPro
         </button>
 
         <ChacaSelect
-          size={170}
+          size={200}
           placeholder={"Select a Dataset"}
           options={datasets}
           labelKey={"name"}
@@ -59,7 +38,7 @@ const DatasetsHeader = ({ handleOpenModal }: { handleOpenModal: (props: ModalPro
       </div>
 
       <div className='flex flex-col items-end'>
-        <button onClick={() => setOpenConfig(!openConfig)}>
+        <button onClick={handleInteractOpenConfig}>
           <Bars size={18} />
         </button>
 

@@ -1,50 +1,19 @@
-import { Fragment, useContext, useMemo } from "react"
-import { Change, Delete } from "../../../../../../shared/assets/icons"
+import { Fragment } from "react"
+import { Change, Delete } from "@shared/assets/icons"
 import { v4 as uuid } from "uuid"
-import { DatasetsContext } from "../../../../../../shared/context/DatasetsContext"
-import { ModalProps } from "../../../../interfaces/modal.interface"
-import { DATASETS_ACTIONS } from "../../../../constants/ACTION_TYPES"
-import { FieldNode } from "../../../../../../shared/helpers/DatasetTree"
-import { FieldDataType } from "../../../../../../shared/interfaces/datasets.interface"
-import { MODAL_ACTIONS } from "../../../../constants/MODAL_ACTIONS"
-import { ChacaIconButton } from "../../../../../../shared/components/ChacaButton"
-import { useLanguage } from "../../../../../../shared/hooks"
+import { FieldNode } from "@shared/helpers/DatasetTree"
+import { FieldDataType } from "@modules/datasets/interfaces/datasets.interface"
+import { ChacaIconButton } from "@shared/components/ChacaButton"
+import { useLanguage } from "@shared/hooks"
+import { useFieldInfoHeader } from "./hooks"
 
-const FieldInfoHeader = ({
-  handleOpenModal,
-  selectField,
-}: {
-  selectField: FieldNode<FieldDataType>
-  handleOpenModal: (props: ModalProps) => void
-}) => {
-  const { selectedDataset, datasetDispatch, handleDeleteSelectField } = useContext(DatasetsContext)
-
+const FieldInfoHeader = ({ selectField }: { selectField: FieldNode<FieldDataType> }) => {
   const UI_TEXT = useLanguage({
     EDIT_TEXT: { en: "Edit", es: "Editar" },
     DELETE_TEXT: { en: "Delete", es: "Borrar" },
   })
 
-  const handleEdit = () => {
-    handleOpenModal({
-      type: MODAL_ACTIONS.EDIT_FIELD,
-      field: selectField.getNodeObject(),
-      location: selectedDataset.getFieldLocation(selectField.id),
-    })
-  }
-
-  const handleDelete = () => {
-    datasetDispatch({
-      type: DATASETS_ACTIONS.DELETE_FIELD,
-      payload: { datasetID: selectedDataset.id, fieldID: selectField.id },
-    })
-
-    handleDeleteSelectField()
-  }
-
-  const location = useMemo(
-    () => selectedDataset.getFieldLocation(selectField.id),
-    [selectField, selectedDataset],
-  )
+  const { handleDelete, handleEdit, location } = useFieldInfoHeader(selectField)
 
   return (
     <div className='w-full bg-white py-2 flex justify-between items-center px-5 border-b-2 h-[50px]'>

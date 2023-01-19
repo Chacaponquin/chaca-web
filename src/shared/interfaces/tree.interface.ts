@@ -1,4 +1,5 @@
 export interface NodeInfo<T> {
+  name: string
   dataType: T
   isPosibleNull: number
   isArray: {

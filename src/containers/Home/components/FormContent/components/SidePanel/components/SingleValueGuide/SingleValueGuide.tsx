@@ -1,20 +1,17 @@
 import { useMemo, Fragment } from "react"
-import { useLanguage } from "../../../../../../../../shared/hooks"
+import { useLanguage } from "@shared/hooks"
 import { v4 as uuid } from "uuid"
-import { useUtils } from "../../../../../../hooks/useUtils"
-import {
-  DatasetField,
-  SingleValueDataType,
-} from "../../../../../../../../shared/interfaces/datasets.interface"
+import { DatasetField, SingleValueDataType } from "@modules/datasets/interfaces/datasets.interface"
+import { schemasServices } from "@modules/schemas/services"
 
-export default function SingleValueGuide  ({ field }: { field: DatasetField<SingleValueDataType> })  {
+export default function SingleValueGuide({ field }: { field: DatasetField<SingleValueDataType> }) {
   const { ARGUMENTS_TITLE_TEXT, TABLE_ARGUMENT_TEXT, TABLE_DESCRIPTION_TEXT } = useLanguage({
     ARGUMENTS_TITLE_TEXT: { en: "Arguments", es: "Parámetros" },
     TABLE_ARGUMENT_TEXT: { en: "Argument", es: "Parámetro" },
     TABLE_DESCRIPTION_TEXT: { en: "Description", es: "Descripción" },
   })
 
-  const { findParent, findType } = useUtils()
+  const { findParent, findType } = schemasServices()
 
   const parent = useMemo(() => {
     return findParent(field.dataType.fieldType.parent)
@@ -65,5 +62,3 @@ export default function SingleValueGuide  ({ field }: { field: DatasetField<Sing
     </div>
   )
 }
-
-

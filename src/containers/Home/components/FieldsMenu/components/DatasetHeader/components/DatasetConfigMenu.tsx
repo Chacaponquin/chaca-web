@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { InputNumber } from "primereact/inputnumber"
-import { DatasetsContext } from "../../../../../../../shared/context/DatasetsContext"
+import { DatasetsContext } from "../../../../../../../modules/datasets/context/DatasetsContext"
 import clsx from "clsx"
 import { DATASETS_ACTIONS } from "../../../../../constants/ACTION_TYPES"
 import { UserContext } from "../../../../../../../shared/context/UserContext"

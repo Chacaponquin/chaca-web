@@ -1,9 +1,8 @@
 import { useContext, useMemo } from "react"
-import { DATA_TYPES } from "../../../../../../shared/constant/DATA_TYPES"
-import { DatasetsContext } from "../../../../../../shared/context/DatasetsContext"
-import { DatasetField, RefDataType } from "../../../../../../shared/interfaces/datasets.interface"
-import DatasetToRef from "./components/DatasetToRef"
-import NoFieldsToRef from "./components/NoFieldsToRef"
+import { DATA_TYPES } from "@modules/schemas/constants"
+import { DatasetsContext } from "@modules/datasets/context"
+import { DatasetField, RefDataType } from "@modules/datasets/interfaces/datasets.interface"
+import { DatasetToRef, NoFieldsToRef } from "./components"
 
 const RefForm = ({ field }: { field: DatasetField<RefDataType> }) => {
   const { datasets, selectedDataset } = useContext(DatasetsContext)

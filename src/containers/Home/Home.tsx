@@ -1,21 +1,15 @@
-import FieldsMenu from "./components/FieldsMenu/FieldsMenu"
-import FormContent from "./components/FormContent/FormContent"
-import Modal from "./components/Modal/Modal"
-import CreationLoadingModal from "./components/CreationLoadingModal/CreationLoadingModal"
-import { useHome } from "./hooks/useHome"
+import { CreationLoadingModal, FieldsMenu, FormContent, Modal } from "./components"
+import { useHome } from "./hooks"
+import { useContext } from "react"
+import { ModalContext } from "@modules/modal/context"
 
 import "./home.css"
 
 const Home = () => {
-  const {
-    openModal,
-    handleOpenModal,
-    handleCloseModal,
-    handleCreateSelectDataset,
-    handleCreateAllDatasets,
-    createDataLoading,
-    porcent,
-  } = useHome()
+  const { openModal } = useContext(ModalContext)
+
+  const { handleCreateSelectDataset, handleCreateAllDatasets, createDataLoading, porcent } =
+    useHome()
 
   return (
     <div className='flex w-full h-full'>
@@ -24,14 +18,13 @@ const Home = () => {
       {openModal !== null && (
         <Modal
           modalProps={openModal}
-          handleCloseModal={handleCloseModal}
           handleCreateSelectDataset={handleCreateSelectDataset}
           handleCreateAllDatasets={handleCreateAllDatasets}
         />
       )}
 
-      <FieldsMenu handleOpenModal={handleOpenModal} />
-      <FormContent handleOpenModal={handleOpenModal} />
+      <FieldsMenu />
+      <FormContent />
     </div>
   )
 }

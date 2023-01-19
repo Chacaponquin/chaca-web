@@ -1,73 +1,11 @@
-import { useContext, Fragment } from "react"
-import { DATA_TYPES } from "../../../../../../shared/constant/DATA_TYPES"
+import { Fragment } from "react"
+import { DATA_TYPES } from "@modules/schemas/constants"
 import { v4 as uuid } from "uuid"
-import clsx from "clsx"
-import { DatasetsContext } from "../../../../../../shared/context/DatasetsContext"
-import { DATASETS_ACTIONS } from "../../../../constants/ACTION_TYPES"
-import { AppConfigContext } from "../../../../../../shared/context/AppConfigContext"
+import { FieldNode } from "@shared/helpers/DatasetTree"
+import { useDataTypeSelect } from "./hooks"
 
-const DataTypeSelect = () => {
-  const { selectField, datasetDispatch, selectedDataset } = useContext(DatasetsContext)
-  const { schemas } = useContext(AppConfigContext)
-
-  const barClass = (select: boolean) => {
-    return clsx(
-      "h-[3px] w-full rounded-full bg-secondColor mt-1 transition-all duration-300",
-      { "opacity-100": select },
-      { "opacity-0": !select },
-    )
-  }
-
-  const textClass = (select: boolean) => {
-    return clsx(
-      "mb-1 w-full text-center font-fontBold text-lg transition-all duration-300 hover:text-black",
-      { "text-black": select },
-      { "text-slate-400": !select },
-    )
-  }
-
-  const handleChangeDataType = (dataType: DATA_TYPES) => {
-    if (selectField) {
-      if (dataType === DATA_TYPES.SINGLE_VALUE) {
-        datasetDispatch({
-          type: DATASETS_ACTIONS.CHANGE_FIELD_DATATYPE,
-          payload: {
-            datasetID: selectedDataset.id,
-            fieldID: selectField.id,
-            dataType: {
-              type: dataType,
-              fieldType: {
-                parent: schemas[0].parent,
-                type: schemas[0].options[0].name,
-                args: {},
-              },
-            },
-          },
-        })
-      } else if (dataType === DATA_TYPES.REF) {
-        datasetDispatch({
-          type: DATASETS_ACTIONS.CHANGE_FIELD_DATATYPE,
-          payload: {
-            datasetID: selectedDataset.id,
-            fieldID: selectField.id,
-            dataType: { type: dataType, ref: [] },
-          },
-        })
-      } else if (dataType === DATA_TYPES.CUSTOM) {
-        datasetDispatch({
-          type: DATASETS_ACTIONS.CHANGE_FIELD_DATATYPE,
-          payload: {
-            datasetID: selectedDataset.id,
-            fieldID: selectField.id,
-            dataType: {
-              type: dataType,
-              code: "function getValue(fields, utils){\n\t// logic of your function\n}",
-            },
-          },
-        })
-      }
-    }
-  }
+const DataTypeSelect = ({ selectField }: { selectField: FieldNode }) => {
+  const { barClass, handleChangeDataType, textClass } = useDataTypeSelect(selectField)
 
   return (
     <div className='bg-slate-100 flex w-full h-max justify-center gap-3 mb-2'>

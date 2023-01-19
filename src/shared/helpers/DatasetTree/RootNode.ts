@@ -1,4 +1,4 @@
-import { DatasetField } from "../../interfaces/datasets.interface"
+import { DatasetField } from "../../../modules/datasets/interfaces/datasets.interface"
 import { FieldNode } from "./FieldNode"
 import { Node } from "./Node"
 

@@ -1,12 +1,10 @@
+import { ModalContext } from "@modules/modal/context"
 import { X } from "@shared/assets/icons"
+import { useContext } from "react"
 
-const ModalTitle = ({
-  titleText,
-  handleCloseModal,
-}: {
-  handleCloseModal: () => void
-  titleText: string
-}) => {
+const ModalTitle = ({ titleText }: { titleText: string }) => {
+  const { handleCloseModal } = useContext(ModalContext)
+
   return (
     <div className='flex w-full justify-between mb-3 items-center'>
       <h1 className='font-fontExtraBold text-2xl'>{titleText}</h1>

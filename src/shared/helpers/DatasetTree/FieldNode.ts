@@ -1,5 +1,8 @@
-import { DATA_TYPES } from "../../constant/DATA_TYPES"
-import { DatasetField, FieldDataType } from "../../interfaces/datasets.interface"
+import { DATA_TYPES } from "../../../modules/schemas/constants/DATA_TYPES"
+import {
+  DatasetField,
+  FieldDataType,
+} from "../../../modules/datasets/interfaces/datasets.interface"
 import { NodeInfo } from "../../interfaces/tree.interface"
 import { Node } from "./Node"
 
