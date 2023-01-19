@@ -14,10 +14,11 @@ import {
 import { AppConfigProvider } from "@modules/shared/context"
 import { DatasetsProvider } from "@modules/datasets/context"
 import { UserProvider } from "@modules/user/context/UserContext"
+import { ModalProvider } from "@modules/modal/context"
 
-import { NoUserRoute, APP_ROUTES } from "@modules/shared/routes"
+import { NoUserRoute, APP_ROUTES, LazyRoute } from "@modules/shared/routes"
 
-import { ErrorBoundary, LazyRoute } from "./layout"
+import { ErrorBoundary } from "./layout"
 
 import "react-toastify/dist/ReactToastify.css"
 import "./index.css"
@@ -55,7 +56,18 @@ const AppCont = () => {
 
       <Route path='/' element={<App />}>
         <Route path={APP_ROUTES.ROOT} element={<Landing />} />
-        <Route path={APP_ROUTES.HOME} element={<LazyRoute element={<Home />} />} />
+        <Route
+          path={APP_ROUTES.HOME}
+          element={
+            <LazyRoute
+              element={
+                <ModalProvider>
+                  <Home />
+                </ModalProvider>
+              }
+            />
+          }
+        />
         <Route path={APP_ROUTES.API} element={<LazyRoute element={<Api />} />} />
         <Route path={APP_ROUTES.MODELS} element={<LazyRoute element={<Models />} />} />
         <Route path={APP_ROUTES.NOT_FOUND} element={<Error404 />} />
@@ -67,7 +79,7 @@ const AppCont = () => {
 }
 
 root.render(
-  <React.StrictMode>
+  <React.Fragment>
     <BrowserRouter>
       <ErrorBoundary>
         <AppConfigProvider>
@@ -79,5 +91,5 @@ root.render(
         </AppConfigProvider>
       </ErrorBoundary>
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.Fragment>,
 )

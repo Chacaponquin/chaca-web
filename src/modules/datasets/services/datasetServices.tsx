@@ -7,6 +7,7 @@ import { AppConfigContext } from "@modules/shared/context"
 import { FieldInfoDTO } from "../dto/fieldInfo.dto"
 import { schemasServices } from "@modules/schemas/services"
 import { DatasetField, SingleValueDataType } from "../interfaces/datasets.interface"
+import { DatasetTree } from "@modules/shared/classes"
 
 export function datasetServices() {
   const {
@@ -18,6 +19,12 @@ export function datasetServices() {
   } = useContext(DatasetsContext)
   const { schemas } = useContext(AppConfigContext)
   const { findParent } = schemasServices()
+
+  const initDatasets = () => {
+    const initDataset = new DatasetTree("New Dataset", 50)
+
+    return [initDataset]
+  }
 
   const addDataset = (datasetName: string) => {
     if (datasetName !== "") {
@@ -232,5 +239,6 @@ export function datasetServices() {
     changeFieldDataType,
     updateCustomField,
     changeDocumentsLimit,
+    initDatasets,
   }
 }
