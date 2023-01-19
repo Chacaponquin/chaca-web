@@ -9,7 +9,7 @@ const ModalContext = createContext<{
   handleCloseModal: () => void
 }>({ openModal: null, handleCloseModal: () => {}, handleOpenModal: () => {} })
 
-const ModalProvider = ({ children }: { children: ReactElement }) => {
+const ModalProvider = ({ children = <></> }: { children: ReactElement }) => {
   const [openModal, setOpenModal] = useState<null | ModalProps>(null)
 
   const handleOpenModal = (props: ModalProps) => {

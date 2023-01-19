@@ -15,7 +15,7 @@ const Home = () => {
       <div className='flex w-full h-full'>
         {createDataLoading && <CreationLoadingModal porcent={porcent} />}
 
-        {openModal !== null && (
+        {openModal && (
           <Modal
             modalProps={openModal}
             handleCreateSelectDataset={handleCreateSelectDataset}

@@ -15,7 +15,7 @@ const NavBar = () => {
   ]
 
   return (
-    <div className='w-full py-4 px-8 esm:px-0 esm:py-0 bg-transparent z-[53] mb-6'>
+    <div className='absolute top-0 w-full py-4 px-8 esm:px-0 esm:py-0 bg-transparent z-[53] mb-6'>
       <div className='flex w-full shadow-lg rounded px-8 py-3 bg-white z-50 esm:px-0 justify-end'>
         <div className='flex items-center gap-8'>
           <div className='flex items-center gap-11'>

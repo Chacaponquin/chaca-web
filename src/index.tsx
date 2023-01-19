@@ -4,11 +4,8 @@ import App from "./App"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import {
   Login,
-  Home,
-  Api,
   // Docs,
   SignUp,
-  Models,
   Landing,
   ContactUs,
   Error404,
@@ -20,7 +17,7 @@ import { UserProvider } from "@modules/user/context/UserContext"
 
 import { NoUserRoute, APP_ROUTES } from "@modules/shared/routes"
 
-import { ErrorBoundary } from "./layout"
+import { ErrorBoundary, LazyRoute } from "./layout"
 
 import "react-toastify/dist/ReactToastify.css"
 import "./index.css"
@@ -30,6 +27,10 @@ import "primereact/resources/primereact.min.css"
 import "primeicons/primeicons.css"
 
 const root = ReactDOM.createRoot(document.getElementById("root")!)
+
+const Home = React.lazy(() => import("./containers/Home/Home"))
+const Api = React.lazy(() => import("./containers/Api/Api"))
+const Models = React.lazy(() => import("./containers/Models/Models"))
 
 const AppCont = () => {
   return (
@@ -54,9 +55,9 @@ const AppCont = () => {
 
       <Route path='/' element={<App />}>
         <Route path={APP_ROUTES.ROOT} element={<Landing />} />
-        <Route path={APP_ROUTES.HOME} element={<Home />} />
-        <Route path={APP_ROUTES.API} element={<Api />} />
-        <Route path={APP_ROUTES.MODELS} element={<Models />} />
+        <Route path={APP_ROUTES.HOME} element={<LazyRoute element={<Home />} />} />
+        <Route path={APP_ROUTES.API} element={<LazyRoute element={<Api />} />} />
+        <Route path={APP_ROUTES.MODELS} element={<LazyRoute element={<Models />} />} />
         <Route path={APP_ROUTES.NOT_FOUND} element={<Error404 />} />
       </Route>
 
