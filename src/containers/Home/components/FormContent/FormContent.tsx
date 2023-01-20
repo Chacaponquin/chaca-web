@@ -30,10 +30,10 @@ const FormContent = () => {
             {selectField === null ? (
               <NoSelectFieldMessage />
             ) : (
-              <div className='w-full flex flex-col items-center gap-2'>
+              <div className='w-full flex flex-col items-center'>
                 <DataTypeSelect selectField={selectField} />
 
-                <div className='flex flex-col items-center w-full px-12'>
+                <div className='flex flex-col items-center w-full'>
                   {selectField.info.dataType.type === DATA_TYPES.SINGLE_VALUE && (
                     <SingleValueForm
                       field={selectField.getNodeObject() as DatasetField<SingleValueDataType>}

@@ -1,5 +1,6 @@
 import { ChacaFormProps } from "../../interfaces/chacaForm.interface"
 import { motion } from "framer-motion"
+import clsx from "clsx"
 
 export default function ChacaSwitchButton({
   onChange,
@@ -21,6 +22,11 @@ export default function ChacaSwitchButton({
     },
   }
 
+  const containerClass = clsx("rounded-full  flex items-center px-2", {
+    "bg-gradient-to-tr from-principalColor to-secondColor": value,
+    "bg-slate-300": !value,
+  })
+
   return (
     <motion.div
       onClick={() => onChange(!value)}
@@ -29,7 +35,7 @@ export default function ChacaSwitchButton({
         width: `${DIMENSION_VALUES[dimension].width.parent}px`,
         height: `${DIMENSION_VALUES[dimension].height.parent}px`,
       }}
-      className='rounded-full bg-principalColor flex items-center px-2'
+      className={containerClass}
     >
       <motion.div
         layout

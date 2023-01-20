@@ -3,6 +3,7 @@ import Highlight, { defaultProps } from "prism-react-renderer"
 import { v4 as uuid } from "uuid"
 
 export default function ExampleCode({ code }: { code: string }) {
+  console.log(code)
   return (
     <div className='code-container bg-darkColor px-3 py-2 rounded-sm text-base'>
       <Highlight {...defaultProps} language='jsx' code={code} theme={theme}>

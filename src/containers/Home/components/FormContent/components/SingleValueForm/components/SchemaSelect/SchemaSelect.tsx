@@ -11,7 +11,7 @@ const SchemaSelect = ({ field }: { field: DatasetField<SingleValueDataType> }) =
   const { handleSelectSchema } = useSchemaSelect(field)
 
   return (
-    <div className='flex px-5'>
+    <div className='flex px-5 w-full'>
       <p className='mb-0 font-fontBold text-xl mr-4'>{SCHEMA_TEXT}:</p>
       <ChacaSelect
         value={field.dataType.fieldType.parent}

@@ -21,7 +21,7 @@ const ModalButtons = ({
       <div>
         <ChacaSimpleButton
           color={type === "delete" ? "danger" : "primary"}
-          size='extra-large'
+          size='large'
           text={nextText}
           onClick={handleNext}
           className='w-full text-center flex justify-center !rounded'
@@ -31,7 +31,7 @@ const ModalButtons = ({
       <div>
         <ChacaSimpleButton
           color='cancel'
-          size='extra-large'
+          size='large'
           text={CANCEL_TEXT}
           onClick={handleCloseModal}
           className='w-full text-center flex justify-center !rounded'

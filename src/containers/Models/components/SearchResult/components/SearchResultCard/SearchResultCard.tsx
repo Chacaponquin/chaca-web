@@ -11,7 +11,7 @@ export default function SearchResultCard({
   model: UserDatasetModel
   handleSelectModel: (id: string) => void
 }) {
-  const [openCard, setOpenCard] = useState(false)
+  const [openCard, setOpenCard] = useState(true)
 
   const cardClass = clsx("flex flex-col rounded px-4 gap-1 border-2 border-solid", {
     "border-principalColor py-2": openCard,

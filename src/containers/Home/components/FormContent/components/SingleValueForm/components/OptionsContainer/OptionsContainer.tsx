@@ -13,7 +13,7 @@ const OptionsContainer = ({
   const { handleSelectOption, optionArguments, selectOption } = useOptionsContainer(field)
 
   return (
-    <div className='flex flex-col gap-1 px-5'>
+    <div className='flex flex-col w-full gap-1 px-5'>
       {options.map((o) => (
         <Option
           option={o}

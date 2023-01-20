@@ -1,5 +1,3 @@
-import { useState } from "react"
-import { Config } from "@modules/shared/assets/icons"
 import { ChacaRadioButton } from "@form"
 import OptionArguments from "../OptionArguments/OptionArguments"
 import clsx from "clsx"
@@ -16,12 +14,6 @@ interface OptionProps {
 }
 
 const Option = ({ option, args, handleSelectOption, isSelected, field }: OptionProps) => {
-  const [openArgs, setOpenArgs] = useState(isSelected)
-
-  const handleChangeOpenArguments = () => {
-    if (isSelected) setOpenArgs(!openArgs)
-  }
-
   const divClass = clsx(
     "w-full rounded flex items-center flex-col py-2 px-4 bg-slate-100 box-content",
     {
@@ -37,13 +29,9 @@ const Option = ({ option, args, handleSelectOption, isSelected, field }: OptionP
 
           <p className='text-base ml-4 font-fontBold'>{option.name}</p>
         </div>
-
-        <button className='cursor-pointer' onClick={handleChangeOpenArguments}>
-          <Config size={20} />
-        </button>
       </div>
 
-      {openArgs && isSelected && args.length > 0 && <OptionArguments args={args} field={field} />}
+      {isSelected && args.length > 0 && <OptionArguments args={args} field={field} />}
     </div>
   )
 }
