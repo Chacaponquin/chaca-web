@@ -5,6 +5,10 @@ import { Schema, SubOption } from "../interfaces/schema.interface"
 export function schemasServices() {
   const { schemas } = useContext(AppConfigContext)
 
+  const optionApiRoute = (route: string): string => {
+    return `${process.env.REACT_APP_API_URL}${route}`
+  }
+
   const findParent = useCallback(
     (p: string): Schema => {
       return schemas.find((el) => el.parent === p)!
@@ -24,5 +28,5 @@ export function schemasServices() {
     return findParent(parent).options
   }
 
-  return { findParent, findType, findParentOptions }
+  return { findParent, findType, findParentOptions, optionApiRoute }
 }

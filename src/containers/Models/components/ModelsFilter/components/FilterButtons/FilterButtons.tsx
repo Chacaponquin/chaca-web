@@ -9,8 +9,18 @@ export default function FilterButtons() {
 
   return (
     <div className='w-full flex gap-2 items-center justify-center'>
-      <ChacaSimpleButton color='primary' text={APPLY_TEXT} size='medium' />
-      <ChacaSimpleButton color='cancel' text={RESET_TEXT} size='medium' />
+      <ChacaSimpleButton
+        color='primary'
+        text={APPLY_TEXT}
+        size='medium'
+        className='w-full text-center flex justify-center'
+      />
+      <ChacaSimpleButton
+        color='cancel'
+        text={RESET_TEXT}
+        size='medium'
+        className='w-full text-center flex justify-center'
+      />
     </div>
   )
 }

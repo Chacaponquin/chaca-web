@@ -28,15 +28,15 @@ export default function ChacaNumberInput({
       case "small":
         return 25
       case "normal":
-        return 30
+        return 25
       case "large":
-        return 40
+        return 30
       default:
         return 60
     }
   }, [dimension])
 
-  const iconSize = 12
+  const iconSize = 11
 
   const handleIncrease = () => {
     onChange(validateValue(value + step, max))
@@ -100,7 +100,7 @@ export default function ChacaNumberInput({
       />
       <div className='grid grid-rows-2 h-full w-[20px] justify-center justify-items-center border-l-grayColor border-l-2'>
         <button
-          className='flex justify-center text-center items-center border-b-2 border-grayColor w-full'
+          className='flex justify-center text-center items-center border-b-2 border-grayColor w-full cursor-auto'
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
           onClick={handleIncrease}
@@ -109,7 +109,7 @@ export default function ChacaNumberInput({
         </button>
 
         <button
-          className='flex justify-center text-center items-center w-full'
+          className='flex justify-center text-center items-center w-full cursor-auto'
           onClick={handleDecrease}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}

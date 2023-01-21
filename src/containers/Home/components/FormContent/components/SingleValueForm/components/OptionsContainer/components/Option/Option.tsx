@@ -14,9 +14,13 @@ interface OptionProps {
 }
 
 const Option = ({ option, args, handleSelectOption, isSelected, field }: OptionProps) => {
-  const divClass = clsx("w-full rounded flex items-center flex-col py-2 px-4 bg-slate-100", {
-    "border-principalColor border-2 border-solid": isSelected,
-  })
+  const divClass = clsx(
+    "w-full rounded flex items-center flex-col px-4 bg-white border-2 border-solid",
+    {
+      "border-principalColor py-2": isSelected,
+      "border-grayColor py-1": !isSelected,
+    },
+  )
 
   return (
     <div className={divClass}>

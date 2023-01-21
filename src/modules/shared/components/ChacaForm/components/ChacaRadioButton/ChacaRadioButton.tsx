@@ -10,7 +10,7 @@ const ChacaRadioButton = ({
   const containerClass = clsx(
     "w-[13px] h-[13px] rounded-full bg-white cursor-pointer flex items-center justify-center outline-2 transition-all duration-200",
     {
-      "outline-slate-300 border-2 hover:border-principalColor": !value,
+      "outline-grayColor border-2 hover:border-principalColor": !value,
       "outline-principalColor": value,
     },
   )
