@@ -7,16 +7,21 @@ import { UserDatasetModel } from "@containers/Models/interfaces/models.interface
 export default function SearchResultCard({
   model,
   handleSelectModel,
+  handleDeleteModel,
 }: {
   model: UserDatasetModel
   handleSelectModel: (id: string) => void
+  handleDeleteModel: (modelID: string) => void
 }) {
   const [openCard, setOpenCard] = useState(true)
 
-  const cardClass = clsx("flex flex-col rounded px-4 gap-1 border-2 border-solid", {
-    "border-principalColor py-2": openCard,
-    "py-1 border-grayColor": !openCard,
-  })
+  const cardClass = clsx(
+    "flex flex-col rounded px-4 gap-1 border-2 border-solid border-principalColor",
+    {
+      "py-2": openCard,
+      "py-1": !openCard,
+    },
+  )
 
   const buttonClass = clsx("transition-all duration-300", {
     "rotate-45": !openCard,
@@ -25,10 +30,6 @@ export default function SearchResultCard({
 
   const handleInteractiveCard = () => {
     setOpenCard(!openCard)
-  }
-
-  const handleDeleteModel = () => {
-    console.log("Hola")
   }
 
   return (
@@ -72,7 +73,7 @@ export default function SearchResultCard({
                 color='danger'
                 size='small'
                 text='Delete'
-                onClick={handleDeleteModel}
+                onClick={() => handleDeleteModel(model._id)}
               />
             </div>
           </div>

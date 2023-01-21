@@ -25,7 +25,6 @@ const FieldConfigMenu = ({ field }: { field: DatasetField<FieldDataType> }) => {
       <div className={divClass} onClick={handleDeleteField}>
         {DELETE_OPTION_TEXT}
       </div>
-      <div className={divClass}>Test Endpoint</div>
     </div>
   )
 }

@@ -1,3 +1,4 @@
+import { APP_IMAGES } from "@modules/shared/constant"
 import { useLanguage } from "@modules/shared/hooks"
 
 const NoFieldsToRef = () => {
@@ -7,8 +8,8 @@ const NoFieldsToRef = () => {
 
   return (
     <div className='flex flex-col w-full justify-center items-center mt-4'>
-      <img src='./images/error.jpg' alt='not-found' className='w-[450px]' />
-      <p className='mb-0 -mt-2 text-2xl font-fontBold text-slate-500'>{UI_TEXT.NO_FIELDS_TEXT}</p>
+      <img src={APP_IMAGES.EMPTY.image} alt={APP_IMAGES.EMPTY.alt} className='w-[450px]' />
+      <p className='mb-0 mt-2 text-2xl font-fontBold text-slate-500'>{UI_TEXT.NO_FIELDS_TEXT}</p>
     </div>
   )
 }

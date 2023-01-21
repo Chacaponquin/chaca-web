@@ -35,7 +35,7 @@ export default function ChacaTextInput({
       style={{
         width: size === "full" ? `100%` : `${size}px`,
       }}
-      value={value}
+      value={value === undefined ? "" : value}
     />
   )
 }

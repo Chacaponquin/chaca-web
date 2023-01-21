@@ -12,8 +12,8 @@ interface ChacaNumberInputProps extends ChacaFormProps<number> {
 }
 
 export default function ChacaNumberInput({
-  min = 10000000,
-  max = -10000000,
+  min,
+  max,
   step = 1,
   size = "full",
   dimension = "normal",
@@ -39,11 +39,13 @@ export default function ChacaNumberInput({
   const iconSize = 11
 
   const handleIncrease = () => {
-    onChange(validateValue(value + step, max))
+    const nextValue = value ? value + step : 1
+    onChange(validateValue(nextValue, max))
   }
 
   const handleDecrease = () => {
-    onChange(validateValue(value - step, min))
+    const nextValue = value ? value - step : -1
+    onChange(validateValue(nextValue, min))
   }
 
   const handleChangeInputValue = (value: string) => {
@@ -52,27 +54,53 @@ export default function ChacaNumberInput({
     }
   }
 
-  const wichIsCloser = (value: number): number => {
-    if (!value) return min
+  const wichIsCloser = (nextValue: number): number => {
+    if (!nextValue) return value
 
-    const diferenceMin = min - value
-    const diferenceMax = min - value
+    if (max && min) {
+      const diferenceMin = min - nextValue
+      const diferenceMax = min - nextValue
 
-    if (diferenceMax !== diferenceMin) {
-      if (diferenceMax < diferenceMin) {
-        return max
+      if (diferenceMax !== diferenceMin) {
+        if (diferenceMax < diferenceMin) {
+          return max
+        } else {
+          return min
+        }
       } else {
         return min
       }
-    } else {
+    } else if (!min && !max) {
+      return nextValue
+    } else if (!min && max) {
+      return max
+    } else if (min && !max) {
       return min
+    } else {
+      return nextValue
     }
   }
 
-  const validateValue = (value: number, returnDefaultValue: number): number => {
-    if (value >= min && value <= max) {
+  const validateValue = (value: number, returnDefaultValue: number | undefined = 0): number => {
+    if (!min && !max) {
       return value
-    } else return returnDefaultValue
+    } else if (min && !max) {
+      if (value >= min) {
+        return value
+      } else {
+        return returnDefaultValue
+      }
+    } else if (!min && max) {
+      if (value <= max) {
+        return value
+      } else return returnDefaultValue
+    } else if (min && max) {
+      if (value >= min && value <= max) {
+        return value
+      } else return returnDefaultValue
+    } else {
+      return returnDefaultValue
+    }
   }
 
   const containerClass = clsx(
@@ -96,7 +124,7 @@ export default function ChacaNumberInput({
         onBlur={() => setIsFocus(false)}
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
-        value={value}
+        value={value === undefined ? 0 : value}
       />
       <div className='grid grid-rows-2 h-full w-[20px] justify-center justify-items-center border-l-grayColor border-l-2'>
         <button

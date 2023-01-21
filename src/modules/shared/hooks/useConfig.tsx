@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useCallback, useContext, useEffect } from "react"
+import { useCallback, useContext, useEffect, useMemo } from "react"
 import Cookies from "universal-cookie"
 import { AppConfigContext } from "../context/AppConfigContext"
 
@@ -14,12 +14,18 @@ export const useConfig = () => {
       localStorage.setItem("token", tokenCookie)
     }
 
-    return localStorage.getItem("token") || ""
+    const returnToken = localStorage.getItem("token") || ""
+
+    return returnToken
   }, [])
 
-  const axiosInstance = axios.create({
-    baseURL: process.env.REACT_APP_API_URL,
-  })
+  const axiosInstance = useMemo(
+    () =>
+      axios.create({
+        baseURL: process.env.REACT_APP_API_URL,
+      }),
+    [],
+  )
 
   useEffect(() => {
     axiosInstance.interceptors.request.use(

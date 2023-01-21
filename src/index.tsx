@@ -3,9 +3,7 @@ import ReactDOM from "react-dom/client"
 import App from "./App"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import {
-  Login,
   // Docs,
-  SignUp,
   Landing,
   ContactUs,
   Error404,
@@ -32,6 +30,8 @@ const root = ReactDOM.createRoot(document.getElementById("root")!)
 const Home = React.lazy(() => import("./containers/Home/Home"))
 const Api = React.lazy(() => import("./containers/Api/Api"))
 const Models = React.lazy(() => import("./containers/Models/Models"))
+const Login = React.lazy(() => import("./containers/Auth/components/Login/Login"))
+const SignUp = React.lazy(() => import("./containers/Auth/components/SignUp/SignUp"))
 
 const AppCont = () => {
   return (
@@ -39,17 +39,25 @@ const AppCont = () => {
       <Route
         path={APP_ROUTES.AUTH_ROUTES.LOGIN}
         element={
-          <NoUserRoute>
-            <Login />
-          </NoUserRoute>
+          <LazyRoute
+            element={
+              <NoUserRoute>
+                <Login />
+              </NoUserRoute>
+            }
+          />
         }
       />
       <Route
         path={APP_ROUTES.AUTH_ROUTES.SIGN_UP}
         element={
-          <NoUserRoute>
-            <SignUp />
-          </NoUserRoute>
+          <LazyRoute
+            element={
+              <NoUserRoute>
+                <SignUp />
+              </NoUserRoute>
+            }
+          />
         }
       />
       <Route path={APP_ROUTES.CONTACT_US} element={<ContactUs />} />

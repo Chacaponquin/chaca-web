@@ -1,8 +1,12 @@
-import { useMemo } from "react"
+import { useMemo, useContext } from "react"
 import { useLanguage } from "@modules/shared/hooks"
 import { v4 as uuid } from "uuid"
 import { DatasetField, SingleValueDataType } from "@modules/datasets/interfaces/datasets.interface"
 import { schemasServices } from "@modules/schemas/services"
+import { ChacaIconButton } from "@modules/shared/components/ChacaButton"
+import { Code } from "@modules/shared/assets/icons"
+import { ModalContext } from "@modules/modal/context"
+import { MODAL_ACTIONS } from "@modules/modal/constants"
 
 export default function SingleValueGuide({ field }: { field: DatasetField<SingleValueDataType> }) {
   const { ARGUMENTS_TITLE_TEXT, TABLE_ARGUMENT_TEXT, TABLE_DESCRIPTION_TEXT } = useLanguage({
@@ -13,6 +17,8 @@ export default function SingleValueGuide({ field }: { field: DatasetField<Single
 
   const { findParent, findType, optionApiRoute } = schemasServices()
 
+  const { handleOpenModal } = useContext(ModalContext)
+
   const parent = useMemo(() => {
     return findParent(field.dataType.fieldType.parent)
   }, [field.dataType.fieldType.parent, findParent])
@@ -21,10 +27,24 @@ export default function SingleValueGuide({ field }: { field: DatasetField<Single
     return findType(parent.parent, field.dataType.fieldType.type)
   }, [field.dataType.fieldType.type, findType, parent])
 
+  const handleOpenTestEndpointModal = () => {
+    handleOpenModal({ type: MODAL_ACTIONS.TEST_ENDPOINT, option })
+  }
+
   return (
     <div className='flex flex-col h-full gap-y-3'>
-      <div className='rounded-sm bg-principalColor px-4 py-1 text-white font-fontBold text-lg w-max'>
-        {option.name}
+      <div className='flex items-center justify-between'>
+        <div className='rounded-sm bg-principalColor px-4 py-1 text-white font-fontBold text-lg w-max'>
+          {option.name}
+        </div>
+
+        <ChacaIconButton
+          icon={<Code size={18} />}
+          color='cancel'
+          size='small'
+          text='Test Endpoint'
+          onClick={handleOpenTestEndpointModal}
+        />
       </div>
 
       <p className='text-base text-slate-500'>

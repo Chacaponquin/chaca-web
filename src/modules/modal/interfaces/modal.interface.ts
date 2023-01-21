@@ -1,3 +1,4 @@
+import { SubOption } from "@modules/schemas/interfaces/schema.interface"
 import { DatasetField, FieldDataType } from "../../datasets/interfaces/datasets.interface"
 import { MODAL_ACTIONS } from "../constants/MODAL_ACTIONS"
 
@@ -29,6 +30,11 @@ export type ModalExportAllDatasets = {
   type: MODAL_ACTIONS.EXPORT_ALL_DATASETS
 }
 
+export type ModalTestEndpoint = {
+  type: MODAL_ACTIONS.TEST_ENDPOINT
+  option: SubOption
+}
+
 export type ModalProps =
   | ModalAddFieldProps
   | ModalAddDataset
@@ -36,3 +42,4 @@ export type ModalProps =
   | ModalDeleteDataset
   | ModalExportSelectDataset
   | ModalExportAllDatasets
+  | ModalTestEndpoint

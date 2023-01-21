@@ -6,3 +6,7 @@ export interface Argument {
   selectValues?: string[]
   description: string
 }
+
+export interface ArgumentsObject {
+  [key: string]: unknown
+}
