@@ -10,6 +10,7 @@ module.exports = {
         thirdColor: "#9900FF",
         dangerColor: "#eb4d4b",
         darkColor: "#282c34",
+        grayColor: "#ced6e0",
       },
       fontFamily: {
         fontBold: "Cairo Bold",

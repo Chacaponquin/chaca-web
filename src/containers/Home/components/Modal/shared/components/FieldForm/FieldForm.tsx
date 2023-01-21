@@ -1,9 +1,9 @@
 import { Checkbox } from "primereact/checkbox"
 import { InputNumber } from "primereact/inputnumber"
-import { InputText } from "primereact/inputtext"
 import { Slider } from "primereact/slider"
 import { useLanguage } from "@modules/shared/hooks"
 import { FieldInfoDTO } from "@modules/datasets/dto/fieldInfo.dto"
+import { ChacaTextInput } from "@form"
 
 export interface FieldFormProps {
   field: FieldInfoDTO
@@ -34,11 +34,10 @@ const FieldForm = ({
         <label htmlFor='' className='font-fontBold text-lg whitespace-nowrap'>
           {FIELD_NAME_TEXT}:
         </label>
-        <InputText
-          className='w-full'
+        <ChacaTextInput
+          onChange={handleChangeName}
           placeholder='Field name...'
           value={field.name}
-          onChange={(e) => handleChangeName(e.target.value)}
         />
       </div>
 

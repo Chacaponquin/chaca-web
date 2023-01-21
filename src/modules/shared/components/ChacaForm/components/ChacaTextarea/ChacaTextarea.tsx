@@ -41,7 +41,7 @@ export default function ChacaTextarea({
   }, [height])
 
   const textareaClass = clsx(
-    "hover:border-principalColor border-2 rounded-sm outline-none focus:border-principalColor resize-none",
+    "hover:border-principalColor border-2 border-grayColor rounded-sm outline-none focus:border-principalColor resize-none transition-all duration-300",
     textClass,
     paddingClass,
     className,

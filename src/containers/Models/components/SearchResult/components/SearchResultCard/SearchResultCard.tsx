@@ -15,7 +15,7 @@ export default function SearchResultCard({
 
   const cardClass = clsx("flex flex-col rounded px-4 gap-1 border-2 border-solid", {
     "border-principalColor py-2": openCard,
-    "py-1": !openCard,
+    "py-1 border-grayColor": !openCard,
   })
 
   const buttonClass = clsx("transition-all duration-300", {

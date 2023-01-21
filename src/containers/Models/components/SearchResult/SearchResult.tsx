@@ -1,5 +1,5 @@
 import { UserDatasetModel } from "@containers/Models/interfaces/models.interface"
-import { SearchInput, SearchResultContainer } from "./components"
+import { SearchResultContainer } from "./components"
 
 export default function SearchResult({
   models,
@@ -9,8 +9,7 @@ export default function SearchResult({
   handleSelectModel: (id: string) => void
 }) {
   return (
-    <div className='h-full w-full flex flex-col'>
-      <SearchInput />
+    <div className='h-full w-full flex flex-col py-2 overflow-y-auto'>
       <SearchResultContainer models={models} handleSelectModel={handleSelectModel} />
     </div>
   )

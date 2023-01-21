@@ -1,11 +1,11 @@
 import { useContext } from "react"
-import { InputNumber } from "primereact/inputnumber"
 import { DatasetsContext } from "@modules/datasets/context/DatasetContext/DatasetsContext"
 import clsx from "clsx"
 import { UserContext } from "@modules/user/context/UserContext"
 import { useLanguage } from "@modules/shared/hooks"
 import { AppConfigContext } from "@modules/shared/context"
 import { datasetServices } from "@modules/datasets/services"
+import { ChacaNumberInput } from "@form"
 
 const DatasetConfigMenu = ({
   handleAddDatasetField,
@@ -39,36 +39,34 @@ const DatasetConfigMenu = ({
     )
   }
 
-  const textDivClass = () => {
-    return commonClass(commonClass("flex items-center text-sm text-center font-fontBold"))
-  }
+  const textDivClass = commonClass("flex items-center text-sm text-center")
 
   return (
     <div className='absolute flex flex-col -translate-x-0 translate-y-5 rounded bg-white shadow-lg'>
       <div className={commonClass("gap-4")}>
-        <p className='mb-0 text-sm font-fontBold'>{UI_TEXT.DOCUMENTS_OPTION}</p>
-        <InputNumber
-          className='!text-sm w-[80px]'
+        <p className='mb-0 text-sm'>{UI_TEXT.DOCUMENTS_OPTION}</p>
+        <ChacaNumberInput
           min={1}
           max={actualUser ? actualUser.limitDocuments : noUserLimits.LIMIT_DOCUMENTS}
           value={selectedDataset.limit}
-          onChange={(e) => {
-            handleChangeDocumentsLimit(e.value || selectedDataset.limit)
+          onChange={(value) => {
+            handleChangeDocumentsLimit(value)
           }}
+          size={80}
         />
       </div>
 
-      <div className={textDivClass()} onClick={handleAddDatasetField}>
+      <div className={textDivClass} onClick={handleAddDatasetField}>
         {UI_TEXT.NEW_FIELD_OPTION}
       </div>
 
       {datasets.length > 1 && (
-        <div className={textDivClass()} onClick={handleDeleteDataset}>
+        <div className={textDivClass} onClick={handleDeleteDataset}>
           {UI_TEXT.DELETE_OPTION}
         </div>
       )}
 
-      <div className={textDivClass()} onClick={handleExportDataset}>
+      <div className={textDivClass} onClick={handleExportDataset}>
         {UI_TEXT.EXPORT_OPTION}
       </div>
     </div>

@@ -60,7 +60,7 @@ export default function ChacaSelect<T>({
   }, [parentDiv.current, size, dimension])
 
   const parentClass = clsx(
-    "w-full flex items-center border-solid transition-all duration-300 justify-between bg-white py-[2px] border-2 cursor-pointer rounded-sm gap-5",
+    "w-full flex items-center border-solid transition-all duration-300 justify-between bg-white py-[2px] border-2 border-grayColor cursor-pointer rounded-sm gap-5",
     { "border-principalColor": openOptions, "hover:border-principalColor": !openOptions },
     textClass,
     paddingClass,

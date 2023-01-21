@@ -1,7 +1,7 @@
-import { InputText } from "primereact/inputtext"
 import { useLanguage } from "@modules/shared/hooks"
 import { ModalButtons, ModalTitle } from "../../shared/components"
 import { useAddDatasetForm } from "./hooks/useAddDatasetForm"
+import { ChacaTextInput } from "@form"
 
 const AddDatasetForm = () => {
   const { datasetName, handleDatasetName, handleAddDataset } = useAddDatasetForm()
@@ -21,11 +21,10 @@ const AddDatasetForm = () => {
         <label htmlFor='' className='font-fontBold text-lg whitespace-nowrap'>
           {DATASET_NAME_LABEL}:
         </label>
-        <InputText
-          className='w-full'
+        <ChacaTextInput
           placeholder={FIELD_NAME_TEXT}
           value={datasetName}
-          onChange={(e) => handleDatasetName(e.target.value)}
+          onChange={handleDatasetName}
         />
       </div>
 

@@ -3,8 +3,7 @@ import { Calendar } from "primereact/calendar"
 import { InputSwitch } from "primereact/inputswitch"
 import { Argument } from "@modules/schemas/interfaces/argument.interface"
 import { ARGUMENT_TYPE } from "@modules/schemas/constants"
-import { InputNumber } from "primereact/inputnumber"
-import { ChacaTextInput, ChacaSelect } from "@form"
+import { ChacaTextInput, ChacaSelect, ChacaNumberInput } from "@form"
 
 const ArgumentFilter = ({
   arg,
@@ -38,10 +37,10 @@ const ArgumentFilter = ({
       }
       case ARGUMENT_TYPE.NUMBER: {
         return (
-          <InputNumber
+          <ChacaNumberInput
             step={1}
-            onChange={(e) => {
-              handleChangeArgumentValue(e.value || value)
+            onChange={(v) => {
+              handleChangeArgumentValue(v)
             }}
             value={value as number}
             className={textClass}
@@ -51,10 +50,10 @@ const ArgumentFilter = ({
 
       case ARGUMENT_TYPE.FLOAT: {
         return (
-          <InputNumber
+          <ChacaNumberInput
             step={0.1}
-            onChange={(e) => {
-              handleChangeArgumentValue(e.value || value)
+            onChange={(v) => {
+              handleChangeArgumentValue(v)
             }}
             className={textClass}
             value={value as number}

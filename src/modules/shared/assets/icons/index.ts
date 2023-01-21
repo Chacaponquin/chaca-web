@@ -1,5 +1,7 @@
+import ArrowDown from "./ArrowDown"
 import ArrowLeft from "./ArrowLeft"
 import ArrowRight from "./ArrowRight"
+import ArrowUp from "./ArrowUp"
 import Bars from "./Bars"
 import Change from "./Change"
 import Code from "./Code"
@@ -26,6 +28,8 @@ import User from "./User"
 import X from "./X"
 
 export {
+  ArrowDown,
+  ArrowUp,
   Share,
   Search,
   Send,
