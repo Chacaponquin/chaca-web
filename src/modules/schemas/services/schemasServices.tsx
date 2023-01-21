@@ -20,5 +20,9 @@ export function schemasServices() {
     [schemas],
   )
 
-  return { findParent, findType }
+  const findParentOptions = (parent: string): Array<SubOption> => {
+    return findParent(parent).options
+  }
+
+  return { findParent, findType, findParentOptions }
 }

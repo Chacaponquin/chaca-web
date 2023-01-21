@@ -6,8 +6,8 @@ import { Node } from "./Node"
 export class FieldNode<T = FieldDataType> extends Node {
   public info: NodeInfo<T>
 
-  constructor(name: string, info: NodeInfo<T>) {
-    super(name)
+  constructor(info: NodeInfo<T>) {
+    super(info.name)
     this.info = info
   }
 

@@ -1,9 +1,8 @@
 import { Checkbox } from "primereact/checkbox"
-import { InputNumber } from "primereact/inputnumber"
 import { Slider } from "primereact/slider"
 import { useLanguage } from "@modules/shared/hooks"
 import { FieldInfoDTO } from "@modules/datasets/dto/fieldInfo.dto"
-import { ChacaTextInput } from "@form"
+import { ChacaNumberInput, ChacaTextInput } from "@form"
 
 export interface FieldFormProps {
   field: FieldInfoDTO
@@ -56,24 +55,24 @@ const FieldForm = ({
               <div className='flex items-center gap-4'>
                 <div className='flex items-center gap-1'>
                   <p className='mb-0'>Min:</p>
-                  <InputNumber
-                    className='w-[75px] !text-sm'
+                  <ChacaNumberInput
                     value={field.isArray.min}
                     min={0}
+                    size={60}
                     max={field.isArray.max}
                     step={1}
-                    onChange={(e) => handleChangeMinIsArray(e.value)}
+                    onChange={(v) => handleChangeMinIsArray(v)}
                   />
                 </div>
                 <div className='flex items-center gap-1'>
                   <p className='mb-0'>Max:</p>
-                  <InputNumber
-                    className='w-[75px] !text-sm'
+                  <ChacaNumberInput
                     value={field.isArray.max}
                     min={field.isArray.min}
                     max={1000}
                     step={1}
-                    onChange={(e) => handleChangeMaxIsArray(e.value)}
+                    size={60}
+                    onChange={(v) => handleChangeMaxIsArray(v)}
                   />
                 </div>
               </div>

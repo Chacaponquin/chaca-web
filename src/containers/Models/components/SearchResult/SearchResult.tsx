@@ -9,7 +9,7 @@ export default function SearchResult({
   handleSelectModel: (id: string) => void
 }) {
   return (
-    <div className='h-full w-full flex flex-col py-2 overflow-y-auto'>
+    <div className='h-full w-full flex flex-col py-4 overflow-y-auto'>
       <SearchResultContainer models={models} handleSelectModel={handleSelectModel} />
     </div>
   )

@@ -116,7 +116,7 @@ export const datasetsReducer: Reducer<DatasetTree[], DatasetPayload> = (
 
     case DATASETS_ACTIONS.ADD_NEW_FIELD: {
       // crear nuevo field node
-      const newNode = new FieldNode(action.payload.fieldInfo.name, action.payload.fieldInfo)
+      const newNode = new FieldNode(action.payload.fieldInfo)
 
       const newDatasets = datasets.map((d) => {
         if (d.id === action.payload.datasetID) {

@@ -49,13 +49,13 @@ export default function SearchResultCard({
           <div className='flex justify-between items-center gap-5 w-full'>
             <div className='flex gap-5 items-center'>
               <div className='flex items-center gap-1'>
-                <Like size={20} />
-                <p className='mb-0 text-base'>345</p>
+                <Like size={18} />
+                <p className='mb-0 text-base'>{model.likes.length}</p>
               </div>
 
               <div className='flex items-center gap-1'>
-                <Share size={20} />
-                <p className='mb-0 text-base'>345</p>
+                <Share size={18} />
+                <p className='mb-0 text-base'>{20}</p>
               </div>
             </div>
 

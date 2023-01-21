@@ -48,7 +48,24 @@ export default function ChacaNumberInput({
 
   const handleChangeInputValue = (value: string) => {
     if (typeof Number(value) === "number") {
-      onChange(validateValue(Number(value), 0))
+      onChange(validateValue(Number(value), wichIsCloser(Number(value))))
+    }
+  }
+
+  const wichIsCloser = (value: number): number => {
+    if (!value) return min
+
+    const diferenceMin = min - value
+    const diferenceMax = min - value
+
+    if (diferenceMax !== diferenceMin) {
+      if (diferenceMax < diferenceMin) {
+        return max
+      } else {
+        return min
+      }
+    } else {
+      return min
     }
   }
 
@@ -67,13 +84,13 @@ export default function ChacaNumberInput({
   )
 
   return (
-    <div className={containerClass} style={{ height }}>
+    <div
+      className={containerClass}
+      style={{ height, width: size === "full" ? `100%` : `${size}px` }}
+    >
       <input
-        className='h-full outline-none px-2 text-sm bg-transparent focus:border-principalColor hover:border-principalColor py-[2px]'
+        className='h-full w-full outline-none px-2 text-sm bg-transparent focus:border-principalColor hover:border-principalColor py-[2px]'
         type='text'
-        style={{
-          width: size === "full" ? `100%` : `${size}px`,
-        }}
         onChange={(e) => handleChangeInputValue(e.target.value)}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
@@ -83,7 +100,7 @@ export default function ChacaNumberInput({
       />
       <div className='grid grid-rows-2 h-full w-[20px] justify-center justify-items-center border-l-grayColor border-l-2'>
         <button
-          className='flex justify-center text-center items-center'
+          className='flex justify-center text-center items-center border-b-2 border-grayColor w-full'
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
           onClick={handleIncrease}
@@ -92,7 +109,7 @@ export default function ChacaNumberInput({
         </button>
 
         <button
-          className='flex justify-center text-center items-center'
+          className='flex justify-center text-center items-center w-full'
           onClick={handleDecrease}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}

@@ -2,7 +2,7 @@ import { DatasetsContext } from "@modules/datasets/context"
 import { AppConfigContext } from "@modules/shared/context"
 import { useContext } from "react"
 import { CONFIG_ACTIONS, FILE_TYPE } from "../constants"
-import { EmptyFormFieldError } from "../errors"
+import { EmptyFormFieldError, RepeatTagError } from "../errors"
 import { SaveSchemaForm } from "../interfaces/config.iterface"
 
 export function configServices() {
@@ -16,7 +16,7 @@ export function configServices() {
     })
   }
 
-  const validateSchemaForm = () => {
+  const validateSaveSchemaForm = () => {
     if (config.saveSchema) {
       for (const [key, value] of Object.entries(config.saveSchema)) {
         if (value === "") {
@@ -63,6 +63,8 @@ export function configServices() {
       } else {
         if (value === "") {
           throw new EmptyFormFieldError(key)
+        } else if (config.saveSchema.tags.some((t) => t === value)) {
+          throw new RepeatTagError(value)
         }
 
         configDispatch({
@@ -86,7 +88,7 @@ export function configServices() {
     changeSaveSchema,
     updateSaveSchemaForm,
     resetConfig,
-    validateSchemaForm,
+    validateSaveSchemaForm,
     changeFileArgument,
     changeFileType,
   }

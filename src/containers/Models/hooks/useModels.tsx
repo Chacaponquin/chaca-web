@@ -20,7 +20,6 @@ export function useModels() {
 
   const handleSelectModel = (id: string) => {
     const foundModel = userModels.find((m) => m._id === id)
-
     if (foundModel) setSelectModel(foundModel)
   }
 

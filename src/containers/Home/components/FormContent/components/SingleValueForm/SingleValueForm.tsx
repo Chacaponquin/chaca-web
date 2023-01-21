@@ -3,13 +3,13 @@ import { schemasServices } from "@modules/schemas/services"
 import { OptionsContainer, SchemaSelect } from "./components"
 
 const SingleValueForm = ({ field }: { field: DatasetField<SingleValueDataType> }) => {
-  const { findParent } = schemasServices()
+  const { findParentOptions } = schemasServices()
 
   return (
-    <div className='flex w-full h-full flex-col bg-white gap-3'>
+    <div className='flex w-full h-full flex-col bg-white gap-3 mt-2'>
       <SchemaSelect field={field} />
       <OptionsContainer
-        options={findParent(field.dataType.fieldType.parent).options}
+        options={findParentOptions(field.dataType.fieldType.parent)}
         field={field}
       />
     </div>

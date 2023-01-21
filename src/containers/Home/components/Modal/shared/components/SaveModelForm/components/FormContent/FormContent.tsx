@@ -1,34 +1,25 @@
-import { useState } from "react"
 import { ChacaTextInput, ChacaTextarea } from "@form"
 import { ChacaSimpleButton } from "@modules/shared/components/ChacaButton"
 import { v4 as uuid } from "uuid"
 import { X } from "@modules/shared/assets/icons"
 import { SaveSchemaForm } from "@modules/config/interfaces/config.iterface"
-import { configServices } from "@modules/config/services"
-import { toast } from "react-toastify"
-import { EmptyFormFieldError } from "@modules/config/errors"
+import { useFormContent } from "./hooks"
+import { useLanguage } from "@modules/shared/hooks"
 
 export default function FormContent({ saveSchemaForm }: { saveSchemaForm: SaveSchemaForm }) {
-  const { updateSaveSchemaForm } = configServices()
-  const [newTag, setNewTag] = useState("")
+  const { handleAddNewTag, handleChangeFormValue, handleChangeNewTag, newTag } = useFormContent()
 
-  const handleChangeNewTag = (tag: string) => {
-    setNewTag(tag)
-  }
-
-  const handleChangeFormValue = (key: keyof SaveSchemaForm, value: string) => {
-    try {
-      updateSaveSchemaForm(key, value)
-    } catch (error) {
-      if (error instanceof EmptyFormFieldError) toast(`The field ${error.message} can not be empty`)
-    }
-  }
+  const { DESCRIPTION_TEXT, MODEL_NAME_TEXT, TAGS_TEXT } = useLanguage({
+    MODEL_NAME_TEXT: { en: "Name", es: "Nombre" },
+    DESCRIPTION_TEXT: { en: "Description", es: "Descripción" },
+    TAGS_TEXT: { en: "Tags", es: "Etiquetas" },
+  })
 
   return (
     <div className='flex flex-col w-full gap-2'>
       <div className='flex flex-col w-full'>
         <label htmlFor='' className='text-base'>
-          Model name
+          {MODEL_NAME_TEXT}
         </label>
         <ChacaTextInput
           value={saveSchemaForm.name}
@@ -43,7 +34,7 @@ export default function FormContent({ saveSchemaForm }: { saveSchemaForm: SaveSc
 
       <div className='flex flex-col w-full'>
         <label htmlFor='' className='text-base'>
-          Description
+          {DESCRIPTION_TEXT}
         </label>
         <ChacaTextarea
           dimension='normal'
@@ -59,7 +50,7 @@ export default function FormContent({ saveSchemaForm }: { saveSchemaForm: SaveSc
 
       <div className='flex flex-col w-full'>
         <label htmlFor='' className='text-base'>
-          Tags
+          {TAGS_TEXT}
         </label>
         <div className='flex items-center gap-1'>
           <ChacaTextInput
@@ -72,9 +63,7 @@ export default function FormContent({ saveSchemaForm }: { saveSchemaForm: SaveSc
             size='medium'
             text='Add'
             color='primary'
-            onClick={() => {
-              handleChangeFormValue("tags", newTag)
-            }}
+            onClick={() => handleAddNewTag()}
           />
         </div>
 

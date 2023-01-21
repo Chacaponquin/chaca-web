@@ -9,7 +9,7 @@ import { EmptyFormFieldError } from "@modules/config/errors"
 
 export const useHome = () => {
   const { datasets, config, selectedDataset } = useContext(DatasetsContext)
-  const { resetConfig, validateSchemaForm } = configServices()
+  const { resetConfig, validateSaveSchemaForm } = configServices()
   const { getTokenCookie } = useConfig()
 
   const { NETWORK_ERROR } = useLanguage({
@@ -83,7 +83,7 @@ export const useHome = () => {
   const handleCreateSelectDataset = () => {
     if (socket.connected) {
       try {
-        validateSchemaForm()
+        validateSaveSchemaForm()
         setCreateDataLoading(true)
 
         socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {
@@ -92,7 +92,7 @@ export const useHome = () => {
         })
       } catch (error) {
         if (error instanceof EmptyFormFieldError) {
-          toast.error(`The field ${error.key} can not be an empty string`)
+          toast.error(`The ${error.key} can not be an empty string`)
         }
       }
     } else {

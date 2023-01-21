@@ -22,7 +22,7 @@ const DeleteDatasetForm = () => {
       <ModalTitle titleText={DELETE_DATASET_TEXT} />
 
       <div className='flex w-full flex-col'>
-        <div className='mb-2 text-lg flex gap-1'>
+        <div className='text-lg flex gap-1'>
           {DELETE_DATASET_MESSAGE} <h1 className='font-fontBold'>{selectedDataset.name}</h1>?
         </div>
       </div>

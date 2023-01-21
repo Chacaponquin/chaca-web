@@ -1,16 +1,17 @@
-import { ArrowRight } from "@modules/shared/assets/icons"
+import { ArrowDown } from "@modules/shared/assets/icons"
 import { useState, useRef, useMemo, useEffect } from "react"
 import { v4 as uuid } from "uuid"
 import clsx from "clsx"
 import { useFilters } from "../../hooks"
 import { ChacaFormProps } from "../../interfaces/chacaForm.interface"
+import { Size } from "../../interfaces/dimension.interface"
 
 interface ChacaSelectProps<T> extends ChacaFormProps<unknown> {
   placeholder: string
   options: Array<T>
   labelKey: keyof T
   valueKey: keyof T
-  size?: "full" | number
+  size?: Size
 }
 
 export default function ChacaSelect<T>({
@@ -84,8 +85,8 @@ export default function ChacaSelect<T>({
           {selectIndex !== null ? String(options[selectIndex][labelKey]) : placeholder}
         </p>
 
-        <button className='rotate-90'>
-          <ArrowRight size={18} />
+        <button>
+          <ArrowDown size={18} />
         </button>
       </div>
 

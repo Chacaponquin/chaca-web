@@ -5,3 +5,9 @@ export class EmptyFormFieldError extends Error {
     super()
   }
 }
+
+export class RepeatTagError extends Error {
+  constructor(public readonly tag: string) {
+    super()
+  }
+}

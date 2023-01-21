@@ -33,13 +33,12 @@ const DatasetConfigMenu = ({
   }
 
   const commonClass = (c: string) => {
-    return clsx(
-      "w-full px-4 py-2 cursor-pointer transition-all duration-300 hover:bg-slate-200 flex items-center",
-      c,
-    )
+    return clsx("w-full px-4 py-2 cursor-pointer flex items-center", c)
   }
 
-  const textDivClass = commonClass("flex items-center text-sm text-center")
+  const textDivClass = commonClass(
+    "flex items-center text-sm text-center transition-all duration-300 hover:bg-slate-200 ",
+  )
 
   return (
     <div className='absolute flex flex-col -translate-x-0 translate-y-5 rounded bg-white shadow-lg'>

@@ -3,6 +3,6 @@ export interface UserDatasetModel {
   name: string
   descripttion: string
   model: string
-  likes: number
+  likes: Array<string>
   tags: Array<string>
 }
