@@ -40,7 +40,6 @@ export default function TestEndpointForm({ option }: { option: SubOption }) {
   const handleMakeRequest = () => {
     request({
       url: requestURL,
-      query: args,
       onCompleted: (data) => {
         try {
           const jsonData = JSON.stringify(data)
