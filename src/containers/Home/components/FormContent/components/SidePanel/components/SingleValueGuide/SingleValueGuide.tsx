@@ -59,7 +59,7 @@ export default function SingleValueGuide({ field }: { field: DatasetField<Single
           <div className='uppercase px-4 py-1 font-fontBold bg-principalColor text-white border-principalColor border-2 rounded-tl rounded-bl'>
             GET
           </div>
-          <div className='px-3 py-1 border-2 border-principalColor w-full rounded-br rounded-tr'>
+          <div className='px-3 py-1 border-2 border-principalColor w-full rounded-br rounded-tr overflow-x-auto no-scroll'>
             {optionApiRoute(option.route)}
           </div>
         </div>

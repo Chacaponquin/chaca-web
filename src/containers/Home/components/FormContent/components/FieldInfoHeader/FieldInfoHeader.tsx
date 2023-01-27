@@ -15,6 +15,8 @@ const FieldInfoHeader = ({ selectField }: { selectField: FieldNode<FieldDataType
 
   const { handleDelete, handleEdit, location } = useFieldInfoHeader(selectField)
 
+  console.log(location)
+
   return (
     <div className='w-full bg-white py-2 flex justify-between items-center px-5 border-b-2 h-[50px]'>
       <div className='flex gap-3 text-lg'>

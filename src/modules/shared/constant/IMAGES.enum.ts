@@ -4,4 +4,5 @@ export const APP_IMAGES = {
   WHY_US: { image: "/images/whyUs.png", alt: "why-us-image" },
   WAIT_REQUEST: { image: "/images/wait_request.png", alt: "wait_request_image" },
   EMPTY: { image: "/images/empty.png", alt: "empty-image" },
+  ERROR: { image: "/images/error.png", alt: "error-image" },
 }

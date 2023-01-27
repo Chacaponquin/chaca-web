@@ -26,10 +26,9 @@ export function useFieldInfoHeader(selectField: FieldNode) {
     handleDeleteSelectField()
   }
 
-  const location = useMemo(
-    () => selectedDataset.getFieldLocation(selectField.id),
-    [selectField, selectedDataset],
-  )
+  const location = useMemo(() => {
+    return selectedDataset.getFieldLocation(selectField.id)
+  }, [selectField, selectedDataset])
 
   return { location, handleDelete, handleEdit }
 }

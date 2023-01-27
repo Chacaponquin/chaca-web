@@ -4,7 +4,7 @@ import { IconProps } from "../interfaces/icon.interface"
 
 const X = ({ size = DEFAULT_ICON_SIZE }: IconProps) => {
   return (
-    <div className='-translate-y-[3px]'>
+    <div className=''>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         width={size}

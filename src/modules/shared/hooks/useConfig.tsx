@@ -41,7 +41,10 @@ export const useConfig = () => {
 
         return req
       },
-      (error) => Promise.reject(error),
+      (error) => {
+        console.log(error)
+        Promise.reject(error)
+      },
     )
   }, [language])
 

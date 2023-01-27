@@ -74,7 +74,7 @@ export class Node {
         let ret: string[] | null = null
 
         for (let i = 0; i < this.nodes.length && !ret; i++) {
-          ret = this.nodes[i].getFieldLocation(fieldID, [...location, this.id])
+          ret = this.nodes[i].getFieldLocation(fieldID, [...location, this.name])
         }
 
         return ret ? ret : null
