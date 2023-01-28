@@ -11,4 +11,8 @@ export const APP_ROUTES = {
   MODELS: "/models",
   CONTACT_US: "/contactUs",
   NOT_FOUND: "/notFound",
+  ADMIN: {
+    ROOT: "/admin",
+    EDIT_DOC: "/admin/editDocs",
+  },
 }
