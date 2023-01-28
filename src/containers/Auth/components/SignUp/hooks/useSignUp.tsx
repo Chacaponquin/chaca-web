@@ -3,9 +3,10 @@ import { usePost } from "@modules/shared/hooks"
 import { API_ROUTES } from "@modules/shared/routes"
 import { useState } from "react"
 import { toast } from "react-toastify"
+import { SignUpUserDTO } from "@containers/Auth/shared/dto/signUpUserDTO.dto"
 
 export function useSignUp() {
-  const [signUpData, setSignUpData] = useState({
+  const [signUpData, setSignUpData] = useState<SignUpUserDTO>({
     username: "",
     email: "",
     password: "",
@@ -14,7 +15,7 @@ export function useSignUp() {
 
   const { handleSignIn } = userServices()
 
-  const [signUpUser, { loading }] = usePost<string>({
+  const [signUpUser, { loading }] = usePost<string, SignUpUserDTO>({
     url: API_ROUTES.AUTH_ROUTES.SIGN_UP,
     onCompleted: (userToken) => {
       handleSignIn(userToken)

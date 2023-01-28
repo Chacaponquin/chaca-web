@@ -5,6 +5,7 @@ import { ChacaFormProps } from "../../interfaces/chacaForm.interface"
 interface ChacaTextInputProps extends ChacaFormProps<string> {
   placeholder: string
   size?: number | "full"
+  type?: "email" | "password" | "text"
 }
 
 export default function ChacaTextInput({
@@ -14,6 +15,7 @@ export default function ChacaTextInput({
   className = "",
   size = "full",
   value,
+  type = "text",
 }: ChacaTextInputProps) {
   const { textClass, paddingClass } = useFilters({ dimension })
 
@@ -26,7 +28,7 @@ export default function ChacaTextInput({
 
   return (
     <input
-      type='text'
+      type={type}
       placeholder={placeholder}
       onChange={(e) => {
         onChange(e.target.value)

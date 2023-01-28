@@ -18,4 +18,9 @@ export const API_ROUTES = {
     GET_REF_FORM_GUIDES: "/docs/guides/ref",
     GET_DOC_SECTIONS: "/docs/sections",
   },
+  ADMIN: {
+    AUTH: {
+      LOGIN: "/admin/auth/signIn",
+    },
+  },
 }

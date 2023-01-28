@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Fragment } from "react"
 import ReactDOM from "react-dom/client"
 import App from "./App"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
@@ -24,18 +24,22 @@ import "./index.css"
 import "primereact/resources/themes/lara-light-indigo/theme.css"
 import "primereact/resources/primereact.min.css"
 import "primeicons/primeicons.css"
+import { ToastContainer } from "react-toastify"
 
-const root = ReactDOM.createRoot(document.getElementById("root")!)
+const root = ReactDOM.createRoot(document.getElementById("root") as Element)
 
 const Home = React.lazy(() => import("./containers/Home/Home"))
 const Api = React.lazy(() => import("./containers/Api/Api"))
 const Models = React.lazy(() => import("./containers/Models/Models"))
 const Login = React.lazy(() => import("./containers/Auth/components/Login/Login"))
 const SignUp = React.lazy(() => import("./containers/Auth/components/SignUp/SignUp"))
+const Admin = React.lazy(() => import("./containers/Admin/Admin"))
 
 const AppCont = () => {
   return (
     <Routes>
+      <Route path={APP_ROUTES.ADMIN.ROOT} element={<Admin />} />
+
       <Route
         path={APP_ROUTES.AUTH_ROUTES.LOGIN}
         element={
@@ -63,22 +67,13 @@ const AppCont = () => {
       <Route path={APP_ROUTES.CONTACT_US} element={<ContactUs />} />
 
       <Route path='/' element={<App />}>
-        <Route path={APP_ROUTES.ROOT} element={<Landing />} />
-        <Route
-          path={APP_ROUTES.HOME}
-          element={
-            <LazyRoute
-              element={
-                <ModalProvider>
-                  <Home />
-                </ModalProvider>
-              }
-            />
-          }
-        />
-        <Route path={APP_ROUTES.API} element={<LazyRoute element={<Api />} />} />
-        <Route path={APP_ROUTES.MODELS} element={<LazyRoute element={<Models />} />} />
-        <Route path={APP_ROUTES.NOT_FOUND} element={<Error404 />} />
+        <Fragment>
+          <Route path={APP_ROUTES.ROOT} element={<Landing />} />
+          <Route path={APP_ROUTES.HOME} element={<LazyRoute element={<Home />} />} />
+          <Route path={APP_ROUTES.API} element={<LazyRoute element={<Api />} />} />
+          <Route path={APP_ROUTES.MODELS} element={<LazyRoute element={<Models />} />} />
+          <Route path={APP_ROUTES.NOT_FOUND} element={<Error404 />} />
+        </Fragment>
       </Route>
 
       <Route path='*' element={<Error404 />} />
@@ -93,7 +88,12 @@ root.render(
         <AppConfigProvider>
           <UserProvider>
             <DatasetsProvider>
-              <AppCont />
+              <ModalProvider>
+                <Fragment>
+                  <ToastContainer autoClose={5000} hideProgressBar={true} />
+                  <AppCont />
+                </Fragment>
+              </ModalProvider>
             </DatasetsProvider>
           </UserProvider>
         </AppConfigProvider>

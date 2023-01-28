@@ -5,4 +5,6 @@ export const APP_IMAGES = {
   WAIT_REQUEST: { image: "/images/wait_request.png", alt: "wait_request_image" },
   EMPTY: { image: "/images/empty.png", alt: "empty-image" },
   ERROR: { image: "/images/error.png", alt: "error-image" },
+  CONTACT: { image: "/images/contact.png", alt: "contact-image" },
+  SUCCESS: { image: "/images/modal.png", alt: "success-image" },
 }

@@ -3,16 +3,17 @@ import { usePost } from "@modules/shared/hooks"
 import { API_ROUTES } from "@modules/shared/routes"
 import { useState } from "react"
 import { toast } from "react-toastify"
+import { LoginUserDTO } from "@containers/Auth/shared/dto/loginUserDTO.dto"
 
 export function useLogin() {
   const { handleSignIn } = userServices()
 
-  const [loginData, setLoginData] = useState({
+  const [loginData, setLoginData] = useState<LoginUserDTO>({
     email: "",
     password: "",
   })
 
-  const [loginUser, { loading }] = usePost<string>({
+  const [loginUser, { loading }] = usePost<string, LoginUserDTO>({
     url: API_ROUTES.AUTH_ROUTES.LOGIN,
     onError: (error) => {
       const errorMessage = error.response?.data as any

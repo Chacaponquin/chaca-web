@@ -13,6 +13,6 @@ export const APP_ROUTES = {
   NOT_FOUND: "/notFound",
   ADMIN: {
     ROOT: "/admin",
-    EDIT_DOC: "/admin/editDocs",
+    EDIT_DOC: "/editDocs",
   },
 }

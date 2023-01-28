@@ -1,6 +1,5 @@
-import { Fragment, useContext } from "react"
+import { useContext } from "react"
 import { Outlet, useLocation } from "react-router-dom"
-import { ToastContainer } from "react-toastify"
 import { APP_ROUTES } from "@modules/shared/routes"
 import { NavBar, OptionsBar } from "./layout"
 import { AppLoader } from "@modules/shared/components/Loader"
@@ -15,17 +14,13 @@ function App() {
 
   return (
     <AppLoader loading={initialFetchLoading || loading}>
-      <Fragment>
-        <ToastContainer autoClose={5000} hideProgressBar={true} />
+      <div className='flex w-full min-h-screen h-screen'>
+        {location.pathname !== APP_ROUTES.ROOT ? <OptionsBar /> : <NavBar />}
 
-        <div className='flex w-full min-h-screen h-screen'>
-          {location.pathname !== APP_ROUTES.ROOT ? <OptionsBar /> : <NavBar />}
-
-          <div className='w-full h-full'>
-            <Outlet />
-          </div>
+        <div className='w-full h-full'>
+          <Outlet />
         </div>
-      </Fragment>
+      </div>
     </AppLoader>
   )
 }

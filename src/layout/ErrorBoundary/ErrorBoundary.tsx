@@ -1,3 +1,4 @@
+import { APP_IMAGES } from "@modules/shared/constant"
 import { ErrorInfo, ReactNode, Component } from "react"
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
@@ -33,8 +34,8 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boole
 
             <div>
               <img
-                src='./images/error.jpg'
-                alt=''
+                src={APP_IMAGES.ERROR.image}
+                alt={APP_IMAGES.ERROR.alt}
                 className='md:w-[600px] w-[450px] object-cover esm:w-[350px] min-w-[270px]'
               />
             </div>
