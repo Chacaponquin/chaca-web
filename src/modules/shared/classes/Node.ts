@@ -11,6 +11,10 @@ export class Node {
     this.setName(name)
   }
 
+  public getNodes() {
+    return this.nodes
+  }
+
   get name() {
     return this.nodeName
   }
@@ -20,7 +24,38 @@ export class Node {
   }
 
   public setName(newName: string) {
-    if (newName !== "") this.nodeName = newName
+    this.nodeName = newName
+  }
+
+  public getSameLevelNodes(fieldID: string): Array<FieldNode> {
+    const findNode = this.nodes.some((n) => n.id === fieldID)
+
+    if (findNode) return this.nodes
+    else {
+      let returnArray = [] as Array<FieldNode>
+
+      for (let i = 0; i < this.nodes.length && returnArray.length === 0; i++) {
+        returnArray = this.nodes[i].getSameLevelNodes(fieldID)
+      }
+
+      return returnArray
+    }
+  }
+
+  public findFieldParentNode(nodeID: string): Node | null {
+    const findNode = this.nodes.some((n) => n.id === nodeID)
+
+    if (findNode) {
+      return this
+    } else {
+      let returnValue = null
+
+      for (let i = 0; i < this.nodes.length && !returnValue; i++) {
+        returnValue = this.nodes[i].findFieldParentNode(nodeID)
+      }
+
+      return returnValue
+    }
   }
 
   public findNodeByID(nodeID: string): null | FieldNode {

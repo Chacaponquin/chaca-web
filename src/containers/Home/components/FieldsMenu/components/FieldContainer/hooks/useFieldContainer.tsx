@@ -7,7 +7,7 @@ import { DATA_TYPES } from "@modules/schemas/constants"
 export function useFieldContainer(field: DatasetField) {
   const { selectField, handleSelectField, selectedDataset } = useContext(DatasetsContext)
   const [openMenu, setOpenMenu] = useState(false)
-  const [subFieldsOpen, setSubFieldsOpen] = useState(false)
+  const [subFieldsOpen, setSubFieldsOpen] = useState(true)
 
   const divClass = clsx(
     "w-full flex items-center cursor-pointer justify-between py-1 transition-all duration-300 hover:bg-slate-100 px-2",

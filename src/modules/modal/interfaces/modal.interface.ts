@@ -2,6 +2,10 @@ import { SubOption } from "@modules/schemas/interfaces/schema.interface"
 import { DatasetField, FieldDataType } from "../../datasets/interfaces/datasets.interface"
 import { MODAL_ACTIONS } from "../constants/MODAL_ACTIONS"
 
+export type ModalEditDataset = {
+  type: MODAL_ACTIONS.EDIT_DATASET
+}
+
 export type ModalAddFieldProps = {
   type: MODAL_ACTIONS.ADD_FIELD
   parentFieldID: string
@@ -19,7 +23,7 @@ export type ModalDeleteDataset = {
 export type ModalEditField = {
   type: MODAL_ACTIONS.EDIT_FIELD
   field: DatasetField<FieldDataType>
-  location: string[]
+  parentFieldID: string
 }
 
 export type ModalExportSelectDataset = {
@@ -43,3 +47,4 @@ export type ModalProps =
   | ModalExportSelectDataset
   | ModalExportAllDatasets
   | ModalTestEndpoint
+  | ModalEditDataset

@@ -4,6 +4,7 @@ import { useContext } from "react"
 import { toast } from "react-toastify"
 import { useFieldForm } from "../../../shared/hooks"
 import { v4 as uuid } from "uuid"
+import { EmptyFieldNameError, RepeatSameLevelFieldNameError } from "@modules/datasets/errors"
 
 export function useAddFieldForm(parentFieldID: string) {
   const { handleCloseModal } = useContext(ModalContext)
@@ -22,7 +23,11 @@ export function useAddFieldForm(parentFieldID: string) {
       // close modal
       handleCloseModal()
     } catch (error) {
-      toast.error("The field name can not be an empty string")
+      if (error instanceof EmptyFieldNameError) {
+        toast.error(`The field name can not be an empty string`)
+      } else if (error instanceof RepeatSameLevelFieldNameError) {
+        toast.error(`Aldready exists an field with that name`)
+      }
     }
   }
 

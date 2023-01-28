@@ -95,7 +95,8 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
     const foundDataset = datasets.find((el) => el.id === datasetID)
 
     if (foundDataset) {
-      setSelectField(foundDataset.findFieldByID(fieldID))
+      const foundNode = foundDataset.findFieldByID(fieldID)
+      setSelectField(foundNode)
     }
   }
 

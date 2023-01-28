@@ -11,10 +11,12 @@ const DatasetConfigMenu = ({
   handleAddDatasetField,
   handleDeleteDataset,
   handleExportDataset,
+  handleEditDataset,
 }: {
   handleAddDatasetField: () => void
   handleDeleteDataset: () => void
   handleExportDataset: () => void
+  handleEditDataset: () => void
 }) => {
   const { selectedDataset, datasets } = useContext(DatasetsContext)
   const { actualUser } = useContext(UserContext)
@@ -26,6 +28,7 @@ const DatasetConfigMenu = ({
     NEW_FIELD_OPTION: { en: "New Field", es: "Nuevo Campo" },
     DELETE_OPTION: { en: "Delete", es: "Borrar" },
     EXPORT_OPTION: { en: "Export", es: "Exportar" },
+    EDIT_OPTION: { en: "Edit", es: "Editar" },
   })
 
   const handleChangeDocumentsLimit = (limit: number) => {
@@ -37,7 +40,7 @@ const DatasetConfigMenu = ({
   }
 
   const textDivClass = commonClass(
-    "flex items-center text-sm text-center transition-all duration-300 hover:bg-slate-200 ",
+    "flex items-center text-sm text-center transition-all duration-300 hover:bg-slate-200",
   )
 
   return (
@@ -53,6 +56,10 @@ const DatasetConfigMenu = ({
           }}
           size={80}
         />
+      </div>
+
+      <div className={textDivClass} onClick={handleEditDataset}>
+        {UI_TEXT.EDIT_OPTION}
       </div>
 
       <div className={textDivClass} onClick={handleAddDatasetField}>

@@ -10,7 +10,11 @@ export function useFieldConfigMenu(field: DatasetField) {
   const { handleOpenModal } = useContext(ModalContext)
 
   const handleEditField = () => {
-    handleOpenModal({ type: MODAL_ACTIONS.EDIT_FIELD, field, location: [] })
+    const findParent = selectedDataset.findFieldParentNode(field.id)
+
+    if (findParent) {
+      handleOpenModal({ type: MODAL_ACTIONS.EDIT_FIELD, field, parentFieldID: findParent.id })
+    }
   }
 
   const handleAddField = () => {

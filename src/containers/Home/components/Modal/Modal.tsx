@@ -4,6 +4,7 @@ import {
   AddDatasetForm,
   AddFieldForm,
   DeleteDatasetForm,
+  EditDataset,
   EditFieldForm,
   ExportAllDatasetForm,
   ExportSelectDatasetForm,
@@ -22,6 +23,7 @@ const Modal = ({
   return (
     <div className='w-full fixed top-0 left-0 h-screen bg-slate-500/50 z-50 flex justify-center items-center'>
       <div className='bg-white rounded-md px-10 py-5 shadow-md min-w-[500px]'>
+        {modalProps.type === MODAL_ACTIONS.EDIT_DATASET && <EditDataset />}
         {modalProps.type === MODAL_ACTIONS.ADD_FIELD && <AddFieldForm modalProps={modalProps} />}
         {modalProps.type === MODAL_ACTIONS.ADD_DATASET && <AddDatasetForm />}
         {modalProps.type === MODAL_ACTIONS.DELETE_DATASET && <DeleteDatasetForm />}

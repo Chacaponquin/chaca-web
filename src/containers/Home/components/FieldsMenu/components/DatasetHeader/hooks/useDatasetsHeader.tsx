@@ -34,6 +34,11 @@ export function useDatasetsHeader() {
     setOpenConfig(false)
   }
 
+  const handleEditDataset = () => {
+    handleOpenModal({ type: MODAL_ACTIONS.EDIT_DATASET })
+    setOpenConfig(false)
+  }
+
   const handleExportDataset = () => {
     handleOpenModal({ type: MODAL_ACTIONS.EXPORT_SELECT_DATASET })
     setOpenConfig(false)
@@ -46,5 +51,6 @@ export function useDatasetsHeader() {
     handleExportDataset,
     openConfig,
     handleInteractOpenConfig,
+    handleEditDataset,
   }
 }

@@ -1,5 +1,6 @@
 import { Dataset } from "@modules/datasets/interfaces/datasets.interface"
 import { FieldNode } from "./FieldNode"
+import { Node } from "./Node"
 import { RootNode } from "./RootNode"
 
 export class DatasetTree {
@@ -37,8 +38,21 @@ export class DatasetTree {
     this.root.insertNode(node)
   }
 
+  public findFieldParentNode(nodeID: string): Node | null {
+    return this.root.findFieldParentNode(nodeID)
+  }
+
+  public findNodeByID(nodeID: string): Node | null {
+    if (this.root.id === nodeID) return this.root
+    else return this.root.findNodeByID(nodeID)
+  }
+
   public findFieldByID(fieldID: string): FieldNode | null {
     return this.root.findNodeByID(fieldID)
+  }
+
+  public findSameLevelFields(fieldID: string): Array<FieldNode> {
+    return this.root.getSameLevelNodes(fieldID)
   }
 
   public getDatasetObject(): Dataset {

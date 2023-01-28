@@ -10,11 +10,15 @@ export function useFieldInfoHeader(selectField: FieldNode) {
   const { handleOpenModal } = useContext(ModalContext)
 
   const handleEdit = () => {
-    handleOpenModal({
-      type: MODAL_ACTIONS.EDIT_FIELD,
-      field: selectField.getNodeObject(),
-      location: selectedDataset.getFieldLocation(selectField.id),
-    })
+    const findParent = selectedDataset.findFieldParentNode(selectField.id)
+
+    if (findParent) {
+      handleOpenModal({
+        type: MODAL_ACTIONS.EDIT_FIELD,
+        field: selectField.getNodeObject(),
+        parentFieldID: findParent.id,
+      })
+    }
   }
 
   const handleDelete = () => {

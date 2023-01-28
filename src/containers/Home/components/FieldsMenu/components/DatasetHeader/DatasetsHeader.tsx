@@ -14,6 +14,7 @@ const DatasetsHeader = () => {
     handleNewDataset,
     openConfig,
     handleInteractOpenConfig,
+    handleEditDataset,
   } = useDatasetsHeader()
 
   return (
@@ -47,6 +48,7 @@ const DatasetsHeader = () => {
             handleAddDatasetField={handleAddDatasetField}
             handleDeleteDataset={handleDeleteDataset}
             handleExportDataset={handleExportDataset}
+            handleEditDataset={handleEditDataset}
           />
         )}
       </div>

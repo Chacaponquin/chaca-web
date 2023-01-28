@@ -1,13 +1,13 @@
 import { DatasetsContext } from "../context"
 import { useContext } from "react"
 import { DATASETS_ACTIONS } from "../constants"
-import { EmptyFieldNameError, RepeatDatasetNameError } from "../errors"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { AppConfigContext } from "@modules/shared/context"
 import { FieldInfoDTO } from "../dto/fieldInfo.dto"
 import { schemasServices } from "@modules/schemas/services"
 import { DatasetField, SingleValueDataType } from "../interfaces/datasets.interface"
 import { DatasetTree } from "@modules/shared/classes"
+import { useValidations } from "../hooks"
 
 export function datasetServices() {
   const {
@@ -19,6 +19,7 @@ export function datasetServices() {
   } = useContext(DatasetsContext)
   const { schemas } = useContext(AppConfigContext)
   const { findParent } = schemasServices()
+  const { validateDatasetName, validateFieldName } = useValidations()
 
   const initDatasets = () => {
     const initDataset = new DatasetTree("New Dataset", 50)
@@ -27,42 +28,58 @@ export function datasetServices() {
   }
 
   const addDataset = (datasetName: string) => {
-    if (datasetName !== "") {
-      // create dataset
-      datasetDispatch({
-        type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
-        payload: { datasetName },
-      })
-    } else {
-      throw new RepeatDatasetNameError()
-    }
+    validateDatasetName(datasetName)
+    // create dataset
+    datasetDispatch({
+      type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
+      payload: { datasetName },
+    })
+  }
+
+  const editDataset = (datasetName: string) => {
+    validateDatasetName(datasetName)
+
+    datasetDispatch({
+      type: DATASETS_ACTIONS.CHANGE_DATASET_NAME,
+      payload: { datasetID: selectedDataset.id, newName: datasetName },
+    })
+  }
+
+  const updateField = (fieldDTO: FieldInfoDTO, parentFieldID: string) => {
+    validateFieldName(parentFieldID, fieldDTO.name)
+
+    datasetDispatch({
+      type: DATASETS_ACTIONS.EDIT_FIELD,
+      payload: {
+        field: fieldDTO,
+        datasetID: selectedDataset.id,
+      },
+    })
   }
 
   const addField = (fieldDTO: FieldInfoDTO, parentFieldID: string) => {
-    if (fieldDTO.name !== "") {
-      // crear el field
-      datasetDispatch({
-        type: DATASETS_ACTIONS.ADD_NEW_FIELD,
-        payload: {
-          fieldInfo: {
-            name: fieldDTO.name,
-            isArray: fieldDTO.isArray,
-            isPosibleNull: fieldDTO.isPosibleNull,
-            dataType: {
-              type: DATA_TYPES.SINGLE_VALUE,
-              fieldType: { args: {}, parent: schemas[0].parent, type: schemas[0].options[0].name },
-            },
-          },
-          parentFieldID,
-          datasetID: selectedDataset.id,
-        },
-      })
+    validateFieldName(parentFieldID, fieldDTO.name)
 
-      // quitar el selected field (ponerlo en null)
-      handleDeleteSelectField()
-    } else {
-      throw new EmptyFieldNameError()
-    }
+    // crear el field
+    datasetDispatch({
+      type: DATASETS_ACTIONS.ADD_NEW_FIELD,
+      payload: {
+        fieldInfo: {
+          name: fieldDTO.name,
+          isArray: fieldDTO.isArray,
+          isPosibleNull: fieldDTO.isPosibleNull,
+          dataType: {
+            type: DATA_TYPES.SINGLE_VALUE,
+            fieldType: { args: {}, parent: schemas[0].parent, type: schemas[0].options[0].name },
+          },
+        },
+        parentFieldID,
+        datasetID: selectedDataset.id,
+      },
+    })
+
+    // quitar el selected field (ponerlo en null)
+    handleDeleteSelectField()
   }
 
   const deleteDataset = (datasetID: string) => {
@@ -72,16 +89,6 @@ export function datasetServices() {
     })
 
     handleSelectDataset(datasets[0].id)
-  }
-
-  const updateField = (fieldDTO: FieldInfoDTO) => {
-    datasetDispatch({
-      type: DATASETS_ACTIONS.EDIT_FIELD,
-      payload: {
-        field: fieldDTO,
-        datasetID: selectedDataset.id,
-      },
-    })
   }
 
   const selectFieldSchema = (parent: string, fieldID: string) => {
@@ -240,5 +247,6 @@ export function datasetServices() {
     updateCustomField,
     changeDocumentsLimit,
     initDatasets,
+    editDataset,
   }
 }

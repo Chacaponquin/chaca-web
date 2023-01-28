@@ -1,3 +1,3 @@
-import DatasetConfigMenu from "./DatasetConfigMenu"
+import DatasetConfigMenu from "./DatasetConfigMenu/DatasetConfigMenu"
 
 export { DatasetConfigMenu }
