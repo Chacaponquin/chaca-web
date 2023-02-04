@@ -17,13 +17,14 @@ export default function Home() {
         <form className='flex flex-col w-full gap-y-3'>
           <div className='flex flex-col'>
             <label htmlFor='' className='font-fontBold text-lg'>
-              Username
+              Email
             </label>
             <ChacaTextInput
-              placeholder='Username'
-              onChange={(value) => handleChangeAdminForm("username", value)}
-              value={adminLoginForm.username}
+              placeholder='Email'
+              onChange={(value) => handleChangeAdminForm("email", value)}
+              value={adminLoginForm.email}
               dimension='normal'
+              type='email'
             />
           </div>
 

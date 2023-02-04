@@ -1,7 +1,8 @@
-import { CreationLoadingModal, FieldsMenu, FormContent, Modal } from "./components"
+import { CreationLoadingModal, FieldsMenu, FormContent } from "./components"
 import { useHome } from "./hooks"
 import { useContext } from "react"
 import { ModalContext } from "@modules/modal/context"
+import { Modal } from "@modules/modal/components"
 
 import "./home.css"
 

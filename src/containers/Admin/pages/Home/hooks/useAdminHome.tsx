@@ -6,7 +6,7 @@ import { AdminLoginDTO } from "../dto/adminLoginDTO.interface"
 
 export function useAdminHome() {
   const [adminLoginForm, setAdminLoginForm] = useState<AdminLoginDTO>({
-    username: "",
+    email: "",
     password: "",
   })
 

@@ -1,4 +1,4 @@
 export interface AdminLoginDTO {
-  username: string
+  email: string
   password: string
 }
