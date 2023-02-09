@@ -6,38 +6,60 @@ import { useFilters } from "../../hooks"
 import { ChacaFormProps } from "../../interfaces/chacaForm.interface"
 import { Size } from "../../interfaces/dimension.interface"
 
-interface ChacaSelectProps<T> extends ChacaFormProps<unknown> {
+interface ChacaSelectStringProps extends ChacaFormProps<string> {
+  size?: Size
+  placeholder: string
+  options: Array<string>
+}
+
+interface ChacaObjectSelectProps<T> extends ChacaFormProps<unknown> {
+  size?: Size
   placeholder: string
   options: Array<T>
   labelKey: keyof T
   valueKey: keyof T
-  size?: Size
 }
 
-export default function ChacaSelect<T>({
-  placeholder,
-  options,
-  labelKey,
-  valueKey,
-  value,
-  onChange,
-  size = "full",
-  dimension = "normal",
-}: ChacaSelectProps<T>) {
+type Props<T> = T extends string ? ChacaSelectStringProps : ChacaObjectSelectProps<T>
+
+interface SelectOptions {
+  label: string
+  value: string
+}
+
+export default function ChacaSelect<T>(props: Props<T>) {
+  const { onChange, options, placeholder, value, dimension = "normal", size = 150 } = props
+
   const [openOptions, setOpenOptions] = useState(false)
   const [selectIndex, setSelectIndex] = useState<null | number>(null)
+  const [selectOptions, setSelectOptions] = useState<Array<SelectOptions>>([])
+
+  const parentDiv = useRef<null | HTMLDivElement>(null)
 
   useEffect(() => {
-    options.forEach((o, index) => {
-      if (o[valueKey] === value) {
+    options.forEach((o) => {
+      if (typeof o === "string") {
+        setSelectOptions((prev) => [...prev, { label: o, value: o }])
+      } else {
+        const customProps = props as ChacaObjectSelectProps<T>
+        console.log(o, customProps)
+        setSelectOptions((prev) => [
+          ...prev,
+          { label: o[customProps.labelKey] as string, value: o[customProps.valueKey] as string },
+        ])
+      }
+    })
+  }, [options])
+
+  useEffect(() => {
+    selectOptions.forEach((o, index) => {
+      if (o["value"] === value) {
         setSelectIndex(index)
       }
     })
-  }, [value, options])
+  }, [value, selectOptions])
 
   const { paddingClass, textClass } = useFilters({ dimension })
-
-  const parentDiv = useRef<null | HTMLDivElement>(null)
 
   const handleInteractiveOptions = () => {
     setOpenOptions(!openOptions)
@@ -46,11 +68,12 @@ export default function ChacaSelect<T>({
   const handleSelectOption = (index: number) => {
     setSelectIndex(index)
     setOpenOptions(false)
-    onChange(options[index][valueKey])
+    onChange(selectOptions[index]["value"])
   }
 
   const optionsStyle = useMemo(() => {
     if (parentDiv.current) {
+      console.log(parentDiv.current.clientHeight)
       return {
         width: `${parentDiv.current.clientWidth + 2.5}px`,
         translateY: `${parentDiv.current.clientHeight + 5}px`,
@@ -58,7 +81,7 @@ export default function ChacaSelect<T>({
     } else {
       return { width: `${100}px`, translateY: `${50}px` }
     }
-  }, [parentDiv.current, size, dimension])
+  }, [parentDiv.current?.clientHeight, size, dimension])
 
   const parentClass = clsx(
     "w-full flex items-center border-solid transition-all duration-300 justify-between bg-white py-[2px] border-2 border-grayColor cursor-pointer rounded-sm gap-5",
@@ -82,7 +105,7 @@ export default function ChacaSelect<T>({
     <div className='flex flex-col' style={{ width: size === "full" ? "100%" : `${size}px` }}>
       <div className={parentClass} onClick={handleInteractiveOptions} ref={parentDiv}>
         <p className='pointer-events-none '>
-          {selectIndex !== null ? String(options[selectIndex][labelKey]) : placeholder}
+          {selectIndex !== null ? String(selectOptions[selectIndex]["label"]) : placeholder}
         </p>
 
         <button>
@@ -104,7 +127,7 @@ export default function ChacaSelect<T>({
               className={optionClass(index)}
               onClick={() => handleSelectOption(index)}
             >
-              {String(o[labelKey])}
+              {String(selectOptions[index]["label"])}
             </div>
           ))}
         </div>

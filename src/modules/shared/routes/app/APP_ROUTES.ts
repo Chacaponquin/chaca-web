@@ -12,7 +12,7 @@ export const APP_ROUTES = {
   CONTACT_US: "/contactUs",
   NOT_FOUND: "/notFound",
   ADMIN: {
-    ROOT: "/admin",
+    ROOT: "/admin/*",
     EDIT_DOC: "/editDocs",
   },
 }

@@ -17,7 +17,7 @@ export default function RequestSection({
         <div className='bg-principalColor text-white px-4 py-1 font-fontBold border-2 border-principalColor'>
           GET
         </div>
-        <div className='min-w-[600px] max-w-[600px] overflow-x-auto no-scroll border-r-2 border-t-2 border-b-2 py-1 w-full border-b-grayColor border-r-grayColor border-t-grayColor px-4 whitespace-nowrap'>
+        <div className='overflow-x-auto no-scroll border-r-2 border-t-2 border-b-2 py-1 w-full border-b-grayColor border-r-grayColor border-t-grayColor px-4 whitespace-nowrap'>
           {url}
         </div>
       </div>

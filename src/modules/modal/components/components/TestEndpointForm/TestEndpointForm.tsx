@@ -47,6 +47,7 @@ export default function TestEndpointForm({ option }: { option: SubOption }) {
             parser: "typescript",
             plugins: [tsparser],
           })
+
           setRequestResult(formatData)
         } catch (error) {
           console.log(error)
@@ -56,7 +57,7 @@ export default function TestEndpointForm({ option }: { option: SubOption }) {
   }
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col min-w-[600px] max-w-[600px] '>
       <ModalTitle titleText='Test Endpoint' />
 
       <RequestSection url={requestURL} handleSubmit={handleMakeRequest} />
