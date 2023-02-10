@@ -36,10 +36,6 @@
   font-family: "Cairo Regular";
 }
 
-.json-container * {
-  font-family: "FiraCode Regular";
-}
-
 .landing-page::-webkit-scrollbar {
   display: none;
 }
