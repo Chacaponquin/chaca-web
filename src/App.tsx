@@ -17,9 +17,7 @@ function App() {
       <div className='flex w-full min-h-screen h-screen'>
         {location.pathname !== APP_ROUTES.ROOT ? <OptionsBar /> : <NavBar />}
 
-        <div className='w-full h-full'>
-          <Outlet />
-        </div>
+        <Outlet />
       </div>
     </AppLoader>
   )

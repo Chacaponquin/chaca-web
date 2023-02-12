@@ -8,7 +8,7 @@ const DataTypeSelect = ({ selectField }: { selectField: FieldNode }) => {
   const { barClass, handleChangeDataType, textClass } = useDataTypeSelect(selectField)
 
   return (
-    <div className='bg-slate-100 flex w-full h-max justify-center gap-3 mb-2'>
+    <div className='bg-slate-100 flex w-full h-max justify-center gap-3'>
       {Object.values(DATA_TYPES)
         .filter((el) => el !== DATA_TYPES.MIXED)
         .map((el) => (

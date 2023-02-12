@@ -17,7 +17,7 @@ export function useDataTypeSelect(selectField: FieldNode) {
 
   const textClass = useCallback((select: boolean) => {
     return clsx(
-      "mb-1 w-full text-center font-fontBold text-lg transition-all duration-300 hover:text-black",
+      "w-full text-center font-fontBold text-lg transition-all duration-300 hover:text-black",
       { "text-black": select },
       { "text-slate-400": !select },
     )
