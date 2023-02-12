@@ -28,7 +28,7 @@ interface SelectOptions {
 }
 
 export default function ChacaSelect<T>(props: Props<T>) {
-  const { onChange, options, placeholder, value, dimension = "normal", size = 150 } = props
+  const { onChange, options, placeholder, value, dimension = "normal", size = "full" } = props
 
   const [openOptions, setOpenOptions] = useState(false)
   const [selectIndex, setSelectIndex] = useState<null | number>(null)
@@ -42,7 +42,7 @@ export default function ChacaSelect<T>(props: Props<T>) {
         setSelectOptions((prev) => [...prev, { label: o, value: o }])
       } else {
         const customProps = props as ChacaObjectSelectProps<T>
-        console.log(o, customProps)
+
         setSelectOptions((prev) => [
           ...prev,
           { label: o[customProps.labelKey] as string, value: o[customProps.valueKey] as string },
@@ -73,7 +73,6 @@ export default function ChacaSelect<T>(props: Props<T>) {
 
   const optionsStyle = useMemo(() => {
     if (parentDiv.current) {
-      console.log(parentDiv.current.clientHeight)
       return {
         width: `${parentDiv.current.clientWidth + 2.5}px`,
         translateY: `${parentDiv.current.clientHeight + 5}px`,
@@ -84,7 +83,7 @@ export default function ChacaSelect<T>(props: Props<T>) {
   }, [parentDiv.current?.clientHeight, size, dimension])
 
   const parentClass = clsx(
-    "w-full flex items-center border-solid transition-all duration-300 justify-between bg-white py-[2px] border-2 border-grayColor cursor-pointer rounded-sm gap-5",
+    "w-full flex items-center border-solid transition-all duration-300 justify-between bg-white py-[2px] border-2 border-grayColor cursor-pointer rounded-sm gap-5 whitespace-nowrap",
     { "border-principalColor": openOptions, "hover:border-principalColor": !openOptions },
     textClass,
     paddingClass,
@@ -102,13 +101,19 @@ export default function ChacaSelect<T>(props: Props<T>) {
     )
 
   return (
-    <div className='flex flex-col' style={{ width: size === "full" ? "100%" : `${size}px` }}>
+    <div
+      className='flex flex-col '
+      style={{
+        width: size === "full" ? "100%" : `${size}px`,
+        minWidth: size === "full" ? "100px" : `${size}px`,
+      }}
+    >
       <div className={parentClass} onClick={handleInteractiveOptions} ref={parentDiv}>
-        <p className='pointer-events-none '>
+        <p className='pointer-events-none overflow-x-auto no-scroll'>
           {selectIndex !== null ? String(selectOptions[selectIndex]["label"]) : placeholder}
         </p>
 
-        <button>
+        <button className=''>
           <ArrowDown size={18} />
         </button>
       </div>

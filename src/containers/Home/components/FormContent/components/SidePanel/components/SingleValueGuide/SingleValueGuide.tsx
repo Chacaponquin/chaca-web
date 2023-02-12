@@ -32,7 +32,7 @@ export default function SingleValueGuide({ field }: { field: DatasetField<Single
   }
 
   return (
-    <div className='flex flex-col h-full gap-y-3'>
+    <div className='flex flex-col gap-y-3'>
       <div className='flex items-center justify-between'>
         <div className='rounded-sm bg-principalColor px-4 py-1 text-white font-fontBold text-lg w-max'>
           {option.name}

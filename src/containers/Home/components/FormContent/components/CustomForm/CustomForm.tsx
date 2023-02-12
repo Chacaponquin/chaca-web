@@ -10,10 +10,21 @@ const CustomForm = ({ field }: { field: DatasetField<CustomDataType> }) => {
     updateCustomField(field.id, c || field.dataType.code)
   }
 
+  function setEditorTheme(monaco: any) {
+    monaco.editor.defineTheme("onedark", {
+      base: "vs-dark",
+      inherit: true,
+      rules: [],
+      colors: {
+        "editor.background": "#282c34",
+      },
+    })
+  }
+
   return (
-    <div className='w-full flex py-1'>
+    <div className='w-full flex'>
       <Editor
-        height={"550px"}
+        height={"650px"}
         options={{
           minimap: { enabled: false },
           fontSize: 15,
@@ -25,6 +36,10 @@ const CustomForm = ({ field }: { field: DatasetField<CustomDataType> }) => {
         className='code-container w-full'
         language='javascript'
         defaultValue={field.dataType.code}
+        onMount={(editor, monaco) => {
+          monaco.editor.setTheme("onedark")
+        }}
+        beforeMount={setEditorTheme}
         loading={<LoaderContainer className={"w-[100px] esm:w-[60px]"} loading={true} />}
       />
     </div>

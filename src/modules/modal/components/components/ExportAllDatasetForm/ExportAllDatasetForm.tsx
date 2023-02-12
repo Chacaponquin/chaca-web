@@ -14,7 +14,7 @@ const ExportAllDatasetForm = ({
   return (
     <div className='flex flex-col w-full'>
       <ModalTitle titleText={EXPORT_ALL_DATASETS_TEXT} />
-      <ExportForm />
+      <ExportForm saveModelOption={false} />
       <ModalButtons nextText={SUBMIT_TEXT} handleNext={handleCreateAllDatasets} type='edit' />
     </div>
   )
