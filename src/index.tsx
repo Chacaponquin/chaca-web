@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React, { Fragment, useContext } from "react"
 import ReactDOM from "react-dom/client"
 import App from "./App"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
@@ -12,11 +12,13 @@ import {
 import { AppConfigProvider } from "@modules/shared/context"
 import { DatasetsProvider } from "@modules/datasets/context"
 import { UserProvider } from "@modules/user/context/UserContext"
-import { ModalProvider } from "@modules/modal/context"
+import { ModalContext, ModalProvider } from "@modules/modal/context"
 
 import { NoUserRoute, APP_ROUTES, LazyRoute } from "@modules/shared/routes"
 
 import { ErrorBoundary } from "./layout"
+
+import { ToastContainer } from "react-toastify"
 
 import "react-toastify/dist/ReactToastify.css"
 import "./index.css"
@@ -24,7 +26,7 @@ import "./index.css"
 import "primereact/resources/themes/lara-light-indigo/theme.css"
 import "primereact/resources/primereact.min.css"
 import "primeicons/primeicons.css"
-import { ToastContainer } from "react-toastify"
+import { Modal } from "@modules/modal/components"
 
 const root = ReactDOM.createRoot(document.getElementById("root") as Element)
 
@@ -36,48 +38,54 @@ const SignUp = React.lazy(() => import("./containers/Auth/components/SignUp/Sign
 const Admin = React.lazy(() => import("./containers/Admin/Admin"))
 
 const AppCont = () => {
+  const { openModal } = useContext(ModalContext)
+
   return (
-    <Routes>
-      <Route path={APP_ROUTES.ADMIN.ROOT} element={<Admin />} />
+    <Fragment>
+      {openModal && <Modal modalProps={openModal} />}
 
-      <Route
-        path={APP_ROUTES.AUTH_ROUTES.LOGIN}
-        element={
-          <LazyRoute
-            element={
-              <NoUserRoute>
-                <Login />
-              </NoUserRoute>
-            }
-          />
-        }
-      />
-      <Route
-        path={APP_ROUTES.AUTH_ROUTES.SIGN_UP}
-        element={
-          <LazyRoute
-            element={
-              <NoUserRoute>
-                <SignUp />
-              </NoUserRoute>
-            }
-          />
-        }
-      />
-      <Route path={APP_ROUTES.CONTACT_US} element={<ContactUs />} />
+      <Routes>
+        <Route path={APP_ROUTES.ADMIN.ROOT} element={<Admin />} />
 
-      <Route path='/' element={<App />}>
-        <Fragment>
-          <Route path={APP_ROUTES.ROOT} element={<Landing />} />
-          <Route path={APP_ROUTES.HOME} element={<LazyRoute element={<Home />} />} />
-          <Route path={APP_ROUTES.API} element={<LazyRoute element={<Api />} />} />
-          <Route path={APP_ROUTES.MODELS} element={<LazyRoute element={<Models />} />} />
-          <Route path={APP_ROUTES.NOT_FOUND} element={<Error404 />} />
-        </Fragment>
-      </Route>
+        <Route
+          path={APP_ROUTES.AUTH_ROUTES.LOGIN}
+          element={
+            <LazyRoute
+              element={
+                <NoUserRoute>
+                  <Login />
+                </NoUserRoute>
+              }
+            />
+          }
+        />
+        <Route
+          path={APP_ROUTES.AUTH_ROUTES.SIGN_UP}
+          element={
+            <LazyRoute
+              element={
+                <NoUserRoute>
+                  <SignUp />
+                </NoUserRoute>
+              }
+            />
+          }
+        />
+        <Route path={APP_ROUTES.CONTACT_US} element={<ContactUs />} />
 
-      <Route path='*' element={<Error404 />} />
-    </Routes>
+        <Route path='/' element={<App />}>
+          <Fragment>
+            <Route path={APP_ROUTES.ROOT} element={<Landing />} />
+            <Route path={APP_ROUTES.HOME} element={<LazyRoute element={<Home />} />} />
+            <Route path={APP_ROUTES.API} element={<LazyRoute element={<Api />} />} />
+            <Route path={APP_ROUTES.MODELS} element={<LazyRoute element={<Models />} />} />
+            <Route path={APP_ROUTES.NOT_FOUND} element={<Error404 />} />
+          </Fragment>
+        </Route>
+
+        <Route path='*' element={<Error404 />} />
+      </Routes>
+    </Fragment>
   )
 }
 

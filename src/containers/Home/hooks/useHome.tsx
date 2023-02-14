@@ -6,11 +6,14 @@ import { configServices } from "@modules/config/services"
 import io from "socket.io-client"
 import { useConfig, useLanguage } from "@modules/shared/hooks"
 import { EmptyFormFieldError } from "@modules/config/errors"
+import { ModalContext } from "@modules/modal/context"
+import { MODAL_ACTIONS } from "@modules/modal/constants"
 
 export const useHome = () => {
   const { datasets, config, selectedDataset } = useContext(DatasetsContext)
   const { resetConfig, validateSaveSchemaForm } = configServices()
   const { getTokenCookie } = useConfig()
+  const { handleOpenModal } = useContext(ModalContext)
 
   const { NETWORK_ERROR } = useLanguage({
     NETWORK_ERROR: { en: "Network connect error", es: "Error en la conexion" },
@@ -66,7 +69,7 @@ export const useHome = () => {
     }
   }, [socket])
 
-  const handleCreateAllDatasets = async () => {
+  const handleExportAllDatasets = async () => {
     if (socket.connected) {
       setCreateDataLoading(true)
 
@@ -80,7 +83,7 @@ export const useHome = () => {
     }
   }
 
-  const handleCreateSelectDataset = () => {
+  const handleExportSelectDataset = () => {
     if (socket.connected) {
       try {
         validateSaveSchemaForm()
@@ -99,6 +102,20 @@ export const useHome = () => {
       toast.error(NETWORK_ERROR)
       setCreateDataLoading(false)
     }
+  }
+
+  const handleCreateAllDatasets = () => {
+    handleOpenModal({
+      type: MODAL_ACTIONS.EXPORT_ALL_DATASETS,
+      handleCreateAllDatasets: handleExportAllDatasets,
+    })
+  }
+
+  const handleCreateSelectDataset = () => {
+    handleOpenModal({
+      type: MODAL_ACTIONS.EXPORT_SELECT_DATASET,
+      handleCreateSelectDataset: handleExportSelectDataset,
+    })
   }
 
   return {

@@ -1,3 +1,4 @@
+import AddApiDocSection from "./AddApiDocSection/AddApiDocSection"
 import AddDatasetForm from "./AddDatasetForm/AddDatasetForm"
 import AddFieldForm from "./AddFieldForm/AddFieldForm"
 import DeleteDatasetForm from "./DeleteDatasetForm/DeleteDatasetForm"
@@ -16,4 +17,5 @@ export {
   ExportSelectDatasetForm,
   TestEndpointForm,
   EditDataset,
+  AddApiDocSection,
 }

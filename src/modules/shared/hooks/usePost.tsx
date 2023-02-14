@@ -3,7 +3,7 @@ import { AxiosError } from "axios"
 import { useConfig } from "./useConfig"
 
 interface UsePostProps<T, B> {
-  onCompleted: (data: T) => void
+  onCompleted?: (data: T) => void
   onError?: (error: AxiosError) => void
   url: string
   body?: B
@@ -32,7 +32,9 @@ export function usePost<T, B>({
 
       axiosInstance
         .post<T>(url, body || bodyFunction)
-        .then(({ data }) => onCompleted(data))
+        .then(({ data }) => {
+          if (onCompleted) onCompleted(data)
+        })
         .catch((error) => {
           setError(true)
           if (onError) onError(error)

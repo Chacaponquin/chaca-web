@@ -19,6 +19,7 @@ import Menu from "./Menu"
 import PlayIcon from "./PlayIcon"
 import Plus from "./Plus"
 import Private from "./Private"
+import Save from "./Save"
 import Schema from "./Schema"
 import Search from "./Search"
 import Send from "./Send"
@@ -56,4 +57,5 @@ export {
   Schema,
   Change,
   Like,
+  Save,
 }

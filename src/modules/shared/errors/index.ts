@@ -1,1 +1,1 @@
-export class InitialFetchError extends Error {}
+export class FetchError extends Error {}

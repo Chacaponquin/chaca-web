@@ -1,7 +1,7 @@
 /*eslint-disable */
 
 import { createContext, ReactElement, useEffect, useState, useMemo } from "react"
-import { InitialFetchError } from "../errors"
+import { FetchError } from "../errors"
 import { useConfig } from "../hooks"
 import { FileConfigOption, NoUserLimits } from "@modules/config/interfaces/config.iterface"
 import { Languages } from "../interfaces/language.interface"
@@ -81,7 +81,7 @@ const AppConfigProvider = ({ children = <></> }: { children: ReactElement }) => 
         setSchemas(schemas)
       })
       .catch(() => {
-        throw new InitialFetchError()
+        throw new FetchError()
       })
       .finally(() => setInitialFetchLoading(false))
   }, [])

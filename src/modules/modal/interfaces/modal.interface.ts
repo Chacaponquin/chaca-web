@@ -28,15 +28,22 @@ export type ModalEditField = {
 
 export type ModalExportSelectDataset = {
   type: MODAL_ACTIONS.EXPORT_SELECT_DATASET
+  handleCreateSelectDataset: () => void
 }
 
 export type ModalExportAllDatasets = {
   type: MODAL_ACTIONS.EXPORT_ALL_DATASETS
+  handleCreateAllDatasets: () => void
 }
 
 export type ModalTestEndpoint = {
   type: MODAL_ACTIONS.TEST_ENDPOINT
   option: SubOption
+}
+
+export type ModalAdminAddApiDocSection = {
+  type: MODAL_ACTIONS.ADMIN_CREATE_API_DOC_SECTION
+  handleAddSection: (sectionTitle: string, language: string) => void
 }
 
 export type ModalProps =
@@ -48,3 +55,4 @@ export type ModalProps =
   | ModalExportAllDatasets
   | ModalTestEndpoint
   | ModalEditDataset
+  | ModalAdminAddApiDocSection

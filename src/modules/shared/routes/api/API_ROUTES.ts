@@ -22,5 +22,12 @@ export const API_ROUTES = {
     AUTH: {
       LOGIN: "/admin/auth/signIn",
     },
+    MEDIA: {
+      UPLOAD_IMAGE: "/admin/media/uploadImage",
+    },
+    DOCS: {
+      GET_DOCS: "/admin/docs/apiDocs",
+      CREATE_API_DOC_SECTION: "/admin/docs/newApiDoc",
+    },
   },
 }

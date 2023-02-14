@@ -5,7 +5,11 @@ import { DatasetConfigMenu } from "./components"
 import { ChacaSelect } from "@form"
 import { useDatasetsHeader } from "./hooks"
 
-const DatasetsHeader = () => {
+const DatasetsHeader = ({
+  handleCreateSelectDataset,
+}: {
+  handleCreateSelectDataset: () => void
+}) => {
   const { datasets, selectedDataset, handleSelectDataset } = useContext(DatasetsContext)
   const {
     handleAddDatasetField,
@@ -15,7 +19,7 @@ const DatasetsHeader = () => {
     openConfig,
     handleInteractOpenConfig,
     handleEditDataset,
-  } = useDatasetsHeader()
+  } = useDatasetsHeader(handleCreateSelectDataset)
 
   return (
     <div className='pt-3 px-4 mb-2 w-full bg-white flex items-center justify-between'>
