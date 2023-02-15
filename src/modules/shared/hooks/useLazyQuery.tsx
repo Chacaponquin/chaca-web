@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useConfig } from "./useConfig"
 
-interface LazyQueryProps<T> {
+export interface LazyQueryProps<T> {
   onCompleted: (data: T) => void
   onError?: (error: Error) => void
   url: string

@@ -15,6 +15,12 @@ export type ModalAddDataset = {
   type: MODAL_ACTIONS.ADD_DATASET
 }
 
+export type ModalAdminDeleteApiDocSubSection = {
+  type: MODAL_ACTIONS.ADMIN_DELETE_API_DOC_SUB_SECTION
+  handleDeleteApiDocSubSection: () => void
+  subSectionName: string
+}
+
 export type ModalDeleteDataset = {
   type: MODAL_ACTIONS.DELETE_DATASET
   datasetName: string
@@ -56,3 +62,4 @@ export type ModalProps =
   | ModalTestEndpoint
   | ModalEditDataset
   | ModalAdminAddApiDocSection
+  | ModalAdminDeleteApiDocSubSection

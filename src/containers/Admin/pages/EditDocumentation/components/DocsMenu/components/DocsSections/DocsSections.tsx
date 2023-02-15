@@ -1,16 +1,43 @@
 import { ApiDocSection } from "@modules/admin/api/interfaces/apiDocSection.interface"
-import { Plus } from "@modules/shared/assets/icons"
+import { Delete, Plus } from "@modules/shared/assets/icons"
+import React from "react"
 
-export default function DocsSections({ sections }: { sections: Array<ApiDocSection> }) {
+export default function DocsSections({
+  sections,
+  handleAddApiDocSubSection,
+  handleDeleteApiDocSubSection,
+}: {
+  sections: Array<ApiDocSection>
+  handleAddApiDocSubSection: (id: string) => void
+  handleDeleteApiDocSubSection: (id: string, name: string) => void
+}) {
+  const handleDelete = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    subID: string,
+    subName: string,
+  ) => {
+    e.stopPropagation()
+    handleDeleteApiDocSubSection(subID, subName)
+  }
+
   return (
     <div className='w-full flex flex-col mt-2'>
       {sections.map((s) => (
         <div className='flex flex-col mb-2' key={s._id}>
           <div className='text-black font-fontBold text-base'>{s.sectionTitle}</div>
-          <div className='flex flex-col pl-2 '>
+          <div className='flex flex-col pl-4'>
             {s.subSections.map((sub) => (
-              <div key={sub._id} className='text-base'>
-                {sub.title}
+              <div
+                key={sub._id}
+                className='text-base cursor-pointer flex items-center justify-between'
+              >
+                <p className='mb-0'>{sub.title}</p>
+
+                <div className='flex items-center'>
+                  <button onClick={(e) => handleDelete(e, sub._id, sub.title)}>
+                    <Delete size={18} />
+                  </button>
+                </div>
               </div>
             ))}
             <div className='flex items-center cursor-pointer mt-1'>
@@ -18,7 +45,12 @@ export default function DocsSections({ sections }: { sections: Array<ApiDocSecti
                 <Plus size={15} />
               </div>
 
-              <p className='mb-0 text-base pl-1 text-principalColor'>New Sub Section</p>
+              <p
+                className='mb-0 text-sm pl-1 text-principalColor'
+                onClick={() => handleAddApiDocSubSection(s._id)}
+              >
+                New Sub Section
+              </p>
             </div>
           </div>
         </div>

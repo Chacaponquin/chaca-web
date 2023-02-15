@@ -2,36 +2,30 @@ import { useState, useCallback } from "react"
 import { AxiosError } from "axios"
 import { useConfig } from "./useConfig"
 
-interface UsePostProps<T, B> {
+interface UsePostProps<T> {
   onCompleted?: (data: T) => void
   onError?: (error: AxiosError) => void
   url: string
-  body?: B
 }
 
 interface OverwriteProps<B> {
-  body?: B
+  body: B
 }
 
-type PostReturn<B> = [(body?: OverwriteProps<B>) => void, { loading: boolean; error: boolean }]
+type PostReturn<B> = [(body: OverwriteProps<B>) => void, { loading: boolean; error: boolean }]
 
-export function usePost<T, B>({
-  onCompleted,
-  onError,
-  url,
-  body: bodyFunction,
-}: UsePostProps<T, B>): PostReturn<B> {
+export function usePost<T, B>({ onCompleted, onError, url }: UsePostProps<T>): PostReturn<B> {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
   const { axiosInstance } = useConfig()
 
   const request = useCallback(
-    ({ body }: OverwriteProps<B> = {}): void => {
+    ({ body }: OverwriteProps<B>): void => {
       setLoading(true)
       setError(false)
 
       axiosInstance
-        .post<T>(url, body || bodyFunction)
+        .post<T>(url, body)
         .then(({ data }) => {
           if (onCompleted) onCompleted(data)
         })
@@ -41,7 +35,7 @@ export function usePost<T, B>({
         })
         .finally(() => setLoading(false))
     },
-    [bodyFunction, axiosInstance],
+    [axiosInstance],
   )
 
   return [request, { loading, error }]

@@ -1,12 +1,15 @@
 import { ModalAdminAddApiDocSection } from "@modules/modal/interfaces/modal.interface"
 import { ModalButtons, ModalTitle } from "../../shared/components"
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { CreateApiDocDTO } from "@modules/admin/api/dto/apiDoc.dto"
 import { ChacaSelect, ChacaTextInput } from "@form"
 import { LANGUAGES_ARRAY } from "@modules/shared/constant/LANGUAGE"
 import { useLanguage } from "@modules/shared/hooks"
+import { ModalContext } from "@modules/modal/context"
 
 export default function AddApiDocSection({ handleAddSection }: ModalAdminAddApiDocSection) {
+  const { handleCloseModal } = useContext(ModalContext)
+
   const [newSectionForm, setNewSectionForm] = useState<CreateApiDocDTO>({
     sectionTitle: "",
     language: "en",
@@ -24,6 +27,7 @@ export default function AddApiDocSection({ handleAddSection }: ModalAdminAddApiD
 
   const handleSubmit = () => {
     handleAddSection(newSectionForm.sectionTitle, newSectionForm.language)
+    handleCloseModal()
   }
 
   return (

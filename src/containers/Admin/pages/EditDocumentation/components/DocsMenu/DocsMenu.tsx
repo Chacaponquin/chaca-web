@@ -1,20 +1,28 @@
 import { ApiDocSection } from "@modules/admin/api/interfaces/apiDocSection.interface"
 import { ChacaSimpleButton } from "@modules/shared/components/ChacaButton"
-import { DocsSections, EmptySectionsMessage } from "./components"
+import { DocsSections, EmptySectionsMessage, LoadingDiv } from "./components"
 import { Fragment } from "react"
 
 export default function DocsMenu({
   sections,
   handleAddNewApiSection,
+  fetchLoading,
+  handleAddApiDocSubSection,
+  handleDeleteApiDocSubSection,
 }: {
   sections: Array<ApiDocSection>
   handleAddNewApiSection: () => void
+  fetchLoading: boolean
+  handleAddApiDocSubSection: (id: string) => void
+  handleDeleteApiDocSubSection: (id: string, name: string) => void
 }) {
   return (
-    <div className='w-[250px] min-w-[250px] border-r-2 h-screen flex flex-col py-2 px-4 no-scroll'>
-      {sections.length === 0 ? (
+    <div className='w-[250px] min-w-[250px] overflow-y-auto border-r-2 h-screen flex flex-col py-2 px-4 no-scroll'>
+      {fetchLoading && <LoadingDiv loading={fetchLoading} />}
+      {!fetchLoading && sections.length === 0 && (
         <EmptySectionsMessage handleAddNewApiSection={handleAddNewApiSection} />
-      ) : (
+      )}
+      {!fetchLoading && sections.length > 0 && (
         <Fragment>
           <div>
             <ChacaSimpleButton
@@ -26,7 +34,11 @@ export default function DocsMenu({
             />
           </div>
 
-          <DocsSections sections={sections} />
+          <DocsSections
+            sections={sections}
+            handleAddApiDocSubSection={handleAddApiDocSubSection}
+            handleDeleteApiDocSubSection={handleDeleteApiDocSubSection}
+          />
         </Fragment>
       )}
     </div>

@@ -1,11 +1,12 @@
 import { useContext } from "react"
 import { DatasetsContext } from "@modules/datasets/context"
 import { useLanguage } from "@modules/shared/hooks"
-import { ModalButtons, ModalTitle } from "../../shared/components"
+import { DeleteForm, ModalButtons, ModalTitle } from "../../shared/components"
 import { useDeleteDatasetForm } from "./hooks"
 
 const DeleteDatasetForm = () => {
   const { selectedDataset } = useContext(DatasetsContext)
+  const { handleDeleteDataset } = useDeleteDatasetForm()
 
   const { DELETE_DATASET_TEXT, DELETE_DATASET_MESSAGE } = useLanguage({
     DELETE_DATASET_TEXT: { en: "Delete Dataset", es: "Borrar Dataset" },
@@ -15,18 +16,10 @@ const DeleteDatasetForm = () => {
     },
   })
 
-  const { handleDeleteDataset } = useDeleteDatasetForm()
-
   return (
     <div className='flex flex-col w-full'>
       <ModalTitle titleText={DELETE_DATASET_TEXT} />
-
-      <div className='flex w-full flex-col'>
-        <div className='text-lg flex gap-1'>
-          {DELETE_DATASET_MESSAGE} <h1 className='font-fontBold'>{selectedDataset.name}</h1>?
-        </div>
-      </div>
-
+      <DeleteForm message={DELETE_DATASET_MESSAGE} elementName={selectedDataset.name} />
       <ModalButtons type='delete' nextText={DELETE_DATASET_TEXT} handleNext={handleDeleteDataset} />
     </div>
   )

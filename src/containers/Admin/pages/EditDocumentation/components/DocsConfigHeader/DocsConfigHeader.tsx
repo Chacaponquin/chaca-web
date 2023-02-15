@@ -1,4 +1,6 @@
 import { ChacaSelect, ChacaTextInput } from "@form"
+import { Save } from "@modules/shared/assets/icons"
+import { ChacaIconButton } from "@modules/shared/components/ChacaButton"
 import { LANGUAGES_ARRAY } from "@modules/shared/constant/LANGUAGE"
 import { useLanguage } from "@modules/shared/hooks"
 
@@ -27,14 +29,20 @@ export default function DocsConfigHeader({
           dimension='small'
         />
       </div>
-      <div>
-        <ChacaSelect
-          options={LANGUAGES_ARRAY}
-          onChange={(v) => handleChangeLanguage(v)}
-          placeholder='Select Language'
-          value={language}
-          dimension='small'
-        />
+      <div className='flex items-center gap-x-4'>
+        <div>
+          <ChacaSelect
+            options={LANGUAGES_ARRAY}
+            onChange={(v) => handleChangeLanguage(v)}
+            placeholder='Select Language'
+            value={language}
+            dimension='small'
+          />
+        </div>
+
+        <div className='flex items-center'>
+          <ChacaIconButton text='Save' icon={<Save size={18} />} color='gradient' size='medium' />
+        </div>
       </div>
     </div>
   )

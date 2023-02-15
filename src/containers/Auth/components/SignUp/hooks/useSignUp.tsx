@@ -20,19 +20,16 @@ export function useSignUp() {
     onCompleted: (userToken) => {
       handleSignIn(userToken)
     },
-    onError: (error) => {
-      const errorObject = error?.response?.data as any
-      if (errorObject) toast.error(errorObject.error)
-      else toast.error("Hubo un error en la creacion del usuario")
+    onError: () => {
+      toast.error("Hubo un error en la creacion del usuario")
     },
-    body: signUpData,
   })
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
     if (signUpData.password === signUpData.comfirmPassword) {
-      signUpUser()
+      signUpUser({ body: signUpData })
     } else throw toast.error("No coinciden las contraseñas", {})
   }
 

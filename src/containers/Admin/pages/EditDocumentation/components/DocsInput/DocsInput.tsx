@@ -1,7 +1,7 @@
 import { ChacaSimpleButton } from "@modules/shared/components/ChacaButton"
+import CodeEditor from "@modules/shared/components/CodeEditor/CodeEditor"
 import { usePost } from "@modules/shared/hooks"
 import { API_ROUTES } from "@modules/shared/routes"
-import MDEditor from "@uiw/react-md-editor"
 import React, { useRef } from "react"
 
 export default function DocsInput({
@@ -20,8 +20,8 @@ export default function DocsInput({
 
   const fileInputRef = useRef<null | HTMLInputElement>(null)
 
-  const handleChange = (value: string | undefined) => {
-    handleChangeContent(value || "")
+  const handleChange = (value: string) => {
+    handleChangeContent(value)
   }
 
   const handleClickInput = () => {
@@ -51,14 +51,12 @@ export default function DocsInput({
 
   return (
     <div className='flex flex-col w-full'>
-      <MDEditor
+      <CodeEditor
         height={600}
-        value={content}
         onChange={handleChange}
-        hideToolbar={true}
-        preview={"edit"}
-        style={{ fontSize: "18px" }}
-        className='!bg-darkColor !rounded-none px-3'
+        code={content}
+        fontSize={15}
+        language='markdown'
       />
 
       <div className='flex py-2 bg-darkColor px-5 border-t-2 border-t-white w-full justify-end'>

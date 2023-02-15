@@ -28,6 +28,8 @@ export const API_ROUTES = {
     DOCS: {
       GET_DOCS: "/admin/docs/apiDocs",
       CREATE_API_DOC_SECTION: "/admin/docs/newApiDoc",
+      CREATE_API_DOC_SUB_SECTION: "/admin/docs/newApiDocSubSection",
+      DELETE_API_DOC_SUB_SECTION: "/admin/docs/deleteApiDocSubSection",
     },
   },
 }

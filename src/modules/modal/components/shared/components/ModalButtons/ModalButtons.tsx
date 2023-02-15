@@ -24,7 +24,7 @@ const ModalButtons = ({
           size='large'
           text={nextText}
           onClick={handleNext}
-          className='w-full text-center flex justify-center'
+          className='!w-full text-center flex justify-center'
         />
       </div>
 
@@ -34,7 +34,7 @@ const ModalButtons = ({
           size='large'
           text={CANCEL_TEXT}
           onClick={handleCloseModal}
-          className='w-full text-center flex justify-center'
+          className='!w-full text-center flex justify-center'
         />
       </div>
     </div>

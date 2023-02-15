@@ -15,9 +15,8 @@ export function useLogin() {
 
   const [loginUser, { loading }] = usePost<string, LoginUserDTO>({
     url: API_ROUTES.AUTH_ROUTES.LOGIN,
-    onError: (error) => {
-      const errorMessage = error.response?.data as any
-      toast.error(errorMessage.error || "Hubo un error")
+    onError: () => {
+      toast.error("Hubo un error")
     },
     onCompleted: (token) => handleSignIn(token),
   })
