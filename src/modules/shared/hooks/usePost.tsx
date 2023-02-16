@@ -35,7 +35,7 @@ export function usePost<T, B>({ onCompleted, onError, url }: UsePostProps<T>): P
         })
         .finally(() => setLoading(false))
     },
-    [axiosInstance],
+    [axiosInstance, onCompleted, onError],
   )
 
   return [request, { loading, error }]

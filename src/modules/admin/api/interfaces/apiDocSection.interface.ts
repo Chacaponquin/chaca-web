@@ -1,10 +1,10 @@
 export interface ApiDocSection {
   _id: string
   sectionTitle: string
-  subSections: Array<ApiDocSubSection>
+  subSections: Array<ApiDocSubSectionMenu>
 }
 
-export interface ApiDocSubSection {
+export interface ApiDocSubSectionMenu {
   _id: string
   title: string
 }

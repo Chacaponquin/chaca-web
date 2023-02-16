@@ -1,15 +1,20 @@
 import { ApiDocSection } from "@modules/admin/api/interfaces/apiDocSection.interface"
 import { Delete, Plus } from "@modules/shared/assets/icons"
 import React from "react"
+import clsx from "clsx"
 
 export default function DocsSections({
   sections,
   handleAddApiDocSubSection,
   handleDeleteApiDocSubSection,
+  handleFetchSelectedSubSection,
+  selectSubSectionID,
 }: {
   sections: Array<ApiDocSection>
   handleAddApiDocSubSection: (id: string) => void
   handleDeleteApiDocSubSection: (id: string, name: string) => void
+  handleFetchSelectedSubSection: (id: string) => void
+  selectSubSectionID: string
 }) {
   const handleDelete = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -19,6 +24,9 @@ export default function DocsSections({
     e.stopPropagation()
     handleDeleteApiDocSubSection(subID, subName)
   }
+
+  const subSectionClass = (id: string) =>
+    clsx("mb-0", { "text-principalColor": id === selectSubSectionID })
 
   return (
     <div className='w-full flex flex-col mt-2'>
@@ -30,8 +38,9 @@ export default function DocsSections({
               <div
                 key={sub._id}
                 className='text-base cursor-pointer flex items-center justify-between'
+                onClick={() => handleFetchSelectedSubSection(sub._id)}
               >
-                <p className='mb-0'>{sub.title}</p>
+                <p className={subSectionClass(sub._id)}>{sub.title}</p>
 
                 <div className='flex items-center'>
                   <button onClick={(e) => handleDelete(e, sub._id, sub.title)}>

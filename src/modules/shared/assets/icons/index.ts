@@ -14,6 +14,7 @@ import FolderPlus from "./FolderPlus"
 import GitHub from "./GitHub"
 import Google from "./Google"
 import Home from "./Home"
+import Image from "./Image"
 import Like from "./Like"
 import Menu from "./Menu"
 import PlayIcon from "./PlayIcon"
@@ -58,4 +59,5 @@ export {
   Change,
   Like,
   Save,
+  Image,
 }

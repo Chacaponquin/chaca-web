@@ -9,12 +9,16 @@ export default function DocsMenu({
   fetchLoading,
   handleAddApiDocSubSection,
   handleDeleteApiDocSubSection,
+  handleFetchSelectedSubSection,
+  selectSubSectionID,
 }: {
   sections: Array<ApiDocSection>
   handleAddNewApiSection: () => void
   fetchLoading: boolean
   handleAddApiDocSubSection: (id: string) => void
   handleDeleteApiDocSubSection: (id: string, name: string) => void
+  handleFetchSelectedSubSection: (id: string) => void
+  selectSubSectionID: string
 }) {
   return (
     <div className='w-[250px] min-w-[250px] overflow-y-auto border-r-2 h-screen flex flex-col py-2 px-4 no-scroll'>
@@ -35,9 +39,11 @@ export default function DocsMenu({
           </div>
 
           <DocsSections
+            selectSubSectionID={selectSubSectionID}
             sections={sections}
             handleAddApiDocSubSection={handleAddApiDocSubSection}
             handleDeleteApiDocSubSection={handleDeleteApiDocSubSection}
+            handleFetchSelectedSubSection={handleFetchSelectedSubSection}
           />
         </Fragment>
       )}
