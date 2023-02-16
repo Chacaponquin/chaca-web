@@ -1,6 +1,12 @@
-import { DocsConfigHeader, DocsInput, DocsMenu, NoSelectSectionMessage } from "./components"
-import { useState, useContext } from "react"
-import { useDelete, useLazyQuery, usePost, useQuery } from "@modules/shared/hooks"
+import {
+  DocsConfigHeader,
+  DocsInput,
+  DocsMenu,
+  LoadingComponent,
+  NoSelectSectionMessage,
+} from "./components"
+import { useState, useContext, Fragment } from "react"
+import { useDelete, useLazyQuery, usePost, usePut, useQuery } from "@modules/shared/hooks"
 import { API_ROUTES } from "@modules/shared/routes"
 import { ApiDocSection } from "@modules/admin/api/interfaces/apiDocSection.interface"
 import { ModalContext } from "@modules/modal/context"
@@ -9,7 +15,10 @@ import { toast } from "react-toastify"
 import { CreateApiDocDTO } from "@modules/admin/api/dto/apiDoc.dto"
 import { FetchError } from "@modules/shared/errors"
 import { LazyQueryProps } from "@modules/shared/hooks/useLazyQuery"
-import { CreateApiDocSubSectionDTO } from "@modules/admin/api/dto/apiDocSubSection.dto"
+import {
+  CreateApiDocSubSectionDTO,
+  UpdateApiDocSubSectionDTO,
+} from "@modules/admin/api/dto/apiDocSubSection.dto"
 import { LanguageConfig } from "@modules/shared/interfaces/language.interface"
 import { ApiDocSubSection } from "@modules/admin/api/interfaces/apiDocSubSection.interface"
 
@@ -33,6 +42,16 @@ export default function EditDocumentation() {
   const { loading: fetchLoading } = useQuery<Array<ApiDocSection>>(queryConfig)
 
   const [fetchSelectSubSection] = useLazyQuery<ApiDocSubSection>()
+
+  const [updateApiDocSubSection, { loading: updateApiDocSubSectionLoading }] = usePut<
+    void,
+    UpdateApiDocSubSectionDTO
+  >({
+    url: API_ROUTES.ADMIN.DOCS.UPDATE_API_DOC_SUB_SECTION,
+    onError: () => {
+      toast.error("Hubo un error en la actualización")
+    },
+  })
 
   const [lazySectionsQuery, { loading: lazyQueryLoading }] = useLazyQuery<Array<ApiDocSection>>()
 
@@ -129,6 +148,18 @@ export default function EditDocumentation() {
     })
   }
 
+  const handleUpdateApiDocSubSection = () => {
+    if (subSectionForm) {
+      updateApiDocSubSection({
+        body: {
+          content: subSectionForm.content,
+          subSectionID: subSectionForm._id,
+          title: subSectionForm.title,
+        },
+      })
+    }
+  }
+
   const handleDeleteApiDocSubSection = (subSectionID: string, subSectionName: string) => {
     handleOpenModal({
       type: MODAL_ACTIONS.ADMIN_DELETE_API_DOC_SUB_SECTION,
@@ -173,23 +204,30 @@ export default function EditDocumentation() {
         selectSubSectionID={subSectionForm ? subSectionForm._id : ""}
       />
 
-      {subSectionForm ? (
-        <div className='h-full w-full'>
-          <DocsConfigHeader
-            handleChangeLanguage={handleChangeLanguage}
-            handleChangeTitle={handleChangeTitle}
-            language={actualLanguage}
-            title={subSectionForm.title[actualLanguage]}
-          />
-          <DocsInput
-            content={subSectionForm.content[actualLanguage]}
-            handleChangeContent={handleChangeContent}
-            handleUploadImage={handleUploadImage}
-            loading={uploadImageLoading}
-          />
-        </div>
+      {updateApiDocSubSectionLoading ? (
+        <LoadingComponent />
       ) : (
-        <NoSelectSectionMessage />
+        <Fragment>
+          {subSectionForm ? (
+            <div className='h-full w-full'>
+              <DocsConfigHeader
+                handleChangeLanguage={handleChangeLanguage}
+                handleChangeTitle={handleChangeTitle}
+                language={actualLanguage}
+                title={subSectionForm.title[actualLanguage]}
+                handleUpdateApiDocSubSection={handleUpdateApiDocSubSection}
+              />
+              <DocsInput
+                content={subSectionForm.content[actualLanguage]}
+                handleChangeContent={handleChangeContent}
+                handleUploadImage={handleUploadImage}
+                loading={uploadImageLoading}
+              />
+            </div>
+          ) : (
+            <NoSelectSectionMessage />
+          )}
+        </Fragment>
       )}
     </div>
   )

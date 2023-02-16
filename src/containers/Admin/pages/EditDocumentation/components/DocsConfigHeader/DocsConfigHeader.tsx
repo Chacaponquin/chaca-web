@@ -9,11 +9,13 @@ export default function DocsConfigHeader({
   handleChangeTitle,
   language,
   title,
+  handleUpdateApiDocSubSection,
 }: {
   handleChangeTitle: (value: string) => void
   handleChangeLanguage: (value: string) => void
   title: string
   language: string
+  handleUpdateApiDocSubSection: () => void
 }) {
   const { TITLE_TEXT } = useLanguage({ TITLE_TEXT: { en: "Title", es: "Título" } })
 
@@ -41,7 +43,13 @@ export default function DocsConfigHeader({
         </div>
 
         <div className='flex items-center'>
-          <ChacaIconButton text='Save' icon={<Save size={18} />} color='gradient' size='medium' />
+          <ChacaIconButton
+            text='Save'
+            icon={<Save size={18} />}
+            color='gradient'
+            size='medium'
+            onClick={handleUpdateApiDocSubSection}
+          />
         </div>
       </div>
     </div>
