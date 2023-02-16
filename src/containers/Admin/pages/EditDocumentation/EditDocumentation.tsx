@@ -32,7 +32,7 @@ export default function EditDocumentation() {
 
   const { loading: fetchLoading } = useQuery<Array<ApiDocSection>>(queryConfig)
 
-  const [fetchSelectSubSection, { error: fetchSubSectionError }] = useLazyQuery<ApiDocSubSection>()
+  const [fetchSelectSubSection] = useLazyQuery<ApiDocSubSection>()
 
   const [lazySectionsQuery, { loading: lazyQueryLoading }] = useLazyQuery<Array<ApiDocSection>>()
 
@@ -87,6 +87,9 @@ export default function EditDocumentation() {
       url: `${API_ROUTES.ADMIN.DOCS.GET_API_DOC_SUB_SECTION}/${subSectionID}`,
       onCompleted: (subSection) => {
         setSubSectionForm(subSection)
+      },
+      onError: () => {
+        toast.error("Hubo un error en la búsqueda")
       },
     })
   }

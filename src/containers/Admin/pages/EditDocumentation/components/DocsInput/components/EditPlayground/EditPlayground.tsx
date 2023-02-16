@@ -35,11 +35,12 @@ export default function EditPlayground({
         hideToolbar={true}
         preview='edit'
         className='bg-darkColor box-border border-none resize-none rounded-none shadow-none'
+        textareaProps={{}}
       />
 
       <input
         type='file'
-        className='hidden'
+        className='hidden '
         multiple={false}
         accept='image/*'
         ref={fileInputRef}
