@@ -10,7 +10,7 @@ const CustomForm = ({ field }: { field: DatasetField<CustomDataType> }) => {
   }
 
   return (
-    <div className='w-full flex'>
+    <div className='w-full flex bg-darkColor pt-2'>
       <CodeEditor
         onChange={handleChange}
         fontSize={15}

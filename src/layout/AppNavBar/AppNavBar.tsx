@@ -7,12 +7,12 @@ import { UserContext } from "@modules/user/context"
 import { ChacaLogo, ProfileSection } from "./components"
 import { useLanguage } from "@modules/shared/hooks"
 
-const OptionsBar = () => {
+export default function AppNavBar() {
   const { actualUser } = useContext(UserContext)
 
   const divClass = ({ isActive }: { isActive: boolean }): string => {
     return clsx(
-      "flex items-center py-[5px] px-4 cursor-pointer rounded-sm duration-300 transition-all gap-x-2",
+      "flex items-center py-[5px] px-5 cursor-pointer rounded-sm duration-300 transition-all gap-x-2",
       { "bg-gradient-to-br from-principalColor to-secondColor fill-white text-white": isActive },
       { "bg-white fill-black text-black hover:bg-slate-100": !isActive },
     )
@@ -28,17 +28,17 @@ const OptionsBar = () => {
   const iconSize = 22
 
   return (
-    <div className='w-full bg-white flex border-b-2 border-b-grayColor items-center px-5 py-[2px] justify-between'>
+    <div className='w-full bg-white border-b-[1px] border-b-grayColor flex items-center px-12 justify-between'>
       <ChacaLogo />
 
-      <div className='flex items-center gap-x-3'>
-        <div className='flex gap-1'>
+      <div className='flex items-center gap-x-5'>
+        <div className='flex gap-x-3'>
           <NavLink className={divClass} to={APP_ROUTES.HOME}>
             <Home size={iconSize} />
             <p className={textClass}>{HOME_TEXT}</p>
           </NavLink>
 
-          <NavLink className={divClass} to={APP_ROUTES.API}>
+          <NavLink className={divClass} to={APP_ROUTES.DEFAULT_INIT_DOC_ROUTE}>
             <Code size={iconSize} />
             <p className={textClass}>{API_TEXT}</p>
           </NavLink>
@@ -56,5 +56,3 @@ const OptionsBar = () => {
     </div>
   )
 }
-
-export default OptionsBar

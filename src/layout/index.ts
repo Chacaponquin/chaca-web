@@ -1,5 +1,5 @@
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary"
 import NavBar from "./NavBar/NavBar"
-import OptionsBar from "./OptionsBar/OptionsBar"
+import AppNavBar from "./AppNavBar/AppNavBar"
 
-export { ErrorBoundary, NavBar, OptionsBar }
+export { ErrorBoundary, NavBar, AppNavBar }

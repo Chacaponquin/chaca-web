@@ -8,7 +8,7 @@ const Home = () => {
     useHome()
 
   return (
-    <div className='flex w-full h-full'>
+    <div className='flex w-full h-full px-12'>
       {createDataLoading && <CreationLoadingModal porcent={porcent} />}
 
       <FieldsMenu

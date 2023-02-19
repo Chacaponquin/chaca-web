@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import Editor from "@monaco-editor/react"
 import { LoaderContainer } from "../Loader"
 

@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { Outlet, useLocation } from "react-router-dom"
 import { APP_ROUTES } from "@modules/shared/routes"
-import { NavBar, OptionsBar } from "./layout"
+import { NavBar, AppNavBar } from "./layout"
 import { AppLoader } from "@modules/shared/components/Loader"
 import { AppConfigContext } from "@modules/shared/context"
 import { UserContext } from "@modules/user/context"
@@ -15,7 +15,7 @@ function App() {
   return (
     <AppLoader loading={initialFetchLoading || loading}>
       <div className='flex flex-col w-full min-h-screen h-screen'>
-        {location.pathname !== APP_ROUTES.ROOT ? <OptionsBar /> : <NavBar />}
+        {location.pathname !== APP_ROUTES.ROOT ? <AppNavBar /> : <NavBar />}
         <Outlet />
       </div>
     </AppLoader>

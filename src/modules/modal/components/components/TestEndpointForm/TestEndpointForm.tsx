@@ -1,6 +1,6 @@
 import { SubOption } from "@modules/schemas/interfaces/schema.interface"
 import { ModalTitle } from "../../shared/components"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { OptionArgumentsSection, RequestResult, RequestSection } from "./components"
 import { ArgumentsObject } from "@modules/schemas/interfaces/argument.interface"
 import { schemasServices } from "@modules/schemas/services"
@@ -19,11 +19,9 @@ export default function TestEndpointForm({ option }: { option: SubOption }) {
 
   const handleChangeArguments = (key: string, value: unknown) => {
     setArgs({ ...args, [key]: value })
-
-    setRequestURL(builRequestURL())
   }
 
-  const builRequestURL = (): string => {
+  useEffect(() => {
     let initialRoute = optionApiRoute(option.route) + "?"
 
     Object.entries(args).forEach(([key, value], i) => {
@@ -34,8 +32,8 @@ export default function TestEndpointForm({ option }: { option: SubOption }) {
       }
     })
 
-    return initialRoute
-  }
+    setRequestURL(initialRoute)
+  }, [args])
 
   const handleMakeRequest = () => {
     request({
