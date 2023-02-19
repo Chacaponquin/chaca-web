@@ -1,9 +1,11 @@
+import { ChacaHttpError } from "@modules/shared/interfaces/error.interface"
+import { handleResponseError } from "@modules/shared/utils"
 import { useEffect, useState } from "react"
-import { useConfig } from "./useConfig"
+import { useConfig } from "../useConfig/useConfig"
 
 interface QueryProps<T> {
   onCompleted: (data: T) => void
-  onError?: (error: Error) => void
+  onError?: (error: ChacaHttpError) => void
   url: string
 }
 
@@ -20,7 +22,7 @@ export function useQuery<T>({ onCompleted, onError, url }: QueryProps<T>) {
         .then(({ data }) => onCompleted(data))
         .catch((error) => {
           setError(true)
-          if (onError) onError(error)
+          if (onError) onError(handleResponseError(error))
         })
         .finally(() => setLoading(false))
     }

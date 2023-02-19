@@ -26,7 +26,7 @@ export default function DocsSections({
   }
 
   const subSectionClass = (id: string) =>
-    clsx("mb-0", { "text-principalColor": id === selectSubSectionID })
+    clsx("mb-0 whitespace-nowrap", { "text-principalColor": id === selectSubSectionID })
 
   return (
     <div className='w-full flex flex-col mt-2'>

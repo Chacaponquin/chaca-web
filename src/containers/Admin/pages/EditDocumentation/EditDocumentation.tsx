@@ -14,7 +14,7 @@ import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { toast } from "react-toastify"
 import { CreateApiDocDTO } from "@modules/admin/api/dto/apiDoc.dto"
 import { FetchError } from "@modules/shared/errors"
-import { LazyQueryProps } from "@modules/shared/hooks/useLazyQuery"
+import { LazyQueryProps } from "@modules/shared/hooks/useLazyQuery/useLazyQuery"
 import {
   CreateApiDocSubSectionDTO,
   UpdateApiDocSubSectionDTO,
@@ -48,8 +48,15 @@ export default function EditDocumentation() {
     UpdateApiDocSubSectionDTO
   >({
     url: API_ROUTES.ADMIN.DOCS.UPDATE_API_DOC_SUB_SECTION,
-    onError: () => {
-      toast.error("Hubo un error en la actualización")
+    onError: (error) => {
+      if (error.status === 409) {
+        toast.error("Ya existe ese titulo")
+      } else {
+        toast.error("Hubo un error en la actualización")
+      }
+    },
+    onCompleted: () => {
+      lazySectionsQuery(queryConfig)
     },
   })
 
@@ -57,8 +64,12 @@ export default function EditDocumentation() {
 
   const [createApiDocSection, { loading: createApiDocLoading }] = usePost<void, CreateApiDocDTO>({
     url: API_ROUTES.ADMIN.DOCS.CREATE_API_DOC_SECTION,
-    onError: () => {
-      toast.error("Hubo un error en la creacion")
+    onError: (error) => {
+      if (error.status === 409) {
+        toast.error("Ya existe ese titulo")
+      } else {
+        toast.error("Hubo un error en la creacion")
+      }
     },
     onCompleted: () => {
       lazySectionsQuery(queryConfig)
@@ -68,8 +79,6 @@ export default function EditDocumentation() {
   const [uploadImage, { loading: uploadImageLoading }] = usePost<string, FormData>({
     url: API_ROUTES.ADMIN.MEDIA.UPLOAD_IMAGE,
     onCompleted: (url) => {
-      console.log(url)
-
       if (subSectionForm) {
         setSubSectionForm({
           ...subSectionForm,
@@ -142,8 +151,8 @@ export default function EditDocumentation() {
   const handleAddNewApiSection = () => {
     handleOpenModal({
       type: MODAL_ACTIONS.ADMIN_CREATE_API_DOC_SECTION,
-      handleAddSection: (title: string, language: string) => {
-        createApiDocSection({ body: { language, sectionTitle: title } })
+      handleAddSection: (section) => {
+        createApiDocSection({ body: section })
       },
     })
   }

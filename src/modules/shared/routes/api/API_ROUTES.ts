@@ -17,6 +17,7 @@ export const API_ROUTES = {
     GET_CUSTOM_FORM_GUIDES: "/docs/guides/custom",
     GET_REF_FORM_GUIDES: "/docs/guides/ref",
     GET_DOC_SECTIONS: "/docs/sections",
+    GET_API_DOC_SUB_SECTION: "/docs/subSection",
   },
   ADMIN: {
     AUTH: {

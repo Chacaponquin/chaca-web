@@ -1,9 +1,11 @@
+import { ChacaHttpError } from "@modules/shared/interfaces/error.interface"
+import { handleResponseError } from "@modules/shared/utils"
 import { useState } from "react"
-import { useConfig } from "./useConfig"
+import { useConfig } from "../useConfig/useConfig"
 
 export interface LazyQueryProps<T> {
   onCompleted: (data: T) => void
-  onError?: (error: Error) => void
+  onError?: (error: ChacaHttpError) => void
   url: string
   query?: { [key: string]: unknown }
 }
@@ -25,7 +27,7 @@ export function useLazyQuery<T>(): [
       .then(({ data }) => onCompleted(data))
       .catch((err) => {
         setError(true)
-        if (onError) onError(err)
+        if (onError) onError(handleResponseError(err))
       })
       .finally(() => setLoading(false))
   }

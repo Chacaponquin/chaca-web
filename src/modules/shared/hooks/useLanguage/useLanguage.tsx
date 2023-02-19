@@ -1,11 +1,11 @@
 import { useContext } from "react"
-import { AppConfigContext } from "../context/AppConfigContext"
+import { AppConfigContext } from "../../context/AppConfigContext"
 import {
   LanguageConfig,
   LanguageObject,
   Languages,
   ReturnLanguageObject,
-} from "../interfaces/language.interface"
+} from "../../interfaces/language.interface"
 
 export function useLanguage<T>(languageObject: LanguageObject<T>) {
   const { language } = useContext(AppConfigContext)

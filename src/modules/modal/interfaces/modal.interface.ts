@@ -1,3 +1,4 @@
+import { CreateApiDocDTO } from "@modules/admin/api/dto/apiDoc.dto"
 import { SubOption } from "@modules/schemas/interfaces/schema.interface"
 import { DatasetField, FieldDataType } from "../../datasets/interfaces/datasets.interface"
 import { MODAL_ACTIONS } from "../constants/MODAL_ACTIONS"
@@ -49,7 +50,7 @@ export type ModalTestEndpoint = {
 
 export type ModalAdminAddApiDocSection = {
   type: MODAL_ACTIONS.ADMIN_CREATE_API_DOC_SECTION
-  handleAddSection: (sectionTitle: string, language: string) => void
+  handleAddSection: (newSection: CreateApiDocDTO) => void
 }
 
 export type ModalProps =

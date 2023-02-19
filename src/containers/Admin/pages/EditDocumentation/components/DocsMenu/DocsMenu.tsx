@@ -2,6 +2,7 @@ import { ApiDocSection } from "@modules/admin/api/interfaces/apiDocSection.inter
 import { ChacaSimpleButton } from "@modules/shared/components/ChacaButton"
 import { DocsSections, EmptySectionsMessage, LoadingDiv } from "./components"
 import { Fragment } from "react"
+import { APP_IMAGES } from "@modules/shared/constant"
 
 export default function DocsMenu({
   sections,
@@ -21,13 +22,18 @@ export default function DocsMenu({
   selectSubSectionID: string
 }) {
   return (
-    <div className='w-[250px] min-w-[250px] overflow-y-auto border-r-2 h-screen flex flex-col py-2 px-4 no-scroll'>
+    <div className='sticky w-[250px] min-w-[250px] overflow-y-auto border-r-2 h-screen flex flex-col py-2 px-4 no-scroll'>
       {fetchLoading && <LoadingDiv loading={fetchLoading} />}
       {!fetchLoading && sections.length === 0 && (
         <EmptySectionsMessage handleAddNewApiSection={handleAddNewApiSection} />
       )}
       {!fetchLoading && sections.length > 0 && (
         <Fragment>
+          <div className='flex items-center gap-x-1 mb-2'>
+            <img src={APP_IMAGES.LOGO.image} alt={APP_IMAGES.LOGO.alt} className='w-[55px]' />
+            <p className='mb-0 font-fontExtraBold uppercase text-xl'>CHACA DOCS</p>
+          </div>
+
           <div>
             <ChacaSimpleButton
               color='primary'

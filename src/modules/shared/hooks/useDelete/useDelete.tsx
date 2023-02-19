@@ -1,10 +1,12 @@
+import { ChacaHttpError } from "@modules/shared/interfaces/error.interface"
+import { handleResponseError } from "@modules/shared/utils"
 import { useState } from "react"
-import { useConfig } from "./useConfig"
+import { useConfig } from "../useConfig/useConfig"
 
 interface DeleteProps {
   url: string
   onCompleted: () => void
-  onError?: (error: Error) => void
+  onError?: (error: ChacaHttpError) => void
 }
 
 export function useDelete(): [(p: DeleteProps) => void, { loading: boolean; error: boolean }] {
@@ -22,7 +24,7 @@ export function useDelete(): [(p: DeleteProps) => void, { loading: boolean; erro
       .then(() => onCompleted())
       .catch((error) => {
         setError(true)
-        if (onError) onError(error)
+        if (onError) onError(handleResponseError(error))
       })
       .finally(() => {
         setLoading(false)

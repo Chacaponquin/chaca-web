@@ -1,11 +1,14 @@
-import { useState, useEffect } from "react"
-import { useLazyQuery, useQuery } from "@modules/shared/hooks"
-import { API_ROUTES } from "@modules/shared/routes"
-import { ApiSection } from "../interfaces/apiSections.interface"
+import { useState } from "react"
+import { useQuery } from "@modules/shared/hooks"
+import { API_ROUTES, APP_ROUTES } from "@modules/shared/routes"
+import { ApiSection } from "../../../modules/docs/interfaces/apiSections.interface"
+import { useParams, useNavigate } from "react-router-dom"
 
 export function useApi() {
+  const { section: actualSection, subSection: actualSubSection } = useParams()
+  const navigate = useNavigate()
+
   const [sections, setSections] = useState<Array<ApiSection>>([])
-  const [selectSection, setSelectSection] = useState<string | null>(null)
   const [selectSectionContent, setSelectSectionContent] = useState("")
 
   const { error: sectionsError, loading: sectionsLoading } = useQuery<Array<ApiSection>>({
@@ -15,32 +18,22 @@ export function useApi() {
     },
   })
 
-  const [fetchSelectSection, { loading: selectSectionLoading, error: selectSectionError }] =
-    useLazyQuery<string>()
-
-  const handleSelectSubSection = (route: string) => {
-    setSelectSection(route)
-  }
-
-  useEffect(() => {
-    if (selectSection) {
-      fetchSelectSection({
-        url: `docs/${selectSection}`,
-        onCompleted: (content) => {
-          setSelectSectionContent(content)
-        },
-      })
-    }
-  }, [selectSection])
+  const { loading: fetchSubSectionLoading } = useQuery<string>({
+    url: `${API_ROUTES.DOCS.GET_API_DOC_SUB_SECTION}/${actualSection}/${actualSubSection}`,
+    onCompleted: (subSectionInfo) => {
+      setSelectSectionContent(subSectionInfo)
+    },
+    onError: () => {
+      navigate(APP_ROUTES.NOT_FOUND, { replace: true })
+    },
+  })
 
   return {
-    handleSelectSubSection,
-    selectSectionLoading,
-    selectSectionError,
     sectionsError,
     sectionsLoading,
+    fetchSubSectionLoading,
     sections,
     selectSectionContent,
-    selectSection,
+    actualSubSection,
   }
 }

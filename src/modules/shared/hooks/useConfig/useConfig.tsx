@@ -1,7 +1,8 @@
 import axios from "axios"
 import { useCallback, useContext, useEffect, useMemo } from "react"
 import Cookies from "universal-cookie"
-import { AppConfigContext } from "../context/AppConfigContext"
+import { AppConfigContext } from "../../context/AppConfigContext"
+import { handleRequestSuccess } from "./utils"
 
 export const useConfig = () => {
   const { language } = useContext(AppConfigContext)
@@ -29,20 +30,8 @@ export const useConfig = () => {
 
   useEffect(() => {
     axiosInstance.interceptors.request.use(
-      (req) => {
-        const token = getTokenCookie()
-
-        if (!req.headers) {
-          req.headers = {}
-        }
-
-        req.headers.language = language
-        req.headers.authorization = `Bearer ${token}`
-
-        return req
-      },
+      (req) => handleRequestSuccess(req, getTokenCookie(), language),
       (error) => {
-        console.log(error)
         Promise.reject(error)
       },
     )

@@ -1,23 +1,15 @@
-import { Fragment } from "react"
 import { RouteContentLoader, LoaderContainer } from "@modules/shared/components/Loader"
 import { useApi } from "./hooks"
-import {
-  ApiSections,
-  SectionsErrorMessage,
-  SelectDocument,
-  SelectSectionErrorMessage,
-} from "./components"
+import { ApiSections, SectionsErrorMessage, SelectDocument } from "./components"
 
 const Api = () => {
   const {
     sections,
-    selectSection,
-    selectSectionError,
+    fetchSubSectionLoading,
     selectSectionContent,
-    handleSelectSubSection,
     sectionsLoading,
     sectionsError,
-    selectSectionLoading,
+    actualSubSection,
   } = useApi()
 
   return (
@@ -26,23 +18,13 @@ const Api = () => {
         <SectionsErrorMessage />
       ) : (
         <div className='w-full flex items-center justify-center'>
-          <ApiSections
-            sections={sections}
-            selectSection={selectSection}
-            handleSelectSubSection={handleSelectSubSection}
-          />
+          <ApiSections sections={sections} selectSection={actualSubSection || ""} />
 
           <div className='w-full flex items-center justify-center'>
-            {selectSectionLoading ? (
-              <LoaderContainer className='w-[60px]' loading={selectSectionLoading} />
+            {fetchSubSectionLoading ? (
+              <LoaderContainer className='w-[60px]' loading={fetchSubSectionLoading} />
             ) : (
-              <Fragment>
-                {selectSectionError ? (
-                  <SelectSectionErrorMessage />
-                ) : (
-                  <SelectDocument content={selectSectionContent} />
-                )}
-              </Fragment>
+              <SelectDocument content={selectSectionContent} />
             )}
           </div>
         </div>
