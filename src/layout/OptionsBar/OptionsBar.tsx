@@ -4,7 +4,7 @@ import clsx from "clsx"
 import { NavLink } from "react-router-dom"
 import { APP_ROUTES } from "@modules/shared/routes"
 import { UserContext } from "@modules/user/context"
-import { ProfileSection } from "./components"
+import { ChacaLogo, ProfileSection } from "./components"
 import { useLanguage } from "@modules/shared/hooks"
 
 const OptionsBar = () => {
@@ -12,7 +12,7 @@ const OptionsBar = () => {
 
   const divClass = ({ isActive }: { isActive: boolean }): string => {
     return clsx(
-      "flex flex-col items-center py-1 cursor-pointer rounded duration-300 transition-all",
+      "flex items-center py-[5px] px-4 cursor-pointer rounded-sm duration-300 transition-all gap-x-2",
       { "bg-gradient-to-br from-principalColor to-secondColor fill-white text-white": isActive },
       { "bg-white fill-black text-black hover:bg-slate-100": !isActive },
     )
@@ -25,30 +25,34 @@ const OptionsBar = () => {
   })
 
   const textClass = "text-sm font-fontBold"
-  const iconSize = 25
+  const iconSize = 22
 
   return (
-    <div className='w-[100px] min-w-[100px] h-screen bg-white flex flex-col justify-between border-grayColor border-r-2'>
-      <div className='flex flex-col px-2 py-4 gap-1'>
-        <NavLink className={divClass} to={APP_ROUTES.HOME}>
-          <Home size={iconSize} />
-          <p className={textClass}>{HOME_TEXT}</p>
-        </NavLink>
+    <div className='w-full bg-white flex border-b-2 border-b-grayColor items-center px-5 py-[2px] justify-between'>
+      <ChacaLogo />
 
-        <NavLink className={divClass} to={APP_ROUTES.API}>
-          <Code size={iconSize} />
-          <p className={textClass}>{API_TEXT}</p>
-        </NavLink>
-
-        {actualUser && (
-          <NavLink className={divClass} to={APP_ROUTES.MODELS}>
-            <Schema size={iconSize} />
-            <p className={textClass}>{MODELS_TEXT}</p>
+      <div className='flex items-center gap-x-3'>
+        <div className='flex gap-1'>
+          <NavLink className={divClass} to={APP_ROUTES.HOME}>
+            <Home size={iconSize} />
+            <p className={textClass}>{HOME_TEXT}</p>
           </NavLink>
-        )}
-      </div>
 
-      <ProfileSection />
+          <NavLink className={divClass} to={APP_ROUTES.API}>
+            <Code size={iconSize} />
+            <p className={textClass}>{API_TEXT}</p>
+          </NavLink>
+
+          {actualUser && (
+            <NavLink className={divClass} to={APP_ROUTES.MODELS}>
+              <Schema size={iconSize} />
+              <p className={textClass}>{MODELS_TEXT}</p>
+            </NavLink>
+          )}
+        </div>
+
+        <ProfileSection />
+      </div>
     </div>
   )
 }

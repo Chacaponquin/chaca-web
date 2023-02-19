@@ -15,10 +15,10 @@ export default function SubSection({
   const { createSubSectionUrl } = useDocsService()
 
   const subOptionClass = clsx(
-    "px-2 text-base cursor-pointer py-1 transition-all duration-300 whitespace-nowrap",
+    "text-base cursor-pointer transition-all duration-300 whitespace-nowrap",
     {
-      "bg-principalColor text-white": isSelect,
-      "hover:bg-principalColor hover:text-white text-slate-500": !isSelect,
+      "text-principalColor": isSelect,
+      "text-slate-500": !isSelect,
     },
   )
 
