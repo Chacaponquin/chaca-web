@@ -4,8 +4,8 @@ import ExampleCode from "../ExampleCode/ExampleCode"
 const ListItem = ({ children }: { children: JSX.Element }) => {
   return (
     <div className='flex items-start'>
-      <div className='pr-2'>
-        <div className='translate-y-[10px] w-[8px] h-[8px] rounded-full bg-black'></div>
+      <div className='pr-4'>
+        <div className='translate-y-[12px] w-[6px] h-[6px] rounded-full bg-black'></div>
       </div>
 
       <div>{children}</div>
@@ -31,10 +31,11 @@ export default function MDView({
         options={{
           overrides: {
             img: { props: { className: "mb-2 w-full" } },
-            ul: { props: { className: "list-disc flex flex-col gap-2" } },
+            ul: { props: { className: "ml-3 list-disc flex flex-col mb-4" } },
             li: {
               component: ListItem,
             },
+            h1: { props: { className: "text-4xl font-fontExtraBold mb-2" } },
             h3: { props: { className: "text-xl font-fontBold mt-3" } },
             h2: { props: { className: "text-2xl font-fontBold" } },
             code: {

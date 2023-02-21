@@ -4,7 +4,7 @@ import clsx from "clsx"
 import { NavLink } from "react-router-dom"
 import { APP_ROUTES } from "@modules/shared/routes"
 import { UserContext } from "@modules/user/context"
-import { ChacaLogo, ProfileSection } from "./components"
+import { ChacaLogo } from "./components"
 import { useLanguage } from "@modules/shared/hooks"
 
 export default function AppNavBar() {
@@ -12,8 +12,10 @@ export default function AppNavBar() {
 
   const divClass = ({ isActive }: { isActive: boolean }): string => {
     return clsx(
-      "flex items-center py-[5px] px-5 cursor-pointer rounded-sm duration-300 transition-all gap-x-2",
-      { "bg-gradient-to-br from-principalColor to-secondColor fill-white text-white": isActive },
+      "flex h-full items-center py-[5px] px-5 cursor-pointer rounded-sm gap-x-2",
+      {
+        "fill-black text-black border-b-2 border-b-secondColor": isActive,
+      },
       { "bg-white fill-black text-black hover:bg-slate-100": !isActive },
     )
   }
@@ -28,11 +30,11 @@ export default function AppNavBar() {
   const iconSize = 22
 
   return (
-    <div className='w-full bg-white border-b-[1px] border-b-grayColor flex items-center px-12 justify-between'>
+    <div className='w-full bg-white flex items-center px-12 justify-between border-b-2 border-b-grayColor'>
       <ChacaLogo />
 
-      <div className='flex items-center gap-x-5'>
-        <div className='flex gap-x-3'>
+      <div className='flex items-center gap-x-5 h-full'>
+        <div className='flex gap-x-3 h-full'>
           <NavLink className={divClass} to={APP_ROUTES.HOME}>
             <Home size={iconSize} />
             <p className={textClass}>{HOME_TEXT}</p>
@@ -50,8 +52,6 @@ export default function AppNavBar() {
             </NavLink>
           )}
         </div>
-
-        <ProfileSection />
       </div>
     </div>
   )

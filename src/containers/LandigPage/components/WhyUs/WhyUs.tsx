@@ -1,20 +1,20 @@
-import { PlayIcon } from "@modules/shared/assets/icons"
-import { ChacaIconButton } from "@modules/shared/components/ChacaButton"
 import { APP_IMAGES } from "@modules/shared/constant"
+import { useLanguage } from "@modules/shared/hooks"
 
 const WhyUs = () => {
-  const handlePlayVideo = () => {
-    console.log("Play")
-  }
+  const { WHY_US_FIRST_TEXT, WHY_US_SECOND_TEXT } = useLanguage({
+    WHY_US_FIRST_TEXT: { en: "Why", es: "Por qué" },
+    WHY_US_SECOND_TEXT: { en: "Us?", es: "Nosotros?" },
+  })
 
   return (
     <div className='h-screen w-screen flex items-center justify-center px-32 esm:px-5 xl:bg-second-bg bg-cover bg-no-repeat bg-transparent'>
       <div className='flex items-center gap-5 flex-col-reverse xl:flex-row xl:gap-20'>
         <div className='flex flex-col '>
           <div className='gap-x-[10px] flex items-center lg:text-6xl text-5xl esm:text-4xl mb-2 uppercase flex-wrap'>
-            <h1 className='font-fontExtraBold whitespace-nowrap'>Por qué</h1>
+            <h1 className='font-fontExtraBold whitespace-nowrap'>{WHY_US_FIRST_TEXT}</h1>
             <h1 className='font-fontExtraBold text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor whitespace-nowrap'>
-              nosotros?
+              {WHY_US_SECOND_TEXT}
             </h1>
           </div>
 
@@ -28,16 +28,6 @@ const WhyUs = () => {
               Para eso te brindamos esta herramienta para que puedas crear la cantidad de datos que
               desees bajo tus condiciones y sobre todo completamente gratis.
             </h2>
-          </div>
-
-          <div className='flex justify-end mt-4'>
-            <ChacaIconButton
-              color='gradient'
-              icon={<PlayIcon size={20} />}
-              text='Mirar Video'
-              size='extra-large'
-              onClick={handlePlayVideo}
-            />
           </div>
         </div>
 

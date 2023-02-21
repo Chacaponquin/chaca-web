@@ -16,7 +16,7 @@ const FieldInfoHeader = ({ selectField }: { selectField: FieldNode<FieldDataType
   const { handleDelete, handleEdit, location } = useFieldInfoHeader(selectField)
 
   return (
-    <div className='w-full bg-white py-2 flex justify-between items-center px-5 border-b-2 h-[50px]'>
+    <div className='w-full bg-white py-2 flex justify-between items-center px-5 border-b-2 h-[40px]'>
       <div className='flex gap-3 text-lg'>
         {location.map((el, i) => (
           <Fragment key={uuid()}>
@@ -28,17 +28,17 @@ const FieldInfoHeader = ({ selectField }: { selectField: FieldNode<FieldDataType
 
       <div className='flex gap-3 items-center'>
         <ChacaIconButton
-          icon={<Change size={19} />}
+          icon={<Change size={16} />}
           color={"primary"}
-          size={"medium"}
+          size={"small"}
           text={UI_TEXT.EDIT_TEXT}
           onClick={handleEdit}
         />
 
         <ChacaIconButton
-          icon={<Delete size={19} />}
+          icon={<Delete size={16} />}
           color={"danger"}
-          size={"medium"}
+          size={"small"}
           text={UI_TEXT.DELETE_TEXT}
           onClick={handleDelete}
         />

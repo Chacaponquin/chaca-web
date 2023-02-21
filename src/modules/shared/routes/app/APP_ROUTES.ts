@@ -7,7 +7,7 @@ export const APP_ROUTES = {
   },
   HOME: "/home",
   API: "/api/:section/:subSection",
-  DEFAULT_INIT_DOC_ROUTE: "/api/test/introduction",
+  DEFAULT_INIT_DOC_ROUTE: "/api/guide/what-is-chaca?",
   DOCS: "/docs",
   MODELS: "/models",
   CONTACT_US: "/contactUs",
