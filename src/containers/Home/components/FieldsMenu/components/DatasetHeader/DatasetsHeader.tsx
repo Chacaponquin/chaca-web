@@ -4,6 +4,8 @@ import { DatasetsContext } from "@modules/datasets/context"
 import { DatasetConfigMenu } from "./components"
 import { ChacaSelect } from "@form"
 import { useDatasetsHeader } from "./hooks"
+import ChacaBlockInfo from "@modules/shared/components/ChacaBlockInfo/ChacaBlockInfo"
+import { useLanguage } from "@modules/shared/hooks"
 
 const DatasetsHeader = ({
   handleCreateSelectDataset,
@@ -21,12 +23,18 @@ const DatasetsHeader = ({
     handleEditDataset,
   } = useDatasetsHeader(handleCreateSelectDataset)
 
+  const { NEW_DATASET_MESSAGE } = useLanguage({
+    NEW_DATASET_MESSAGE: { en: "New Dataset", es: "Añadir Dataset" },
+  })
+
   return (
     <div className='pt-3 px-4 mb-2 w-full bg-white flex items-center justify-between'>
       <div className='gap-3 flex items-center'>
-        <button onClick={handleNewDataset}>
-          <Plus size={18} />
-        </button>
+        <ChacaBlockInfo message={NEW_DATASET_MESSAGE}>
+          <button onClick={handleNewDataset}>
+            <Plus size={18} />
+          </button>
+        </ChacaBlockInfo>
 
         <ChacaSelect
           size={200}
