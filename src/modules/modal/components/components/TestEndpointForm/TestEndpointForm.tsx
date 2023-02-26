@@ -22,17 +22,24 @@ export default function TestEndpointForm({ option }: { option: SubOption }) {
   }
 
   useEffect(() => {
-    let initialRoute = optionApiRoute(option.route) + "?"
+    const queryArguments = Object.entries(args)
+    let initialRoute = optionApiRoute(option.route)
 
-    Object.entries(args).forEach(([key, value], i) => {
-      initialRoute += `${key}=${value}`
+    if (queryArguments.length === 0) {
+      setRequestURL(initialRoute)
+    } else {
+      initialRoute += "?"
 
-      if (i !== Object.keys(args).length - 1) {
-        initialRoute += `&`
-      }
-    })
+      queryArguments.forEach(([key, value], i) => {
+        initialRoute += `${key}=${value}`
 
-    setRequestURL(initialRoute)
+        if (i !== Object.keys(args).length - 1) {
+          initialRoute += `&`
+        }
+      })
+
+      setRequestURL(initialRoute)
+    }
   }, [args])
 
   const handleMakeRequest = () => {

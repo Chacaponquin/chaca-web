@@ -14,15 +14,21 @@ const AppConfigContext = createContext<{
   initialFetchLoading: boolean
   fileConfig: FileConfigOption[]
   language: Languages
+  handleOpenDropDown: (id: string) => void
+  openDropdown: string
 }>({
   noUserLimits: {} as any,
   initialFetchLoading: true,
   schemas: [],
   fileConfig: [],
   language: "en",
+  handleOpenDropDown(id) {},
+  openDropdown: "",
 })
 
 const AppConfigProvider = ({ children = <></> }: { children: ReactElement }) => {
+  const [openDropdown, setOpenDropdown] = useState("")
+
   // user limits of documents
   const [noUserLimits, setNoUserLimits] = useState<NoUserLimits>({
     LIMIT_DATASETS: 3,
@@ -67,7 +73,7 @@ const AppConfigProvider = ({ children = <></> }: { children: ReactElement }) => 
     } else {
       setLanguage("en")
     }
-  }, [])
+  }, [window.navigator.language])
 
   useEffect(() => {
     Promise.all([
@@ -86,12 +92,18 @@ const AppConfigProvider = ({ children = <></> }: { children: ReactElement }) => 
       .finally(() => setInitialFetchLoading(false))
   }, [])
 
+  const handleOpenDropDown = (id: string) => {
+    setOpenDropdown(id)
+  }
+
   const data = {
     initialFetchLoading,
     schemas,
     fileConfig,
     noUserLimits,
     language,
+    handleOpenDropDown,
+    openDropdown,
   }
 
   return <AppConfigContext.Provider value={data}>{children}</AppConfigContext.Provider>

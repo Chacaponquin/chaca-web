@@ -25,7 +25,7 @@ const RefForm = ({ field }: { field: DatasetField<RefDataType> }) => {
   }, [datasets, selectedDataset.id])
 
   return (
-    <div className='flex justify-center w-full px-3'>
+    <div className='flex justify-center w-full px-3 pt-4'>
       {toRef.length > 0 ? (
         <div className='w-full flex flex-col gap-4'>
           {toRef.map((d) => (

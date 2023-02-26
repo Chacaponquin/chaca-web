@@ -1,4 +1,6 @@
-import { useMemo, useState } from "react"
+/* eslint-disable @typescript-eslint/no-empty-function */
+
+import { useMemo, useState, useRef } from "react"
 import { ChacaFormProps } from "../../interfaces/chacaForm.interface"
 import { Size } from "../../interfaces/dimension.interface"
 import { ArrowDown, ArrowUp } from "@modules/shared/assets/icons"
@@ -22,6 +24,9 @@ export default function ChacaNumberInput({
 }: ChacaNumberInputProps) {
   const [isFocus, setIsFocus] = useState(false)
   const [isHover, setIsHover] = useState(false)
+
+  const upButton = useRef<HTMLButtonElement | null>(null)
+  const downButton = useRef<HTMLButtonElement | null>(null)
 
   const height = useMemo(() => {
     switch (dimension) {
@@ -111,6 +116,28 @@ export default function ChacaNumberInput({
     },
   )
 
+  const handleFocus = () => {
+    setIsFocus(true)
+
+    document.onkeydown = (key) => {
+      if (key.key === "ArrowUp") {
+        if (upButton.current) {
+          upButton.current.click()
+        }
+      } else if (key.key === "ArrowDown") {
+        if (downButton.current) {
+          downButton.current.click()
+        }
+      }
+    }
+  }
+
+  const handleBlur = () => {
+    setIsFocus(false)
+
+    document.onkeydown = () => {}
+  }
+
   return (
     <div
       className={containerClass}
@@ -120,8 +147,8 @@ export default function ChacaNumberInput({
         className='h-full w-full outline-none px-2 text-sm bg-transparent focus:border-principalColor hover:border-principalColor py-[2px]'
         type='text'
         onChange={(e) => handleChangeInputValue(e.target.value)}
-        onFocus={() => setIsFocus(true)}
-        onBlur={() => setIsFocus(false)}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
         value={value === undefined ? 0 : value}
@@ -132,6 +159,7 @@ export default function ChacaNumberInput({
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
           onClick={handleIncrease}
+          ref={upButton}
         >
           <ArrowUp size={iconSize} />
         </button>
@@ -141,6 +169,7 @@ export default function ChacaNumberInput({
           onClick={handleDecrease}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
+          ref={downButton}
         >
           <ArrowDown size={iconSize} />
         </button>

@@ -1,7 +1,8 @@
 /*eslint-disable */
 
 import { ModalProps } from "@modules/modal/interfaces/modal.interface"
-import { createContext, ReactElement, useState } from "react"
+import { AppConfigContext } from "@modules/shared/context"
+import { createContext, ReactElement, useState, useContext } from "react"
 
 const ModalContext = createContext<{
   openModal: null | ModalProps
@@ -10,10 +11,13 @@ const ModalContext = createContext<{
 }>({ openModal: null, handleCloseModal: () => {}, handleOpenModal: () => {} })
 
 const ModalProvider = ({ children = <></> }: { children: ReactElement }) => {
+  const { handleOpenDropDown } = useContext(AppConfigContext)
+
   const [openModal, setOpenModal] = useState<null | ModalProps>(null)
 
   const handleOpenModal = (props: ModalProps) => {
     setOpenModal(props)
+    handleOpenDropDown("")
   }
 
   const handleCloseModal = () => {

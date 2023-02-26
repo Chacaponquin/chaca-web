@@ -14,10 +14,10 @@ export default function RequestSection({
   return (
     <div className='flex items-center w-full text-base mb-3'>
       <div className='flex items-center w-full'>
-        <div className='bg-principalColor text-white px-4 py-1 font-fontBold border-2 border-principalColor'>
+        <div className='bg-principalColor text-white px-4 py-1 font-fontBold border-2 border-principalColor uppercase'>
           GET
         </div>
-        <div className='overflow-x-auto no-scroll border-r-2 border-t-2 border-b-2 py-1 w-full border-b-grayColor border-r-grayColor border-t-grayColor px-4 whitespace-nowrap'>
+        <div className='overflow-x-auto no-scroll border-r-2 border-t-2 border-b-2 py-1 border-b-grayColor border-r-grayColor border-t-grayColor px-4 whitespace-nowrap w-[400px]'>
           {url}
         </div>
       </div>
