@@ -48,7 +48,7 @@ export default function ChacaBlockInfo({
 
       {view && (
         <div
-          className='absolute top-0 left-0 px-3 py-1 text-sm bg-gray-100 z-[999] shadow-sm'
+          className='absolute top-0 left-0 px-3 py-1 text-sm bg-black text-white z-[999] shadow-sm'
           style={{
             transform: `translateX(${messagePosition.posX}px) translateY(${messagePosition.posY}px)`,
           }}

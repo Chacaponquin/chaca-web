@@ -1,13 +1,12 @@
-import { useEffect, Fragment } from "react"
-import { API_ROUTES } from "@modules/shared/routes"
-import { gapi } from "gapi-script"
+import { Fragment } from "react"
 import { GitHub, Google } from "@modules/shared/assets/icons"
+import { userServices } from "@modules/user/services"
 
 const divClass =
   "border-[3px] py-3 flex gap-3 rounded items-center justify-center transition-all duration-300 hover:text-white cursor-pointer esm:py-2"
 
 const OtherOptionsSection = ({ loading }: { loading: boolean }) => {
-  useEffect(() => {
+  /* useEffect(() => {
     function start() {
       gapi.client.init({
         clientId: "910053819134-3lb9n36c1d9tmf4g6271n4u3qi4ij9bi.apps.googleusercontent.com",
@@ -16,7 +15,7 @@ const OtherOptionsSection = ({ loading }: { loading: boolean }) => {
     }
 
     gapi.load("client:auth2", start)
-  }, [])
+  }, []) */
 
   return (
     <Fragment>
@@ -31,14 +30,12 @@ const OtherOptionsSection = ({ loading }: { loading: boolean }) => {
 }
 
 const GitHubButton = () => {
-  const handleLoginGitHub = async () => {
-    window.open(`${process.env.REACT_APP_API_URL}${API_ROUTES.AUTH_ROUTES.GITHUB_AUTH}`, "_self")
-  }
+  const { handleGithubLogin } = userServices()
 
   return (
     <button
       className={divClass + " border-black text-black hover:bg-black hover:fill-white"}
-      onClick={handleLoginGitHub}
+      onClick={handleGithubLogin}
       type='button'
     >
       <GitHub />
@@ -48,9 +45,7 @@ const GitHubButton = () => {
 }
 
 const GoogleButton = () => {
-  const handleGoogleLogin = () => {
-    window.open(`${process.env.REACT_APP_API_URL}${API_ROUTES.AUTH_ROUTES.GOOGLE_AUTH}`, "_self")
-  }
+  const { handleGoogleLogin } = userServices()
 
   return (
     <button

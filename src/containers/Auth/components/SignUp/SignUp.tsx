@@ -1,10 +1,10 @@
 import { useLanguage } from "@modules/shared/hooks"
 import { APP_ROUTES } from "@modules/shared/routes"
 import { LoaderContainer } from "@modules/shared/components/Loader"
-import { InputText } from "primereact/inputtext"
 import { Link } from "react-router-dom"
 import { OtherOptionsSection } from "../../shared/components"
 import { useSignUp } from "./hooks"
+import { ChacaTextInput } from "@form"
 
 const SignUp = () => {
   const {
@@ -30,9 +30,8 @@ const SignUp = () => {
     COMFIRM_PASSWORD_TEXT: { en: "Comfirm Password", es: "Confirma tu contraseña" },
   })
 
-  const { handleChange, handleSubmit, loading } = useSignUp()
+  const { handleChange, handleSubmit, loading, signUpData } = useSignUp()
 
-  const inputClass = "py-2 px-5 font-fontRegular text-base esm:px-3 esm:py-1 esm:text-sm"
   const labelClass = "text-lg font-fontBold"
 
   return (
@@ -62,12 +61,12 @@ const SignUp = () => {
                 <label htmlFor='' className={labelClass}>
                   {USERNAME_TEXT}:
                 </label>
-                <InputText
-                  className={inputClass}
-                  required
+                <ChacaTextInput
+                  placeholder='Username'
+                  value={signUpData.username}
                   name='username'
-                  type={"text"}
-                  onChange={handleChange}
+                  onChange={(v) => handleChange("username", v)}
+                  dimension='large'
                 />
               </div>
 
@@ -75,12 +74,12 @@ const SignUp = () => {
                 <label htmlFor='' className={labelClass}>
                   {EMAIL_TEXT}:
                 </label>
-                <InputText
-                  className={inputClass}
-                  required
+                <ChacaTextInput
+                  placeholder='Email'
+                  value={signUpData.email}
                   name='email'
-                  type={"email"}
-                  onChange={handleChange}
+                  onChange={(v) => handleChange("email", v)}
+                  dimension='large'
                 />
               </div>
 
@@ -88,12 +87,13 @@ const SignUp = () => {
                 <label htmlFor='' className={labelClass}>
                   {PASSWORD_TEXT}:
                 </label>
-                <InputText
-                  className={inputClass}
-                  required
+                <ChacaTextInput
+                  placeholder='Password'
+                  value={signUpData.password}
                   name='password'
-                  type={"password"}
-                  onChange={handleChange}
+                  onChange={(v) => handleChange("password", v)}
+                  type='password'
+                  dimension='large'
                 />
               </div>
 
@@ -101,12 +101,13 @@ const SignUp = () => {
                 <label htmlFor='' className={labelClass}>
                   {COMFIRM_PASSWORD_TEXT}:
                 </label>
-                <InputText
-                  className={inputClass}
-                  required
-                  name='comfirmPassword'
-                  type={"password"}
-                  onChange={handleChange}
+                <ChacaTextInput
+                  placeholder='Comfirm Password'
+                  value={signUpData.comfirmPassword}
+                  name='password'
+                  onChange={(v) => handleChange("comfirmPassword", v)}
+                  type='password'
+                  dimension='large'
                 />
               </div>
             </div>

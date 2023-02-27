@@ -7,9 +7,10 @@ import { CurveBg } from "@modules/shared/assets/background"
 import clsx from "clsx"
 import { OtherOptionsSection } from "../../shared/components"
 import { User, Private } from "@modules/shared/assets/icons"
+import { useLogin } from "./hooks"
+import { APP_IMAGES } from "@modules/shared/constant"
 
 import "../../auth.css"
-import { useLogin } from "./hooks"
 
 const Login = () => {
   const { handleChange, handleSubmit, loading } = useLogin()
@@ -21,6 +22,8 @@ const Login = () => {
     LOGIN_TEXT,
     LOGIN_BUTTON_TEXT,
     FORGET_PASSWORD_BUTTON_TEXT,
+    EMAIL_TEXT,
+    PASSWORD_TEXT,
   } = useLanguage({
     NEW_USER_TEXT: { en: "New User?", es: "Eres nuevo?" },
     SIGN_UP_TEXT: { es: "Regístrate", en: "Sign Up" },
@@ -28,6 +31,8 @@ const Login = () => {
     LOGIN_TEXT: { en: "Login to continue", es: "Pon tus datos para continuar" },
     LOGIN_BUTTON_TEXT: { en: "Login", es: "Login" },
     FORGET_PASSWORD_BUTTON_TEXT: { en: "Forget Password?", es: "Olvidaste tu contraseña?" },
+    EMAIL_TEXT: { en: "Email", es: "Email" },
+    PASSWORD_TEXT: { en: "Password", es: "Contraseña" },
   })
 
   const buttonClass =
@@ -49,8 +54,8 @@ const Login = () => {
           </div>
 
           <img
-            src={"/images/signUp-image.png"}
-            alt=''
+            src={APP_IMAGES.SIGN_UP_IMAGE.image}
+            alt={APP_IMAGES.SIGN_UP_IMAGE.alt}
             className='object-contain z-20 -translate-x-[50px] max-w-full'
           />
         </div>
@@ -65,8 +70,18 @@ const Login = () => {
 
           <form className='flex flex-col w-full' onSubmit={handleSubmit}>
             <div className='flex flex-col w-full py-8 gap-5 esm:py-6'>
-              <InputDiv type={"email"} onChange={handleChange} icon={"email"} />
-              <InputDiv onChange={handleChange} type={"password"} icon={"password"} />
+              <InputDiv
+                type={"email"}
+                onChange={handleChange}
+                icon={"email"}
+                placeholder={EMAIL_TEXT}
+              />
+              <InputDiv
+                onChange={handleChange}
+                type={"password"}
+                icon={"password"}
+                placeholder={PASSWORD_TEXT}
+              />
             </div>
 
             <div className='mb-4'>
@@ -100,21 +115,21 @@ const InputDiv = ({
   type,
   onChange,
   icon,
+  placeholder,
 }: {
-  icon: string
+  icon: "email" | "password"
   type: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  placeholder: string
 }) => {
   const [focus, setFocus] = useState(false)
 
-  const divClass = () => {
-    return clsx("rounded-md flex w-full inputText", {
-      "inputText-focus": focus,
-    })
-  }
+  const divClass = clsx("rounded-md flex w-full inputText", {
+    "inputText-focus": focus,
+  })
 
   return (
-    <div className={divClass()}>
+    <div className={divClass}>
       <div className='px-4 border-r-2 flex justify-center items-center'>
         {icon === "email" && <User />}
         {icon === "password" && <Private />}
@@ -123,7 +138,7 @@ const InputDiv = ({
       <input
         type={type}
         className={"w-full outline-none py-3 px-5"}
-        placeholder={type}
+        placeholder={placeholder}
         onChange={onChange}
         onBlur={() => setFocus(false)}
         onFocus={() => setFocus(true)}

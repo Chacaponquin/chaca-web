@@ -13,8 +13,11 @@ const ListItem = ({ children }: { children: JSX.Element }) => {
   )
 }
 
-const Code = ({ children }: { children: string }) => {
-  return <ExampleCode code={children} />
+const Code = ({ children, className }: { children: string; className: string }) => {
+  const languageClass = className.split(" ").find((c) => c.startsWith("lang-")) as string
+  const language = languageClass.replace("lang-", "")
+
+  return <ExampleCode code={children} language={language} />
 }
 
 export default function MDView({

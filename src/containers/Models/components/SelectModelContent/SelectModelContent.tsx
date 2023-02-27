@@ -9,7 +9,7 @@ export default function SelectModelContent({
   return (
     <div className='2xl:flex hidden h-full min-w-[620px] bg-gradient-to-br from-principalColor to-secondColor px-10 py-8'>
       <div className='rounded bg-darkColor w-full h-full no-scroll overflow-y-auto'>
-        <pre>{selectModel && <ExampleCode code={selectModel.model} />}</pre>
+        <pre>{selectModel && <ExampleCode code={selectModel.model} language='json' />}</pre>
       </div>
     </div>
   )

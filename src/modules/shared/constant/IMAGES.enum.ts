@@ -7,4 +7,5 @@ export const APP_IMAGES = {
   ERROR: { image: "/images/error.png", alt: "error-image" },
   CONTACT: { image: "/images/contact.png", alt: "contact-image" },
   SUCCESS: { image: "/images/modal.png", alt: "success-image" },
+  SIGN_UP_IMAGE: { image: "/images/signUp-image.png", alt: "sign-up-image" },
 }

@@ -42,7 +42,7 @@ export default function RequestResult({
         <LoaderContainer className='w-[30px]' loading={loading}>
           {result ? (
             <pre className='w-full bg-darkColor rounded overflow-x-auto'>
-              <ExampleCode code={result} />
+              <ExampleCode code={result} language='json' />
             </pre>
           ) : (
             <Fragment></Fragment>
