@@ -8,7 +8,7 @@ const ListItem = ({ children }: { children: JSX.Element }) => {
         <div className='translate-y-[12px] w-[6px] h-[6px] rounded-full bg-black'></div>
       </div>
 
-      <div>{children}</div>
+      <div className='text-grayStrongColor'>{children}</div>
     </div>
   )
 }
@@ -38,9 +38,9 @@ export default function MDView({
             li: {
               component: ListItem,
             },
-            h1: { props: { className: "text-4xl font-fontExtraBold mb-2" } },
-            h3: { props: { className: "text-xl font-fontBold mt-3" } },
-            h2: { props: { className: "text-2xl font-fontBold" } },
+            h1: { props: { className: "text-4xl font-fontExtraBold mb-2 text-black" } },
+            h3: { props: { className: "text-xl font-fontBold mt-3 text-black" } },
+            h2: { props: { className: "text-2xl font-fontBold text-black" } },
             code: {
               component: Code,
               props: {
@@ -49,6 +49,12 @@ export default function MDView({
             },
             pre: {
               props: { className: "mt-2 mb-4" },
+            },
+            p: {
+              props: { className: "text-grayStrongColor" },
+            },
+            strong: {
+              props: { className: "text-black" },
             },
           },
         }}
