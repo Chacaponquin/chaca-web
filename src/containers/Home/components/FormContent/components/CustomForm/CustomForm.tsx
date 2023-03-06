@@ -10,11 +10,10 @@ const CustomForm = ({ field }: { field: DatasetField<CustomDataType> }) => {
   }
 
   return (
-    <div className='w-full flex bg-darkColor pt-2'>
+    <div className='w-full flex bg-darkColor custom-form-playground'>
       <CodeEditor
         onChange={handleChange}
         fontSize={15}
-        height={600}
         code={field.dataType.code}
         language='javascript'
       />

@@ -28,7 +28,7 @@ const DatasetsHeader = ({
   })
 
   return (
-    <div className='pt-3 px-4 mb-2 w-full bg-white flex items-center justify-between'>
+    <div className='pt-2 px-4 mb-2 w-full bg-white flex items-center justify-between'>
       <div className='gap-3 flex items-center'>
         <ChacaBlockInfo message={NEW_DATASET_MESSAGE}>
           <button onClick={handleNewDataset}>

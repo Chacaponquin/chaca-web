@@ -21,7 +21,7 @@ const FormContent = () => {
   const { selectField } = useContext(DatasetsContext)
 
   return (
-    <div className='flex flex-col w-full h-screen'>
+    <div className='flex flex-col w-full fit-screen-box'>
       {selectField !== null && <FieldInfoHeader selectField={selectField} />}
 
       <div className='w-full flex form-content'>

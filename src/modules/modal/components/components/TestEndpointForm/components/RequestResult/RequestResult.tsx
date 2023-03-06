@@ -41,7 +41,7 @@ export default function RequestResult({
         )}
         <LoaderContainer className='w-[30px]' loading={loading}>
           {result ? (
-            <pre className='w-full bg-darkColor rounded overflow-x-auto'>
+            <pre className='w-full bg-darkColor rounded-sm overflow-x-auto'>
               <ExampleCode code={result} language='json' />
             </pre>
           ) : (

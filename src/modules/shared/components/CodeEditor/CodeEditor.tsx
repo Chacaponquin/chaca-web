@@ -11,7 +11,7 @@ export default function CodeEditor({
   language,
 }: {
   onChange: (value: string) => void
-  height: number
+  height?: number
   fontSize: number
   code: string
   language: string
@@ -29,7 +29,7 @@ export default function CodeEditor({
 
   return (
     <Editor
-      height={`${height}px`}
+      height={height ? `${height}px` : "100%"}
       options={{
         minimap: { enabled: false },
         fontSize: fontSize,
@@ -38,7 +38,7 @@ export default function CodeEditor({
       }}
       width={"100%"}
       onChange={(value) => onChange(value || "")}
-      className='code-container w-full'
+      className='code-container custom-form-playground pt-2'
       language={language}
       defaultValue={code}
       onMount={(editor, monaco) => {

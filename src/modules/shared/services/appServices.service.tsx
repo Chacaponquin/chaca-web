@@ -66,7 +66,7 @@ export function appService() {
         .catch(() => {
           throw new FetchError()
         })
-        .finally(() => setInitialFetchLoading(true))
+        .finally(() => setInitialFetchLoading(false))
     }, [])
 
     return { initialFetchLoading, schemas, noUserLimits, fileConfig }

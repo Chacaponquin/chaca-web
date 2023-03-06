@@ -1,4 +1,4 @@
-import { useMemo, useContext } from "react"
+import { useContext } from "react"
 import { useLanguage } from "@modules/shared/hooks"
 import { v4 as uuid } from "uuid"
 import { DatasetField, SingleValueDataType } from "@modules/datasets/interfaces/datasets.interface"
@@ -19,13 +19,9 @@ export default function SingleValueGuide({ field }: { field: DatasetField<Single
 
   const { handleOpenModal } = useContext(ModalContext)
 
-  const parent = useMemo(() => {
-    return findParent(field.dataType.fieldType.parent)
-  }, [field.dataType.fieldType.parent, findParent])
+  const parent = findParent(field.dataType.fieldType.parent)
 
-  const option = useMemo(() => {
-    return findType(parent.parent, field.dataType.fieldType.type)
-  }, [field.dataType.fieldType.type, findType, parent])
+  const option = findType(parent.parent, field.dataType.fieldType.type)
 
   const handleOpenTestEndpointModal = () => {
     handleOpenModal({ type: MODAL_ACTIONS.TEST_ENDPOINT, option })

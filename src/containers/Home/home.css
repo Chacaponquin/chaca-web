@@ -10,7 +10,7 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #5352ed;
+  background: #7d5fff;
   border-radius: 999px;
 }
 
@@ -20,5 +20,14 @@
 }
 
 .form-content {
-  height: calc(100vh - 50px);
+  height: calc(100vh - 40px - 51.6px);
+}
+
+.custom-form-playground {
+  height: calc(100vh - 40px - 51.6px - 43px) !important;
+}
+
+.fit-screen-box {
+  height: calc(100vh - 51.6px);
+  position: sticky;
 }
