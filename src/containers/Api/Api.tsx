@@ -17,7 +17,7 @@ const Api = () => {
       {sectionsError ? (
         <SectionsErrorMessage />
       ) : (
-        <div className='w-full flex justify-center'>
+        <div className='w-full flex justify-center fit-screen-box'>
           <ApiSections sections={sections} selectSection={actualSubSection || ""} />
 
           <div className='w-full flex items-center justify-center'>

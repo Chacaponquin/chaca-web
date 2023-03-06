@@ -40,3 +40,8 @@
 .no-scroll::-webkit-scrollbar {
   display: none;
 }
+
+.fit-screen-box {
+  height: calc(100vh - 51.6px);
+  position: sticky;
+}

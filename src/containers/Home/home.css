@@ -26,8 +26,3 @@
 .custom-form-playground {
   height: calc(100vh - 40px - 51.6px - 43px) !important;
 }
-
-.fit-screen-box {
-  height: calc(100vh - 51.6px);
-  position: sticky;
-}

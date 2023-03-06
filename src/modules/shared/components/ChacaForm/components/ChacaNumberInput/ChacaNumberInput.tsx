@@ -44,12 +44,12 @@ export default function ChacaNumberInput({
   const iconSize = 11
 
   const handleIncrease = () => {
-    const nextValue = value ? value + step : 1
+    const nextValue = value ? Number(Number(value + step).toFixed(2)) : 1
     onChange(validateValue(nextValue, max))
   }
 
   const handleDecrease = () => {
-    const nextValue = value ? value - step : -1
+    const nextValue = value ? Number(Number(value - step).toFixed(2)) : -1
     onChange(validateValue(nextValue, min))
   }
 

@@ -9,7 +9,7 @@ export default function ApiSections({
   selectSection: string | null
 }) {
   return (
-    <div className='h-screen min-w-[300px] max-w-[300px] border-r-2 gap-y-1 flex flex-col'>
+    <div className='h-full min-w-[300px] max-w-[300px] border-r-2 gap-y-1 flex flex-col'>
       <div className='px-10 py-2'>
         <ApiSearch />
         <SectionsContainer selectSection={selectSection} sections={sections} />

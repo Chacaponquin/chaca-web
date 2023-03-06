@@ -12,7 +12,7 @@ export default function AppNavBar() {
 
   const divClass = ({ isActive }: { isActive: boolean }): string => {
     return clsx(
-      "flex h-full items-center py-[5px] px-5 cursor-pointer rounded-sm gap-x-2",
+      "flex h-[50px] items-center py-[5px] px-5 cursor-pointer rounded-sm gap-x-2",
       {
         "fill-black text-black border-b-2 border-b-secondColor": isActive,
       },
