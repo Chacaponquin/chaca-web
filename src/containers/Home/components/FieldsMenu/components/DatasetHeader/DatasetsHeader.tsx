@@ -23,9 +23,12 @@ const DatasetsHeader = ({
     handleEditDataset,
   } = useDatasetsHeader(handleCreateSelectDataset)
 
-  const { NEW_DATASET_MESSAGE } = useLanguage({
+  const { NEW_DATASET_MESSAGE, SELECT_DATASET_MESSAGE } = useLanguage({
     NEW_DATASET_MESSAGE: { en: "New Dataset", es: "Añadir Dataset" },
+    SELECT_DATASET_MESSAGE: { en: "Select a Dataset", es: "Selecciona un Dataset" },
   })
+
+  console.log(datasets)
 
   return (
     <div className='pt-2 px-4 mb-2 w-full bg-white flex items-center justify-between'>
@@ -38,7 +41,7 @@ const DatasetsHeader = ({
 
         <ChacaSelect
           size={200}
-          placeholder={"Select a Dataset"}
+          placeholder={SELECT_DATASET_MESSAGE}
           options={datasets}
           labelKey={"name"}
           valueKey={"id"}

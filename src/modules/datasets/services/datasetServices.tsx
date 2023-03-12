@@ -28,6 +28,7 @@ export function datasetServices() {
   }
 
   const addDataset = (datasetName: string) => {
+    console.log(datasetName)
     validateDatasetName(datasetName)
     // create dataset
     datasetDispatch({

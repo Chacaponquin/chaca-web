@@ -14,25 +14,13 @@ export default function ExampleCode({ code, language }: { code: string; language
       >
         {({ tokens, getLineProps, getTokenProps }) => {
           return tokens.map((line, i) => {
-            if (tokens.length > 1) {
-              if (i !== tokens.length - 1) {
-                return (
-                  <div {...getLineProps({ line, key: i, className: "" })} key={uuid()}>
-                    {line.map((token, key) => (
-                      <span {...getTokenProps({ token, key })} key={key} />
-                    ))}
-                  </div>
-                )
-              }
-            } else {
-              return (
-                <div {...getLineProps({ line, key: i, className: "" })} key={uuid()}>
-                  {line.map((token, key) => (
-                    <span {...getTokenProps({ token, key })} key={key} />
-                  ))}
-                </div>
-              )
-            }
+            return (
+              <div {...getLineProps({ line, key: i, className: "" })} key={uuid()}>
+                {line.map((token, key) => (
+                  <span {...getTokenProps({ token, key })} key={key} />
+                ))}
+              </div>
+            )
           })
         }}
       </Highlight>

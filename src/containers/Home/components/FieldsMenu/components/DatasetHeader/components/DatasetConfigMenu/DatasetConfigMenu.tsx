@@ -36,7 +36,7 @@ const DatasetConfigMenu = ({
   }
 
   const commonClass = (c: string) => {
-    return clsx("w-full px-4 py-2 cursor-pointer flex items-center", c)
+    return clsx("w-full px-4 py-[4px] cursor-pointer flex items-center", c)
   }
 
   const textDivClass = commonClass(

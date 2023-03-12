@@ -24,8 +24,10 @@ export default function ChacaBlockInfo({
 
       const position = elementRef.current.getBoundingClientRect()
 
-      const translateX = position.x + 17
-      const tranlateY = position.y + 17
+      console.log(position)
+
+      const translateX = position.x + 10
+      const tranlateY = position.height + 10
 
       setMessagePosition({ posX: translateX, posY: tranlateY })
     }
@@ -36,9 +38,9 @@ export default function ChacaBlockInfo({
   }
 
   return (
-    <div className='h-max'>
+    <div className='h-max flex items-center'>
       <div
-        className='h-max'
+        className='h-max flex items-center'
         onMouseEnter={handleHover}
         ref={elementRef}
         onMouseLeave={handleNoHover}

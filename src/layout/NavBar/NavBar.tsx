@@ -22,13 +22,13 @@ const NavBar = () => {
 
   return (
     <div className='absolute top-0 w-full py-4 px-6 esm:px-0 esm:py-0 bg-transparent z-[53] mb-6'>
-      <div className='flex w-full shadow-lg rounded-sm px-8 py-1 bg-white z-50 esm:px-0 justify-end'>
+      <div className='flex w-full shadow-lg rounded-sm px-8 py-3 bg-white z-50 esm:px-0 justify-end'>
         <div className='flex w-full items-center gap-8 justify-between'>
-          <div className='flex items-center gap-x-1'>
+          <div className='flex items-center gap-x-3'>
             <img
               src={APP_IMAGES.LOGO.image}
               alt={APP_IMAGES.LOGO.alt}
-              className='object-cover w-[50px]'
+              className='object-cover w-[35px]'
             />
             <h1 className='font-fontBold text-lg uppercase'>Chaca</h1>
           </div>

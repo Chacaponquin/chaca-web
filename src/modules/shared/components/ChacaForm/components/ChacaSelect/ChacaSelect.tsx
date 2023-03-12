@@ -46,6 +46,8 @@ export default function ChacaSelect<T>(props: Props<T>) {
   const parentDiv = useRef<null | HTMLDivElement>(null)
 
   useEffect(() => {
+    setSelectOptions([])
+
     options.forEach((o) => {
       if (typeof o === "string") {
         setSelectOptions((prev) => [...prev, { label: o, value: o }])
