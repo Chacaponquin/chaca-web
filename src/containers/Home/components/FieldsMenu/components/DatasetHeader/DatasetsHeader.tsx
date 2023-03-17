@@ -28,8 +28,6 @@ const DatasetsHeader = ({
     SELECT_DATASET_MESSAGE: { en: "Select a Dataset", es: "Selecciona un Dataset" },
   })
 
-  console.log(datasets)
-
   return (
     <div className='pt-2 px-4 mb-2 w-full bg-white flex items-center justify-between'>
       <div className='gap-3 flex items-center'>

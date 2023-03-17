@@ -31,7 +31,9 @@ export default function TestEndpointForm({ option }: { option: SubOption }) {
       initialRoute += "?"
 
       queryArguments.forEach(([key, value], i) => {
-        initialRoute += `${key}=${value}`
+        if (value) {
+          initialRoute += `${key}=${value}`
+        }
 
         if (i !== Object.keys(args).length - 1) {
           initialRoute += `&`

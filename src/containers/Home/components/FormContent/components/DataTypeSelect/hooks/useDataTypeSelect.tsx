@@ -1,11 +1,18 @@
 import { datasetServices } from "@modules/datasets/services"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { FieldNode } from "@modules/shared/classes"
+import { useLanguage } from "@modules/shared/hooks"
 import clsx from "clsx"
 import { useCallback } from "react"
 
 export function useDataTypeSelect(selectField: FieldNode) {
   const { changeFieldDataType } = datasetServices()
+
+  const { SINGLE_VALUE, CUSTOM_VALUE, REF_VALUE } = useLanguage({
+    SINGLE_VALUE: { en: "Schema Value", es: "Schema Value" },
+    REF_VALUE: { en: "Ref", es: "Referencia" },
+    CUSTOM_VALUE: { en: "Custom", es: "Personalizado" },
+  })
 
   const barClass = useCallback((select: boolean) => {
     return clsx(
@@ -27,5 +34,11 @@ export function useDataTypeSelect(selectField: FieldNode) {
     changeFieldDataType(selectField.id, dataType)
   }
 
-  return { barClass, textClass, handleChangeDataType }
+  const DATA_TYPES_OPTIONS = [
+    { dataType: DATA_TYPES.SINGLE_VALUE, title: SINGLE_VALUE },
+    { dataType: DATA_TYPES.REF, title: REF_VALUE },
+    { dataType: DATA_TYPES.CUSTOM, title: CUSTOM_VALUE },
+  ]
+
+  return { barClass, textClass, handleChangeDataType, DATA_TYPES_OPTIONS }
 }
