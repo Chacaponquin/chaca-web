@@ -2,13 +2,9 @@ import React, { Fragment, useContext } from "react"
 import ReactDOM from "react-dom/client"
 import App from "./App"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import {
-  // Docs,
-  Landing,
-  ContactUs,
-  Error404,
-} from "./containers"
+import { Landing, ContactUs, Error404 } from "./containers"
 
+// CONTEXT PROVIDERS
 import { AppConfigProvider } from "@modules/shared/context"
 import { DatasetsProvider } from "@modules/datasets/context"
 import { UserProvider } from "@modules/user/context/UserContext"
@@ -20,13 +16,15 @@ import { ErrorBoundary } from "./layout"
 
 import { ToastContainer } from "react-toastify"
 
+import { Modal } from "@modules/modal/components"
+
+// CSS
 import "react-toastify/dist/ReactToastify.css"
 import "./index.css"
 
 import "primereact/resources/themes/lara-light-indigo/theme.css"
 import "primereact/resources/primereact.min.css"
 import "primeicons/primeicons.css"
-import { Modal } from "@modules/modal/components"
 
 const root = ReactDOM.createRoot(document.getElementById("root") as Element)
 
