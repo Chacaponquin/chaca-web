@@ -75,8 +75,8 @@ const AppCont = () => {
           <Fragment>
             <Route path={APP_ROUTES.ROOT} element={<Landing />} />
             <Route path={APP_ROUTES.HOME} element={<LazyRoute element={<Home />} />} />
-            <Route path={APP_ROUTES.API} element={<LazyRoute element={<Api />} />} />
-            <Route path={APP_ROUTES.MODELS} element={<LazyRoute element={<Models />} />} />
+            {/* <Route path={APP_ROUTES.API} element={<LazyRoute element={<Api />} />} /> */}
+            {/* <Route path={APP_ROUTES.MODELS} element={<LazyRoute element={<Models />} />} />*/}
             <Route path={APP_ROUTES.NOT_FOUND} element={<Error404 />} />
           </Fragment>
         </Route>
