@@ -1,9 +1,12 @@
-import { Home } from "@modules/shared/assets/icons"
+import { Bars, Home } from "@modules/shared/assets/icons"
 import clsx from "clsx"
 import { NavLink } from "react-router-dom"
 import { APP_ROUTES } from "@modules/shared/routes"
 import { ChacaLogo } from "./components"
 import { useLanguage } from "@modules/shared/hooks"
+import { ChacaSimpleButton } from "@modules/shared/components/ChacaButton"
+import { useContext } from "react"
+import { DatasetsContext } from "@modules/datasets/context"
 
 export default function AppNavBar() {
   const divClass = ({ isActive }: { isActive: boolean }): string => {
@@ -16,19 +19,25 @@ export default function AppNavBar() {
     )
   }
 
-  const { HOME_TEXT } = useLanguage({
+  const { showFieldsMenu } = useContext(DatasetsContext)
+
+  const { HOME_TEXT, ACCOUNT_TEXT } = useLanguage({
     HOME_TEXT: { en: "Home", es: "Inicio" },
     API_TEXT: { en: "Api", es: "Api" },
+    ACCOUNT_TEXT: { en: "Account", es: "Cuenta" },
   })
 
   const textClass = "text-sm font-fontBold"
   const iconSize = 22
 
   return (
-    <div className='w-full bg-white flex items-center px-12 justify-between border-b-2 border-b-grayColor'>
-      <ChacaLogo />
+    <div className='w-full bg-white flex items-center px-12 justify-between border-b-2 border-b-grayColor esm:px-4'>
+      <div className='flex items-center gap-x-2'>
+        <button>{!showFieldsMenu && <Bars size={20} />}</button>
+        <ChacaLogo />
+      </div>
 
-      <div className='flex items-center gap-x-5 h-full'>
+      <div className='flex items-center gap-x-8 h-full'>
         <div className='flex gap-x-3 h-full'>
           <NavLink className={divClass} to={APP_ROUTES.HOME}>
             <Home size={iconSize} />
@@ -41,6 +50,8 @@ export default function AppNavBar() {
           </NavLink>
           */}
         </div>
+
+        <ChacaSimpleButton text={ACCOUNT_TEXT} color='gradient' size='medium' />
       </div>
     </div>
   )

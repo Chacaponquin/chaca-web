@@ -14,7 +14,7 @@ module.exports = {
         grayStrongColor: "rgb(100 116 139)",
       },
       fontFamily: {
-        fontBold: "Cairo Bold",
+        fontBold: "Montserrat Bold",
         fontExtraBold: "Cairo Extra Bold",
         fontLight: "Cairo Light",
         fontRegular: "Cairo Regular",

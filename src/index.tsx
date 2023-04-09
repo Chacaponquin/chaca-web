@@ -29,8 +29,8 @@ import "primeicons/primeicons.css"
 const root = ReactDOM.createRoot(document.getElementById("root") as Element)
 
 const Home = React.lazy(() => import("./containers/Home/Home"))
-const Api = React.lazy(() => import("./containers/Api/Api"))
-const Models = React.lazy(() => import("./containers/Models/Models"))
+// const Api = React.lazy(() => import("./containers/Api/Api"))
+// const Models = React.lazy(() => import("./containers/Models/Models"))
 const Login = React.lazy(() => import("./containers/Auth/components/Login/Login"))
 const SignUp = React.lazy(() => import("./containers/Auth/components/SignUp/SignUp"))
 const Admin = React.lazy(() => import("./containers/Admin/Admin"))

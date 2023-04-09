@@ -3,7 +3,7 @@ import { ChacaButtonProps } from "../interfaces/chacaButton.intrface"
 
 export const buttonClass = ({ size, className, color }: ChacaButtonProps) => {
   return clsx(
-    "flex justify-center font-fontBold flex items-center transition-all duration-300 hover:opacity-70 w-max",
+    "flex justify-center font-fontBold flex items-center transition-all duration-300 hover:brightness-150 w-max",
     className,
     {
       "py-[3px] px-3 text-sm rounded-sm": size === "small",
@@ -13,7 +13,7 @@ export const buttonClass = ({ size, className, color }: ChacaButtonProps) => {
     },
     {
       "bg-principalColor text-white": color === "primary",
-      "bg-principal-bg text-white": color === "gradient",
+      "bg-gradient-to-tr from-principalColor to-secondColor text-white": color === "gradient",
       "bg-dangerColor text-white": color === "danger",
       "bg-secondColor text-white": color === "secondary",
       "bg-slate-200 text-black": color === "cancel",
