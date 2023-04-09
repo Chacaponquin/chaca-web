@@ -30,6 +30,8 @@ interface DatasetContext {
   handleSelectDataset: (id: string) => void
   handleSelectField: (datasetID: string, fieldID: string) => void
   handleDeleteSelectField: () => void
+  handleOpenFieldsMenu: () => void
+  handleCloseFieldsMenu: () => void
   showFieldsMenu: boolean
 }
 
@@ -40,15 +42,16 @@ const DatasetsContext = createContext<DatasetContext>({
   configDispatch: (() => {}) as any,
   selectedDataset: null!,
   selectField: null,
-  handleSelectDataset: () => {},
-  handleSelectField: () => {},
-  handleDeleteSelectField: () => {},
+  handleSelectDataset() {},
+  handleSelectField() {},
+  handleDeleteSelectField() {},
   showFieldsMenu: false,
+  handleCloseFieldsMenu() {},
+  handleOpenFieldsMenu() {},
 })
 
 const DatasetsProvider = ({ children }: { children: ReactElement }) => {
-  const [showFieldsMenu, setShowFieldsMenu] = useState(true)
-
+  const [showFieldsMenu, setShowFieldsMenu] = useState(false)
   const { initialFetchLoading, fileConfig } = useContext(AppConfigContext)
   const { initDatasets } = datasetServices()
   const { resetConfig } = configServices()
@@ -70,23 +73,6 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
 
   // select field
   const [selectField, setSelectField] = useState<FieldNode | null>(null)
-
-  useEffect(() => {
-    function handleWindowResize() {
-      const width = window.innerWidth
-      if (width >= 1000) {
-        setShowFieldsMenu(true)
-      } else {
-        setShowFieldsMenu(false)
-      }
-    }
-
-    window.addEventListener("resize", handleWindowResize)
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize)
-    }
-  }, [window])
 
   useEffect(() => {
     if (!initialFetchLoading) {
@@ -125,6 +111,14 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
     setSelectField(null)
   }
 
+  const handleOpenFieldsMenu = () => {
+    setShowFieldsMenu(true)
+  }
+
+  const handleCloseFieldsMenu = () => {
+    setShowFieldsMenu(false)
+  }
+
   const data = {
     datasets,
     datasetDispatch,
@@ -136,6 +130,8 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
     handleSelectField,
     handleDeleteSelectField,
     showFieldsMenu,
+    handleCloseFieldsMenu,
+    handleOpenFieldsMenu,
   }
 
   return <DatasetsContext.Provider value={data}>{children}</DatasetsContext.Provider>

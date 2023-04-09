@@ -6,6 +6,7 @@ import { ChacaLogo } from "./components"
 import { useLanguage } from "@modules/shared/hooks"
 import { ChacaSimpleButton } from "@modules/shared/components/ChacaButton"
 import { useContext } from "react"
+import { AppConfigContext } from "@modules/shared/context"
 import { DatasetsContext } from "@modules/datasets/context"
 
 export default function AppNavBar() {
@@ -19,7 +20,8 @@ export default function AppNavBar() {
     )
   }
 
-  const { showFieldsMenu } = useContext(DatasetsContext)
+  const { smallWindow } = useContext(AppConfigContext)
+  const { handleOpenFieldsMenu } = useContext(DatasetsContext)
 
   const { HOME_TEXT, ACCOUNT_TEXT } = useLanguage({
     HOME_TEXT: { en: "Home", es: "Inicio" },
@@ -32,12 +34,16 @@ export default function AppNavBar() {
 
   return (
     <div className='w-full bg-white flex items-center px-12 justify-between border-b-2 border-b-grayColor esm:px-4'>
-      <div className='flex items-center gap-x-2'>
-        <button>{!showFieldsMenu && <Bars size={20} />}</button>
+      <div className='flex items-center gap-x-3'>
+        {smallWindow && (
+          <button onClick={handleOpenFieldsMenu}>
+            <Bars size={20} />
+          </button>
+        )}
         <ChacaLogo />
       </div>
 
-      <div className='flex items-center gap-x-8 h-full'>
+      <div className='flex items-center gap-x-6 h-full'>
         <div className='flex gap-x-3 h-full'>
           <NavLink className={divClass} to={APP_ROUTES.HOME}>
             <Home size={iconSize} />
