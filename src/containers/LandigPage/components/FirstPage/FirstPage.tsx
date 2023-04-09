@@ -1,7 +1,7 @@
 import { CurveBg, WaveBG } from "@modules/shared/assets/background"
 import { Link } from "react-router-dom"
 import { APP_ROUTES } from "@modules/shared/routes"
-import { ChacaGradientButton, ChacaArrowButton } from "@modules/shared/components/ChacaButton"
+import { ChacaArrowButton } from "@modules/shared/components/ChacaButton"
 import { useLanguage } from "@modules/shared/hooks"
 
 const FirstPage = () => {
@@ -35,12 +35,8 @@ const FirstPage = () => {
           </div>
 
           <div className='flex flex-wrap justify-center items-center gap-10 mt-5 text-2xl esm:gap-3 exsm:flex-col-reverse esm:text-xl'>
-            <Link to={APP_ROUTES.API}>
-              <ChacaArrowButton text={UI_TEXT.DOCS_TEXT} />
-            </Link>
-
             <Link to={APP_ROUTES.HOME}>
-              <ChacaGradientButton text={UI_TEXT.HOME_TEXT} />
+              <ChacaArrowButton text={UI_TEXT.HOME_TEXT} />
             </Link>
           </div>
         </div>

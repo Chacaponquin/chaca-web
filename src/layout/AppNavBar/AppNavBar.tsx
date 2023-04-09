@@ -1,18 +1,14 @@
-import { useContext } from "react"
-import { Code, Home, Schema } from "@modules/shared/assets/icons"
+import { Home } from "@modules/shared/assets/icons"
 import clsx from "clsx"
 import { NavLink } from "react-router-dom"
 import { APP_ROUTES } from "@modules/shared/routes"
-import { UserContext } from "@modules/user/context"
 import { ChacaLogo } from "./components"
 import { useLanguage } from "@modules/shared/hooks"
 
 export default function AppNavBar() {
-  const { actualUser } = useContext(UserContext)
-
   const divClass = ({ isActive }: { isActive: boolean }): string => {
     return clsx(
-      "flex h-[50px] items-center py-[5px] px-5 cursor-pointer rounded-sm gap-x-2",
+      "flex h-[50px] items-center py-[5px] px-5 cursor-pointer gap-x-2",
       {
         "fill-black text-black border-b-2 border-b-secondColor": isActive,
       },
@@ -20,10 +16,9 @@ export default function AppNavBar() {
     )
   }
 
-  const { API_TEXT, HOME_TEXT, MODELS_TEXT } = useLanguage({
+  const { HOME_TEXT } = useLanguage({
     HOME_TEXT: { en: "Home", es: "Inicio" },
     API_TEXT: { en: "Api", es: "Api" },
-    MODELS_TEXT: { en: "Models", es: "Modelos" },
   })
 
   const textClass = "text-sm font-fontBold"
@@ -40,17 +35,11 @@ export default function AppNavBar() {
             <p className={textClass}>{HOME_TEXT}</p>
           </NavLink>
 
-          <NavLink className={divClass} to={APP_ROUTES.DEFAULT_INIT_DOC_ROUTE}>
+          {/* <NavLink className={divClass} to={APP_ROUTES.DEFAULT_INIT_DOC_ROUTE}>
             <Code size={iconSize} />
             <p className={textClass}>{API_TEXT}</p>
           </NavLink>
-
-          {actualUser && (
-            <NavLink className={divClass} to={APP_ROUTES.MODELS}>
-              <Schema size={iconSize} />
-              <p className={textClass}>{MODELS_TEXT}</p>
-            </NavLink>
-          )}
+          */}
         </div>
       </div>
     </div>
