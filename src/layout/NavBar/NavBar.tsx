@@ -16,8 +16,8 @@ const NavBar = () => {
 
   const links = [
     { route: APP_ROUTES.HOME, title: HOME_TEXT },
-    { route: APP_ROUTES.DOCS, title: DOCS_TEXT },
-    { route: APP_ROUTES.CONTACT_US, title: CONTACT_US_TEXT },
+    // { route: APP_ROUTES.DOCS, title: DOCS_TEXT },
+    // { route: APP_ROUTES.CONTACT_US, title: CONTACT_US_TEXT },
   ]
 
   return (
