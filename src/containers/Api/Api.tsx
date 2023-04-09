@@ -22,7 +22,7 @@ const Api = () => {
 
           <div className='w-full flex items-center justify-center'>
             {fetchSubSectionLoading ? (
-              <LoaderContainer className='w-[60px]' loading={fetchSubSectionLoading} />
+              <LoaderContainer size={60} loading={fetchSubSectionLoading} />
             ) : (
               <SelectDocument content={selectSectionContent} />
             )}

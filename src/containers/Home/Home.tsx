@@ -17,13 +17,12 @@ const Home = () => {
     <div className='flex w-full h-full'>
       {createDataLoading && <CreationLoadingModal porcent={porcent} />}
 
-      {!smallWindow ||
-        (smallWindow && showFieldsMenu && (
-          <FieldsMenu
-            handleCreateAllDatasets={handleCreateAllDatasets}
-            handleCreateSelectDataset={handleCreateSelectDataset}
-          />
-        ))}
+      {(!smallWindow || (smallWindow && showFieldsMenu)) && (
+        <FieldsMenu
+          handleCreateAllDatasets={handleCreateAllDatasets}
+          handleCreateSelectDataset={handleCreateSelectDataset}
+        />
+      )}
 
       <FormContent />
     </div>

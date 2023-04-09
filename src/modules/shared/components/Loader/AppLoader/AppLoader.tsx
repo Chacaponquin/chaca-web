@@ -12,7 +12,7 @@ export default function AppLoader({
     <Fragment>
       {loading ? (
         <div className='w-screen overflow-hidden h-screen flex justify-center items-center'>
-          <LoaderContainer className={"w-[200px] esm:w-[120px]"} loading={loading} />
+          <LoaderContainer size={100} loading={loading} />
         </div>
       ) : (
         children

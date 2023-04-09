@@ -12,7 +12,7 @@ export default function RouteContentLoader({
     <Fragment>
       {loading ? (
         <div className='flex w-full h-full justify-center items-center'>
-          <LoaderContainer loading={loading} className='w-[150px] esm:w-[80px]' />
+          <LoaderContainer loading={loading} size={100} />
         </div>
       ) : (
         children

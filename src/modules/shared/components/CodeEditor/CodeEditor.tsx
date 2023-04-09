@@ -45,7 +45,7 @@ export default function CodeEditor({
         monaco.editor.setTheme("onedark")
       }}
       beforeMount={setEditorTheme}
-      loading={<LoaderContainer className={"w-[100px] esm:w-[60px]"} loading={true} />}
+      loading={<LoaderContainer size={90} loading={true} color={"white"} />}
     />
   )
 }

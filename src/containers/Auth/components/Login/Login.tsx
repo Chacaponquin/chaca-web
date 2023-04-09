@@ -89,7 +89,7 @@ const Login = () => {
             </div>
 
             <div className='flex w-full gap-5 flex-wrap justify-center'>
-              <LoaderContainer loading={loading} className='w-[50px]'>
+              <LoaderContainer loading={loading} size={50}>
                 <button className={buttonClass + " bg-principal-bg text-white"} type='submit'>
                   {LOGIN_BUTTON_TEXT}
                 </button>

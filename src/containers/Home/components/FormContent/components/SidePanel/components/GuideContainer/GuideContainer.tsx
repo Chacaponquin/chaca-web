@@ -14,7 +14,7 @@ const GuideContainer = ({ route }: { route: string }) => {
   })
 
   return (
-    <LoaderContainer loading={loading} className='w-[60px] esm:w-[40px]'>
+    <LoaderContainer loading={loading} size={50}>
       <MDView content={content} />
     </LoaderContainer>
   )

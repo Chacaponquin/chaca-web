@@ -90,7 +90,7 @@ const ContactUs = () => {
             </div>
 
             <div className='flex justify-end'>
-              <LoaderContainer loading={loading} className='w-[50px] mt-2'>
+              <LoaderContainer loading={loading} size={50}>
                 <ChacaIconButton
                   color='primary'
                   icon={<Send size={23} />}

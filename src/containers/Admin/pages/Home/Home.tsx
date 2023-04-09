@@ -43,7 +43,7 @@ export default function Home() {
         </form>
 
         <div className='flex justify-center w-full'>
-          <LoaderContainer loading={loading} className='w-[35px]'>
+          <LoaderContainer loading={loading} size={35}>
             <ChacaSimpleButton
               text='Login'
               size='large'

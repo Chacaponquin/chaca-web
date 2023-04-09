@@ -28,7 +28,7 @@ const AppConfigContext = createContext<{
 
 const AppConfigProvider = ({ children = <></> }: { children: ReactElement }) => {
   const [openDropdown, setOpenDropdown] = useState("")
-  const [smallWindow, setSmallWindow] = useState(true)
+  const [smallWindow, setSmallWindow] = useState(false)
 
   const { initialFetchLoading, noUserLimits, schemas, fileConfig } = appService().appInitFetch()
 

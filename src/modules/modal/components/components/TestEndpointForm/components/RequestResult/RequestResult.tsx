@@ -39,7 +39,7 @@ export default function RequestResult({
             <h1 className='text-base mt-4'>{MESSAGE}</h1>
           </div>
         )}
-        <LoaderContainer className='w-[30px]' loading={loading}>
+        <LoaderContainer size={30} loading={loading}>
           {result ? (
             <pre className='w-full bg-darkColor rounded-sm overflow-x-auto'>
               <ExampleCode code={result} language='json' />
