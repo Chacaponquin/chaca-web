@@ -15,6 +15,7 @@ const AppConfigContext = createContext<{
   handleOpenDropDown: (id: string) => void
   openDropdown: string
   smallWindow: boolean
+  handleCloseDropDown: () => void
 }>({
   noUserLimits: {} as any,
   initialFetchLoading: true,
@@ -24,6 +25,7 @@ const AppConfigContext = createContext<{
   handleOpenDropDown(id) {},
   openDropdown: "",
   smallWindow: false,
+  handleCloseDropDown: () => {},
 })
 
 const AppConfigProvider = ({ children = <></> }: { children: ReactElement }) => {
@@ -68,6 +70,10 @@ const AppConfigProvider = ({ children = <></> }: { children: ReactElement }) => 
     setOpenDropdown(id)
   }
 
+  const handleCloseDropDown = () => {
+    setOpenDropdown("")
+  }
+
   const data = {
     initialFetchLoading,
     schemas,
@@ -77,6 +83,7 @@ const AppConfigProvider = ({ children = <></> }: { children: ReactElement }) => 
     handleOpenDropDown,
     openDropdown,
     smallWindow,
+    handleCloseDropDown,
   }
 
   return <AppConfigContext.Provider value={data}>{children}</AppConfigContext.Provider>

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-
 import { ArrowDown } from "@modules/shared/assets/icons"
 import React, { useState, useRef, useMemo, useEffect, useContext } from "react"
 import { v4 as uuid } from "uuid"
@@ -8,6 +6,7 @@ import { useFilters } from "../../hooks"
 import { ChacaFormProps } from "../../interfaces/chacaForm.interface"
 import { Size } from "../../interfaces/dimension.interface"
 import { AppConfigContext } from "@modules/shared/context"
+import { useMenu } from "@modules/shared/hooks"
 
 interface ChacaSelectStringProps extends ChacaFormProps<string> {
   size?: Size
@@ -31,11 +30,10 @@ interface SelectOptions {
 }
 
 export default function ChacaSelect<T>(props: Props<T>) {
-  const { handleOpenDropDown, openDropdown } = useContext(AppConfigContext)
-
+  const { openDropdown } = useContext(AppConfigContext)
   const { onChange, options, placeholder, value, dimension = "normal", size = "full" } = props
+  const { menuID: selectID, handleCloseMenu, handleOpenMenu } = useMenu()
 
-  const selectID = useMemo(() => uuid(), [])
   const openOptions = useMemo(() => {
     return selectID === openDropdown
   }, [openDropdown])
@@ -74,20 +72,10 @@ export default function ChacaSelect<T>(props: Props<T>) {
 
   const handleInteractiveOptions = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (openOptions) {
-      handleOpenDropDown("")
-
-      document.onclick = () => {}
+      handleCloseMenu()
     } else {
-      handleOpenDropDown(selectID)
       event.stopPropagation()
-
-      document.onclick = (e) => {
-        const target = e.target as HTMLElement
-
-        if (!target.id || !(target.id === openDropdown)) {
-          handleOpenDropDown("")
-        }
-      }
+      handleOpenMenu()
     }
   }
 
@@ -95,7 +83,7 @@ export default function ChacaSelect<T>(props: Props<T>) {
     e.stopPropagation()
     setSelectIndex(index)
     onChange(selectOptions[index]["value"])
-    handleOpenDropDown("")
+    handleCloseMenu()
   }
 
   const optionsStyle = useMemo(() => {
@@ -145,7 +133,7 @@ export default function ChacaSelect<T>(props: Props<T>) {
           {selectIndex !== null ? String(selectOptions[selectIndex]["label"]) : placeholder}
         </p>
 
-        <button className=''>
+        <button>
           <ArrowDown size={18} />
         </button>
       </div>

@@ -1,4 +1,3 @@
-import Loader from "../Loader/Loader"
 import { Waveform } from "@uiball/loaders"
 
 interface LoaderProps {

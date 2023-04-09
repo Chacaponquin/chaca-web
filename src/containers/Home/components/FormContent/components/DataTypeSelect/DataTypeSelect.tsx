@@ -12,7 +12,7 @@ const DataTypeSelect = ({ selectField }: { selectField: FieldNode }) => {
       {DATA_TYPES_OPTIONS.map((el) => (
         <Fragment key={uuid()}>
           <button
-            className='px-3 pt-2 font-fontBold uppercase flex flex-col w-[200px] cursor-pointer'
+            className='px-3 pt-2 font-fontBold uppercase flex flex-col w-[200px] cursor-pointer whitespace-nowrap'
             onClick={() => handleChangeDataType(el.dataType)}
           >
             <p
