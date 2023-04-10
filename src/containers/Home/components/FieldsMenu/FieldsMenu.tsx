@@ -18,7 +18,7 @@ const FieldsMenu = ({
   const containerClass = clsx(
     "min-w-[300px] max-w-[300px] bg-white border-r-2 border-b-2 flex flex-col justify-between",
     { "fit-screen-box": !smallWindow },
-    { "top-0 left-0 h-screen absolute z-[50]": smallWindow },
+    { "top-0 left-0 h-screen absolute z-40": smallWindow },
   )
 
   return (

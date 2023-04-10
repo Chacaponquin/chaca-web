@@ -10,6 +10,7 @@ const Bars = ({ size = DEFAULT_ICON_SIZE }: IconProps) => {
       width={size}
       height={size}
       fill='inherit'
+      className='pointer-events-none'
     >
       <path d='M3,8H21a1,1,0,0,0,0-2H3A1,1,0,0,0,3,8Zm18,8H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Zm0-5H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z' />
     </svg>

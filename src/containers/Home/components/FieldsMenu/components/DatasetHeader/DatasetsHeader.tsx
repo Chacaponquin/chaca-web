@@ -21,6 +21,7 @@ const DatasetsHeader = ({
     openConfig,
     handleInteractOpenConfig,
     handleEditDataset,
+    menuRef,
   } = useDatasetsHeader(handleCreateSelectDataset)
 
   const { NEW_DATASET_MESSAGE, SELECT_DATASET_MESSAGE } = useLanguage({
@@ -58,6 +59,7 @@ const DatasetsHeader = ({
 
         {openConfig && (
           <DatasetConfigMenu
+            menuRef={menuRef}
             handleAddDatasetField={handleAddDatasetField}
             handleDeleteDataset={handleDeleteDataset}
             handleExportDataset={handleExportDataset}

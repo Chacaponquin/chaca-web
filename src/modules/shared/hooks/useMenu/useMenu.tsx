@@ -1,38 +1,60 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-
 import { AppConfigContext } from "@modules/shared/context"
-import { useContext, useMemo } from "react"
+import { useEffect, useMemo, useContext } from "react"
 import { v4 as uuid } from "uuid"
 
 interface MenuProps {
   handleOpen?: () => void
   handleClose?: () => void
+  ref: React.RefObject<HTMLDivElement | null>
 }
 
-export function useMenu({ handleClose, handleOpen }: MenuProps = {}) {
-  const { handleOpenDropDown, handleCloseDropDown, openDropdown } = useContext(AppConfigContext)
+export function useMenu({ handleClose, handleOpen, ref }: MenuProps) {
+  const { handleCloseDropDown, handleOpenDropDown, openDropdown } = useContext(AppConfigContext)
 
-  const menuID = useMemo(() => uuid(), [])
+  const menuID = useMemo(uuid, [])
 
-  function handleOpenMenu() {
-    handleOpenDropDown(menuID)
-    if (handleOpen) handleOpen()
+  function isDescendantOf(parent: HTMLElement, child: HTMLElement | null): boolean {
+    if (!parent) {
+      return true
+    }
 
-    document.onclick = (e) => {
+    if (!child) {
+      return false
+    }
+    return child.parentNode === parent || isDescendantOf(parent, child.parentNode as HTMLElement)
+  }
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
       const target = e.target as HTMLElement
+      const current = ref.current as HTMLElement
 
-      if (!target.id || !(target.id === openDropdown)) {
-        handleCloseDropDown()
+      console.log(menuID)
+
+      console.log(isDescendantOf(current, target), current, target)
+      if (current && !isDescendantOf(current, target)) {
+        handleCloseMenu()
       }
     }
+
+    document.addEventListener("mousedown", handleClickOutside)
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [ref])
+
+  function handleOpenMenu() {
+    console.log("Abriendo")
+    handleOpenDropDown(menuID)
+    if (handleOpen) handleOpen()
   }
 
   function handleCloseMenu() {
-    handleCloseDropDown()
+    console.log("Cerrando")
+    handleCloseDropDown(menuID)
     if (handleClose) handleClose()
-
-    document.onclick = () => {}
   }
 
-  return { menuID, handleCloseMenu, handleOpenMenu }
+  return { handleCloseMenu, handleOpenMenu, isOpen: menuID === openDropdown }
 }

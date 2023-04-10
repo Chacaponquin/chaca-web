@@ -46,7 +46,7 @@ const NavBar = () => {
 
             <div>
               <Link to={APP_ROUTES.AUTH_ROUTES.LOGIN}>
-                <ChacaSimpleButton color='primary' size='large' text={UI_TEXT.ACCOUNT_TEXT} />
+                <ChacaSimpleButton color='gradient' size='large' text={UI_TEXT.ACCOUNT_TEXT} />
               </Link>
             </div>
           </div>

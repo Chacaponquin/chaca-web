@@ -1,21 +1,30 @@
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { DatasetsContext } from "@modules/datasets/context"
 import { ModalContext } from "@modules/modal/context"
-import { useState, useContext } from "react"
+import { useContext, createRef } from "react"
+import { useMenu } from "@modules/shared/hooks"
 
 export function useDatasetsHeader(handleCreateSelectDataset: () => void) {
-  const [openConfig, setOpenConfig] = useState(false)
+  const menuRef = createRef<HTMLDivElement | null>()
+
+  const { handleOpenMenu, handleCloseMenu, isOpen } = useMenu({ ref: menuRef })
 
   const { selectedDataset } = useContext(DatasetsContext)
   const { handleOpenModal } = useContext(ModalContext)
 
   const handleNewDataset = () => {
     handleOpenModal({ type: MODAL_ACTIONS.ADD_DATASET })
-    setOpenConfig(false)
+    handleCloseMenu()
   }
 
-  const handleInteractOpenConfig = () => {
-    setOpenConfig(!openConfig)
+  const handleInteractOpenConfig = (e: React.MouseEvent) => {
+    e.stopPropagation()
+
+    if (isOpen) {
+      handleCloseMenu()
+    } else {
+      handleOpenMenu()
+    }
   }
 
   const handleAddDatasetField = () => {
@@ -23,7 +32,7 @@ export function useDatasetsHeader(handleCreateSelectDataset: () => void) {
       type: MODAL_ACTIONS.ADD_FIELD,
       parentFieldID: selectedDataset.id,
     })
-    setOpenConfig(false)
+    handleCloseMenu()
   }
 
   const handleDeleteDataset = () => {
@@ -31,17 +40,17 @@ export function useDatasetsHeader(handleCreateSelectDataset: () => void) {
       type: MODAL_ACTIONS.DELETE_DATASET,
       datasetName: selectedDataset.name,
     })
-    setOpenConfig(false)
+    handleCloseMenu()
   }
 
   const handleEditDataset = () => {
     handleOpenModal({ type: MODAL_ACTIONS.EDIT_DATASET })
-    setOpenConfig(false)
+    handleCloseMenu()
   }
 
   const handleExportDataset = () => {
     handleCreateSelectDataset()
-    setOpenConfig(false)
+    handleCloseMenu()
   }
 
   return {
@@ -49,8 +58,9 @@ export function useDatasetsHeader(handleCreateSelectDataset: () => void) {
     handleAddDatasetField,
     handleDeleteDataset,
     handleExportDataset,
-    openConfig,
+    openConfig: isOpen,
     handleInteractOpenConfig,
     handleEditDataset,
+    menuRef,
   }
 }

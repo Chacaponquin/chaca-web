@@ -1,11 +1,10 @@
 import { ArrowDown } from "@modules/shared/assets/icons"
-import React, { useState, useRef, useMemo, useEffect, useContext } from "react"
+import React, { useState, useRef, useMemo, useEffect } from "react"
 import { v4 as uuid } from "uuid"
 import clsx from "clsx"
 import { useFilters } from "../../hooks"
 import { ChacaFormProps } from "../../interfaces/chacaForm.interface"
 import { Size } from "../../interfaces/dimension.interface"
-import { AppConfigContext } from "@modules/shared/context"
 import { useMenu } from "@modules/shared/hooks"
 
 interface ChacaSelectStringProps extends ChacaFormProps<string> {
@@ -30,18 +29,15 @@ interface SelectOptions {
 }
 
 export default function ChacaSelect<T>(props: Props<T>) {
-  const { openDropdown } = useContext(AppConfigContext)
   const { onChange, options, placeholder, value, dimension = "normal", size = "full" } = props
-  const { menuID: selectID, handleCloseMenu, handleOpenMenu } = useMenu()
-
-  const openOptions = useMemo(() => {
-    return selectID === openDropdown
-  }, [openDropdown])
 
   const [selectIndex, setSelectIndex] = useState<null | number>(null)
   const [selectOptions, setSelectOptions] = useState<Array<SelectOptions>>([])
 
   const parentDiv = useRef<null | HTMLDivElement>(null)
+  const refDiv = useRef<null | HTMLDivElement>(null)
+
+  const { handleCloseMenu, handleOpenMenu, isOpen: openOptions } = useMenu({ ref: refDiv })
 
   useEffect(() => {
     setSelectOptions([])
@@ -123,12 +119,7 @@ export default function ChacaSelect<T>(props: Props<T>) {
         minWidth: size === "full" ? "100px" : `${size}px`,
       }}
     >
-      <div
-        id={selectID}
-        className={parentClass}
-        onClick={(e) => handleInteractiveOptions(e)}
-        ref={parentDiv}
-      >
+      <div className={parentClass} onClick={(e) => handleInteractiveOptions(e)} ref={parentDiv}>
         <p className='pointer-events-none overflow-x-auto no-scroll'>
           {selectIndex !== null ? String(selectOptions[selectIndex]["label"]) : placeholder}
         </p>

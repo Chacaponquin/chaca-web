@@ -1,6 +1,6 @@
 import { Bars, Home } from "@modules/shared/assets/icons"
 import clsx from "clsx"
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import { APP_ROUTES } from "@modules/shared/routes"
 import { ChacaLogo } from "./components"
 import { useLanguage } from "@modules/shared/hooks"
@@ -33,7 +33,7 @@ export default function AppNavBar() {
   const iconSize = 22
 
   return (
-    <div className='w-full bg-white flex items-center px-12 justify-between border-b-2 border-b-grayColor esm:px-4'>
+    <div className='w-full bg-white flex items-center xl:px-12 px-8 justify-between border-b-2 border-b-grayColor esm:px-4'>
       <div className='flex items-center gap-x-3'>
         {smallWindow && (
           <button onClick={handleOpenFieldsMenu}>
@@ -57,7 +57,9 @@ export default function AppNavBar() {
           */}
         </div>
 
-        <ChacaSimpleButton text={ACCOUNT_TEXT} color='gradient' size='medium' />
+        <Link to={APP_ROUTES.AUTH_ROUTES.LOGIN}>
+          <ChacaSimpleButton text={ACCOUNT_TEXT} color='gradient' size='medium' />
+        </Link>
       </div>
     </div>
   )

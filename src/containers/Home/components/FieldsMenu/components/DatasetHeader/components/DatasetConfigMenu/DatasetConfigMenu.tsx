@@ -12,11 +12,13 @@ const DatasetConfigMenu = ({
   handleDeleteDataset,
   handleExportDataset,
   handleEditDataset,
+  menuRef,
 }: {
   handleAddDatasetField: () => void
   handleDeleteDataset: () => void
   handleExportDataset: () => void
   handleEditDataset: () => void
+  menuRef: React.MutableRefObject<HTMLDivElement | null>
 }) => {
   const { selectedDataset, datasets } = useContext(DatasetsContext)
   const { actualUser } = useContext(UserContext)
@@ -36,7 +38,7 @@ const DatasetConfigMenu = ({
   }
 
   const commonClass = (c: string) => {
-    return clsx("w-full px-4 py-[4px] cursor-pointer flex items-center", c)
+    return clsx("w-full px-4 py-[6px] cursor-pointer flex items-center", c)
   }
 
   const textDivClass = commonClass(
@@ -44,7 +46,10 @@ const DatasetConfigMenu = ({
   )
 
   return (
-    <div className='absolute flex flex-col -translate-x-0 translate-y-5 rounded bg-white shadow-lg'>
+    <div
+      className='absolute flex flex-col -translate-x-0 translate-y-5 rounded bg-white shadow-lg'
+      ref={menuRef}
+    >
       <div className={commonClass("gap-4")}>
         <p className='mb-0 text-sm'>{UI_TEXT.DOCUMENTS_OPTION}</p>
         <ChacaNumberInput
