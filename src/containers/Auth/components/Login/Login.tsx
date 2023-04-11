@@ -36,7 +36,7 @@ const Login = () => {
   })
 
   const buttonClass =
-    "rounded-full flex justify-center items-center py-4 esm:py-3 w-[330px] esm:w-[280px] esm:text-lg text-xl font-fontBold uppercase transition-all duration-300 whitespace-nowrap hover:opacity-70"
+    "rounded-full flex justify-center items-center py-4 esm:py-3 w-[400px] esm:w-[340px] esm:text-lg text-xl font-fontBold uppercase transition-all duration-300 whitespace-nowrap hover:opacity-70"
 
   return (
     <div className='w-full h-screen flex flex-col py-8 px-20 esm:px-5'>
@@ -88,7 +88,7 @@ const Login = () => {
               <OtherOptionsSection loading={loading} />
             </div>
 
-            <div className='flex w-full gap-5 flex-wrap justify-center'>
+            <div className='flex w-full gap-5 flex-wrap justify-center items-center'>
               <LoaderContainer loading={loading} size={50}>
                 <button className={buttonClass + " bg-principal-bg text-white"} type='submit'>
                   {LOGIN_BUTTON_TEXT}

@@ -54,6 +54,7 @@ const AppCont = () => {
                   <Login />
                 </NoUserRoute>
               }
+              full={true}
             />
           }
         />
@@ -66,6 +67,7 @@ const AppCont = () => {
                   <SignUp />
                 </NoUserRoute>
               }
+              full={true}
             />
           }
         />

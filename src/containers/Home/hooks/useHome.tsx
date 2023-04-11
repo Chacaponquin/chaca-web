@@ -4,15 +4,16 @@ import { SOCKET_EVENTS } from "../constants"
 import { DatasetsContext } from "@modules/datasets/context"
 import { configServices } from "@modules/config/services"
 import io from "socket.io-client"
-import { useConfig, useLanguage } from "@modules/shared/hooks"
+import { useLanguage } from "@modules/shared/hooks"
 import { EmptyFormFieldError } from "@modules/config/errors"
 import { ModalContext } from "@modules/modal/context"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
+import { userServices } from "@modules/user/services"
 
 export const useHome = () => {
   const { datasets, config, selectedDataset } = useContext(DatasetsContext)
   const { resetConfig, validateSaveSchemaForm } = configServices()
-  const { getTokenCookie } = useConfig()
+  const { getTokenCookie } = userServices()
   const { handleOpenModal } = useContext(ModalContext)
 
   const { NETWORK_ERROR } = useLanguage({

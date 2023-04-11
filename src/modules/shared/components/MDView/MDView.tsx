@@ -28,7 +28,7 @@ export default function MDView({
   className?: string
 }) {
   return (
-    <div className={`flex w-full text-lg '` + className}>
+    <div className={`flex w-full text-base '` + className}>
       <Markdown
         className='w-full flex flex-col'
         options={{

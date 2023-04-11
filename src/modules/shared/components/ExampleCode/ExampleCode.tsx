@@ -15,7 +15,7 @@ export default function ExampleCode({ code, language }: { code: string; language
         {({ tokens, getLineProps, getTokenProps }) => {
           return tokens.map((line, i) => {
             return (
-              <div {...getLineProps({ line, key: i, className: "" })} key={uuid()}>
+              <div {...getLineProps({ line, key: i, className: "text-sm" })} key={uuid()}>
                 {line.map((token, key) => (
                   <span {...getTokenProps({ token, key })} key={key} />
                 ))}

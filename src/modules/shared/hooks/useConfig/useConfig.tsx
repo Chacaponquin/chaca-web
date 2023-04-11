@@ -1,24 +1,12 @@
 import axios from "axios"
-import { useCallback, useContext, useEffect, useMemo } from "react"
-import Cookies from "universal-cookie"
+import { useContext, useEffect, useMemo } from "react"
 import { AppConfigContext } from "../../context/AppConfigContext"
 import { handleRequestSuccess } from "./utils"
+import { userServices } from "@modules/user/services"
 
 export const useConfig = () => {
   const { language } = useContext(AppConfigContext)
-
-  const getTokenCookie = useCallback((): string => {
-    const cookies = new Cookies()
-    const tokenCookie = cookies.get("jwt")
-
-    if (tokenCookie) {
-      localStorage.setItem("token", tokenCookie)
-    }
-
-    const returnToken = localStorage.getItem("token") || ""
-
-    return returnToken
-  }, [])
+  const { getTokenCookie } = userServices()
 
   const axiosInstance = useMemo(
     () =>
@@ -37,5 +25,5 @@ export const useConfig = () => {
     )
   }, [language])
 
-  return { axiosInstance, getTokenCookie }
+  return { axiosInstance }
 }

@@ -2,17 +2,20 @@ import { SignUpUserDTO } from "@containers/Auth/shared/dto/signUpUserDTO.dto"
 import { API_ROUTES } from "@modules/shared/routes"
 import { appService } from "@modules/shared/services/appServices.service"
 import { NotEqualUserPasswords, UsernameShortError } from "../error"
+import { TOKEN_LOCATION } from "../constants/TOKEN"
+import Cookies from "universal-cookie"
+import { useCallback } from "react"
 
 export function userServices() {
   const { validateRequiredForm } = appService()
 
   const handleSignIn = (token: string) => {
-    localStorage.setItem("token", token)
+    localStorage.setItem(TOKEN_LOCATION, token)
     window.location.reload()
   }
 
   const handleSignOut = () => {
-    localStorage.removeItem("token")
+    localStorage.removeItem(TOKEN_LOCATION)
     window.location.reload()
   }
 
@@ -46,5 +49,26 @@ export function userServices() {
     })
   }
 
-  return { handleSignIn, handleSignOut, handleGoogleLogin, handleGithubLogin, validateSignUpDTO }
+  const getTokenCookie = useCallback((): string => {
+    const cookies = new Cookies()
+    const tokenCookie = cookies.get(TOKEN_LOCATION)
+    console.log(cookies)
+
+    if (tokenCookie) {
+      localStorage.setItem(TOKEN_LOCATION, tokenCookie)
+    }
+
+    const returnToken = localStorage.getItem(TOKEN_LOCATION) || ""
+
+    return returnToken
+  }, [])
+
+  return {
+    getTokenCookie,
+    handleSignIn,
+    handleSignOut,
+    handleGoogleLogin,
+    handleGithubLogin,
+    validateSignUpDTO,
+  }
 }
