@@ -52,7 +52,6 @@ export function userServices() {
   const getTokenCookie = useCallback((): string => {
     const cookies = new Cookies()
     const tokenCookie = cookies.get(TOKEN_LOCATION)
-    console.log(cookies)
 
     if (tokenCookie) {
       localStorage.setItem(TOKEN_LOCATION, tokenCookie)
