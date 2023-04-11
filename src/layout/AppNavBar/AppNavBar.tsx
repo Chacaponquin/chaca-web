@@ -58,7 +58,7 @@ export default function AppNavBar() {
         </div>
 
         <Link to={APP_ROUTES.AUTH_ROUTES.LOGIN}>
-          <ChacaSimpleButton text={ACCOUNT_TEXT} color='gradient' size='medium' />
+          <ChacaSimpleButton text={ACCOUNT_TEXT} color='gradient' size='large' />
         </Link>
       </div>
     </div>
