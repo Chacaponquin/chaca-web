@@ -1,6 +1,6 @@
 import FAQ from "./FAQ/FAQ"
 import FirstPage from "./FirstPage/FirstPage"
+import MeSection from "./MeSection/MeSection"
 import Services from "./Services/Services"
-import WhyUs from "./WhyUs/WhyUs"
 
-export { FAQ, WhyUs, Services, FirstPage }
+export { FAQ, Services, FirstPage, MeSection }
