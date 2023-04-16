@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { OptionArgumentsSection, RequestResult, RequestSection } from "./components"
 import { ArgumentsObject } from "@modules/schemas/interfaces/argument.interface"
 import { schemasServices } from "@modules/schemas/services"
-import { useLazyQuery } from "@modules/shared/hooks"
+import { useLazyQuery } from "@modules/shared/modules/http/hooks"
 import prettier from "prettier"
 import tsparser from "prettier/parser-typescript"
 

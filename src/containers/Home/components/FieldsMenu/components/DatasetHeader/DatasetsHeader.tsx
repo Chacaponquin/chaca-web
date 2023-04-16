@@ -5,7 +5,7 @@ import { DatasetConfigMenu } from "./components"
 import { ChacaSelect } from "@form"
 import { useDatasetsHeader } from "./hooks"
 import ChacaBlockInfo from "@modules/shared/components/ChacaBlockInfo/ChacaBlockInfo"
-import { useLanguage } from "@modules/shared/hooks"
+import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 
 const DatasetsHeader = ({
   handleCreateSelectDataset,

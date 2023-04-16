@@ -3,10 +3,10 @@ import clsx from "clsx"
 import { Link, NavLink } from "react-router-dom"
 import { APP_ROUTES } from "@modules/shared/routes"
 import { ChacaLogo } from "./components"
-import { useLanguage } from "@modules/shared/hooks"
+import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 import { ChacaSimpleButton } from "@modules/shared/components/ChacaButton"
 import { useContext } from "react"
-import { AppConfigContext } from "@modules/shared/context"
+import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
 import { DatasetsContext } from "@modules/datasets/context"
 
 export default function AppNavBar() {

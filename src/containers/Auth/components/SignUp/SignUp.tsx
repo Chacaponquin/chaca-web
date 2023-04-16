@@ -1,4 +1,4 @@
-import { useLanguage } from "@modules/shared/hooks"
+import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 import { APP_ROUTES } from "@modules/shared/routes"
 import { LoaderContainer } from "@modules/shared/components/Loader"
 import { Link } from "react-router-dom"

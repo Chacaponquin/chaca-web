@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useDelete, useQuery } from "@modules/shared/hooks"
+import { useDelete, useQuery } from "@modules/shared/modules/http/hooks"
 import { API_ROUTES } from "@modules/shared/routes"
 import { UserDatasetModel } from "../interfaces/models.interface"
 

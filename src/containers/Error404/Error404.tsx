@@ -1,5 +1,5 @@
 import { ChacaLinkButton } from "@modules/shared/components/ChacaButton"
-import { useLanguage } from "@modules/shared/hooks"
+import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 import { APP_ROUTES } from "@modules/shared/routes/app/APP_ROUTES"
 
 const Error404 = () => {

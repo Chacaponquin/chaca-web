@@ -1,5 +1,5 @@
 import { DatasetsContext } from "@modules/datasets/context"
-import { AppConfigContext } from "@modules/shared/context"
+import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
 import { useContext } from "react"
 import { CONFIG_ACTIONS, FILE_TYPE } from "../constants"
 import { EmptyFormFieldError, RepeatTagError } from "../errors"

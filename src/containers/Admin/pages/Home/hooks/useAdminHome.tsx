@@ -1,4 +1,4 @@
-import { usePost } from "@modules/shared/hooks"
+import { usePost } from "@modules/shared/modules/http/hooks"
 import { API_ROUTES } from "@modules/shared/routes"
 import { useState } from "react"
 import { toast } from "react-toastify"

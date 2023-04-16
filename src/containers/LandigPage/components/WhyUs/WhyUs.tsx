@@ -1,5 +1,5 @@
 import { APP_IMAGES } from "@modules/shared/constant"
-import { useLanguage } from "@modules/shared/hooks"
+import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 
 const WhyUs = () => {
   const { WHY_US_FIRST_TEXT, WHY_US_SECOND_TEXT } = useLanguage({

@@ -1,5 +1,5 @@
 import { ExportForm, ModalTitle, ModalButtons } from "../../shared/components"
-import { useLanguage } from "@modules/shared/hooks"
+import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 import { ModalExportSelectDataset } from "@modules/modal/interfaces/modal.interface"
 
 const ExportSelectDatasetForm = ({ handleCreateSelectDataset }: ModalExportSelectDataset) => {

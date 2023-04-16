@@ -2,7 +2,7 @@ import { v4 as uuid } from "uuid"
 import { Link } from "react-router-dom"
 import { ChacaSimpleButton } from "@modules/shared/components/ChacaButton"
 import { APP_ROUTES } from "@modules/shared/routes"
-import { useLanguage } from "@modules/shared/hooks"
+import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 import { APP_IMAGES } from "@modules/shared/constant"
 
 const NavBar = () => {

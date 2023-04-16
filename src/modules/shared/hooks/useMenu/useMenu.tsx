@@ -1,4 +1,4 @@
-import { AppConfigContext } from "@modules/shared/context"
+import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
 import { useEffect, useMemo, useContext } from "react"
 import { v4 as uuid } from "uuid"
 

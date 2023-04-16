@@ -1,8 +1,8 @@
 import { ChacaSelect, ChacaTextInput } from "@form"
 import { Save } from "@modules/shared/assets/icons"
 import { ChacaIconButton } from "@modules/shared/components/ChacaButton"
-import { LANGUAGES_ARRAY } from "@modules/shared/constant/LANGUAGE"
-import { useLanguage } from "@modules/shared/hooks"
+import { LANGUAGES_ARRAY } from "@modules/shared/modules/appConfig/constants/LANGUAGE"
+import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 
 export default function DocsConfigHeader({
   handleChangeLanguage,

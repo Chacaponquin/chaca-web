@@ -1,5 +1,5 @@
 import { ChacaSimpleButton } from "@modules/shared/components/ChacaButton"
-import { useLanguage } from "@modules/shared/hooks"
+import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 
 export default function FilterButtons() {
   const { APPLY_TEXT, RESET_TEXT } = useLanguage({

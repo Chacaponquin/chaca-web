@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Landing, ContactUs, Error404 } from "./containers"
 
 // CONTEXT PROVIDERS
-import { AppConfigProvider } from "@modules/shared/context"
+import { AppConfigProvider } from "@modules/shared/modules/appConfig/context"
 import { DatasetsProvider } from "@modules/datasets/context"
 import { UserProvider } from "@modules/user/context/UserContext"
 import { ModalContext, ModalProvider } from "@modules/modal/context"

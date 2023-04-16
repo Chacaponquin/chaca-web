@@ -1,7 +1,7 @@
 /*eslint-disable */
 
 import { createContext, useState, ReactElement } from "react"
-import { useQuery } from "@modules/shared/hooks"
+import { useQuery } from "@modules/shared/modules/http/hooks"
 import { API_ROUTES } from "@modules/shared/routes"
 import { LoginUser } from "../interfaces/user.interface"
 

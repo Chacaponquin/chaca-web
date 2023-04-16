@@ -1,7 +1,7 @@
 import { CreationLoadingModal, FieldsMenu, FormContent } from "./components"
 import { useHome } from "./hooks"
 import { useContext } from "react"
-import { AppConfigContext } from "@modules/shared/context"
+import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
 import { DatasetsContext } from "@modules/datasets/context"
 
 import "./home.css"

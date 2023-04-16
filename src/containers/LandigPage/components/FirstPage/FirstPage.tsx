@@ -2,7 +2,7 @@ import { CurveBg, WaveBG } from "@modules/shared/assets/background"
 import { Link } from "react-router-dom"
 import { APP_ROUTES } from "@modules/shared/routes"
 import { ChacaArrowButton } from "@modules/shared/components/ChacaButton"
-import { useLanguage } from "@modules/shared/hooks"
+import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 
 const FirstPage = () => {
   const UI_TEXT = useLanguage({

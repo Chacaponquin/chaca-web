@@ -3,7 +3,7 @@ import { Outlet, useLocation } from "react-router-dom"
 import { APP_ROUTES } from "@modules/shared/routes"
 import { NavBar, AppNavBar } from "./layout"
 import { AppLoader } from "@modules/shared/components/Loader"
-import { AppConfigContext } from "@modules/shared/context"
+import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
 import { UserContext } from "@modules/user/context"
 
 function App() {

@@ -14,7 +14,7 @@ import { ConfigPayload, configReducer } from "@modules/config/reducer/configRedu
 import { DatasetPayload, datasetsReducer } from "../reducer/datasetsReducer"
 import { FILE_TYPE } from "@modules/config/constants"
 import { ConfigSchema } from "@modules/config/interfaces/config.iterface"
-import { AppConfigContext } from "@modules/shared/context"
+import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
 import { DatasetTree, FieldNode } from "@modules/shared/classes"
 import { configServices } from "@modules/config/services"
 import { datasetServices } from "@modules/datasets/services"

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useQuery } from "@modules/shared/hooks"
+import { useQuery } from "@modules/shared/modules/http/hooks"
 import { API_ROUTES, APP_ROUTES } from "@modules/shared/routes"
 import { ApiSection } from "../../../modules/docs/interfaces/apiSections.interface"
 import { useParams, useNavigate } from "react-router-dom"

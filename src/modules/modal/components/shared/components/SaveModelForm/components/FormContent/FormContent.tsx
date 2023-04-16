@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid"
 import { X } from "@modules/shared/assets/icons"
 import { SaveSchemaForm } from "@modules/config/interfaces/config.iterface"
 import { useFormContent } from "./hooks"
-import { useLanguage } from "@modules/shared/hooks"
+import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 
 export default function FormContent({ saveSchemaForm }: { saveSchemaForm: SaveSchemaForm }) {
   const { handleAddNewTag, handleChangeFormValue, handleChangeNewTag, newTag } = useFormContent()

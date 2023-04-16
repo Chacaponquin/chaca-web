@@ -6,20 +6,26 @@ import {
   NoSelectSectionMessage,
 } from "./components"
 import { useState, useContext, Fragment } from "react"
-import { useDelete, useLazyQuery, usePost, usePut, useQuery } from "@modules/shared/hooks"
+import {
+  useDelete,
+  useLazyQuery,
+  usePost,
+  usePut,
+  useQuery,
+} from "@modules/shared/modules/http/hooks"
 import { API_ROUTES } from "@modules/shared/routes"
 import { ApiDocSection } from "@modules/admin/api/interfaces/apiDocSection.interface"
 import { ModalContext } from "@modules/modal/context"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { toast } from "react-toastify"
 import { CreateApiDocDTO } from "@modules/admin/api/dto/apiDoc.dto"
-import { FetchError } from "@modules/shared/errors"
-import { LazyQueryProps } from "@modules/shared/hooks/useLazyQuery/useLazyQuery"
+import { FetchError } from "@modules/shared/modules/http/errors"
+import { LazyQueryProps } from "@modules/shared/modules/http/hooks/useLazyQuery/useLazyQuery"
 import {
   CreateApiDocSubSectionDTO,
   UpdateApiDocSubSectionDTO,
 } from "@modules/admin/api/dto/apiDocSubSection.dto"
-import { LanguageConfig } from "@modules/shared/interfaces/language.interface"
+import { LanguageConfig } from "@modules/shared/modules/appConfig/interfaces/language.interface"
 import { ApiDocSubSection } from "@modules/admin/api/interfaces/apiDocSubSection.interface"
 
 export default function EditDocumentation() {

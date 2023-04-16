@@ -1,7 +1,7 @@
 import { ChacaHttpError } from "@modules/shared/interfaces/error.interface"
+import { useConfig } from "@modules/shared/modules/appConfig/hooks"
 import { handleResponseError } from "@modules/shared/utils"
 import { useState } from "react"
-import { useConfig } from "../useConfig/useConfig"
 
 export interface LazyQueryProps<T> {
   onCompleted: (data: T) => void

@@ -6,7 +6,8 @@ import { Link } from "react-router-dom"
 import { v4 as uuid } from "uuid"
 import { X } from "@modules/shared/assets/icons"
 import { ChacaArrowButton } from "@modules/shared/components/ChacaButton"
-import { useQuery, useLanguage } from "@modules/shared/hooks"
+import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
+import { useQuery } from "@modules/shared/modules/http/hooks"
 
 interface IFAQ {
   question: string
@@ -68,23 +69,19 @@ const FAQ = () => {
 const QuestionCard = ({ answer, question }: { answer: string; question: string }) => {
   const [open, setOpen] = useState(false)
 
-  const iconClass = () => {
-    return clsx("cursor-pointer transition-all duration-300 flex items-center", {
-      "rotate-45": !open,
-    })
-  }
+  const iconClass = clsx("cursor-pointer transition-all duration-300 flex items-center", {
+    "rotate-45": !open,
+  })
 
-  const divClass = () => {
-    return clsx("border-2 py-3 px-8 rounded-md flex flex-col h-max esm:px-6", {
-      "border-secondColor": open,
-    })
-  }
+  const divClass = clsx("border-2 py-3 px-8 rounded-md flex flex-col h-max esm:px-6", {
+    "border-secondColor": open,
+  })
 
   return (
-    <motion.div className={divClass()}>
+    <motion.div className={divClass}>
       <div className='flex justify-between w-full'>
         <h1 className='font-fontBold text-xl esm:text-lg'>{question}?</h1>
-        <div className={iconClass()} onClick={() => setOpen(!open)}>
+        <div className={iconClass} onClick={() => setOpen(!open)}>
           <X size={20} />
         </div>
       </div>

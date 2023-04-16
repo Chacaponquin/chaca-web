@@ -1,6 +1,6 @@
 import { ChacaSimpleButton } from "@modules/shared/components/ChacaButton"
 import { APP_IMAGES } from "@modules/shared/constant"
-import { useLanguage } from "@modules/shared/hooks"
+import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 
 export default function EmptySectionsMessage({
   handleAddNewApiSection,

@@ -1,12 +1,13 @@
 import { userServices } from "@modules/user/services"
-import { useLanguage, usePost } from "@modules/shared/hooks"
 import { API_ROUTES } from "@modules/shared/routes"
 import { useState, useContext } from "react"
 import { toast } from "react-toastify"
 import { SignUpUserDTO } from "@containers/Auth/shared/dto/signUpUserDTO.dto"
 import { NotEqualUserPasswords, UsernameShortError } from "@modules/user/error"
-import { RequiredFormFieldError } from "@modules/shared/errors"
-import { AppConfigContext } from "@modules/shared/context"
+import { RequiredFormFieldError } from "@modules/shared/modules/http/errors"
+import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
+import { usePost } from "@modules/shared/modules/http/hooks"
+import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 
 export function useSignUp() {
   const { language } = useContext(AppConfigContext)

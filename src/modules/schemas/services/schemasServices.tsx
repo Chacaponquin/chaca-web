@@ -1,4 +1,4 @@
-import { AppConfigContext } from "@modules/shared/context"
+import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
 import { useCallback, useContext } from "react"
 import { Schema, SubOption } from "../interfaces/schema.interface"
 

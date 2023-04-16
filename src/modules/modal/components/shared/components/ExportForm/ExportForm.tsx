@@ -1,10 +1,10 @@
 import { useContext, useMemo } from "react"
 import ArgumentFilter from "@modules/shared/components/ArgumentFilter/ArgumentFilter"
-import { useLanguage } from "@modules/shared/hooks"
+import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 import SaveModelForm from "../SaveModelForm/SaveModelForm"
 import { ChacaSelect } from "@form"
 import { DatasetsContext } from "@modules/datasets/context"
-import { AppConfigContext } from "@modules/shared/context"
+import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
 import { FILE_TYPE } from "@modules/config/constants"
 import { configServices } from "@modules/config/services"
 

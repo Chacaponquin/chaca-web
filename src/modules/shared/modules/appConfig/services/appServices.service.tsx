@@ -1,10 +1,10 @@
 import { FileConfigOption, NoUserLimits } from "@modules/config/interfaces/config.iterface"
 import { useState, useMemo, useEffect } from "react"
-import { Schema } from "../../schemas/interfaces/schema.interface"
-import { FetchError, RequiredFormFieldError } from "../errors"
-import { useConfig } from "../hooks"
-import { API_ROUTES } from "../routes"
+import { Schema } from "../../../../schemas/interfaces/schema.interface"
+import { FetchError, RequiredFormFieldError } from "../../http/errors"
+import { API_ROUTES } from "../../../routes"
 import { LanguageObject } from "../interfaces/language.interface"
+import { useConfig } from "../hooks"
 
 type Form<T> = {
   [key in keyof T]: string

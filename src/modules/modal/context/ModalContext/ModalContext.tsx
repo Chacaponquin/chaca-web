@@ -1,7 +1,7 @@
 /*eslint-disable */
 
 import { ModalProps } from "@modules/modal/interfaces/modal.interface"
-import { AppConfigContext } from "@modules/shared/context"
+import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
 import { createContext, ReactElement, useState, useContext } from "react"
 
 const ModalContext = createContext<{

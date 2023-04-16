@@ -1,6 +1,6 @@
 import { useState } from "react"
 import LoaderContainer from "@modules/shared/components/Loader/LoaderContainer/LoaderContainer"
-import { useQuery } from "@modules/shared/hooks"
+import { useQuery } from "@modules/shared/modules/http/hooks"
 import MDView from "@modules/shared/components/MDView/MDView"
 
 const GuideContainer = ({ route }: { route: string }) => {

@@ -1,6 +1,6 @@
 import { ModalContext } from "@modules/modal/context"
 import { ChacaSimpleButton } from "@modules/shared/components/ChacaButton"
-import { useLanguage } from "@modules/shared/hooks"
+import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 import { useContext } from "react"
 
 const ModalButtons = ({

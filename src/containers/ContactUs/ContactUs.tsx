@@ -1,46 +1,16 @@
 import { InputText } from "primereact/inputtext"
 import { InputTextarea } from "primereact/inputtextarea"
-import React, { useState } from "react"
-import { usePost } from "@modules/shared/hooks"
-import { API_ROUTES } from "@modules/shared/routes"
 import { LoaderContainer } from "@modules/shared/components/Loader"
-import { toast } from "react-toastify"
 import { ChacaIconButton } from "@modules/shared/components/ChacaButton"
 import { Send } from "@modules/shared/assets/icons"
 import { SuccessModal } from "./components"
 import { APP_IMAGES } from "@modules/shared/constant"
-import { CreateMessageDTO } from "./dto/createMessage.dto"
+import { useContactUs } from "./hooks"
 
 const ContactUs = () => {
-  const [contactForm, setContactForm] = useState<CreateMessageDTO>({
-    name: "",
-    email: "",
-    message: "",
-  })
-  const [modalOpen, setModalOpen] = useState(false)
+  const { handleChange, handleSubmit, loading, modalOpen } = useContactUs()
 
   const labelClass = "text-xl font-fontBold mb-1 esm:text-lg"
-
-  const [createMessage, { loading }] = usePost<void, CreateMessageDTO>({
-    url: API_ROUTES.CREATE_USER_MESSAGE,
-    onCompleted: () => {
-      setModalOpen(true)
-    },
-    onError: () => {
-      toast.error("Hubo un error al enviar el mensaje")
-    },
-  })
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>,
-  ) => {
-    setContactForm({ ...contactForm, [e.target.name]: e.target.value })
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    createMessage({ body: contactForm })
-  }
 
   return (
     <div className='flex justify-center items-center w-screen h-screen bg-third-bg bg-cover bg-no-repeat'>
