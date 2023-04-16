@@ -21,8 +21,8 @@ export default function LandingNavBar() {
   ]
 
   return (
-    <nav className='flex w-full rounded-sm px-40 py-3 bg-white esm:px-3 justify-end z-[53]'>
-      <div className='flex w-full items-center gap-8 justify-between'>
+    <nav className='flex w-full justify-center rounded-sm py-3 bg-white esm:px-3 z-[53]'>
+      <div className='flex items-center gap-8 justify-between w-[1000px]'>
         <div className='flex items-center gap-x-3'>
           <img
             src={APP_IMAGES.LOGO.image}

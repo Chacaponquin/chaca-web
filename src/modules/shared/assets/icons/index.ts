@@ -17,6 +17,7 @@ import Home from "./Home"
 import Image from "./Image"
 import Like from "./Like"
 import Menu from "./Menu"
+import Npm from "./Npm"
 import PlayIcon from "./PlayIcon"
 import Plus from "./Plus"
 import Private from "./Private"
@@ -30,6 +31,7 @@ import User from "./User"
 import X from "./X"
 
 export {
+  Npm,
   ArrowDown,
   ArrowUp,
   Share,

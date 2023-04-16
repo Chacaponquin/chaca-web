@@ -1,4 +1,4 @@
-import { FAQ, FirstPage, MeSection, Services } from "./components"
+import { FAQ, FirstPage, LinksSection, MeSection } from "./components"
 
 const Landing = () => {
   return (
@@ -6,7 +6,7 @@ const Landing = () => {
       <div className='w-screen h-max flex flex-col items-center justify-center '>
         <FirstPage />
         <MeSection />
-        <Services />
+        <LinksSection />
         <FAQ />
       </div>
     </div>
