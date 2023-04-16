@@ -32,8 +32,8 @@ const FAQ = () => {
     <div className='w-screen flex items-center justify-center py-20'>
       <div className='flex flex-col gap-5 w-[1000px]'>
         <div className='flex gap-x-[10px] lg:text-6xl text-5xl esm:text-4xl uppercase mb-2 flex-wrap justify-center '>
-          <h1 className='font-fontExtraBold'>{UI_TEXT.FIRST_TEXT}</h1>
-          <h1 className='font-fontExtraBold text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor whitespace-nowrap'>
+          <h1 className='font-fontTitle'>{UI_TEXT.FIRST_TEXT}</h1>
+          <h1 className='font-fontTitle text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor whitespace-nowrap'>
             {UI_TEXT.GRADIENT_TEXT}
           </h1>
         </div>

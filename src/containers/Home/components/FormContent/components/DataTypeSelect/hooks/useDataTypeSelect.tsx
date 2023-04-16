@@ -16,7 +16,7 @@ export function useDataTypeSelect(selectField: FieldNode) {
 
   const barClass = useCallback((select: boolean) => {
     return clsx(
-      "h-[3px] w-full rounded-full bg-secondColor mt-1 transition-all duration-300",
+      "h-[3px] w-full rounded-full bg-secondColor mt-2 transition-all duration-300",
       { "opacity-100": select },
       { "opacity-0": !select },
     )

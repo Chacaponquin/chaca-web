@@ -1,6 +1,5 @@
 import { UserDatasetModel } from "@containers/Models/interfaces/models.interface"
-import ExampleCode from "@modules/shared/components/ExampleCode/ExampleCode"
-
+import { ExampleCode } from "@modules/shared/modules/markdown/components"
 export default function SelectModelContent({
   selectModel,
 }: {

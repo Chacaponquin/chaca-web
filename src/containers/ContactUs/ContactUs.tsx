@@ -19,7 +19,7 @@ const ContactUs = () => {
       <div className='bg-white rounded shadow-lg flex gap-10 px-5 py-10 esm:w-[95%] exsm:py-6'>
         <div className='flex flex-col gap-6 pl-10 w-[550px] lg:pr-0 pr-10 esm:w-full esm:pl-4 esm:pr-4'>
           <div>
-            <h1 className='uppercase font-fontExtraBold sm:text-7xl text-5xl exsm:text-4xl'>
+            <h1 className='uppercase font-fontTitle sm:text-7xl text-5xl exsm:text-4xl'>
               Contáctanos
             </h1>
             <p className='text-gray-500 text-lg mt-2 esm:text-base'>

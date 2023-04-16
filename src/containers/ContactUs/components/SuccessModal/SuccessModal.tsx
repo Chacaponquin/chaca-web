@@ -21,7 +21,7 @@ export default function SuccessModal() {
           alt={APP_IMAGES.SUCCESS.alt}
           className='object-contain w-[250px]'
         />
-        <h1 className='uppercase text-4xl font-fontExtraBold mb-1 esm:text-3xl'>{THANKS_TEXT}</h1>
+        <h1 className='uppercase text-4xl font-fontTitle mb-1 esm:text-3xl'>{THANKS_TEXT}</h1>
         <p className='mb-5 text-xl text-gray-500 esm:text-lg'>{SECOND_TEXT}</p>
 
         <Link

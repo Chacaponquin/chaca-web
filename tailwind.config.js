@@ -10,16 +10,18 @@ module.exports = {
         thirdColor: "#9900FF",
         dangerColor: "#eb4d4b",
         darkColor: "#282c34",
-        grayColor: "#ced6e0",
-        grayStrongColor: "rgb(100 116 139)",
+        grayColor: "#E0E0E0",
+        grayStrongColor: "#9E9E9E",
       },
       fontFamily: {
         fontBold: "Montserrat Bold",
-        fontExtraBold: "Cairo Extra Bold",
+        fontTitle: "Cairo Extra Bold",
         fontLight: "Cairo Light",
         fontRegular: "Cairo Regular",
         fontCodeRegular: "FiraCode Regular",
         fontCodeBold: "FiraCode Bold",
+        fontDoc:
+          '"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Twemoji Country Flags","Segoe UI Emoji","Segoe UI Symbol"',
       },
       backgroundImage: {
         "principal-bg": 'url("./assets/images/bg.svg")',

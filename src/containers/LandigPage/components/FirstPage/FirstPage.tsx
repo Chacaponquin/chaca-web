@@ -18,7 +18,7 @@ const FirstPage = () => {
   return (
     <div className='h-screen bg-white w-screen flex flex-col items-center justify-center xl:bg-second-bg bg-cover bg-no-repeat bg-transparent'>
       <div className='flex text-center flex-col gap-y-7 items-center'>
-        <h1 className='font-fontExtraBold text-9xl text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor'>
+        <h1 className='font-fontTitle text-9xl text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor'>
           BIENVENIDO A CHACA
         </h1>
         <p className='text-black text-3xl'>{DECSRIPTION_TEXT}</p>

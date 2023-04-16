@@ -11,17 +11,19 @@ const SchemaSelect = ({ field }: { field: DatasetField<SingleValueDataType> }) =
   const { handleSelectSchema } = useSchemaSelect(field)
 
   return (
-    <div className='flex px-5 w-full'>
-      <p className='mb-0 font-fontBold text-xl mr-4'>{SCHEMA_TEXT}:</p>
-      <ChacaSelect
-        value={field.dataType.fieldType.parent}
-        onChange={(value) => handleSelectSchema(value as string)}
-        placeholder={"Select a Schema"}
-        options={schemas}
-        labelKey='parent'
-        valueKey='parent'
-        size={200}
-      />
+    <div className='flex px-5 w-full justify-center'>
+      <div className='flex w-full max-w-[800px]'>
+        <p className='mb-0 font-fontBold text-xl mr-4'>{SCHEMA_TEXT}:</p>
+        <ChacaSelect
+          value={field.dataType.fieldType.parent}
+          onChange={(value) => handleSelectSchema(value as string)}
+          placeholder={"Select a Schema"}
+          options={schemas}
+          labelKey='parent'
+          valueKey='parent'
+          size={200}
+        />
+      </div>
     </div>
   )
 }

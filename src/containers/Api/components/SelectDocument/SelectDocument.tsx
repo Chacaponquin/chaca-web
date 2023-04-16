@@ -1,4 +1,4 @@
-import MDView from "@modules/shared/components/MDView/MDView"
+import MDView from "@modules/shared/modules/markdown/components/MDView/MDView"
 
 const SelectDocument = ({ content }: { content: string }) => {
   return (

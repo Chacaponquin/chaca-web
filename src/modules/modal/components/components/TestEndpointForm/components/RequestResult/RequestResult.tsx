@@ -1,9 +1,9 @@
-import ExampleCode from "@modules/shared/components/ExampleCode/ExampleCode"
 import { LoaderContainer } from "@modules/shared/components/Loader"
 import { APP_IMAGES } from "@modules/shared/constant"
 import { Fragment } from "react"
 import clsx from "clsx"
 import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
+import { ExampleCode } from "@modules/shared/modules/markdown/components"
 
 export default function RequestResult({
   loading,

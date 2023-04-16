@@ -49,7 +49,7 @@ export default function SingleValueGuide({ field }: { field: DatasetField<Single
       </p>
 
       <div className=''>
-        <h1 className='font-fontExtraBold text-lg mb-1'>Api Route</h1>
+        <h1 className='font-fontTitle text-lg mb-1'>Api Route</h1>
 
         <div className='flex items-center w-full'>
           <div className='uppercase px-4 py-1 font-fontBold bg-principalColor text-white border-principalColor border-2 rounded-tl-sm rounded-bl-sm'>
@@ -63,7 +63,7 @@ export default function SingleValueGuide({ field }: { field: DatasetField<Single
 
       {option.arguments.length > 0 && (
         <div>
-          <h1 className='font-fontExtraBold text-lg mb-1'>{ARGUMENTS_TITLE_TEXT}</h1>
+          <h1 className='font-fontTitle text-lg mb-1'>{ARGUMENTS_TITLE_TEXT}</h1>
 
           <table className='table-auto w-full border-2 rounded'>
             <thead>

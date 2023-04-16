@@ -31,7 +31,7 @@ export default function DocsMenu({
         <Fragment>
           <div className='flex items-center gap-x-1 mb-2'>
             <img src={APP_IMAGES.LOGO.image} alt={APP_IMAGES.LOGO.alt} className='w-[55px]' />
-            <p className='mb-0 font-fontExtraBold uppercase text-xl'>CHACA DOCS</p>
+            <p className='mb-0 font-fontTitle uppercase text-xl'>CHACA DOCS</p>
           </div>
 
           <div>

@@ -8,7 +8,7 @@ const SidePanelHeader = ({ title }: { title: string }) => {
           <File size={22} />
         </div>
 
-        <p className='mb-0 font-fontExtraBold text-lg'>{title}</p>
+        <p className='mb-0 font-fontTitle text-lg'>{title}</p>
       </div>
     </div>
   )

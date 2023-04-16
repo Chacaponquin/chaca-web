@@ -47,9 +47,9 @@ const SignUp = () => {
 
           <form className='flex flex-col w-full' onSubmit={handleSubmit}>
             <div className='w-full flex flex-col esm:items-center'>
-              <div className='font-fontExtraBold text-center sm:text-6xl mb-3 whitespace-nowrap text-4xl esm:flex-wrap esm:whitespace-normal'>
+              <div className='font-fontTitle text-center sm:text-6xl mb-3 whitespace-nowrap text-4xl esm:flex-wrap esm:whitespace-normal'>
                 {WELCOME_TEXT}{" "}
-                <p className='inline font-fontExtraBold text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor'>
+                <p className='inline font-fontTitle text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor'>
                   CH-DATA!
                 </p>
               </div>

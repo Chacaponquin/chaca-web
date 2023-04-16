@@ -62,7 +62,7 @@ const Login = () => {
 
         <div className='flex flex-col h-full justify-center z-20'>
           <div className='w-full flex flex-col esm:items-center'>
-            <h1 className='font-fontExtraBold text-6xl mb-3 whitespace-nowrap esm:text-5xl'>
+            <h1 className='font-fontTitle text-6xl mb-3 whitespace-nowrap esm:text-5xl'>
               {WELCOME_BACK_TEXT}
             </h1>
             <p className='text-slate-400 text-2xl esm:text-xl'>{LOGIN_TEXT}</p>

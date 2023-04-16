@@ -13,17 +13,19 @@ const OptionsContainer = ({
   const { handleSelectOption, optionArguments, selectOption } = useOptionsContainer(field)
 
   return (
-    <div className='flex flex-col w-full gap-1 px-5'>
-      {options.map((o) => (
-        <Option
-          option={o}
-          key={o.id}
-          args={optionArguments}
-          field={field}
-          handleSelectOption={() => handleSelectOption(o)}
-          isSelected={selectOption === o.id}
-        />
-      ))}
+    <div className='flex flex-col w-full items-center px-5'>
+      <div className='gap-1 flex flex-col w-full max-w-[800px]'>
+        {options.map((o) => (
+          <Option
+            option={o}
+            key={o.id}
+            args={optionArguments}
+            field={field}
+            handleSelectOption={() => handleSelectOption(o)}
+            isSelected={selectOption === o.id}
+          />
+        ))}
+      </div>
     </div>
   )
 }

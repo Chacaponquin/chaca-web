@@ -31,19 +31,19 @@ export default function MeSection() {
         <img src={APP_IMAGES.ME_IMAGE.image} alt={APP_IMAGES.ME_IMAGE.alt} className='w-[300px]' />
 
         <div className='flex flex-col'>
-          <h1 className='font-fontExtraBold text-5xl'>
+          <h1 className='font-fontTitle text-5xl'>
             Make with &#128151; by{" "}
             <a
               href={LINKS.CHACAPONQUIN_LINK}
               target='_blank'
               rel='noreferrer'
-              className='font-fontExtraBold text-principalColor underline transition-all hover:opacity-70 duration-300'
+              className='font-fontTitle text-principalColor underline transition-all hover:opacity-70 duration-300'
             >
               Chacaponquin
             </a>
           </h1>
 
-          <div className='text-xl mt-4 text-gray-500'>
+          <div className='text-xl mt-4 text-grayStrongColor'>
             <p className=''>{DESCRIPTION}</p>
 
             <div className='pl-4 mt-2'>
