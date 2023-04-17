@@ -33,7 +33,6 @@ const Home = React.lazy(() => import("./containers/Home/Home"))
 // const Models = React.lazy(() => import("./containers/Models/Models"))
 const Login = React.lazy(() => import("./containers/Auth/components/Login/Login"))
 const SignUp = React.lazy(() => import("./containers/Auth/components/SignUp/SignUp"))
-const Admin = React.lazy(() => import("./containers/Admin/Admin"))
 
 const AppCont = () => {
   const { openModal } = useContext(ModalContext)
@@ -43,8 +42,6 @@ const AppCont = () => {
       {openModal && <Modal modalProps={openModal} />}
 
       <Routes>
-        <Route path={APP_ROUTES.ADMIN.ROOT} element={<Admin />} />
-
         <Route
           path={APP_ROUTES.AUTH_ROUTES.LOGIN}
           element={

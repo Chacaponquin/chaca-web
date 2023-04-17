@@ -9,8 +9,6 @@ import {
   ExportAllDatasetForm,
   ExportSelectDatasetForm,
   TestEndpointForm,
-  AddApiDocSection,
-  DeleteApiDocSubSection,
 } from "./components"
 
 const Modal = ({ modalProps }: { modalProps: ModalProps }) => {
@@ -30,12 +28,6 @@ const Modal = ({ modalProps }: { modalProps: ModalProps }) => {
         )}
         {modalProps.type === MODAL_ACTIONS.TEST_ENDPOINT && (
           <TestEndpointForm option={modalProps.option} />
-        )}
-        {modalProps.type === MODAL_ACTIONS.ADMIN_CREATE_API_DOC_SECTION && (
-          <AddApiDocSection {...modalProps} />
-        )}
-        {modalProps.type === MODAL_ACTIONS.ADMIN_DELETE_API_DOC_SUB_SECTION && (
-          <DeleteApiDocSubSection {...modalProps} />
         )}
       </div>
     </div>
