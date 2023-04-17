@@ -1,9 +1,9 @@
-import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
+import { AppContext } from "@modules/shared/modules/app/context"
 import { useCallback, useContext } from "react"
 import { Schema, SubOption } from "../interfaces/schema.interface"
 
 export function schemasServices() {
-  const { schemas } = useContext(AppConfigContext)
+  const { schemas } = useContext(AppContext)
 
   const optionApiRoute = (route: string): string => {
     return `${process.env.REACT_APP_API_URL}${route}`

@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
+import { useLanguage } from "@modules/shared/modules/app/hooks"
 import { v4 as uuid } from "uuid"
 import { DatasetField, SingleValueDataType } from "@modules/datasets/interfaces/datasets.interface"
 import { schemasServices } from "@modules/schemas/services"

@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react"
 import { handleResponseError } from "@modules/shared/utils"
 import { ChacaHttpError } from "@modules/shared/interfaces/error.interface"
-import { useConfig } from "@modules/shared/modules/appConfig/hooks"
+import { useConfig } from "@modules/shared/modules/app/hooks"
 
 interface UsePutProps<T> {
   onCompleted?: (data: T) => void

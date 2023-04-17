@@ -4,7 +4,7 @@ import clsx from "clsx"
 import { API_ROUTES } from "@modules/shared/routes"
 import { v4 as uuid } from "uuid"
 import { X } from "@modules/shared/assets/icons"
-import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
+import { useLanguage } from "@modules/shared/modules/app/hooks"
 import { useQuery } from "@modules/shared/modules/http/hooks"
 
 interface IFAQ {

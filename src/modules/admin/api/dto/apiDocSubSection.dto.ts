@@ -1,4 +1,4 @@
-import { LanguageConfig } from "@modules/shared/modules/appConfig/interfaces/language.interface"
+import { LanguageConfig } from "@modules/shared/modules/app/interfaces/language.interface"
 
 export interface CreateApiDocSubSectionDTO {
   parentSectionID: string

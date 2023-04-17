@@ -1,6 +1,6 @@
 import { LINKS } from "@containers/LandigPage/constants/Links"
 import { APP_IMAGES } from "@modules/shared/constant"
-import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
+import { useLanguage } from "@modules/shared/modules/app/hooks"
 import { v4 as uuid } from "uuid"
 
 export default function MeSection() {

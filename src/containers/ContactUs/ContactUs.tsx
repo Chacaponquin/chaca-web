@@ -4,7 +4,7 @@ import { Send } from "@modules/shared/assets/icons"
 import { SuccessModal } from "./components"
 import { APP_IMAGES } from "@modules/shared/constant"
 import { useContactUs } from "./hooks"
-import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
+import { useLanguage } from "@modules/shared/modules/app/hooks"
 
 const ContactUs = () => {
   const { handleChange, handleSubmit, loading, modalOpen, contactForm } = useContactUs()

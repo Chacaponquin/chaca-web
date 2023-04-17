@@ -1,4 +1,4 @@
-import { LanguageConfig } from "../../appConfig/interfaces/language.interface"
+import { LanguageConfig } from "@modules/shared/modules/app/interfaces/language.interface"
 
 export class FetchError extends Error {}
 

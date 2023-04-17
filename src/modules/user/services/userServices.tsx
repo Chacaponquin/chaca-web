@@ -1,6 +1,6 @@
 import { SignUpUserDTO } from "@containers/Auth/shared/dto/signUpUserDTO.dto"
 import { API_ROUTES } from "@modules/shared/routes"
-import { appService } from "@modules/shared/modules/appConfig/services/appServices.service"
+import { appService } from "@modules/shared/modules/app/services/appServices.service"
 import { NotEqualUserPasswords, UsernameShortError } from "../error"
 import { TOKEN_LOCATION } from "../constants/TOKEN"
 import Cookies from "universal-cookie"

@@ -1,6 +1,6 @@
 import { ChacaSimpleButton } from "@form/components"
 import { APP_IMAGES } from "@modules/shared/constant"
-import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
+import { useLanguage } from "@modules/shared/modules/app/hooks"
 import { APP_ROUTES } from "@modules/shared/routes"
 import { Link } from "react-router-dom"
 

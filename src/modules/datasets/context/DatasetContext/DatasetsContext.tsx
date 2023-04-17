@@ -14,7 +14,7 @@ import { ConfigPayload, configReducer } from "@modules/config/reducer/configRedu
 import { DatasetPayload, datasetsReducer } from "../reducer/datasetsReducer"
 import { FILE_TYPE } from "@modules/config/constants"
 import { ConfigSchema } from "@modules/config/interfaces/config.iterface"
-import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
+import { AppContext } from "@modules/shared/modules/app/context"
 import { DatasetTree, FieldNode } from "@modules/shared/classes"
 import { configServices } from "@modules/config/services"
 import { datasetServices } from "@modules/datasets/services"
@@ -52,7 +52,7 @@ const DatasetsContext = createContext<DatasetContext>({
 
 const DatasetsProvider = ({ children }: { children: ReactElement }) => {
   const [showFieldsMenu, setShowFieldsMenu] = useState(false)
-  const { initialFetchLoading, fileConfig } = useContext(AppConfigContext)
+  const { initialFetchLoading, fileConfig } = useContext(AppContext)
   const { initDatasets } = datasetServices()
   const { resetConfig } = configServices()
 

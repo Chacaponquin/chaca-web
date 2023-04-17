@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid"
 import { FieldNode } from "@modules/shared/classes"
 import { FieldDataType } from "@modules/datasets/interfaces/datasets.interface"
 import { ChacaIconButton } from "@form/components"
-import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
+import { useLanguage } from "@modules/shared/modules/app/hooks"
 import { useFieldInfoHeader } from "./hooks"
 
 const FieldInfoHeader = ({ selectField }: { selectField: FieldNode<FieldDataType> }) => {

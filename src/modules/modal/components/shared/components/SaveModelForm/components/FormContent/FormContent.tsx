@@ -1,10 +1,9 @@
-import { ChacaTextInput, ChacaTextarea } from "@form/components"
-import { ChacaSimpleButton } from "@form/components"
+import { ChacaTextInput, ChacaTextarea, ChacaSimpleButton } from "@form/components"
 import { v4 as uuid } from "uuid"
 import { X } from "@modules/shared/assets/icons"
 import { SaveSchemaForm } from "@modules/config/interfaces/config.iterface"
 import { useFormContent } from "./hooks"
-import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
+import { useLanguage } from "@modules/shared/modules/app/hooks"
 
 export default function FormContent({ saveSchemaForm }: { saveSchemaForm: SaveSchemaForm }) {
   const { handleAddNewTag, handleChangeFormValue, handleChangeNewTag, newTag } = useFormContent()

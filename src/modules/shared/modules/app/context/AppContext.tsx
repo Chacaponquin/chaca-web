@@ -6,7 +6,7 @@ import { Languages } from "../interfaces/language.interface"
 import { Schema } from "@modules/schemas/interfaces/schema.interface"
 import { appService } from "../services/appServices.service"
 
-const AppConfigContext = createContext<{
+const AppContext = createContext<{
   noUserLimits: NoUserLimits
   schemas: Schema[]
   initialFetchLoading: boolean
@@ -28,7 +28,7 @@ const AppConfigContext = createContext<{
   handleCloseDropDown: () => {},
 })
 
-const AppConfigProvider = ({ children = <></> }: { children: ReactElement }) => {
+const AppProvider = ({ children = <></> }: { children: ReactElement }) => {
   const [openDropdown, setOpenDropdown] = useState("")
   const [smallWindow, setSmallWindow] = useState(false)
 
@@ -86,7 +86,7 @@ const AppConfigProvider = ({ children = <></> }: { children: ReactElement }) => 
     handleCloseDropDown,
   }
 
-  return <AppConfigContext.Provider value={data}>{children}</AppConfigContext.Provider>
+  return <AppContext.Provider value={data}>{children}</AppContext.Provider>
 }
 
-export { AppConfigContext, AppConfigProvider }
+export { AppContext, AppProvider }

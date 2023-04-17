@@ -1,7 +1,7 @@
 import { CreationLoadingModal, FieldsMenu, FormContent } from "./components"
 import { useHome } from "./hooks"
 import { useContext } from "react"
-import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
+import { AppContext } from "@modules/shared/modules/app/context"
 import { DatasetsContext } from "@modules/datasets/context"
 
 import "./home.css"
@@ -11,7 +11,7 @@ const Home = () => {
     useHome()
 
   const { showFieldsMenu } = useContext(DatasetsContext)
-  const { smallWindow } = useContext(AppConfigContext)
+  const { smallWindow } = useContext(AppContext)
 
   return (
     <div className='flex w-full h-full'>

@@ -1,16 +1,16 @@
 import { useContext, useMemo } from "react"
 import ArgumentFilter from "@modules/shared/components/ArgumentFilter/ArgumentFilter"
-import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
+import { useLanguage } from "@modules/shared/modules/app/hooks"
 import SaveModelForm from "../SaveModelForm/SaveModelForm"
 import { ChacaSelect } from "@form/components"
 import { DatasetsContext } from "@modules/datasets/context"
-import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
+import { AppContext } from "@modules/shared/modules/app/context"
 import { FILE_TYPE } from "@modules/config/constants"
 import { configServices } from "@modules/config/services"
 
 const ExportForm = ({ saveModelOption }: { saveModelOption: boolean }) => {
   const { config } = useContext(DatasetsContext)
-  const { fileConfig } = useContext(AppConfigContext)
+  const { fileConfig } = useContext(AppContext)
   const { changeFileArgument, changeFileType } = configServices()
 
   const handleChangeFileArgument = (argument: string, value: unknown) => {

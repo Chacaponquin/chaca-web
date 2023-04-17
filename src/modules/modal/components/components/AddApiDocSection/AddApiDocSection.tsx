@@ -3,10 +3,10 @@ import { ModalButtons, ModalTitle } from "../../shared/components"
 import { useState, useContext } from "react"
 import { CreateApiDocDTO } from "@modules/admin/api/dto/apiDoc.dto"
 import { ChacaTextInput } from "@form/components"
-import { LANGUAGES_ARRAY } from "@modules/shared/modules/appConfig/constants/LANGUAGE"
-import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
+import { LANGUAGES_ARRAY } from "@modules/shared/modules/app/constants/LANGUAGE"
+import { useLanguage } from "@modules/shared/modules/app/hooks"
 import { ModalContext } from "@modules/modal/context"
-import { LanguageConfig } from "@modules/shared/modules/appConfig/interfaces/language.interface"
+import { LanguageConfig } from "@modules/shared/modules/app/interfaces/language.interface"
 
 export default function AddApiDocSection({ handleAddSection }: ModalAdminAddApiDocSection) {
   const { handleCloseModal } = useContext(ModalContext)

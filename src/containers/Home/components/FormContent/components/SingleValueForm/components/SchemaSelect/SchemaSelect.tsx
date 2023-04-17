@@ -1,13 +1,13 @@
 import { useContext } from "react"
-import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
+import { AppContext } from "@modules/shared/modules/app/context"
 import { DatasetField, SingleValueDataType } from "@modules/datasets/interfaces/datasets.interface"
 import { ChacaSelect } from "@form/components"
-import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
+import { useLanguage } from "@modules/shared/modules/app/hooks"
 import { useSchemaSelect } from "./hooks"
 
 const SchemaSelect = ({ field }: { field: DatasetField<SingleValueDataType> }) => {
   const { SCHEMA_TEXT } = useLanguage({ SCHEMA_TEXT: { en: "Schema", es: "Esquema" } })
-  const { schemas } = useContext(AppConfigContext)
+  const { schemas } = useContext(AppContext)
   const { handleSelectSchema } = useSchemaSelect(field)
 
   return (

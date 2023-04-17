@@ -1,6 +1,6 @@
 import { PlayGroundMode } from "@containers/Admin/pages/EditDocumentation/interfaces/playgroundMode.type"
 import { Image } from "@modules/shared/assets/icons"
-import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
+import { useLanguage } from "@modules/shared/modules/app/hooks"
 import clsx from "clsx"
 
 export default function DocsInputHeader({

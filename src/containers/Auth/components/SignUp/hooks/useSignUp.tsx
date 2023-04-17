@@ -5,12 +5,12 @@ import { toast } from "react-toastify"
 import { SignUpUserDTO } from "@containers/Auth/shared/dto/signUpUserDTO.dto"
 import { NotEqualUserPasswords, UsernameShortError } from "@modules/user/error"
 import { RequiredFormFieldError } from "@modules/shared/modules/http/errors"
-import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
+import { AppContext } from "@modules/shared/modules/app/context"
 import { usePost } from "@modules/shared/modules/http/hooks"
-import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
+import { useLanguage } from "@modules/shared/modules/app/hooks"
 
 export function useSignUp() {
-  const { language } = useContext(AppConfigContext)
+  const { language } = useContext(AppContext)
 
   const { ALREADY_EXIST_USER_TEXT, CREATING_USER_TEXT, LENGTH_USERNAME, NOT_EQUAL_PASSWORDS } =
     useLanguage({

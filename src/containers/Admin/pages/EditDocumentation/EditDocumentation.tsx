@@ -25,7 +25,7 @@ import {
   CreateApiDocSubSectionDTO,
   UpdateApiDocSubSectionDTO,
 } from "@modules/admin/api/dto/apiDocSubSection.dto"
-import { LanguageConfig } from "@modules/shared/modules/appConfig/interfaces/language.interface"
+import { LanguageConfig } from "@modules/shared/modules/app/interfaces/language.interface"
 import { ApiDocSubSection } from "@modules/admin/api/interfaces/apiDocSubSection.interface"
 
 export default function EditDocumentation() {

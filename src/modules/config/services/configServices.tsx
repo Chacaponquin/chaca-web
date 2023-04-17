@@ -1,5 +1,5 @@
 import { DatasetsContext } from "@modules/datasets/context"
-import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
+import { AppContext } from "@modules/shared/modules/app/context"
 import { useContext } from "react"
 import { CONFIG_ACTIONS, FILE_TYPE } from "../constants"
 import { EmptyFormFieldError, RepeatTagError } from "../errors"
@@ -7,7 +7,7 @@ import { SaveSchemaForm } from "../interfaces/config.iterface"
 
 export function configServices() {
   const { configDispatch, config } = useContext(DatasetsContext)
-  const { fileConfig } = useContext(AppConfigContext)
+  const { fileConfig } = useContext(AppContext)
 
   const resetConfig = () => {
     configDispatch({

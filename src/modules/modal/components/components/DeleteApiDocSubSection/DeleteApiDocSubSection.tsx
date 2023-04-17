@@ -1,6 +1,6 @@
 import { ModalContext } from "@modules/modal/context"
 import { ModalAdminDeleteApiDocSubSection } from "@modules/modal/interfaces/modal.interface"
-import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
+import { useLanguage } from "@modules/shared/modules/app/hooks"
 import { useContext } from "react"
 import { DeleteForm, ModalButtons, ModalTitle } from "../../shared/components"
 

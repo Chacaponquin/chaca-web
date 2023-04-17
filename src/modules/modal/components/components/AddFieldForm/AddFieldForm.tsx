@@ -1,6 +1,6 @@
 import { ModalAddFieldProps } from "@modules/modal/interfaces/modal.interface"
 import { ModalTitle, ModalButtons, FieldForm } from "../../shared/components"
-import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
+import { useLanguage } from "@modules/shared/modules/app/hooks"
 import { useAddFieldForm } from "./hooks"
 
 const AddFieldForm = ({ modalProps }: { modalProps: ModalAddFieldProps }) => {

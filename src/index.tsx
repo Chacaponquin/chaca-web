@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Landing, ContactUs, Error404 } from "./containers"
 
 // CONTEXT PROVIDERS
-import { AppConfigProvider } from "@modules/shared/modules/appConfig/context"
+import { AppProvider } from "@modules/shared/modules/app/context"
 import { DatasetsProvider } from "@modules/datasets/context"
 import { UserProvider } from "@modules/user/context/UserContext"
 import { ModalContext, ModalProvider } from "@modules/modal/context"
@@ -93,7 +93,7 @@ root.render(
   <React.Fragment>
     <BrowserRouter>
       <ErrorBoundary>
-        <AppConfigProvider>
+        <AppProvider>
           <UserProvider>
             <DatasetsProvider>
               <ModalProvider>
@@ -104,7 +104,7 @@ root.render(
               </ModalProvider>
             </DatasetsProvider>
           </UserProvider>
-        </AppConfigProvider>
+        </AppProvider>
       </ErrorBoundary>
     </BrowserRouter>
   </React.Fragment>,

@@ -1,4 +1,4 @@
-import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
+import { AppContext } from "@modules/shared/modules/app/context"
 import { useEffect, useMemo, useContext } from "react"
 import { v4 as uuid } from "uuid"
 
@@ -9,7 +9,7 @@ interface MenuProps {
 }
 
 export function useMenu({ handleClose, handleOpen, ref }: MenuProps) {
-  const { handleCloseDropDown, handleOpenDropDown, openDropdown } = useContext(AppConfigContext)
+  const { handleCloseDropDown, handleOpenDropDown, openDropdown } = useContext(AppContext)
 
   const menuID = useMemo(uuid, [])
 

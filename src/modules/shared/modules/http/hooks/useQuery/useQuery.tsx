@@ -1,5 +1,5 @@
 import { ChacaHttpError } from "@modules/shared/interfaces/error.interface"
-import { useConfig } from "@modules/shared/modules/appConfig/hooks"
+import { useConfig } from "@modules/shared/modules/app/hooks"
 import { handleResponseError } from "@modules/shared/utils"
 import { useEffect, useState } from "react"
 

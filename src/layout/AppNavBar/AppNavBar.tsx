@@ -3,10 +3,10 @@ import clsx from "clsx"
 import { Link, NavLink } from "react-router-dom"
 import { APP_ROUTES } from "@modules/shared/routes"
 import { ChacaLogo } from "./components"
-import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
+import { useLanguage } from "@modules/shared/modules/app/hooks"
 import { ChacaSimpleButton } from "@form/components"
 import { useContext } from "react"
-import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
+import { AppContext } from "@modules/shared/modules/app/context"
 import { DatasetsContext } from "@modules/datasets/context"
 
 export default function AppNavBar() {
@@ -20,7 +20,7 @@ export default function AppNavBar() {
     )
   }
 
-  const { smallWindow } = useContext(AppConfigContext)
+  const { smallWindow } = useContext(AppContext)
   const { handleOpenFieldsMenu } = useContext(DatasetsContext)
 
   const { HOME_TEXT, ACCOUNT_TEXT } = useLanguage({

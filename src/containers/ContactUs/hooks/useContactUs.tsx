@@ -3,7 +3,7 @@ import { CreateMessageDTO } from "../dto/createMessage.dto"
 import { usePost } from "@modules/shared/modules/http/hooks"
 import { toast } from "react-toastify"
 import { API_ROUTES } from "@modules/shared/routes"
-import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
+import { useLanguage } from "@modules/shared/modules/app/hooks"
 
 export function useContactUs() {
   const [contactForm, setContactForm] = useState<CreateMessageDTO>({

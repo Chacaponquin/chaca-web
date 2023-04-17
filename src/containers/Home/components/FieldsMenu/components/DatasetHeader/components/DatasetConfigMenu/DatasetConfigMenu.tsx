@@ -2,8 +2,8 @@ import { useContext } from "react"
 import { DatasetsContext } from "@modules/datasets/context/DatasetContext/DatasetsContext"
 import clsx from "clsx"
 import { UserContext } from "@modules/user/context/UserContext"
-import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
-import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
+import { useLanguage } from "@modules/shared/modules/app/hooks"
+import { AppContext } from "@modules/shared/modules/app/context"
 import { datasetServices } from "@modules/datasets/services"
 import { ChacaNumberInput } from "@form/components"
 
@@ -22,7 +22,7 @@ const DatasetConfigMenu = ({
 }) => {
   const { selectedDataset, datasets } = useContext(DatasetsContext)
   const { actualUser } = useContext(UserContext)
-  const { noUserLimits } = useContext(AppConfigContext)
+  const { noUserLimits } = useContext(AppContext)
   const { changeDocumentsLimit } = datasetServices()
 
   const UI_TEXT = useLanguage({

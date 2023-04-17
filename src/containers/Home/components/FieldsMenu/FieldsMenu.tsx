@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { DatasetsContext } from "@modules/datasets/context"
 import { DatasetsHeader, ExportButton, FieldContainer, NoFieldsMessage } from "./components"
 import clsx from "clsx"
-import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
+import { AppContext } from "@modules/shared/modules/app/context"
 import { X } from "@modules/shared/assets/icons"
 
 const FieldsMenu = ({
@@ -13,7 +13,7 @@ const FieldsMenu = ({
   handleCreateAllDatasets: () => void
 }) => {
   const { selectedDataset, showFieldsMenu, handleCloseFieldsMenu } = useContext(DatasetsContext)
-  const { smallWindow } = useContext(AppConfigContext)
+  const { smallWindow } = useContext(AppContext)
 
   const containerClass = clsx(
     "min-w-[300px] max-w-[300px] bg-white border-r-2 border-b-2 flex flex-col justify-between",

@@ -1,11 +1,11 @@
 import axios from "axios"
 import { useContext, useEffect, useMemo } from "react"
-import { AppConfigContext } from "../../context/index"
+import { AppContext } from "../../context/index"
 import { handleRequestSuccess } from "./utils"
 import { userServices } from "@modules/user/services"
 
 export const useConfig = () => {
-  const { language } = useContext(AppConfigContext)
+  const { language } = useContext(AppContext)
   const { getTokenCookie } = userServices()
 
   const axiosInstance = useMemo(
