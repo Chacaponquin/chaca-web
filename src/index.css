@@ -75,3 +75,16 @@
   font-family: "FiraCode Regular";
   font-size: 14px;
 }
+
+.code-view * {
+  font-family: "FiraCode Regular";
+  font-size: 13px;
+}
+
+.ͼ1 .cm-gutters{
+  background-color: transparent !important;
+}
+
+.ͼg0{
+  background-color: transparent !important;
+}

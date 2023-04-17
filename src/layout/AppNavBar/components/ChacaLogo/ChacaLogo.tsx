@@ -7,7 +7,7 @@ export default function ChacaLogo() {
         <img src={APP_IMAGES.LOGO.image} alt={APP_IMAGES.LOGO.alt} className='w-[35px]' />
       </div>
 
-      <p className='mb-0 text-xl font-fontTitle uppercase'>CHACA</p>
+      <p className='mb-0 text-xl font-fontTitle uppercase esm:hidden'>CHACA</p>
     </div>
   )
 }

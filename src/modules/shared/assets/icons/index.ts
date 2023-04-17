@@ -27,11 +27,13 @@ import Search from "./Search"
 import Send from "./Send"
 import Share from "./Share"
 import SignOut from "./SignOut"
+import Smile from "./Smile"
 import User from "./User"
 import X from "./X"
 
 export {
   Npm,
+  Smile,
   ArrowDown,
   ArrowUp,
   Share,

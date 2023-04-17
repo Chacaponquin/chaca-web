@@ -14,7 +14,11 @@ const GuideContainer = ({ route }: { route: string }) => {
   })
 
   return (
-    <LoaderContainer loading={loading} size={50}>
+    <LoaderContainer
+      loading={loading}
+      size={50}
+      className='w-full py-20 flex justify-center items-center'
+    >
       <MDView content={content} />
     </LoaderContainer>
   )

@@ -1,11 +1,8 @@
-import { CurveBg, WaveBG } from "@modules/shared/assets/background"
-import { Link } from "react-router-dom"
-import { APP_ROUTES } from "@modules/shared/routes"
-import { ChacaSimpleButton } from "@form/components"
 import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
+import { StartButton } from "./components"
 
 const FirstPage = () => {
-  const { DECSRIPTION_TEXT } = useLanguage({
+  const { DECSRIPTION_TEXT, START } = useLanguage({
     WELCOME_TEXT: { en: "Welcome to", es: "Bienvenido a" },
     DOCS_TEXT: { en: "Read Docs", es: "Api Docs" },
     HOME_TEXT: { en: "Get Started", es: "Empezar" },
@@ -13,23 +10,17 @@ const FirstPage = () => {
       en: "Create and export your mock data with your rules",
       es: "Crea y exporta tus datos demo con tus propias reglas",
     },
+    START: { en: "Start", es: "Empezar" },
   })
 
   return (
-    <div className='h-screen bg-white w-screen flex flex-col items-center justify-center xl:bg-second-bg bg-cover bg-no-repeat bg-transparent'>
+    <div className='xl:h-screen bg-white w-screen flex flex-col items-center justify-center xl:bg-second-bg bg-cover bg-no-repeat bg-transparent pb-10 pt-32 px-10'>
       <div className='flex text-center flex-col gap-y-7 items-center'>
-        <h1 className='font-fontTitle text-9xl text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor'>
+        <h1 className='font-fontTitle xl:text-9xl text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor esm:text-6xl text-7xl'>
           BIENVENIDO A CHACA
         </h1>
-        <p className='text-black text-3xl'>{DECSRIPTION_TEXT}</p>
-        <Link to={APP_ROUTES.HOME} className=''>
-          <ChacaSimpleButton
-            color='gradient'
-            size='extra-large'
-            text='Empezar'
-            className='text-3xl py-3 !px-14'
-          />
-        </Link>
+        <p className='xl:text-3xl text-2xl esm:text-xl text-grayStrongColor'>{DECSRIPTION_TEXT}</p>
+        <StartButton text={START} />
       </div>
     </div>
   )

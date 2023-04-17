@@ -21,15 +21,15 @@ export default function LandingNavBar() {
   ]
 
   return (
-    <nav className='flex w-full justify-center rounded-sm py-3 bg-white esm:px-3 z-[53]'>
-      <div className='flex items-center gap-8 justify-between w-[1000px]'>
+    <nav className='flex w-full justify-center rounded-sm py-3 bg-white px-10 z-[53]'>
+      <div className='flex items-center gap-8 justify-between max-w-[1000px] w-full'>
         <div className='flex items-center gap-x-3'>
           <img
             src={APP_IMAGES.LOGO.image}
             alt={APP_IMAGES.LOGO.alt}
-            className='object-cover w-[35px]'
+            className='object-cover w-[40px]'
           />
-          <h1 className='font-fontBold text-lg uppercase'>Chaca</h1>
+          <h1 className='font-fontBold text-lg uppercase esm:hidden'>Chaca</h1>
         </div>
 
         <div className='flex items-center gap-x-3'>
