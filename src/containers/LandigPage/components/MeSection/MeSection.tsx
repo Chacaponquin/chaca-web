@@ -38,7 +38,7 @@ export default function MeSection() {
         />
 
         <div className='flex flex-col'>
-          <h1 className='font-fontTitle text-5xl'>
+          <h1 className='font-fontTitle text-5xl esm:text-4xl esm:text-center'>
             {LOVE_MESSSAGE_ONE} &#128151; {BY_TEXT}{" "}
             <a
               href={LINKS.CHACAPONQUIN_LINK}
@@ -50,7 +50,7 @@ export default function MeSection() {
             </a>
           </h1>
 
-          <div className='text-xl mt-4 text-grayStrongColor'>
+          <div className='text-xl esm:text-lg mt-4 text-grayStrongColor'>
             <p className=''>{DESCRIPTION}</p>
 
             <div className='pl-4 mt-2'>

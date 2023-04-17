@@ -33,14 +33,16 @@ export default function AppNavBar() {
   const iconSize = 22
 
   return (
-    <div className='w-full bg-white flex items-center xl:px-12 px-8 justify-between  esm:px-4'>
+    <div className='w-full bg-white flex items-center xl:px-12 px-8 justify-between esm:px-4'>
       <div className='flex items-center gap-x-3'>
         {smallWindow && (
           <button onClick={handleOpenFieldsMenu}>
             <Bars size={20} />
           </button>
         )}
-        <ChacaLogo />
+        <Link to={APP_ROUTES.ROOT}>
+          <ChacaLogo />
+        </Link>
       </div>
 
       <div className='flex items-center gap-x-6 h-full'>
