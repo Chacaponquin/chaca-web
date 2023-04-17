@@ -29,7 +29,7 @@ export default function MeSection() {
   const OPTIONS = [OPTION_ONE, OPTION_THREE, OPTION_TWO]
 
   return (
-    <div className='w-full py-20 flex justify-center px-10'>
+    <div className='w-full xl:pt-20 pb-20 flex justify-center px-10'>
       <div className='flex w-full max-w-[1000px] items-center justify-between gap-7'>
         <img
           src={APP_IMAGES.ME_IMAGE.image}

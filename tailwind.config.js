@@ -24,7 +24,7 @@ module.exports = {
           '"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Twemoji Country Flags","Segoe UI Emoji","Segoe UI Symbol"',
       },
       backgroundImage: {
-        "principal-bg": 'url("./assets/images/bg.svg")',
+        "first-bg": 'url("./assets/images/first-bg.svg")',
         "second-bg": 'url("./assets/images/second-bg.svg")',
         "third-bg": 'url("./assets/images/third-bg.svg")',
       },

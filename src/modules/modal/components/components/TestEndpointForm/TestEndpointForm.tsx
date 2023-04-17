@@ -64,7 +64,7 @@ export default function TestEndpointForm({ option }: { option: SubOption }) {
   }
 
   return (
-    <div className='flex flex-col min-w-[600px] max-w-[600px] '>
+    <div className='flex flex-col'>
       <ModalTitle titleText='Test Endpoint' />
 
       <RequestSection url={requestURL} handleSubmit={handleMakeRequest} />
