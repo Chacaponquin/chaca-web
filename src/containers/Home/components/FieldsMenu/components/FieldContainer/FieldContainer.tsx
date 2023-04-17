@@ -6,7 +6,9 @@ import { FieldConfigMenu } from "./components"
 import { useFieldContainer } from "./hooks"
 
 const Point = () => {
-  return <div className='bg-principal-bg w-[7px] h-[7px] rounded-full'></div>
+  return (
+    <div className='from-principalColor to-secondColor bg-gradient-to-tr w-[7px] h-[7px] rounded-full'></div>
+  )
 }
 
 const FieldContainer = ({

@@ -48,13 +48,13 @@
 }
 
 @font-face {
-  font-family: "FiraCode Regular";
-  src: url("./assets//font/Fira/FiraCode-Regular.ttf");
+  font-family: "JetBrains Mono Regular";
+  src: url("./assets//font/Jetbrains/JetBrainsMono-Regular.ttf");
 }
 
 @font-face {
-  font-family: "FiraCode Bold";
-  src: url("./assets//font/Fira/FiraCode-Bold.ttf");
+  font-family: "JetBrains Mono Bold";
+  src: url("./assets//font/Jetbrains/JetBrainsMono-Bold.ttf");
 }
 
 * {
@@ -73,12 +73,12 @@
 
 
 .code-container * {
-  font-family: "FiraCode Regular";
+  font-family: "JetBrains Mono Regular";
   font-size: 14px;
 }
 
 .code-view * {
-  font-family: "FiraCode Regular";
+  font-family: "JetBrains Mono Regular";
   font-size: 13px;
 }
 
