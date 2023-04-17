@@ -1,5 +1,5 @@
 import { FormLikes } from "@containers/Models/interfaces/filterForm.interface"
-import { ChacaNumberInput } from "@form"
+import { ChacaNumberInput } from "@form/components"
 import { divClass, labelClass } from "../../helpers/classes"
 
 export default function LikesSection({

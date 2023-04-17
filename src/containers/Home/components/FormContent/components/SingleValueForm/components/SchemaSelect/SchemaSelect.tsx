@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
 import { DatasetField, SingleValueDataType } from "@modules/datasets/interfaces/datasets.interface"
-import { ChacaSelect } from "@form"
+import { ChacaSelect } from "@form/components"
 import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 import { useSchemaSelect } from "./hooks"
 

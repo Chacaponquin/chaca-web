@@ -5,7 +5,7 @@ import { UserContext } from "@modules/user/context/UserContext"
 import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 import { AppConfigContext } from "@modules/shared/modules/appConfig/context"
 import { datasetServices } from "@modules/datasets/services"
-import { ChacaNumberInput } from "@form"
+import { ChacaNumberInput } from "@form/components"
 
 const DatasetConfigMenu = ({
   handleAddDatasetField,

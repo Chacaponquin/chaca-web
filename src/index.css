@@ -69,3 +69,9 @@
   height: calc(100vh - 51.6px);
   position: sticky;
 }
+
+
+.code-container * {
+  font-family: "FiraCode Regular";
+  font-size: 14px;
+}

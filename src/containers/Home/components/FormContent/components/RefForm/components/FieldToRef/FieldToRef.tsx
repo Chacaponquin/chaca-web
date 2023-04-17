@@ -5,7 +5,7 @@ import {
   RefDataType,
 } from "@modules/datasets/interfaces/datasets.interface"
 import { v4 as uuid } from "uuid"
-import { ChacaRadioButton } from "@form"
+import { ChacaRadioButton } from "@form/components"
 import { useFieldToRef } from "./hooks"
 
 const FieldToRef = ({

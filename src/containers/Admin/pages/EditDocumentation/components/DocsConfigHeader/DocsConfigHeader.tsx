@@ -1,6 +1,6 @@
-import { ChacaSelect, ChacaTextInput } from "@form"
+import { ChacaSelect, ChacaTextInput } from "@form/components"
 import { Save } from "@modules/shared/assets/icons"
-import { ChacaIconButton } from "@modules/shared/components/ChacaButton"
+import { ChacaIconButton } from "@form/components"
 import { LANGUAGES_ARRAY } from "@modules/shared/modules/appConfig/constants/LANGUAGE"
 import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 

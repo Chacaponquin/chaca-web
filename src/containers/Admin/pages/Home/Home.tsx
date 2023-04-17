@@ -1,5 +1,5 @@
-import { ChacaTextInput } from "@form"
-import { ChacaSimpleButton } from "@modules/shared/components/ChacaButton"
+import { ChacaTextInput } from "@form/components"
+import { ChacaSimpleButton } from "@form/components"
 import { LoaderContainer } from "@modules/shared/components/Loader"
 import { APP_IMAGES } from "@modules/shared/constant"
 import { useAdminHome } from "./hooks"

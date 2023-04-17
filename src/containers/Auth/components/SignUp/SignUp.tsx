@@ -4,7 +4,7 @@ import { LoaderContainer } from "@modules/shared/components/Loader"
 import { Link } from "react-router-dom"
 import { OtherOptionsSection } from "../../shared/components"
 import { useSignUp } from "./hooks"
-import { ChacaTextInput } from "@form"
+import { ChacaTextInput } from "@form/components"
 
 const SignUp = () => {
   const {

@@ -1,5 +1,5 @@
 import { ApiDocSection } from "@modules/admin/api/interfaces/apiDocSection.interface"
-import { ChacaSimpleButton } from "@modules/shared/components/ChacaButton"
+import { ChacaSimpleButton } from "@form/components"
 import { DocsSections, EmptySectionsMessage, LoadingDiv } from "./components"
 import { Fragment } from "react"
 import { APP_IMAGES } from "@modules/shared/constant"

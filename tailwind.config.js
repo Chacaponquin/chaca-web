@@ -11,7 +11,7 @@ module.exports = {
         dangerColor: "#eb4d4b",
         darkColor: "#282c34",
         grayColor: "#E0E0E0",
-        grayStrongColor: "#9E9E9E",
+        grayStrongColor: "#667085",
       },
       fontFamily: {
         fontBold: "Montserrat Bold",

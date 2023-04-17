@@ -1,4 +1,4 @@
-import { ChacaTextInput } from "@form"
+import { ChacaTextInput } from "@form/components"
 import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 
 export default function DatasetForm({

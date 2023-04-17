@@ -1,16 +1,16 @@
 import clsx from "clsx"
-import { useFilters } from "../../hooks"
+import { useFilters } from "../../../../modules/form/hooks"
 import { ChacaFormProps } from "../../interfaces/chacaForm.interface"
 
 interface ChacaTextInputProps extends ChacaFormProps<string> {
-  placeholder: string
+  placeholder?: string
   size?: number | "full"
   type?: "email" | "password" | "text"
   name?: string
 }
 
 export default function ChacaTextInput({
-  placeholder,
+  placeholder = "",
   dimension = "normal",
   onChange,
   className = "",

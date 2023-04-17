@@ -1,7 +1,7 @@
 import { Like, Share, X } from "@modules/shared/assets/icons"
 import { useState } from "react"
 import clsx from "clsx"
-import { ChacaSimpleButton } from "@modules/shared/components/ChacaButton"
+import { ChacaSimpleButton } from "@form/components"
 import { UserDatasetModel } from "@containers/Models/interfaces/models.interface"
 
 export default function SearchResultCard({

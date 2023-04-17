@@ -1,7 +1,7 @@
 import { CurveBg, WaveBG } from "@modules/shared/assets/background"
 import { Link } from "react-router-dom"
 import { APP_ROUTES } from "@modules/shared/routes"
-import { ChacaSimpleButton } from "@modules/shared/components/ChacaButton"
+import { ChacaSimpleButton } from "@form/components"
 import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 
 const FirstPage = () => {

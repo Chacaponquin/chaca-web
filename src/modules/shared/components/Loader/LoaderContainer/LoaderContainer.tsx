@@ -5,9 +5,16 @@ interface LoaderProps {
   size: number
   children?: JSX.Element
   color?: "principal" | "white"
+  className?: string
 }
 
-const LoaderContainer = ({ loading, size, children = <></>, color = "principal" }: LoaderProps) => {
+const LoaderContainer = ({
+  loading,
+  size,
+  children = <></>,
+  color = "principal",
+  className = "",
+}: LoaderProps) => {
   function filterColor(): string {
     if (color === "principal") {
       return "#7d5fff"
@@ -19,7 +26,7 @@ const LoaderContainer = ({ loading, size, children = <></>, color = "principal" 
   return (
     <>
       {loading ? (
-        <div>
+        <div className={className}>
           <Waveform color={filterColor()} size={size} />
         </div>
       ) : (

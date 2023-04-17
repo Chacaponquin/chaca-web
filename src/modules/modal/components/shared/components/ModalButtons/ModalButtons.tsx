@@ -1,5 +1,5 @@
 import { ModalContext } from "@modules/modal/context"
-import { ChacaSimpleButton } from "@modules/shared/components/ChacaButton"
+import { ChacaSimpleButton } from "@form/components"
 import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 import { useContext } from "react"
 
@@ -17,24 +17,26 @@ const ModalButtons = ({
   const { CANCEL_TEXT } = useLanguage({ CANCEL_TEXT: { en: "Cancel", es: "Cancelar" } })
 
   return (
-    <div className='grid grid-cols-2 gap-x-3 mt-5'>
-      <div>
+    <div className='grid grid-cols-2 gap-x-3 mt-5 w-full'>
+      <div className='w-full'>
         <ChacaSimpleButton
           color={type === "delete" ? "danger" : "primary"}
           size='large'
           text={nextText}
           onClick={handleNext}
-          className='!w-full text-center flex justify-center'
+          className='text-center flex justify-center'
+          full={true}
         />
       </div>
 
-      <div>
+      <div className='w-full'>
         <ChacaSimpleButton
           color='cancel'
           size='large'
           text={CANCEL_TEXT}
           onClick={handleCloseModal}
-          className='!w-full text-center flex justify-center'
+          className='text-center flex justify-center'
+          full={true}
         />
       </div>
     </div>

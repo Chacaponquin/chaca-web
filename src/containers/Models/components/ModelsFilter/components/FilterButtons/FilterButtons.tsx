@@ -1,4 +1,4 @@
-import { ChacaSimpleButton } from "@modules/shared/components/ChacaButton"
+import { ChacaSimpleButton } from "@form/components"
 import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 
 export default function FilterButtons() {

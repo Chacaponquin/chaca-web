@@ -1,10 +1,9 @@
 import clsx from "clsx"
 import { ChacaButtonProps } from "../interfaces/chacaButton.intrface"
 
-export const buttonClass = ({ size, className, color }: ChacaButtonProps) => {
+export const buttonClass = ({ size, className = "", color, full = false }: ChacaButtonProps) => {
   return clsx(
-    "flex justify-center font-fontBold flex items-center transition-all duration-300 hover:brightness-150 w-max",
-    className,
+    "flex justify-center font-fontBold flex items-center transition-all duration-300 hover:brightness-150",
     {
       "py-[3px] px-3 text-sm rounded-sm": size === "small",
       "py-1 px-5 text-base rounded-sm": size === "medium",
@@ -23,5 +22,7 @@ export const buttonClass = ({ size, className, color }: ChacaButtonProps) => {
         color === "primary" || color === "secondary" || color === "gradient" || color === "danger",
       "text-black fill-black": color === "cancel",
     },
+    { "w-max": !full, "w-full": full },
+    className,
   )
 }

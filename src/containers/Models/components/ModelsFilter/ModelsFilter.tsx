@@ -1,4 +1,4 @@
-import { ChacaSearchInput } from "@form"
+import { ChacaSearchInput } from "@form/components"
 import { FilterButtons, FilterForm } from "./components"
 
 export default function ModelsFilter() {

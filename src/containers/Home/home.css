@@ -14,10 +14,6 @@
   border-radius: 999px;
 }
 
-.code-container * {
-  font-family: "FiraCode Regular";
-  font-size: 16px;
-}
 
 .form-content {
   height: calc(100vh - 50px - 50px);

@@ -3,7 +3,7 @@ import { Change, Delete } from "@modules/shared/assets/icons"
 import { v4 as uuid } from "uuid"
 import { FieldNode } from "@modules/shared/classes"
 import { FieldDataType } from "@modules/datasets/interfaces/datasets.interface"
-import { ChacaIconButton } from "@modules/shared/components/ChacaButton"
+import { ChacaIconButton } from "@form/components"
 import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 import { useFieldInfoHeader } from "./hooks"
 

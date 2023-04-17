@@ -1,4 +1,4 @@
-import { ChacaSelect } from "@form"
+import { ChacaSelect } from "@form/components"
 import { FILTER_TYPES } from "@modules/shared/constant"
 import { divClass, labelClass } from "../../helpers/classes"
 

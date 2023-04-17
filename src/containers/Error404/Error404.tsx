@@ -1,4 +1,4 @@
-import { ChacaLinkButton } from "@modules/shared/components/ChacaButton"
+import { ChacaLinkButton } from "@form/components"
 import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 import { APP_ROUTES } from "@modules/shared/routes/app/APP_ROUTES"
 
@@ -20,12 +20,7 @@ const Error404 = () => {
             {ERROR_MESSAGE}
           </h2>
 
-          <p className='mb-0 lg:text-xl text-center py-4 esm:text-base esm:py-4 sm:py-5 sm:text-lg esm:hidden'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem laudantium deserunt nostrum
-            aperiam iure, perspiciatis ex. Earum aut temporibus nemo!
-          </p>
-
-          <div className='flex gap-7 esm:mt-3 esm:flex-col items-center esm:gap-3'>
+          <div className='flex gap-7 mt-6 esm:flex-col items-center esm:gap-3'>
             <ChacaLinkButton route={APP_ROUTES.HOME} text='Return Home' type='link' />
 
             <ChacaLinkButton

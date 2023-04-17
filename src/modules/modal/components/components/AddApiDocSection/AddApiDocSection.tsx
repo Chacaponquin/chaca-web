@@ -2,7 +2,7 @@ import { ModalAdminAddApiDocSection } from "@modules/modal/interfaces/modal.inte
 import { ModalButtons, ModalTitle } from "../../shared/components"
 import { useState, useContext } from "react"
 import { CreateApiDocDTO } from "@modules/admin/api/dto/apiDoc.dto"
-import { ChacaTextInput } from "@form"
+import { ChacaTextInput } from "@form/components"
 import { LANGUAGES_ARRAY } from "@modules/shared/modules/appConfig/constants/LANGUAGE"
 import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 import { ModalContext } from "@modules/modal/context"

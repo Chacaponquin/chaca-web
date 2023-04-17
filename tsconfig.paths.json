@@ -3,7 +3,7 @@
     "baseUrl": "./",
     "paths": {
       "@containers/*": ["src/containers/*"],
-      "@form": ["src/modules/shared/components/ChacaForm/components"],
+      "@form/*": ["src/modules/shared/modules/form/*"],
       "@modules/*": ["src/modules/*"]
     }
   }

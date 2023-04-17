@@ -1,7 +1,7 @@
 import { Private } from "@modules/shared/assets/icons"
 import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 import { useContext } from "react"
-import { ChacaSwitchButton } from "@form"
+import { ChacaSwitchButton } from "@form/components"
 import { configServices } from "@modules/config/services"
 import { DatasetsContext } from "@modules/datasets/context"
 import { UserContext } from "@modules/user/context"

@@ -4,6 +4,7 @@ export interface ChacaButtonProps {
   size: "small" | "medium" | "large" | "extra-large"
   color: "primary" | "gradient" | "danger" | "secondary" | "cancel"
   className?: string
+  full?: boolean
 }
 
 export interface ChacaIconButtonInterface extends ChacaButtonProps {

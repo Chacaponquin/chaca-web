@@ -1,7 +1,7 @@
 import { MODAL_ACTIONS } from "@modules/modal/constants/MODAL_ACTIONS"
 import { useContext } from "react"
 import { DatasetsContext } from "@modules/datasets/context"
-import { ChacaSimpleButton } from "@modules/shared/components/ChacaButton"
+import { ChacaSimpleButton } from "@form/components"
 import { useLanguage } from "@modules/shared/modules/appConfig/hooks"
 import { ModalContext } from "@modules/modal/context"
 import { APP_IMAGES } from "@modules/shared/constant"

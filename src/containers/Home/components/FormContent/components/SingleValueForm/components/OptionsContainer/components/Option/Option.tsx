@@ -1,4 +1,4 @@
-import { ChacaRadioButton } from "@form"
+import { ChacaRadioButton } from "@form/components"
 import OptionArguments from "../OptionArguments/OptionArguments"
 import clsx from "clsx"
 import { Argument } from "@modules/schemas/interfaces/argument.interface"

@@ -21,8 +21,8 @@ export default function MDView({
               component: ListItem,
             },
             h1: { props: { className: "text-3xl font-fontTitle mb-2 text-black" } },
-            h3: { props: { className: "text-xl font-bold mt-3 text-black" } },
-            h2: { props: { className: "text-xl mb-1 font-bold text-black" } },
+            h3: { props: { className: "text-xl font-bold mt-3 text-black font-fontDoc" } },
+            h2: { props: { className: "text-xl mb-1 font-bold text-black font-fontDoc" } },
             code: {
               component: Code,
               props: {
@@ -33,10 +33,10 @@ export default function MDView({
               props: { className: "mt-2 mb-4" },
             },
             p: {
-              props: { className: "text-grayStrongColor" },
+              props: { className: "text-grayStrongColor font-fontDoc" },
             },
             strong: {
-              props: { className: "text-black font-bold" },
+              props: { className: "text-black font-bold font-fontDoc" },
             },
           },
         }}
