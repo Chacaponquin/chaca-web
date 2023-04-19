@@ -64,6 +64,7 @@ export function appService() {
           setSchemas(schemas)
         })
         .catch(() => {
+        console.log("Error")
           throw new FetchError()
         })
         .finally(() => setInitialFetchLoading(false))

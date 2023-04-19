@@ -22,7 +22,8 @@
     "react/react-in-jsx-scope": "off",
     "camelcase": "error",
     "spaced-comment": "error",
-    "no-duplicate-imports": "error"
+    "no-duplicate-imports": "error",
+    "no-console": "warn"
   },
   "settings": {
     "import/resolver": {
