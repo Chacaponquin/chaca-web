@@ -20,9 +20,9 @@ export default function MDView({
             li: {
               component: ListItem,
             },
-            h1: { props: { className: "text-3xl font-fontTitle mb-2 text-black" } },
-            h3: { props: { className: "text-xl font-bold mt-3 text-black font-fontDoc" } },
-            h2: { props: { className: "text-xl mb-1 font-bold text-black font-fontDoc" } },
+            h1: { props: { className: "text-3xl font-fontBold mb-2 text-black" } },
+            h3: { props: { className: "text-xl font-fontBold mt-3 text-black" } },
+            h2: { props: { className: "text-xl mb-1 font-fontBold text-black" } },
             code: {
               component: Code,
               props: {

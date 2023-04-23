@@ -14,14 +14,13 @@ module.exports = {
         grayStrongColor: "#667085",
       },
       fontFamily: {
-        fontBold: "Montserrat Bold",
-        fontTitle: "Cairo Extra Bold",
-        fontLight: "Cairo Light",
+        fontBold: "Poppins Bold",
+        fontTitle: "Poppins Extra Bold",
+        fontLight: "Poppins Light",
         fontRegular: "Cairo Regular",
-        fontCodeRegular: "FiraCode Regular",
-        fontCodeBold: "FiraCode Bold",
-        fontDoc:
-          '"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Twemoji Country Flags","Segoe UI Emoji","Segoe UI Symbol"',
+        fontCodeRegular: "JetBrains Mono Regular",
+        fontCodeBold: "JetBrains Mono Bold",
+        fontDoc: "Poppins Regular",
       },
       backgroundImage: {
         "first-bg": 'url("./assets/images/first-bg.svg")',
