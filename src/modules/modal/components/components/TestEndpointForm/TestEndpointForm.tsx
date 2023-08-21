@@ -3,13 +3,13 @@ import { ModalTitle } from "../../shared/components"
 import { useEffect, useState } from "react"
 import { OptionArgumentsSection, RequestResult, RequestSection } from "./components"
 import { ArgumentsObject } from "@modules/schemas/interfaces/argument.interface"
-import { schemasServices } from "@modules/schemas/services"
-import { useLazyQuery } from "@modules/shared/modules/http/hooks"
+import { useSchemaServices } from "@modules/schemas/services"
+import { useLazyQuery } from "@modules/app/modules/http/hooks"
 import prettier from "prettier"
 import tsparser from "prettier/parser-typescript"
 
 export default function TestEndpointForm({ option }: { option: SubOption }) {
-  const { optionApiRoute } = schemasServices()
+  const { optionApiRoute } = useSchemaServices()
 
   const [request, { loading }] = useLazyQuery<unknown>()
 
@@ -57,7 +57,7 @@ export default function TestEndpointForm({ option }: { option: SubOption }) {
 
           setRequestResult(formatData)
         } catch (error) {
-          console.log(error)
+          setRequestResult("")
         }
       },
     })

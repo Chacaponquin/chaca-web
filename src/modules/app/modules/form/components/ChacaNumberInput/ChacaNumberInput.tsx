@@ -3,7 +3,7 @@
 import { useMemo, useState, useRef } from "react"
 import { ChacaFormProps } from "../../interfaces/chacaForm.interface"
 import { Size } from "../../interfaces/dimension.interface"
-import { ArrowDown, ArrowUp } from "@modules/shared/assets/icons"
+import { ArrowDown, ArrowUp } from "@modules/app/modules/icon/components"
 import clsx from "clsx"
 
 interface ChacaNumberInputProps extends ChacaFormProps<number> {

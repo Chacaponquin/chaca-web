@@ -1,4 +1,4 @@
-import { File } from "@modules/shared/assets/icons"
+import { File } from "@modules/app/modules/icon/components"
 
 const SidePanelHeader = ({ title }: { title: string }) => {
   return (

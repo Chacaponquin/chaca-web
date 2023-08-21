@@ -1,5 +1,5 @@
-import { APP_IMAGES } from "@modules/shared/constant"
-import { useLanguage } from "@modules/shared/modules/app/hooks"
+import { APP_IMAGES } from "@modules/app/constants"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 
 export default function NoSelectFieldMessage() {
   const { ERROR_TEXT } = useLanguage({

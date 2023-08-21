@@ -11,6 +11,9 @@ import { AppProvider } from "@modules/app/context"
 import { DatasetsProvider } from "@modules/datasets/context"
 import { UserProvider } from "@modules/user/context/UserContext"
 import { ModalContext, ModalProvider } from "@modules/modal/context"
+import { LanguageProvider } from "@modules/app/modules/language/context"
+import { ThemeProvider } from "@modules/app/modules/theme/context"
+
 import { APP_ROUTES } from "@modules/app/constants"
 
 import { ToastContainer } from "react-toastify"
@@ -62,16 +65,20 @@ root.render(
     <BrowserRouter>
       <ErrorBoundary>
         <AppProvider>
-          <UserProvider>
-            <DatasetsProvider>
-              <ModalProvider>
-                <Fragment>
-                  <ToastContainer autoClose={5000} hideProgressBar={true} />
-                  <AppCont />
-                </Fragment>
-              </ModalProvider>
-            </DatasetsProvider>
-          </UserProvider>
+          <LanguageProvider>
+            <ThemeProvider>
+              <UserProvider>
+                <DatasetsProvider>
+                  <ModalProvider>
+                    <Fragment>
+                      <ToastContainer autoClose={5000} hideProgressBar={true} />
+                      <AppCont />
+                    </Fragment>
+                  </ModalProvider>
+                </DatasetsProvider>
+              </UserProvider>
+            </ThemeProvider>
+          </LanguageProvider>
         </AppProvider>
       </ErrorBoundary>
     </BrowserRouter>

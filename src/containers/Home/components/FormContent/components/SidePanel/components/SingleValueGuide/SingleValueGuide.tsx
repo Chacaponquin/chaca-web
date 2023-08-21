@@ -1,10 +1,10 @@
 import { useContext } from "react"
-import { useLanguage } from "@modules/shared/modules/app/hooks"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 import { v4 as uuid } from "uuid"
 import { DatasetField, SingleValueDataType } from "@modules/datasets/interfaces/datasets.interface"
-import { schemasServices } from "@modules/schemas/services"
+import { useSchemaServices } from "@modules/schemas/services"
 import { ChacaIconButton } from "@form/components"
-import { Code } from "@modules/shared/assets/icons"
+import { Code } from "@modules/app/modules/icon/components"
 import { ModalContext } from "@modules/modal/context"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 
@@ -15,7 +15,7 @@ export default function SingleValueGuide({ field }: { field: DatasetField<Single
     TABLE_DESCRIPTION_TEXT: { en: "Description", es: "Descripción" },
   })
 
-  const { findParent, findType, optionApiRoute } = schemasServices()
+  const { findParent, findType, optionApiRoute } = useSchemaServices()
 
   const { handleOpenModal } = useContext(ModalContext)
 

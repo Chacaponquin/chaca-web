@@ -3,10 +3,10 @@ import {
   FieldDataType,
   SingleValueDataType,
 } from "@modules/datasets/interfaces/datasets.interface"
-import { API_ROUTES } from "@modules/shared/routes"
 import { GuideContainer, SidePanelHeader, SingleValueGuide } from "./components"
-import { useLanguage } from "@modules/shared/modules/app/hooks"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 import { DATA_TYPES } from "@modules/schemas/constants"
+import { API_ROUTES } from "@modules/app/constants/ROUTES"
 
 const SidePanel = ({ selectField }: { selectField: DatasetField<FieldDataType> }) => {
   const { HEADER_TEXT } = useLanguage({ HEADER_TEXT: { en: "Documentation", es: "Documentación" } })

@@ -1,4 +1,4 @@
-import { EmptyFormFieldError, RepeatTagError } from "@modules/config/errors"
+import { RepeatTagError } from "@modules/config/errors"
 import { SaveSchemaForm } from "@modules/config/interfaces/config.iterface"
 import { configServices } from "@modules/config/services"
 import { useState } from "react"
@@ -16,9 +16,9 @@ export function useFormContent() {
     try {
       updateSaveSchemaForm(key, value)
     } catch (error) {
-      if (error instanceof EmptyFormFieldError)
-        toast.error(`The new tag can not be an empty string`)
-      else if (error instanceof RepeatTagError) toast.error(`The tag '${error.tag}' already exists`)
+      if (error instanceof RepeatTagError) {
+        toast.error(`The tag '${error.tag}' already exists`)
+      }
     }
   }
 

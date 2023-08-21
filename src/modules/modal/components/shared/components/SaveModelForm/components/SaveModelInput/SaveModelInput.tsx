@@ -1,5 +1,5 @@
-import { Private } from "@modules/shared/assets/icons"
-import { useLanguage } from "@modules/shared/modules/app/hooks"
+import { Private } from "@modules/app/modules/icon/components"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useContext } from "react"
 import { ChacaSwitchButton } from "@form/components"
 import { configServices } from "@modules/config/services"

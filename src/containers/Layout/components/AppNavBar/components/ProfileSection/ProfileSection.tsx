@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
-import { SignOut, User } from "@modules/shared/assets/icons"
+import { SignOut, User } from "@modules/app/modules/icon/components"
 import { Link } from "react-router-dom"
-import { APP_ROUTES } from "@modules/shared/routes"
+import { APP_ROUTES } from "@modules/app/constants"
 import { userServices } from "@modules/user/services"
 import { UserContext } from "@modules/user/context"
 

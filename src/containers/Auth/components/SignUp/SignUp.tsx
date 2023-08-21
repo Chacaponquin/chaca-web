@@ -3,9 +3,9 @@ import { Link } from "react-router-dom"
 import { OtherOptionsSection } from "../../shared/components"
 import { useSignUp } from "./hooks"
 import { ChacaTextInput } from "@form/components"
-import { useLanguage } from "@modules/app/hooks"
 import { APP_ROUTES } from "@modules/app/constants"
 import { LazyRoute, NoUserRoute } from "@modules/app/components"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 
 const SignUp = () => {
   const {

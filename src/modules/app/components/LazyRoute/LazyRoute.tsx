@@ -1,4 +1,4 @@
-import { RouteContentLoader } from "@modules/shared/components/Loader"
+import { RouteContentLoader } from "@modules/app/components/Loader"
 import { ReactElement, Suspense } from "react"
 
 export default function LazyRoute({ children, full }: { children: ReactElement; full?: boolean }) {

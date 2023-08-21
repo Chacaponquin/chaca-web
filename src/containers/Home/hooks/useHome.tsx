@@ -4,15 +4,14 @@ import { SOCKET_EVENTS } from "../constants"
 import { DatasetsContext } from "@modules/datasets/context"
 import { configServices } from "@modules/config/services"
 import io from "socket.io-client"
-import { useLanguage } from "@modules/shared/modules/app/hooks"
-import { EmptyFormFieldError } from "@modules/config/errors"
 import { ModalContext } from "@modules/modal/context"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { userServices } from "@modules/user/services"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 
 export const useHome = () => {
   const { datasets, config, selectedDataset } = useContext(DatasetsContext)
-  const { resetConfig, validateSaveSchemaForm } = configServices()
+  const { resetConfig } = configServices()
   const { getTokenCookie } = userServices()
   const { handleOpenModal } = useContext(ModalContext)
 
@@ -21,9 +20,6 @@ export const useHome = () => {
   })
 
   const [createDataLoading, setCreateDataLoading] = useState(false)
-
-  // porciento de completado de la creacion de los datasets
-  const [porcent, setPorcent] = useState(0)
 
   const socket = useMemo(
     () =>
@@ -46,14 +42,8 @@ export const useHome = () => {
       window.open(`${process.env.REACT_APP_API_URL}/${downUrl}`)
       // cerrar el modal de creation loading
       setCreateDataLoading(false)
-      // reset el contador del porciento
-      setPorcent(0)
       // resetear la configuracion de exportacion
       resetConfig()
-    })
-
-    socket.on(SOCKET_EVENTS.DOCUMENT_CREATED, (porcent) => {
-      setPorcent(Number(porcent) || 0)
     })
 
     socket.on(SOCKET_EVENTS.CREATION_ERROR, () => {
@@ -64,7 +54,6 @@ export const useHome = () => {
     return () => {
       socket.off(SOCKET_EVENTS.GET_FILE_URL)
       socket.off(SOCKET_EVENTS.CREATION_ERROR)
-      socket.off(SOCKET_EVENTS.DOCUMENT_CREATED)
       socket.off(SOCKET_EVENTS.CONNECT)
       socket.off(SOCKET_EVENTS.DISCONNECT)
     }
@@ -86,19 +75,12 @@ export const useHome = () => {
 
   const handleExportSelectDataset = () => {
     if (socket.connected) {
-      try {
-        validateSaveSchemaForm()
-        setCreateDataLoading(true)
+      setCreateDataLoading(true)
 
-        socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {
-          datasets: [selectedDataset.getDatasetObject()],
-          config,
-        })
-      } catch (error) {
-        if (error instanceof EmptyFormFieldError) {
-          toast.error(`The ${error.key} can not be an empty string`)
-        }
-      }
+      socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {
+        datasets: [selectedDataset.getDatasetObject()],
+        config,
+      })
     } else {
       toast.error(NETWORK_ERROR)
       setCreateDataLoading(false)
@@ -120,7 +102,6 @@ export const useHome = () => {
   }
 
   return {
-    porcent,
     handleCreateSelectDataset,
     handleCreateAllDatasets,
     createDataLoading,

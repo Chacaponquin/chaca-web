@@ -1,4 +1,4 @@
-import { ArrowDown } from "@modules/shared/assets/icons"
+import { ArrowDown } from "@modules/app/modules/icon/components"
 import React, { useState, useRef, useMemo, useEffect } from "react"
 import { v4 as uuid } from "uuid"
 import clsx from "clsx"

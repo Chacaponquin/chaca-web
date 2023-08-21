@@ -9,9 +9,9 @@ import {
   PasswordEmptyError,
 } from "@modules/user/errors"
 import { usePost } from "@modules/app/modules/http/hooks"
-import { useLanguage } from "@modules/app/hooks"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { SaveUser } from "@modules/user/domain"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 
 export function useSignUp() {
   const {

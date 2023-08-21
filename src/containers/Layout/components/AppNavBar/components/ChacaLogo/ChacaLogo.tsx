@@ -1,4 +1,4 @@
-import { APP_IMAGES } from "@modules/shared/constant"
+import { APP_IMAGES } from "@modules/app/constants"
 
 export default function ChacaLogo() {
   return (

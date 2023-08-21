@@ -4,7 +4,7 @@ import { DATASETS_ACTIONS } from "../constants"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { AppContext } from "@modules/app/context"
 import { FieldInfoDTO } from "../dto/field.dto"
-import { schemasServices } from "@modules/schemas/services"
+import { useSchemaServices } from "@modules/schemas/services"
 import { DatasetField, SingleValueDataType } from "../interfaces/datasets.interface"
 import { DatasetTree } from "@modules/datasets/domain"
 import { useValidations } from "../hooks"
@@ -18,7 +18,7 @@ export function datasetServices() {
     handleSelectDataset,
   } = useContext(DatasetsContext)
   const { schemas } = useContext(AppContext)
-  const { findParent } = schemasServices()
+  const { findParent } = useSchemaServices()
   const { validateDatasetName, validateFieldName } = useValidations()
 
   const initDatasets = () => {

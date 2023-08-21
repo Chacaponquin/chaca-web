@@ -2,10 +2,18 @@ import { useContext } from "react"
 import { DatasetsContext } from "@modules/datasets/context/DatasetContext/DatasetsContext"
 import clsx from "clsx"
 import { UserContext } from "@modules/user/context/UserContext"
-import { useLanguage } from "@modules/shared/modules/app/hooks"
 import { AppContext } from "@modules/app/context"
 import { datasetServices } from "@modules/datasets/services"
 import { ChacaNumberInput } from "@form/components"
+import { useLanguage } from "@modules/app/modules/language/hooks"
+
+interface DatasetConfigMenuProps {
+  handleAddDatasetField: () => void
+  handleDeleteDataset: () => void
+  handleExportDataset: () => void
+  handleEditDataset: () => void
+  menuRef: React.MutableRefObject<HTMLDivElement | null>
+}
 
 const DatasetConfigMenu = ({
   handleAddDatasetField,
@@ -13,13 +21,7 @@ const DatasetConfigMenu = ({
   handleExportDataset,
   handleEditDataset,
   menuRef,
-}: {
-  handleAddDatasetField: () => void
-  handleDeleteDataset: () => void
-  handleExportDataset: () => void
-  handleEditDataset: () => void
-  menuRef: React.MutableRefObject<HTMLDivElement | null>
-}) => {
+}: DatasetConfigMenuProps) => {
   const { selectedDataset, datasets } = useContext(DatasetsContext)
   const { actualUser } = useContext(UserContext)
   const { noUserLimits } = useContext(AppContext)

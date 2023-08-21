@@ -1,4 +1,4 @@
-import { useLanguage } from "@modules/shared/modules/app/hooks"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 import { ModalEditField } from "@modules/modal/interfaces/modal.interface"
 import { ModalButtons, ModalTitle, FieldForm } from "../../shared/components"
 import { useEditFieldForm } from "./hooks"

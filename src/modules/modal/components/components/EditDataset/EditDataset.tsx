@@ -1,4 +1,4 @@
-import { useLanguage } from "@modules/shared/modules/app/hooks"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 import { DatasetForm, ModalButtons, ModalTitle } from "../../shared/components"
 import { useEditDataset } from "./hooks"
 

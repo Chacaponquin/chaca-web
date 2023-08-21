@@ -1,4 +1,4 @@
-import { useLanguage } from "@modules/shared/modules/app/hooks"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets.interface"
 import { useFieldConfigMenu } from "./hooks"
 

@@ -1,3 +1,3 @@
-import { useEnvServices } from "./useEnvServices"
+import useEnvServices from "./useEnvServices"
 
 export { useEnvServices }

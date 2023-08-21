@@ -1,5 +1,5 @@
 import { ModalContext } from "@modules/modal/context"
-import { X } from "@modules/shared/assets/icons"
+import { X } from "@modules/app/modules/icon/components"
 import { useContext } from "react"
 
 const ModalTitle = ({ titleText }: { titleText: string }) => {

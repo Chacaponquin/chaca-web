@@ -16,23 +16,27 @@ export const useFieldForm = (f: FieldInfoDTO) => {
   }
 
   const handleChangeMaxIsArray = (max: number | null) => {
-    setField({
-      ...field,
-      isArray: {
-        min: field.isArray!.min,
-        max: max ? max : field.isArray!.min + 1,
-      },
-    })
+    if (field.isArray) {
+      setField({
+        ...field,
+        isArray: {
+          min: field.isArray.min,
+          max: max ? max : field.isArray.min + 1,
+        },
+      })
+    }
   }
 
   const handleChangeMinIsArray = (min: number | null) => {
-    setField({
-      ...field,
-      isArray: {
-        max: field.isArray!.max,
-        min: min ? min : 0,
-      },
-    })
+    if (field.isArray) {
+      setField({
+        ...field,
+        isArray: {
+          max: field.isArray.max,
+          min: min ? min : 0,
+        },
+      })
+    }
   }
 
   const handleChangePossibleNull = (isNull: boolean) => {

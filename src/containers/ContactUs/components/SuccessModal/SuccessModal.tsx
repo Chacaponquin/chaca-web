@@ -1,6 +1,5 @@
-import { APP_IMAGES } from "@modules/shared/constant"
-import { useLanguage } from "@modules/shared/modules/app/hooks"
-import { APP_ROUTES } from "@modules/shared/routes"
+import { APP_IMAGES, APP_ROUTES } from "@modules/app/constants"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 import { Link } from "react-router-dom"
 
 export default function SuccessModal() {

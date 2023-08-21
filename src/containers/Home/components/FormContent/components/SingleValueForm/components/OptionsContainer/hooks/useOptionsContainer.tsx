@@ -1,12 +1,12 @@
 import { DatasetField, SingleValueDataType } from "@modules/datasets/interfaces/datasets.interface"
 import { datasetServices } from "@modules/datasets/services"
 import { SubOption } from "@modules/schemas/interfaces/schema.interface"
-import { schemasServices } from "@modules/schemas/services"
+import { useSchemaServices } from "@modules/schemas/services"
 import { useState } from "react"
 import { Argument } from "@modules/schemas/interfaces/argument.interface"
 
 export function useOptionsContainer(field: DatasetField<SingleValueDataType>) {
-  const { findType } = schemasServices()
+  const { findType } = useSchemaServices()
   const { selectFieldSchemaOption } = datasetServices()
 
   const [selectOption, setSelectOption] = useState<string>(

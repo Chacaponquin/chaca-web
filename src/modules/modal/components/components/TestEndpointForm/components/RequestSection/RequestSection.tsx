@@ -1,6 +1,6 @@
-import { Send } from "@modules/shared/assets/icons"
+import { Send } from "@modules/app/modules/icon/components"
 import { ChacaIconButton } from "@form/components"
-import { useLanguage } from "@modules/shared/modules/app/hooks"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 
 export default function RequestSection({
   url,

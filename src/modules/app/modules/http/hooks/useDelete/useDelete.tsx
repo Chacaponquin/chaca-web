@@ -1,6 +1,6 @@
-import { ChacaHttpError } from "@modules/shared/interfaces/error.interface"
-import { useConfig } from "@modules/shared/modules/app/hooks"
-import { handleResponseError } from "@modules/shared/utils"
+import { useConfig } from "@modules/app/hooks"
+import { ChacaHttpError } from "../../interfaces/error.interface"
+import { handleResponseError } from "../../utils"
 import { useState } from "react"
 
 interface DeleteProps {

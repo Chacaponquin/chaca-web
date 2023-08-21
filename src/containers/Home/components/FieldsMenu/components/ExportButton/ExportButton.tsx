@@ -1,4 +1,4 @@
-import { useLanguage } from "@modules/shared/modules/app/hooks"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 
 const ExportButton = ({ handleExportAllDatasets }: { handleExportAllDatasets: () => void }) => {
   const UI_TEXT = useLanguage({

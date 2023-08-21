@@ -1,7 +1,7 @@
 import { useState } from "react"
-import LoaderContainer from "@modules/shared/components/Loader/LoaderContainer/LoaderContainer"
-import { useQuery } from "@modules/shared/modules/http/hooks"
-import MDView from "@modules/shared/modules/markdown/components/MDView/MDView"
+import { LoaderContainer } from "@modules/app/components/Loader"
+import { useQuery } from "@modules/app/modules/http/hooks"
+import { MDView } from "@modules/shared/modules/markdown/components"
 
 const GuideContainer = ({ route }: { route: string }) => {
   const [content, setContent] = useState("")

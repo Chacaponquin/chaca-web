@@ -1,4 +1,4 @@
-import { ArrowRight, GitHub, Npm } from "@modules/shared/assets/icons"
+import { ArrowRight, GitHub, Npm } from "@modules/app/modules/icon/components"
 import { useState } from "react"
 
 export default function LinkButton({ link, type }: { link: string; type: "github" | "npm" }) {

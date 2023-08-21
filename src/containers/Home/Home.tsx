@@ -8,8 +8,7 @@ import { LazyRoute } from "@modules/app/components"
 import "./home.css"
 
 const Home = () => {
-  const { handleCreateSelectDataset, handleCreateAllDatasets, createDataLoading, porcent } =
-    useHome()
+  const { handleCreateSelectDataset, handleCreateAllDatasets, createDataLoading } = useHome()
 
   const { showFieldsMenu } = useContext(DatasetsContext)
   const { smallWindow } = useContext(AppContext)
@@ -17,7 +16,7 @@ const Home = () => {
   return (
     <LazyRoute>
       <div className='flex w-full h-full'>
-        {createDataLoading && <CreationLoadingModal porcent={porcent} />}
+        {createDataLoading && <CreationLoadingModal />}
 
         {(!smallWindow || (smallWindow && showFieldsMenu)) && (
           <FieldsMenu

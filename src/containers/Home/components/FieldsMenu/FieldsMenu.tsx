@@ -3,7 +3,7 @@ import { DatasetsContext } from "@modules/datasets/context"
 import { DatasetsHeader, ExportButton, FieldContainer, NoFieldsMessage } from "./components"
 import clsx from "clsx"
 import { AppContext } from "@modules/app/context"
-import { X } from "@modules/shared/assets/icons"
+import { X } from "@modules/app/modules/icon/components"
 
 const FieldsMenu = ({
   handleCreateSelectDataset,

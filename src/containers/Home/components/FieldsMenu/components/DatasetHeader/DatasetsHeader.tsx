@@ -1,11 +1,10 @@
 import { useContext } from "react"
-import { Bars, Plus } from "@modules/shared/assets/icons"
+import { Bars, Plus } from "@modules/app/modules/icon/components"
 import { DatasetsContext } from "@modules/datasets/context"
 import { DatasetConfigMenu } from "./components"
 import { ChacaSelect } from "@form/components"
 import { useDatasetsHeader } from "./hooks"
-import ChacaBlockInfo from "@modules/shared/components/ChacaBlockInfo/ChacaBlockInfo"
-import { useLanguage } from "@modules/shared/modules/app/hooks"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 
 const DatasetsHeader = ({
   handleCreateSelectDataset,
@@ -24,7 +23,7 @@ const DatasetsHeader = ({
     menuRef,
   } = useDatasetsHeader(handleCreateSelectDataset)
 
-  const { NEW_DATASET_MESSAGE, SELECT_DATASET_MESSAGE } = useLanguage({
+  const { SELECT_DATASET_MESSAGE } = useLanguage({
     NEW_DATASET_MESSAGE: { en: "New Dataset", es: "Añadir Dataset" },
     SELECT_DATASET_MESSAGE: { en: "Select a Dataset", es: "Selecciona un Dataset" },
   })
@@ -32,11 +31,9 @@ const DatasetsHeader = ({
   return (
     <div className='pt-2 px-4 mb-2 w-full bg-white flex items-center justify-between'>
       <div className='gap-3 flex items-center'>
-        <ChacaBlockInfo message={NEW_DATASET_MESSAGE}>
-          <button onClick={handleNewDataset}>
-            <Plus size={18} />
-          </button>
-        </ChacaBlockInfo>
+        <button onClick={handleNewDataset}>
+          <Plus size={18} />
+        </button>
 
         <ChacaSelect
           size={200}
