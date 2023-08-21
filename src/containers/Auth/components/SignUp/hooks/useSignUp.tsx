@@ -1,44 +1,57 @@
 import { userServices } from "@modules/user/services"
-import { API_ROUTES } from "@modules/shared/routes"
-import { useState, useContext } from "react"
+import { useState } from "react"
 import { toast } from "react-toastify"
-import { SignUpUserDTO } from "@containers/Auth/shared/dto/signUpUserDTO.dto"
-import { NotEqualUserPasswords, UsernameShortError } from "@modules/user/error"
-import { RequiredFormFieldError } from "@modules/shared/modules/http/errors"
-import { AppContext } from "@modules/shared/modules/app/context"
-import { usePost } from "@modules/shared/modules/http/hooks"
-import { useLanguage } from "@modules/shared/modules/app/hooks"
+import { SignUpUserDTO } from "@modules/user/dto/user"
+import {
+  NotEqualUserPasswords,
+  UsernameShortError,
+  EmailEmptyError,
+  PasswordEmptyError,
+} from "@modules/user/errors"
+import { usePost } from "@modules/app/modules/http/hooks"
+import { useLanguage } from "@modules/app/hooks"
+import { API_ROUTES } from "@modules/app/constants/ROUTES"
+import { SaveUser } from "@modules/user/domain"
 
 export function useSignUp() {
-  const { language } = useContext(AppContext)
-
-  const { ALREADY_EXIST_USER_TEXT, CREATING_USER_TEXT, LENGTH_USERNAME, NOT_EQUAL_PASSWORDS } =
-    useLanguage({
-      ALREADY_EXIST_USER_TEXT: { en: "This user already exists", es: "Ya existe este usuario" },
-      CREATING_USER_TEXT: {
-        en: "There was an error creating the user",
-        es: "Hubo un error en la creación del usaurio",
-      },
-      LENGTH_USERNAME: {
-        en: "The username must have at least 7 characters",
-        es: "El nombre de usuario debe tener al menos 7 caracteres",
-      },
-      NOT_EQUAL_PASSWORDS: {
-        en: "Your passwords do not match",
-        es: "Tus contraseñas no coinciden",
-      },
-    })
+  const {
+    ALREADY_EXIST_USER_TEXT,
+    CREATING_USER_TEXT,
+    LENGTH_USERNAME,
+    NOT_EQUAL_PASSWORDS,
+    EMPTY_EMAIL,
+    EMPTY_PASSWORD,
+  } = useLanguage({
+    ALREADY_EXIST_USER_TEXT: { en: "This user already exists", es: "Ya existe este usuario" },
+    CREATING_USER_TEXT: {
+      en: "There was an error creating the user",
+      es: "Hubo un error en la creación del usaurio",
+    },
+    LENGTH_USERNAME: {
+      en: "The username must have at least 7 characters",
+      es: "El nombre de usuario debe tener al menos 7 caracteres",
+    },
+    NOT_EQUAL_PASSWORDS: {
+      en: "Your passwords do not match",
+      es: "Tus contraseñas no coinciden",
+    },
+    EMPTY_EMAIL: { en: "The email can not be empty", es: "El email no puede estar vacío" },
+    EMPTY_PASSWORD: {
+      en: "The password can not be empty",
+      es: "La contraseña no puede estar vacía",
+    },
+  })
 
   const [signUpData, setSignUpData] = useState<SignUpUserDTO>({
     username: "",
     email: "",
     password: "",
-    comfirmPassword: "",
+    confirmPassword: "",
   })
 
-  const { handleSignIn, validateSignUpDTO } = userServices()
+  const { handleSignIn } = userServices()
 
-  const [signUpUser, { loading }] = usePost<string, SignUpUserDTO>({
+  const [signUpUser, { loading }] = usePost<string, SaveUser>({
     url: API_ROUTES.AUTH_ROUTES.SIGN_UP,
     onCompleted: (userToken) => {
       handleSignIn(userToken)
@@ -56,15 +69,17 @@ export function useSignUp() {
     e.preventDefault()
 
     try {
-      validateSignUpDTO(signUpData)
-      signUpUser({ body: signUpData })
+      const saveUser = new SaveUser({ ...signUpData })
+      signUpUser({ body: saveUser })
     } catch (error) {
       if (error instanceof UsernameShortError) {
         toast.error(LENGTH_USERNAME)
       } else if (error instanceof NotEqualUserPasswords) {
         toast.error(NOT_EQUAL_PASSWORDS)
-      } else if (error instanceof RequiredFormFieldError) {
-        toast.error(error.fieldTraduction[language])
+      } else if (error instanceof EmailEmptyError) {
+        toast.error(EMPTY_EMAIL)
+      } else if (error instanceof PasswordEmptyError) {
+        toast.error(EMPTY_PASSWORD)
       }
     }
   }

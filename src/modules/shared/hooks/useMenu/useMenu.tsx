@@ -1,4 +1,4 @@
-import { AppContext } from "@modules/shared/modules/app/context"
+import { AppContext } from "@modules/app/context"
 import { useEffect, useMemo, useContext } from "react"
 import { v4 as uuid } from "uuid"
 
@@ -45,13 +45,11 @@ export function useMenu({ handleClose, handleOpen, ref }: MenuProps) {
   }, [ref])
 
   function handleOpenMenu() {
-    console.log("Abriendo")
     handleOpenDropDown(menuID)
     if (handleOpen) handleOpen()
   }
 
   function handleCloseMenu() {
-    console.log("Cerrando")
     handleCloseDropDown(menuID)
     if (handleClose) handleClose()
   }

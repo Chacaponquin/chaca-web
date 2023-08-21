@@ -1,8 +1,8 @@
 import { DatasetsContext } from "@modules/datasets/context"
-import { AppContext } from "@modules/shared/modules/app/context"
+import { AppContext } from "@modules/app/context"
 import { useContext } from "react"
 import { CONFIG_ACTIONS, FILE_TYPE } from "../constants"
-import { EmptyFormFieldError, RepeatTagError } from "../errors"
+import { RepeatTagError } from "../errors"
 import { SaveSchemaForm } from "../interfaces/config.iterface"
 
 export function configServices() {
@@ -14,16 +14,6 @@ export function configServices() {
       type: CONFIG_ACTIONS.SET_INITIAL_CONFIG,
       payload: { fileConfig },
     })
-  }
-
-  const validateSaveSchemaForm = () => {
-    if (config.saveSchema) {
-      for (const [key, value] of Object.entries(config.saveSchema)) {
-        if (value === "") {
-          throw new EmptyFormFieldError(key as keyof SaveSchemaForm)
-        }
-      }
-    }
   }
 
   const changeFileArgument = (argName: string, value: unknown) => {
@@ -61,9 +51,7 @@ export function configServices() {
           payload: { value: { ...config.saveSchema, description: value } },
         })
       } else {
-        if (value === "") {
-          throw new EmptyFormFieldError(key)
-        } else if (config.saveSchema.tags.some((t) => t === value)) {
+        if (config.saveSchema.tags.some((t) => t === value)) {
           throw new RepeatTagError(value)
         }
 
@@ -88,7 +76,6 @@ export function configServices() {
     changeSaveSchema,
     updateSaveSchemaForm,
     resetConfig,
-    validateSaveSchemaForm,
     changeFileArgument,
     changeFileType,
   }

@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { DatasetsContext } from "@modules/datasets/context"
 import { DatasetsHeader, ExportButton, FieldContainer, NoFieldsMessage } from "./components"
 import clsx from "clsx"
-import { AppContext } from "@modules/shared/modules/app/context"
+import { AppContext } from "@modules/app/context"
 import { X } from "@modules/shared/assets/icons"
 
 const FieldsMenu = ({

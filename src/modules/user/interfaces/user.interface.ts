@@ -7,7 +7,7 @@ export interface LoginUser {
 }
 
 export interface UserDataScehma {
-  _id: string
+  id: string
   name: string
-  data: { [path: string]: unknown }
+  data: string
 }

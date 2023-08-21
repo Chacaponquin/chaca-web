@@ -1,6 +1,6 @@
 import { datasetServices } from "@modules/datasets/services"
 import { DATA_TYPES } from "@modules/schemas/constants"
-import { FieldNode } from "@modules/shared/classes"
+import { FieldNode } from "@modules/datasets/domain"
 import { useLanguage } from "@modules/shared/modules/app/hooks"
 import clsx from "clsx"
 import { useCallback } from "react"

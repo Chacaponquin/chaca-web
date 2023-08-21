@@ -4,7 +4,7 @@ import { useLanguage } from "@modules/shared/modules/app/hooks"
 import SaveModelForm from "../SaveModelForm/SaveModelForm"
 import { ChacaSelect } from "@form/components"
 import { DatasetsContext } from "@modules/datasets/context"
-import { AppContext } from "@modules/shared/modules/app/context"
+import { AppContext } from "@modules/app/context"
 import { FILE_TYPE } from "@modules/config/constants"
 import { configServices } from "@modules/config/services"
 

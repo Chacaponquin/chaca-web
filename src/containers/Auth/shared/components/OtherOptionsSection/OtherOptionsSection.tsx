@@ -1,5 +1,5 @@
 import { Fragment } from "react"
-import { GitHub, Google } from "@modules/shared/assets/icons"
+import { GitHub, Google } from "@modules/app/modules/icon/components"
 import { userServices } from "@modules/user/services"
 
 const divClass =

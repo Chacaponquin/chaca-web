@@ -1,10 +1,10 @@
 import { useContext } from "react"
 import { Outlet, useLocation } from "react-router-dom"
-import { APP_ROUTES } from "@modules/shared/routes"
-import { LandingNavBar, AppNavBar } from "./layout"
-import { AppLoader } from "@modules/shared/components/Loader"
-import { AppContext } from "@modules/shared/modules/app/context"
+import { LandingNavBar, AppNavBar } from "./containers/Layout/components"
+import { AppLoader } from "@modules/app/components/Loader"
+import { AppContext } from "@modules/app/context"
 import { UserContext } from "@modules/user/context"
+import { APP_ROUTES } from "@modules/app/constants"
 
 function App() {
   const { loading } = useContext(UserContext)

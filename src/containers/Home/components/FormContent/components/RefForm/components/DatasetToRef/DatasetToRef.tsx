@@ -1,4 +1,4 @@
-import { DatasetTree } from "@modules/shared/classes"
+import { DatasetTree } from "@modules/datasets/domain"
 import FieldToRef from "../FieldToRef/FieldToRef"
 import { DatasetField, RefDataType } from "@modules/datasets/interfaces/datasets.interface"
 

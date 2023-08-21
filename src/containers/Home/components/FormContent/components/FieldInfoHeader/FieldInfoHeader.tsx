@@ -1,7 +1,7 @@
 import { Fragment } from "react"
 import { Change, Delete } from "@modules/shared/assets/icons"
 import { v4 as uuid } from "uuid"
-import { FieldNode } from "@modules/shared/classes"
+import { FieldNode } from "@modules/datasets/domain"
 import { FieldDataType } from "@modules/datasets/interfaces/datasets.interface"
 import { ChacaIconButton } from "@form/components"
 import { useLanguage } from "@modules/shared/modules/app/hooks"

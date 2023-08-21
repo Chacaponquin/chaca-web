@@ -2,11 +2,11 @@ import { DatasetsContext } from "../context"
 import { useContext } from "react"
 import { DATASETS_ACTIONS } from "../constants"
 import { DATA_TYPES } from "@modules/schemas/constants"
-import { AppContext } from "@modules/shared/modules/app/context"
-import { FieldInfoDTO } from "../dto/fieldInfo.dto"
+import { AppContext } from "@modules/app/context"
+import { FieldInfoDTO } from "../dto/field.dto"
 import { schemasServices } from "@modules/schemas/services"
 import { DatasetField, SingleValueDataType } from "../interfaces/datasets.interface"
-import { DatasetTree } from "@modules/shared/classes"
+import { DatasetTree } from "@modules/datasets/domain"
 import { useValidations } from "../hooks"
 
 export function datasetServices() {
@@ -23,12 +23,10 @@ export function datasetServices() {
 
   const initDatasets = () => {
     const initDataset = new DatasetTree("New Dataset", 50)
-
     return [initDataset]
   }
 
   const addDataset = (datasetName: string) => {
-    console.log(datasetName)
     validateDatasetName(datasetName)
     // create dataset
     datasetDispatch({

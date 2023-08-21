@@ -1,9 +1,9 @@
 import { userServices } from "@modules/user/services"
-import { usePost } from "@modules/shared/modules/http/hooks"
-import { API_ROUTES } from "@modules/shared/routes"
+import { usePost } from "@modules/app/modules/http/hooks"
 import { useState } from "react"
 import { toast } from "react-toastify"
-import { LoginUserDTO } from "@containers/Auth/shared/dto/loginUserDTO.dto"
+import { LoginUserDTO } from "@modules/user/dto/user"
+import { API_ROUTES } from "@modules/app/constants/ROUTES"
 
 export function useLogin() {
   const { handleSignIn } = userServices()

@@ -1,6 +1,6 @@
 import { Fragment } from "react"
 import { v4 as uuid } from "uuid"
-import { FieldNode } from "@modules/shared/classes"
+import { FieldNode } from "@modules/datasets/domain"
 import { useDataTypeSelect } from "./hooks"
 
 const DataTypeSelect = ({ selectField }: { selectField: FieldNode }) => {

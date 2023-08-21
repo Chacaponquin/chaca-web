@@ -1,3 +1,3 @@
-import { DATASETS_ACTIONS } from "./DATASET_ACTIONS.enum"
+import { DATASETS_ACTIONS } from "./DATASET_ACTIONS"
 
 export { DATASETS_ACTIONS }

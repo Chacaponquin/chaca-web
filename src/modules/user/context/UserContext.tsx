@@ -1,9 +1,7 @@
-/*eslint-disable */
-
 import { createContext, useState, ReactElement } from "react"
-import { useQuery } from "@modules/shared/modules/http/hooks"
-import { API_ROUTES } from "@modules/shared/routes"
+import { useQuery } from "@modules/app/modules/http/hooks"
 import { LoginUser } from "../interfaces/user.interface"
+import { API_ROUTES } from "@modules/app/constants/ROUTES"
 
 const UserContext = createContext<{
   actualUser: LoginUser | null

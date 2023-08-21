@@ -1,6 +1,6 @@
 import { ChacaLinkButton } from "@form/components"
-import { useLanguage } from "@modules/shared/modules/app/hooks"
-import { APP_ROUTES } from "@modules/shared/routes/app/APP_ROUTES"
+import { APP_ROUTES } from "@modules/app/constants"
+import { useLanguage } from "@modules/app/hooks"
 
 const Error404 = () => {
   const { ERROR_MESSAGE, REPORT_PROBLEM_TEXT } = useLanguage({

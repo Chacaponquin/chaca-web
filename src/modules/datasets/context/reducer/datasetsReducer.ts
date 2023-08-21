@@ -1,9 +1,9 @@
 import { FieldDataType } from "../../interfaces/datasets.interface"
 import { DATASETS_ACTIONS } from "../../constants"
 import { Reducer } from "react"
-import { DatasetTree, FieldNode } from "@modules/shared/classes"
-import { NodeInfo } from "@modules/shared/interfaces/tree.interface"
-import { FieldInfoDTO } from "@modules/datasets/dto/fieldInfo.dto"
+import { DatasetTree, FieldNode } from "@modules/datasets/domain"
+import { NodeInfo } from "@modules/datasets/interfaces/tree.interface"
+import { FieldInfoDTO } from "@modules/datasets/dto/field.dto"
 
 export type DatasetPayload =
   | { type: DATASETS_ACTIONS.DELETE_DATASET; payload: { datasetID: string } }

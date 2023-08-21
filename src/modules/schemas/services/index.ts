@@ -1,3 +1,3 @@
-import { schemasServices } from "./schemasServices"
+import { useSchemaServices } from "./useSchemaServices"
 
-export { schemasServices }
+export { useSchemaServices }

@@ -1,13 +1,11 @@
-import { SignUpUserDTO } from "@containers/Auth/shared/dto/signUpUserDTO.dto"
-import { API_ROUTES } from "@modules/shared/routes"
-import { appService } from "@modules/shared/modules/app/services/appServices.service"
-import { NotEqualUserPasswords, UsernameShortError } from "../error"
 import { TOKEN_LOCATION } from "../constants/TOKEN"
 import Cookies from "universal-cookie"
 import { useCallback } from "react"
+import { API_ROUTES } from "@modules/app/constants/ROUTES"
+import { useEnvServices } from "@modules/app/modules/env/services"
 
 export function userServices() {
-  const { validateRequiredForm } = appService()
+  const { API_ROUTE } = useEnvServices()
 
   const handleSignIn = (token: string) => {
     localStorage.setItem(TOKEN_LOCATION, token)
@@ -20,33 +18,11 @@ export function userServices() {
   }
 
   const handleGoogleLogin = () => {
-    window.open(`${process.env.REACT_APP_API_URL}${API_ROUTES.AUTH_ROUTES.GOOGLE_AUTH}`, "_self")
+    window.open(`${API_ROUTE}${API_ROUTES.AUTH_ROUTES.GOOGLE_AUTH}`, "_self")
   }
 
   const handleGithubLogin = () => {
-    window.open(`${process.env.REACT_APP_API_URL}${API_ROUTES.AUTH_ROUTES.GITHUB_AUTH}`, "_self")
-  }
-
-  const validateSignUpDTO = (userForm: SignUpUserDTO) => {
-    if (userForm.username.length < 7) {
-      throw new UsernameShortError()
-    }
-    if (userForm.comfirmPassword !== userForm.password) {
-      throw new NotEqualUserPasswords()
-    }
-
-    validateRequiredForm<SignUpUserDTO>(userForm, {
-      username: {
-        en: "The username can not be empty",
-        es: "El nombre de usuario no puede estar vacío",
-      },
-      email: { en: "The email can not be empty", es: "El email no puede estar vacío" },
-      password: { en: "The password can not be empty", es: "La contraseña no puede estar vacía" },
-      comfirmPassword: {
-        en: "The confirm password can not be empty",
-        es: "La contraseña de confirmación no puede estar vacía",
-      },
-    })
+    window.open(`${API_ROUTE}${API_ROUTES.AUTH_ROUTES.GITHUB_AUTH}`, "_self")
   }
 
   const getTokenCookie = useCallback((): string => {
@@ -68,6 +44,5 @@ export function userServices() {
     handleSignOut,
     handleGoogleLogin,
     handleGithubLogin,
-    validateSignUpDTO,
   }
 }

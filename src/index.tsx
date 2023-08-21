@@ -1,18 +1,17 @@
 import React, { Fragment, useContext } from "react"
 import ReactDOM from "react-dom/client"
 import App from "./App"
+
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Landing, ContactUs, Error404 } from "./containers"
+import { ErrorBoundary } from "@modules/app/components"
 
 // CONTEXT PROVIDERS
-import { AppProvider } from "@modules/shared/modules/app/context"
+import { AppProvider } from "@modules/app/context"
 import { DatasetsProvider } from "@modules/datasets/context"
 import { UserProvider } from "@modules/user/context/UserContext"
 import { ModalContext, ModalProvider } from "@modules/modal/context"
-
-import { NoUserRoute, APP_ROUTES, LazyRoute } from "@modules/shared/routes"
-
-import { ErrorBoundary } from "./layout"
+import { APP_ROUTES } from "@modules/app/constants"
 
 import { ToastContainer } from "react-toastify"
 
@@ -29,8 +28,6 @@ import "primeicons/primeicons.css"
 const root = ReactDOM.createRoot(document.getElementById("root") as Element)
 
 const Home = React.lazy(() => import("./containers/Home/Home"))
-// const Api = React.lazy(() => import("./containers/Api/Api"))
-// const Models = React.lazy(() => import("./containers/Models/Models"))
 const Login = React.lazy(() => import("./containers/Auth/components/Login/Login"))
 const SignUp = React.lazy(() => import("./containers/Auth/components/SignUp/SignUp"))
 
@@ -42,40 +39,14 @@ const AppCont = () => {
       {openModal && <Modal modalProps={openModal} />}
 
       <Routes>
-        <Route
-          path={APP_ROUTES.AUTH_ROUTES.LOGIN}
-          element={
-            <LazyRoute
-              element={
-                <NoUserRoute>
-                  <Login />
-                </NoUserRoute>
-              }
-              full={true}
-            />
-          }
-        />
-        <Route
-          path={APP_ROUTES.AUTH_ROUTES.SIGN_UP}
-          element={
-            <LazyRoute
-              element={
-                <NoUserRoute>
-                  <SignUp />
-                </NoUserRoute>
-              }
-              full={true}
-            />
-          }
-        />
+        <Route path={APP_ROUTES.AUTH_ROUTES.LOGIN} element={<Login />} />
+        <Route path={APP_ROUTES.AUTH_ROUTES.SIGN_UP} element={<SignUp />} />
         <Route path={APP_ROUTES.CONTACT_US} element={<ContactUs />} />
 
-        <Route path='/' element={<App />}>
+        <Route path={APP_ROUTES.ROOT} element={<App />}>
           <Fragment>
             <Route path={APP_ROUTES.ROOT} element={<Landing />} />
-            <Route path={APP_ROUTES.HOME} element={<LazyRoute element={<Home />} />} />
-            {/* <Route path={APP_ROUTES.API} element={<LazyRoute element={<Api />} />} /> */}
-            {/* <Route path={APP_ROUTES.MODELS} element={<LazyRoute element={<Models />} />} />*/}
+            <Route path={APP_ROUTES.HOME} element={<Home />} />
             <Route path={APP_ROUTES.NOT_FOUND} element={<Error404 />} />
           </Fragment>
         </Route>

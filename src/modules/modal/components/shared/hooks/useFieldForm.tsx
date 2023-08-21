@@ -1,4 +1,4 @@
-import { FieldInfoDTO } from "@modules/datasets/dto/fieldInfo.dto"
+import { FieldInfoDTO } from "@modules/datasets/dto/field.dto"
 import { useState } from "react"
 
 export const useFieldForm = (f: FieldInfoDTO) => {

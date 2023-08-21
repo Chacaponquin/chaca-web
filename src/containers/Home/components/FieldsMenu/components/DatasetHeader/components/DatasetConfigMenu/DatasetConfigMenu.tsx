@@ -3,7 +3,7 @@ import { DatasetsContext } from "@modules/datasets/context/DatasetContext/Datase
 import clsx from "clsx"
 import { UserContext } from "@modules/user/context/UserContext"
 import { useLanguage } from "@modules/shared/modules/app/hooks"
-import { AppContext } from "@modules/shared/modules/app/context"
+import { AppContext } from "@modules/app/context"
 import { datasetServices } from "@modules/datasets/services"
 import { ChacaNumberInput } from "@form/components"
 

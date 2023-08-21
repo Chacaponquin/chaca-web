@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-
 @font-face {
   font-family: "Poppins Light";
   src: url("./assets//font/Poppins/Poppins-Light.ttf");
@@ -24,7 +21,6 @@
   font-family: "Poppins Extra Bold";
   src: url("./assets//font/Poppins/Poppins-ExtraBold.ttf");
 }
-
 
 @font-face {
   font-family: "JetBrains Mono Regular";
@@ -50,7 +46,6 @@
   position: sticky;
 }
 
-
 .code-container * {
   font-family: "JetBrains Mono Regular";
   font-size: 14px;
@@ -61,10 +56,10 @@
   font-size: 13px;
 }
 
-.ͼ1 .cm-gutters{
+.ͼ1 .cm-gutters {
   background-color: transparent !important;
 }
 
-.ͼg0{
+.ͼg0 {
   background-color: transparent !important;
 }

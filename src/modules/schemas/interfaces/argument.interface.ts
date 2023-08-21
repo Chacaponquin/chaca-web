@@ -7,6 +7,4 @@ export interface Argument {
   description: string
 }
 
-export interface ArgumentsObject {
-  [key: string]: unknown
-}
+export type ArgumentsObject = Record<string, unknown>

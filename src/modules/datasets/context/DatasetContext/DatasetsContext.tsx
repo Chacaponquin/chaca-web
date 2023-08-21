@@ -1,5 +1,3 @@
-/*eslint-disable */
-
 import {
   useEffect,
   ReactElement,
@@ -10,17 +8,17 @@ import {
   useReducer,
   useState,
 } from "react"
-import { ConfigPayload, configReducer } from "@modules/config/reducer/configReducer"
+import { ConfigPayload, configReducer } from "@modules/config/reducer/config_reducer"
 import { DatasetPayload, datasetsReducer } from "../reducer/datasetsReducer"
 import { FILE_TYPE } from "@modules/config/constants"
 import { ConfigSchema } from "@modules/config/interfaces/config.iterface"
-import { AppContext } from "@modules/shared/modules/app/context"
-import { DatasetTree, FieldNode } from "@modules/shared/classes"
+import { AppContext } from "@modules/app/context"
+import { DatasetTree, FieldNode } from "@modules/datasets/domain"
 import { configServices } from "@modules/config/services"
 import { datasetServices } from "@modules/datasets/services"
 import { DATASETS_ACTIONS } from "@modules/datasets/constants"
 
-interface DatasetContext {
+interface DatasetContextProps {
   datasets: DatasetTree[]
   config: ConfigSchema
   datasetDispatch: Dispatch<DatasetPayload>
@@ -35,20 +33,7 @@ interface DatasetContext {
   showFieldsMenu: boolean
 }
 
-const DatasetsContext = createContext<DatasetContext>({
-  datasets: [],
-  config: {} as any,
-  datasetDispatch: (() => {}) as any,
-  configDispatch: (() => {}) as any,
-  selectedDataset: null!,
-  selectField: null,
-  handleSelectDataset() {},
-  handleSelectField() {},
-  handleDeleteSelectField() {},
-  showFieldsMenu: false,
-  handleCloseFieldsMenu() {},
-  handleOpenFieldsMenu() {},
-})
+const DatasetsContext = createContext<DatasetContextProps>({} as DatasetContextProps)
 
 const DatasetsProvider = ({ children }: { children: ReactElement }) => {
   const [showFieldsMenu, setShowFieldsMenu] = useState(false)

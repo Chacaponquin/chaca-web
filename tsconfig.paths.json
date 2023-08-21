@@ -3,7 +3,7 @@
     "baseUrl": "./",
     "paths": {
       "@containers/*": ["src/containers/*"],
-      "@form/*": ["src/modules/shared/modules/form/*"],
+      "@form/*": ["src/modules/app/modules/form/*"],
       "@modules/*": ["src/modules/*"]
     }
   }
