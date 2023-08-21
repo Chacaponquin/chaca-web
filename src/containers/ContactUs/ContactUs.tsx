@@ -1,10 +1,10 @@
-import { LoaderContainer } from "@modules/shared/components/Loader"
+import { LoaderContainer } from "@modules/app/components/Loader"
 import { ChacaIconButton, ChacaTextInput, ChacaTextarea } from "@form/components"
-import { Send } from "@modules/shared/assets/icons"
+import { Send } from "@modules/app/modules/icon/components"
 import { SuccessModal } from "./components"
-import { APP_IMAGES } from "@modules/shared/constant"
 import { useContactUs } from "./hooks"
-import { useLanguage } from "@modules/shared/modules/app/hooks"
+import { useLanguage } from "@modules/app/modules/language/hooks"
+import { APP_IMAGES } from "@modules/app/constants"
 
 const ContactUs = () => {
   const { handleChange, handleSubmit, loading, modalOpen, contactForm } = useContactUs()
@@ -40,8 +40,8 @@ const ContactUs = () => {
             <div className='flex flex-col'>
               <label className={labelClass}>{NAME_LABEL}:</label>
               <ChacaTextInput
-                onChange={(v) => handleChange("name", v)}
-                value={contactForm.name}
+                onChange={(v) => handleChange("title", v)}
+                value={contactForm.title}
                 type='email'
                 name='name'
               />

@@ -1,5 +1,5 @@
 export interface CreateMessageDTO {
-  name: string
+  title: string
   email: string
   message: string
 }

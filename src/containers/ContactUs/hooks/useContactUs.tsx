@@ -1,13 +1,14 @@
 import { useState } from "react"
-import { CreateMessageDTO } from "../dto/createMessage.dto"
-import { usePost } from "@modules/shared/modules/http/hooks"
+import { CreateMessageDTO } from "@modules/user-message/dto/user_message"
+import { usePost } from "@modules/app/modules/http/hooks"
 import { toast } from "react-toastify"
-import { API_ROUTES } from "@modules/shared/routes"
-import { useLanguage } from "@modules/shared/modules/app/hooks"
+import { API_ROUTES } from "@modules/app/constants/ROUTES"
+import { useLanguage } from "@modules/app/modules/language/hooks"
+import { SaveUserMessage } from "@modules/user-message/domain"
 
 export function useContactUs() {
   const [contactForm, setContactForm] = useState<CreateMessageDTO>({
-    name: "",
+    title: "",
     email: "",
     message: "",
   })
@@ -20,7 +21,7 @@ export function useContactUs() {
     },
   })
 
-  const [createMessage, { loading }] = usePost<void, CreateMessageDTO>({
+  const [createMessage, { loading }] = usePost<void, SaveUserMessage>({
     url: API_ROUTES.CREATE_USER_MESSAGE,
     onCompleted: () => {
       setModalOpen(true)
@@ -36,7 +37,8 @@ export function useContactUs() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    createMessage({ body: contactForm })
+    const saveMessage = new SaveUserMessage(contactForm)
+    createMessage({ body: saveMessage })
   }
 
   return { modalOpen, handleChange, handleSubmit, loading, contactForm }

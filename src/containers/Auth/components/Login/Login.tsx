@@ -1,14 +1,14 @@
 import { useState } from "react"
-import { LoaderContainer } from "@modules/shared/components/Loader"
+import { LoaderContainer } from "@modules/app/components/Loader"
 import { Link } from "react-router-dom"
-import { CurveBg } from "@modules/shared/assets/background"
+import { CurveBg } from "@modules/shared/components/Background"
 import clsx from "clsx"
 import { OtherOptionsSection } from "../../shared/components"
 import { useLogin } from "./hooks"
-import { useLanguage } from "@modules/app/hooks"
 import { Private, User } from "@modules/app/modules/icon/components"
 import { APP_IMAGES, APP_ROUTES } from "@modules/app/constants"
 import { LazyRoute, NoUserRoute } from "@modules/app/components"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 
 import "../../auth.css"
 
