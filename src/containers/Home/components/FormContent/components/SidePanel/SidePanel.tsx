@@ -19,12 +19,8 @@ const SidePanel = ({ selectField }: { selectField: DatasetField<FieldDataType> }
         <SingleValueGuide field={selectField as DatasetField<SingleValueDataType>} />
       )}
 
-      {selectField.dataType.type === DATA_TYPES.CUSTOM && (
-        <GuideContainer route={API_ROUTES.DOCS.GET_CUSTOM_FORM_GUIDES} />
-      )}
-      {selectField.dataType.type === DATA_TYPES.REF && (
-        <GuideContainer route={API_ROUTES.DOCS.GET_REF_FORM_GUIDES} />
-      )}
+      {selectField.dataType.type === DATA_TYPES.CUSTOM && <GuideContainer route={""} />}
+      {selectField.dataType.type === DATA_TYPES.REF && <GuideContainer route={""} />}
     </div>
   )
 }

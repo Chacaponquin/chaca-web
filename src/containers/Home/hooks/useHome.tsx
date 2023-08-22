@@ -2,7 +2,7 @@ import { useContext, useEffect, useState, useMemo } from "react"
 import { toast } from "react-toastify"
 import { SOCKET_EVENTS } from "../constants"
 import { DatasetsContext } from "@modules/datasets/context"
-import { configServices } from "@modules/config/services"
+import { useConfigServices } from "@modules/config/services"
 import io from "socket.io-client"
 import { ModalContext } from "@modules/modal/context"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
@@ -11,7 +11,7 @@ import { useLanguage } from "@modules/app/modules/language/hooks"
 
 export const useHome = () => {
   const { datasets, config, selectedDataset } = useContext(DatasetsContext)
-  const { resetConfig } = configServices()
+  const { resetConfig } = useConfigServices()
   const { getTokenCookie } = userServices()
   const { handleOpenModal } = useContext(ModalContext)
 

@@ -17,6 +17,7 @@ module.exports = {
         fontBold: "Poppins Bold",
         fontTitle: "Poppins Extra Bold",
         fontLight: "Poppins Light",
+        fontMedium: "Poppins Medium",
         fontRegular: "Cairo Regular",
         fontCodeRegular: "JetBrains Mono Regular",
         fontCodeBold: "JetBrains Mono Bold",

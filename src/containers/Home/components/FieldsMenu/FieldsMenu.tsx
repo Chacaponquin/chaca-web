@@ -1,17 +1,11 @@
-import { useContext } from "react"
+import { Fragment, useContext } from "react"
 import { DatasetsContext } from "@modules/datasets/context"
-import { DatasetsHeader, ExportButton, FieldContainer, NoFieldsMessage } from "./components"
+import { DatasetButtons, DatasetsHeader, FieldContainer, NoFieldsMessage } from "./components"
 import clsx from "clsx"
 import { AppContext } from "@modules/app/context"
 import { X } from "@modules/app/modules/icon/components"
 
-const FieldsMenu = ({
-  handleCreateSelectDataset,
-  handleCreateAllDatasets,
-}: {
-  handleCreateSelectDataset: () => void
-  handleCreateAllDatasets: () => void
-}) => {
+const FieldsMenu = ({ handleCreateSelectDataset }: { handleCreateSelectDataset: () => void }) => {
   const { selectedDataset, showFieldsMenu, handleCloseFieldsMenu } = useContext(DatasetsContext)
   const { smallWindow } = useContext(AppContext)
 
@@ -22,29 +16,31 @@ const FieldsMenu = ({
   )
 
   return (
-    <div className={containerClass}>
-      <div className='flex flex-col w-full'>
-        {smallWindow && showFieldsMenu && (
-          <div className='flex justify-end pt-3 px-4'>
-            <button onClick={handleCloseFieldsMenu}>
-              <X size={18} />
-            </button>
-          </div>
-        )}
-
-        <DatasetsHeader handleCreateSelectDataset={handleCreateSelectDataset} />
-
-        <div className='h-full bg-white w-full flex flex-col'>
-          {selectedDataset && selectedDataset.fields.length > 0 ? (
-            selectedDataset.fields.map((f) => <FieldContainer key={f.id} margin={0} field={f} />)
-          ) : (
-            <NoFieldsMessage />
-          )}
+    <section className={containerClass}>
+      {smallWindow && showFieldsMenu && (
+        <div className='flex justify-end pt-3 px-4'>
+          <button onClick={handleCloseFieldsMenu}>
+            <X size={18} />
+          </button>
         </div>
-      </div>
+      )}
 
-      <ExportButton handleExportAllDatasets={handleCreateAllDatasets} />
-    </div>
+      <DatasetsHeader handleCreateSelectDataset={handleCreateSelectDataset} />
+
+      <div className='h-full bg-white w-full flex flex-col'>
+        {selectedDataset && selectedDataset.fields.length > 0 ? (
+          <Fragment>
+            {selectedDataset.fields.map((f) => (
+              <FieldContainer key={f.id} margin={0} field={f} />
+            ))}
+
+            <DatasetButtons />
+          </Fragment>
+        ) : (
+          <NoFieldsMessage />
+        )}
+      </div>
+    </section>
   )
 }
 

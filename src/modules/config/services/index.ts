@@ -1,3 +1,3 @@
-import { configServices } from "./configServices"
+import { useConfigServices } from "./useConfigServices"
 
-export { configServices }
+export { useConfigServices }

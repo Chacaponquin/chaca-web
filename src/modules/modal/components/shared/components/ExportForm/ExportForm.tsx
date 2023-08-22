@@ -6,12 +6,12 @@ import { ChacaSelect } from "@form/components"
 import { DatasetsContext } from "@modules/datasets/context"
 import { AppContext } from "@modules/app/context"
 import { FILE_TYPE } from "@modules/config/constants"
-import { configServices } from "@modules/config/services"
+import { useConfigServices } from "@modules/config/services"
 
 const ExportForm = ({ saveModelOption }: { saveModelOption: boolean }) => {
   const { config } = useContext(DatasetsContext)
   const { fileConfig } = useContext(AppContext)
-  const { changeFileArgument, changeFileType } = configServices()
+  const { changeFileArgument, changeFileType } = useConfigServices()
 
   const handleChangeFileArgument = (argument: string, value: unknown) => {
     changeFileArgument(argument, value)

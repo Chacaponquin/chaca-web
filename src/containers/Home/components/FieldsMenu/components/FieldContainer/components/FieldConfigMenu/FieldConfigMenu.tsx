@@ -4,7 +4,7 @@ import { useFieldConfigMenu } from "./hooks"
 
 const FieldConfigMenu = ({ field }: { field: DatasetField<FieldDataType> }) => {
   const divClass =
-    "cursor-pointer duration-300 w-full transition-all px-4 py-1 hover:bg-slate-200 text-sm whitespace-nowrap"
+    "cursor-pointer duration-300 w-full transition-all px-5 py-1.5 hover:bg-slate-200 text-md whitespace-nowrap"
 
   const { ADD_FIELD_OPTION_TEXT, DELETE_OPTION_TEXT, EDIT_OPTION_TEXT } = useLanguage({
     EDIT_OPTION_TEXT: { en: "Edit", es: "Editar" },
@@ -15,7 +15,7 @@ const FieldConfigMenu = ({ field }: { field: DatasetField<FieldDataType> }) => {
   const { handleAddField, handleDeleteField, handleEditField } = useFieldConfigMenu(field)
 
   return (
-    <div className='absolute bg-white shadow-md rounded-sm -translate-x-[100px] translate-y-[2px]'>
+    <div className='absolute bg-white shadow-md rounded-sm top-[25px] -translate-x-[120px]'>
       <div className={divClass} onClick={handleEditField}>
         {EDIT_OPTION_TEXT}
       </div>

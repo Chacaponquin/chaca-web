@@ -1,15 +1,9 @@
 import { Fragment } from "react"
-import { ArrowRight, Config } from "@modules/app/modules/icon/components"
+import { ArrowRight } from "@modules/app/modules/icon/components"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets.interface"
-import { FieldConfigMenu } from "./components"
+import { FieldName, FieldOptions, Point } from "./components"
 import { useFieldContainer } from "./hooks"
-
-const Point = () => {
-  return (
-    <div className='from-principalColor to-secondColor bg-gradient-to-tr w-[7px] h-[7px] rounded-full'></div>
-  )
-}
 
 const FieldContainer = ({
   margin,
@@ -28,8 +22,8 @@ const FieldContainer = ({
   } = useFieldContainer(field)
 
   return (
-    <div className='flex flex-col w-full' onClick={handleSelect}>
-      <div className={"flex items-center justify-between"} style={{ paddingLeft: `${margin}px` }}>
+    <section className='flex flex-col w-full' onClick={handleSelect}>
+      <div className='flex items-center justify-between' style={{ paddingLeft: `${margin}px` }}>
         <div className={divClass}>
           <div className='flex items-center'>
             {field.dataType.type === DATA_TYPES.MIXED ? (
@@ -39,23 +33,20 @@ const FieldContainer = ({
                 }}
                 onClick={handleInteractSubFields}
               >
-                <ArrowRight size={18} />
+                <ArrowRight size={19} />
               </button>
             ) : (
-              <div className='pl-[5px]'>
-                <Point />
-              </div>
+              <Point />
             )}
 
-            <p className='ml-3'>{field.name}</p>
+            <FieldName name={field.name} />
           </div>
 
-          <div className='flex flex-col'>
-            <button onClick={handleInteractOpenMenu}>
-              <Config size={18} />
-              {openMenu && <FieldConfigMenu field={field} />}
-            </button>
-          </div>
+          <FieldOptions
+            field={field}
+            handleInteractOpenMenu={handleInteractOpenMenu}
+            openMenu={openMenu}
+          />
         </div>
       </div>
 
@@ -66,7 +57,7 @@ const FieldContainer = ({
           ))}
         </Fragment>
       )}
-    </div>
+    </section>
   )
 }
 

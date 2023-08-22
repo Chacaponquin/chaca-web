@@ -14,7 +14,6 @@ import { FILE_TYPE } from "@modules/config/constants"
 import { ConfigSchema } from "@modules/config/interfaces/config.iterface"
 import { AppContext } from "@modules/app/context"
 import { DatasetTree, FieldNode } from "@modules/datasets/domain"
-import { configServices } from "@modules/config/services"
 import { datasetServices } from "@modules/datasets/services"
 import { DATASETS_ACTIONS } from "@modules/datasets/constants"
 
@@ -39,7 +38,6 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
   const [showFieldsMenu, setShowFieldsMenu] = useState(false)
   const { initialFetchLoading, fileConfig } = useContext(AppContext)
   const { initDatasets } = datasetServices()
-  const { resetConfig } = configServices()
 
   // created datasets
   const [datasets, datasetDispatch] = useReducer<Reducer<DatasetTree[], DatasetPayload>>(
@@ -69,8 +67,6 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
       })
 
       setSelectedDataset(initialDatasets[0])
-
-      resetConfig()
     }
   }, [initialFetchLoading, fileConfig])
 

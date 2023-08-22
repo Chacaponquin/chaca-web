@@ -8,7 +8,7 @@ import { LazyRoute } from "@modules/app/components"
 import "./home.css"
 
 const Home = () => {
-  const { handleCreateSelectDataset, handleCreateAllDatasets, createDataLoading } = useHome()
+  const { handleCreateSelectDataset, createDataLoading } = useHome()
 
   const { showFieldsMenu } = useContext(DatasetsContext)
   const { smallWindow } = useContext(AppContext)
@@ -19,10 +19,7 @@ const Home = () => {
         {createDataLoading && <CreationLoadingModal />}
 
         {(!smallWindow || (smallWindow && showFieldsMenu)) && (
-          <FieldsMenu
-            handleCreateAllDatasets={handleCreateAllDatasets}
-            handleCreateSelectDataset={handleCreateSelectDataset}
-          />
+          <FieldsMenu handleCreateSelectDataset={handleCreateSelectDataset} />
         )}
 
         <FormContent />

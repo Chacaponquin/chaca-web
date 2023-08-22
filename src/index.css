@@ -18,6 +18,11 @@
 }
 
 @font-face {
+  font-family: "Poppins Medium";
+  src: url("./assets//font/Poppins/Poppins-Medium.ttf");
+}
+
+@font-face {
   font-family: "Poppins Extra Bold";
   src: url("./assets//font/Poppins/Poppins-ExtraBold.ttf");
 }

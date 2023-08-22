@@ -10,7 +10,7 @@ export function useFieldContainer(field: DatasetField) {
   const [subFieldsOpen, setSubFieldsOpen] = useState(true)
 
   const divClass = clsx(
-    "w-full flex items-center cursor-pointer justify-between py-1 transition-all duration-300 hover:bg-slate-100 px-2",
+    "w-full flex items-center cursor-pointer justify-between py-2 transition-all duration-300 hover:bg-slate-100 px-2",
     {
       "bg-slate-100": selectField && selectField.id === field.id,
     },

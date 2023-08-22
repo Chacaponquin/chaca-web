@@ -3,7 +3,7 @@ import { ChacaButtonProps } from "../interfaces/chacaButton.intrface"
 
 export const buttonClass = ({ size, className = "", color, full = false }: ChacaButtonProps) => {
   return clsx(
-    "flex justify-center font-fontBold flex items-center transition-all duration-300 hover:brightness-150",
+    "flex justify-center font-fontMedium flex items-center transition-all duration-300 hover:brightness-150",
     {
       "py-[3px] px-3 text-sm rounded-sm": size === "small",
       "py-1 px-5 text-base rounded-sm": size === "medium",

@@ -2,7 +2,7 @@ import { Private } from "@modules/app/modules/icon/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useContext } from "react"
 import { ChacaSwitchButton } from "@form/components"
-import { configServices } from "@modules/config/services"
+import { useConfigServices } from "@modules/config/services"
 import { DatasetsContext } from "@modules/datasets/context"
 import { UserContext } from "@modules/user/context"
 
@@ -14,7 +14,7 @@ export default function SaveModelInput() {
     SAVE_SCHEMA_TEXT: { en: "Save Model", es: "Guardar Modelo" },
   })
 
-  const { changeSaveSchema } = configServices()
+  const { changeSaveSchema } = useConfigServices()
 
   return (
     <div className='flex items-center gap-2 justify-between w-full'>

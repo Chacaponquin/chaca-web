@@ -1,11 +1,11 @@
 import { RepeatTagError } from "@modules/config/errors"
 import { SaveSchemaForm } from "@modules/config/interfaces/config.iterface"
-import { configServices } from "@modules/config/services"
+import { useConfigServices } from "@modules/config/services"
 import { useState } from "react"
 import { toast } from "react-toastify"
 
 export function useFormContent() {
-  const { updateSaveSchemaForm } = configServices()
+  const { updateSaveSchemaForm } = useConfigServices()
   const [newTag, setNewTag] = useState("")
 
   const handleChangeNewTag = (tag: string) => {

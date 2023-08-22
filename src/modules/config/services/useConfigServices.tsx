@@ -5,11 +5,11 @@ import { CONFIG_ACTIONS, FILE_TYPE } from "../constants"
 import { RepeatTagError } from "../errors"
 import { SaveSchemaForm } from "../interfaces/config.iterface"
 
-export function configServices() {
+export function useConfigServices() {
   const { configDispatch, config } = useContext(DatasetsContext)
   const { fileConfig } = useContext(AppContext)
 
-  const resetConfig = () => {
+  function resetConfig() {
     configDispatch({
       type: CONFIG_ACTIONS.SET_INITIAL_CONFIG,
       payload: { fileConfig },
