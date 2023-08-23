@@ -55,7 +55,7 @@ export class DatasetTree {
     return this.root.getSameLevelNodes(fieldID)
   }
 
-  public getDatasetObject(): Dataset {
+  public object(): Dataset {
     return {
       id: this.id,
       name: this.name,

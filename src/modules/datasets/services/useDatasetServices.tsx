@@ -120,5 +120,7 @@ export default function useDatasetServices() {
     fieldCanBeKey,
     fieldCanBeNull,
     fieldCanBeArray,
+    selectedDataset,
+    datasets,
   }
 }

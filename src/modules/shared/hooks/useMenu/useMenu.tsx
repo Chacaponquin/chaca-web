@@ -21,6 +21,7 @@ export function useMenu({ handleClose, handleOpen, ref }: MenuProps) {
     if (!child) {
       return false
     }
+
     return child.parentNode === parent || isDescendantOf(parent, child.parentNode as HTMLElement)
   }
 

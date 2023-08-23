@@ -43,7 +43,7 @@ const DatasetsHeader = ({
           valueKey={"id"}
           value={selectedDataset ? selectedDataset.id : null}
           onChange={(value) => {
-            handleSelectDataset(value as string)
+            handleSelectDataset(value)
           }}
           dimension='small'
         />

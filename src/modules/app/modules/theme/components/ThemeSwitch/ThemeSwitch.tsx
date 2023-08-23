@@ -17,7 +17,7 @@ export default function ThemeSwitch() {
   }
 
   const containerClass = clsx(
-    "esm:w-[80px] w-[100px] h-[35px] items-center bg-black/20 dark:bg-white/20 flex px-4 rounded-sm cursor-pointer",
+    "esm:w-[80px] w-[100px] h-[35px] items-center bg-grayColor dark:bg-white/20 flex px-4 rounded-sm cursor-pointer",
     {
       "justify-start": isLight,
       "justify-end": !isLight,

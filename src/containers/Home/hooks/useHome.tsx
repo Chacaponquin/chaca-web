@@ -1,22 +1,21 @@
-import { useContext, useEffect, useState, useMemo } from "react"
-import { SOCKET_EVENTS } from "../constants"
+import { useContext, useEffect, useState } from "react"
+import { SOCKET_EVENTS } from "@modules/app/modules/socket/constants"
 import { DatasetsContext } from "@modules/datasets/context"
 import { useConfigServices } from "@modules/config/services"
-import io from "socket.io-client"
 import { ModalContext } from "@modules/modal/context"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
-import { userServices } from "@modules/user/services"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useToastServices } from "@modules/app/modules/toast/services"
 import { useEnvServices } from "@modules/app/modules/env/services"
+import { useSocketServices } from "@modules/app/modules/socket/services"
 
 export const useHome = () => {
   const { datasets, config, selectedDataset } = useContext(DatasetsContext)
   const { resetConfig } = useConfigServices()
-  const { getTokenCookie } = userServices()
   const { handleOpenModal } = useContext(ModalContext)
   const { toastError } = useToastServices()
   const { API_ROUTE } = useEnvServices()
+  const { socket } = useSocketServices()
 
   const { NETWORK_ERROR, CREATION_ERROR } = useLanguage({
     NETWORK_ERROR: { en: "Network connect error", es: "Error en la conexion" },
@@ -24,16 +23,6 @@ export const useHome = () => {
   })
 
   const [createDataLoading, setCreateDataLoading] = useState(false)
-
-  const socket = useMemo(
-    () =>
-      io(API_ROUTE, {
-        auth: {
-          token: `Bearer ${getTokenCookie()}`,
-        },
-      }),
-    [],
-  )
 
   useEffect(() => {
     socket.on(SOCKET_EVENTS.CONNECT_ERROR, () => {
@@ -68,7 +57,7 @@ export const useHome = () => {
       setCreateDataLoading(true)
 
       socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {
-        datasets: datasets.map((d) => d.getDatasetObject()),
+        datasets: datasets.map((d) => d.object()),
         config,
       })
     } else {
@@ -82,7 +71,7 @@ export const useHome = () => {
       setCreateDataLoading(true)
 
       socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {
-        datasets: [selectedDataset.getDatasetObject()],
+        datasets: [selectedDataset.object()],
         config,
       })
     } else {
