@@ -6,7 +6,7 @@ export default function Config({
   handleInteractOpenConfig: (e: React.MouseEvent) => void
 }) {
   return (
-    <button className='absolute right-7' onClick={handleInteractOpenConfig}>
+    <button className='absolute right-7 flex items-center' onClick={handleInteractOpenConfig}>
       <ConfigIcon size={22} />
     </button>
   )

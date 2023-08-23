@@ -14,9 +14,11 @@ export default function CardHeader({
   handleExportDataset: () => void
 }) {
   return (
-    <header className='flex relative justify-center py-5 px-10 border-b-[1px] border-white items-center gap-x-3'>
-      <h1 className='text-3xl font-fontBold'>User</h1>
-      <p className='text-2xl'>(50)</p>
+    <header className='flex relative justify-center py-5 px-10 border-b-[1px] border-white items-center'>
+      <div className='flex items-end gap-x-3'>
+        <h1 className='text-3xl font-fontBold'>User</h1>
+        <p className='text-2xl font-fontCodeBold'>(50)</p>
+      </div>
 
       <Config handleInteractOpenConfig={handleInteractOpenConfig} />
 

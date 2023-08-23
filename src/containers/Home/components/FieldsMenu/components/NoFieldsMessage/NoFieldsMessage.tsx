@@ -23,7 +23,7 @@ const NoFieldsMessage = () => {
   }
 
   return (
-    <div className='flex justify-center flex-col items-center'>
+    <div className='flex mt-8 justify-center flex-col items-center'>
       <img
         src={APP_IMAGES.EMPTY_FIELDS.image}
         alt={APP_IMAGES.EMPTY_FIELDS.alt}

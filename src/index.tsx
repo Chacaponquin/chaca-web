@@ -13,6 +13,8 @@ import { UserProvider } from "@modules/user/context/UserContext"
 import { ModalProvider } from "@modules/modal/context"
 import { LanguageProvider } from "@modules/app/modules/language/context"
 import { ThemeProvider } from "@modules/app/modules/theme/context"
+import { ToastProvider } from "@modules/app/modules/toast/context"
+import { SocketProvider } from "@modules/app/modules/socket/context"
 
 import { APP_ROUTES } from "@modules/app/constants"
 
@@ -23,8 +25,6 @@ import "./index.css"
 import "primereact/resources/themes/lara-light-indigo/theme.css"
 import "primereact/resources/primereact.min.css"
 import "primeicons/primeicons.css"
-import { ToastProvider } from "@modules/app/modules/toast/context"
-import { SocketProvider } from "@modules/app/modules/socket/context"
 
 const root = ReactDOM.createRoot(document.getElementById("root") as Element)
 
