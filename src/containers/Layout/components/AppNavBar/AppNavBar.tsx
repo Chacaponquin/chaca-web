@@ -12,9 +12,9 @@ import { DatasetsContext } from "@modules/datasets/context"
 export default function AppNavBar() {
   const divClass = ({ isActive }: { isActive: boolean }): string => {
     return clsx(
-      "flex h-[50px] items-center py-[5px] px-5 cursor-pointer gap-x-3.5",
+      "flex items-center py-2 px-6 cursor-pointer gap-x-3.5 transition-all duration-300",
       {
-        "fill-black text-black border-b-2 border-b-secondColor": isActive,
+        "fill-white text-white bg-secondColor rounded-full": isActive,
       },
       { "bg-white fill-black text-black hover:bg-slate-100": !isActive },
     )
@@ -28,30 +28,31 @@ export default function AppNavBar() {
     ACCOUNT_TEXT: { en: "Account", es: "Cuenta" },
   })
 
-  const textClass = "text-base font-fontMedium"
+  const TEXT_CLASS = "text-base font-fontMedium"
   const ICON_SIZE = 22
 
   return (
-    <header className='w-full bg-white flex items-center xl:px-12 px-8 justify-between esm:px-4'>
-      <div className='flex items-center gap-x-3'>
+    <header className='w-full bg-white flex items-center xl:px-12 px-8 justify-between esm:px-4 h-[100px] border-b-2 border-grayColor'>
+      <div className='flex items-center'>
         {smallWindow && (
           <button onClick={handleOpenFieldsMenu}>
             <Bars size={20} />
           </button>
         )}
+
         <Link to={APP_ROUTES.ROOT}>
           <ChacaLogo />
         </Link>
+
+        <div className='flex gap-x-3 ml-10'>
+          <NavLink className={divClass} to={APP_ROUTES.HOME}>
+            <Home size={ICON_SIZE} />
+            <p className={TEXT_CLASS}>{HOME_TEXT}</p>
+          </NavLink>
+        </div>
       </div>
 
       <div className='flex items-center gap-x-6 h-full'>
-        <div className='flex gap-x-3 h-full'>
-          <NavLink className={divClass} to={APP_ROUTES.HOME}>
-            <Home size={ICON_SIZE} />
-            <p className={textClass}>{HOME_TEXT}</p>
-          </NavLink>
-        </div>
-
         <Link to={APP_ROUTES.AUTH_ROUTES.LOGIN}>
           <ChacaSimpleButton text={ACCOUNT_TEXT} color='primary' size='large' />
         </Link>
