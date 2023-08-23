@@ -7,6 +7,7 @@ import Change from "./Change"
 import Code from "./Code"
 import Config from "./Config"
 import Copy from "./Copy"
+import Dark from "./Dark"
 import Delete from "./Delete"
 import Edit from "./Edit"
 import File from "./File"
@@ -16,6 +17,7 @@ import Google from "./Google"
 import Home from "./Home"
 import Image from "./Image"
 import Key from "./Key"
+import Light from "./Light"
 import Like from "./Like"
 import Menu from "./Menu"
 import Npm from "./Npm"
@@ -31,6 +33,7 @@ import SignOut from "./SignOut"
 import Smile from "./Smile"
 import User from "./User"
 import X from "./X"
+Dark
 
 export {
   Npm,
@@ -66,4 +69,6 @@ export {
   Save,
   Image,
   Key,
+  Dark,
+  Light,
 }

@@ -25,8 +25,8 @@ const ThemeProvider = ({ children }: { children: ReactElement }) => {
 
   useEffect(() => {
     const root = window.document.documentElement
-    root.classList.remove("light")
-    root.classList.remove("dark")
+    root.classList.remove(THEME.LIGHT)
+    root.classList.remove(THEME.DARK)
     root.classList.add(theme)
 
     localStorage.setItem("theme", theme)
