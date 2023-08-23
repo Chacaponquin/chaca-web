@@ -37,6 +37,16 @@
   src: url("./assets//font/Jetbrains/JetBrainsMono-Bold.ttf");
 }
 
+@font-face {
+  font-family: "JetBrains Mono Medium";
+  src: url("./assets//font/Jetbrains/JetBrainsMonoNL-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "JetBrains Mono Light";
+  src: url("./assets//font/Jetbrains/JetBrainsMono-Light.ttf");
+}
+
 * {
   font-family: "Poppins Regular";
 }
