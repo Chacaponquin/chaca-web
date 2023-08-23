@@ -20,6 +20,7 @@ module.exports = {
         fontMedium: "Poppins Medium",
         fontRegular: "Cairo Regular",
         fontCodeRegular: "JetBrains Mono Regular",
+        fontCodeMedium: "JetBrains Mono Medium",
         fontCodeBold: "JetBrains Mono Bold",
         fontDoc: "Poppins Regular",
       },
