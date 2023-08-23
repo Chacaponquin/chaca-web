@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState, useMemo } from "react"
-import { toast } from "react-toastify"
 import { SOCKET_EVENTS } from "../constants"
 import { DatasetsContext } from "@modules/datasets/context"
 import { useConfigServices } from "@modules/config/services"
@@ -8,12 +7,14 @@ import { ModalContext } from "@modules/modal/context"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { userServices } from "@modules/user/services"
 import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useToastServices } from "@modules/app/modules/toast/services"
 
 export const useHome = () => {
   const { datasets, config, selectedDataset } = useContext(DatasetsContext)
   const { resetConfig } = useConfigServices()
   const { getTokenCookie } = userServices()
   const { handleOpenModal } = useContext(ModalContext)
+  const { toastError } = useToastServices()
 
   const { NETWORK_ERROR } = useLanguage({
     NETWORK_ERROR: { en: "Network connect error", es: "Error en la conexion" },
@@ -47,7 +48,7 @@ export const useHome = () => {
     })
 
     socket.on(SOCKET_EVENTS.CREATION_ERROR, () => {
-      toast.error("Hubo un error en la creacion de los datasets")
+      toastError("Hubo un error en la creación de los datasets")
       setCreateDataLoading(false)
     })
 
@@ -68,7 +69,7 @@ export const useHome = () => {
         config,
       })
     } else {
-      toast.error(NETWORK_ERROR)
+      toastError(NETWORK_ERROR)
       setCreateDataLoading(false)
     }
   }
@@ -82,7 +83,7 @@ export const useHome = () => {
         config,
       })
     } else {
-      toast.error(NETWORK_ERROR)
+      toastError(NETWORK_ERROR)
       setCreateDataLoading(false)
     }
   }

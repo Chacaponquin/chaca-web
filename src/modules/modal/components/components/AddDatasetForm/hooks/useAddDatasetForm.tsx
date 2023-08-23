@@ -1,11 +1,24 @@
 import { useState, useContext } from "react"
 import { useDatasetServices } from "@modules/datasets/services"
-import { toast } from "react-toastify"
 import { ModalContext } from "@modules/modal/context"
 import { EmptyDatasetNameError, RepeatDatasetNameError } from "@modules/datasets/errors"
+import { useToastServices } from "@modules/app/modules/toast/services"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 
 export function useAddDatasetForm() {
   const [datasetName, setDatasetName] = useState("")
+  const { toastError } = useToastServices()
+
+  const { EMPTY_NAME, REPEAT_NAME } = useLanguage({
+    REPEAT_NAME: {
+      en: "Aldready exists a dataset with that name",
+      es: "Ya existe un dataset con ese nombre",
+    },
+    EMPTY_NAME: {
+      en: "The dataset name can not be an empty string",
+      es: "El nombre del nuevo dataset no puede estar vacío",
+    },
+  })
 
   const { handleCloseModal } = useContext(ModalContext)
   const { addDataset } = useDatasetServices()
@@ -21,9 +34,9 @@ export function useAddDatasetForm() {
       handleCloseModal()
     } catch (error) {
       if (error instanceof EmptyDatasetNameError) {
-        toast.error(`The dataset name can not be an empty string`)
+        toastError(EMPTY_NAME)
       } else if (error instanceof RepeatDatasetNameError) {
-        toast.error(`Aldready exists a dataset with that name`)
+        toastError(REPEAT_NAME)
       }
     }
   }

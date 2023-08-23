@@ -1,12 +1,13 @@
 import { userServices } from "@modules/user/services"
 import { usePost } from "@modules/app/modules/http/hooks"
 import { useState } from "react"
-import { toast } from "react-toastify"
 import { LoginUserDTO } from "@modules/user/dto/user"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
+import { useToastServices } from "@modules/app/modules/toast/services"
 
 export function useLogin() {
   const { handleSignIn } = userServices()
+  const { toastError } = useToastServices()
 
   const [loginData, setLoginData] = useState<LoginUserDTO>({
     email: "",
@@ -16,7 +17,7 @@ export function useLogin() {
   const [loginUser, { loading }] = usePost<string, LoginUserDTO>({
     url: API_ROUTES.AUTH_ROUTES.LOGIN,
     onError: () => {
-      toast.error("Hubo un error")
+      toastError("Hubo un error")
     },
     onCompleted: (token) => handleSignIn(token),
   })

@@ -1,8 +1,8 @@
+import { useToastServices } from "@modules/app/modules/toast/services"
 import { RepeatTagError } from "@modules/config/errors"
 import { SaveSchemaForm } from "@modules/config/interfaces/config.iterface"
 import { useConfigServices } from "@modules/config/services"
 import { useState } from "react"
-import { toast } from "react-toastify"
 
 export function useFormContent() {
   const { updateSaveSchemaForm } = useConfigServices()
@@ -12,12 +12,14 @@ export function useFormContent() {
     setNewTag(tag)
   }
 
+  const { toastError } = useToastServices()
+
   const handleChangeFormValue = (key: keyof SaveSchemaForm, value: string) => {
     try {
       updateSaveSchemaForm(key, value)
     } catch (error) {
       if (error instanceof RepeatTagError) {
-        toast.error(`The tag '${error.tag}' already exists`)
+        toastError(`The tag '${error.tag}' already exists`)
       }
     }
   }

@@ -4,8 +4,8 @@ import { ModalContext } from "@modules/modal/context"
 import { useFieldForm } from "../../../shared/hooks"
 import { useContext } from "react"
 import { EmptyFieldNameError, RepeatSameLevelFieldNameError } from "@modules/datasets/errors"
-import { toast } from "react-toastify"
 import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useToastServices } from "@modules/app/modules/toast/services"
 
 export function useEditFieldForm(field: DatasetField, parentFieldID: string) {
   const { REPEAT_NAME, EMPTY_NAME } = useLanguage({
@@ -18,6 +18,8 @@ export function useEditFieldForm(field: DatasetField, parentFieldID: string) {
       es: "El nombre del nuevo campo no puede estar vacío",
     },
   })
+
+  const { toastError } = useToastServices()
 
   const { handleCloseModal } = useContext(ModalContext)
   const { updateField } = useDatasetServices()
@@ -39,9 +41,9 @@ export function useEditFieldForm(field: DatasetField, parentFieldID: string) {
       handleCloseModal()
     } catch (error) {
       if (error instanceof EmptyFieldNameError) {
-        toast.error(EMPTY_NAME)
+        toastError(EMPTY_NAME)
       } else if (error instanceof RepeatSameLevelFieldNameError) {
-        toast.error(REPEAT_NAME)
+        toastError(REPEAT_NAME)
       }
     }
   }

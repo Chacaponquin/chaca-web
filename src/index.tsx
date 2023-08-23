@@ -16,8 +16,6 @@ import { ThemeProvider } from "@modules/app/modules/theme/context"
 
 import { APP_ROUTES } from "@modules/app/constants"
 
-import { ToastContainer } from "react-toastify"
-
 import { Modal } from "@modules/modal/components"
 
 // CSS
@@ -27,6 +25,7 @@ import "./index.css"
 import "primereact/resources/themes/lara-light-indigo/theme.css"
 import "primereact/resources/primereact.min.css"
 import "primeicons/primeicons.css"
+import { ToastProvider } from "@modules/app/modules/toast/context"
 
 const root = ReactDOM.createRoot(document.getElementById("root") as Element)
 
@@ -64,22 +63,23 @@ root.render(
   <React.Fragment>
     <BrowserRouter>
       <ErrorBoundary>
-        <AppProvider>
-          <LanguageProvider>
-            <ThemeProvider>
-              <UserProvider>
-                <DatasetsProvider>
-                  <ModalProvider>
-                    <Fragment>
-                      <ToastContainer autoClose={5000} hideProgressBar={true} />
-                      <AppCont />
-                    </Fragment>
-                  </ModalProvider>
-                </DatasetsProvider>
-              </UserProvider>
-            </ThemeProvider>
-          </LanguageProvider>
-        </AppProvider>
+        <ToastProvider>
+          <AppProvider>
+            <LanguageProvider>
+              <ThemeProvider>
+                <UserProvider>
+                  <DatasetsProvider>
+                    <ModalProvider>
+                      <Fragment>
+                        <AppCont />
+                      </Fragment>
+                    </ModalProvider>
+                  </DatasetsProvider>
+                </UserProvider>
+              </ThemeProvider>
+            </LanguageProvider>
+          </AppProvider>
+        </ToastProvider>
       </ErrorBoundary>
     </BrowserRouter>
   </React.Fragment>,

@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { CreateMessageDTO } from "@modules/user-message/dto/user_message"
 import { usePost } from "@modules/app/modules/http/hooks"
-import { toast } from "react-toastify"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { SaveUserMessage } from "@modules/user-message/domain"
+import { useToastServices } from "@modules/app/modules/toast/services"
 
 export function useContactUs() {
   const [contactForm, setContactForm] = useState<CreateMessageDTO>({
@@ -21,13 +21,15 @@ export function useContactUs() {
     },
   })
 
+  const { toastError } = useToastServices()
+
   const [createMessage, { loading }] = usePost<void, SaveUserMessage>({
     url: API_ROUTES.CREATE_USER_MESSAGE,
     onCompleted: () => {
       setModalOpen(true)
     },
     onError: () => {
-      toast.error(POST_ERROR)
+      toastError(POST_ERROR)
     },
   })
 

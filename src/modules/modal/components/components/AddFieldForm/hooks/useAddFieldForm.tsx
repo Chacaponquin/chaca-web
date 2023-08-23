@@ -1,12 +1,12 @@
 import { useDatasetServices } from "@modules/datasets/services"
 import { ModalContext } from "@modules/modal/context"
 import { useContext } from "react"
-import { toast } from "react-toastify"
 import { useFieldForm } from "../../../shared/hooks"
 import { v4 as uuid } from "uuid"
 import { EmptyFieldNameError, RepeatSameLevelFieldNameError } from "@modules/datasets/errors"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useDatatypes } from "@modules/datasets/hooks"
+import { useToastServices } from "@modules/app/modules/toast/services"
 
 export function useAddFieldForm(parentFieldID: string) {
   const { DEFAULT_SCHEMA_VALUE_DATA_TYPE } = useDatatypes()
@@ -21,6 +21,8 @@ export function useAddFieldForm(parentFieldID: string) {
       es: "El nombre del nuevo campo no puede estar vacío",
     },
   })
+
+  const { toastError } = useToastServices()
 
   const { handleCloseModal } = useContext(ModalContext)
   const { addField } = useDatasetServices()
@@ -42,9 +44,9 @@ export function useAddFieldForm(parentFieldID: string) {
       handleCloseModal()
     } catch (error) {
       if (error instanceof EmptyFieldNameError) {
-        toast.error(EMPTY_NAME)
+        toastError(EMPTY_NAME)
       } else if (error instanceof RepeatSameLevelFieldNameError) {
-        toast.error(REPEAT_NAME)
+        toastError(REPEAT_NAME)
       }
     }
   }

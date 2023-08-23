@@ -1,6 +1,5 @@
 import { userServices } from "@modules/user/services"
 import { useState } from "react"
-import { toast } from "react-toastify"
 import { SignUpUserDTO } from "@modules/user/dto/user"
 import {
   NotEqualUserPasswords,
@@ -12,6 +11,7 @@ import { usePost } from "@modules/app/modules/http/hooks"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { SaveUser } from "@modules/user/domain"
 import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useToastServices } from "@modules/app/modules/toast/services"
 
 export function useSignUp() {
   const {
@@ -58,12 +58,14 @@ export function useSignUp() {
     },
     onError: (error) => {
       if (error.status === 401) {
-        toast.error(ALREADY_EXIST_USER_TEXT)
+        toastError(ALREADY_EXIST_USER_TEXT)
       } else {
-        toast.error(CREATING_USER_TEXT)
+        toastError(CREATING_USER_TEXT)
       }
     },
   })
+
+  const { toastError } = useToastServices()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -73,13 +75,13 @@ export function useSignUp() {
       signUpUser({ body: saveUser })
     } catch (error) {
       if (error instanceof UsernameShortError) {
-        toast.error(LENGTH_USERNAME)
+        toastError(LENGTH_USERNAME)
       } else if (error instanceof NotEqualUserPasswords) {
-        toast.error(NOT_EQUAL_PASSWORDS)
+        toastError(NOT_EQUAL_PASSWORDS)
       } else if (error instanceof EmailEmptyError) {
-        toast.error(EMPTY_EMAIL)
+        toastError(EMPTY_EMAIL)
       } else if (error instanceof PasswordEmptyError) {
-        toast.error(EMPTY_PASSWORD)
+        toastError(EMPTY_PASSWORD)
       }
     }
   }
