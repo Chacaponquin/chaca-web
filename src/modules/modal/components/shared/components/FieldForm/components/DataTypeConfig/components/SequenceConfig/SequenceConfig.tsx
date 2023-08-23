@@ -22,6 +22,7 @@ export default function SequenceConfig({
           size={140}
           dimension='large'
           onChange={handleChangeSequenceStartsWith}
+          min={0.1}
         />
       </div>
 
@@ -34,6 +35,7 @@ export default function SequenceConfig({
           size={140}
           dimension='large'
           onChange={handleChangeSequenceStep}
+          min={0.1}
         />
       </div>
     </div>

@@ -8,6 +8,7 @@ import { ChacaSimpleButton } from "@form/components"
 import { useContext } from "react"
 import { AppContext } from "@modules/app/context"
 import { DatasetsContext } from "@modules/datasets/context"
+import { ThemeSwitch } from "@modules/app/modules/theme/components"
 
 export default function AppNavBar() {
   const divClass = ({ isActive }: { isActive: boolean }): string => {
@@ -53,6 +54,8 @@ export default function AppNavBar() {
       </div>
 
       <div className='flex items-center gap-x-6 h-full'>
+        <ThemeSwitch />
+
         <Link to={APP_ROUTES.AUTH_ROUTES.LOGIN}>
           <ChacaSimpleButton text={ACCOUNT_TEXT} color='primary' size='large' />
         </Link>
