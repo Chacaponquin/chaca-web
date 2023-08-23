@@ -33,7 +33,7 @@ export default function ChacaTextInput({
       type={type}
       placeholder={placeholder}
       onChange={(e) => {
-        onChange(e.target.value)
+        if (onChange) onChange(e.target.value)
       }}
       className={inputClass}
       style={{

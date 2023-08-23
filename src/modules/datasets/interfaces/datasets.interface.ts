@@ -5,7 +5,7 @@ import {
   MixedDataType,
   RefDataType,
   SingleValueDataType,
-  TypeSchema,
+  SchemaValueTypeObject,
 } from "./dataset_field.interface"
 
 export interface Dataset {
@@ -22,5 +22,5 @@ export type {
   MixedDataType,
   RefDataType,
   SingleValueDataType,
-  TypeSchema,
+  SchemaValueTypeObject,
 }

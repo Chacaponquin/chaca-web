@@ -7,13 +7,8 @@ import { ChacaFormProps } from "../../interfaces/chacaForm.interface"
 import { Size } from "../../interfaces/dimension.interface"
 import { useMenu } from "@modules/shared/hooks"
 
-interface ChacaSelectStringProps extends ChacaFormProps<string> {
-  size?: Size
-  placeholder: string
-  options: Array<string>
-}
-
-interface ChacaObjectSelectProps<T> extends ChacaFormProps<unknown> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface ChacaObjectSelectProps<T> extends ChacaFormProps<any> {
   size?: Size
   placeholder: string
   options: Array<T>
@@ -21,7 +16,7 @@ interface ChacaObjectSelectProps<T> extends ChacaFormProps<unknown> {
   valueKey: keyof T
 }
 
-type Props<T> = T extends string ? ChacaSelectStringProps : ChacaObjectSelectProps<T>
+type Props<T> = ChacaObjectSelectProps<T>
 
 interface SelectOptions {
   label: string
@@ -43,16 +38,12 @@ export default function ChacaSelect<T>(props: Props<T>) {
     setSelectOptions([])
 
     options.forEach((o) => {
-      if (typeof o === "string") {
-        setSelectOptions((prev) => [...prev, { label: o, value: o }])
-      } else {
-        const customProps = props as ChacaObjectSelectProps<T>
+      const customProps = props as ChacaObjectSelectProps<T>
 
-        setSelectOptions((prev) => [
-          ...prev,
-          { label: o[customProps.labelKey] as string, value: o[customProps.valueKey] as string },
-        ])
-      }
+      setSelectOptions((prev) => [
+        ...prev,
+        { label: o[customProps.labelKey] as string, value: o[customProps.valueKey] as string },
+      ])
     })
   }, [options])
 
@@ -78,7 +69,11 @@ export default function ChacaSelect<T>(props: Props<T>) {
   const handleSelectOption = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
     e.stopPropagation()
     setSelectIndex(index)
-    onChange(selectOptions[index]["value"])
+
+    if (onChange) {
+      onChange(selectOptions[index]["value"])
+    }
+
     handleCloseMenu()
   }
 
@@ -102,10 +97,10 @@ export default function ChacaSelect<T>(props: Props<T>) {
 
   const optionClass = (index: number) =>
     clsx(
-      "px-4 py-1 cursor-pointer duration-300 transition-all",
+      "py-2 cursor-pointer duration-300 transition-all",
       {
         "bg-slate-100": index === selectIndex,
-        "hover:bg-slate-100": index !== selectIndex,
+        "hover:bg-slate-200": index !== selectIndex,
       },
       textClass,
       paddingClass,
@@ -113,7 +108,7 @@ export default function ChacaSelect<T>(props: Props<T>) {
 
   return (
     <div
-      className='flex flex-col'
+      className='flex flex-col relative'
       style={{
         width: size === "full" ? "100%" : `${size}px`,
         minWidth: size === "full" ? "100px" : `${size}px`,
@@ -131,13 +126,12 @@ export default function ChacaSelect<T>(props: Props<T>) {
 
       {openOptions && (
         <div
-          className='flex flex-col z-50 bg-white rounded-sm shadow-lg absolute max-h-[300px] overflow-y-auto'
+          className='flex w-full flex-col z-50 bg-white rounded-sm shadow-lg absolute max-h-[300px] overflow-y-auto'
           style={{
-            width: optionsStyle.width,
             transform: `translateY(${optionsStyle.translateY})`,
           }}
         >
-          {options.map((o, index) => (
+          {options.map((_, index) => (
             <div
               key={uuid()}
               className={optionClass(index)}

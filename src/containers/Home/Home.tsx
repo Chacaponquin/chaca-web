@@ -1,4 +1,4 @@
-import { CreationLoadingModal, FieldsMenu, FormContent } from "./components"
+import { CreationLoadingModal, FieldsMenu } from "./components"
 import { useHome } from "./hooks"
 import { useContext } from "react"
 import { AppContext } from "@modules/app/context"
@@ -21,8 +21,6 @@ const Home = () => {
         {(!smallWindow || (smallWindow && showFieldsMenu)) && (
           <FieldsMenu handleCreateSelectDataset={handleCreateSelectDataset} />
         )}
-
-        <FormContent />
       </div>
     </LazyRoute>
   )

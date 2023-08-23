@@ -13,8 +13,8 @@ import { DatasetPayload, datasetsReducer } from "../reducer/datasetsReducer"
 import { FILE_TYPE } from "@modules/config/constants"
 import { ConfigSchema } from "@modules/config/interfaces/config.iterface"
 import { AppContext } from "@modules/app/context"
-import { DatasetTree, FieldNode } from "@modules/datasets/domain"
-import { datasetServices } from "@modules/datasets/services"
+import { DatasetTree, FieldNode } from "@modules/datasets/domain/tree"
+import { useDatasetServices } from "@modules/datasets/services"
 import { DATASETS_ACTIONS } from "@modules/datasets/constants"
 
 interface DatasetContextProps {
@@ -37,7 +37,7 @@ const DatasetsContext = createContext<DatasetContextProps>({} as DatasetContextP
 const DatasetsProvider = ({ children }: { children: ReactElement }) => {
   const [showFieldsMenu, setShowFieldsMenu] = useState(false)
   const { initialFetchLoading, fileConfig } = useContext(AppContext)
-  const { initDatasets } = datasetServices()
+  const { initDatasets } = useDatasetServices()
 
   // created datasets
   const [datasets, datasetDispatch] = useReducer<Reducer<DatasetTree[], DatasetPayload>>(

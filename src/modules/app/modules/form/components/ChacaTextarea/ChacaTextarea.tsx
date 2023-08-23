@@ -26,16 +26,16 @@ export default function ChacaTextarea({
     let retHeight: number
     switch (height) {
       case "large":
-        retHeight = 120
+        retHeight = 150
         break
       case "normal":
-        retHeight = 100
+        retHeight = 120
         break
       case "small":
-        retHeight = 80
+        retHeight = 100
         break
       default:
-        retHeight = 80
+        retHeight = 100
         break
     }
 
@@ -47,7 +47,7 @@ export default function ChacaTextarea({
     textClass,
     paddingClass,
     className,
-    `py-[5px]`,
+    `py-2`,
   )
 
   return (
@@ -56,7 +56,7 @@ export default function ChacaTextarea({
       value={value}
       placeholder={placeholder}
       onChange={(e) => {
-        onChange(e.target.value)
+        if (onChange) onChange(e.target.value)
       }}
       style={{ width: size === "full" ? `100%` : `${size}px`, height: `${h}px` }}
       name={name}

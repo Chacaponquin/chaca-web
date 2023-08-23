@@ -29,7 +29,9 @@ export default function ChacaSwitchButton({
 
   return (
     <motion.div
-      onClick={() => onChange(!value)}
+      onClick={() => {
+        if (onChange) onChange(!value)
+      }}
       style={{
         justifyContent: value ? "flex-end" : "flex-start",
         width: `${DIMENSION_VALUES[dimension].width.parent}px`,

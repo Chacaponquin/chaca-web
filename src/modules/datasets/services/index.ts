@@ -1,3 +1,3 @@
-import { datasetServices } from "./datasetServices"
+import useDatasetServices from "./useDatasetServices"
 
-export { datasetServices }
+export { useDatasetServices }

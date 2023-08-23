@@ -1,20 +1,16 @@
-import { Checkbox } from "primereact/checkbox"
-import { Slider } from "primereact/slider"
 import { useLanguage } from "@modules/app/modules/language/hooks"
-import { FieldInfoDTO } from "@modules/datasets/dto/field.dto"
-import { ChacaNumberInput, ChacaTextInput } from "@form/components"
+import {
+  ArrayConfig,
+  FieldName,
+  PossibleNullConfig,
+  FieldDataType,
+  DataTypeConfig,
+  KeyConfig,
+} from "./components"
+import { FieldActions } from "../../interfaces/form.interfaces"
+import { useDatasetServices } from "@modules/datasets/services"
 
-export interface FieldFormProps {
-  field: FieldInfoDTO
-  handleChangeName: (n: string) => void
-  handleChangeIsArray: (v: boolean) => void
-  handleChangeMinIsArray: (m: number | null) => void
-  handleChangeMaxIsArray: (m: number | null) => void
-  handleChangePossibleNull: (v: boolean) => void
-  handleChangePossibleNullValue: (v: number) => void
-}
-
-const FieldForm = ({
+export default function FieldForm({
   field,
   handleChangeIsArray,
   handleChangeMaxIsArray,
@@ -22,92 +18,69 @@ const FieldForm = ({
   handleChangeName,
   handleChangePossibleNull,
   handleChangePossibleNullValue,
-}: FieldFormProps) => {
-  const { FIELD_NAME_TEXT } = useLanguage({
+  handleChangeDataType,
+  handleSelectFieldSchema,
+  handleSelectFieldSchemaOption,
+  handleUpdateCustomField,
+  handleUpdateFieldSchemaArguments,
+  handleChangeIsKey,
+  handleChangeSequentialValues,
+  handleChangeEnumValues,
+  handleChangeSequenceStartsWith,
+  handleChangeSequenceStep,
+}: FieldActions) {
+  const { FIELD_NAME_TEXT, DATA_TYPE_TEXT } = useLanguage({
     FIELD_NAME_TEXT: { en: "Field name", es: "Nombre del campo" },
+    DATA_TYPE_TEXT: { en: "Data type", es: "Tipo" },
   })
 
+  const { fieldCanBeKey, fieldCanBeArray, fieldCanBeNull } = useDatasetServices()
+  const canBeArray = fieldCanBeArray(field)
+  const canBeKey = fieldCanBeKey(field)
+  const canBeNull = fieldCanBeNull(field)
+
   return (
-    <div className='flex flex-col gap-3'>
-      <div className='flex items-center gap-3'>
-        <label htmlFor='' className='font-fontBold text-lg whitespace-nowrap'>
-          {FIELD_NAME_TEXT}:
-        </label>
-        <ChacaTextInput
-          onChange={handleChangeName}
-          placeholder='Field name...'
-          value={field.name}
-        />
-      </div>
+    <div className='flex flex-col gap-y-3'>
+      <FieldName name={field.name} text={FIELD_NAME_TEXT} handleChangeName={handleChangeName} />
 
-      <div className='flex flex-col'>
-        <div className='flex flex-col gap-3'>
-          <div className='flex justify-between items-center'>
-            <div className='flex gap-3 items-center'>
-              <Checkbox
-                checked={field.isArray ? true : false}
-                onChange={(e) => handleChangeIsArray(e.checked)}
-              />
-              <p className='mb-0'>Is Array</p>
-            </div>
+      <FieldDataType
+        label={DATA_TYPE_TEXT}
+        handleChangeDataType={handleChangeDataType}
+        dataType={field.dataType.type}
+      />
 
-            {field.isArray !== null && (
-              <div className='flex items-center gap-4'>
-                <div className='flex items-center gap-1'>
-                  <p className='mb-0'>Min:</p>
-                  <ChacaNumberInput
-                    value={field.isArray.min}
-                    min={0}
-                    size={60}
-                    max={field.isArray.max}
-                    step={1}
-                    onChange={(v) => handleChangeMinIsArray(v)}
-                  />
-                </div>
-                <div className='flex items-center gap-1'>
-                  <p className='mb-0'>Max:</p>
-                  <ChacaNumberInput
-                    value={field.isArray.max}
-                    min={field.isArray.min}
-                    max={1000}
-                    step={1}
-                    size={60}
-                    onChange={(v) => handleChangeMaxIsArray(v)}
-                  />
-                </div>
-              </div>
-            )}
-          </div>
+      <DataTypeConfig
+        handleSelectFieldSchema={handleSelectFieldSchema}
+        handleSelectFieldSchemaOption={handleSelectFieldSchemaOption}
+        dataType={field.dataType}
+        handleUpdateCustomField={handleUpdateCustomField}
+        handleUpdateFieldSchemaArguments={handleUpdateFieldSchemaArguments}
+        handleChangeSequentialValues={handleChangeSequentialValues}
+        handleChangeEnumValues={handleChangeEnumValues}
+        handleChangeSequenceStartsWith={handleChangeSequenceStartsWith}
+        handleChangeSequenceStep={handleChangeSequenceStep}
+      />
 
-          <div className='flex justify-between items-center'>
-            <div className='flex gap-3 items-center'>
-              <Checkbox
-                checked={field.isPosibleNull > 0 ? true : false}
-                onChange={(e) => handleChangePossibleNull(e.checked)}
-              />
-              <p className='mb-0'>Possible null</p>
-            </div>
+      <section className='flex flex-col gap-3'>
+        {canBeArray && (
+          <ArrayConfig
+            isArray={field.isArray}
+            handleChangeIsArray={handleChangeIsArray}
+            handleChangeMaxIsArray={handleChangeMaxIsArray}
+            handleChangeMinIsArray={handleChangeMinIsArray}
+          />
+        )}
 
-            {field.isPosibleNull > 0 && (
-              <div className='flex gap-4 items-center'>
-                <Slider
-                  value={field.isPosibleNull}
-                  orientation='horizontal'
-                  min={1}
-                  max={100}
-                  step={1}
-                  className='w-[200px]'
-                  onChange={(e) => handleChangePossibleNullValue(Number(e.value.toString()))}
-                />
+        {canBeNull && (
+          <PossibleNullConfig
+            handleChangePossibleNull={handleChangePossibleNull}
+            handleChangePossibleNullValue={handleChangePossibleNullValue}
+            valueNull={field.isPosibleNull}
+          />
+        )}
 
-                <p className='mb-0'>{field.isPosibleNull}%</p>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
+        {canBeKey && <KeyConfig handleChangeIsKey={handleChangeIsKey} isKey={field.isKey} />}
+      </section>
     </div>
   )
 }
-
-export default FieldForm

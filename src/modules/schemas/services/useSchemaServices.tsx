@@ -13,7 +13,7 @@ export function useSchemaServices() {
 
   const findParent = useCallback(
     (p: string): Schema => {
-      return schemas.find((el) => el.parent === p) as Schema
+      return schemas.find((el) => el.name === p) as Schema
     },
     [schemas],
   )
@@ -30,5 +30,5 @@ export function useSchemaServices() {
     return findParent(parent).options
   }
 
-  return { findParent, findType, findParentOptions, optionApiRoute }
+  return { findParent, findType, findParentOptions, optionApiRoute, schemas }
 }

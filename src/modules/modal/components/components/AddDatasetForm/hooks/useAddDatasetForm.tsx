@@ -1,5 +1,5 @@
 import { useState, useContext } from "react"
-import { datasetServices } from "@modules/datasets/services"
+import { useDatasetServices } from "@modules/datasets/services"
 import { toast } from "react-toastify"
 import { ModalContext } from "@modules/modal/context"
 import { EmptyDatasetNameError, RepeatDatasetNameError } from "@modules/datasets/errors"
@@ -8,7 +8,7 @@ export function useAddDatasetForm() {
   const [datasetName, setDatasetName] = useState("")
 
   const { handleCloseModal } = useContext(ModalContext)
-  const { addDataset } = datasetServices()
+  const { addDataset } = useDatasetServices()
 
   const handleDatasetName = (name: string) => {
     setDatasetName(name)

@@ -13,12 +13,3 @@
   background: #7d5fff;
   border-radius: 999px;
 }
-
-
-.form-content {
-  height: calc(100vh - 50px - 50px);
-}
-
-.custom-form-playground {
-  height: calc(100vh - 50px - 50px - 41.5px) !important;
-}

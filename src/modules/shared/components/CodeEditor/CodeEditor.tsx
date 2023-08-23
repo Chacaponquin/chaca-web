@@ -6,11 +6,11 @@ import { vscodeDark } from "@uiw/codemirror-themes-all"
 
 export default function CodeEditor({
   onChange,
-  height = 600,
+  height,
   code,
 }: {
   onChange: (value: string) => void
-  height?: number
+  height: number
   code: string
   language: string
 }) {
@@ -20,9 +20,8 @@ export default function CodeEditor({
       onChange={onChange}
       height={`${height}px`}
       extensions={[javascript()]}
-      width='800px'
       theme={vscodeDark}
-      className='code-container'
+      width='500px'
     />
   )
 }

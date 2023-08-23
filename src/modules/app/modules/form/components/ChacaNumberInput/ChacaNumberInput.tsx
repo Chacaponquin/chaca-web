@@ -45,17 +45,19 @@ export default function ChacaNumberInput({
 
   const handleIncrease = () => {
     const nextValue = value ? Number(Number(value + step).toFixed(2)) : 1
-    onChange(validateValue(nextValue, max))
+
+    if (onChange) onChange(validateValue(nextValue, max))
   }
 
   const handleDecrease = () => {
     const nextValue = value ? Number(Number(value - step).toFixed(2)) : -1
-    onChange(validateValue(nextValue, min))
+
+    if (onChange) onChange(validateValue(nextValue, min))
   }
 
   const handleChangeInputValue = (value: string) => {
     if (typeof Number(value) === "number") {
-      onChange(validateValue(Number(value), wichIsCloser(Number(value))))
+      if (onChange) onChange(validateValue(Number(value), wichIsCloser(Number(value))))
     }
   }
 
@@ -153,7 +155,7 @@ export default function ChacaNumberInput({
         onMouseLeave={() => setIsHover(false)}
         value={value === undefined ? 0 : value}
       />
-      <div className='grid grid-rows-2 h-full w-[20px] justify-center justify-items-center border-l-grayColor border-l-2'>
+      <div className='grid grid-rows-2 h-full w-[25px] justify-center justify-items-center border-l-grayColor border-l-2'>
         <button
           className='flex justify-center text-center items-center border-b-2 border-grayColor w-full cursor-auto'
           onMouseEnter={() => setIsHover(true)}

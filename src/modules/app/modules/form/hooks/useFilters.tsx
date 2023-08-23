@@ -7,7 +7,11 @@ export function useFilters({ dimension }: { dimension: Dimension }) {
     "text-base": dimension === "normal",
     "text-lg": dimension === "large",
   })
-  const paddingClass = clsx({ "px-3": dimension === "small", "px-4": dimension === "normal" })
+  const paddingClass = clsx({
+    "px-3": dimension === "small",
+    "px-4": dimension === "normal",
+    "px-6": dimension === "large",
+  })
 
   return { textClass, paddingClass }
 }

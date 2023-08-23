@@ -7,9 +7,17 @@ export interface DatasetField<T = FieldDataType> {
   dataType: T
   isPosibleNull: number
   isArray: IsArrayConfig
+  isKey: boolean
 }
 
-export type FieldDataType = CustomDataType | MixedDataType | SingleValueDataType | RefDataType
+export type FieldDataType =
+  | CustomDataType
+  | MixedDataType
+  | SingleValueDataType
+  | RefDataType
+  | SequenceDataType
+  | SequentialDataType
+  | EnumDataType
 
 export type CustomDataType = {
   type: DATA_TYPES.CUSTOM
@@ -23,7 +31,7 @@ export type MixedDataType = {
 
 export type SingleValueDataType = {
   type: DATA_TYPES.SINGLE_VALUE
-  fieldType: TypeSchema
+  fieldType: SchemaValueTypeObject
 }
 
 export type RefDataType = {
@@ -33,7 +41,7 @@ export type RefDataType = {
 
 export type SequenceDataType = {
   type: DATA_TYPES.SEQUENCE
-  starWith: number
+  startsWith: number
   step: number
 }
 
@@ -47,8 +55,10 @@ export type EnumDataType = {
   values: Array<string>
 }
 
-export interface TypeSchema {
+export interface SchemaValueTypeObject {
   parent: string
   type: string
-  args: Record<string, unknown>
+  args: ArgumentObject
 }
+
+export type ArgumentObject = Record<string, unknown>

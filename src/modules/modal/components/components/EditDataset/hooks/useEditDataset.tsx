@@ -1,13 +1,13 @@
 import { DatasetsContext } from "@modules/datasets/context"
 import { EmptyDatasetNameError, RepeatDatasetNameError } from "@modules/datasets/errors"
-import { datasetServices } from "@modules/datasets/services"
+import { useDatasetServices } from "@modules/datasets/services"
 import { ModalContext } from "@modules/modal/context"
 import { useContext, useState } from "react"
 import { toast } from "react-toastify"
 
 export default function useEditDataset() {
   const { selectedDataset } = useContext(DatasetsContext)
-  const { editDataset } = datasetServices()
+  const { editDataset } = useDatasetServices()
   const { handleCloseModal } = useContext(ModalContext)
 
   const [datasetName, setDatasetName] = useState(selectedDataset.name)
