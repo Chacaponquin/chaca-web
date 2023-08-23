@@ -12,7 +12,7 @@ export default function MDView({
   return (
     <div className={`flex w-full text-base font-fontDoc'` + className}>
       <Markdown
-        className='w-full flex flex-col'
+        className="w-full flex flex-col"
         options={{
           overrides: {
             img: { props: { className: "mb-2 w-full" } },

@@ -20,22 +20,22 @@ export default function LandingNavBar() {
   ]
 
   return (
-    <nav className='flex w-full justify-center rounded-sm py-3 bg-white px-10 z-[53]'>
-      <div className='flex items-center gap-8 justify-between max-w-[1000px] w-full'>
-        <div className='flex items-center gap-x-3'>
+    <nav className="flex w-full justify-center rounded-sm py-3 bg-white px-10 z-[53]">
+      <div className="flex items-center gap-8 justify-between max-w-[1000px] w-full">
+        <div className="flex items-center gap-x-3">
           <img
             src={APP_IMAGES.LOGO.image}
             alt={APP_IMAGES.LOGO.alt}
-            className='object-cover w-[40px]'
+            className="object-cover w-[40px]"
           />
-          <h1 className='font-fontBold text-lg uppercase esm:hidden'>Chaca</h1>
+          <h1 className="font-fontBold text-lg uppercase esm:hidden">Chaca</h1>
         </div>
 
-        <div className='flex items-center gap-x-3'>
-          <div className='flex items-center gap-1'>
+        <div className="flex items-center gap-x-3">
+          <div className="flex items-center gap-1">
             {links.map((link) => (
               <Link to={link.route} key={uuid()}>
-                <div className='text-lg py-1 mx-5 transition-all duration-300 hover:text-principalColor'>
+                <div className="text-lg py-1 mx-5 transition-all duration-300 hover:text-principalColor">
                   {link.title}
                 </div>
               </Link>
@@ -44,7 +44,7 @@ export default function LandingNavBar() {
 
           <div>
             <Link to={APP_ROUTES.AUTH_ROUTES.LOGIN}>
-              <ChacaSimpleButton color='gradient' size='large' text={UI_TEXT.ACCOUNT_TEXT} />
+              <ChacaSimpleButton color="gradient" size="large" text={UI_TEXT.ACCOUNT_TEXT} />
             </Link>
           </div>
         </div>

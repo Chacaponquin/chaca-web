@@ -14,12 +14,12 @@ export default function OptionArgumentsSection({
   const { ARGUMENTS_TEXT } = useLanguage({ ARGUMENTS_TEXT: { en: "Parameters", es: "Parámetros" } })
 
   return (
-    <div className='flex flex-col w-full'>
-      <h1 className='font-fontBold text-lg'>{ARGUMENTS_TEXT}</h1>
+    <div className="flex flex-col w-full">
+      <h1 className="font-fontBold text-lg">{ARGUMENTS_TEXT}</h1>
 
-      <div className='grid grid-cols-2 gap-x-7 gap-y-2'>
+      <div className="grid grid-cols-2 gap-x-7 gap-y-2">
         {optionArguments.map((a, i) => (
-          <div key={i} className='flex gap-x-2 items-center'>
+          <div key={i} className="flex gap-x-2 items-center">
             <p>{a.argument}:</p>
             <ArgumentFilter
               value={args[a.argument]}

@@ -17,10 +17,10 @@ const DeleteDatasetForm = () => {
   })
 
   return (
-    <div className='flex flex-col w-full'>
+    <div className="flex flex-col w-full">
       <ModalTitle titleText={DELETE_DATASET_TEXT} />
       <DeleteForm message={DELETE_DATASET_MESSAGE} elementName={selectedDataset.name} />
-      <ModalButtons type='delete' nextText={DELETE_DATASET_TEXT} handleNext={handleDeleteDataset} />
+      <ModalButtons type="delete" nextText={DELETE_DATASET_TEXT} handleNext={handleDeleteDataset} />
     </div>
   )
 }

@@ -9,7 +9,7 @@ const OtherOptionsSection = ({ loading }: { loading: boolean }) => {
   return (
     <Fragment>
       {!loading && (
-        <div className='grid grid-cols-2 w-full gap-2 mb-3 exsm:grid-cols-1'>
+        <div className="grid grid-cols-2 w-full gap-2 mb-3 exsm:grid-cols-1">
           <GoogleButton />
           <GitHubButton />
         </div>
@@ -25,10 +25,10 @@ const GitHubButton = () => {
     <button
       className={divClass + " border-black text-black hover:bg-black hover:fill-white"}
       onClick={handleGithubLogin}
-      type='button'
+      type="button"
     >
       <GitHub />
-      <p className='mb-0 text-xl'>Github</p>
+      <p className="mb-0 text-xl">Github</p>
     </button>
   )
 }
@@ -42,11 +42,11 @@ const GoogleButton = () => {
         divClass +
         " border-secondColor fill-secondColor text-secondColor hover:bg-secondColor hover:fill-white"
       }
-      type='button'
+      type="button"
       onClick={handleGoogleLogin}
     >
       <Google />
-      <p className='mb-0 text-xl'>Google</p>
+      <p className="mb-0 text-xl">Google</p>
     </button>
   )
 }

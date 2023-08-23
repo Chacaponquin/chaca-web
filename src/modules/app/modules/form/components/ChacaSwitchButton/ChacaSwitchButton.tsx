@@ -41,7 +41,7 @@ export default function ChacaSwitchButton({
     >
       <motion.div
         layout
-        className='bg-white rounded-full cursor-pointer'
+        className="bg-white rounded-full cursor-pointer"
         style={{
           width: `${DIMENSION_VALUES[dimension].width.child}px`,
           height: `${DIMENSION_VALUES[dimension].height.child}px`,

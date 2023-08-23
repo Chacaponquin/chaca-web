@@ -18,9 +18,9 @@ export default function DatasetForm({
   })
 
   return (
-    <div className='flex flex-col gap-3'>
-      <div className='flex items-center gap-3'>
-        <label htmlFor='' className='font-fontMedium text-lg whitespace-nowrap'>
+    <div className="flex flex-col gap-3">
+      <div className="flex items-center gap-3">
+        <label htmlFor="" className="font-fontMedium text-lg whitespace-nowrap">
           {DATASET_NAME_LABEL}:
         </label>
         <ChacaTextInput
@@ -30,8 +30,8 @@ export default function DatasetForm({
         />
       </div>
 
-      <div className='flex items-center gap-3'>
-        <label htmlFor='' className='font-fontMedium text-lg whitespace-nowrap'>
+      <div className="flex items-center gap-3">
+        <label htmlFor="" className="font-fontMedium text-lg whitespace-nowrap">
           {COUNT_DOCUMENTS}:
         </label>
 

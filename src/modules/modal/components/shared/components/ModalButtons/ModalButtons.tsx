@@ -17,25 +17,25 @@ const ModalButtons = ({
   const { CANCEL_TEXT } = useLanguage({ CANCEL_TEXT: { en: "Cancel", es: "Cancelar" } })
 
   return (
-    <div className='grid grid-cols-2 gap-x-3 mt-5 w-full'>
-      <div className='w-full'>
+    <div className="grid grid-cols-2 gap-x-3 mt-5 w-full">
+      <div className="w-full">
         <ChacaSimpleButton
           color={type === "delete" ? "danger" : "primary"}
-          size='large'
+          size="large"
           text={nextText}
           onClick={handleNext}
-          className='text-center flex justify-center'
+          className="text-center flex justify-center"
           full={true}
         />
       </div>
 
-      <div className='w-full'>
+      <div className="w-full">
         <ChacaSimpleButton
-          color='cancel'
-          size='large'
+          color="cancel"
+          size="large"
           text={CANCEL_TEXT}
           onClick={handleCloseModal}
-          className='text-center flex justify-center'
+          className="text-center flex justify-center"
           full={true}
         />
       </div>

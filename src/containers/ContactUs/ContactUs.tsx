@@ -24,59 +24,59 @@ const ContactUs = () => {
   })
 
   return (
-    <div className='flex justify-center items-center w-screen h-screen bg-third-bg bg-cover bg-no-repeat'>
+    <div className="flex justify-center items-center w-screen h-screen bg-third-bg bg-cover bg-no-repeat">
       {modalOpen && <SuccessModal />}
 
-      <div className='bg-white rounded shadow-lg flex gap-10 px-5 py-10 esm:w-[95%] exsm:py-6'>
-        <div className='flex flex-col gap-6 pl-10 w-[550px] lg:pr-0 pr-10 esm:w-full esm:pl-4 esm:pr-4'>
+      <div className="bg-white rounded shadow-lg flex gap-10 px-5 py-10 esm:w-[95%] exsm:py-6">
+        <div className="flex flex-col gap-6 pl-10 w-[550px] lg:pr-0 pr-10 esm:w-full esm:pl-4 esm:pr-4">
           <div>
-            <h1 className='uppercase font-fontTitle sm:text-7xl text-5xl exsm:text-4xl'>
+            <h1 className="uppercase font-fontTitle sm:text-7xl text-5xl exsm:text-4xl">
               {CONTACT_US}
             </h1>
-            <p className='text-grayStrongColor text-lg mt-2 esm:text-base'>{LABEL_MESSAGE}</p>
+            <p className="text-grayStrongColor text-lg mt-2 esm:text-base">{LABEL_MESSAGE}</p>
           </div>
 
-          <form className='flex flex-col gap-3' onSubmit={handleSubmit}>
-            <div className='flex flex-col'>
+          <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
+            <div className="flex flex-col">
               <label className={labelClass}>{NAME_LABEL}:</label>
               <ChacaTextInput
                 onChange={(v) => handleChange("title", v)}
                 value={contactForm.title}
-                type='email'
-                name='name'
+                type="email"
+                name="name"
               />
             </div>
 
-            <div className='flex flex-col'>
-              <label htmlFor='' className={labelClass}>
+            <div className="flex flex-col">
+              <label htmlFor="" className={labelClass}>
                 {EMAIL_LABEL}:
               </label>
               <ChacaTextInput
                 onChange={(v) => handleChange("email", v)}
                 value={contactForm.email}
-                type='email'
-                name='email'
+                type="email"
+                name="email"
               />
             </div>
 
-            <div className='flex flex-col'>
-              <label htmlFor='' className={labelClass}>
+            <div className="flex flex-col">
+              <label htmlFor="" className={labelClass}>
                 {MESSAGE_LABEL}:
               </label>
               <ChacaTextarea
                 onChange={(v) => handleChange("message", v)}
                 height={"normal"}
                 value={contactForm.message}
-                name='message'
+                name="message"
               />
             </div>
 
-            <div className='flex justify-end'>
-              <LoaderContainer loading={loading} size={30} className='px-2 pt-2'>
+            <div className="flex justify-end">
+              <LoaderContainer loading={loading} size={30} className="px-2 pt-2">
                 <ChacaIconButton
-                  color='primary'
+                  color="primary"
                   icon={<Send size={23} />}
-                  size='extra-large'
+                  size="extra-large"
                   text={SEND}
                 />
               </LoaderContainer>
@@ -84,11 +84,11 @@ const ContactUs = () => {
           </form>
         </div>
 
-        <div className='flex-col items-center justify-center w-[450px] lg:flex hidden'>
+        <div className="flex-col items-center justify-center w-[450px] lg:flex hidden">
           <img
             src={APP_IMAGES.CONTACT.image}
             alt={APP_IMAGES.CONTACT.alt}
-            className='object-contain w-full'
+            className="object-contain w-full"
           />
         </div>
       </div>

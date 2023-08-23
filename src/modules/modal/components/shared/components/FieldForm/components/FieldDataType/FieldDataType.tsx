@@ -15,18 +15,18 @@ export default function FieldDataType({
   const foundDataType = foundDataTypeByName(dataType)
 
   return (
-    <section className='flex items-center gap-3'>
-      <label htmlFor='' className='font-fontMedium text-lg whitespace-nowrap'>
+    <section className="flex items-center gap-3">
+      <label htmlFor="" className="font-fontMedium text-lg whitespace-nowrap">
         {label}:
       </label>
 
       <ChacaSelect
-        placeholder='Tipo'
+        placeholder="Tipo"
         options={DATA_TYPES_ARRAY}
-        labelKey='title'
-        valueKey='id'
+        labelKey="title"
+        valueKey="id"
         value={foundDataType.id}
-        dimension='large'
+        dimension="large"
         onChange={(v) => handleChangeDataType(v as number)}
       />
     </section>

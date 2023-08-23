@@ -33,9 +33,9 @@ const ExportForm = ({ saveModelOption }: { saveModelOption: boolean }) => {
   })
 
   return (
-    <div className='flex flex-col'>
-      <div className='flex items-center gap-4'>
-        <label htmlFor='' className='font-fontBold text-lg'>
+    <div className="flex flex-col">
+      <div className="flex items-center gap-4">
+        <label htmlFor="" className="font-fontBold text-lg">
           {FORMAT_TEXT}:
         </label>
         <ChacaSelect
@@ -51,10 +51,10 @@ const ExportForm = ({ saveModelOption }: { saveModelOption: boolean }) => {
       </div>
 
       {(fileArguments.length || saveModelOption) && (
-        <div className='flex flex-col mt-2 gap-2'>
+        <div className="flex flex-col mt-2 gap-2">
           {fileArguments.map((a, i) => (
-            <div className='flex items-center justify-between gap-2' key={i}>
-              <label htmlFor='' className='font-fontBold text-lg whitespace-nowrap'>
+            <div className="flex items-center justify-between gap-2" key={i}>
+              <label htmlFor="" className="font-fontBold text-lg whitespace-nowrap">
                 {a.argument}:
               </label>
               <ArgumentFilter

@@ -146,8 +146,8 @@ export default function ChacaNumberInput({
       style={{ height, width: size === "full" ? `100%` : `${size}px` }}
     >
       <input
-        className='h-full w-full outline-none px-2 text-sm bg-transparent focus:border-principalColor hover:border-principalColor py-[2px]'
-        type='text'
+        className="h-full w-full outline-none px-2 text-sm bg-transparent focus:border-principalColor hover:border-principalColor py-[2px]"
+        type="text"
         onChange={(e) => handleChangeInputValue(e.target.value)}
         onFocus={handleFocus}
         onBlur={handleBlur}
@@ -155,9 +155,9 @@ export default function ChacaNumberInput({
         onMouseLeave={() => setIsHover(false)}
         value={value === undefined ? 0 : value}
       />
-      <div className='grid grid-rows-2 h-full w-[25px] justify-center justify-items-center border-l-grayColor border-l-2'>
+      <div className="grid grid-rows-2 h-full w-[25px] justify-center justify-items-center border-l-grayColor border-l-2">
         <button
-          className='flex justify-center text-center items-center border-b-2 border-grayColor w-full cursor-auto'
+          className="flex justify-center text-center items-center border-b-2 border-grayColor w-full cursor-auto"
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
           onClick={handleIncrease}
@@ -167,7 +167,7 @@ export default function ChacaNumberInput({
         </button>
 
         <button
-          className='flex justify-center text-center items-center w-full cursor-auto'
+          className="flex justify-center text-center items-center w-full cursor-auto"
           onClick={handleDecrease}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}

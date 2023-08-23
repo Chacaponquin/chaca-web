@@ -15,10 +15,10 @@ const EditFieldForm = ({ modalProps }: { modalProps: ModalEditField }) => {
   )
 
   return (
-    <div className='w-full flex flex-col'>
+    <div className="w-full flex flex-col">
       <ModalTitle titleText={EDIT_FIELD_TEXT} />
       <FieldForm {...fieldActions} />
-      <ModalButtons handleNext={handleEditField} nextText={SUBMIT_TEXT} type='edit' />
+      <ModalButtons handleNext={handleEditField} nextText={SUBMIT_TEXT} type="edit" />
     </div>
   )
 }

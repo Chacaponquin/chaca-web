@@ -6,9 +6,9 @@ export default function DeleteForm({
   message: string
 }) {
   return (
-    <div className='flex w-full flex-col'>
-      <div className='text-lg flex gap-1'>
-        {message} <h1 className='font-fontBold'>{elementName}</h1>?
+    <div className="flex w-full flex-col">
+      <div className="text-lg flex gap-1">
+        {message} <h1 className="font-fontBold">{elementName}</h1>?
       </div>
     </div>
   )

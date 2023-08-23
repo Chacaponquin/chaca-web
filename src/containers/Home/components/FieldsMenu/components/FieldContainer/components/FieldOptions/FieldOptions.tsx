@@ -12,7 +12,7 @@ export default function FieldOptions({
   field: DatasetField<FieldDataType>
 }) {
   return (
-    <div className='flex flex-col relative'>
+    <div className="flex flex-col relative">
       <button onClick={handleInteractOpenMenu}>
         <Config size={19} />
         {openMenu && <FieldConfigMenu field={field} />}

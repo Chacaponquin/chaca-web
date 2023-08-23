@@ -11,10 +11,10 @@ const AddDatasetForm = () => {
   })
 
   return (
-    <div className='flex flex-col w-full'>
+    <div className="flex flex-col w-full">
       <ModalTitle titleText={TITLE} />
       <DatasetForm datasetName={datasetName} handleDatasetName={handleDatasetName} />
-      <ModalButtons type='edit' nextText={CREATE_DATASET_TEXT} handleNext={handleAddDataset} />
+      <ModalButtons type="edit" nextText={CREATE_DATASET_TEXT} handleNext={handleAddDataset} />
     </div>
   )
 }

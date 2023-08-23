@@ -14,7 +14,7 @@ function App() {
 
   return (
     <AppLoader loading={initialFetchLoading || loading}>
-      <div className='flex flex-col w-full min-h-screen h-screen'>
+      <div className="flex flex-col w-full min-h-screen h-screen">
         {location.pathname !== APP_ROUTES.ROOT ? <AppNavBar /> : <LandingNavBar />}
         <Outlet />
       </div>

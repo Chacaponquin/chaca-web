@@ -17,7 +17,7 @@ export default function DatasetCard({
   } = useDatasetCard({ handleCreateSelectDataset, index })
 
   return (
-    <div className='bg-darkColor flex flex-col w-[400px] rounded-md text-white stroke-white'>
+    <div className="bg-darkColor flex flex-col w-[400px] rounded-md text-white stroke-white">
       <CardHeader
         openConfig={openConfig}
         handleInteractOpenConfig={handleInteractOpenConfig}
@@ -26,7 +26,7 @@ export default function DatasetCard({
         handleExportDataset={handleExportDataset}
       />
 
-      <div className='flex flex-col py-2'>
+      <div className="flex flex-col py-2">
         {["id", "username", "password"].map((field, i) => (
           <Field key={i} field={field} />
         ))}

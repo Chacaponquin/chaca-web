@@ -40,7 +40,7 @@ export default function FieldForm({
   const canBeNull = fieldCanBeNull(field)
 
   return (
-    <div className='flex flex-col gap-y-3'>
+    <div className="flex flex-col gap-y-3">
       <FieldName name={field.name} text={FIELD_NAME_TEXT} handleChangeName={handleChangeName} />
 
       <FieldDataType
@@ -61,7 +61,7 @@ export default function FieldForm({
         handleChangeSequenceStep={handleChangeSequenceStep}
       />
 
-      <section className='flex flex-col gap-3'>
+      <section className="flex flex-col gap-3">
         {canBeArray && (
           <ArrayConfig
             isArray={field.isArray}

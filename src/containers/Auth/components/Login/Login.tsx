@@ -41,37 +41,37 @@ const Login = () => {
   return (
     <LazyRoute full={true}>
       <NoUserRoute>
-        <div className='w-full h-screen flex flex-col py-8 px-20 esm:px-5'>
-          <div className='flex justify-end w-full text-lg'>
-            <p className='inline mb-0'>{NEW_USER_TEXT}</p>
+        <div className="w-full h-screen flex flex-col py-8 px-20 esm:px-5">
+          <div className="flex justify-end w-full text-lg">
+            <p className="inline mb-0">{NEW_USER_TEXT}</p>
             <Link to={APP_ROUTES.AUTH_ROUTES.SIGN_UP}>
-              <p className='inline mb-0 ml-2 text-secondColor'>{SIGN_UP_TEXT}</p>
+              <p className="inline mb-0 ml-2 text-secondColor">{SIGN_UP_TEXT}</p>
             </Link>
           </div>
 
-          <div className='w-full h-full grid lg:grid-cols-2 grid-cols-1 gap-3'>
-            <div className='h-full lg:flex items-center hidden'>
-              <div className='absolute top-0 left-0 h-screen -translate-x-[200px]'>
+          <div className="w-full h-full grid lg:grid-cols-2 grid-cols-1 gap-3">
+            <div className="h-full lg:flex items-center hidden">
+              <div className="absolute top-0 left-0 h-screen -translate-x-[200px]">
                 <CurveBg />
               </div>
 
               <img
                 src={APP_IMAGES.SIGN_UP_IMAGE.image}
                 alt={APP_IMAGES.SIGN_UP_IMAGE.alt}
-                className='object-contain z-20 -translate-x-[50px] max-w-full'
+                className="object-contain z-20 -translate-x-[50px] max-w-full"
               />
             </div>
 
-            <div className='flex flex-col h-full justify-center z-20'>
-              <div className='w-full flex flex-col esm:items-center'>
-                <h1 className='font-fontTitle text-6xl mb-3 whitespace-nowrap esm:text-5xl'>
+            <div className="flex flex-col h-full justify-center z-20">
+              <div className="w-full flex flex-col esm:items-center">
+                <h1 className="font-fontTitle text-6xl mb-3 whitespace-nowrap esm:text-5xl">
                   {WELCOME_BACK_TEXT}
                 </h1>
-                <p className='text-slate-400 text-2xl esm:text-xl'>{LOGIN_TEXT}</p>
+                <p className="text-slate-400 text-2xl esm:text-xl">{LOGIN_TEXT}</p>
               </div>
 
-              <form className='flex flex-col w-full' onSubmit={handleSubmit}>
-                <div className='flex flex-col w-full py-8 gap-5 esm:py-6'>
+              <form className="flex flex-col w-full" onSubmit={handleSubmit}>
+                <div className="flex flex-col w-full py-8 gap-5 esm:py-6">
                   <InputDiv
                     type={"email"}
                     onChange={handleChange}
@@ -86,13 +86,13 @@ const Login = () => {
                   />
                 </div>
 
-                <div className='mb-4'>
+                <div className="mb-4">
                   <OtherOptionsSection loading={loading} />
                 </div>
 
-                <div className='flex w-full gap-5 flex-wrap justify-center items-center'>
+                <div className="flex w-full gap-5 flex-wrap justify-center items-center">
                   <LoaderContainer loading={loading} size={50}>
-                    <button className={buttonClass + " bg-principal-bg text-white"} type='submit'>
+                    <button className={buttonClass + " bg-principal-bg text-white"} type="submit">
                       {LOGIN_BUTTON_TEXT}
                     </button>
                   </LoaderContainer>
@@ -134,7 +134,7 @@ const InputDiv = ({
 
   return (
     <div className={divClass}>
-      <div className='px-4 border-r-2 flex justify-center items-center'>
+      <div className="px-4 border-r-2 flex justify-center items-center">
         {icon === "email" && <User />}
         {icon === "password" && <Private />}
       </div>

@@ -12,10 +12,10 @@ const AddFieldForm = ({ modalProps }: { modalProps: ModalAddFieldProps }) => {
   const { handleAddField, fieldActions } = useAddFieldForm(modalProps.parentFieldID)
 
   return (
-    <div className='flex flex-col w-full'>
+    <div className="flex flex-col w-full">
       <ModalTitle titleText={NEW_FIELD_TEXT} />
       <FieldForm {...fieldActions} />
-      <ModalButtons type='edit' nextText={SUBMIT_TEXT} handleNext={handleAddField} />
+      <ModalButtons type="edit" nextText={SUBMIT_TEXT} handleNext={handleAddField} />
     </div>
   )
 }

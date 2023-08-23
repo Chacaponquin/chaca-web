@@ -23,20 +23,20 @@ const NoFieldsMessage = () => {
   }
 
   return (
-    <div className='flex mt-8 justify-center flex-col items-center'>
+    <div className="flex mt-8 justify-center flex-col items-center">
       <img
         src={APP_IMAGES.EMPTY_FIELDS.image}
         alt={APP_IMAGES.EMPTY_FIELDS.alt}
-        className='w-[200px] my-5'
+        className="w-[200px] my-5"
       />
-      <p className='text-xl text-slate-500 font-fontBold'>{UI_TEXT.NO_FIELDS_TEXT}</p>
+      <p className="text-xl text-slate-500 font-fontBold">{UI_TEXT.NO_FIELDS_TEXT}</p>
 
       <ChacaSimpleButton
         onClick={handleNewField}
         text={UI_TEXT.ADD_FIELD_TEXT}
-        color='primary'
-        size='medium'
-        className='mt-2'
+        color="primary"
+        size="medium"
+        className="mt-2"
       />
     </div>
   )

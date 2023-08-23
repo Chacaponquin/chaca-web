@@ -11,15 +11,15 @@ export default function FieldName({
   name: string
 }) {
   return (
-    <section className='flex items-center gap-3'>
-      <label htmlFor='' className='font-fontMedium text-lg whitespace-nowrap'>
+    <section className="flex items-center gap-3">
+      <label htmlFor="" className="font-fontMedium text-lg whitespace-nowrap">
         {text}:
       </label>
       <ChacaTextInput
         onChange={handleChangeName}
-        placeholder='Field name...'
+        placeholder="Field name..."
         value={name}
-        dimension='large'
+        dimension="large"
       />
     </section>
   )

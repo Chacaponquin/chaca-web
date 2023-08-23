@@ -108,14 +108,14 @@ export default function ChacaSelect<T>(props: Props<T>) {
 
   return (
     <div
-      className='flex flex-col relative'
+      className="flex flex-col relative"
       style={{
         width: size === "full" ? "100%" : `${size}px`,
         minWidth: size === "full" ? "100px" : `${size}px`,
       }}
     >
       <div className={parentClass} onClick={(e) => handleInteractiveOptions(e)} ref={parentDiv}>
-        <p className='pointer-events-none overflow-x-auto no-scroll'>
+        <p className="pointer-events-none overflow-x-auto no-scroll">
           {selectIndex !== null ? String(selectOptions[selectIndex]["label"]) : placeholder}
         </p>
 
@@ -126,7 +126,7 @@ export default function ChacaSelect<T>(props: Props<T>) {
 
       {openOptions && (
         <div
-          className='flex w-full flex-col z-50 bg-white rounded-sm shadow-lg absolute max-h-[300px] overflow-y-auto'
+          className="flex w-full flex-col z-50 bg-white rounded-sm shadow-lg absolute max-h-[300px] overflow-y-auto"
           style={{
             transform: `translateY(${optionsStyle.translateY})`,
           }}

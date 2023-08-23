@@ -9,10 +9,10 @@ const ExportSelectDatasetForm = ({ handleCreateSelectDataset }: ModalExportSelec
   })
 
   return (
-    <div className='flex flex-col w-full'>
+    <div className="flex flex-col w-full">
       <ModalTitle titleText={EXPORT_DATASET_TEXT} />
       <ExportForm saveModelOption={true} />
-      <ModalButtons handleNext={handleCreateSelectDataset} nextText={SUBMIT_TEXT} type='edit' />
+      <ModalButtons handleNext={handleCreateSelectDataset} nextText={SUBMIT_TEXT} type="edit" />
     </div>
   )
 }

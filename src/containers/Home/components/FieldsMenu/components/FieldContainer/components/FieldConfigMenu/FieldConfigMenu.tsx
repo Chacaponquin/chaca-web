@@ -15,7 +15,7 @@ const FieldConfigMenu = ({ field }: { field: DatasetField<FieldDataType> }) => {
   const { handleAddField, handleDeleteField, handleEditField } = useFieldConfigMenu(field)
 
   return (
-    <div className='absolute bg-white shadow-md rounded-sm top-[25px] -translate-x-[120px]'>
+    <div className="absolute bg-white shadow-md rounded-sm top-[25px] -translate-x-[120px]">
       <div className={divClass} onClick={handleEditField}>
         {EDIT_OPTION_TEXT}
       </div>

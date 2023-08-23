@@ -24,14 +24,14 @@ const ArgumentFilter = ({
         return (
           <ChacaSelect
             options={options.map((o) => ({ label: o, value: o }))}
-            labelKey='label'
+            labelKey="label"
             placeholder={`Select ${arg.argument}`}
             onChange={(value) => {
               handleChangeArgumentValue(value)
             }}
             value={value}
-            dimension='small'
-            valueKey='value'
+            dimension="small"
+            valueKey="value"
           />
         )
       }
@@ -68,7 +68,7 @@ const ArgumentFilter = ({
       case ARGUMENT_TYPE.DATE: {
         return (
           <Calendar
-            dateFormat='dd/mm/yy'
+            dateFormat="dd/mm/yy"
             value={value as Date}
             onChange={(e) => handleChangeArgumentValue(e.value as Date)}
             className={textClass}
@@ -79,7 +79,7 @@ const ArgumentFilter = ({
       case ARGUMENT_TYPE.TEXT: {
         return (
           <ChacaTextInput
-            dimension='small'
+            dimension="small"
             onChange={(value) => handleChangeArgumentValue(value)}
             placeholder={arg.argument}
             value={value as string}

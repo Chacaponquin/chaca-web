@@ -15,9 +15,9 @@ export default function FormContent({ saveSchemaForm }: { saveSchemaForm: SaveSc
   })
 
   return (
-    <div className='flex flex-col w-full gap-2'>
-      <div className='flex flex-col w-full'>
-        <label htmlFor='' className='text-base'>
+    <div className="flex flex-col w-full gap-2">
+      <div className="flex flex-col w-full">
+        <label htmlFor="" className="text-base">
           {MODEL_NAME_TEXT}
         </label>
         <ChacaTextInput
@@ -26,54 +26,54 @@ export default function FormContent({ saveSchemaForm }: { saveSchemaForm: SaveSc
             handleChangeFormValue("name", v)
           }}
           placeholder={"Model name"}
-          size='full'
-          dimension='normal'
+          size="full"
+          dimension="normal"
         />
       </div>
 
-      <div className='flex flex-col w-full'>
-        <label htmlFor='' className='text-base'>
+      <div className="flex flex-col w-full">
+        <label htmlFor="" className="text-base">
           {DESCRIPTION_TEXT}
         </label>
         <ChacaTextarea
-          dimension='normal'
-          height='normal'
-          placeholder='Model description'
+          dimension="normal"
+          height="normal"
+          placeholder="Model description"
           onChange={(v) => {
             handleChangeFormValue("description", v)
           }}
           value={saveSchemaForm.description}
-          size='full'
+          size="full"
         />
       </div>
 
-      <div className='flex flex-col w-full'>
-        <label htmlFor='' className='text-base'>
+      <div className="flex flex-col w-full">
+        <label htmlFor="" className="text-base">
           {TAGS_TEXT}
         </label>
-        <div className='flex items-center gap-1'>
+        <div className="flex items-center gap-1">
           <ChacaTextInput
             value={newTag}
             onChange={handleChangeNewTag}
-            placeholder='New Tag'
-            dimension='normal'
+            placeholder="New Tag"
+            dimension="normal"
           />
           <ChacaSimpleButton
-            size='medium'
-            text='Add'
-            color='primary'
+            size="medium"
+            text="Add"
+            color="primary"
             onClick={() => handleAddNewTag()}
           />
         </div>
 
-        <div className='flex flex-wrap gap-x-2 mt-2 gap-y-1 w-full'>
+        <div className="flex flex-wrap gap-x-2 mt-2 gap-y-1 w-full">
           {saveSchemaForm.tags.map((tag) => (
             <div
               key={uuid()}
-              className='flex items-center py-[3px] px-3 bg-principalColor text-white gap-2 rounded-sm'
+              className="flex items-center py-[3px] px-3 bg-principalColor text-white gap-2 rounded-sm"
             >
-              <p className='mb-0'>{tag}</p>
-              <button className='fill-white'>
+              <p className="mb-0">{tag}</p>
+              <button className="fill-white">
                 <X size={12} />
               </button>
             </div>

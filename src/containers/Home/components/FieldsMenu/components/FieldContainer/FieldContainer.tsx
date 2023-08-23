@@ -22,10 +22,10 @@ const FieldContainer = ({
   } = useFieldContainer(field)
 
   return (
-    <section className='flex flex-col w-full' onClick={handleSelect}>
-      <div className='flex items-center justify-between' style={{ paddingLeft: `${margin}px` }}>
+    <section className="flex flex-col w-full" onClick={handleSelect}>
+      <div className="flex items-center justify-between" style={{ paddingLeft: `${margin}px` }}>
         <div className={divClass}>
-          <div className='flex items-center'>
+          <div className="flex items-center">
             {field.dataType.type === DATA_TYPES.MIXED ? (
               <button
                 style={{

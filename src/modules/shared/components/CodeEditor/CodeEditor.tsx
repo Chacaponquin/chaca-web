@@ -21,7 +21,7 @@ export default function CodeEditor({
       height={`${height}px`}
       extensions={[javascript()]}
       theme={vscodeDark}
-      width='500px'
+      width="500px"
     />
   )
 }

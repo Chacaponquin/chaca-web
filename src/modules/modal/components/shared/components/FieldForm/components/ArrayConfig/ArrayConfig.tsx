@@ -13,16 +13,16 @@ export default function ArrayConfig({
   handleChangeMaxIsArray: (v: number) => void
 }) {
   return (
-    <div className='flex justify-between items-center'>
-      <div className='flex gap-3 items-center'>
+    <div className="flex justify-between items-center">
+      <div className="flex gap-3 items-center">
         <ChacaCheckbox handleChange={handleChangeIsArray} check={isArray !== null} />
-        <p className='mb-0 text-lg'>Is Array</p>
+        <p className="mb-0 text-lg">Is Array</p>
       </div>
 
       {isArray !== null && (
-        <div className='flex items-center gap-6'>
-          <div className='flex items-center gap-1'>
-            <p className='mb-0'>Min:</p>
+        <div className="flex items-center gap-6">
+          <div className="flex items-center gap-1">
+            <p className="mb-0">Min:</p>
             <ChacaNumberInput
               value={isArray.min}
               min={0}
@@ -30,12 +30,12 @@ export default function ArrayConfig({
               max={isArray.max}
               step={1}
               onChange={(v) => handleChangeMinIsArray(v)}
-              dimension='large'
+              dimension="large"
             />
           </div>
 
-          <div className='flex items-center gap-1'>
-            <p className='mb-0'>Max:</p>
+          <div className="flex items-center gap-1">
+            <p className="mb-0">Max:</p>
             <ChacaNumberInput
               value={isArray.max}
               min={isArray.min}
@@ -43,7 +43,7 @@ export default function ArrayConfig({
               step={1}
               size={90}
               onChange={(v) => handleChangeMaxIsArray(v)}
-              dimension='large'
+              dimension="large"
             />
           </div>
         </div>

@@ -8,9 +8,9 @@ export default function KeyConfig({
   handleChangeIsKey: (v: boolean) => void
 }) {
   return (
-    <div className='flex gap-3 items-center'>
+    <div className="flex gap-3 items-center">
       <ChacaCheckbox handleChange={handleChangeIsKey} check={isKey} />
-      <p className='mb-0 text-lg'>Key</p>
+      <p className="mb-0 text-lg">Key</p>
     </div>
   )
 }

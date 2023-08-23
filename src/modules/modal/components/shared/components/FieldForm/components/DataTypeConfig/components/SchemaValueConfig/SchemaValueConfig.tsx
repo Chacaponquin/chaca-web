@@ -35,11 +35,11 @@ export default function SchemaValueConfig({
   }
 
   return (
-    <div className='grid grid-cols-2 gap-x-4 gap-y-3'>
+    <div className="grid grid-cols-2 gap-x-4 gap-y-3">
       <ChacaSelect
         options={schemas}
-        labelKey='name'
-        valueKey='name'
+        labelKey="name"
+        valueKey="name"
         placeholder={MODULE_TEXT}
         value={fieldType.parent}
         onChange={handleSelectModule}
@@ -48,8 +48,8 @@ export default function SchemaValueConfig({
       <ChacaSelect
         value={fieldType.type}
         options={foundOptions}
-        labelKey='name'
-        valueKey='name'
+        labelKey="name"
+        valueKey="name"
         placeholder={OPTION_TEXT}
         onChange={handleSelectModuleOption}
       />

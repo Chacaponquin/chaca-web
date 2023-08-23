@@ -17,8 +17,8 @@ export default function SaveModelInput() {
   const { changeSaveSchema } = useConfigServices()
 
   return (
-    <div className='flex items-center gap-2 justify-between w-full'>
-      <label htmlFor='' className='font-fontBold text-lg'>
+    <div className="flex items-center gap-2 justify-between w-full">
+      <label htmlFor="" className="font-fontBold text-lg">
         {SAVE_SCHEMA_TEXT}:
       </label>
       {actualUser ? (

@@ -47,7 +47,7 @@ const AppRoutes = () => {
         </Fragment>
       </Route>
 
-      <Route path='*' element={<Error404 />} />
+      <Route path="*" element={<Error404 />} />
     </Routes>
   )
 }

@@ -18,7 +18,7 @@ const ChacaLinkButton = ({
 
   return (
     <Link className={buttonClass} to={route}>
-      <p className='uppercase text-primary_color text-xl mb-0 text-center esm:text-base'>{text}</p>
+      <p className="uppercase text-primary_color text-xl mb-0 text-center esm:text-base">{text}</p>
     </Link>
   )
 }

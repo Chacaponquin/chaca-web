@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <LazyRoute>
-      <main className='flex w-full h-full'>
+      <main className="flex w-full h-full">
         {createDataLoading && <CreationLoadingModal />}
 
         {(!smallWindow || (smallWindow && showFieldsMenu)) && <FieldsMenu />}

@@ -33,8 +33,8 @@ export default function AppNavBar() {
   const ICON_SIZE = 22
 
   return (
-    <header className='w-full bg-white flex items-center xl:px-12 px-8 justify-between esm:px-4 h-[100px] border-b-2 border-grayColor'>
-      <div className='flex items-center'>
+    <header className="w-full bg-white flex items-center xl:px-12 px-8 justify-between esm:px-4 h-[100px] border-b-2 border-grayColor">
+      <div className="flex items-center">
         {smallWindow && (
           <button onClick={handleOpenFieldsMenu}>
             <Bars size={20} />
@@ -45,7 +45,7 @@ export default function AppNavBar() {
           <ChacaLogo />
         </Link>
 
-        <div className='flex gap-x-3 ml-10'>
+        <div className="flex gap-x-3 ml-10">
           <NavLink className={divClass} to={APP_ROUTES.HOME}>
             <Home size={ICON_SIZE} />
             <p className={TEXT_CLASS}>{HOME_TEXT}</p>
@@ -53,11 +53,11 @@ export default function AppNavBar() {
         </div>
       </div>
 
-      <div className='flex items-center gap-x-6 h-full'>
+      <div className="flex items-center gap-x-6 h-full">
         <ThemeSwitch />
 
         <Link to={APP_ROUTES.AUTH_ROUTES.LOGIN}>
-          <ChacaSimpleButton text={ACCOUNT_TEXT} color='primary' size='large' />
+          <ChacaSimpleButton text={ACCOUNT_TEXT} color="primary" size="large" />
         </Link>
       </div>
     </header>

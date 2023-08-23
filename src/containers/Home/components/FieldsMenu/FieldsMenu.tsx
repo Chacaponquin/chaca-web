@@ -18,14 +18,14 @@ const FieldsMenu = () => {
   return (
     <section className={containerClass}>
       {smallWindow && showFieldsMenu && (
-        <div className='flex justify-end pt-3 px-4'>
+        <div className="flex justify-end pt-3 px-4">
           <button onClick={handleCloseFieldsMenu}>
             <X size={18} />
           </button>
         </div>
       )}
 
-      <div className='h-full bg-white w-full flex flex-col'>
+      <div className="h-full bg-white w-full flex flex-col">
         {selectedDataset && selectedDataset.fields.length > 0 ? (
           <Fragment>
             {selectedDataset.fields.map((f) => (

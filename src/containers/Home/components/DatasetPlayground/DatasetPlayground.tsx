@@ -6,7 +6,7 @@ export default function DatasetPlayground({
   handleCreateSelectDataset: (i: number) => void
 }) {
   return (
-    <section className='w-full h-full flex justify-center items-center bg-grayColor'>
+    <section className="w-full h-full flex justify-center items-center bg-grayColor">
       <DatasetCard handleCreateSelectDataset={handleCreateSelectDataset} index={0} />
     </section>
   )

@@ -11,10 +11,10 @@ export default function EditDataset() {
   const { datasetName, handleDatasetName, handleEditDataset } = useEditDataset()
 
   return (
-    <div className='w-full'>
+    <div className="w-full">
       <ModalTitle titleText={TITLE} />
       <DatasetForm datasetName={datasetName} handleDatasetName={handleDatasetName} />
-      <ModalButtons handleNext={handleEditDataset} nextText={EDIT_TEXT} type='edit' />
+      <ModalButtons handleNext={handleEditDataset} nextText={EDIT_TEXT} type="edit" />
     </div>
   )
 }

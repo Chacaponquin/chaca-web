@@ -64,12 +64,12 @@ export default function TestEndpointForm({ option }: { option: SubOption }) {
   }
 
   return (
-    <div className='flex flex-col'>
-      <ModalTitle titleText='Test Endpoint' />
+    <div className="flex flex-col">
+      <ModalTitle titleText="Test Endpoint" />
 
       <RequestSection url={requestURL} handleSubmit={handleMakeRequest} />
 
-      <div className='flex gap-y-2 flex-col w-full'>
+      <div className="flex gap-y-2 flex-col w-full">
         {option.arguments.length > 0 && (
           <OptionArgumentsSection
             optionArguments={option.arguments}
