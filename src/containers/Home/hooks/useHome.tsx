@@ -8,6 +8,7 @@ import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { userServices } from "@modules/user/services"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useToastServices } from "@modules/app/modules/toast/services"
+import { useEnvServices } from "@modules/app/modules/env/services"
 
 export const useHome = () => {
   const { datasets, config, selectedDataset } = useContext(DatasetsContext)
@@ -15,16 +16,18 @@ export const useHome = () => {
   const { getTokenCookie } = userServices()
   const { handleOpenModal } = useContext(ModalContext)
   const { toastError } = useToastServices()
+  const { API_ROUTE } = useEnvServices()
 
-  const { NETWORK_ERROR } = useLanguage({
+  const { NETWORK_ERROR, CREATION_ERROR } = useLanguage({
     NETWORK_ERROR: { en: "Network connect error", es: "Error en la conexion" },
+    CREATION_ERROR: { en: "Creation error", es: "Hubo un error en la creación de los datasets" },
   })
 
   const [createDataLoading, setCreateDataLoading] = useState(false)
 
   const socket = useMemo(
     () =>
-      io(process.env.REACT_APP_SOCKET_URL as string, {
+      io(API_ROUTE, {
         auth: {
           token: `Bearer ${getTokenCookie()}`,
         },
@@ -40,7 +43,7 @@ export const useHome = () => {
     // evento cuando se termine la creacion de los datasets
     socket.on(SOCKET_EVENTS.GET_FILE_URL, (downUrl) => {
       // abrir el link de descarga
-      window.open(`${process.env.REACT_APP_API_URL}/${downUrl}`)
+      window.open(`${API_ROUTE}/${downUrl}`)
       // cerrar el modal de creation loading
       setCreateDataLoading(false)
       // resetear la configuracion de exportacion
@@ -48,7 +51,7 @@ export const useHome = () => {
     })
 
     socket.on(SOCKET_EVENTS.CREATION_ERROR, () => {
-      toastError("Hubo un error en la creación de los datasets")
+      toastError(CREATION_ERROR)
       setCreateDataLoading(false)
     })
 
