@@ -1,4 +1,4 @@
-import { CreationLoadingModal, FieldsMenu } from "./components"
+import { CreationLoadingModal, DatasetPlayground, FieldsMenu } from "./components"
 import { useHome } from "./hooks"
 import { useContext } from "react"
 import { AppContext } from "@modules/app/context"
@@ -15,13 +15,15 @@ const Home = () => {
 
   return (
     <LazyRoute>
-      <div className='flex w-full h-full'>
+      <main className='flex w-full h-full'>
         {createDataLoading && <CreationLoadingModal />}
 
         {(!smallWindow || (smallWindow && showFieldsMenu)) && (
           <FieldsMenu handleCreateSelectDataset={handleCreateSelectDataset} />
         )}
-      </div>
+
+        <DatasetPlayground />
+      </main>
     </LazyRoute>
   )
 }
