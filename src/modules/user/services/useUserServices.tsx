@@ -1,11 +1,21 @@
-import { TOKEN_LOCATION } from "../constants/TOKEN"
+import { TOKEN_LOCATION } from "../constants"
 import Cookies from "universal-cookie"
-import { useCallback } from "react"
+import { useCallback, useContext, useMemo } from "react"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { useEnvServices } from "@modules/app/modules/env/services"
+import { UserContext } from "../context"
 
-export function userServices() {
+export default function useUserServices() {
   const { API_ROUTE } = useEnvServices()
+  const { actualUser, noUserLimits } = useContext(UserContext)
+
+  const USER_DATASETS_LIMIT = useMemo(() => {
+    return actualUser ? actualUser.limitDatasets : noUserLimits.LIMIT_DATASETS
+  }, [actualUser])
+
+  const USER_DOCUMENTS_LIMIT = useMemo(() => {
+    return actualUser ? actualUser.limitDocuments : noUserLimits.LIMIT_DOCUMENTS
+  }, [actualUser])
 
   const handleSignIn = (token: string) => {
     localStorage.setItem(TOKEN_LOCATION, token)
@@ -44,5 +54,8 @@ export function userServices() {
     handleSignOut,
     handleGoogleLogin,
     handleGithubLogin,
+    actualUser,
+    USER_DATASETS_LIMIT,
+    USER_DOCUMENTS_LIMIT,
   }
 }

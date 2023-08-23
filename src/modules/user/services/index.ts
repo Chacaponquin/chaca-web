@@ -1,3 +1,3 @@
-import { userServices } from "./userServices"
+import useUserServices from "./useUserServices"
 
-export { userServices }
+export { useUserServices }

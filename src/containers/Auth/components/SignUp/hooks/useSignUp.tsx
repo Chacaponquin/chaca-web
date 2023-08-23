@@ -1,4 +1,4 @@
-import { userServices } from "@modules/user/services"
+import { useUserServices } from "@modules/user/services"
 import { useState } from "react"
 import { SignUpUserDTO } from "@modules/user/dto/user"
 import {
@@ -49,7 +49,7 @@ export function useSignUp() {
     confirmPassword: "",
   })
 
-  const { handleSignIn } = userServices()
+  const { handleSignIn } = useUserServices()
 
   const [signUpUser, { loading }] = usePost<string, SaveUser>({
     url: API_ROUTES.AUTH_ROUTES.SIGN_UP,

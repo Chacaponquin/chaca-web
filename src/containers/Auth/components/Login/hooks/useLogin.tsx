@@ -1,4 +1,4 @@
-import { userServices } from "@modules/user/services"
+import { useUserServices } from "@modules/user/services"
 import { usePost } from "@modules/app/modules/http/hooks"
 import { useState } from "react"
 import { LoginUserDTO } from "@modules/user/dto/user"
@@ -6,7 +6,7 @@ import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { useToastServices } from "@modules/app/modules/toast/services"
 
 export function useLogin() {
-  const { handleSignIn } = userServices()
+  const { handleSignIn } = useUserServices()
   const { toastError } = useToastServices()
 
   const [loginData, setLoginData] = useState<LoginUserDTO>({

@@ -1,10 +1,9 @@
 import { createContext, ReactElement, useEffect, useState } from "react"
-import { FileConfigOption, NoUserLimits } from "@modules/config/interfaces/config.iterface"
+import { FileConfigOption } from "@modules/config/interfaces/config.iterface"
 import { Schema } from "@modules/schemas/interfaces/schema.interface"
 import { appService } from "../services/appServices"
 
 type AppContextProps = {
-  noUserLimits: NoUserLimits
   schemas: Schema[]
   initialFetchLoading: boolean
   fileConfig: FileConfigOption[]
@@ -20,7 +19,7 @@ const AppProvider = ({ children }: { children: ReactElement }) => {
   const [openDropdown, setOpenDropdown] = useState("")
   const [smallWindow, setSmallWindow] = useState(false)
 
-  const { initialFetchLoading, noUserLimits, schemas, fileConfig } = appService().appInitFetch()
+  const { initialFetchLoading, schemas, fileConfig } = appService().appInitFetch()
 
   useEffect(() => {
     function handleWindowResize() {
@@ -52,7 +51,6 @@ const AppProvider = ({ children }: { children: ReactElement }) => {
     initialFetchLoading,
     schemas,
     fileConfig,
-    noUserLimits,
     handleOpenDropDown,
     openDropdown,
     smallWindow,

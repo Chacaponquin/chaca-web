@@ -1,0 +1,4 @@
+export const DEFAULT_LIMITS = {
+  LIMIT_DATASETS: 3,
+  LIMIT_DOCUMENTS: 500,
+}

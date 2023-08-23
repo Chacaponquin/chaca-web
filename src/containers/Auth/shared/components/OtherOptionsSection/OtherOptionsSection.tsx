@@ -1,6 +1,6 @@
 import { Fragment } from "react"
 import { GitHub, Google } from "@modules/app/modules/icon/components"
-import { userServices } from "@modules/user/services"
+import { useUserServices } from "@modules/user/services"
 
 const divClass =
   "border-[3px] py-3 flex gap-3 rounded items-center justify-center transition-all duration-300 hover:text-white cursor-pointer esm:py-2"
@@ -19,7 +19,7 @@ const OtherOptionsSection = ({ loading }: { loading: boolean }) => {
 }
 
 const GitHubButton = () => {
-  const { handleGithubLogin } = userServices()
+  const { handleGithubLogin } = useUserServices()
 
   return (
     <button
@@ -34,7 +34,7 @@ const GitHubButton = () => {
 }
 
 const GoogleButton = () => {
-  const { handleGoogleLogin } = userServices()
+  const { handleGoogleLogin } = useUserServices()
 
   return (
     <button

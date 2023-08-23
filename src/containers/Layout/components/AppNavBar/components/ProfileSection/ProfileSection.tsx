@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import { SignOut, User } from "@modules/app/modules/icon/components"
 import { Link } from "react-router-dom"
 import { APP_ROUTES } from "@modules/app/constants"
-import { userServices } from "@modules/user/services"
+import { useUserServices } from "@modules/user/services"
 import { UserContext } from "@modules/user/context"
 
 const ProfileSection = () => {
@@ -43,7 +43,7 @@ const ProfileSection = () => {
 }
 
 const ProfileMenu = () => {
-  const { handleSignOut } = userServices()
+  const { handleSignOut } = useUserServices()
 
   return (
     <div className='rounded-sm flex flex-col bg-white absolute shadow-md translate-x-20 -translate-y-5'>
