@@ -18,11 +18,9 @@ const Home = () => {
       <main className='flex w-full h-full'>
         {createDataLoading && <CreationLoadingModal />}
 
-        {(!smallWindow || (smallWindow && showFieldsMenu)) && (
-          <FieldsMenu handleCreateSelectDataset={handleCreateSelectDataset} />
-        )}
+        {(!smallWindow || (smallWindow && showFieldsMenu)) && <FieldsMenu />}
 
-        <DatasetPlayground />
+        <DatasetPlayground handleCreateSelectDataset={handleCreateSelectDataset} />
       </main>
     </LazyRoute>
   )

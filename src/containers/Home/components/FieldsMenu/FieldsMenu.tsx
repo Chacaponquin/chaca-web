@@ -1,11 +1,11 @@
 import { Fragment, useContext } from "react"
 import { DatasetsContext } from "@modules/datasets/context"
-import { DatasetButtons, DatasetsHeader, FieldContainer, NoFieldsMessage } from "./components"
+import { DatasetButtons, FieldContainer, NoFieldsMessage } from "./components"
 import clsx from "clsx"
 import { AppContext } from "@modules/app/context"
 import { X } from "@modules/app/modules/icon/components"
 
-const FieldsMenu = ({ handleCreateSelectDataset }: { handleCreateSelectDataset: () => void }) => {
+const FieldsMenu = () => {
   const { selectedDataset, showFieldsMenu, handleCloseFieldsMenu } = useContext(DatasetsContext)
   const { smallWindow } = useContext(AppContext)
 
@@ -24,8 +24,6 @@ const FieldsMenu = ({ handleCreateSelectDataset }: { handleCreateSelectDataset: 
           </button>
         </div>
       )}
-
-      <DatasetsHeader handleCreateSelectDataset={handleCreateSelectDataset} />
 
       <div className='h-full bg-white w-full flex flex-col'>
         {selectedDataset && selectedDataset.fields.length > 0 ? (

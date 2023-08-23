@@ -10,7 +10,7 @@ import { useEnvServices } from "@modules/app/modules/env/services"
 import { useSocketServices } from "@modules/app/modules/socket/services"
 
 export const useHome = () => {
-  const { datasets, config, selectedDataset } = useContext(DatasetsContext)
+  const { datasets, config } = useContext(DatasetsContext)
   const { resetConfig } = useConfigServices()
   const { handleOpenModal } = useContext(ModalContext)
   const { toastError } = useToastServices()
@@ -66,12 +66,12 @@ export const useHome = () => {
     }
   }
 
-  const handleExportSelectDataset = () => {
+  const handleExportSelectDataset = (datasetIndex: number) => {
     if (socket.connected) {
       setCreateDataLoading(true)
 
       socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {
-        datasets: [selectedDataset.object()],
+        datasets: [datasets[datasetIndex]],
         config,
       })
     } else {
@@ -87,10 +87,10 @@ export const useHome = () => {
     })
   }
 
-  const handleCreateSelectDataset = () => {
+  const handleCreateSelectDataset = (datasetIndex: number) => {
     handleOpenModal({
       type: MODAL_ACTIONS.EXPORT_SELECT_DATASET,
-      handleCreateSelectDataset: handleExportSelectDataset,
+      handleCreateSelectDataset: () => handleExportSelectDataset(datasetIndex),
     })
   }
 

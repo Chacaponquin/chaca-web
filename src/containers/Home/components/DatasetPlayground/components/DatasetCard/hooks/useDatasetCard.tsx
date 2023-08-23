@@ -4,7 +4,13 @@ import { useModalServices } from "@modules/modal/services"
 import { useMenu } from "@modules/shared/hooks"
 import { createRef } from "react"
 
-export default function useDatasetCard() {
+export default function useDatasetCard({
+  handleCreateSelectDataset,
+  index,
+}: {
+  index: number
+  handleCreateSelectDataset: (i: number) => void
+}) {
   const menuRef = createRef<HTMLDivElement | null>()
   const { handleCloseMenu, handleOpenMenu, isOpen } = useMenu({ ref: menuRef })
   const { handleOpenModal } = useModalServices()
@@ -34,9 +40,15 @@ export default function useDatasetCard() {
   }
 
   const handleExportDataset = () => {
-    handleCreateSelectDataset()
+    handleCreateSelectDataset(index)
     handleCloseMenu()
   }
 
-  return { openConfig: isOpen, handleInteractOpenConfig, handleDeleteDataset, handleEditDataset }
+  return {
+    openConfig: isOpen,
+    handleInteractOpenConfig,
+    handleDeleteDataset,
+    handleEditDataset,
+    handleExportDataset,
+  }
 }
