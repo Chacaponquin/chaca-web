@@ -15,6 +15,7 @@ import GitHub from "./GitHub"
 import Google from "./Google"
 import Home from "./Home"
 import Image from "./Image"
+import Key from "./Key"
 import Like from "./Like"
 import Menu from "./Menu"
 import Npm from "./Npm"
@@ -64,4 +65,5 @@ export {
   Like,
   Save,
   Image,
+  Key,
 }
