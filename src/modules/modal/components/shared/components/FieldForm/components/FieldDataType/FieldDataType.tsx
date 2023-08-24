@@ -1,6 +1,8 @@
 import { ChacaSelect } from "@form/components"
 import { useDatatypes } from "@modules/datasets/hooks"
 import { DATA_TYPES } from "@modules/schemas/constants"
+import FormInputSection from "../../../../shared/components/FormInputSection/FormInputSection"
+import { useId } from "react"
 
 export default function FieldDataType({
   label,
@@ -14,13 +16,12 @@ export default function FieldDataType({
   const { DATA_TYPES_ARRAY, foundDataTypeByName } = useDatatypes()
   const foundDataType = foundDataTypeByName(dataType)
 
-  return (
-    <section className="flex items-center gap-3">
-      <label htmlFor="" className="font-fontMedium text-lg whitespace-nowrap">
-        {label}:
-      </label>
+  const inputId = useId()
 
+  return (
+    <FormInputSection id={inputId} labelText={label}>
       <ChacaSelect
+        id={inputId}
         placeholder="Tipo"
         options={DATA_TYPES_ARRAY}
         labelKey="title"
@@ -29,6 +30,6 @@ export default function FieldDataType({
         dimension="large"
         onChange={(v) => handleChangeDataType(v as number)}
       />
-    </section>
+    </FormInputSection>
   )
 }

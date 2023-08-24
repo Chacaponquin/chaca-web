@@ -1,4 +1,6 @@
 import { ChacaCheckbox } from "@form/components"
+import { Label } from "@modules/modal/components/shared/shared/components"
+import { useId } from "react"
 
 export default function KeyConfig({
   isKey,
@@ -7,10 +9,12 @@ export default function KeyConfig({
   isKey: boolean
   handleChangeIsKey: (v: boolean) => void
 }) {
+  const keyId = useId()
+
   return (
     <div className="flex gap-3 items-center">
-      <ChacaCheckbox handleChange={handleChangeIsKey} check={isKey} />
-      <p className="mb-0 text-lg">Key</p>
+      <ChacaCheckbox handleChange={handleChangeIsKey} id={keyId} check={isKey} />
+      <Label text="Key" htmlFor={keyId} />
     </div>
   )
 }

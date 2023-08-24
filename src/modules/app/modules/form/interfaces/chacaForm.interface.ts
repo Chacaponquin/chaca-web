@@ -5,4 +5,5 @@ export interface ChacaFormProps<T> {
   onChange?: (value: T) => void
   dimension?: Dimension
   value: T
+  id?: string
 }

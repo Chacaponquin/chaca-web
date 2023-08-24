@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 
-import { useMemo, useState, useRef } from "react"
+import { useMemo, useState, useRef, useId } from "react"
 import { ChacaFormProps } from "../../interfaces/chacaForm.interface"
 import { Size } from "../../interfaces/dimension.interface"
 import { ArrowDown, ArrowUp } from "@modules/app/modules/icon/components"
@@ -21,7 +21,10 @@ export default function ChacaNumberInput({
   dimension = "normal",
   value,
   onChange,
+  id,
 }: ChacaNumberInputProps) {
+  const inputId = id ? id : useId()
+
   const [isFocus, setIsFocus] = useState(false)
   const [isHover, setIsHover] = useState(false)
 
@@ -154,6 +157,9 @@ export default function ChacaNumberInput({
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
         value={value === undefined ? 0 : value}
+        id={inputId}
+        min={min}
+        max={max}
       />
       <div className="grid grid-rows-2 h-full w-[25px] justify-center justify-items-center border-l-grayColor border-l-2">
         <button

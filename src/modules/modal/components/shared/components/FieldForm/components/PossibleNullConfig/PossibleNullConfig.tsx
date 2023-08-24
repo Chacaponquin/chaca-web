@@ -1,5 +1,7 @@
 import { ChacaCheckbox } from "@form/components"
+import { Label } from "@modules/modal/components/shared/shared/components"
 import { Slider } from "primereact/slider"
+import { useId } from "react"
 
 export default function PossibleNullConfig({
   handleChangePossibleNull,
@@ -10,14 +12,17 @@ export default function PossibleNullConfig({
   valueNull: number
   handleChangePossibleNullValue: (v: number) => void
 }) {
+  const nullId = useId()
+
   return (
     <div className="flex justify-between items-center">
       <div className="flex gap-3 items-center">
         <ChacaCheckbox
           check={valueNull > 0 ? true : false}
           handleChange={handleChangePossibleNull}
+          id={nullId}
         />
-        <p className="mb-0 text-lg">Possible null</p>
+        <Label text="Possible null" htmlFor={nullId} />
       </div>
 
       {valueNull > 0 && (

@@ -1,4 +1,6 @@
 import { ChacaNumberInput } from "@form/components"
+import { FormInputSection } from "@modules/modal/components/shared/shared/components"
+import { useId } from "react"
 
 export default function SequenceConfig({
   startsWith,
@@ -11,33 +13,32 @@ export default function SequenceConfig({
   handleChangeSequenceStartsWith: (v: number) => void
   handleChangeSequenceStep: (v: number) => void
 }) {
+  const startId = useId()
+  const stepId = useId()
+
   return (
     <div className="flex items-center justify-between gap-3">
-      <div className="flex items-center gap-3">
-        <label htmlFor="" className="whitespace-nowrap text-lg">
-          Starts with:
-        </label>
+      <FormInputSection labelText={"Starts with"} id={startId}>
         <ChacaNumberInput
           value={startsWith}
           size={140}
           dimension="large"
           onChange={handleChangeSequenceStartsWith}
           min={0.1}
+          id={stepId}
         />
-      </div>
+      </FormInputSection>
 
-      <div className="flex items-center gap-3">
-        <label htmlFor="" className="whitespace-nowrap text-lg">
-          Step:
-        </label>
+      <FormInputSection id={stepId} labelText={"Step"}>
         <ChacaNumberInput
           value={step}
           size={140}
           dimension="large"
           onChange={handleChangeSequenceStep}
           min={0.1}
+          id={stepId}
         />
-      </div>
+      </FormInputSection>
     </div>
   )
 }

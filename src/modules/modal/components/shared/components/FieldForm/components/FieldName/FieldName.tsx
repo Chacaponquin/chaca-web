@@ -1,5 +1,6 @@
 import { ChacaTextInput } from "@form/components"
-import React from "react"
+import { FormInputSection } from "@modules/modal/components/shared/shared/components"
+import { useId } from "react"
 
 export default function FieldName({
   handleChangeName,
@@ -10,17 +11,15 @@ export default function FieldName({
   text: string
   name: string
 }) {
+  const inputId = useId()
   return (
-    <section className="flex items-center gap-3">
-      <label htmlFor="" className="font-fontMedium text-lg whitespace-nowrap">
-        {text}:
-      </label>
+    <FormInputSection labelText={text} id={inputId}>
       <ChacaTextInput
         onChange={handleChangeName}
         placeholder="Field name..."
         value={name}
         dimension="large"
       />
-    </section>
+    </FormInputSection>
   )
 }

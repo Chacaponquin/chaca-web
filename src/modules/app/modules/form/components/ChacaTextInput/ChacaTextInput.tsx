@@ -1,6 +1,7 @@
 import clsx from "clsx"
 import { useFilters } from "../../../../modules/form/hooks"
 import { ChacaFormProps } from "../../interfaces/chacaForm.interface"
+import { useId } from "react"
 
 interface ChacaTextInputProps extends ChacaFormProps<string> {
   placeholder?: string
@@ -18,6 +19,7 @@ export default function ChacaTextInput({
   value,
   type = "text",
   name = "",
+  id,
 }: ChacaTextInputProps) {
   const { textClass, paddingClass } = useFilters({ dimension })
 
@@ -27,6 +29,8 @@ export default function ChacaTextInput({
     textClass,
     paddingClass,
   )
+
+  const inputId = id ? id : useId()
 
   return (
     <input
@@ -41,6 +45,7 @@ export default function ChacaTextInput({
       }}
       value={value === undefined ? "" : value}
       name={name}
+      id={inputId}
     />
   )
 }
