@@ -1,3 +1,6 @@
-import Input from "./Input/Input"
+import Form from "./Form/Form"
+import ImageSection from "./ImageSection/ImageSection"
+import PresentationText from "./PresentationText/PresentationText"
+import Redirect from "./Redirect/Redirect"
 
-export { Input }
+export { Redirect, ImageSection, PresentationText, Form }
