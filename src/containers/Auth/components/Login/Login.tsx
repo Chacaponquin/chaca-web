@@ -1,16 +1,14 @@
-import { useState } from "react"
 import { LoaderContainer } from "@modules/app/components/Loader"
 import { Link } from "react-router-dom"
 import { CurveBg } from "@modules/shared/components/Background"
-import clsx from "clsx"
 import { OtherOptionsSection } from "../../shared/components"
 import { useLogin } from "./hooks"
-import { Private, User } from "@modules/app/modules/icon/components"
 import { APP_IMAGES, APP_ROUTES } from "@modules/app/constants"
 import { LazyRoute, NoUserRoute } from "@modules/app/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 
 import "../../auth.css"
+import { Input } from "./components"
 
 const Login = () => {
   const { handleChange, handleSubmit, loading } = useLogin()
@@ -41,7 +39,7 @@ const Login = () => {
   return (
     <LazyRoute full={true}>
       <NoUserRoute>
-        <div className="w-full h-screen flex flex-col py-8 px-20 esm:px-5">
+        <main className="w-full h-screen flex flex-col py-8 px-20 esm:px-5">
           <div className="flex justify-end w-full text-lg">
             <p className="inline mb-0">{NEW_USER_TEXT}</p>
             <Link to={APP_ROUTES.AUTH_ROUTES.SIGN_UP}>
@@ -72,13 +70,13 @@ const Login = () => {
 
               <form className="flex flex-col w-full" onSubmit={handleSubmit}>
                 <div className="flex flex-col w-full py-8 gap-5 esm:py-6">
-                  <InputDiv
+                  <Input
                     type={"email"}
                     onChange={handleChange}
                     icon={"email"}
                     placeholder={EMAIL_TEXT}
                   />
-                  <InputDiv
+                  <Input
                     onChange={handleChange}
                     type={"password"}
                     icon={"password"}
@@ -92,7 +90,7 @@ const Login = () => {
 
                 <div className="flex w-full gap-5 flex-wrap justify-center items-center">
                   <LoaderContainer loading={loading} size={50}>
-                    <button className={buttonClass + " bg-principal-bg text-white"} type="submit">
+                    <button className={buttonClass + " bg-principalColor text-white"} type="submit">
                       {LOGIN_BUTTON_TEXT}
                     </button>
                   </LoaderContainer>
@@ -109,47 +107,9 @@ const Login = () => {
               </form>
             </div>
           </div>
-        </div>
+        </main>
       </NoUserRoute>
     </LazyRoute>
-  )
-}
-
-const InputDiv = ({
-  type,
-  onChange,
-  icon,
-  placeholder,
-}: {
-  icon: "email" | "password"
-  type: string
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  placeholder: string
-}) => {
-  const [focus, setFocus] = useState(false)
-
-  const divClass = clsx("rounded-md flex w-full inputText", {
-    "inputText-focus": focus,
-  })
-
-  return (
-    <div className={divClass}>
-      <div className="px-4 border-r-2 flex justify-center items-center">
-        {icon === "email" && <User />}
-        {icon === "password" && <Private />}
-      </div>
-
-      <input
-        type={type}
-        className={"w-full outline-none py-3 px-5"}
-        placeholder={placeholder}
-        onChange={onChange}
-        onBlur={() => setFocus(false)}
-        onFocus={() => setFocus(true)}
-        required
-        name={type}
-      />
-    </div>
   )
 }
 

@@ -54,8 +54,8 @@ const AppRoutes = () => {
 
 root.render(
   <Fragment>
-    <BrowserRouter>
-      <ErrorBoundary>
+    <ErrorBoundary>
+      <BrowserRouter>
         <ToastProvider>
           <AppProvider>
             <LanguageProvider>
@@ -73,7 +73,7 @@ root.render(
             </LanguageProvider>
           </AppProvider>
         </ToastProvider>
-      </ErrorBoundary>
-    </BrowserRouter>
+      </BrowserRouter>
+    </ErrorBoundary>
   </Fragment>,
 )
