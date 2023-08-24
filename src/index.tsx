@@ -1,9 +1,9 @@
-import React, { Fragment } from "react"
+import { Fragment } from "react"
 import ReactDOM from "react-dom/client"
 import App from "./App"
 
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { Landing, ContactUs, Error404 } from "./containers"
+import { Landing, ContactUs, Error404, SignUp, Login, Home } from "./containers"
 import { ErrorBoundary } from "@modules/app/components"
 
 // CONTEXT PROVIDERS
@@ -16,6 +16,7 @@ import { ThemeProvider } from "@modules/app/modules/theme/context"
 import { ToastProvider } from "@modules/app/modules/toast/context"
 import { SocketProvider } from "@modules/app/modules/socket/context"
 
+// ROUTES
 import { APP_ROUTES } from "@modules/app/constants"
 
 // CSS
@@ -28,9 +29,9 @@ import "primeicons/primeicons.css"
 
 const root = ReactDOM.createRoot(document.getElementById("root") as Element)
 
-const Home = React.lazy(() => import("./containers/Home/Home"))
-const Login = React.lazy(() => import("./containers/Auth/components/Login/Login"))
-const SignUp = React.lazy(() => import("./containers/Auth/components/SignUp/SignUp"))
+// const Home = lazy(() => import("./containers/Home/Home"))
+// const Login = lazy(() => import("./containers/Auth/components/Login/Login"))
+// const SignUp = lazy(() => import("./containers/Auth/components/SignUp/SignUp"))
 
 const AppRoutes = () => {
   return (
