@@ -1,5 +1,5 @@
 import { useContext, useMemo } from "react"
-import ArgumentFilter from "@modules/shared/components/ArgumentFilter/ArgumentFilter"
+import { ArgumentFilter } from "@modules/schemas/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import SaveModelForm from "../SaveModelForm/SaveModelForm"
 import { ChacaSelect } from "@form/components"

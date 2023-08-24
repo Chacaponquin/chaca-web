@@ -1,5 +1,5 @@
 import { Argument, ArgumentsObject } from "@modules/schemas/interfaces/argument.interface"
-import ArgumentFilter from "@modules/shared/components/ArgumentFilter/ArgumentFilter"
+import { ArgumentFilter } from "@modules/schemas/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 
 export default function OptionArgumentsSection({

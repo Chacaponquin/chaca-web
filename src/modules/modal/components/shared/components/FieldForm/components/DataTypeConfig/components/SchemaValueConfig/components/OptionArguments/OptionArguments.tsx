@@ -1,7 +1,7 @@
 import { ArgumentObject } from "@modules/datasets/interfaces/dataset_field.interface"
 import { UpdateArgumentsProps } from "@modules/modal/components/shared/interfaces/form.interfaces"
 import { useSchemaServices } from "@modules/schemas/services"
-import ArgumentFilter from "@modules/shared/components/ArgumentFilter/ArgumentFilter"
+import { ArgumentFilter } from "@modules/schemas/components"
 import { Fragment } from "react"
 
 interface OptionArgumentsProps {
