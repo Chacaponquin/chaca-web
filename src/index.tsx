@@ -53,7 +53,7 @@ const AppRoutes = () => {
 }
 
 root.render(
-  <React.Fragment>
+  <Fragment>
     <BrowserRouter>
       <ErrorBoundary>
         <ToastProvider>
@@ -75,5 +75,5 @@ root.render(
         </ToastProvider>
       </ErrorBoundary>
     </BrowserRouter>
-  </React.Fragment>,
+  </Fragment>,
 )

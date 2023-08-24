@@ -71,7 +71,7 @@ export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
     }
 
     case FORM_ACTIONS.CHNAGE_IS_KEY: {
-      return { ...form, isKey: action.payload.value }
+      return { ...form, isKey: action.payload.value, isArray: null, isPosibleNull: 0 }
     }
 
     case FORM_ACTIONS.RESET_CONFIG: {
