@@ -1,6 +1,5 @@
 import { UpdateCustomProps } from "@modules/modal/components/shared/interfaces/form.interfaces"
-import CodeEditor from "@modules/shared/components/CodeEditor/CodeEditor"
-import React from "react"
+import { CodeEditor } from "@modules/shared/modules/markdown/components"
 
 export default function CustomConfig({
   code,
