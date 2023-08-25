@@ -9,20 +9,20 @@ import {
   useState,
 } from "react"
 import { ConfigPayload, configReducer } from "@modules/config/reducer/config_reducer"
-import { DatasetPayload, datasetsReducer } from "../reducer/datasetsReducer"
+import { DatasetPayload, datasetsReducer } from "../../reducer/datasetsReducer"
 import { FILE_TYPE } from "@modules/config/constants"
 import { ConfigSchema } from "@modules/config/interfaces/config.iterface"
 import { AppContext } from "@modules/app/context"
-import { DatasetTree, FieldNode } from "@modules/datasets/domain/tree"
+import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
 import { useDatasetServices } from "@modules/datasets/services"
 import { DATASETS_ACTIONS } from "@modules/datasets/constants"
 
 interface DatasetContextProps {
-  datasets: DatasetTree[]
+  datasets: Dataset[]
   config: ConfigSchema
   datasetDispatch: Dispatch<DatasetPayload>
   configDispatch: Dispatch<ConfigPayload>
-  selectedDataset: DatasetTree
+  selectedDataset: Dataset
   selectField: FieldNode | null
   handleSelectDataset: (id: string) => void
   handleSelectField: (datasetID: string, fieldID: string) => void
@@ -40,7 +40,7 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
   const { initDatasets } = useDatasetServices()
 
   // created datasets
-  const [datasets, datasetDispatch] = useReducer<Reducer<DatasetTree[], DatasetPayload>>(
+  const [datasets, datasetDispatch] = useReducer<Reducer<Dataset[], DatasetPayload>>(
     datasetsReducer,
     [],
   )
@@ -52,7 +52,7 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
   })
 
   // select dataset
-  const [selectedDataset, setSelectedDataset] = useState<DatasetTree>(datasets[0])
+  const [selectedDataset, setSelectedDataset] = useState<Dataset>(datasets[0])
 
   // select field
   const [selectField, setSelectField] = useState<FieldNode | null>(null)

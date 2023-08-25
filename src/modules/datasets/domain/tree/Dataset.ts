@@ -1,13 +1,18 @@
-import { Dataset } from "@modules/datasets/interfaces/datasets.interface"
+import { DatasetField, ExportDataset } from "@modules/datasets/interfaces/datasets.interface"
 import { FieldNode } from "./FieldNode"
 import { Node } from "./Node"
 import { RootNode } from "./RootNode"
 
-export class DatasetTree {
+interface DatasetProps {
+  name: string
+  limit?: number
+}
+
+export class Dataset {
   private root: RootNode
 
-  constructor(name: string, limit: number) {
-    this.root = new RootNode(limit, name)
+  constructor({ limit = 50, name }: DatasetProps) {
+    this.root = new RootNode({ limit, name })
   }
 
   get name() {
@@ -15,19 +20,19 @@ export class DatasetTree {
   }
 
   get limit() {
-    return this.root.limit
+    return this.root.limit()
   }
 
   get id() {
     return this.root.id
   }
 
-  get fields() {
-    return this.root.getFields()
+  get fields(): Array<DatasetField> {
+    return this.root.fields()
   }
 
   public setLimit(limit: number) {
-    this.root.limit = limit
+    this.root.setLimit(limit)
   }
 
   public setName(name: string) {
@@ -55,7 +60,7 @@ export class DatasetTree {
     return this.root.getSameLevelNodes(fieldID)
   }
 
-  public object(): Dataset {
+  public object(): ExportDataset {
     return {
       id: this.id,
       name: this.name,
@@ -64,7 +69,7 @@ export class DatasetTree {
     }
   }
 
-  public deleteField(fieldID: string) {
+  public deleteField(fieldID: string): void {
     this.root.deleteField(fieldID)
   }
 

@@ -1,9 +1,9 @@
-import { IsArrayConfig } from "./field_config.interface"
+import { IsArrayConfig, IsKeyConfig } from "./field_config.interface"
 
 export interface NodeInfo<T> {
   name: string
   dataType: T
-  isPosibleNull: number
-  isArray: IsArrayConfig
-  isKey: boolean
+  isPosibleNull?: number
+  isArray?: IsArrayConfig
+  isKey?: IsKeyConfig
 }

@@ -2,9 +2,10 @@ import { DatasetsContext } from "../context"
 import { useContext } from "react"
 import { DATASETS_ACTIONS } from "../constants"
 import { FieldForm } from "../dto/field"
-import { DatasetTree } from "@modules/datasets/domain/tree"
+import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
 import { useValidations } from "../hooks"
 import { DATA_TYPES } from "@modules/schemas/constants"
+import { RefDataType, SingleValueDataType } from "../interfaces/dataset_field.interface"
 
 export default function useDatasetServices() {
   const {
@@ -17,9 +18,57 @@ export default function useDatasetServices() {
 
   const { validateDatasetName, validateFieldName } = useValidations()
 
-  const initDatasets = () => {
-    const initDataset = new DatasetTree("New Dataset", 50)
-    return [initDataset]
+  function initDatasets() {
+    const USER_DATASET = new Dataset({ name: "User" })
+    const id = new FieldNode<SingleValueDataType>({
+      dataType: {
+        type: DATA_TYPES.SINGLE_VALUE,
+        fieldType: { args: {}, parent: "id", type: "uuid" },
+      },
+      name: "id",
+      isKey: true,
+    })
+
+    const username = new FieldNode<SingleValueDataType>({
+      name: "username",
+      dataType: {
+        type: DATA_TYPES.SINGLE_VALUE,
+        fieldType: { args: {}, parent: "internet", type: "username" },
+      },
+    })
+
+    const password = new FieldNode<SingleValueDataType>({
+      name: "password",
+      dataType: {
+        type: DATA_TYPES.SINGLE_VALUE,
+        fieldType: { args: {}, parent: "internet", type: "password" },
+      },
+    })
+
+    USER_DATASET.insertField(id)
+    USER_DATASET.insertField(username)
+    USER_DATASET.insertField(password)
+
+    const POST_DATASET = new Dataset({ name: "Post" })
+
+    const postId = new FieldNode<SingleValueDataType>({
+      dataType: {
+        type: DATA_TYPES.SINGLE_VALUE,
+        fieldType: { args: {}, parent: "id", type: "uuid" },
+      },
+      name: "id",
+      isKey: true,
+    })
+
+    const userId = new FieldNode<RefDataType>({
+      name: "userId",
+      dataType: { type: DATA_TYPES.REF, ref: ["User", "id"] },
+    })
+
+    POST_DATASET.insertField(postId)
+    POST_DATASET.insertField(userId)
+
+    return [USER_DATASET, POST_DATASET]
   }
 
   const addDataset = (datasetName: string) => {

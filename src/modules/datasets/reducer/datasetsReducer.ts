@@ -1,7 +1,7 @@
-import { FieldDataType } from "../../interfaces/datasets.interface"
-import { DATASETS_ACTIONS } from "../../constants"
+import { FieldDataType } from "../interfaces/datasets.interface"
+import { DATASETS_ACTIONS } from "../constants"
 import { Reducer } from "react"
-import { DatasetTree, FieldNode } from "@modules/datasets/domain/tree"
+import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
 import { NodeInfo } from "@modules/datasets/interfaces/tree.interface"
 import { FieldForm } from "@modules/datasets/dto/field"
 
@@ -9,7 +9,7 @@ export type DatasetPayload =
   | { type: DATASETS_ACTIONS.DELETE_DATASET; payload: { datasetID: string } }
   | {
       type: DATASETS_ACTIONS.SET_INIT_DATASETS
-      payload: { datasets: Array<DatasetTree> }
+      payload: { datasets: Array<Dataset> }
     }
   | {
       type: DATASETS_ACTIONS.ADD_NEW_FIELD
@@ -46,10 +46,10 @@ export type DatasetPayload =
       }
     }
 
-export const datasetsReducer: Reducer<Array<DatasetTree>, DatasetPayload> = (
-  datasets: Array<DatasetTree>,
+export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
+  datasets: Array<Dataset>,
   action: DatasetPayload,
-): Array<DatasetTree> => {
+): Array<Dataset> => {
   switch (action.type) {
     case DATASETS_ACTIONS.EDIT_FIELD: {
       const newDatasets = datasets.map((d) => {
@@ -58,8 +58,8 @@ export const datasetsReducer: Reducer<Array<DatasetTree>, DatasetPayload> = (
 
           if (findField) {
             findField.setName(action.payload.field.name)
-            findField.info.isArray = action.payload.field.isArray
-            findField.info.isPosibleNull = action.payload.field.isPosibleNull
+            findField.setIsArray(action.payload.field.isArray)
+            findField.setIsPossibleNull(action.payload.field.isPosibleNull)
           }
         }
 
@@ -105,7 +105,7 @@ export const datasetsReducer: Reducer<Array<DatasetTree>, DatasetPayload> = (
     }
 
     case DATASETS_ACTIONS.CREATE_NEW_DATASET: {
-      const dataset = new DatasetTree(action.payload.datasetName, 50)
+      const dataset = new Dataset({ name: action.payload.datasetName })
       return [...datasets, dataset]
     }
 

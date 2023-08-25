@@ -2,16 +2,32 @@ import { DatasetField } from "@modules/datasets/interfaces/datasets.interface"
 import { FieldNode } from "./FieldNode"
 import { Node } from "./Node"
 
+interface RootProps {
+  name: string
+  limit: number
+}
+
 export class RootNode extends Node {
-  constructor(public limit: number, name: string) {
+  private _limit: number
+
+  constructor({ limit, name }: RootProps) {
     super(name)
+    this._limit = limit
   }
 
-  public getFields(): DatasetField[] {
-    return this.nodes.map((el) => el.getNodeObject())
+  public fields(): DatasetField[] {
+    return this.nodes.map((el) => el.object())
   }
 
   public setField(field: FieldNode) {
     this.nodes.push(field)
+  }
+
+  public limit() {
+    return this._limit
+  }
+
+  public setLimit(l: number) {
+    this._limit = l
   }
 }
