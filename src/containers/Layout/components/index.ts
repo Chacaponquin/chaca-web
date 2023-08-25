@@ -1,4 +1,4 @@
-import AppNavBar from "./AppNavBar/AppNavBar"
-import LandingNavBar from "./LandingNavBar/LandingNavBar"
+import HomeNavbar from "./HomeNavbar/HomeNavbar"
+import Layout from "./Layout/Layout"
 
-export { AppNavBar, LandingNavBar }
+export { HomeNavbar, Layout }

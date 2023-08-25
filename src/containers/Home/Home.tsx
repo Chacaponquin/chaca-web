@@ -4,8 +4,8 @@ import { useContext } from "react"
 import { AppContext } from "@modules/app/context"
 import { DatasetsContext } from "@modules/datasets/context"
 import { LazyRoute } from "@modules/app/components"
-
-import "./home.css"
+import { useLanguage } from "@modules/app/modules/language/hooks"
+import { HomeNavbar, Layout } from "@containers/Layout/components"
 
 const Home = () => {
   const { handleCreateSelectDataset, createDataLoading } = useHome()
@@ -13,15 +13,28 @@ const Home = () => {
   const { showFieldsMenu } = useContext(DatasetsContext)
   const { smallWindow } = useContext(AppContext)
 
+  const { HOME_DESCRIPTION } = useLanguage({
+    HOME_DESCRIPTION: {
+      en: "An interactive application so you can easily create your mock data to test or develop applications",
+      es: "Una aplicación interactiva para que puedas crear fácilmente tu mock data para realizar tests o desarrollar aplicaciones",
+    },
+  })
+
   return (
     <LazyRoute>
-      <main className="flex w-full h-full">
-        {createDataLoading && <CreationLoadingModal />}
+      <Layout description={HOME_DESCRIPTION} title="Chaca | Home">
+        <main className="flex flex-col w-full min-h-screen h-screen">
+          <HomeNavbar />
 
-        {(!smallWindow || (smallWindow && showFieldsMenu)) && <FieldsMenu />}
+          <section className="flex">
+            {createDataLoading && <CreationLoadingModal />}
 
-        <DatasetPlayground handleCreateSelectDataset={handleCreateSelectDataset} />
-      </main>
+            {(!smallWindow || (smallWindow && showFieldsMenu)) && <FieldsMenu />}
+
+            <DatasetPlayground handleCreateSelectDataset={handleCreateSelectDataset} />
+          </section>
+        </main>
+      </Layout>
     </LazyRoute>
   )
 }

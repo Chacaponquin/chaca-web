@@ -7,7 +7,7 @@ import { UserContext } from "../context"
 
 export default function useUserServices() {
   const { API_ROUTE } = useEnvServices()
-  const { actualUser, noUserLimits } = useContext(UserContext)
+  const { actualUser, noUserLimits, loading } = useContext(UserContext)
 
   const USER_DATASETS_LIMIT = useMemo(() => {
     return actualUser ? actualUser.limitDatasets : noUserLimits.LIMIT_DATASETS
@@ -57,5 +57,6 @@ export default function useUserServices() {
     actualUser,
     USER_DATASETS_LIMIT,
     USER_DOCUMENTS_LIMIT,
+    fetchUserLoading: loading,
   }
 }

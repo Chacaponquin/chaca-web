@@ -10,7 +10,7 @@ import { AppContext } from "@modules/app/context"
 import { DatasetsContext } from "@modules/datasets/context"
 import { ThemeSwitch } from "@modules/app/modules/theme/components"
 
-export default function AppNavBar() {
+export default function HomeNavbar() {
   const divClass = ({ isActive }: { isActive: boolean }): string => {
     return clsx(
       "flex items-center py-2 px-6 cursor-pointer gap-x-3.5 transition-all duration-300",

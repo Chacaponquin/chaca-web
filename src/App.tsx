@@ -1,23 +1,16 @@
 import { useContext } from "react"
-import { Outlet, useLocation } from "react-router-dom"
-import { LandingNavBar, AppNavBar } from "./containers/Layout/components"
+import { Outlet } from "react-router-dom"
 import { AppLoader } from "@modules/app/components/Loader"
 import { AppContext } from "@modules/app/context"
-import { UserContext } from "@modules/user/context"
-import { APP_ROUTES } from "@modules/app/constants"
+import { useUserServices } from "@modules/user/services"
 
 function App() {
-  const { loading } = useContext(UserContext)
+  const { fetchUserLoading } = useUserServices()
   const { initialFetchLoading } = useContext(AppContext)
 
-  const location = useLocation()
-
   return (
-    <AppLoader loading={initialFetchLoading || loading}>
-      <main className="flex flex-col w-full min-h-screen h-screen">
-        {location.pathname !== APP_ROUTES.ROOT ? <AppNavBar /> : <LandingNavBar />}
-        <Outlet />
-      </main>
+    <AppLoader loading={initialFetchLoading || fetchUserLoading}>
+      <Outlet />
     </AppLoader>
   )
 }

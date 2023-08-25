@@ -4,7 +4,7 @@ import { ChacaSimpleButton } from "@form/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { APP_IMAGES, APP_ROUTES } from "@modules/app/constants"
 
-export default function LandingNavBar() {
+export default function LandingNavbar() {
   const UI_TEXT = useLanguage({ ACCOUNT_TEXT: { en: "Account", es: "Cuenta" } })
 
   const { HOME_TEXT } = useLanguage({
