@@ -33,10 +33,10 @@ export default function HomeNavbar() {
   const ICON_SIZE = 22
 
   return (
-    <header className="w-full bg-white flex items-center xl:px-12 px-8 justify-between esm:px-4 h-[100px] border-b-2 border-grayColor">
+    <header className="w-full bg-white flex items-center xl:px-12 px-8 justify-between esm:px-4 min-h-[55px] md:min-h-[65px] border-b-2 border-grayColor">
       <div className="flex items-center">
         {smallWindow && (
-          <button onClick={handleOpenFieldsMenu}>
+          <button onClick={handleOpenFieldsMenu} className="mr-4">
             <Bars size={20} />
           </button>
         )}
