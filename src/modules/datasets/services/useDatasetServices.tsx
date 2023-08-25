@@ -6,6 +6,7 @@ import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
 import { useValidations } from "../hooks"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { RefDataType, SingleValueDataType } from "../interfaces/dataset_field.interface"
+import { DatasetConnection } from "../interfaces/dataset_connect.interface"
 
 export default function useDatasetServices() {
   const {
@@ -62,7 +63,7 @@ export default function useDatasetServices() {
 
     const userId = new FieldNode<RefDataType>({
       name: "userId",
-      dataType: { type: DATA_TYPES.REF, ref: ["User", "id"] },
+      dataType: { type: DATA_TYPES.REF, ref: [USER_DATASET.id, id.id] },
     })
 
     POST_DATASET.insertField(postId)
@@ -158,6 +159,33 @@ export default function useDatasetServices() {
     return type !== DATA_TYPES.SEQUENTIAL && type !== DATA_TYPES.SEQUENCE && !field.isKey
   }
 
+  function getDatasetConnections({ dataset }: { dataset: Dataset }): Array<DatasetConnection> {
+    const connections: Array<DatasetConnection> = []
+
+    const refFields = dataset.refFields()
+
+    for (const dat of datasets) {
+      if (dat !== dataset) {
+        refFields.forEach((f) => {
+          const saveConnection: DatasetConnection = { from: f.id, to: [] }
+          const fieldToRef = f.dataType.ref.at(-1)
+
+          if (fieldToRef) {
+            const found = dat.findFieldByID(fieldToRef)
+
+            if (found) {
+              saveConnection.to.push(fieldToRef)
+            }
+          }
+
+          connections.push(saveConnection)
+        })
+      }
+    }
+
+    return connections
+  }
+
   return {
     addDataset,
     addField,
@@ -171,5 +199,6 @@ export default function useDatasetServices() {
     fieldCanBeArray,
     selectedDataset,
     datasets,
+    getDatasetConnections,
   }
 }

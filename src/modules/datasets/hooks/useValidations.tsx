@@ -45,7 +45,7 @@ export function useValidations() {
     const findParent = selectedDataset.findNodeByID(parentID)
 
     if (findParent) {
-      const parentNodes = findParent.getNodes()
+      const parentNodes = findParent.nodes
 
       for (let i = 0; i < parentNodes.length; i++) {
         if (parentNodes[i].name === fieldName) {

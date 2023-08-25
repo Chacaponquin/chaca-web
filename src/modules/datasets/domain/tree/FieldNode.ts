@@ -22,7 +22,7 @@ export class FieldNode<T = FieldDataType> extends Node {
     this._isKey = isKey
   }
 
-  public dataType() {
+  public get dataType() {
     return this._dataType
   }
 

@@ -1,4 +1,8 @@
-import { DatasetField, ExportDataset } from "@modules/datasets/interfaces/datasets.interface"
+import {
+  DatasetField,
+  ExportDataset,
+  RefDataType,
+} from "@modules/datasets/interfaces/datasets.interface"
 import { FieldNode } from "./FieldNode"
 import { Node } from "./Node"
 import { RootNode } from "./RootNode"
@@ -71,6 +75,10 @@ export class Dataset {
 
   public deleteField(fieldID: string): void {
     this.root.deleteField(fieldID)
+  }
+
+  public refFields(): Array<FieldNode<RefDataType>> {
+    return this.root.refFields()
   }
 
   public getFieldLocation(fieldID: string): string[] {

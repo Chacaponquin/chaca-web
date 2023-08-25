@@ -2,11 +2,7 @@ import { useMemo, useState } from "react"
 import { ClickPointProps } from "../interfaces/point.interface"
 import { useDatasetServices } from "@modules/datasets/services"
 import { Dataset } from "@modules/datasets/domain/tree"
-
-interface ConnectDataset {
-  from: string
-  connectWith: Array<string>
-}
+import { DatasetConnection } from "@modules/datasets/interfaces/dataset_connect.interface"
 
 interface ShowDataset {
   dataset: Dataset
@@ -15,7 +11,7 @@ interface ShowDataset {
 }
 
 export default function useDatasetPlayground() {
-  const { datasets } = useDatasetServices()
+  const { datasets, getDatasetConnections } = useDatasetServices()
   const [selectFieldPoint, setSelectFieldPoint] = useState<string | null>(null)
 
   const showDatasets: Array<ShowDataset> = useMemo(() => {
@@ -32,7 +28,17 @@ export default function useDatasetPlayground() {
     return show
   }, [datasets])
 
-  const connectDatasets: Array<ConnectDataset> = useMemo(() => {}, [datasets])
+  const connectDatasets: Array<DatasetConnection> = useMemo(() => {
+    let allConnections = [] as Array<DatasetConnection>
+
+    datasets.forEach((d) => {
+      const conn = getDatasetConnections({ dataset: d })
+      allConnections = [...allConnections, ...conn]
+    })
+
+    console.log(allConnections)
+    return allConnections
+  }, [datasets])
 
   function handleClickPoint({ event, fieldId }: ClickPointProps): void {
     const rect = event.currentTarget.getClientRects().item(0)

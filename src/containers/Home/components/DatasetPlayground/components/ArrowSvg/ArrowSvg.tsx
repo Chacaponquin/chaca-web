@@ -12,5 +12,5 @@ const SVG_STYLE: React.CSSProperties = {
 }
 
 export default function ArrowSvg() {
-  return <div>ArrowSvg</div>
+  return <svg style={SVG_STYLE}></svg>
 }

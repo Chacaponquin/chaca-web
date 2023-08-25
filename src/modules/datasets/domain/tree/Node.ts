@@ -1,9 +1,11 @@
 import { v4 as uuid } from "uuid"
 import { FieldNode } from "./FieldNode"
+import { DATA_TYPES } from "@modules/schemas/constants"
+import { RefDataType } from "@modules/datasets/interfaces/dataset_field.interface"
 
 export class Node {
-  protected nodes: Array<FieldNode> = []
   public readonly id: string = uuid()
+  private _nodes: Array<FieldNode> = []
   private _name: string
 
   constructor(name: string) {
@@ -11,8 +13,8 @@ export class Node {
     this.setName(name)
   }
 
-  public getNodes() {
-    return this.nodes
+  public get nodes() {
+    return this._nodes
   }
 
   get name() {
@@ -81,7 +83,7 @@ export class Node {
     for (let i = 0; i < this.nodes.length && !deleted; i++) {
       if (this.nodes[i].id === fieldID) {
         deleted = true
-        this.nodes = this.nodes.filter((el) => el.id !== fieldID)
+        this._nodes = this.nodes.filter((el) => el.id !== fieldID)
       }
     }
 
@@ -99,21 +101,35 @@ export class Node {
   }
 
   public getFieldLocation(fieldID: string, location: string[]): string[] | null {
-    if (this.nodes.length === 0) return null
-    else {
-      const found = this.nodes.find((n) => n.id === fieldID)
-
-      if (found) {
-        return [...location, this.name, found.name]
-      } else {
-        let ret: string[] | null = null
-
-        for (let i = 0; i < this.nodes.length && !ret; i++) {
-          ret = this.nodes[i].getFieldLocation(fieldID, [...location, this.name])
-        }
-
-        return ret ? ret : null
-      }
+    if (this.nodes.length === 0) {
+      return null
     }
+
+    const found = this.nodes.find((n) => n.id === fieldID)
+    if (found) {
+      return [...location, this.name, found.name]
+    } else {
+      let ret: string[] | null = null
+
+      for (let i = 0; i < this.nodes.length && !ret; i++) {
+        ret = this.nodes[i].getFieldLocation(fieldID, [...location, this.name])
+      }
+
+      return ret ? ret : null
+    }
+  }
+
+  public refFields(): Array<FieldNode<RefDataType>> {
+    let ref = [] as Array<FieldNode<RefDataType>>
+
+    this.nodes.forEach((f) => {
+      if (f.dataType.type === DATA_TYPES.REF) {
+        ref.push(f as FieldNode<RefDataType>)
+      } else if (f.dataType.type === DATA_TYPES.MIXED) {
+        ref = [...ref, ...f.refFields()]
+      }
+    })
+
+    return ref
   }
 }
