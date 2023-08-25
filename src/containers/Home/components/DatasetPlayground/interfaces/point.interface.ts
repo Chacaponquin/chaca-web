@@ -5,7 +5,12 @@ export interface ClickPointProps {
   fieldId: string
 }
 
-export interface PointData {
+export interface Point {
   rect: DOMRect
   path: string
+}
+
+export interface Coords {
+  x: number
+  y: number
 }

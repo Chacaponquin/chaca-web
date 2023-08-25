@@ -19,7 +19,7 @@ export default function DatasetMenu({
     "text-lg py-2 px-5 transition-all duration-300 hover:bg-grayColor cursor-pointer"
 
   return (
-    <ul className="absolute bg-white shadow-lg rounded text-black right-7 top-16">
+    <ul className="absolute bg-white shadow-lg rounded text-black right-7 top-16 z-50">
       <li onClick={handleEditDataset} className={OPTION_CLASS}>
         {EDIT_OPTION}
       </li>

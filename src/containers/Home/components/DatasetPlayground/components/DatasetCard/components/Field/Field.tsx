@@ -27,7 +27,7 @@ export default function Field({
   }
 
   return (
-    <div className="relative flex items-center">
+    <div className="relative flex items-center" id={field.id}>
       <div className={POINT_CLASS + " left-[-6px]"}></div>
 
       <div className="flex w-full text-lg items-center py-2 px-7 justify-between">

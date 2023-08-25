@@ -1,11 +1,8 @@
+import { Coords } from "../interfaces/point.interface"
+
 interface GetPathDataProps {
   from: DOMRect
   to: DOMRect
-}
-
-interface Coords {
-  x: number
-  y: number
 }
 
 const LINE_OFFSET = 9

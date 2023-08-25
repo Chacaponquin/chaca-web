@@ -30,9 +30,6 @@ export function useMenu({ handleClose, handleOpen, ref }: MenuProps) {
       const target = e.target as HTMLElement
       const current = ref.current as HTMLElement
 
-      console.log(menuID)
-
-      console.log(isDescendantOf(current, target), current, target)
       if (current && !isDescendantOf(current, target)) {
         handleCloseMenu()
       }

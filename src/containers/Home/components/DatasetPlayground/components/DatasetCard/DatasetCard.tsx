@@ -40,6 +40,7 @@ export default function DatasetCard({
         left: `${positionX}px`,
         top: `${positionY}px`,
       }}
+      id={dataset.id}
     >
       <CardHeader
         openConfig={openConfig}

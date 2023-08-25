@@ -1,8 +1,9 @@
-import { useMemo, useState } from "react"
-import { ClickPointProps } from "../interfaces/point.interface"
+import { useMemo, useState, useCallback, useEffect } from "react"
+import { ClickPointProps, Point } from "../interfaces/point.interface"
 import { useDatasetServices } from "@modules/datasets/services"
 import { Dataset } from "@modules/datasets/domain/tree"
 import { DatasetConnection } from "@modules/datasets/interfaces/dataset_connect.interface"
+import { getGroupedConnections, getPathData, pathify } from "../utils"
 
 interface ShowDataset {
   dataset: Dataset
@@ -13,6 +14,7 @@ interface ShowDataset {
 export default function useDatasetPlayground() {
   const { datasets, getDatasetConnections } = useDatasetServices()
   const [selectFieldPoint, setSelectFieldPoint] = useState<string | null>(null)
+  const [points, setPoints] = useState<Array<Point>>([])
 
   const showDatasets: Array<ShowDataset> = useMemo(() => {
     const show = [] as Array<ShowDataset>
@@ -36,19 +38,48 @@ export default function useDatasetPlayground() {
       allConnections = [...allConnections, ...conn]
     })
 
-    console.log(allConnections)
     return allConnections
   }, [datasets])
+
+  const handleCalcPoints = useCallback(() => {
+    const connections = getGroupedConnections({ elements: connectDatasets })
+    const returnPoints = [] as Array<Point>
+
+    for (const conn of connections) {
+      conn.to.forEach((to) => {
+        const coords = getPathData({ from: conn.from, to: to.rect })
+        const path = pathify({ paths: coords })
+
+        const savePoint: Point = { path: path, rect: to.rect }
+
+        returnPoints.push(savePoint)
+      })
+    }
+
+    setPoints(returnPoints)
+  }, [connectDatasets])
 
   function handleClickPoint({ event, fieldId }: ClickPointProps): void {
     const rect = event.currentTarget.getClientRects().item(0)
 
     if (rect) {
       setSelectFieldPoint(fieldId)
-
-      console.log(rect)
     }
   }
 
-  return { selectFieldPoint, connectDatasets, handleClickPoint, showDatasets }
+  useEffect(() => {
+    handleCalcPoints()
+  }, [connectDatasets, handleCalcPoints])
+
+  useEffect(() => {
+    window.addEventListener("resize", handleCalcPoints, { passive: true })
+    window.addEventListener("scroll", handleCalcPoints, { passive: true })
+
+    return () => {
+      window.removeEventListener("resize", handleCalcPoints)
+      window.removeEventListener("scroll", handleCalcPoints)
+    }
+  }, [handleCalcPoints])
+
+  return { selectFieldPoint, connectDatasets, handleClickPoint, showDatasets, points }
 }

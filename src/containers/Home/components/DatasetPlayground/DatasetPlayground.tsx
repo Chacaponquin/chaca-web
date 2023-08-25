@@ -6,8 +6,7 @@ export default function DatasetPlayground({
 }: {
   handleCreateSelectDataset: (i: number) => void
 }) {
-  const { connectDatasets, handleClickPoint, showDatasets, selectFieldPoint } =
-    useDatasetPlayground()
+  const { points, handleClickPoint, showDatasets, selectFieldPoint } = useDatasetPlayground()
 
   return (
     <section className="relative w-full h-full items-center bg-grayColor">
@@ -24,7 +23,7 @@ export default function DatasetPlayground({
         />
       ))}
 
-      <ArrowSvg />
+      <ArrowSvg points={points} />
     </section>
   )
 }

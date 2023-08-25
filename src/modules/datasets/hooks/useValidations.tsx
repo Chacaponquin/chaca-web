@@ -41,7 +41,6 @@ export function useValidations() {
 
   const validateNoDuplicateLevelFieldName = (parentID: string, fieldName: string) => {
     let cont = 0
-
     const findParent = selectedDataset.findNodeByID(parentID)
 
     if (findParent) {

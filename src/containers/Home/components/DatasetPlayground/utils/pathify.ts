@@ -1,5 +1,7 @@
+import { Coords } from "../interfaces/point.interface"
+
 interface PathifyProps {
-  paths: { x: number; y: number }[]
+  paths: Array<Coords>
 }
 
 export const pathify = ({ paths }: PathifyProps) => {
