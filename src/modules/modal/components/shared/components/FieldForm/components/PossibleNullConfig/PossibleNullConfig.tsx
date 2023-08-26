@@ -1,5 +1,5 @@
+import { ChacaSlider } from "@form/components"
 import { CheckField } from "@modules/modal/components/shared/shared/components"
-import { Slider } from "primereact/slider"
 
 export default function PossibleNullConfig({
   handleChangePossibleNull,
@@ -11,24 +11,21 @@ export default function PossibleNullConfig({
   handleChangePossibleNullValue: (v: number) => void
 }) {
   return (
-    <div className="flex justify-between items-center">
+    <section className="flex justify-between items-center">
       <CheckField check={valueNull > 0} onChange={handleChangePossibleNull} text="Possible null" />
 
       {valueNull > 0 && (
         <div className="flex gap-4 items-center">
-          <Slider
-            value={valueNull}
-            orientation="horizontal"
+          <ChacaSlider
             min={1}
             max={100}
-            step={1}
-            className="w-[200px]"
-            onChange={(e) => handleChangePossibleNullValue(Number(e.value.toString()))}
+            onChange={handleChangePossibleNullValue}
+            size={200}
+            value={valueNull}
           />
-
           <p className="mb-0">{valueNull}%</p>
         </div>
       )}
-    </div>
+    </section>
   )
 }
