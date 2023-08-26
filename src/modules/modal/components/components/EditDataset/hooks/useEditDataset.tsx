@@ -1,18 +1,16 @@
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useToastServices } from "@modules/app/modules/toast/services"
-import { DatasetsContext } from "@modules/datasets/context"
 import { EmptyDatasetNameError, RepeatDatasetNameError } from "@modules/datasets/errors"
 import { useDatasetServices } from "@modules/datasets/services"
-import { ModalContext } from "@modules/modal/context"
-import { useContext, useState } from "react"
+import { useModalServices } from "@modules/modal/services"
+import { useState } from "react"
 
-export default function useEditDataset() {
-  const { selectedDataset } = useContext(DatasetsContext)
-  const { editDataset } = useDatasetServices()
-  const { handleCloseModal } = useContext(ModalContext)
+export default function useEditDataset({ name, id }: { name: string; id: string }) {
+  const { handleEditDataset: handleEditDatasetService } = useDatasetServices()
+  const { handleCloseModal } = useModalServices()
   const { toastError } = useToastServices()
 
-  const [datasetName, setDatasetName] = useState(selectedDataset.name)
+  const [datasetName, setDatasetName] = useState(name)
 
   const handleDatasetName = (name: string) => {
     setDatasetName(name)
@@ -31,7 +29,7 @@ export default function useEditDataset() {
 
   const handleEditDataset = () => {
     try {
-      editDataset(datasetName)
+      handleEditDatasetService({ datasetId: id, name: datasetName })
       handleCloseModal()
     } catch (error) {
       if (error instanceof EmptyDatasetNameError) {

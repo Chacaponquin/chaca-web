@@ -15,10 +15,14 @@ const Modal = ({ modalProps }: { modalProps: ModalProps }) => {
   return (
     <div className="w-full fixed top-0 left-0 h-screen bg-grayStrongColor/50 z-50 flex justify-center items-center">
       <div className="bg-white rounded-md px-10 py-5 shadow-md min-w-[500px] w-max">
-        {modalProps.type === MODAL_ACTIONS.EDIT_DATASET && <EditDataset />}
+        {modalProps.type === MODAL_ACTIONS.EDIT_DATASET && (
+          <EditDataset datasetName={modalProps.datasetName} datasetId={modalProps.datasetId} />
+        )}
         {modalProps.type === MODAL_ACTIONS.ADD_FIELD && <AddFieldForm modalProps={modalProps} />}
         {modalProps.type === MODAL_ACTIONS.ADD_DATASET && <AddDatasetForm />}
-        {modalProps.type === MODAL_ACTIONS.DELETE_DATASET && <DeleteDatasetForm />}
+        {modalProps.type === MODAL_ACTIONS.DELETE_DATASET && (
+          <DeleteDatasetForm datasetName={modalProps.datasetName} />
+        )}
         {modalProps.type === MODAL_ACTIONS.EDIT_FIELD && <EditFieldForm modalProps={modalProps} />}
         {modalProps.type === MODAL_ACTIONS.EXPORT_SELECT_DATASET && (
           <ExportSelectDatasetForm {...modalProps} />

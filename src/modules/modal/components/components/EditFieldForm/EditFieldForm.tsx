@@ -9,10 +9,11 @@ const EditFieldForm = ({ modalProps }: { modalProps: ModalEditField }) => {
     SUBMIT_TEXT: { en: "Edit", es: "Editar" },
   })
 
-  const { handleEditField, fieldActions } = useEditFieldForm(
-    modalProps.field,
-    modalProps.parentFieldID,
-  )
+  const { handleEditField, fieldActions } = useEditFieldForm({
+    field: modalProps.field,
+    parentFieldID: modalProps.parentFieldID,
+    datasetId: modalProps.datasetId,
+  })
 
   return (
     <div className="w-full flex flex-col">

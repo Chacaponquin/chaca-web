@@ -33,15 +33,14 @@ export class Node {
     const findNode = this.nodes.some((n) => n.id === fieldID)
 
     if (findNode) return this.nodes
-    else {
-      let returnArray = [] as Array<FieldNode>
 
-      for (let i = 0; i < this.nodes.length && returnArray.length === 0; i++) {
-        returnArray = this.nodes[i].getSameLevelNodes(fieldID)
-      }
+    let returnArray = [] as Array<FieldNode>
 
-      return returnArray
+    for (let i = 0; i < this.nodes.length && returnArray.length === 0; i++) {
+      returnArray = this.nodes[i].getSameLevelNodes(fieldID)
     }
+
+    return returnArray
   }
 
   public findFieldParentNode(nodeID: string): Node | null {
@@ -108,15 +107,15 @@ export class Node {
     const found = this.nodes.find((n) => n.id === fieldID)
     if (found) {
       return [...location, this.name, found.name]
-    } else {
-      let ret: string[] | null = null
-
-      for (let i = 0; i < this.nodes.length && !ret; i++) {
-        ret = this.nodes[i].getFieldLocation(fieldID, [...location, this.name])
-      }
-
-      return ret ? ret : null
     }
+
+    let ret: string[] | null = null
+
+    for (let i = 0; i < this.nodes.length && !ret; i++) {
+      ret = this.nodes[i].getFieldLocation(fieldID, [...location, this.name])
+    }
+
+    return ret ? ret : null
   }
 
   public refFields(): Array<FieldNode<RefDataType>> {

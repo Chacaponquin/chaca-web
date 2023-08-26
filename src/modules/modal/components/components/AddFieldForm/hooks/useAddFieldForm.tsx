@@ -8,7 +8,13 @@ import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useDatatypes } from "@modules/datasets/hooks"
 import { useToastServices } from "@modules/app/modules/toast/services"
 
-export function useAddFieldForm(parentFieldID: string) {
+export function useAddFieldForm({
+  datasetId,
+  parentFieldID,
+}: {
+  parentFieldID: string
+  datasetId: string
+}) {
   const { DEFAULT_SCHEMA_VALUE_DATA_TYPE } = useDatatypes()
 
   const { REPEAT_NAME, EMPTY_NAME } = useLanguage({
@@ -25,7 +31,7 @@ export function useAddFieldForm(parentFieldID: string) {
   const { toastError } = useToastServices()
 
   const { handleCloseModal } = useContext(ModalContext)
-  const { addField } = useDatasetServices()
+  const { handleAddField: handleAddFieldService } = useDatasetServices()
 
   const fieldActions = useFieldForm({
     field: {
@@ -40,7 +46,11 @@ export function useAddFieldForm(parentFieldID: string) {
 
   const handleAddField = () => {
     try {
-      addField(fieldActions.field, parentFieldID)
+      handleAddFieldService({
+        datasetId: datasetId,
+        field: fieldActions.field,
+        parentFieldID: parentFieldID,
+      })
       handleCloseModal()
     } catch (error) {
       if (error instanceof EmptyFieldNameError) {

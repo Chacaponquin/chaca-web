@@ -12,7 +12,7 @@ const FieldConfigMenu = ({ field }: { field: DatasetField<FieldDataType> }) => {
     ADD_FIELD_OPTION_TEXT: { en: "Add Field", es: "Añadir Campo" },
   })
 
-  const { handleAddField, handleDeleteField, handleEditField } = useFieldConfigMenu(field)
+  const { handleAddField, handleDeleteField, handleEditField } = useFieldConfigMenu({ field })
 
   return (
     <div className="absolute bg-white shadow-md rounded-sm top-[25px] -translate-x-[120px]">

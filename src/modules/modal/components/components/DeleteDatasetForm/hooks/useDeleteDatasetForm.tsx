@@ -1,8 +1,8 @@
-import { ModalContext } from "@modules/modal/context"
-import { useContext } from "react"
+import { useModalServices } from "@modules/modal/services"
 
 export function useDeleteDatasetForm() {
-  const { handleCloseModal } = useContext(ModalContext)
+  const { handleCloseModal } = useModalServices()
+
   const handleDeleteDataset = () => {
     handleCloseModal()
   }

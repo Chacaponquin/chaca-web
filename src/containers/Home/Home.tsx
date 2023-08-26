@@ -8,7 +8,7 @@ import { useLanguage } from "@modules/app/modules/language/hooks"
 import { HomeNavbar, Layout } from "@containers/Layout/components"
 
 const Home = () => {
-  const { handleCreateSelectDataset, createDataLoading } = useHome()
+  const { handleExportSelectedDataset, createDataLoading, handleAddNewField } = useHome()
 
   const { showFieldsMenu } = useContext(DatasetsContext)
   const { smallWindow } = useContext(AppContext)
@@ -29,9 +29,14 @@ const Home = () => {
           <section className="flex">
             {createDataLoading && <CreationLoadingModal />}
 
-            {(!smallWindow || (smallWindow && showFieldsMenu)) && <FieldsMenu />}
+            {(!smallWindow || (smallWindow && showFieldsMenu)) && (
+              <FieldsMenu
+                handleExportSelectedDataset={handleExportSelectedDataset}
+                handleAddNewField={handleAddNewField}
+              />
+            )}
 
-            <DatasetPlayground handleCreateSelectDataset={handleCreateSelectDataset} />
+            <DatasetPlayground handleCreateSelectDataset={handleExportSelectedDataset} />
           </section>
         </main>
       </Layout>

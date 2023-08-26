@@ -26,8 +26,12 @@ export function useFieldContainer(field: DatasetField) {
   }
 
   const handleSelect = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    e.stopPropagation()
-    if (!(field.dataType.type === DATA_TYPES.MIXED)) handleSelectField(selectedDataset.id, field.id)
+    if (selectedDataset) {
+      e.stopPropagation()
+      if (!(field.dataType.type === DATA_TYPES.MIXED)) {
+        handleSelectField(selectedDataset.id, field.id)
+      }
+    }
   }
 
   return {

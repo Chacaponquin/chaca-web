@@ -9,7 +9,10 @@ const AddFieldForm = ({ modalProps }: { modalProps: ModalAddFieldProps }) => {
     SUBMIT_TEXT: { en: "Add Field", es: "Añadir Campo" },
   })
 
-  const { handleAddField, fieldActions } = useAddFieldForm(modalProps.parentFieldID)
+  const { handleAddField, fieldActions } = useAddFieldForm({
+    parentFieldID: modalProps.parentFieldID,
+    datasetId: modalProps.datasetId,
+  })
 
   return (
     <div className="flex flex-col w-full">

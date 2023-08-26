@@ -6,6 +6,7 @@ import {
 import { FieldNode } from "./FieldNode"
 import { Node } from "./Node"
 import { RootNode } from "./RootNode"
+import { DatasetName } from "@modules/datasets/value-object"
 
 interface DatasetProps {
   name: string
@@ -14,13 +15,15 @@ interface DatasetProps {
 
 export class Dataset {
   private root: RootNode
+  private _name: DatasetName
 
   constructor({ limit = 50, name }: DatasetProps) {
+    this._name = new DatasetName(name)
     this.root = new RootNode({ limit, name })
   }
 
   get name() {
-    return this.root.name
+    return this._name.value()
   }
 
   get nodes() {
@@ -44,7 +47,7 @@ export class Dataset {
   }
 
   public setName(name: string) {
-    this.root.setName(name)
+    this._name = new DatasetName(name)
   }
 
   public insertField(node: FieldNode) {

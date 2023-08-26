@@ -1,18 +1,19 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { SOCKET_EVENTS } from "@modules/app/modules/socket/constants"
-import { DatasetsContext } from "@modules/datasets/context"
 import { useConfigServices } from "@modules/config/services"
-import { ModalContext } from "@modules/modal/context"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useToastServices } from "@modules/app/modules/toast/services"
 import { useEnvServices } from "@modules/app/modules/env/services"
 import { useSocketServices } from "@modules/app/modules/socket/services"
+import { useDatasetServices } from "@modules/datasets/services"
+import { useModalServices } from "@modules/modal/services"
+import { Dataset } from "@modules/datasets/domain/tree"
 
 export const useHome = () => {
-  const { datasets, config } = useContext(DatasetsContext)
-  const { resetConfig } = useConfigServices()
-  const { handleOpenModal } = useContext(ModalContext)
+  const { datasets, selectedDataset } = useDatasetServices()
+  const { resetConfig, config } = useConfigServices()
+  const { handleOpenModal } = useModalServices()
   const { toastError } = useToastServices()
   const { API_ROUTE } = useEnvServices()
   const { socket } = useSocketServices()
@@ -66,12 +67,19 @@ export const useHome = () => {
     }
   }
 
-  const handleExportSelectDataset = (datasetIndex: number) => {
+  const handleCreateAllDatasets = () => {
+    handleOpenModal({
+      type: MODAL_ACTIONS.EXPORT_ALL_DATASETS,
+      handleCreateAllDatasets: handleExportAllDatasets,
+    })
+  }
+
+  const handleExportDataset = (dataset: Dataset) => {
     if (socket.connected) {
       setCreateDataLoading(true)
 
       socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {
-        datasets: [datasets[datasetIndex]],
+        datasets: [dataset],
         config,
       })
     } else {
@@ -80,23 +88,34 @@ export const useHome = () => {
     }
   }
 
-  const handleCreateAllDatasets = () => {
-    handleOpenModal({
-      type: MODAL_ACTIONS.EXPORT_ALL_DATASETS,
-      handleCreateAllDatasets: handleExportAllDatasets,
-    })
+  const handleExportDatasetByIndex = (datasetIndex: number) => {
+    handleExportDataset(datasets[datasetIndex])
   }
 
-  const handleCreateSelectDataset = (datasetIndex: number) => {
-    handleOpenModal({
-      type: MODAL_ACTIONS.EXPORT_SELECT_DATASET,
-      handleCreateSelectDataset: () => handleExportSelectDataset(datasetIndex),
-    })
+  const handleExportSelectedDataset = () => {
+    if (selectedDataset) {
+      handleOpenModal({
+        type: MODAL_ACTIONS.EXPORT_SELECT_DATASET,
+        handleCreateSelectDataset: () => handleExportDataset(selectedDataset),
+      })
+    }
+  }
+
+  function handleAddNewField() {
+    if (selectedDataset) {
+      handleOpenModal({
+        type: MODAL_ACTIONS.ADD_FIELD,
+        parentFieldID: selectedDataset.id,
+        datasetId: selectedDataset.id,
+      })
+    }
   }
 
   return {
-    handleCreateSelectDataset,
+    handleExportSelectedDataset,
     handleCreateAllDatasets,
     createDataLoading,
+    handleExportDatasetByIndex,
+    handleAddNewField,
   }
 }

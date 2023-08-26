@@ -14,7 +14,7 @@ export default function useDatasetCard({
   const menuRef = createRef<HTMLDivElement | null>()
   const { handleCloseMenu, handleOpenMenu, isOpen } = useMenu({ ref: menuRef })
   const { handleOpenModal } = useModalServices()
-  const { selectedDataset } = useDatasetServices()
+  const { get } = useDatasetServices()
 
   const handleInteractOpenConfig = (e: React.MouseEvent) => {
     e.stopPropagation()
@@ -27,15 +27,19 @@ export default function useDatasetCard({
   }
 
   const handleDeleteDataset = () => {
+    const dat = get(index)
+
     handleOpenModal({
       type: MODAL_ACTIONS.DELETE_DATASET,
-      datasetName: selectedDataset.name,
+      datasetName: dat.name,
     })
     handleCloseMenu()
   }
 
   const handleEditDataset = () => {
-    handleOpenModal({ type: MODAL_ACTIONS.EDIT_DATASET })
+    const dat = get(index)
+
+    handleOpenModal({ type: MODAL_ACTIONS.EDIT_DATASET, datasetId: dat.id, datasetName: dat.name })
     handleCloseMenu()
   }
 

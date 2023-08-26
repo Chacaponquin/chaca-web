@@ -78,5 +78,6 @@ export function useConfigServices() {
     resetConfig,
     changeFileArgument,
     changeFileType,
+    config,
   }
 }

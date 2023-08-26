@@ -4,11 +4,14 @@ import { MODAL_ACTIONS } from "../constants/MODAL_ACTIONS"
 
 export type ModalEditDataset = {
   type: MODAL_ACTIONS.EDIT_DATASET
+  datasetName: string
+  datasetId: string
 }
 
 export type ModalAddFieldProps = {
   type: MODAL_ACTIONS.ADD_FIELD
   parentFieldID: string
+  datasetId: string
 }
 
 export type ModalAddDataset = {
@@ -30,6 +33,7 @@ export type ModalEditField = {
   type: MODAL_ACTIONS.EDIT_FIELD
   field: DatasetField<FieldDataType>
   parentFieldID: string
+  datasetId: string
 }
 
 export type ModalExportSelectDataset = {

@@ -1,12 +1,17 @@
 import { Fragment, useContext } from "react"
-import { DatasetsContext } from "@modules/datasets/context"
-import { DatasetButtons, FieldContainer, NoFieldsMessage } from "./components"
+import { CloseSection, DatasetButtons, FieldContainer, NoFieldsMessage } from "./components"
 import clsx from "clsx"
 import { AppContext } from "@modules/app/context"
-import { X } from "@modules/app/modules/icon/components"
+import { useDatasetServices } from "@modules/datasets/services"
 
-const FieldsMenu = () => {
-  const { selectedDataset, showFieldsMenu, handleCloseFieldsMenu } = useContext(DatasetsContext)
+const FieldsMenu = ({
+  handleExportSelectedDataset,
+  handleAddNewField,
+}: {
+  handleExportSelectedDataset: () => void
+  handleAddNewField: () => void
+}) => {
+  const { selectedDataset, showFieldsMenu, handleCloseFieldsMenu } = useDatasetServices()
   const { smallWindow } = useContext(AppContext)
 
   const containerClass = clsx(
@@ -18,11 +23,7 @@ const FieldsMenu = () => {
   return (
     <section className={containerClass}>
       {smallWindow && showFieldsMenu && (
-        <div className="flex justify-end pt-3 px-4">
-          <button onClick={handleCloseFieldsMenu}>
-            <X size={18} />
-          </button>
-        </div>
+        <CloseSection handleCloseFieldsMenu={handleCloseFieldsMenu} />
       )}
 
       <div className="h-full bg-white w-full flex flex-col">
@@ -32,10 +33,13 @@ const FieldsMenu = () => {
               <FieldContainer key={f.id} margin={0} field={f} />
             ))}
 
-            <DatasetButtons />
+            <DatasetButtons
+              handleExportSelectedDataset={handleExportSelectedDataset}
+              handleAddNewField={handleAddNewField}
+            />
           </Fragment>
         ) : (
-          <NoFieldsMessage />
+          <NoFieldsMessage handleAddNewField={handleAddNewField} />
         )}
       </div>
     </section>

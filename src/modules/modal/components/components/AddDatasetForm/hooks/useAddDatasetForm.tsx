@@ -21,7 +21,7 @@ export function useAddDatasetForm() {
   })
 
   const { handleCloseModal } = useContext(ModalContext)
-  const { addDataset } = useDatasetServices()
+  const { handleAddDataset: handleAddDatasetService } = useDatasetServices()
 
   const handleDatasetName = (name: string) => {
     setDatasetName(name)
@@ -29,7 +29,7 @@ export function useAddDatasetForm() {
 
   const handleAddDataset = () => {
     try {
-      addDataset(datasetName)
+      handleAddDatasetService({ name: datasetName })
       // close modal
       handleCloseModal()
     } catch (error) {

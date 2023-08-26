@@ -22,7 +22,7 @@ interface DatasetContextProps {
   config: ConfigSchema
   datasetDispatch: Dispatch<DatasetPayload>
   configDispatch: Dispatch<ConfigPayload>
-  selectedDataset: Dataset
+  selectedDataset: Dataset | null
   selectField: FieldNode | null
   handleSelectDataset: (id: string) => void
   handleSelectField: (datasetID: string, fieldID: string) => void
@@ -52,7 +52,7 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
   })
 
   // select dataset
-  const [selectedDataset, setSelectedDataset] = useState<Dataset>(datasets[0])
+  const [selectedDataset, setSelectedDataset] = useState<Dataset | null>(null)
 
   // select field
   const [selectField, setSelectField] = useState<FieldNode | null>(null)

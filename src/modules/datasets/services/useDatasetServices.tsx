@@ -7,6 +7,32 @@ import { useValidations } from "../hooks"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { DatasetConnection } from "../interfaces/dataset_connect.interface"
 
+interface AddFieldProps {
+  field: FieldForm
+  parentFieldID: string
+  datasetId: string
+}
+
+interface UpdateFieldProps {
+  fieldDTO: FieldForm
+  parentFieldID: string
+  datasetId: string
+}
+
+interface EditDatasetProps {
+  name: string
+  datasetId: string
+}
+
+interface AddDatasetProps {
+  name: string
+}
+
+interface DeleteFieldProps {
+  datasetId: string
+  fieldId: string
+}
+
 export default function useDatasetServices() {
   const {
     datasetDispatch,
@@ -14,6 +40,8 @@ export default function useDatasetServices() {
     selectedDataset,
     datasets,
     handleSelectDataset,
+    showFieldsMenu,
+    handleCloseFieldsMenu,
   } = useContext(DatasetsContext)
 
   const { validateDatasetName, validateFieldName } = useValidations()
@@ -71,38 +99,38 @@ export default function useDatasetServices() {
     return [USER_DATASET, POST_DATASET]
   }
 
-  const addDataset = (datasetName: string) => {
-    validateDatasetName(datasetName)
+  const handleAddDataset = ({ name }: AddDatasetProps) => {
+    validateDatasetName(name)
     // create dataset
     datasetDispatch({
       type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
-      payload: { datasetName },
+      payload: { datasetName: name },
     })
   }
 
-  const editDataset = (datasetName: string) => {
-    validateDatasetName(datasetName)
+  const handleEditDataset = ({ datasetId, name }: EditDatasetProps) => {
+    validateDatasetName(name)
 
     datasetDispatch({
       type: DATASETS_ACTIONS.CHANGE_DATASET_NAME,
-      payload: { datasetID: selectedDataset.id, newName: datasetName },
+      payload: { datasetID: datasetId, newName: name },
     })
   }
 
-  const updateField = (fieldDTO: FieldForm, parentFieldID: string) => {
-    validateFieldName(parentFieldID, fieldDTO.name)
+  const handleUpdateField = ({ datasetId, fieldDTO, parentFieldID }: UpdateFieldProps) => {
+    validateFieldName({ parentID: parentFieldID, datasetId, fieldName: fieldDTO.name })
 
     datasetDispatch({
       type: DATASETS_ACTIONS.EDIT_FIELD,
       payload: {
         field: fieldDTO,
-        datasetID: selectedDataset.id,
+        datasetID: datasetId,
       },
     })
   }
 
-  const addField = (field: FieldForm, parentFieldID: string) => {
-    validateFieldName(parentFieldID, field.name)
+  const handleAddField = ({ datasetId, field, parentFieldID }: AddFieldProps) => {
+    validateFieldName({ parentID: parentFieldID, fieldName: field.name, datasetId })
 
     // crear el field
     datasetDispatch({
@@ -116,7 +144,7 @@ export default function useDatasetServices() {
           isKey: field.isKey,
         },
         parentFieldID,
-        datasetID: selectedDataset.id,
+        datasetID: datasetId,
       },
     })
 
@@ -133,11 +161,11 @@ export default function useDatasetServices() {
     handleSelectDataset(datasets[0].id)
   }
 
-  function changeDocumentsLimit(limit: number) {
+  function handleChangeDocumentsLimit(datasetId: string, limit: number) {
     datasetDispatch({
       type: DATASETS_ACTIONS.CHANGE_DATASET_LIMIT,
       payload: {
-        datasetID: selectedDataset.id,
+        datasetID: datasetId,
         newLimit: limit,
       },
     })
@@ -185,19 +213,34 @@ export default function useDatasetServices() {
     return connections
   }
 
+  const handleDeleteField = ({ datasetId, fieldId }: DeleteFieldProps) => {
+    datasetDispatch({
+      type: DATASETS_ACTIONS.DELETE_FIELD,
+      payload: { fieldID: fieldId, datasetID: datasetId },
+    })
+  }
+
+  function get(index: number): Dataset {
+    return datasets[index]
+  }
+
   return {
-    addDataset,
-    addField,
+    handleAddDataset,
+    handleAddField,
     deleteDataset,
-    updateField,
-    changeDocumentsLimit,
+    handleChangeDocumentsLimit,
     initDatasets,
-    editDataset,
+    handleEditDataset,
+    handleUpdateField,
     fieldCanBeKey,
     fieldCanBeNull,
     fieldCanBeArray,
     selectedDataset,
     datasets,
     getDatasetConnections,
+    showFieldsMenu,
+    handleCloseFieldsMenu,
+    handleDeleteField,
+    get,
   }
 }

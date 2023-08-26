@@ -1,14 +1,15 @@
-import { useContext } from "react"
+import { RepeatDatasetNameError, RepeatSameLevelFieldNameError } from "../errors"
 import { DatasetsContext } from "../context"
-import {
-  EmptyDatasetNameError,
-  EmptyFieldNameError,
-  RepeatDatasetNameError,
-  RepeatSameLevelFieldNameError,
-} from "../errors"
+import { useContext } from "react"
+
+interface ValidateFieldProps {
+  datasetId: string
+  parentID: string
+  fieldName: string
+}
 
 export function useValidations() {
-  const { datasets, selectedDataset } = useContext(DatasetsContext)
+  const { datasets } = useContext(DatasetsContext)
 
   const validateNoDuplicateDataset = (datasetName: string) => {
     let cont = 0
@@ -24,37 +25,37 @@ export function useValidations() {
   }
 
   const validateDatasetName = (datasetName: string) => {
-    if (datasetName === "") {
-      throw new EmptyDatasetNameError()
-    }
-
     validateNoDuplicateDataset(datasetName)
   }
 
-  const validateFieldName = (fieldID: string, fieldName: string) => {
-    if (fieldName === "") {
-      throw new EmptyFieldNameError()
-    }
-
-    validateNoDuplicateLevelFieldName(fieldID, fieldName)
+  const validateFieldName = (props: ValidateFieldProps) => {
+    validateNoDuplicateLevelFieldName(props)
   }
 
-  const validateNoDuplicateLevelFieldName = (parentID: string, fieldName: string) => {
-    let cont = 0
-    const findParent = selectedDataset.findNodeByID(parentID)
+  const validateNoDuplicateLevelFieldName = ({
+    datasetId,
+    fieldName,
+    parentID,
+  }: ValidateFieldProps) => {
+    const foundDataset = datasets.find((d) => d.id === datasetId)
 
-    if (findParent) {
-      const parentNodes = findParent.nodes
+    if (foundDataset) {
+      let cont = 0
+      const findParent = foundDataset.findNodeByID(parentID)
 
-      for (let i = 0; i < parentNodes.length; i++) {
-        if (parentNodes[i].name === fieldName) {
-          cont++
+      if (findParent) {
+        const parentNodes = findParent.nodes
+
+        for (let i = 0; i < parentNodes.length; i++) {
+          if (parentNodes[i].name === fieldName) {
+            cont++
+          }
         }
       }
-    }
 
-    if (cont >= 1) {
-      throw new RepeatSameLevelFieldNameError()
+      if (cont >= 1) {
+        throw new RepeatSameLevelFieldNameError()
+      }
     }
   }
 

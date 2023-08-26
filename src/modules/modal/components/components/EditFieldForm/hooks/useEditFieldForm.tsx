@@ -1,13 +1,20 @@
 import { DatasetField } from "@modules/datasets/interfaces/datasets.interface"
 import { useDatasetServices } from "@modules/datasets/services"
-import { ModalContext } from "@modules/modal/context"
 import { useFieldForm } from "../../../shared/hooks"
-import { useContext } from "react"
 import { EmptyFieldNameError, RepeatSameLevelFieldNameError } from "@modules/datasets/errors"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useToastServices } from "@modules/app/modules/toast/services"
+import { useModalServices } from "@modules/modal/services"
 
-export function useEditFieldForm(field: DatasetField, parentFieldID: string) {
+export function useEditFieldForm({
+  field,
+  parentFieldID,
+  datasetId,
+}: {
+  field: DatasetField
+  parentFieldID: string
+  datasetId: string
+}) {
   const { REPEAT_NAME, EMPTY_NAME } = useLanguage({
     REPEAT_NAME: {
       en: `Aldready exists an field with that name`,
@@ -21,8 +28,8 @@ export function useEditFieldForm(field: DatasetField, parentFieldID: string) {
 
   const { toastError } = useToastServices()
 
-  const { handleCloseModal } = useContext(ModalContext)
-  const { updateField } = useDatasetServices()
+  const { handleCloseModal } = useModalServices()
+  const { handleUpdateField } = useDatasetServices()
 
   const fieldActions = useFieldForm({
     field: {
@@ -37,7 +44,11 @@ export function useEditFieldForm(field: DatasetField, parentFieldID: string) {
 
   const handleEditField = () => {
     try {
-      updateField(fieldActions.field, parentFieldID)
+      handleUpdateField({
+        fieldDTO: fieldActions.field,
+        parentFieldID: parentFieldID,
+        datasetId: datasetId,
+      })
       handleCloseModal()
     } catch (error) {
       if (error instanceof EmptyFieldNameError) {
