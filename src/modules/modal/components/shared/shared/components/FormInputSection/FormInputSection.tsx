@@ -10,7 +10,7 @@ export default function FormInputSection({
   children: React.ReactNode
 }) {
   return (
-    <section className="flex items-center gap-3">
+    <section className="flex items-center justify-between w-full gap-3">
       <Label htmlFor={id} text={labelText} />
       {children}
     </section>

@@ -1,4 +1,4 @@
-import { useContext, useMemo } from "react"
+import { useContext, useMemo, useId } from "react"
 import { ArgumentFilter } from "@modules/schemas/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import SaveModelForm from "../SaveModelForm/SaveModelForm"
@@ -7,8 +7,9 @@ import { DatasetsContext } from "@modules/datasets/context"
 import { AppContext } from "@modules/app/context"
 import { FILE_TYPE } from "@modules/config/constants"
 import { useConfigServices } from "@modules/config/services"
+import { FormInputSection } from "../../shared/components"
 
-const ExportForm = ({ saveModelOption }: { saveModelOption: boolean }) => {
+export default function ExportForm({ saveModelOption }: { saveModelOption: boolean }) {
   const { config } = useContext(DatasetsContext)
   const { fileConfig } = useContext(AppContext)
   const { changeFileArgument, changeFileType } = useConfigServices()
@@ -32,12 +33,11 @@ const ExportForm = ({ saveModelOption }: { saveModelOption: boolean }) => {
     FORMAT_TEXT: { en: "Format", es: "Formato" },
   })
 
+  const formatId = useId()
+
   return (
-    <div className="flex flex-col">
-      <div className="flex items-center gap-4">
-        <label htmlFor="" className="font-fontBold text-lg">
-          {FORMAT_TEXT}:
-        </label>
+    <div className="flex flex-col gap-y-3">
+      <FormInputSection labelText={FORMAT_TEXT} id={formatId}>
         <ChacaSelect
           options={fileConfig}
           labelKey={"fileType"}
@@ -47,11 +47,12 @@ const ExportForm = ({ saveModelOption }: { saveModelOption: boolean }) => {
             handleChangeFileType(value as FILE_TYPE)
           }}
           value={config.file.fileType}
+          dimension="large"
         />
-      </div>
+      </FormInputSection>
 
       {(fileArguments.length || saveModelOption) && (
-        <div className="flex flex-col mt-2 gap-2">
+        <div className="flex flex-col gap-2">
           {fileArguments.map((a, i) => (
             <div className="flex items-center justify-between gap-2" key={i}>
               <label htmlFor="" className="font-fontBold text-lg whitespace-nowrap">
@@ -71,5 +72,3 @@ const ExportForm = ({ saveModelOption }: { saveModelOption: boolean }) => {
     </div>
   )
 }
-
-export default ExportForm
