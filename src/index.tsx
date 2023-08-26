@@ -15,6 +15,7 @@ import { LanguageProvider } from "@modules/app/modules/language/context"
 import { ThemeProvider } from "@modules/app/modules/theme/context"
 import { ToastProvider } from "@modules/app/modules/toast/context"
 import { SocketProvider } from "@modules/app/modules/socket/context"
+import { SchemasProvider } from "@modules/schemas/context"
 
 // ROUTES
 import { APP_ROUTES } from "@modules/app/constants"
@@ -59,19 +60,21 @@ root.render(
       <BrowserRouter>
         <ToastProvider>
           <AppProvider>
-            <LanguageProvider>
-              <ThemeProvider>
-                <UserProvider>
-                  <DatasetsProvider>
-                    <ModalProvider>
-                      <SocketProvider>
-                        <AppRoutes />
-                      </SocketProvider>
-                    </ModalProvider>
-                  </DatasetsProvider>
-                </UserProvider>
-              </ThemeProvider>
-            </LanguageProvider>
+            <SchemasProvider>
+              <LanguageProvider>
+                <ThemeProvider>
+                  <UserProvider>
+                    <DatasetsProvider>
+                      <ModalProvider>
+                        <SocketProvider>
+                          <AppRoutes />
+                        </SocketProvider>
+                      </ModalProvider>
+                    </DatasetsProvider>
+                  </UserProvider>
+                </ThemeProvider>
+              </LanguageProvider>
+            </SchemasProvider>
           </AppProvider>
         </ToastProvider>
       </BrowserRouter>

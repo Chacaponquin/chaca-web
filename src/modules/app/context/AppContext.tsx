@@ -1,10 +1,8 @@
 import { createContext, ReactElement, useState } from "react"
 import { FileConfigOption } from "@modules/config/interfaces/config.iterface"
-import { Schema } from "@modules/schemas/interfaces/schema.interface"
 import { appService } from "../services/appServices"
 
 type AppContextProps = {
-  schemas: Schema[]
   initialFetchLoading: boolean
   fileConfig: FileConfigOption[]
   handleOpenDropDown: (id: string) => void
@@ -17,7 +15,7 @@ const AppContext = createContext<AppContextProps>({} as AppContextProps)
 const AppProvider = ({ children }: { children: ReactElement }) => {
   const [openDropdown, setOpenDropdown] = useState("")
 
-  const { initialFetchLoading, schemas, fileConfig } = appService().appInitFetch()
+  const { initialFetchLoading, fileConfig } = appService().appInitFetch()
 
   const handleOpenDropDown = (id: string) => {
     setOpenDropdown(id)
@@ -29,7 +27,6 @@ const AppProvider = ({ children }: { children: ReactElement }) => {
 
   const data = {
     initialFetchLoading,
-    schemas,
     fileConfig,
     handleOpenDropDown,
     openDropdown,

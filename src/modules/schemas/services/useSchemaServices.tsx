@@ -1,10 +1,10 @@
-import { AppContext } from "@modules/app/context"
 import { useCallback, useContext } from "react"
 import { Schema, SubOption } from "../interfaces/schema.interface"
 import { useEnvServices } from "@modules/app/modules/env/services"
+import { SchemasContext } from "../context"
 
 export function useSchemaServices() {
-  const { schemas } = useContext(AppContext)
+  const { schemas } = useContext(SchemasContext)
   const { API_ROUTE } = useEnvServices()
 
   const optionApiRoute = (route: string): string => {
