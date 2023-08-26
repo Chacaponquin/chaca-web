@@ -1,11 +1,9 @@
-import { PanInfo } from "framer-motion"
-
 interface UsePressProps {
   handleUpdateLines: () => void
 }
 
 export default function usePress({ handleUpdateLines }: UsePressProps) {
-  function onDrangEnd(_: MouseEvent, info: PanInfo) {
+  function onDrangEnd() {
     handleUpdateLines()
   }
 

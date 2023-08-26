@@ -3,6 +3,8 @@ import { ClickPointProps } from "../../interfaces/point.interface"
 import { CardHeader, Field } from "./components"
 import { useDatasetCard, usePress } from "./hooks"
 import { motion } from "framer-motion"
+import { useContext } from "react"
+import { HomeContext } from "@containers/Home/context"
 
 interface DatasetCardProps {
   handleCreateSelectDataset: (i: number) => void
@@ -25,6 +27,8 @@ export default function DatasetCard({
   selectFieldPoint,
   handleUpdateLines,
 }: DatasetCardProps) {
+  const { playgroundRef } = useContext(HomeContext)
+
   const {
     openConfig,
     handleEditDataset,
@@ -41,6 +45,7 @@ export default function DatasetCard({
     <motion.div
       drag
       dragMomentum={false}
+      dragConstraints={playgroundRef}
       onDragEnd={onDrangEnd}
       className={
         "bg-darkColor absolute flex flex-col w-[360px] rounded-lg text-white stroke-white cursor-grab"
