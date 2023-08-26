@@ -1,15 +1,15 @@
 import { ClickPointProps } from "@containers/Home/components/DatasetPlayground/interfaces/point.interface"
 import { Key } from "@modules/app/modules/icon/components"
-import { DatasetField } from "@modules/datasets/interfaces/dataset_field.interface"
 import { MouseEvent } from "react"
 import clsx from "clsx"
+import { FieldNode } from "@modules/datasets/domain/tree"
 
 export default function Field({
   field,
   handleClickPoint,
   selectFieldPoint,
 }: {
-  field: DatasetField
+  field: FieldNode
   handleClickPoint(p: ClickPointProps): void
   selectFieldPoint: null | string
 }) {
@@ -30,7 +30,7 @@ export default function Field({
     <div className="relative flex items-center" id={field.id}>
       <div className={POINT_CLASS + " left-[-6px]"}></div>
 
-      <div className="flex w-full text-lg items-center py-2 px-7 justify-between">
+      <div className="flex w-full text-lg items-center py-2 px-5 justify-between">
         <div className="flex items-center gap-x-3">
           <div className={KEY_CLASS}>
             <Key size={20} />
@@ -39,7 +39,7 @@ export default function Field({
           <p className="font-fontCodeBold">{field.name}</p>
         </div>
 
-        <p className="font-fontCodeBold">id.uuid</p>
+        <p className="font-fontCodeBold">{field.stringInf()}</p>
       </div>
 
       <div className={POINT_CLASS + " right-[-6px]"} onClick={handleClick}></div>

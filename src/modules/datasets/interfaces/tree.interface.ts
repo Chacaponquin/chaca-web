@@ -1,6 +1,6 @@
 import { IsArrayConfig, IsKeyConfig } from "./field_config.interface"
 
-export interface NodeInfo<T> {
+export interface NodeProps<T> {
   name: string
   dataType: T
   isPosibleNull?: number

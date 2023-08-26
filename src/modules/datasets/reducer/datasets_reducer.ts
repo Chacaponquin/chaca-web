@@ -2,7 +2,7 @@ import { FieldDataType } from "../interfaces/datasets.interface"
 import { DATASETS_ACTIONS } from "../constants"
 import { Reducer } from "react"
 import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
-import { NodeInfo } from "@modules/datasets/interfaces/tree.interface"
+import { NodeProps } from "@modules/datasets/interfaces/tree.interface"
 import { FieldForm } from "@modules/datasets/dto/field"
 
 export type DatasetPayload =
@@ -15,7 +15,7 @@ export type DatasetPayload =
       type: DATASETS_ACTIONS.ADD_NEW_FIELD
       payload: {
         parentFieldID: string
-        fieldInfo: NodeInfo<FieldDataType>
+        fieldInfo: NodeProps<FieldDataType>
         datasetID: string
       }
     }
@@ -79,7 +79,7 @@ export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
 
     case DATASETS_ACTIONS.ADD_NEW_FIELD: {
       // crear nuevo field node
-      const newNode = new FieldNode(action.payload.fieldInfo)
+      const newNode = FieldNode.create(action.payload.fieldInfo)
 
       const newDatasets = datasets.map((d) => {
         if (d.id === action.payload.datasetID) {

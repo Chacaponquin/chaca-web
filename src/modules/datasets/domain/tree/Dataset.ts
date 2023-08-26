@@ -23,6 +23,10 @@ export class Dataset {
     return this.root.name
   }
 
+  get nodes() {
+    return this.root.nodes
+  }
+
   get limit() {
     return this.root.limit()
   }

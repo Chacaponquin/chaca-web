@@ -9,7 +9,7 @@ import {
   useState,
 } from "react"
 import { ConfigPayload, configReducer } from "@modules/config/reducer/config_reducer"
-import { DatasetPayload, datasetsReducer } from "../../reducer/datasetsReducer"
+import { DatasetPayload, datasetsReducer } from "../../reducer/datasets_reducer"
 import { FILE_TYPE } from "@modules/config/constants"
 import { ConfigSchema } from "@modules/config/interfaces/config.iterface"
 import { AppContext } from "@modules/app/context"

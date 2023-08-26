@@ -5,7 +5,6 @@ import { FieldForm } from "../dto/field"
 import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
 import { useValidations } from "../hooks"
 import { DATA_TYPES } from "@modules/schemas/constants"
-import { RefDataType, SingleValueDataType } from "../interfaces/dataset_field.interface"
 import { DatasetConnection } from "../interfaces/dataset_connect.interface"
 
 export default function useDatasetServices() {
@@ -21,7 +20,7 @@ export default function useDatasetServices() {
 
   function initDatasets() {
     const USER_DATASET = new Dataset({ name: "User" })
-    const id = new FieldNode<SingleValueDataType>({
+    const id = FieldNode.create({
       dataType: {
         type: DATA_TYPES.SINGLE_VALUE,
         fieldType: { args: {}, parent: "id", type: "uuid" },
@@ -30,7 +29,7 @@ export default function useDatasetServices() {
       isKey: true,
     })
 
-    const username = new FieldNode<SingleValueDataType>({
+    const username = FieldNode.create({
       name: "username",
       dataType: {
         type: DATA_TYPES.SINGLE_VALUE,
@@ -38,7 +37,7 @@ export default function useDatasetServices() {
       },
     })
 
-    const password = new FieldNode<SingleValueDataType>({
+    const password = FieldNode.create({
       name: "password",
       dataType: {
         type: DATA_TYPES.SINGLE_VALUE,
@@ -52,7 +51,7 @@ export default function useDatasetServices() {
 
     const POST_DATASET = new Dataset({ name: "Post" })
 
-    const postId = new FieldNode<SingleValueDataType>({
+    const postId = FieldNode.create({
       dataType: {
         type: DATA_TYPES.SINGLE_VALUE,
         fieldType: { args: {}, parent: "id", type: "uuid" },
@@ -61,7 +60,7 @@ export default function useDatasetServices() {
       isKey: true,
     })
 
-    const userId = new FieldNode<RefDataType>({
+    const userId = FieldNode.create({
       name: "userId",
       dataType: { type: DATA_TYPES.REF, ref: [USER_DATASET.id, id.id] },
     })
