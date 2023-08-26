@@ -31,7 +31,7 @@ export default function DatasetCard({
   } = useDatasetCard({ handleCreateSelectDataset, index })
 
   const CARD_CLASS =
-    "bg-darkColor absolute flex flex-col w-[400px] rounded-lg text-white stroke-white"
+    "bg-darkColor absolute flex flex-col w-[360px] rounded-lg text-white stroke-white"
 
   return (
     <div

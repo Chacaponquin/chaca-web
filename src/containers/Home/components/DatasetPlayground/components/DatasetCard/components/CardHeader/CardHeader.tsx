@@ -22,10 +22,10 @@ export default function CardHeader({
   const LIMIT = `(${limit})`
 
   return (
-    <header className="flex relative justify-center py-5 px-10 border-b-[1px] border-white items-center">
+    <header className="flex relative justify-center py-3.5 px-10 border-b-[1px] border-white items-center">
       <div className="flex items-end gap-x-3">
-        <h1 className="text-3xl font-fontBold">{name}</h1>
-        <p className="text-2xl font-fontCodeBold">{LIMIT}</p>
+        <h1 className="text-2xl font-fontBold">{name}</h1>
+        <p className="text-xl font-fontCodeBold">{LIMIT}</p>
       </div>
 
       <Config handleInteractOpenConfig={handleInteractOpenConfig} />
