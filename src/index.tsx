@@ -10,7 +10,6 @@ import { ErrorBoundary } from "@modules/app/components"
 import { AppProvider } from "@modules/app/context"
 import { DatasetsProvider } from "@modules/datasets/context"
 import { UserProvider } from "@modules/user/context/UserContext"
-import { ModalProvider } from "@modules/modal/context"
 import { LanguageProvider } from "@modules/app/modules/language/context"
 import { ThemeProvider } from "@modules/app/modules/theme/context"
 import { ToastProvider } from "@modules/app/modules/toast/context"
@@ -28,6 +27,7 @@ import "./index.css"
 import "primereact/resources/themes/lara-light-indigo/theme.css"
 import "primereact/resources/primereact.min.css"
 import "primeicons/primeicons.css"
+import { ModalProvider } from "@modules/modal/context"
 
 const root = ReactDOM.createRoot(document.getElementById("root") as Element)
 

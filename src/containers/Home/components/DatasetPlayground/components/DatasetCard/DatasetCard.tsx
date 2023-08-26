@@ -45,11 +45,9 @@ export default function DatasetCard({
     <motion.div
       drag
       dragMomentum={false}
-      dragConstraints={playgroundRef}
+      dragConstraints={playgroundRef.current ? playgroundRef : undefined}
       onDragEnd={onDrangEnd}
-      className={
-        "bg-darkColor absolute flex flex-col w-[360px] rounded-lg text-white stroke-white cursor-grab"
-      }
+      className="bg-darkColor absolute flex flex-col w-[360px] rounded-lg text-white stroke-white cursor-grab"
       style={{
         left: `${positionX}px`,
         top: `${positionY}px`,
