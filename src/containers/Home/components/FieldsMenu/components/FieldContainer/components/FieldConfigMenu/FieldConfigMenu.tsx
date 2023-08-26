@@ -15,17 +15,17 @@ const FieldConfigMenu = ({ field }: { field: DatasetField<FieldDataType> }) => {
   const { handleAddField, handleDeleteField, handleEditField } = useFieldConfigMenu({ field })
 
   return (
-    <div className="absolute bg-white shadow-md rounded-sm top-[25px] -translate-x-[120px]">
-      <div className={divClass} onClick={handleEditField}>
+    <ul className="absolute bg-white shadow-md rounded-sm top-[25px] -translate-x-[120px]">
+      <li className={divClass} onClick={handleEditField}>
         {EDIT_OPTION_TEXT}
-      </div>
-      <div className={divClass} onClick={handleAddField}>
+      </li>
+      <li className={divClass} onClick={handleAddField}>
         {ADD_FIELD_OPTION_TEXT}
-      </div>
-      <div className={divClass} onClick={handleDeleteField}>
+      </li>
+      <li className={divClass} onClick={handleDeleteField}>
         {DELETE_OPTION_TEXT}
-      </div>
-    </div>
+      </li>
+    </ul>
   )
 }
 

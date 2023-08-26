@@ -1,7 +1,8 @@
 import { Dataset } from "@modules/datasets/domain/tree"
 import { ClickPointProps } from "../../interfaces/point.interface"
 import { CardHeader, Field } from "./components"
-import { useDatasetCard } from "./hooks"
+import { useDatasetCard, usePress } from "./hooks"
+import { motion } from "framer-motion"
 
 interface DatasetCardProps {
   handleCreateSelectDataset: (i: number) => void
@@ -11,6 +12,7 @@ interface DatasetCardProps {
   handleClickPoint(p: ClickPointProps): void
   dataset: Dataset
   selectFieldPoint: null | string
+  handleUpdateLines: () => void
 }
 
 export default function DatasetCard({
@@ -21,6 +23,7 @@ export default function DatasetCard({
   handleClickPoint,
   dataset,
   selectFieldPoint,
+  handleUpdateLines,
 }: DatasetCardProps) {
   const {
     openConfig,
@@ -30,12 +33,18 @@ export default function DatasetCard({
     handleInteractOpenConfig,
   } = useDatasetCard({ handleCreateSelectDataset, index })
 
-  const CARD_CLASS =
-    "bg-darkColor absolute flex flex-col w-[360px] rounded-lg text-white stroke-white"
+  const { onDrangEnd } = usePress({
+    handleUpdateLines,
+  })
 
   return (
-    <div
-      className={CARD_CLASS}
+    <motion.div
+      drag
+      dragMomentum={false}
+      onDragEnd={onDrangEnd}
+      className={
+        "bg-darkColor absolute flex flex-col w-[360px] rounded-lg text-white stroke-white cursor-grab"
+      }
       style={{
         left: `${positionX}px`,
         top: `${positionY}px`,
@@ -62,6 +71,6 @@ export default function DatasetCard({
           />
         ))}
       </div>
-    </div>
+    </motion.div>
   )
 }

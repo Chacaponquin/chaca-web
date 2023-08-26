@@ -16,7 +16,7 @@ export default function Field({
   const isSelected = selectFieldPoint === field.id
 
   const POINT_CLASS = clsx(
-    "h-[12px] w-[12px] bg-white absolute translate-y-[2px] rounded-full cursor-pointer",
+    "h-[12px] w-[12px] bg-white absolute translate-y-[1px] rounded-full cursor-pointer",
     { "border border-2 border-black": isSelected },
   )
 

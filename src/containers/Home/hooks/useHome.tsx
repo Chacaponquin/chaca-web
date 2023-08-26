@@ -19,7 +19,7 @@ export const useHome = () => {
   const { socket } = useSocketServices()
 
   const { NETWORK_ERROR, CREATION_ERROR } = useLanguage({
-    NETWORK_ERROR: { en: "Network connect error", es: "Error en la conexion" },
+    NETWORK_ERROR: { en: "Network connect error", es: "Error en la conexión" },
     CREATION_ERROR: { en: "Creation error", es: "Hubo un error en la creación de los datasets" },
   })
 

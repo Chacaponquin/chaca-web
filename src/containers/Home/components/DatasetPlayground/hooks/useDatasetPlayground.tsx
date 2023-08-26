@@ -3,7 +3,8 @@ import { ClickPointProps, Point } from "../interfaces/point.interface"
 import { useDatasetServices } from "@modules/datasets/services"
 import { Dataset } from "@modules/datasets/domain/tree"
 import { DatasetConnection } from "@modules/datasets/interfaces/dataset_connect.interface"
-import { getGroupedConnections, getPathData, pathify } from "../utils"
+import { getGroupedConnections, getPathData, pathify, getElement } from "../utils"
+import { ChangePositionProps } from "../interfaces/position.interface"
 
 interface ShowDataset {
   dataset: Dataset
@@ -15,8 +16,9 @@ export default function useDatasetPlayground() {
   const { datasets, getDatasetConnections } = useDatasetServices()
   const [selectFieldPoint, setSelectFieldPoint] = useState<string | null>(null)
   const [points, setPoints] = useState<Array<Point>>([])
+  const [showDatasets, setShowDatasets] = useState<Array<ShowDataset>>([])
 
-  const showDatasets: Array<ShowDataset> = useMemo(() => {
+  useEffect(() => {
     const show = [] as Array<ShowDataset>
 
     let x = 50
@@ -27,7 +29,7 @@ export default function useDatasetPlayground() {
       y += 100
     }
 
-    return show
+    setShowDatasets(show)
   }, [datasets])
 
   const connectDatasets: Array<DatasetConnection> = useMemo(() => {
@@ -75,11 +77,53 @@ export default function useDatasetPlayground() {
     window.addEventListener("resize", handleCalcPoints, { passive: true })
     window.addEventListener("scroll", handleCalcPoints, { passive: true })
 
+    connectDatasets.forEach((d) => {
+      const el = getElement(d.from)
+
+      if (el) {
+        el.addEventListener("mousemove", handleCalcPoints)
+      }
+    })
+
+    window.addEventListener("mousemove", handleCalcPoints)
+
     return () => {
       window.removeEventListener("resize", handleCalcPoints)
       window.removeEventListener("scroll", handleCalcPoints)
+
+      connectDatasets.forEach((d) => {
+        const el = getElement(d.from)
+
+        if (el) {
+          el.removeEventListener("mousemove", handleCalcPoints)
+        }
+      })
     }
   }, [handleCalcPoints])
 
-  return { selectFieldPoint, connectDatasets, handleClickPoint, showDatasets, points }
+  function handleChangeDatasetPosition({ x, datasetId, y }: ChangePositionProps) {
+    setShowDatasets((prev) => {
+      return prev.map((d) => {
+        if (d.dataset.id === datasetId) {
+          return { dataset: d.dataset, positionX: x, positionY: y }
+        } else {
+          return d
+        }
+      })
+    })
+  }
+
+  function handleUpdateLines() {
+    handleCalcPoints()
+  }
+
+  return {
+    selectFieldPoint,
+    connectDatasets,
+    handleClickPoint,
+    showDatasets,
+    points,
+    handleChangeDatasetPosition,
+    handleUpdateLines,
+  }
 }

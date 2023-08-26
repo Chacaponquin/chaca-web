@@ -5,9 +5,8 @@ interface GetGroupedConnectionsProps {
   elements: DatasetConnection[]
 }
 
-function getElement(id: string): Element | null {
+export function getElement(id: string): Element | null {
   const element = document.getElementById(id)
-  console.log(id, element)
   return element
 }
 

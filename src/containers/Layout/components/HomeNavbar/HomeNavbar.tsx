@@ -6,9 +6,9 @@ import { ChacaLogo } from "./components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { ChacaSimpleButton } from "@form/components"
 import { useContext } from "react"
-import { AppContext } from "@modules/app/context"
 import { DatasetsContext } from "@modules/datasets/context"
 import { ThemeSwitch } from "@modules/app/modules/theme/components"
+import { HomeContext } from "@containers/Home/context"
 
 export default function HomeNavbar() {
   const divClass = ({ isActive }: { isActive: boolean }): string => {
@@ -21,7 +21,7 @@ export default function HomeNavbar() {
     )
   }
 
-  const { smallWindow } = useContext(AppContext)
+  const { smallWindow } = useContext(HomeContext)
   const { handleOpenFieldsMenu } = useContext(DatasetsContext)
 
   const { HOME_TEXT, ACCOUNT_TEXT } = useLanguage({

@@ -1,4 +1,4 @@
-import { createContext, ReactElement, useEffect, useState } from "react"
+import { createContext, ReactElement, useState } from "react"
 import { FileConfigOption } from "@modules/config/interfaces/config.iterface"
 import { Schema } from "@modules/schemas/interfaces/schema.interface"
 import { appService } from "../services/appServices"
@@ -9,7 +9,6 @@ type AppContextProps = {
   fileConfig: FileConfigOption[]
   handleOpenDropDown: (id: string) => void
   openDropdown: string
-  smallWindow: boolean
   handleCloseDropDown: (id: string) => void
 }
 
@@ -17,27 +16,8 @@ const AppContext = createContext<AppContextProps>({} as AppContextProps)
 
 const AppProvider = ({ children }: { children: ReactElement }) => {
   const [openDropdown, setOpenDropdown] = useState("")
-  const [smallWindow, setSmallWindow] = useState(false)
 
   const { initialFetchLoading, schemas, fileConfig } = appService().appInitFetch()
-
-  useEffect(() => {
-    function handleWindowResize() {
-      const width = window.innerWidth
-      if (width >= 1000) {
-        setSmallWindow(false)
-      } else {
-        setSmallWindow(true)
-      }
-    }
-
-    window.addEventListener("resize", handleWindowResize)
-    handleWindowResize()
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize)
-    }
-  }, [])
 
   const handleOpenDropDown = (id: string) => {
     setOpenDropdown(id)
@@ -53,7 +33,6 @@ const AppProvider = ({ children }: { children: ReactElement }) => {
     fileConfig,
     handleOpenDropDown,
     openDropdown,
-    smallWindow,
     handleCloseDropDown,
   }
 
