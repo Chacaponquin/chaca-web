@@ -1,28 +1,38 @@
 import { useSignUp } from "./hooks"
 import { LazyRoute, NoUserRoute } from "@modules/app/components"
 import { Form, Panel, Redirect } from "./components"
+import { Layout } from "@containers/Layout/components"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 
 const SignUp = () => {
   const { handleChange, handleSubmit, loading, signUpData } = useSignUp()
+  const { DESCRIPTION } = useLanguage({
+    DESCRIPTION: {
+      en: "Create your account in Chaca to access more features",
+      es: "Crea tu cuenta en Chaca para poder acceder a más funcionalidades",
+    },
+  })
 
   return (
     <LazyRoute full={true}>
       <NoUserRoute>
-        <main className="w-full h-screen flex">
-          <section className="py-5 px-20 esm:px-5 flex justify-center items-center xl:w-[50%] w-full">
-            <div>
-              <Redirect />
-              <Form
-                handleChange={handleChange}
-                form={signUpData}
-                handleSubmit={handleSubmit}
-                loading={loading}
-              />
-            </div>
-          </section>
+        <Layout description={DESCRIPTION} title="Chaca | SignUp">
+          <main className="w-full h-screen flex">
+            <section className="py-5 px-20 esm:px-5 flex justify-center items-center xl:w-[50%] w-full">
+              <div>
+                <Redirect />
+                <Form
+                  handleChange={handleChange}
+                  form={signUpData}
+                  handleSubmit={handleSubmit}
+                  loading={loading}
+                />
+              </div>
+            </section>
 
-          <Panel />
-        </main>
+            <Panel />
+          </main>
+        </Layout>
       </NoUserRoute>
     </LazyRoute>
   )
