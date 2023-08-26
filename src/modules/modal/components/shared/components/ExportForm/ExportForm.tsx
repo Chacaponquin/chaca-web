@@ -1,17 +1,14 @@
-import { useContext, useMemo, useId } from "react"
+import { useMemo, useId } from "react"
 import { ArgumentFilter } from "@modules/schemas/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import SaveModelForm from "../SaveModelForm/SaveModelForm"
 import { ChacaSelect } from "@form/components"
-import { DatasetsContext } from "@modules/datasets/context"
-import { AppContext } from "@modules/app/context"
 import { FILE_TYPE } from "@modules/config/constants"
 import { useConfigServices } from "@modules/config/services"
 import { FormInputSection } from "../../shared/components"
 
 export default function ExportForm({ saveModelOption }: { saveModelOption: boolean }) {
-  const { config } = useContext(DatasetsContext)
-  const { fileConfig } = useContext(AppContext)
+  const { config, fileConfig } = useConfigServices()
   const { changeFileArgument, changeFileType } = useConfigServices()
 
   const handleChangeFileArgument = (argument: string, value: unknown) => {

@@ -1,27 +1,21 @@
 import {
   useEffect,
   ReactElement,
-  useContext,
   Dispatch,
   Reducer,
   createContext,
   useReducer,
   useState,
 } from "react"
-import { ConfigPayload, configReducer } from "@modules/config/reducer/config_reducer"
 import { DatasetPayload, datasetsReducer } from "../../reducer/datasets_reducer"
-import { FILE_TYPE } from "@modules/config/constants"
-import { ConfigSchema } from "@modules/config/interfaces/config.iterface"
-import { AppContext } from "@modules/app/context"
 import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
 import { useDatasetServices } from "@modules/datasets/services"
 import { DATASETS_ACTIONS } from "@modules/datasets/constants"
+import { useConfigServices } from "@modules/config/services"
 
 interface DatasetContextProps {
   datasets: Dataset[]
-  config: ConfigSchema
   datasetDispatch: Dispatch<DatasetPayload>
-  configDispatch: Dispatch<ConfigPayload>
   selectedDataset: Dataset | null
   selectField: FieldNode | null
   handleSelectDataset: (id: string) => void
@@ -36,20 +30,14 @@ const DatasetsContext = createContext<DatasetContextProps>({} as DatasetContextP
 
 const DatasetsProvider = ({ children }: { children: ReactElement }) => {
   const [showFieldsMenu, setShowFieldsMenu] = useState(false)
-  const { initialFetchLoading, fileConfig } = useContext(AppContext)
   const { initDatasets } = useDatasetServices()
+  const { fileConfig } = useConfigServices()
 
   // created datasets
   const [datasets, datasetDispatch] = useReducer<Reducer<Dataset[], DatasetPayload>>(
     datasetsReducer,
     [],
   )
-
-  // configuration of the file to export
-  const [config, configDispatch] = useReducer(configReducer, {
-    file: { fileType: FILE_TYPE.JSON, arguments: {} },
-    saveSchema: null,
-  })
 
   // select dataset
   const [selectedDataset, setSelectedDataset] = useState<Dataset | null>(null)
@@ -58,17 +46,15 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
   const [selectField, setSelectField] = useState<FieldNode | null>(null)
 
   useEffect(() => {
-    if (!initialFetchLoading) {
-      const initialDatasets = initDatasets()
+    const initialDatasets = initDatasets()
 
-      datasetDispatch({
-        type: DATASETS_ACTIONS.SET_INIT_DATASETS,
-        payload: { datasets: initialDatasets },
-      })
+    datasetDispatch({
+      type: DATASETS_ACTIONS.SET_INIT_DATASETS,
+      payload: { datasets: initialDatasets },
+    })
 
-      setSelectedDataset(initialDatasets[0])
-    }
-  }, [initialFetchLoading, fileConfig])
+    setSelectedDataset(initialDatasets[0])
+  }, [fileConfig])
 
   const handleSelectDataset = (id: string) => {
     const findDataset = datasets.find((el) => el.id === id)
@@ -103,8 +89,6 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
   const data = {
     datasets,
     datasetDispatch,
-    config,
-    configDispatch,
     selectedDataset,
     selectField,
     handleSelectDataset,

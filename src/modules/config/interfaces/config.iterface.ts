@@ -9,7 +9,7 @@ export type SaveSchemaForm = {
   description: string
 }
 
-export interface ConfigSchema {
+export interface Config {
   file: ConfigFile
   saveSchema: SaveSchemaValue
 }

@@ -1,13 +1,11 @@
-import { DatasetsContext } from "@modules/datasets/context"
-import { AppContext } from "@modules/app/context"
 import { useContext } from "react"
 import { CONFIG_ACTIONS, FILE_TYPE } from "../constants"
 import { RepeatTagError } from "../errors"
 import { SaveSchemaForm } from "../interfaces/config.iterface"
+import { ConfigContext } from "../context"
 
 export function useConfigServices() {
-  const { configDispatch, config } = useContext(DatasetsContext)
-  const { fileConfig } = useContext(AppContext)
+  const { fileConfig, config, configDispatch } = useContext(ConfigContext)
 
   function resetConfig() {
     configDispatch({
@@ -79,5 +77,6 @@ export function useConfigServices() {
     changeFileArgument,
     changeFileType,
     config,
+    fileConfig,
   }
 }

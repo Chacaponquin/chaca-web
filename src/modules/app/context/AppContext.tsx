@@ -1,10 +1,6 @@
 import { createContext, ReactElement, useState } from "react"
-import { FileConfigOption } from "@modules/config/interfaces/config.iterface"
-import { appService } from "../services/appServices"
 
 type AppContextProps = {
-  initialFetchLoading: boolean
-  fileConfig: FileConfigOption[]
   handleOpenDropDown: (id: string) => void
   openDropdown: string
   handleCloseDropDown: (id: string) => void
@@ -15,8 +11,6 @@ const AppContext = createContext<AppContextProps>({} as AppContextProps)
 const AppProvider = ({ children }: { children: ReactElement }) => {
   const [openDropdown, setOpenDropdown] = useState("")
 
-  const { initialFetchLoading, fileConfig } = appService().appInitFetch()
-
   const handleOpenDropDown = (id: string) => {
     setOpenDropdown(id)
   }
@@ -26,8 +20,6 @@ const AppProvider = ({ children }: { children: ReactElement }) => {
   }
 
   const data = {
-    initialFetchLoading,
-    fileConfig,
     handleOpenDropDown,
     openDropdown,
     handleCloseDropDown,

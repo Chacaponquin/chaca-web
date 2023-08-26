@@ -1,4 +1,4 @@
-import { ConfigSchema, FileConfigOption, SaveSchemaValue } from "../interfaces/config.iterface"
+import { Config, FileConfigOption, SaveSchemaValue } from "../interfaces/config.iterface"
 import { Reducer } from "react"
 import { FILE_TYPE, CONFIG_ACTIONS } from "../constants"
 
@@ -25,10 +25,10 @@ export type ConfigPayload =
       }
     }
 
-export const configReducer: Reducer<ConfigSchema, ConfigPayload> = (
-  config: ConfigSchema,
+export const configReducer: Reducer<Config, ConfigPayload> = (
+  config: Config,
   action: ConfigPayload,
-): ConfigSchema => {
+): Config => {
   switch (action.type) {
     case CONFIG_ACTIONS.CHANGE_FILE_TYPE: {
       return {

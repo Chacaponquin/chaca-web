@@ -1,9 +1,8 @@
-import { DatasetsContext } from "@modules/datasets/context"
-import { useContext } from "react"
 import { FormContent, SaveModelInput } from "./components"
+import { useConfigServices } from "@modules/config/services"
 
 export default function SaveModelForm() {
-  const { config } = useContext(DatasetsContext)
+  const { config } = useConfigServices()
 
   return (
     <div className="flex items-center flex-col">
