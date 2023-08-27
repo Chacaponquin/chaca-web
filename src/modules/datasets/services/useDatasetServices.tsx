@@ -44,6 +44,8 @@ export default function useDatasetServices() {
     handleSelectDataset,
     showFieldsMenu,
     handleCloseFieldsMenu,
+    handleSelectField,
+    selectField,
   } = useContext(DatasetsContext)
 
   const { validateDatasetName, validateFieldName } = useValidations()
@@ -250,5 +252,7 @@ export default function useDatasetServices() {
     handleDeleteField,
     get,
     handleSelectDataset,
+    handleSelectField,
+    selectField,
   }
 }

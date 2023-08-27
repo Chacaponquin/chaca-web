@@ -1,6 +1,6 @@
 import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets.interface"
-import FieldConfigMenu from "../FieldConfigMenu/FieldConfigMenu"
 import { Config } from "@modules/app/modules/icon/components"
+import { FieldConfigMenu } from "./components"
 
 export default function FieldOptions({
   field,
@@ -12,7 +12,7 @@ export default function FieldOptions({
   field: DatasetField<FieldDataType>
 }) {
   return (
-    <div className="flex flex-col relative">
+    <div className="flex flex-col relative dark:fill-white fill-black">
       <button onClick={handleInteractOpenMenu}>
         <Config size={19} />
         {openMenu && <FieldConfigMenu field={field} />}

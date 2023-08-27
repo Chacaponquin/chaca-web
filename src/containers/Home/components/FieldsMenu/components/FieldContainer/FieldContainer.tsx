@@ -19,7 +19,7 @@ const FieldContainer = ({
     openMenu,
     handleInteractSubFields,
     handleInteractOpenMenu,
-  } = useFieldContainer(field)
+  } = useFieldContainer({ field })
 
   return (
     <section className="flex flex-col w-full" onClick={handleSelect}>

@@ -33,10 +33,6 @@ import "primeicons/primeicons.css"
 
 const root = ReactDOM.createRoot(document.getElementById("root") as Element)
 
-// const Home = lazy(() => import("./containers/Home/Home"))
-// const Login = lazy(() => import("./containers/Auth/components/Login/Login"))
-// const SignUp = lazy(() => import("./containers/Auth/components/SignUp/SignUp"))
-
 const AppRoutes = () => {
   return (
     <Routes>

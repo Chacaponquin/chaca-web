@@ -1,4 +1,4 @@
-import { useCallback, useContext } from "react"
+import { useContext, useCallback } from "react"
 import { Schema, SubOption } from "../interfaces/schema.interface"
 import { useEnvServices } from "@modules/app/modules/env/services"
 import { SchemasContext } from "../context"
@@ -23,12 +23,16 @@ export function useSchemaServices() {
       const foundParent = findParent(p)
       return foundParent.options.find((el) => el.name === t) as SubOption
     },
-    [schemas],
+    [findParent],
   )
 
-  const findParentOptions = (parent: string): Array<SubOption> => {
-    return findParent(parent).options
-  }
+  const findParentOptions = useCallback(
+    (parent: string): Array<SubOption> => {
+      const found = findParent(parent).options
+      return found
+    },
+    [findParent],
+  )
 
   return { findParent, findType, findParentOptions, optionApiRoute, schemas }
 }

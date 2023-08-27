@@ -7,6 +7,7 @@ import {
 } from "@modules/modal/components/shared/interfaces/form.interfaces"
 import { useSchemaServices } from "@modules/schemas/services"
 import { OptionArguments } from "./components"
+import { useMemo } from "react"
 
 export default function SchemaValueConfig({
   fieldType,
@@ -24,7 +25,8 @@ export default function SchemaValueConfig({
     MODULE_TEXT: { en: "Module", es: "Módulo" },
     OPTION_TEXT: { en: "Option", es: "Opción" },
   })
-  const foundOptions = findParentOptions(fieldType.parent)
+
+  const foundOptions = useMemo(() => findParentOptions(fieldType.parent), [findParentOptions])
 
   function handleSelectModule(m: string) {
     handleSelectFieldSchema(m)

@@ -12,6 +12,7 @@ module.exports = {
         dangerColor: "#eb4d4b",
         darkColor: "#282c34",
         darkColorLight: "rgb(35, 39, 47)",
+        darkColorExtraLight: "rgb(55, 65, 81)",
         grayColor: "#E0E0E0",
         grayStrongColor: "#667085",
       },

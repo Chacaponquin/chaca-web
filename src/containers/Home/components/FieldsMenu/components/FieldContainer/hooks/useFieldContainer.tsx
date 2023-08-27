@@ -1,18 +1,22 @@
-import { useState, useContext } from "react"
-import { DatasetsContext } from "@modules/datasets/context"
+import { useState } from "react"
 import clsx from "clsx"
 import { DatasetField } from "@modules/datasets/interfaces/datasets.interface"
 import { DATA_TYPES } from "@modules/schemas/constants"
+import { useDatasetServices } from "@modules/datasets/services"
+import { useThemeServices } from "@modules/app/modules/theme/services"
+import { THEME } from "@modules/app/modules/theme/constants/THEME"
 
-export function useFieldContainer(field: DatasetField) {
-  const { selectField, handleSelectField, selectedDataset } = useContext(DatasetsContext)
+export function useFieldContainer({ field }: { field: DatasetField }) {
+  const { selectField, handleSelectField, selectedDataset } = useDatasetServices()
   const [openMenu, setOpenMenu] = useState(false)
   const [subFieldsOpen, setSubFieldsOpen] = useState(true)
+  const { theme } = useThemeServices()
 
   const divClass = clsx(
-    "w-full flex items-center cursor-pointer justify-between py-2 transition-all duration-300 hover:bg-slate-100 px-2",
+    "w-full flex items-center cursor-pointer justify-between py-2 transition-all duration-300 px-2",
     {
       "bg-slate-100": selectField && selectField.id === field.id,
+      "hover:bg-slate-100": THEME.LIGHT === theme,
     },
   )
 
