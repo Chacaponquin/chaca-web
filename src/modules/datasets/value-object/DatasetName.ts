@@ -1,15 +1,14 @@
 import { EmptyDatasetNameError } from "../errors"
+import { NameValidator } from "./NameValidator"
 
-export class DatasetName {
-  private _value: string
-
+export class DatasetName extends NameValidator {
   constructor(name: string) {
-    if (name.trim() === "") throw new EmptyDatasetNameError()
-
-    this._value = name
+    super(name)
   }
 
-  public value() {
-    return this._value
+  protected validate(name: string): string {
+    if (name.trim() === "") throw new EmptyDatasetNameError()
+
+    return name
   }
 }

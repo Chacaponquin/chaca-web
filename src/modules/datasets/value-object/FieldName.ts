@@ -1,17 +1,16 @@
 import { EmptyFieldNameError } from "../errors"
+import { NameValidator } from "./NameValidator"
 
-export class FieldName {
-  private _value: string
-
+export class FieldName extends NameValidator {
   constructor(name: string) {
+    super(name)
+  }
+
+  protected validate(name: string): string {
     if (name.trim() === "") {
       throw new EmptyFieldNameError()
     }
 
-    this._value = name
-  }
-
-  public value() {
-    return this._value
+    return name
   }
 }

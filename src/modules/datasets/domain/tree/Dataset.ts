@@ -19,7 +19,7 @@ export class Dataset {
 
   constructor({ limit = 50, name }: DatasetProps) {
     this._name = new DatasetName(name)
-    this.root = new RootNode({ limit, name })
+    this.root = new RootNode({ limit, name: new DatasetName(name) })
   }
 
   get name() {

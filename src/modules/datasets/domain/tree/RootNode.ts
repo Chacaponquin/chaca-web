@@ -1,9 +1,10 @@
 import { DatasetField } from "@modules/datasets/interfaces/datasets.interface"
 import { FieldNode } from "./FieldNode"
 import { Node } from "./Node"
+import { DatasetName } from "@modules/datasets/value-object"
 
 interface RootProps {
-  name: string
+  name: DatasetName
   limit: number
 }
 

@@ -2,15 +2,15 @@ import { v4 as uuid } from "uuid"
 import { FieldNode } from "./FieldNode"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { RefDataType } from "@modules/datasets/interfaces/dataset_field.interface"
+import { NameValidator } from "@modules/datasets/value-object"
 
 export class Node {
   public readonly id: string = uuid()
   private _nodes: Array<FieldNode> = []
-  private _name: string
+  private _name: NameValidator
 
-  constructor(name: string) {
+  constructor(name: NameValidator) {
     this._name = name
-    this.setName(name)
   }
 
   public get nodes() {
@@ -18,14 +18,14 @@ export class Node {
   }
 
   get name() {
-    return this._name
+    return this._name.value()
   }
 
   public insertNode(node: FieldNode): void {
     this.nodes.push(node)
   }
 
-  public setName(newName: string) {
+  public setName(newName: NameValidator) {
     this._name = newName
   }
 

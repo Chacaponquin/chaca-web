@@ -6,6 +6,7 @@ import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
 import { useValidations } from "../hooks"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { DatasetConnection } from "../interfaces/dataset_connect.interface"
+import { FieldName } from "../value-object"
 
 interface AddFieldProps {
   field: FieldForm
@@ -54,12 +55,12 @@ export default function useDatasetServices() {
         type: DATA_TYPES.SINGLE_VALUE,
         fieldType: { args: {}, parent: "id", type: "uuid" },
       },
-      name: "id",
+      name: new FieldName("id"),
       isKey: true,
     })
 
     const username = FieldNode.create({
-      name: "username",
+      name: new FieldName("username"),
       dataType: {
         type: DATA_TYPES.SINGLE_VALUE,
         fieldType: { args: {}, parent: "internet", type: "username" },
@@ -67,7 +68,7 @@ export default function useDatasetServices() {
     })
 
     const password = FieldNode.create({
-      name: "password",
+      name: new FieldName("password"),
       dataType: {
         type: DATA_TYPES.SINGLE_VALUE,
         fieldType: { args: {}, parent: "internet", type: "password" },
@@ -85,12 +86,12 @@ export default function useDatasetServices() {
         type: DATA_TYPES.SINGLE_VALUE,
         fieldType: { args: {}, parent: "id", type: "uuid" },
       },
-      name: "id",
+      name: new FieldName("id"),
       isKey: true,
     })
 
     const userId = FieldNode.create({
-      name: "userId",
+      name: new FieldName("userId"),
       dataType: { type: DATA_TYPES.REF, ref: [USER_DATASET.id, id.id] },
     })
 
@@ -143,7 +144,7 @@ export default function useDatasetServices() {
       type: DATASETS_ACTIONS.ADD_NEW_FIELD,
       payload: {
         fieldInfo: {
-          name: field.name,
+          name: new FieldName(field.name),
           isArray: field.isArray,
           isPosibleNull: field.isPosibleNull,
           dataType: field.dataType,
