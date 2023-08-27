@@ -9,7 +9,7 @@ import { RootNode } from "./RootNode"
 import { DatasetName } from "@modules/datasets/value-object"
 
 interface DatasetProps {
-  name: string
+  name: DatasetName
   limit?: number
 }
 
@@ -18,8 +18,8 @@ export class Dataset {
   private _name: DatasetName
 
   constructor({ limit = 50, name }: DatasetProps) {
-    this._name = new DatasetName(name)
-    this.root = new RootNode({ limit, name: new DatasetName(name) })
+    this._name = name
+    this.root = new RootNode({ limit, name: name })
   }
 
   get name() {
@@ -46,8 +46,8 @@ export class Dataset {
     this.root.setLimit(limit)
   }
 
-  public setName(name: string) {
-    this._name = new DatasetName(name)
+  public setName(name: DatasetName) {
+    this._name = name
   }
 
   public insertField(node: FieldNode) {

@@ -6,7 +6,7 @@ import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
 import { useValidations } from "../hooks"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { DatasetConnection } from "../interfaces/dataset_connect.interface"
-import { FieldName } from "../value-object"
+import { DatasetName, FieldName } from "../value-object"
 
 interface AddFieldProps {
   field: FieldForm
@@ -49,7 +49,7 @@ export default function useDatasetServices() {
   const { validateDatasetName, validateFieldName } = useValidations()
 
   function initDatasets() {
-    const USER_DATASET = new Dataset({ name: "User" })
+    const USER_DATASET = new Dataset({ name: new DatasetName("User") })
     const id = FieldNode.create({
       dataType: {
         type: DATA_TYPES.SINGLE_VALUE,
@@ -79,7 +79,7 @@ export default function useDatasetServices() {
     USER_DATASET.insertField(username)
     USER_DATASET.insertField(password)
 
-    const POST_DATASET = new Dataset({ name: "Post" })
+    const POST_DATASET = new Dataset({ name: new DatasetName("Post") })
 
     const postId = FieldNode.create({
       dataType: {
@@ -106,7 +106,7 @@ export default function useDatasetServices() {
     // create dataset
     datasetDispatch({
       type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
-      payload: { datasetName: name },
+      payload: { datasetName: new DatasetName(name) },
     })
   }
 
@@ -115,7 +115,7 @@ export default function useDatasetServices() {
 
     datasetDispatch({
       type: DATASETS_ACTIONS.CHANGE_DATASET_NAME,
-      payload: { datasetID: datasetId, newName: name },
+      payload: { datasetID: datasetId, newName: new DatasetName(name) },
     })
 
     datasetDispatch({
@@ -159,7 +159,7 @@ export default function useDatasetServices() {
     handleDeleteSelectField()
   }
 
-  const deleteDataset = (datasetID: string) => {
+  const hanldeDeleteDataset = (datasetID: string) => {
     datasetDispatch({
       type: DATASETS_ACTIONS.DELETE_DATASET,
       payload: { datasetID },
@@ -234,7 +234,7 @@ export default function useDatasetServices() {
   return {
     handleAddDataset,
     handleAddField,
-    deleteDataset,
+    hanldeDeleteDataset,
     handleChangeDocumentsLimit,
     initDatasets,
     handleEditDataset,

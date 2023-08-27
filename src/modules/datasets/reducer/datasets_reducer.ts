@@ -4,7 +4,7 @@ import { Reducer } from "react"
 import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
 import { NodeProps } from "@modules/datasets/interfaces/tree.interface"
 import { FieldForm } from "@modules/datasets/dto/field"
-import { FieldName } from "../value-object"
+import { DatasetName, FieldName } from "../value-object"
 
 export type DatasetPayload =
   | { type: DATASETS_ACTIONS.DELETE_DATASET; payload: { datasetID: string } }
@@ -22,7 +22,7 @@ export type DatasetPayload =
     }
   | {
       type: DATASETS_ACTIONS.CREATE_NEW_DATASET
-      payload: { datasetName: string }
+      payload: { datasetName: DatasetName }
     }
   | {
       type: DATASETS_ACTIONS.EDIT_FIELD
@@ -43,7 +43,7 @@ export type DatasetPayload =
       type: DATASETS_ACTIONS.CHANGE_DATASET_NAME
       payload: {
         datasetID: string
-        newName: string
+        newName: DatasetName
       }
     }
 
