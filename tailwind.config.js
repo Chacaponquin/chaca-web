@@ -2,6 +2,7 @@
 module.exports = {
   important: true,
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
@@ -10,6 +11,7 @@ module.exports = {
         thirdColor: "#9900FF",
         dangerColor: "#eb4d4b",
         darkColor: "#282c34",
+        darkColorLight: "rgb(35, 39, 47)",
         grayColor: "#E0E0E0",
         grayStrongColor: "#667085",
       },

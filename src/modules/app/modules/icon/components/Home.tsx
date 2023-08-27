@@ -10,6 +10,7 @@ const Home = ({ size = DEFAULT_ICON_SIZE }: IconProps) => {
       width={size}
       height={size}
       fill="inherit"
+      stroke="none"
     >
       <path
         fill="inherit"

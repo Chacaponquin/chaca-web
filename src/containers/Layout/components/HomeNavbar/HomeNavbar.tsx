@@ -15,7 +15,8 @@ export default function HomeNavbar() {
     return clsx(
       "flex items-center py-2 px-6 cursor-pointer gap-x-3.5 transition-all duration-300",
       {
-        "fill-white text-white bg-secondColor rounded-full": isActive,
+        "fill-white text-white bg-secondColor dark:bg-white dark:fill-black dark:text-black rounded-full":
+          isActive,
       },
       { "bg-white fill-black text-black hover:bg-slate-100": !isActive },
     )
@@ -33,8 +34,8 @@ export default function HomeNavbar() {
   const ICON_SIZE = 22
 
   return (
-    <header className="w-full bg-white flex items-center xl:px-12 px-8 justify-between esm:px-4 min-h-[55px] md:min-h-[65px] border-b-2 border-grayColor">
-      <div className="flex items-center">
+    <header className="w-full bg-white dark:bg-darkColorLight text-black dark:text-white flex items-center xl:px-12 px-8 justify-between esm:px-4 min-h-[55px] md:min-h-[65px] border-b-2 border-grayColor">
+      <section className="flex items-center">
         {smallWindow && (
           <button onClick={handleOpenFieldsMenu} className="mr-4">
             <Bars size={20} />
@@ -51,15 +52,15 @@ export default function HomeNavbar() {
             <p className={TEXT_CLASS}>{HOME_TEXT}</p>
           </NavLink>
         </div>
-      </div>
+      </section>
 
-      <div className="flex items-center gap-x-6 h-full">
+      <section className="flex items-center gap-x-6 h-full">
         <ThemeSwitch />
 
         <Link to={APP_ROUTES.AUTH_ROUTES.LOGIN}>
           <ChacaSimpleButton text={ACCOUNT_TEXT} color="primary" size="large" />
         </Link>
-      </div>
+      </section>
     </header>
   )
 }

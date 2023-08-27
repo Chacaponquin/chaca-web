@@ -7,7 +7,7 @@ export const buttonClass = ({ size, className = "", color, full = false }: Chaca
     {
       "py-[3px] px-3 text-sm rounded-sm": size === "small",
       "py-1 px-5 text-base rounded-sm": size === "medium",
-      "py-1 px-6 text-lg rounded-sm": size === "large",
+      "py-1 px-5 text-lg rounded-sm": size === "large",
       "py-2 px-7 rounded-sm text-lg": size === "extra-large",
     },
     {

@@ -8,7 +8,7 @@ export default function ThemeSwitch() {
   const { theme, handleChangeTheme } = useThemeServices()
   const isLight = theme === THEME.LIGHT
 
-  function toggleSwitch() {
+  function handleToggleSwitch() {
     if (isLight) {
       handleChangeTheme(THEME.DARK)
     } else {
@@ -33,7 +33,7 @@ export default function ThemeSwitch() {
   )
 
   return (
-    <div className={containerClass} onClick={toggleSwitch}>
+    <div className={containerClass} onClick={handleToggleSwitch}>
       <motion.div
         className={cubicClass}
         layout
