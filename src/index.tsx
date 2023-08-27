@@ -4,7 +4,6 @@ import App from "./App"
 
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Landing, ContactUs, Error404, SignUp, Login, Home } from "./containers"
-import { ErrorBoundary } from "@modules/app/components"
 
 // CONTEXT PROVIDERS
 import { AppProvider } from "@modules/app/context"
@@ -16,9 +15,13 @@ import { ToastProvider } from "@modules/app/modules/toast/context"
 import { SocketProvider } from "@modules/app/modules/socket/context"
 import { SchemasProvider } from "@modules/schemas/context"
 import { ConfigProvider } from "@modules/config/context"
+import { ModalProvider } from "@modules/modal/context"
 
 // ROUTES
 import { APP_ROUTES } from "@modules/app/constants"
+
+import { ErrorBoundary } from "react-error-boundary"
+import { Error } from "@modules/app/components"
 
 // CSS
 import "react-toastify/dist/ReactToastify.css"
@@ -27,7 +30,6 @@ import "./index.css"
 import "primereact/resources/themes/lara-light-indigo/theme.css"
 import "primereact/resources/primereact.min.css"
 import "primeicons/primeicons.css"
-import { ModalProvider } from "@modules/modal/context"
 
 const root = ReactDOM.createRoot(document.getElementById("root") as Element)
 
@@ -57,7 +59,7 @@ const AppRoutes = () => {
 
 root.render(
   <Fragment>
-    <ErrorBoundary>
+    <ErrorBoundary fallback={<Error />}>
       <BrowserRouter>
         <ToastProvider>
           <AppProvider>
