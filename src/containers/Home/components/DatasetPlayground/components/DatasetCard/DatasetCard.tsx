@@ -22,7 +22,6 @@ export default function DatasetCard({
   index,
   positionX,
   positionY,
-  handleClickPoint,
   dataset,
   selectFieldPoint,
   handleUpdateLines,
@@ -66,12 +65,7 @@ export default function DatasetCard({
 
       <div className="flex flex-col py-2">
         {dataset.nodes.map((field, i) => (
-          <Field
-            key={i}
-            field={field}
-            handleClickPoint={handleClickPoint}
-            selectFieldPoint={selectFieldPoint}
-          />
+          <Field key={i} field={field} selectFieldPoint={selectFieldPoint} />
         ))}
       </div>
     </motion.div>
