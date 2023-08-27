@@ -5,13 +5,14 @@ interface PathifyProps {
 }
 
 export const pathify = ({ paths }: PathifyProps) => {
-  const path = `M ${paths
-    .map((p, index) => {
-      if (index === 1) return `C ${p.x} ${p.y}`
+  const subPaths = paths.map((p) => {
+    // if (index === 1) return `C ${p.x} ${p.y}`
+    // else return `${p.x} ${p.y}`
 
-      return `${p.x} ${p.y}`
-    })
-    .join(" ")}`
+    return `${p.x} ${p.y}`
+  })
+
+  const path = `M ${subPaths.join(" ")}`
 
   return path
 }

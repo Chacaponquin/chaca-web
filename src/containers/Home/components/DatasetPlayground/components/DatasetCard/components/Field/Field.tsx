@@ -27,7 +27,7 @@ export default function Field({
   }
 
   return (
-    <div className="relative flex items-center">
+    <div className="relative flex items-center" id={field.id}>
       <div className={POINT_CLASS + " left-[-6px]"}></div>
 
       <div className="flex w-full text-base items-center py-2 px-5 justify-between">
@@ -42,7 +42,7 @@ export default function Field({
         <p className="font-fontCodeBold">{field.stringInf()}</p>
       </div>
 
-      <div className={POINT_CLASS + " right-[-6px]"} onClick={handleClick} id={field.id}></div>
+      <div className={POINT_CLASS + " right-[-6px]"} onClick={handleClick}></div>
     </div>
   )
 }
