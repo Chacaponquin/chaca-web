@@ -14,6 +14,7 @@ export default function useDatasetCard({
   const menuRef = createRef<HTMLDivElement | null>()
   const { handleCloseMenu, handleOpenMenu, isOpen } = useMenu({ ref: menuRef })
   const { handleOpenModal } = useModalServices()
+  const { handleSelectDataset } = useDatasetServices()
   const { get } = useDatasetServices()
 
   const handleInteractOpenConfig = (e: React.MouseEvent) => {
@@ -48,11 +49,17 @@ export default function useDatasetCard({
     handleCloseMenu()
   }
 
+  function handleClickCard() {
+    const dat = get(index)
+    handleSelectDataset(dat.id)
+  }
+
   return {
     openConfig: isOpen,
     handleInteractOpenConfig,
     handleDeleteDataset,
     handleEditDataset,
     handleExportDataset,
+    handleClickCard,
   }
 }

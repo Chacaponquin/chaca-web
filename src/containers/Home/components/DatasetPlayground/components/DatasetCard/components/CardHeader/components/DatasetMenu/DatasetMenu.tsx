@@ -18,7 +18,7 @@ export default function DatasetMenu({
 
   const OPTION_CLASS =
     "flex items-center gap-x-5 text-lg py-2 px-5 transition-all duration-300 hover:bg-grayColor cursor-pointer"
-  const ICON_SIZE = 20
+  const ICON_SIZE = 17
 
   return (
     <ul className="absolute bg-white shadow-lg rounded text-black right-7 top-12 z-50 fill-black stroke-black">

@@ -249,5 +249,6 @@ export default function useDatasetServices() {
     handleCloseFieldsMenu,
     handleDeleteField,
     get,
+    handleSelectDataset,
   }
 }

@@ -5,6 +5,8 @@ import { useDatasetCard, usePress } from "./hooks"
 import { motion } from "framer-motion"
 import { useContext } from "react"
 import { HomeContext } from "@containers/Home/context"
+import clsx from "clsx"
+import { useDatasetServices } from "@modules/datasets/services"
 
 interface DatasetCardProps {
   handleCreateSelectDataset: (i: number) => void
@@ -34,11 +36,19 @@ export default function DatasetCard({
     handleDeleteDataset,
     handleExportDataset,
     handleInteractOpenConfig,
+    handleClickCard,
   } = useDatasetCard({ handleCreateSelectDataset, index })
 
   const { onDrangEnd } = usePress({
     handleUpdateLines,
   })
+
+  const { selectedDataset } = useDatasetServices()
+
+  const CARD_CLASS = clsx(
+    "bg-darkColor absolute flex flex-col w-[360px] rounded-lg text-white stroke-white cursor-grab",
+    { "outline outline-4 outline-principalColor": selectedDataset?.id === dataset.id },
+  )
 
   return (
     <motion.div
@@ -46,12 +56,13 @@ export default function DatasetCard({
       dragMomentum={false}
       dragConstraints={playgroundRef.current ? playgroundRef : undefined}
       onDragEnd={onDrangEnd}
-      className="bg-darkColor absolute flex flex-col w-[360px] rounded-lg text-white stroke-white cursor-grab"
+      className={CARD_CLASS}
       style={{
         left: `${positionX}px`,
         top: `${positionY}px`,
       }}
       id={dataset.id}
+      onClick={handleClickCard}
     >
       <CardHeader
         openConfig={openConfig}
