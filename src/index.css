@@ -61,9 +61,10 @@
   position: sticky;
 }
 
-.code-container * {
+.code-playground * {
   font-family: "JetBrains Mono Regular";
   font-size: 14px;
+  background-color: #282c34;
 }
 
 .code-view * {

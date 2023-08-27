@@ -13,9 +13,9 @@ export default function CustomConfig({
   }
 
   return (
-    <div className="px-5 w-full max-w-[800px] flex bg-gray-200 h-[200px] justify-center items-center">
-      <div className="p-3 bg-darkColor rounded-sm code-container">
-        <CodeEditor height={150} onChange={handleChangeCode} code={code} language="javascript" />
+    <div className="px-5 w-full max-w-[800px] flex bg-gray-200 h-[350px] justify-center items-center">
+      <div className="p-3 bg-darkColor rounded-sm code-playground">
+        <CodeEditor height={300} onChange={handleChangeCode} code={code} language="javascript" />
       </div>
     </div>
   )
