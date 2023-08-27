@@ -3,10 +3,11 @@ import { motion } from "framer-motion"
 import { useThemeServices } from "../../services"
 import { THEME } from "../../constants/THEME"
 import { Dark, Light } from "@modules/app/modules/icon/components"
+import { useMemo } from "react"
 
 export default function ThemeSwitch() {
   const { theme, handleChangeTheme } = useThemeServices()
-  const isLight = theme === THEME.LIGHT
+  const isLight = useMemo(() => theme === THEME.LIGHT, [theme])
 
   function handleToggleSwitch() {
     if (isLight) {
@@ -17,7 +18,7 @@ export default function ThemeSwitch() {
   }
 
   const containerClass = clsx(
-    "esm:w-[80px] w-[100px] h-[35px] items-center bg-grayColor dark:bg-white/20 flex px-4 rounded-sm cursor-pointer",
+    "esm:w-[80px] w-[80px] h-[30px] items-center bg-grayColor dark:bg-white/20 flex px-4 rounded-sm cursor-pointer",
     {
       "justify-start": isLight,
       "justify-end": !isLight,
@@ -25,12 +26,14 @@ export default function ThemeSwitch() {
   )
 
   const cubicClass = clsx(
-    "rounded-sm esm:w-[30px] w-[40px] h-[25px] flex justify-center items-center",
+    "rounded-sm esm:w-[30px] w-[30px] h-[20px] flex justify-center items-center",
     {
       "bg-principalColor stroke-white": isLight,
       "bg-darkColor stroke-white": !isLight,
     },
   )
+
+  const ICON_SIZE = 13
 
   return (
     <div className={containerClass} onClick={handleToggleSwitch}>
@@ -43,7 +46,7 @@ export default function ThemeSwitch() {
           damping: 30,
         }}
       >
-        {isLight ? <Light size={16} /> : <Dark size={16} />}
+        {isLight ? <Light size={ICON_SIZE} /> : <Dark size={ICON_SIZE} />}
       </motion.div>
     </div>
   )

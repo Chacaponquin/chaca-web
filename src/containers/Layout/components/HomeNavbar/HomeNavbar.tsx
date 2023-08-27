@@ -34,7 +34,7 @@ export default function HomeNavbar() {
   const ICON_SIZE = 22
 
   return (
-    <header className="w-full bg-white dark:bg-darkColorLight text-black dark:text-white flex items-center xl:px-12 px-8 justify-between esm:px-4 min-h-[55px] md:min-h-[65px] border-b-2 border-grayColor">
+    <nav className="w-full bg-white dark:bg-darkColorLight text-black dark:text-white flex items-center xl:px-12 px-8 justify-between esm:px-4 min-h-[55px] md:min-h-[65px] border-b-2 border-grayColor">
       <section className="flex items-center">
         {smallWindow && (
           <button onClick={handleOpenFieldsMenu} className="mr-4">
@@ -61,6 +61,6 @@ export default function HomeNavbar() {
           <ChacaSimpleButton text={ACCOUNT_TEXT} color="primary" size="large" />
         </Link>
       </section>
-    </header>
+    </nav>
   )
 }
