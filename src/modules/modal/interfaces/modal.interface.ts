@@ -1,21 +1,17 @@
 import { SubOption } from "@modules/schemas/interfaces/schema.interface"
 import { DatasetField, FieldDataType } from "../../datasets/interfaces/datasets.interface"
 import { MODAL_ACTIONS } from "../constants/MODAL_ACTIONS"
+import { Dataset } from "@modules/datasets/domain/tree"
 
 export type ModalEditDataset = {
   type: MODAL_ACTIONS.EDIT_DATASET
-  datasetName: string
-  datasetId: string
+  dataset: Dataset
 }
 
 export type ModalAddFieldProps = {
   type: MODAL_ACTIONS.ADD_FIELD
   parentFieldID: string
   datasetId: string
-}
-
-export type ModalAddDataset = {
-  type: MODAL_ACTIONS.ADD_DATASET
 }
 
 export type ModalAdminDeleteApiDocSubSection = {
@@ -53,7 +49,6 @@ export type ModalTestEndpoint = {
 
 export type ModalProps =
   | ModalAddFieldProps
-  | ModalAddDataset
   | ModalEditField
   | ModalDeleteDataset
   | ModalExportSelectDataset

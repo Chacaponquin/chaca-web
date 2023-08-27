@@ -7,9 +7,13 @@ import { useId } from "react"
 export default function DatasetForm({
   datasetName,
   handleDatasetName,
+  limit,
+  handleChangeLimit,
 }: {
   datasetName: string
   handleDatasetName: (value: string) => void
+  limit: number
+  handleChangeLimit: (v: number) => void
 }) {
   const { USER_DATASETS_LIMIT } = useUserServices()
 
@@ -36,11 +40,12 @@ export default function DatasetForm({
 
       <FormInputSection id={datasetDocumentsId} labelText={COUNT_DOCUMENTS}>
         <ChacaNumberInput
-          value={20}
+          value={limit}
           dimension="large"
           min={0}
           max={USER_DATASETS_LIMIT}
           id={datasetDocumentsId}
+          onChange={handleChangeLimit}
         />
       </FormInputSection>
     </div>

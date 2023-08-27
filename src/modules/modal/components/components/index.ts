@@ -1,4 +1,3 @@
-import AddDatasetForm from "./AddDatasetForm/AddDatasetForm"
 import AddFieldForm from "./AddFieldForm/AddFieldForm"
 import DeleteDatasetForm from "./DeleteDatasetForm/DeleteDatasetForm"
 import EditDataset from "./EditDataset/EditDataset"
@@ -8,7 +7,6 @@ import ExportSelectDatasetForm from "./ExportSelectDatasetForm/ExportSelectDatas
 import TestEndpointForm from "./TestEndpointForm/TestEndpointForm"
 
 export {
-  AddDatasetForm,
   AddFieldForm,
   DeleteDatasetForm,
   EditFieldForm,

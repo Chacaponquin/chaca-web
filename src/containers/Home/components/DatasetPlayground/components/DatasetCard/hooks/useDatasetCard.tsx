@@ -39,7 +39,7 @@ export default function useDatasetCard({
   const handleEditDataset = () => {
     const dat = get(index)
 
-    handleOpenModal({ type: MODAL_ACTIONS.EDIT_DATASET, datasetId: dat.id, datasetName: dat.name })
+    handleOpenModal({ type: MODAL_ACTIONS.EDIT_DATASET, dataset: dat })
     handleCloseMenu()
   }
 

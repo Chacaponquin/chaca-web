@@ -1,19 +1,25 @@
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useToastServices } from "@modules/app/modules/toast/services"
+import { Dataset } from "@modules/datasets/domain/tree"
 import { EmptyDatasetNameError, RepeatDatasetNameError } from "@modules/datasets/errors"
 import { useDatasetServices } from "@modules/datasets/services"
 import { useModalServices } from "@modules/modal/services"
 import { useState } from "react"
 
-export default function useEditDataset({ name, id }: { name: string; id: string }) {
+export default function useEditDataset({ dataset }: { dataset: Dataset }) {
   const { handleEditDataset: handleEditDatasetService } = useDatasetServices()
   const { handleCloseModal } = useModalServices()
   const { toastError } = useToastServices()
 
-  const [datasetName, setDatasetName] = useState(name)
+  const [datasetName, setDatasetName] = useState(dataset.name)
+  const [datasetLimit, setDatasetLimit] = useState(dataset.limit)
 
   const handleDatasetName = (name: string) => {
     setDatasetName(name)
+  }
+
+  function handleChangeLimit(limit: number) {
+    setDatasetLimit(limit)
   }
 
   const { EMPTY_NAME, REPEAT_NAME } = useLanguage({
@@ -29,7 +35,7 @@ export default function useEditDataset({ name, id }: { name: string; id: string 
 
   const handleEditDataset = () => {
     try {
-      handleEditDatasetService({ datasetId: id, name: datasetName })
+      handleEditDatasetService({ datasetId: dataset.id, name: datasetName })
       handleCloseModal()
     } catch (error) {
       if (error instanceof EmptyDatasetNameError) {
@@ -40,5 +46,5 @@ export default function useEditDataset({ name, id }: { name: string; id: string 
     }
   }
 
-  return { datasetName, handleDatasetName, handleEditDataset }
+  return { datasetName, handleDatasetName, handleEditDataset, handleChangeLimit, datasetLimit }
 }
