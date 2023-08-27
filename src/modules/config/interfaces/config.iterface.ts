@@ -16,12 +16,13 @@ export interface Config {
 
 export interface ConfigFile {
   fileType: FILE_TYPE
-  arguments: { [path: string]: unknown }
+  arguments: Record<string, unknown>
 }
 
 export interface FileConfigOption {
   fileType: FILE_TYPE
   arguments: Argument[]
+  title: string
 }
 
 export interface NoUserLimits {

@@ -37,7 +37,7 @@ export default function ExportForm({ saveModelOption }: { saveModelOption: boole
       <FormInputSection labelText={FORMAT_TEXT} id={formatId}>
         <ChacaSelect
           options={fileConfig}
-          labelKey={"fileType"}
+          labelKey={"title"}
           valueKey={"fileType"}
           placeholder={"Select a file format"}
           onChange={(value) => {
