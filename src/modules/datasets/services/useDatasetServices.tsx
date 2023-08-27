@@ -22,6 +22,7 @@ interface UpdateFieldProps {
 interface EditDatasetProps {
   name: string
   datasetId: string
+  limit: number
 }
 
 interface AddDatasetProps {
@@ -100,7 +101,7 @@ export default function useDatasetServices() {
   }
 
   const handleAddDataset = ({ name }: AddDatasetProps) => {
-    validateDatasetName(name)
+    validateDatasetName({ name })
     // create dataset
     datasetDispatch({
       type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
@@ -108,12 +109,17 @@ export default function useDatasetServices() {
     })
   }
 
-  const handleEditDataset = ({ datasetId, name }: EditDatasetProps) => {
-    validateDatasetName(name)
+  const handleEditDataset = ({ datasetId, name, limit }: EditDatasetProps) => {
+    validateDatasetName({ name, id: datasetId })
 
     datasetDispatch({
       type: DATASETS_ACTIONS.CHANGE_DATASET_NAME,
       payload: { datasetID: datasetId, newName: name },
+    })
+
+    datasetDispatch({
+      type: DATASETS_ACTIONS.CHANGE_DATASET_LIMIT,
+      payload: { datasetID: datasetId, newLimit: limit },
     })
   }
 

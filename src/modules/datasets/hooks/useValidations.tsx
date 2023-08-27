@@ -8,24 +8,24 @@ interface ValidateFieldProps {
   fieldName: string
 }
 
+interface ValidateDatasetProps {
+  name: string
+  id?: string
+}
+
 export function useValidations() {
   const { datasets } = useContext(DatasetsContext)
 
-  const validateNoDuplicateDataset = (datasetName: string) => {
-    let cont = 0
-    for (const dat of datasets) {
-      if (dat.name === datasetName) {
-        cont++
-      }
-    }
+  const validateNoDuplicateDataset = ({ name, id }: ValidateDatasetProps) => {
+    const found = datasets.filter((d) => d.id !== id).some((d) => d.name === name)
 
-    if (cont >= 1) {
+    if (found) {
       throw new RepeatDatasetNameError()
     }
   }
 
-  const validateDatasetName = (datasetName: string) => {
-    validateNoDuplicateDataset(datasetName)
+  const validateDatasetName = (props: ValidateDatasetProps) => {
+    validateNoDuplicateDataset(props)
   }
 
   const validateFieldName = (props: ValidateFieldProps) => {

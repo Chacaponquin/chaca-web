@@ -35,7 +35,7 @@ export default function useEditDataset({ dataset }: { dataset: Dataset }) {
 
   const handleEditDataset = () => {
     try {
-      handleEditDatasetService({ datasetId: dataset.id, name: datasetName })
+      handleEditDatasetService({ datasetId: dataset.id, name: datasetName, limit: datasetLimit })
       handleCloseModal()
     } catch (error) {
       if (error instanceof EmptyDatasetNameError) {
