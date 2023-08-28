@@ -9,6 +9,7 @@ import {
   AddDataset,
   AddField,
   ChangeDatasetLimit,
+  ChangeDatasetName,
   DeleteDataset,
   DeleteField,
   EditField,
@@ -105,16 +106,13 @@ export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
     }
 
     case DATASETS_ACTIONS.CHANGE_DATASET_NAME: {
-      const newDatasets = datasets.map((dat) => {
-        if (dat.id === action.payload.datasetID) {
-          dat.setName(action.payload.newName)
-        }
-
-        return dat
+      const useCase = new ChangeDatasetName(datasets)
+      return useCase.execute({
+        datasetId: action.payload.datasetID,
+        newName: action.payload.newName,
       })
-
-      return newDatasets
     }
+
     default:
       return datasets
   }
