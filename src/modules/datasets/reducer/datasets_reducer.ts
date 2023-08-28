@@ -1,11 +1,11 @@
 import { FieldDataType } from "../interfaces/datasets.interface"
 import { DATASETS_ACTIONS } from "../constants"
 import { Reducer } from "react"
-import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
+import { Dataset } from "@modules/datasets/domain/tree"
 import { NodeProps } from "@modules/datasets/interfaces/tree.interface"
 import { FieldForm } from "@modules/datasets/dto/field"
-import { DatasetName, FieldName } from "../value-object"
-import { DeleteDataset } from "./cases"
+import { DatasetName } from "../value-object"
+import { AddField, DeleteDataset, EditField } from "./cases"
 
 export type DatasetPayload =
   | { type: DATASETS_ACTIONS.DELETE_DATASET; payload: { datasetID: string } }
@@ -54,26 +54,13 @@ export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
 ): Array<Dataset> => {
   switch (action.type) {
     case DATASETS_ACTIONS.EDIT_FIELD: {
-      const newDatasets = datasets.map((d) => {
-        if (d.id === action.payload.datasetID) {
-          const findField = d.findFieldByID(action.payload.field.id)
-
-          if (findField) {
-            findField.setName(new FieldName(action.payload.field.name))
-            findField.setIsArray(action.payload.field.isArray)
-            findField.setIsPossibleNull(action.payload.field.isPosibleNull)
-          }
-        }
-
-        return d
-      })
-
-      return newDatasets
+      const useCase = new EditField(datasets)
+      return useCase.execute({ datasetId: action.payload.datasetID, form: action.payload.field })
     }
 
     case DATASETS_ACTIONS.DELETE_DATASET: {
-      const useCase = new DeleteDataset(datasets, action.payload.datasetID)
-      return useCase.execute()
+      const useCase = new DeleteDataset(datasets)
+      return useCase.execute(action.payload.datasetID)
     }
 
     case DATASETS_ACTIONS.SET_INIT_DATASETS: {
@@ -81,29 +68,12 @@ export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
     }
 
     case DATASETS_ACTIONS.ADD_NEW_FIELD: {
-      const newNode = FieldNode.create(action.payload.fieldInfo)
-
-      const newDatasets = datasets.map((d) => {
-        if (d.id === action.payload.datasetID) {
-          // si el id del dataset y del parent son iguales significa que se tiene que insertar en el root
-          if (action.payload.datasetID === action.payload.parentFieldID) {
-            d.insertField(newNode)
-          }
-
-          // se busca el parent field y si se encuentra se inserta en nuevo nodo en el
-          else {
-            const findParent = d.findFieldByID(action.payload.parentFieldID)
-
-            if (findParent) {
-              findParent.insertNode(newNode)
-            }
-          }
-        }
-
-        return d
+      const useCase = new AddField(datasets)
+      return useCase.execute({
+        datasetId: action.payload.datasetID,
+        field: action.payload.fieldInfo,
+        parentId: action.payload.parentFieldID,
       })
-
-      return newDatasets
     }
 
     case DATASETS_ACTIONS.CREATE_NEW_DATASET: {
