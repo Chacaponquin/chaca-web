@@ -5,6 +5,7 @@ import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
 import { NodeProps } from "@modules/datasets/interfaces/tree.interface"
 import { FieldForm } from "@modules/datasets/dto/field"
 import { DatasetName, FieldName } from "../value-object"
+import { DeleteDataset } from "./cases"
 
 export type DatasetPayload =
   | { type: DATASETS_ACTIONS.DELETE_DATASET; payload: { datasetID: string } }
@@ -71,7 +72,8 @@ export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
     }
 
     case DATASETS_ACTIONS.DELETE_DATASET: {
-      return datasets.filter((d) => d.id !== action.payload.datasetID)
+      const useCase = new DeleteDataset(datasets, action.payload.datasetID)
+      return useCase.execute()
     }
 
     case DATASETS_ACTIONS.SET_INIT_DATASETS: {
@@ -79,7 +81,6 @@ export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
     }
 
     case DATASETS_ACTIONS.ADD_NEW_FIELD: {
-      // crear nuevo field node
       const newNode = FieldNode.create(action.payload.fieldInfo)
 
       const newDatasets = datasets.map((d) => {
@@ -125,7 +126,6 @@ export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
     case DATASETS_ACTIONS.DELETE_FIELD: {
       const newDatasets = datasets.map((dat) => {
         if (dat.id === action.payload.datasetID) {
-          // borrar el field
           dat.deleteField(action.payload.fieldID)
         }
 

@@ -91,7 +91,10 @@ export class Dataset {
   public getFieldLocation(fieldID: string): string[] {
     const ret = this.root.getFieldLocation(fieldID, [])
 
-    if (ret) return ret
-    else return []
+    if (ret) {
+      return ret
+    } else {
+      return []
+    }
   }
 }
