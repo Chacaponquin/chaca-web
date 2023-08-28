@@ -8,7 +8,13 @@ import { useDatasetServices } from "@modules/datasets/services"
 import { HomeContext, HomeProvider } from "./context"
 
 const Home = () => {
-  const { handleExportSelectedDataset, createDataLoading, handleAddNewField } = useHome()
+  const {
+    handleExportSelectedDataset,
+    createDataLoading,
+    handleAddNewField,
+    handleCreateAllDatasets,
+    handleAddDataset,
+  } = useHome()
   const { showFieldsMenu } = useDatasetServices()
   const { smallWindow } = useContext(HomeContext)
 
@@ -36,7 +42,11 @@ const Home = () => {
                 />
               )}
 
-              <DatasetPlayground handleCreateSelectDataset={handleExportSelectedDataset} />
+              <DatasetPlayground
+                handleCreateSelectDataset={handleExportSelectedDataset}
+                handleAddDataset={handleAddDataset}
+                handleCreateAllDatasets={handleCreateAllDatasets}
+              />
             </section>
           </main>
         </Layout>

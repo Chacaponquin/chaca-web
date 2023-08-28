@@ -11,7 +11,11 @@ import { useModalServices } from "@modules/modal/services"
 import { Dataset } from "@modules/datasets/domain/tree"
 
 export const useHome = () => {
-  const { datasets, selectedDataset } = useDatasetServices()
+  const {
+    datasets,
+    selectedDataset,
+    handleAddDataset: handleAddDatasetService,
+  } = useDatasetServices()
   const { resetConfig, config } = useConfigServices()
   const { handleOpenModal } = useModalServices()
   const { toastError } = useToastServices()
@@ -111,11 +115,16 @@ export const useHome = () => {
     }
   }
 
+  function handleAddDataset() {
+    handleAddDatasetService()
+  }
+
   return {
     handleExportSelectedDataset,
     handleCreateAllDatasets,
     createDataLoading,
     handleExportDatasetByIndex,
     handleAddNewField,
+    handleAddDataset,
   }
 }

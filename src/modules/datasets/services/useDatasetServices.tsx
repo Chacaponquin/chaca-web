@@ -26,10 +26,6 @@ interface EditDatasetProps {
   limit: number
 }
 
-interface AddDatasetProps {
-  name: string
-}
-
 interface DeleteFieldProps {
   datasetId: string
   fieldId: string
@@ -103,12 +99,14 @@ export default function useDatasetServices() {
     return [USER_DATASET, POST_DATASET]
   }
 
-  const handleAddDataset = ({ name }: AddDatasetProps) => {
-    validateDatasetName({ name })
+  const handleAddDataset = () => {
+    const DATASET_NAME = "New Dataset"
+
+    validateDatasetName({ name: DATASET_NAME })
     // create dataset
     datasetDispatch({
       type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
-      payload: { datasetName: new DatasetName(name) },
+      payload: { datasetName: new DatasetName(DATASET_NAME) },
     })
   }
 

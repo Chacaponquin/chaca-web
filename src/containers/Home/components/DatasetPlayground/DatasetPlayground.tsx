@@ -5,8 +5,12 @@ import { HomeContext } from "@containers/Home/context"
 
 export default function DatasetPlayground({
   handleCreateSelectDataset,
+  handleCreateAllDatasets,
+  handleAddDataset,
 }: {
   handleCreateSelectDataset: (i: number) => void
+  handleCreateAllDatasets: () => void
+  handleAddDataset: () => void
 }) {
   const { points, handleClickPoint, showDatasets, selectFieldPoint, handleUpdateLines } =
     useDatasetPlayground()
@@ -14,7 +18,10 @@ export default function DatasetPlayground({
 
   return (
     <section ref={playgroundRef} className="w-full">
-      <DatasetsButtons />
+      <DatasetsButtons
+        handleAddDataset={handleAddDataset}
+        handleCreateAllDatasets={handleCreateAllDatasets}
+      />
 
       <div className="relative w-full h-full bg-grayColor dark:bg-darkColorExtraLight">
         {showDatasets.map((d, index) => (
