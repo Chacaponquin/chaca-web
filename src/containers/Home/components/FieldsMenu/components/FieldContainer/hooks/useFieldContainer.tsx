@@ -1,23 +1,12 @@
 import { useState } from "react"
 import clsx from "clsx"
-import { DatasetField } from "@modules/datasets/interfaces/datasets.interface"
-import { DATA_TYPES } from "@modules/schemas/constants"
-import { useDatasetServices } from "@modules/datasets/services"
-import { useThemeServices } from "@modules/app/modules/theme/services"
-import { THEME } from "@modules/app/modules/theme/constants/THEME"
 
-export function useFieldContainer({ field }: { field: DatasetField }) {
-  const { selectField, handleSelectField, selectedDataset } = useDatasetServices()
+export function useFieldContainer() {
   const [openMenu, setOpenMenu] = useState(false)
   const [subFieldsOpen, setSubFieldsOpen] = useState(true)
-  const { theme } = useThemeServices()
 
   const divClass = clsx(
     "w-full flex items-center cursor-pointer justify-between py-2 transition-all duration-300 px-2",
-    {
-      "bg-slate-100": selectField && selectField.id === field.id,
-      "hover:bg-slate-100": THEME.LIGHT === theme,
-    },
   )
 
   const handleInteractSubFields = () => {
@@ -29,18 +18,8 @@ export function useFieldContainer({ field }: { field: DatasetField }) {
     setOpenMenu(!openMenu)
   }
 
-  const handleSelect = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (selectedDataset) {
-      e.stopPropagation()
-      if (!(field.dataType.type === DATA_TYPES.MIXED)) {
-        handleSelectField(selectedDataset.id, field.id)
-      }
-    }
-  }
-
   return {
     openMenu,
-    handleSelect,
     divClass,
     subFieldsOpen,
     handleInteractSubFields,

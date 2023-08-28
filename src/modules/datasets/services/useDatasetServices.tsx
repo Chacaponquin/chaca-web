@@ -34,14 +34,11 @@ interface DeleteFieldProps {
 export default function useDatasetServices() {
   const {
     datasetDispatch,
-    handleDeleteSelectField,
     selectedDataset,
     datasets,
     handleSelectDataset,
     showFieldsMenu,
     handleCloseFieldsMenu,
-    handleSelectField,
-    selectField,
   } = useContext(DatasetsContext)
 
   const { validateDatasetName, validateFieldName } = useValidations()
@@ -154,9 +151,6 @@ export default function useDatasetServices() {
         datasetID: datasetId,
       },
     })
-
-    // quitar el selected field (ponerlo en null)
-    handleDeleteSelectField()
   }
 
   const hanldeDeleteDataset = (datasetID: string) => {
@@ -250,7 +244,5 @@ export default function useDatasetServices() {
     handleDeleteField,
     get,
     handleSelectDataset,
-    handleSelectField,
-    selectField,
   }
 }

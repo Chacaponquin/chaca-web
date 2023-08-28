@@ -12,17 +12,11 @@ const FieldContainer = ({
   field: DatasetField<FieldDataType>
   margin: number
 }) => {
-  const {
-    divClass,
-    handleSelect,
-    subFieldsOpen,
-    openMenu,
-    handleInteractSubFields,
-    handleInteractOpenMenu,
-  } = useFieldContainer({ field })
+  const { divClass, subFieldsOpen, openMenu, handleInteractSubFields, handleInteractOpenMenu } =
+    useFieldContainer()
 
   return (
-    <section className="flex flex-col w-full" onClick={handleSelect}>
+    <section className="flex flex-col w-full">
       <div className="flex items-center justify-between" style={{ paddingLeft: `${margin}px` }}>
         <div className={divClass}>
           <div className="flex items-center">

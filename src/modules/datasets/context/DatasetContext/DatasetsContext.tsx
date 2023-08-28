@@ -8,7 +8,7 @@ import {
   useState,
 } from "react"
 import { DatasetPayload, datasetsReducer } from "../../reducer/datasets_reducer"
-import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
+import { Dataset } from "@modules/datasets/domain/tree"
 import { useDatasetServices } from "@modules/datasets/services"
 import { DATASETS_ACTIONS } from "@modules/datasets/constants"
 import { useConfigServices } from "@modules/config/services"
@@ -17,10 +17,7 @@ interface DatasetContextProps {
   datasets: Dataset[]
   datasetDispatch: Dispatch<DatasetPayload>
   selectedDataset: Dataset | null
-  selectField: FieldNode | null
   handleSelectDataset: (id: string) => void
-  handleSelectField: (datasetID: string, fieldID: string) => void
-  handleDeleteSelectField: () => void
   handleOpenFieldsMenu: () => void
   handleCloseFieldsMenu: () => void
   showFieldsMenu: boolean
@@ -42,9 +39,6 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
   // select dataset
   const [selectedDataset, setSelectedDataset] = useState<Dataset | null>(null)
 
-  // select field
-  const [selectField, setSelectField] = useState<FieldNode | null>(null)
-
   useEffect(() => {
     const initialDatasets = initDatasets()
 
@@ -61,21 +55,7 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
 
     if (findDataset) {
       setSelectedDataset(findDataset)
-      setSelectField(null)
     }
-  }
-
-  const handleSelectField = (datasetID: string, fieldID: string) => {
-    const foundDataset = datasets.find((el) => el.id === datasetID)
-
-    if (foundDataset) {
-      const foundNode = foundDataset.findFieldByID(fieldID)
-      setSelectField(foundNode)
-    }
-  }
-
-  const handleDeleteSelectField = () => {
-    setSelectField(null)
   }
 
   const handleOpenFieldsMenu = () => {
@@ -90,10 +70,7 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
     datasets,
     datasetDispatch,
     selectedDataset,
-    selectField,
     handleSelectDataset,
-    handleSelectField,
-    handleDeleteSelectField,
     showFieldsMenu,
     handleCloseFieldsMenu,
     handleOpenFieldsMenu,
