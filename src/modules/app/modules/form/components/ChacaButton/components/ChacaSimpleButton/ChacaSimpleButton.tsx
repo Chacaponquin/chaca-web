@@ -3,7 +3,7 @@ import { ChacaButtonProps } from "../../interfaces/chacaButton.intrface"
 
 const ChacaSimpleButton = (props: ChacaButtonProps) => {
   return (
-    <button onClick={props.onClick} className={buttonClass(props)}>
+    <button onClick={props.onClick} className={buttonClass(props)} type={props.type}>
       {props.text}
     </button>
   )

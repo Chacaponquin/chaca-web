@@ -5,6 +5,7 @@ export interface ChacaButtonProps {
   color: "primary" | "gradient" | "danger" | "secondary" | "cancel"
   className?: string
   full?: boolean
+  type?: "submit" | "button"
 }
 
 export interface ChacaIconButtonInterface extends ChacaButtonProps {

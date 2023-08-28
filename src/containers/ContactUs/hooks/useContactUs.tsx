@@ -37,7 +37,7 @@ export function useContactUs() {
     setContactForm({ ...contactForm, [key]: value })
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     const saveMessage = new SaveUserMessage(contactForm)
     createMessage({ body: saveMessage })
