@@ -104,8 +104,8 @@ export abstract class FieldNode<T = FieldDataType> extends Node {
 
 export class SchemaValueNode extends FieldNode<SingleValueDataType> {
   public stringInf(): string {
-    const module = this.dataType.fieldType.parent
-    const option = this.dataType.fieldType.type
+    const module = this.dataType.fieldType.schema
+    const option = this.dataType.fieldType.option
 
     return `${module}.${option}`
   }

@@ -26,14 +26,14 @@ export default function SchemaValueConfig({
     OPTION_TEXT: { en: "Option", es: "Opción" },
   })
 
-  const foundOptions = useMemo(() => findParentOptions(fieldType.parent), [findParentOptions])
+  const foundOptions = useMemo(() => findParentOptions(fieldType.schema), [findParentOptions])
 
   function handleSelectModule(m: string) {
     handleSelectFieldSchema(m)
   }
 
   function handleSelectModuleOption(o: string) {
-    handleSelectFieldSchemaOption({ optionName: o, parent: fieldType.parent })
+    handleSelectFieldSchemaOption({ optionName: o, parent: fieldType.schema })
   }
 
   return (
@@ -43,12 +43,12 @@ export default function SchemaValueConfig({
         labelKey="name"
         valueKey="name"
         placeholder={MODULE_TEXT}
-        value={fieldType.parent}
+        value={fieldType.schema}
         onChange={handleSelectModule}
       />
 
       <ChacaSelect
-        value={fieldType.type}
+        value={fieldType.option}
         options={foundOptions}
         labelKey="name"
         valueKey="name"
@@ -57,8 +57,8 @@ export default function SchemaValueConfig({
       />
 
       <OptionArguments
-        module={fieldType.parent}
-        option={fieldType.type}
+        module={fieldType.schema}
+        option={fieldType.option}
         args={fieldType.args}
         handleUpdateFieldSchemaArguments={handleUpdateFieldSchemaArguments}
       />

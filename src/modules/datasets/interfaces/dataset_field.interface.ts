@@ -56,8 +56,8 @@ export type EnumDataType = {
 }
 
 export interface SchemaValueTypeObject {
-  parent: string
-  type: string
+  schema: string
+  option: string
   args: ArgumentObject
 }
 

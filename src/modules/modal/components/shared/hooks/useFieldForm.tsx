@@ -87,8 +87,8 @@ export const useFieldForm = ({ field: inputField }: { field: FieldForm }): Field
           type: DATA_TYPES.SINGLE_VALUE,
           fieldType: {
             args: {},
-            parent: parent,
-            type: findParent(parent).options[0].name,
+            schema: parent,
+            option: findParent(parent).options[0].name,
           },
         },
       },
@@ -103,8 +103,8 @@ export const useFieldForm = ({ field: inputField }: { field: FieldForm }): Field
           type: DATA_TYPES.SINGLE_VALUE,
           fieldType: {
             args: {},
-            parent: parent,
-            type: optionName,
+            schema: parent,
+            option: optionName,
           },
         },
       },

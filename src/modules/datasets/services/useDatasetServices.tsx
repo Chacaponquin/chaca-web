@@ -51,7 +51,7 @@ export default function useDatasetServices() {
     const id = FieldNode.create({
       dataType: {
         type: DATA_TYPES.SINGLE_VALUE,
-        fieldType: { args: {}, parent: "id", type: "uuid" },
+        fieldType: { args: {}, schema: "id", option: "uuid" },
       },
       name: new FieldName("id"),
       isKey: true,
@@ -61,7 +61,7 @@ export default function useDatasetServices() {
       name: new FieldName("username"),
       dataType: {
         type: DATA_TYPES.SINGLE_VALUE,
-        fieldType: { args: {}, parent: "internet", type: "username" },
+        fieldType: { args: {}, schema: "internet", option: "username" },
       },
     })
 
@@ -69,7 +69,7 @@ export default function useDatasetServices() {
       name: new FieldName("password"),
       dataType: {
         type: DATA_TYPES.SINGLE_VALUE,
-        fieldType: { args: {}, parent: "internet", type: "password" },
+        fieldType: { args: {}, schema: "internet", option: "password" },
       },
     })
 
@@ -82,7 +82,7 @@ export default function useDatasetServices() {
     const postId = FieldNode.create({
       dataType: {
         type: DATA_TYPES.SINGLE_VALUE,
-        fieldType: { args: {}, parent: "id", type: "uuid" },
+        fieldType: { args: {}, schema: "id", option: "uuid" },
       },
       name: new FieldName("id"),
       isKey: true,
