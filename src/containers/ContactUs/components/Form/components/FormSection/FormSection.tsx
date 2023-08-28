@@ -11,7 +11,7 @@ export default function FormSection({
 }) {
   return (
     <section className="flex flex-col">
-      <label htmlFor={id} className="text-xl font-fontBold mb-1 esm:text-lg">
+      <label htmlFor={id} className="text-xl font-fontMedium mb-1 esm:text-lg">
         {labelText}:
       </label>
       {children}

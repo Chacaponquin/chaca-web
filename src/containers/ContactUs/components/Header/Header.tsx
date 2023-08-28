@@ -11,7 +11,7 @@ export default function Header() {
 
   return (
     <header>
-      <h1 className="uppercase font-fontTitle sm:text-7xl text-5xl exsm:text-4xl">{CONTACT_US}</h1>
+      <h1 className="font-fontTitle sm:text-7xl text-5xl exsm:text-4xl">{CONTACT_US}</h1>
       <p className="text-grayStrongColor text-lg mt-2 esm:text-base">{LABEL_MESSAGE}</p>
     </header>
   )
