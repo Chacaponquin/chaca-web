@@ -54,6 +54,10 @@ export class Dataset {
     this.root.insertNode(node)
   }
 
+  public allPossibleFieldsToRef(): Array<FieldNode> {
+    return this.root.allPossibleFieldsToRef()
+  }
+
   public findFieldParentNode(nodeID: string): Node | null {
     return this.root.findFieldParentNode(nodeID)
   }

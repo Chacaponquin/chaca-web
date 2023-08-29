@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid"
-import { FieldNode } from "./FieldNode"
+import { FieldNode, MixedNode } from "./FieldNode"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { RefDataType } from "@modules/datasets/interfaces/dataset_field.interface"
 import { NameValidator } from "@modules/datasets/value-object"
@@ -130,5 +130,22 @@ export class Node {
     })
 
     return ref
+  }
+
+  public allPossibleFieldsToRef(): Array<FieldNode> {
+    let returnFields = [] as Array<FieldNode>
+
+    for (const node of this.nodes) {
+      if (node instanceof MixedNode) {
+        const fields = node.allPossibleFieldsToRef()
+        returnFields = [...returnFields, ...fields]
+      } else {
+        if (node.isKey) {
+          returnFields.push(node)
+        }
+      }
+    }
+
+    return returnFields
   }
 }

@@ -54,31 +54,29 @@ const AppRoutes = () => {
 }
 
 root.render(
-  <Fragment>
-    <ErrorBoundary fallback={<Error />}>
-      <BrowserRouter>
-        <ToastProvider>
-          <AppProvider>
-            <SchemasProvider>
-              <LanguageProvider>
-                <ThemeProvider>
-                  <UserProvider>
-                    <ConfigProvider>
-                      <DatasetsProvider>
-                        <ModalProvider>
-                          <SocketProvider>
-                            <AppRoutes />
-                          </SocketProvider>
-                        </ModalProvider>
-                      </DatasetsProvider>
-                    </ConfigProvider>
-                  </UserProvider>
-                </ThemeProvider>
-              </LanguageProvider>
-            </SchemasProvider>
-          </AppProvider>
-        </ToastProvider>
-      </BrowserRouter>
-    </ErrorBoundary>
-  </Fragment>,
+  <ErrorBoundary fallback={<Error />}>
+    <BrowserRouter>
+      <ToastProvider>
+        <AppProvider>
+          <SchemasProvider>
+            <LanguageProvider>
+              <ThemeProvider>
+                <UserProvider>
+                  <ConfigProvider>
+                    <DatasetsProvider>
+                      <ModalProvider>
+                        <SocketProvider>
+                          <AppRoutes />
+                        </SocketProvider>
+                      </ModalProvider>
+                    </DatasetsProvider>
+                  </ConfigProvider>
+                </UserProvider>
+              </ThemeProvider>
+            </LanguageProvider>
+          </SchemasProvider>
+        </AppProvider>
+      </ToastProvider>
+    </BrowserRouter>
+  </ErrorBoundary>,
 )

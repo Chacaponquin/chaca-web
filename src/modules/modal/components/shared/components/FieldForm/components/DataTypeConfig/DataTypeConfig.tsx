@@ -43,7 +43,7 @@ export default function DataTypeConfig({
       {dataType.type === DATA_TYPES.CUSTOM && (
         <CustomConfig code={dataType.code} handleUpdateCustomField={handleUpdateCustomField} />
       )}
-      {dataType.type === DATA_TYPES.REF && <RefConfig />}
+      {dataType.type === DATA_TYPES.REF && <RefConfig refField={dataType.ref} />}
       {dataType.type === DATA_TYPES.SEQUENCE && (
         <SequenceConfig
           startsWith={dataType.startsWith}

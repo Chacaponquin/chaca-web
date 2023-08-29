@@ -7,6 +7,7 @@ import { useValidations } from "../hooks"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { DatasetConnection } from "../interfaces/dataset_connect.interface"
 import { DatasetName, FieldName } from "../value-object"
+import { PossibleFieldToRef } from "../interfaces/ref.interface"
 
 interface AddFieldProps {
   field: FieldForm
@@ -172,6 +173,13 @@ export default function useDatasetServices() {
     })
   }
 
+  const handleDeleteField = ({ datasetId, fieldId }: DeleteFieldProps) => {
+    datasetDispatch({
+      type: DATASETS_ACTIONS.DELETE_FIELD,
+      payload: { fieldID: fieldId, datasetID: datasetId },
+    })
+  }
+
   function fieldCanBeKey(field: FieldForm): boolean {
     const type = field.dataType.type
     return type !== DATA_TYPES.SEQUENTIAL && type !== DATA_TYPES.MIXED && type !== DATA_TYPES.ENUM
@@ -214,15 +222,41 @@ export default function useDatasetServices() {
     return connections
   }
 
-  const handleDeleteField = ({ datasetId, fieldId }: DeleteFieldProps) => {
-    datasetDispatch({
-      type: DATASETS_ACTIONS.DELETE_FIELD,
-      payload: { fieldID: fieldId, datasetID: datasetId },
-    })
-  }
-
   function get(index: number): Dataset {
     return datasets[index]
+  }
+
+  function searchPossibleFieldsToRef(): Array<PossibleFieldToRef> {
+    const returnFields = [] as Array<PossibleFieldToRef>
+
+    for (const dat of datasets) {
+      const fields = dat.allPossibleFieldsToRef()
+
+      for (const f of fields) {
+        returnFields.push({ fieldId: f.id, location: dat.getFieldLocation(f.id) })
+      }
+    }
+
+    return returnFields
+  }
+
+  function findField(fieldId?: string): FieldNode | null {
+    if (!fieldId) return null
+
+    let found: FieldNode | null = null
+
+    for (let i = 0; i < datasets.length && found === null; i++) {
+      found = datasets[i].findFieldByID(fieldId)
+    }
+
+    return found
+  }
+
+  function findFieldByLocation(fieldLocation: Array<string>): FieldNode | null {
+    const id = fieldLocation.at(-1)
+    const found = findField(id)
+
+    return found
   }
 
   return {
@@ -244,5 +278,8 @@ export default function useDatasetServices() {
     handleDeleteField,
     get,
     handleSelectDataset,
+    findField,
+    searchPossibleFieldsToRef,
+    findFieldByLocation,
   }
 }

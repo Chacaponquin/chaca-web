@@ -13,7 +13,7 @@ export default function TestEndpointForm({ option }: { option: SubOption }) {
 
   const [request, { loading }] = useLazyQuery<unknown>()
 
-  const [requestURL, setRequestURL] = useState(optionApiRoute(option.route))
+  const [requestURL, setRequestURL] = useState(optionApiRoute(""))
   const [args, setArgs] = useState<ArgumentsObject>({})
   const [requestResult, setRequestResult] = useState<undefined | string>(undefined)
 
@@ -23,7 +23,7 @@ export default function TestEndpointForm({ option }: { option: SubOption }) {
 
   useEffect(() => {
     const queryArguments = Object.entries(args)
-    let initialRoute = optionApiRoute(option.route)
+    let initialRoute = optionApiRoute("")
 
     if (queryArguments.length === 0) {
       setRequestURL(initialRoute)
