@@ -2,7 +2,7 @@ import { createContext, createRef, RefObject, useState, useEffect } from "react"
 
 interface HomeContextProps {
   fieldsMenuRef: RefObject<HTMLElement>
-  playgroundRef: RefObject<HTMLElement>
+  playgroundRef: RefObject<HTMLDivElement>
   smallWindow: boolean
 }
 
@@ -10,7 +10,7 @@ const HomeContext = createContext<HomeContextProps>({ smallWindow: false } as Ho
 
 const HomeProvider = ({ children }: { children: React.ReactElement }) => {
   const fieldsMenuRef = createRef<HTMLElement>()
-  const playgroundRef = createRef<HTMLElement>()
+  const playgroundRef = createRef<HTMLDivElement>()
 
   const [smallWindow, setSmallWindow] = useState(false)
 
