@@ -2,6 +2,7 @@ import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
 import { FieldDataType } from "@modules/datasets/interfaces/dataset_field.interface"
 import { NodeProps } from "@modules/datasets/interfaces/tree.interface"
 import { DatasetUseCase } from "./DatasetUseCase"
+import { MixedNode } from "@modules/datasets/domain/tree/FieldNode"
 
 interface ExecuteProps {
   datasetId: string
@@ -20,8 +21,8 @@ export class AddField extends DatasetUseCase<ExecuteProps> {
         } else {
           const findParent = d.findFieldByID(parentId)
 
-          if (findParent) {
-            findParent.insertNode(newNode)
+          if (findParent && findParent instanceof MixedNode) {
+            findParent.nodesUtils.insertNode(newNode)
           }
         }
       }

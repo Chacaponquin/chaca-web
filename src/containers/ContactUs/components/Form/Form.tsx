@@ -1,5 +1,5 @@
 import { ChacaTextInput, ChacaTextarea } from "@form/components"
-import { useId, FormEvent } from "react"
+import { useId } from "react"
 import { ButtonSection, FormSection } from "./components"
 import { CreateMessageDTO } from "@modules/user-message/dto/user_message"
 import { useLanguage } from "@modules/app/modules/language/hooks"

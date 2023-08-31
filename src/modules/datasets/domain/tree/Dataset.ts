@@ -4,7 +4,6 @@ import {
   RefDataType,
 } from "@modules/datasets/interfaces/datasets.interface"
 import { FieldNode } from "./FieldNode"
-import { Node } from "./Node"
 import { RootNode } from "./RootNode"
 import { DatasetName } from "@modules/datasets/value-object"
 
@@ -15,19 +14,17 @@ interface DatasetProps {
 
 export class Dataset {
   private root: RootNode
-  private _name: DatasetName
 
   constructor({ limit = 50, name }: DatasetProps) {
-    this._name = name
-    this.root = new RootNode({ limit, name: name })
+    this.root = new RootNode({ limit, name })
   }
 
   get name() {
-    return this._name.value()
+    return this.root.name
   }
 
   get nodes() {
-    return this.root.nodes
+    return this.root.nodesUtils.nodes
   }
 
   get limit() {
@@ -47,32 +44,32 @@ export class Dataset {
   }
 
   public setName(name: DatasetName) {
-    this._name = name
+    this.root.setName(name)
   }
 
   public insertField(node: FieldNode) {
-    this.root.insertNode(node)
+    this.root.nodesUtils.insertNode(node)
   }
 
   public allPossibleFieldsToRef(): Array<FieldNode> {
-    return this.root.allPossibleFieldsToRef()
+    return this.root.nodesUtils.allPossibleFieldsToRef()
   }
 
-  public findFieldParentNode(nodeID: string): Node | null {
-    return this.root.findFieldParentNode(nodeID)
+  public findFieldParentNode(nodeID: string): FieldNode | RootNode | null {
+    return this.root.nodesUtils.findFieldParentNode(nodeID)
   }
 
-  public findNodeByID(nodeID: string): Node | null {
-    if (this.root.id === nodeID) return this.root
-    else return this.root.findNodeByID(nodeID)
+  public findNodeByID(nodeID: string): FieldNode | RootNode | null {
+    if (this.id === nodeID) return this.root
+    else return this.root.nodesUtils.findNodeByID(nodeID)
   }
 
   public findFieldByID(fieldID: string): FieldNode | null {
-    return this.root.findNodeByID(fieldID)
+    return this.root.nodesUtils.findNodeByID(fieldID)
   }
 
   public findSameLevelFields(fieldID: string): Array<FieldNode> {
-    return this.root.getSameLevelNodes(fieldID)
+    return this.root.nodesUtils.getSameLevelNodes(fieldID)
   }
 
   public object(): ExportDataset {
@@ -85,15 +82,15 @@ export class Dataset {
   }
 
   public deleteField(fieldID: string): void {
-    this.root.deleteField(fieldID)
+    this.root.nodesUtils.deleteField(fieldID)
   }
 
   public refFields(): Array<FieldNode<RefDataType>> {
-    return this.root.refFields()
+    return this.root.nodesUtils.refFields()
   }
 
   public getFieldLocation(fieldID: string): string[] {
-    const ret = this.root.getFieldLocation(fieldID, [])
+    const ret = this.root.nodesUtils.getFieldLocation(fieldID, [])
 
     if (ret) {
       return ret

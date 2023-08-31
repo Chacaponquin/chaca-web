@@ -1,27 +1,44 @@
 import { DatasetField } from "@modules/datasets/interfaces/datasets.interface"
 import { FieldNode } from "./FieldNode"
-import { Node } from "./Node"
+import { NodeObjectUtils } from "./NodeObjectUtils"
 import { DatasetName } from "@modules/datasets/value-object"
+import { v4 as uuid } from "uuid"
 
 interface RootProps {
-  name: DatasetName
   limit: number
+  name: DatasetName
 }
 
-export class RootNode extends Node {
+export class RootNode {
   private _limit: number
+  private _name: DatasetName
+  private _id = uuid()
+
+  public nodesUtils = new NodeObjectUtils(this)
 
   constructor({ limit, name }: RootProps) {
-    super(name)
     this._limit = limit
+    this._name = name
+  }
+
+  get id() {
+    return this._id
+  }
+
+  get name() {
+    return this._name.value()
   }
 
   public fields(): DatasetField[] {
-    return this.nodes.map((el) => el.object())
+    return this.nodesUtils.nodes.map((el) => el.object())
+  }
+
+  public setName(name: DatasetName) {
+    this._name = name
   }
 
   public setField(field: FieldNode) {
-    this.nodes.push(field)
+    this.nodesUtils.nodes.push(field)
   }
 
   public limit() {

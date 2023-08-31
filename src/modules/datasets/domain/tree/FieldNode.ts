@@ -1,7 +1,6 @@
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets.interface"
 import { NodeProps } from "@modules/datasets/interfaces/tree.interface"
-import { Node } from "./Node"
 import {
   IsArrayConfig,
   IsKeyConfig,
@@ -16,17 +15,22 @@ import {
   EnumDataType,
   SingleValueDataType,
 } from "@modules/datasets/interfaces/dataset_field.interface"
+import { FieldName } from "@modules/datasets/value-object"
+import { NodeObjectUtils } from "./NodeObjectUtils"
+import { v4 as uuid } from "uuid"
 
-export abstract class FieldNode<T = FieldDataType> extends Node {
+export abstract class FieldNode<T = FieldDataType> {
   private _dataType: T
   private _isArray: IsArrayConfig
   private _possibleNull: PossibleNullConfig
   private _isKey: IsKeyConfig
+  private _name: FieldName
+  private _id = uuid()
 
   public abstract stringInf(): string
 
   constructor({ name, dataType, isArray = null, isKey = false, isPosibleNull = 0 }: NodeProps<T>) {
-    super(name)
+    this._name = name
     this._dataType = dataType
     this._isArray = isArray
     this._possibleNull = isPosibleNull
@@ -53,6 +57,14 @@ export abstract class FieldNode<T = FieldDataType> extends Node {
     }
   }
 
+  get id() {
+    return this._id
+  }
+
+  public get name() {
+    return this._name.value()
+  }
+
   public get dataType() {
     return this._dataType
   }
@@ -77,8 +89,23 @@ export abstract class FieldNode<T = FieldDataType> extends Node {
     this._possibleNull = config
   }
 
+  public setName(name: FieldName) {
+    this._name = name
+  }
+
   public object(): DatasetField<T> {
-    if (this.nodes.length === 0) {
+    if (this instanceof MixedNode) {
+      return {
+        id: this.id,
+        name: this.name,
+        dataType: {
+          object: this.nodesUtils.nodes.map((el) => el.object()),
+          type: DATA_TYPES.MIXED,
+        },
+        isArray: this._isArray,
+        isKey: this._isKey,
+      } as DatasetField<T>
+    } else {
       return {
         id: this.id,
         name: this.name,
@@ -87,17 +114,6 @@ export abstract class FieldNode<T = FieldDataType> extends Node {
         isKey: this._isKey,
         isPosibleNull: this._possibleNull,
       }
-    } else {
-      return {
-        id: this.id,
-        name: this.name,
-        dataType: {
-          object: this.nodes.map((el) => el.object()),
-          type: DATA_TYPES.MIXED,
-        },
-        isArray: this._isArray,
-        isKey: this._isKey,
-      } as DatasetField<T>
     }
   }
 }
@@ -124,6 +140,8 @@ export class SequentialNode extends FieldNode<SequentialDataType> {
 }
 
 export class MixedNode extends FieldNode<MixedDataType> {
+  public nodesUtils = new NodeObjectUtils(this)
+
   public stringInf(): string {
     return `mixed`
   }

@@ -16,4 +16,16 @@ export class SaveUserMessage {
     this._email = new Email(email).value()
     this._message = new Message(message).value()
   }
+
+  get title() {
+    return this._title
+  }
+
+  get email() {
+    return this._email
+  }
+
+  get message() {
+    return this._message
+  }
 }

@@ -1,6 +1,7 @@
 import { RepeatDatasetNameError, RepeatSameLevelFieldNameError } from "../errors"
 import { DatasetsContext } from "../context"
 import { useContext } from "react"
+import { MixedNode } from "../domain/tree/FieldNode"
 
 interface ValidateFieldProps {
   datasetId: string
@@ -44,11 +45,13 @@ export function useValidations() {
       const findParent = foundDataset.findNodeByID(parentID)
 
       if (findParent) {
-        const parentNodes = findParent.nodes
+        if (findParent instanceof MixedNode) {
+          const parentNodes = findParent.nodesUtils.nodes
 
-        for (let i = 0; i < parentNodes.length; i++) {
-          if (parentNodes[i].name === fieldName) {
-            cont++
+          for (let i = 0; i < parentNodes.length; i++) {
+            if (parentNodes[i].name === fieldName) {
+              cont++
+            }
           }
         }
       }

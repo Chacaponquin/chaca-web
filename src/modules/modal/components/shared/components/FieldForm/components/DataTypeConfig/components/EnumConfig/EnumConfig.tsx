@@ -1,7 +1,6 @@
 import { ChacaTextarea } from "@form/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { EnumField } from "@modules/datasets/domain/fields"
-import React from "react"
 
 export default function EnumConfig({
   handleChangeEnumValues,

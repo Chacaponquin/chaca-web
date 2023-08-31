@@ -1,58 +1,55 @@
-import { v4 as uuid } from "uuid"
+import { RefDataType } from "@modules/datasets/interfaces/dataset_field.interface"
 import { FieldNode, MixedNode } from "./FieldNode"
 import { DATA_TYPES } from "@modules/schemas/constants"
-import { RefDataType } from "@modules/datasets/interfaces/dataset_field.interface"
-import { NameValidator } from "@modules/datasets/value-object"
+import { RootNode } from "./RootNode"
 
-export class Node {
-  public readonly id: string = uuid()
+export class NodeObjectUtils {
   private _nodes: Array<FieldNode> = []
-  private _name: NameValidator
+  private _instance: FieldNode | RootNode
 
-  constructor(name: NameValidator) {
-    this._name = name
+  constructor(instance: FieldNode | RootNode) {
+    this._instance = instance
   }
 
-  public get nodes() {
+  get nodes() {
     return this._nodes
-  }
-
-  get name() {
-    return this._name.value()
   }
 
   public insertNode(node: FieldNode): void {
     this.nodes.push(node)
   }
 
-  public setName(newName: NameValidator) {
-    this._name = newName
-  }
-
   public getSameLevelNodes(fieldID: string): Array<FieldNode> {
     const findNode = this.nodes.some((n) => n.id === fieldID)
-
     if (findNode) return this.nodes
 
     let returnArray = [] as Array<FieldNode>
 
     for (let i = 0; i < this.nodes.length && returnArray.length === 0; i++) {
-      returnArray = this.nodes[i].getSameLevelNodes(fieldID)
+      const node = this.nodes[i]
+
+      if (node instanceof MixedNode) {
+        returnArray = node.nodesUtils.getSameLevelNodes(fieldID)
+      }
     }
 
     return returnArray
   }
 
-  public findFieldParentNode(nodeID: string): Node | null {
+  public findFieldParentNode(nodeID: string): FieldNode | RootNode | null {
     const findNode = this.nodes.some((n) => n.id === nodeID)
 
     if (findNode) {
-      return this
+      return this._instance
     } else {
       let returnValue = null
 
       for (let i = 0; i < this.nodes.length && !returnValue; i++) {
-        returnValue = this.nodes[i].findFieldParentNode(nodeID)
+        const node = this.nodes[i]
+
+        if (node instanceof MixedNode) {
+          returnValue = node.nodesUtils.findFieldParentNode(nodeID)
+        }
       }
 
       return returnValue
@@ -68,7 +65,11 @@ export class Node {
 
       if (!find) {
         for (let i = 0; i < this.nodes.length && !find; i++) {
-          find = this.nodes[i].findNodeByID(nodeID)
+          const node = this.nodes[i]
+
+          if (node instanceof MixedNode) {
+            find = node.nodesUtils.findNodeByID(nodeID)
+          }
         }
       }
 
@@ -90,7 +91,13 @@ export class Node {
       let stop = false
 
       for (let i = 0; i < this.nodes.length && !stop; i++) {
-        if (this.nodes[i].deleteField(fieldID)) stop = true
+        const node = this.nodes[i]
+
+        if (node instanceof MixedNode) {
+          if (node.nodesUtils.deleteField(fieldID)) {
+            stop = true
+          }
+        }
       }
 
       return stop
@@ -106,13 +113,17 @@ export class Node {
 
     const found = this.nodes.find((n) => n.id === fieldID)
     if (found) {
-      return [...location, this.name, found.name]
+      return [...location, this._instance.name, found.name]
     }
 
     let ret: string[] | null = null
 
     for (let i = 0; i < this.nodes.length && !ret; i++) {
-      ret = this.nodes[i].getFieldLocation(fieldID, [...location, this.name])
+      const node = this.nodes[i]
+
+      if (node instanceof MixedNode) {
+        ret = node.nodesUtils.getFieldLocation(fieldID, [...location, node.name])
+      }
     }
 
     return ret ? ret : null
@@ -124,8 +135,8 @@ export class Node {
     this.nodes.forEach((f) => {
       if (f.dataType.type === DATA_TYPES.REF) {
         ref.push(f as FieldNode<RefDataType>)
-      } else if (f.dataType.type === DATA_TYPES.MIXED) {
-        ref = [...ref, ...f.refFields()]
+      } else if (f instanceof MixedNode) {
+        ref = [...ref, ...f.nodesUtils.refFields()]
       }
     })
 
@@ -137,7 +148,7 @@ export class Node {
 
     for (const node of this.nodes) {
       if (node instanceof MixedNode) {
-        const fields = node.allPossibleFieldsToRef()
+        const fields = node.nodesUtils.allPossibleFieldsToRef()
         returnFields = [...returnFields, ...fields]
       } else {
         if (node.isKey) {

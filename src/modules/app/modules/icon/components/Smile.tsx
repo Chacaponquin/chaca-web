@@ -1,4 +1,3 @@
-import React from "react"
 import { IconProps } from "../interfaces/icon.interface"
 import { DEFAULT_ICON_SIZE } from "../constants/icons.enum"
 
