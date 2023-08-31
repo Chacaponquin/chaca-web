@@ -11,7 +11,7 @@ interface SchemasContextProps {
 const SchemasContext = createContext<SchemasContextProps>({ schemas: [] })
 
 const SchemasProvider = ({ children }: { children: React.ReactElement }) => {
-  const [schemas, setSchemas] = useState<Schema[]>([])
+  const [schemas, setSchemas] = useState<Array<Schema>>([])
   const { showBoundary } = useErrorBoundary()
 
   useQuery<Array<Schema>>({
