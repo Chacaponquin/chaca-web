@@ -6,7 +6,7 @@ export function useFieldContainer() {
   const [subFieldsOpen, setSubFieldsOpen] = useState(true)
 
   const divClass = clsx(
-    "w-full flex items-center cursor-pointer justify-between py-2 transition-all duration-300 px-2",
+    "w-full flex items-center cursor-pointer justify-between py-2.5 transition-all duration-300 px-2",
   )
 
   const handleInteractSubFields = () => {

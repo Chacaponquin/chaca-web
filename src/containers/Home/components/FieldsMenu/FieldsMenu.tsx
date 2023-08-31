@@ -26,7 +26,7 @@ const FieldsMenu = ({
         <CloseSection handleCloseFieldsMenu={handleCloseFieldsMenu} />
       )}
 
-      <div className="h-full bg-white dark:bg-darkColorLight w-full flex flex-col text-black dark:text-white">
+      <div className="h-full bg-white dark:bg-darkColorLight w-full flex flex-col text-black dark:text-white pt-1">
         {selectedDataset && selectedDataset.fields.length > 0 ? (
           <Fragment>
             {selectedDataset.fields.map((f) => (

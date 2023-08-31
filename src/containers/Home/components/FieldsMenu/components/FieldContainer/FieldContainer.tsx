@@ -1,8 +1,7 @@
 import { Fragment } from "react"
-import { ArrowRight } from "@modules/app/modules/icon/components"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets.interface"
-import { FieldName, FieldOptions, Point } from "./components"
+import { FieldName, FieldOptions, OpenFieldsButton, Point } from "./components"
 import { useFieldContainer } from "./hooks"
 
 const FieldContainer = ({
@@ -21,14 +20,7 @@ const FieldContainer = ({
         <div className={divClass}>
           <div className="flex items-center">
             {field.dataType.type === DATA_TYPES.MIXED ? (
-              <button
-                style={{
-                  transform: subFieldsOpen ? "rotate(90deg)" : "rotate(0deg)",
-                }}
-                onClick={handleInteractSubFields}
-              >
-                <ArrowRight size={19} />
-              </button>
+              <OpenFieldsButton onClick={handleInteractSubFields} open={subFieldsOpen} />
             ) : (
               <Point />
             )}
