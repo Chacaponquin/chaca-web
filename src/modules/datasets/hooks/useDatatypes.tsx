@@ -16,7 +16,7 @@ export default function useDatatypes() {
 
   const DEFAULT_CUSTOM_DATA_TYPE: CustomDataType = {
     type: DATA_TYPES.CUSTOM,
-    code: "function getValue(fields, utils){\n\t// logic of your function\n}",
+    code: "function getValue({ currentFields, schemas, store }){\n// logic of your function\n}",
   }
 
   const DEFAULT_MIXED_DATA_TYPE: MixedDataType = {
