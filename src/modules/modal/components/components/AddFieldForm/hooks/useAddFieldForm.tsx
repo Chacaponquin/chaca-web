@@ -61,5 +61,5 @@ export function useAddFieldForm({
     }
   }
 
-  return { handleAddField, fieldActions }
+  return { handleAddField, fieldActions, datasetId }
 }

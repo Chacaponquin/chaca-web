@@ -59,5 +59,5 @@ export function useEditFieldForm({
     }
   }
 
-  return { handleEditField, fieldActions }
+  return { handleEditField, fieldActions, datasetId }
 }

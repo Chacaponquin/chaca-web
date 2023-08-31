@@ -226,14 +226,20 @@ export default function useDatasetServices() {
     return datasets[index]
   }
 
-  function searchPossibleFieldsToRef(): Array<PossibleFieldToRef> {
+  function searchPossibleFieldsToRef({
+    datasetId,
+  }: {
+    datasetId: string
+  }): Array<PossibleFieldToRef> {
     const returnFields = [] as Array<PossibleFieldToRef>
 
     for (const dat of datasets) {
-      const fields = dat.allPossibleFieldsToRef()
+      if (dat.id !== datasetId) {
+        const fields = dat.allPossibleFieldsToRef()
 
-      for (const f of fields) {
-        returnFields.push({ fieldId: f.id, location: dat.getFieldLocation(f.id) })
+        for (const f of fields) {
+          returnFields.push({ fieldId: f.id, location: dat.getFieldLocation(f.id).join(".") })
+        }
       }
     }
 

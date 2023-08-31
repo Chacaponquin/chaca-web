@@ -10,6 +10,8 @@ import {
 import { FieldActions } from "../../interfaces/form.interfaces"
 import { useDatasetServices } from "@modules/datasets/services"
 
+type FieldFormProps = FieldActions & { datasetId: string }
+
 export default function FieldForm({
   field,
   handleChangeIsArray,
@@ -28,7 +30,8 @@ export default function FieldForm({
   handleChangeEnumValues,
   handleChangeSequenceStartsWith,
   handleChangeSequenceStep,
-}: FieldActions) {
+  datasetId,
+}: FieldFormProps) {
   const { FIELD_NAME_TEXT, DATA_TYPE_TEXT } = useLanguage({
     FIELD_NAME_TEXT: { en: "Field name", es: "Nombre del campo" },
     DATA_TYPE_TEXT: { en: "Data type", es: "Tipo" },
@@ -50,6 +53,7 @@ export default function FieldForm({
       />
 
       <DataTypeConfig
+        datasetId={datasetId}
         handleSelectFieldSchema={handleSelectFieldSchema}
         handleSelectFieldSchemaOption={handleSelectFieldSchemaOption}
         dataType={field.dataType}

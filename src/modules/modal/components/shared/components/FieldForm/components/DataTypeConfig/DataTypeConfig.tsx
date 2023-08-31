@@ -15,6 +15,7 @@ import {
 } from "@modules/modal/components/shared/interfaces/form.interfaces"
 
 export default function DataTypeConfig({
+  datasetId,
   dataType,
   handleSelectFieldSchema,
   handleSelectFieldSchemaOption,
@@ -25,6 +26,7 @@ export default function DataTypeConfig({
   handleChangeSequenceStartsWith,
   handleChangeSequenceStep,
 }: {
+  datasetId: string
   dataType: FieldDataType
   handleSelectFieldSchema: (v: string) => void
   handleSelectFieldSchemaOption: (p: SelectFieldSchemaOptionProps) => void
@@ -43,7 +45,9 @@ export default function DataTypeConfig({
       {dataType.type === DATA_TYPES.CUSTOM && (
         <CustomConfig code={dataType.code} handleUpdateCustomField={handleUpdateCustomField} />
       )}
-      {dataType.type === DATA_TYPES.REF && <RefConfig refField={dataType.ref} />}
+      {dataType.type === DATA_TYPES.REF && (
+        <RefConfig refField={dataType.ref} datasetId={datasetId} />
+      )}
       {dataType.type === DATA_TYPES.SEQUENCE && (
         <SequenceConfig
           startsWith={dataType.startsWith}

@@ -4,7 +4,13 @@ import { useDatasetServices } from "@modules/datasets/services"
 import { FormInputSection } from "@modules/modal/components/shared/shared/components"
 import { useId } from "react"
 
-export default function RefConfig({ refField }: { refField: Array<string> }) {
+export default function RefConfig({
+  refField,
+  datasetId,
+}: {
+  refField: Array<string>
+  datasetId: string
+}) {
   const fieldRefId = useId()
   const { searchPossibleFieldsToRef, findFieldByLocation } = useDatasetServices()
 
@@ -13,7 +19,7 @@ export default function RefConfig({ refField }: { refField: Array<string> }) {
     PLACEHOLDER: { en: "Select a field", es: "Selecciona un campo" },
   })
 
-  const possibleFields = searchPossibleFieldsToRef()
+  const possibleFields = searchPossibleFieldsToRef({ datasetId })
   const foundField = findFieldByLocation(refField)
 
   return (
@@ -23,7 +29,7 @@ export default function RefConfig({ refField }: { refField: Array<string> }) {
           dimension="large"
           options={possibleFields}
           labelKey="location"
-          valueKey={"fieldId"}
+          valueKey="fieldId"
           placeholder={PLACEHOLDER}
           value={foundField?.id}
         />
