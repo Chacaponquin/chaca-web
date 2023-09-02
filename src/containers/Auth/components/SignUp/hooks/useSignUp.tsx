@@ -12,6 +12,7 @@ import { SaveUser } from "@modules/user/domain"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useToastServices } from "@modules/app/modules/toast/services"
 import { SignUpForm } from "../interfaces/form.interface"
+import { SignUpUserDTO } from "@modules/user/dto/user"
 
 export function useSignUp() {
   const {
@@ -51,7 +52,7 @@ export function useSignUp() {
 
   const { handleSignIn } = useUserServices()
 
-  const [signUpUser, { loading }] = usePost<string, SaveUser>({
+  const [signUpUser, { loading }] = usePost<string, SignUpUserDTO>({
     url: API_ROUTES.AUTH_ROUTES.SIGN_UP,
     onCompleted: (userToken) => {
       handleSignIn(userToken)
@@ -72,7 +73,9 @@ export function useSignUp() {
 
     try {
       const saveUser = new SaveUser({ ...signUpData })
-      signUpUser({ body: saveUser })
+      signUpUser({
+        body: { email: saveUser.email, password: saveUser.password, username: saveUser.password },
+      })
     } catch (error) {
       if (error instanceof UsernameShortError) {
         toastError(LENGTH_USERNAME)

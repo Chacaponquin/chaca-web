@@ -15,5 +15,9 @@ describe("# Sign up page e2e tests", () => {
     cy.get("button[type=submit]").click()
 
     cy.get("#loader").should("exist")
+    cy.get("input[name=username]").should("be.disabled")
+    cy.get("input[name=password]").should("be.disabled")
+    cy.get("input[name=confirm_password]").should("be.disabled")
+    cy.get("input[name=email]").should("be.disabled")
   })
 })
