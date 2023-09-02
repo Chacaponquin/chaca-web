@@ -7,7 +7,7 @@ describe("# Sign up page e2e tests", () => {
     cy.visit("http://127.0.0.1:5173/signUp")
   })
 
-  it("Create user", () => {
+  it("Create user correctly", () => {
     cy.get("input[name=username]").clear().type("Chacaponquin")
     cy.get("input[name=password]").clear().type("hectico2511")
     cy.get("input[name=confirm_password]").clear().type("hectico2511")
@@ -19,5 +19,7 @@ describe("# Sign up page e2e tests", () => {
     cy.get("input[name=password]").should("be.disabled")
     cy.get("input[name=confirm_password]").should("be.disabled")
     cy.get("input[name=email]").should("be.disabled")
+
+    cy.url().should("include", "/home")
   })
 })
