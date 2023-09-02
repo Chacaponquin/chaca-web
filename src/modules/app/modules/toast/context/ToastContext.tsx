@@ -10,11 +10,11 @@ const ToastContext = createContext<ToastContextProps>({} as ToastContextProps)
 
 const ToastProvider = ({ children }: { children: React.ReactElement }) => {
   function toastSuccess(message: string) {
-    toast.success(message)
+    toast.success(message, { toastId: "toast-success" })
   }
 
   function toastError(message: string) {
-    toast.error(message)
+    toast.error(message, { toastId: "toast-error" })
   }
 
   return (
