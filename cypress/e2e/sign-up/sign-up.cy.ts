@@ -7,7 +7,12 @@ describe("# Sign up page e2e tests", () => {
     cy.visit("http://127.0.0.1:5173/signUp")
   })
 
-  it("Create user correctly", () => {
+  it("Redirect to login", () => {
+    cy.get("#redirect-login-button").click()
+    cy.url().should("include", "/login")
+  })
+
+  it("Create an existing user. Should show an error toast", () => {
     cy.get("input[name=username]").clear().type("Chacaponquin")
     cy.get("input[name=password]").clear().type("hectico2511")
     cy.get("input[name=confirm_password]").clear().type("hectico2511")
@@ -20,6 +25,6 @@ describe("# Sign up page e2e tests", () => {
     cy.get("input[name=confirm_password]").should("be.disabled")
     cy.get("input[name=email]").should("be.disabled")
 
-    cy.url().should("include", "/home")
+    cy.get("#toast-error").should("exist")
   })
 })

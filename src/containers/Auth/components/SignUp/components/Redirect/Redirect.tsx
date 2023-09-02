@@ -9,11 +9,13 @@ export default function Redirect() {
   })
 
   return (
-    <div className="flex justify-start w-full text-lg mb-6">
+    <section className="flex justify-start w-full text-lg mb-6">
       <p className="inline mb-0 whitespace-nowrap">{QUESTION_TEXT} </p>
       <Link to={APP_ROUTES.AUTH_ROUTES.LOGIN}>
-        <p className="inline mb-0 ml-2 text-secondColor">{LOGIN_TEXT}</p>
+        <button className="inline mb-0 ml-2 text-secondColor" id="redirect-login-button">
+          {LOGIN_TEXT}
+        </button>
       </Link>
-    </div>
+    </section>
   )
 }

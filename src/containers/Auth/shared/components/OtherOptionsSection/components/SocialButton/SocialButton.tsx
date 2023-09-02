@@ -26,9 +26,10 @@ export default function SocialButton({
       "border-black text-black hover:bg-black hover:fill-white": color === "black",
     },
   )
+
   return (
     <button className={BUTTON_CLASS} type="button" onClick={onClick} disabled={loading} id={id}>
-      {icon({ size: 23 })}
+      {icon({ size: 28 })}
       <p className="mb-0 text-xl">{text}</p>
     </button>
   )
