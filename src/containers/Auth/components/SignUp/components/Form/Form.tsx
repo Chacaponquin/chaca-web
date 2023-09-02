@@ -1,9 +1,9 @@
 import { OtherOptionsSection } from "@containers/Auth/shared/components"
 import { ChacaTextInput } from "@form/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
-import { SignUpUserDTO } from "@modules/user/dto/user"
 import { useId } from "react"
 import { FormSection, HeaderText, SignButton } from "./components"
+import { SignUpForm } from "../../interfaces/form.interface"
 
 export default function Form({
   handleSubmit,
@@ -12,8 +12,8 @@ export default function Form({
   loading,
 }: {
   handleSubmit: (e: React.FormEvent) => void
-  handleChange: (K: keyof SignUpUserDTO, v: string) => void
-  form: SignUpUserDTO
+  handleChange: (K: keyof SignUpForm, v: string) => void
+  form: SignUpForm
   loading: boolean
 }) {
   const { COMFIRM_PASSWORD_TEXT, EMAIL_TEXT, PASSWORD_TEXT, USERNAME_TEXT } = useLanguage({
@@ -41,6 +41,7 @@ export default function Form({
             onChange={(v) => handleChange("username", v)}
             dimension="large"
             id={usernameId}
+            disabled={loading}
           />
         </FormSection>
 
@@ -52,6 +53,7 @@ export default function Form({
             onChange={(v) => handleChange("email", v)}
             dimension="large"
             id={emailId}
+            disabled={loading}
           />
         </FormSection>
 
@@ -64,6 +66,7 @@ export default function Form({
             type="password"
             dimension="large"
             id={passwordId}
+            disabled={loading}
           />
         </FormSection>
 
@@ -76,6 +79,7 @@ export default function Form({
             type="password"
             dimension="large"
             id={confirmId}
+            disabled={loading}
           />
         </FormSection>
       </div>

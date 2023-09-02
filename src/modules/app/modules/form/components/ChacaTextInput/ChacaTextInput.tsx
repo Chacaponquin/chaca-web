@@ -8,6 +8,7 @@ interface ChacaTextInputProps extends ChacaFormProps<string> {
   size?: number | "full"
   type?: "email" | "password" | "text"
   name?: string
+  disabled?: boolean
 }
 
 export default function ChacaTextInput({
@@ -20,6 +21,7 @@ export default function ChacaTextInput({
   type = "text",
   name = "",
   id,
+  disabled = false,
 }: ChacaTextInputProps) {
   const { textClass, paddingClass } = useFilters({ dimension })
 
@@ -46,6 +48,7 @@ export default function ChacaTextInput({
       value={value === undefined ? "" : value}
       name={name}
       id={inputId}
+      disabled={disabled}
     />
   )
 }

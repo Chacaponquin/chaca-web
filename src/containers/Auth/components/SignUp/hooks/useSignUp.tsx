@@ -1,6 +1,5 @@
 import { useUserServices } from "@modules/user/services"
 import { useState } from "react"
-import { SignUpUserDTO } from "@modules/user/dto/user"
 import {
   NotEqualUserPasswords,
   UsernameShortError,
@@ -12,6 +11,7 @@ import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { SaveUser } from "@modules/user/domain"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useToastServices } from "@modules/app/modules/toast/services"
+import { SignUpForm } from "../interfaces/form.interface"
 
 export function useSignUp() {
   const {
@@ -42,7 +42,7 @@ export function useSignUp() {
     },
   })
 
-  const [signUpData, setSignUpData] = useState<SignUpUserDTO>({
+  const [signUpData, setSignUpData] = useState<SignUpForm>({
     username: "",
     email: "",
     password: "",
@@ -86,7 +86,7 @@ export function useSignUp() {
     }
   }
 
-  const handleChange = (key: keyof SignUpUserDTO, value: string) => {
+  const handleChange = (key: keyof SignUpForm, value: string) => {
     setSignUpData({ ...signUpData, [key]: value })
   }
 
