@@ -40,6 +40,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@types/mocha": "^10.0.1",
     "@types/node": "^18.7.20",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
