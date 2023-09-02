@@ -1,4 +1,5 @@
 import { Waveform } from "@uiball/loaders"
+import { Fragment } from "react"
 
 interface LoaderProps {
   loading: boolean
@@ -24,15 +25,15 @@ const LoaderContainer = ({
   }
 
   return (
-    <>
+    <Fragment>
       {loading ? (
-        <div className={className}>
+        <div className={className} id="loader">
           <Waveform color={filterColor()} size={size} />
         </div>
       ) : (
         children
       )}
-    </>
+    </Fragment>
   )
 }
 

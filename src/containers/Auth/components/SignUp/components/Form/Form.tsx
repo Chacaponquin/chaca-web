@@ -71,7 +71,7 @@ export default function Form({
           <ChacaTextInput
             placeholder="Confirm Password"
             value={form.confirmPassword}
-            name="password"
+            name="confirm_password"
             onChange={(v) => handleChange("confirmPassword", v)}
             type="password"
             dimension="large"

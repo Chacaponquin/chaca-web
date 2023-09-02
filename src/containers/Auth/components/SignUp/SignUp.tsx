@@ -18,7 +18,7 @@ const SignUp = () => {
       <NoUserRoute>
         <Layout description={DESCRIPTION} title="Chaca | SignUp">
           <main className="w-full h-screen flex">
-            <section className="py-5 px-20 esm:px-5 flex justify-center items-center xl:w-[50%] w-full">
+            <section className="py-10 px-20 esm:px-5 flex justify-center items-center xl:w-[50%] w-full">
               <div>
                 <Redirect />
                 <Form
