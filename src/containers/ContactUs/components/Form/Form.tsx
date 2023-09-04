@@ -1,8 +1,8 @@
 import { ChacaTextInput, ChacaTextarea } from "@form/components"
 import { useId } from "react"
 import { ButtonSection, FormSection } from "./components"
-import { MessageForm } from "@modules/user-message/dto/user_message"
 import { useLanguage } from "@modules/app/modules/language/hooks"
+import { MessageForm } from "../../interfaces/form.interface"
 
 export default function Form({
   handleSubmit,
@@ -16,7 +16,7 @@ export default function Form({
   loading: boolean
 }) {
   const { EMAIL_LABEL, MESSAGE_LABEL, TITLE_LABEL, SEND } = useLanguage({
-    TITLE_LABEL: { en: "Name", es: "Nombre" },
+    TITLE_LABEL: { en: "Title", es: "Título" },
     EMAIL_LABEL: { en: "Email", es: "Email" },
     MESSAGE_LABEL: { en: "Message", es: "Mensaje" },
     SEND: { en: "Send", es: "Enviar" },
