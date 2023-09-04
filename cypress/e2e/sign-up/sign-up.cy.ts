@@ -1,10 +1,10 @@
 describe("# Sign up page e2e tests", () => {
   beforeEach(() => {
-    cy.visit("http://127.0.0.1:5173/signUp")
+    cy.visit("http://localhost:5173/signUp")
   })
 
   it("Passes", () => {
-    cy.visit("http://127.0.0.1:5173/signUp")
+    cy.visit("http://localhost:5173/signUp")
   })
 
   it("Redirect to login", () => {

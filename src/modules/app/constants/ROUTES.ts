@@ -6,16 +6,8 @@ export const APP_ROUTES = {
     FORGOT_PASSWORD: "/forgotPassword",
   },
   HOME: "/home",
-  API: "/api/:section/:subSection",
-  DEFAULT_INIT_DOC_ROUTE: "/api/guide/what-is-chaca?",
-  DOCS: "/docs",
-  MODELS: "/models",
   CONTACT_US: "/contactUs",
   NOT_FOUND: "/notFound",
-  ADMIN: {
-    ROOT: "/admin/*",
-    EDIT_DOC: "/editDocs",
-  },
 } as const
 
 export const API_ROUTES = {
