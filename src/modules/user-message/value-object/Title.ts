@@ -8,7 +8,7 @@ export class Title {
       throw new EmptyMessageTitleError()
     }
 
-    this._value = value
+    this._value = value.trim()
   }
 
   public value() {

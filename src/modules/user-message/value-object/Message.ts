@@ -8,7 +8,7 @@ export class Message {
       throw new EmptyUserMessageError()
     }
 
-    this._value = value
+    this._value = value.trim()
   }
 
   public value() {

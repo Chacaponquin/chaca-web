@@ -8,7 +8,7 @@ export class Email {
       throw new EmptyUserEmailError()
     }
 
-    this._value = value
+    this._value = value.trim()
   }
 
   public value() {
