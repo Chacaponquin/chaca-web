@@ -14,8 +14,8 @@ export default function ButtonSection({
       <LoaderContainer loading={loading} size={30} className="px-2 pt-2">
         <ChacaIconButton
           color="primary"
-          icon={<Send size={23} />}
-          size="extra-large"
+          icon={<Send size={20} />}
+          size="large"
           text={buttonText}
           type="submit"
         />
