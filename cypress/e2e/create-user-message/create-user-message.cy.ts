@@ -8,7 +8,11 @@ describe("# Create user message e2e test", () => {
   })
 
   it("Create correct user message", () => {
-    cy.get("#loader").should("exist")
+    cy.get("input[name=email]").clear().type("test@gmail.com")
+    cy.get("textarea[name=message]").clear().type("test message")
+    cy.get("input[name=title]").clear().type("test title")
+    cy.get("button[type=submit]").click()
+
     cy.get("#message-success-modal").should("exist")
   })
 })

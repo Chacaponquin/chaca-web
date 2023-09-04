@@ -40,6 +40,7 @@ export function useContactUs() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+
     const saveMessage = new SaveUserMessage(contactForm)
     createMessage({
       body: { email: saveMessage.email, message: saveMessage.message, title: saveMessage.title },

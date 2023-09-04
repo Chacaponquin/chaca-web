@@ -12,8 +12,10 @@ export default function Text() {
 
   return (
     <Fragment>
-      <h1 className="uppercase text-4xl font-fontTitle mb-1 esm:text-3xl">{THANKS_TEXT}</h1>
-      <p className="mb-5 text-xl text-gray-500 esm:text-lg">{SECOND_TEXT}</p>
+      <h1 className="uppercase text-4xl font-fontTitle mb-1 esm:text-3xl text-center">
+        {THANKS_TEXT}
+      </h1>
+      <p className="mb-5 text-xl text-gray-500 esm:text-lg text-center">{SECOND_TEXT}</p>
     </Fragment>
   )
 }

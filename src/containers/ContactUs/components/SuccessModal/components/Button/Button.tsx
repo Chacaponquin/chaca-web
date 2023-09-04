@@ -10,7 +10,7 @@ export default function Button() {
   return (
     <Link
       to={APP_ROUTES.ROOT}
-      className="bg-secondColor text-white font-fontBold px-10 text-xl hover:bg-secondColor/70 transition-all duration-300 rounded py-2 esm:text-xl"
+      className="bg-secondColor text-white font-fontBold px-6 text-xl hover:bg-secondColor/70 transition-all duration-300 rounded py-2 esm:text-xl"
     >
       {BACK_TEXT}
     </Link>

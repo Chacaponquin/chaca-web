@@ -33,7 +33,7 @@ export default function Form({
           onChange={(v) => handleChange("title", v)}
           value={form.title}
           type="text"
-          name="name"
+          name="title"
           id={titleId}
         />
       </FormSection>
