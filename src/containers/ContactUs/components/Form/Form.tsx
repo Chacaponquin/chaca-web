@@ -1,7 +1,7 @@
 import { ChacaTextInput, ChacaTextarea } from "@form/components"
 import { useId } from "react"
 import { ButtonSection, FormSection } from "./components"
-import { CreateMessageDTO } from "@modules/user-message/dto/user_message"
+import { MessageForm } from "@modules/user-message/dto/user_message"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 
 export default function Form({
@@ -11,8 +11,8 @@ export default function Form({
   loading,
 }: {
   handleSubmit: (e: React.FormEvent) => void
-  form: CreateMessageDTO
-  handleChange: (k: keyof CreateMessageDTO, v: string) => void
+  form: MessageForm
+  handleChange: (k: keyof MessageForm, v: string) => void
   loading: boolean
 }) {
   const { EMAIL_LABEL, MESSAGE_LABEL, TITLE_LABEL, SEND } = useLanguage({
