@@ -7,7 +7,6 @@ import {
   EditFieldForm,
   ExportAllDatasetForm,
   ExportSelectDatasetForm,
-  TestEndpointForm,
 } from "./components"
 
 const Modal = ({ modalProps }: { modalProps: ModalProps }) => {
@@ -27,9 +26,6 @@ const Modal = ({ modalProps }: { modalProps: ModalProps }) => {
         )}
         {modalProps.type === MODAL_ACTIONS.EXPORT_ALL_DATASETS && (
           <ExportAllDatasetForm {...modalProps} />
-        )}
-        {modalProps.type === MODAL_ACTIONS.TEST_ENDPOINT && (
-          <TestEndpointForm option={modalProps.option} />
         )}
       </div>
     </div>

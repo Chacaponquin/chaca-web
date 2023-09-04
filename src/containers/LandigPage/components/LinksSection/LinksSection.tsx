@@ -1,5 +1,5 @@
 import { LinkButton } from "./components"
-import { LINKS } from "../../constants/LINKS"
+import { LINKS } from "../../constants/Links"
 
 export default function LinksSection() {
   return (
