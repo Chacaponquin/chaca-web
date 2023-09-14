@@ -28,15 +28,5 @@ export function useFieldConfigMenu({ field }: { field: DatasetField }) {
     }
   }
 
-  function handleAddField() {
-    if (selectedDataset) {
-      handleOpenModal({
-        type: MODAL_ACTIONS.ADD_FIELD,
-        parentFieldID: field.id,
-        datasetId: selectedDataset.id,
-      })
-    }
-  }
-
-  return { handleAddField, handleDeleteField, handleEditField }
+  return { handleDeleteField, handleEditField }
 }

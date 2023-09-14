@@ -13,21 +13,18 @@ const FieldConfigMenu = ({ field }: { field: DatasetField<FieldDataType> }) => {
     { "hover:bg-slate-200": theme === THEME.LIGHT },
   )
 
-  const { ADD_FIELD_OPTION_TEXT, DELETE_OPTION_TEXT, EDIT_OPTION_TEXT } = useLanguage({
+  const { DELETE_OPTION_TEXT, EDIT_OPTION_TEXT } = useLanguage({
     EDIT_OPTION_TEXT: { en: "Edit", es: "Editar" },
     DELETE_OPTION_TEXT: { en: "Delete", es: "Borrar" },
     ADD_FIELD_OPTION_TEXT: { en: "Add Field", es: "Añadir Campo" },
   })
 
-  const { handleAddField, handleDeleteField, handleEditField } = useFieldConfigMenu({ field })
+  const { handleDeleteField, handleEditField } = useFieldConfigMenu({ field })
 
   return (
-    <ul className="absolute bg-white dark:bg-darkColorExtraLight text-black dark:text-white  shadow-md rounded-sm top-[25px] -translate-x-[120px] z-50">
+    <ul className="absolute bg-white dark:bg-darkColorExtraLight text-black dark:text-white shadow-md rounded-sm top-[25px] -translate-x-[70px] z-50">
       <li className={DIV_CLASS} onClick={handleEditField}>
         {EDIT_OPTION_TEXT}
-      </li>
-      <li className={DIV_CLASS} onClick={handleAddField}>
-        {ADD_FIELD_OPTION_TEXT}
       </li>
       <li className={DIV_CLASS} onClick={handleDeleteField}>
         {DELETE_OPTION_TEXT}
