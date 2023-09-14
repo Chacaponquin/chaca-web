@@ -6,12 +6,12 @@ import { ChacaLogo } from "./components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { ChacaSimpleButton } from "@form/components"
 import { useContext } from "react"
-import { DatasetsContext } from "@modules/datasets/context"
 import { ThemeSwitch } from "@modules/app/modules/theme/components"
 import { HomeContext } from "@containers/Home/context"
+import { useDatasetServices } from "@modules/datasets/services"
 
 export default function HomeNavbar() {
-  const divClass = ({ isActive }: { isActive: boolean }): string => {
+  const LINK_CLASS = ({ isActive }: { isActive: boolean }): string => {
     return clsx(
       "flex items-center py-2 px-6 cursor-pointer gap-x-3.5 transition-all duration-300",
       {
@@ -23,7 +23,7 @@ export default function HomeNavbar() {
   }
 
   const { smallWindow } = useContext(HomeContext)
-  const { handleOpenFieldsMenu } = useContext(DatasetsContext)
+  const { handleOpenFieldsMenu } = useDatasetServices()
 
   const { HOME_TEXT, ACCOUNT_TEXT } = useLanguage({
     HOME_TEXT: { en: "Home", es: "Inicio" },
@@ -34,7 +34,7 @@ export default function HomeNavbar() {
   const ICON_SIZE = 22
 
   return (
-    <nav className="w-full bg-white dark:bg-darkColorLight text-black dark:text-white flex items-center xl:px-12 px-8 esm:px-4 justify-between min-h-[55px] md:min-h-[65px] dark:border-b-[1px] border-b-2 border-grayColor dark:border-white">
+    <nav className="w-full bg-white dark:bg-darkColorLight text-black dark:text-white flex items-center px-6 esm:px-4 justify-between min-h-[55px] md:min-h-[65px] dark:border-b-[1px] border-b-2 border-grayColor dark:border-white">
       <section className="flex items-center">
         {smallWindow && (
           <button onClick={handleOpenFieldsMenu} className="mr-4">
@@ -47,7 +47,7 @@ export default function HomeNavbar() {
         </Link>
 
         <div className="flex gap-x-3 ml-10">
-          <NavLink className={divClass} to={APP_ROUTES.HOME}>
+          <NavLink className={LINK_CLASS} to={APP_ROUTES.HOME}>
             <Home size={ICON_SIZE} />
             <p className={TEXT_CLASS}>{HOME_TEXT}</p>
           </NavLink>

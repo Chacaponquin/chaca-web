@@ -14,7 +14,7 @@ export default function DatasetsButtons({
   })
 
   return (
-    <div className="w-full flex justify-end py-3 dark:bg-darkColorLight gap-x-4 xl:px-12 px-8 esm:px-4">
+    <div className="w-full flex justify-end py-3 dark:bg-darkColorLight gap-x-4 px-6 esm:px-4">
       <ChacaSimpleButton
         color="primary"
         text={ADD_DATASET}
