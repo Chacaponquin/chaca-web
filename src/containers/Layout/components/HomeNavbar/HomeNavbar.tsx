@@ -13,7 +13,7 @@ import { useDatasetServices } from "@modules/datasets/services"
 export default function HomeNavbar() {
   const LINK_CLASS = ({ isActive }: { isActive: boolean }): string => {
     return clsx(
-      "flex items-center py-2 px-6 cursor-pointer gap-x-3.5 transition-all duration-300",
+      "flex items-center py-1.5 px-5 cursor-pointer gap-x-3.5 transition-all duration-300",
       {
         "fill-white text-white bg-secondColor dark:bg-white dark:fill-black dark:text-black rounded-full":
           isActive,
@@ -30,7 +30,7 @@ export default function HomeNavbar() {
     ACCOUNT_TEXT: { en: "Account", es: "Cuenta" },
   })
 
-  const TEXT_CLASS = "text-base font-fontMedium"
+  const TEXT_CLASS = "text-sm font-fontMedium"
   const ICON_SIZE = 22
 
   return (
@@ -42,11 +42,9 @@ export default function HomeNavbar() {
           </button>
         )}
 
-        <Link to={APP_ROUTES.ROOT}>
-          <ChacaLogo />
-        </Link>
+        <ChacaLogo />
 
-        <div className="flex gap-x-3 ml-10">
+        <div className="flex gap-x-3 ml-7">
           <NavLink className={LINK_CLASS} to={APP_ROUTES.HOME}>
             <Home size={ICON_SIZE} />
             <p className={TEXT_CLASS}>{HOME_TEXT}</p>
