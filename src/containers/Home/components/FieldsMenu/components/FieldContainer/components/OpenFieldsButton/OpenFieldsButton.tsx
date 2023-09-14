@@ -12,6 +12,7 @@ export default function OpenFieldsButton({
       style={{
         transform: open ? "rotate(90deg)" : "rotate(0deg)",
       }}
+      className="dark:fill-white fill-black"
       onClick={onClick}
     >
       <ArrowRight size={19} />

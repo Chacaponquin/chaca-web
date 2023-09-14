@@ -17,10 +17,16 @@ const FieldContainer = ({
   return (
     <section className="flex flex-col w-full">
       <div className="flex items-center justify-between" style={{ paddingLeft: `${margin}px` }}>
-        <div className="w-full flex items-center cursor-pointer justify-between py-2.5 transition-all duration-300 px-2">
+        <div className="w-full flex items-center justify-between py-2.5 transition-all duration-300 px-2">
           <div className="flex items-center">
             {field.dataType.type === DATA_TYPES.MIXED ? (
-              <OpenFieldsButton onClick={handleInteractSubFields} open={subFieldsOpen} />
+              <Fragment>
+                {field.dataType.object.length === 0 ? (
+                  <Point />
+                ) : (
+                  <OpenFieldsButton onClick={handleInteractSubFields} open={subFieldsOpen} />
+                )}
+              </Fragment>
             ) : (
               <Point />
             )}
