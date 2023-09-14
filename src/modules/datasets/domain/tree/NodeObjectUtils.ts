@@ -19,6 +19,10 @@ export class NodeObjectUtils {
     this.nodes.push(node)
   }
 
+  public hasKeyField(): boolean {
+    return this.nodes.some((n) => n.isKey)
+  }
+
   public getSameLevelNodes(fieldID: string): Array<FieldNode> {
     const findNode = this.nodes.some((n) => n.id === fieldID)
     if (findNode) return this.nodes

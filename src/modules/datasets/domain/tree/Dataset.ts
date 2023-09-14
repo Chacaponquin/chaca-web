@@ -51,6 +51,10 @@ export class Dataset {
     this.root.nodesUtils.insertNode(node)
   }
 
+  public hasKeyField(): boolean {
+    return this.root.nodesUtils.hasKeyField()
+  }
+
   public allPossibleFieldsToRef(): Array<FieldNode> {
     return this.root.nodesUtils.allPossibleFieldsToRef()
   }
