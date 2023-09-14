@@ -3,6 +3,7 @@ import { DATA_TYPES } from "@modules/schemas/constants"
 import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets.interface"
 import { FieldName, FieldOptions, OpenFieldsButton, Point } from "./components"
 import { useFieldContainer } from "./hooks"
+import clsx from "clsx"
 
 const FieldContainer = ({
   margin,
@@ -11,13 +12,17 @@ const FieldContainer = ({
   field: DatasetField<FieldDataType>
   margin: number
 }) => {
-  const { divClass, subFieldsOpen, openMenu, handleInteractSubFields, handleInteractOpenMenu } =
+  const { subFieldsOpen, openMenu, handleInteractSubFields, handleInteractOpenMenu } =
     useFieldContainer()
+
+  const DIV_CLASS = clsx(
+    "w-full flex items-center cursor-pointer justify-between py-2.5 transition-all duration-300 px-2",
+  )
 
   return (
     <section className="flex flex-col w-full">
       <div className="flex items-center justify-between" style={{ paddingLeft: `${margin}px` }}>
-        <div className={divClass}>
+        <div className={DIV_CLASS}>
           <div className="flex items-center">
             {field.dataType.type === DATA_TYPES.MIXED ? (
               <OpenFieldsButton onClick={handleInteractSubFields} open={subFieldsOpen} />
