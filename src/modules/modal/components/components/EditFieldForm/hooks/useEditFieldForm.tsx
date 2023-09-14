@@ -36,7 +36,7 @@ export function useEditFieldForm({
       id: field.id,
       name: field.name,
       isArray: field.isArray,
-      isPosibleNull: field.isPosibleNull,
+      isPossibleNull: field.isPossibleNull,
       dataType: field.dataType,
       isKey: field.isKey,
     },

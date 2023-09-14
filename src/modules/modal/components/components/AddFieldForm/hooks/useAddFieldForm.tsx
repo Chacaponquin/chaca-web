@@ -38,7 +38,7 @@ export function useAddFieldForm({
       id: uuid(),
       name: "",
       isArray: null,
-      isPosibleNull: 0,
+      isPossibleNull: 0,
       dataType: DEFAULT_SCHEMA_VALUE_DATA_TYPE,
       isKey: false,
     },

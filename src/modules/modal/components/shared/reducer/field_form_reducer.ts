@@ -51,7 +51,7 @@ export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
 ): FieldForm => {
   switch (action.type) {
     case FORM_ACTIONS.CHANGE_POSIBLE_NULL: {
-      return { ...form, isPosibleNull: action.payload.value }
+      return { ...form, isPossibleNull: action.payload.value }
     }
 
     case FORM_ACTIONS.CHANGE_ARRAY_LIMITS: {
@@ -71,11 +71,11 @@ export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
     }
 
     case FORM_ACTIONS.CHNAGE_IS_KEY: {
-      return { ...form, isKey: action.payload.value, isArray: null, isPosibleNull: 0 }
+      return { ...form, isKey: action.payload.value, isArray: null, isPossibleNull: 0 }
     }
 
     case FORM_ACTIONS.RESET_CONFIG: {
-      return { ...form, isArray: null, isPosibleNull: 0, isKey: false }
+      return { ...form, isArray: null, isPossibleNull: 0, isKey: false }
     }
 
     case FORM_ACTIONS.CHANGE_SEQUENTIAL_FIELD: {

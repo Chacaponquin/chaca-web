@@ -5,7 +5,7 @@ export interface DatasetField<T = FieldDataType> {
   name: string
   id: string
   dataType: T
-  isPosibleNull: number
+  isPossibleNull: number
   isArray: IsArrayConfig
   isKey: boolean
 }

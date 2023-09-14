@@ -29,11 +29,11 @@ export abstract class FieldNode<T = FieldDataType> {
 
   public abstract stringInf(): string
 
-  constructor({ name, dataType, isArray = null, isKey = false, isPosibleNull = 0 }: NodeProps<T>) {
+  constructor({ name, dataType, isArray = null, isKey = false, isPossibleNull = 0 }: NodeProps<T>) {
     this._name = name
     this._dataType = dataType
     this._isArray = isArray
-    this._possibleNull = isPosibleNull
+    this._possibleNull = isPossibleNull
     this._isKey = isKey
   }
 
@@ -112,7 +112,7 @@ export abstract class FieldNode<T = FieldDataType> {
         dataType: this._dataType,
         isArray: this._isArray,
         isKey: this._isKey,
-        isPosibleNull: this._possibleNull,
+        isPossibleNull: this._possibleNull,
       }
     }
   }

@@ -79,7 +79,7 @@ export default function FieldForm({
           <PossibleNullConfig
             handleChangePossibleNull={handleChangePossibleNull}
             handleChangePossibleNullValue={handleChangePossibleNullValue}
-            valueNull={field.isPosibleNull}
+            valueNull={field.isPossibleNull}
           />
         )}
 

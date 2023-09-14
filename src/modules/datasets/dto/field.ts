@@ -5,7 +5,7 @@ import { IsArrayConfig } from "../interfaces/field_config.interface"
 export interface FieldForm {
   id: string
   name: string
-  isPosibleNull: number
+  isPossibleNull: number
   isArray: IsArrayConfig
   dataType: FieldDataType
   isKey: boolean

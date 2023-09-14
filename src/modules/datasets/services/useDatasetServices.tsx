@@ -102,6 +102,7 @@ export default function useDatasetServices() {
     const DATASET_NAME = "New Dataset"
 
     validateDatasetName({ name: DATASET_NAME })
+
     // create dataset
     datasetDispatch({
       type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
@@ -145,7 +146,7 @@ export default function useDatasetServices() {
         fieldInfo: {
           name: new FieldName(field.name),
           isArray: field.isArray,
-          isPosibleNull: field.isPosibleNull,
+          isPossibleNull: field.isPossibleNull,
           dataType: field.dataType,
           isKey: field.isKey,
         },
