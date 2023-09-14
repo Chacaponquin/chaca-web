@@ -26,6 +26,7 @@ export default function DatasetPlayground({
       <div
         className="relative w-full h-full bg-grayColor dark:bg-darkColorExtraLight"
         ref={playgroundRef}
+        id="dataset-playground"
       >
         {showDatasets.map((d, index) => (
           <DatasetCard
