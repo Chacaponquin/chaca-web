@@ -7,7 +7,7 @@ export function useFieldConfigMenu({ field }: { field: DatasetField }) {
   const { selectedDataset, handleDeleteField: handleDeleteFieldService } = useDatasetServices()
   const { handleOpenModal } = useModalServices()
 
-  const handleEditField = () => {
+  function handleEditField() {
     if (selectedDataset) {
       const findParent = selectedDataset.findFieldParentNode(field.id)
 
@@ -22,11 +22,21 @@ export function useFieldConfigMenu({ field }: { field: DatasetField }) {
     }
   }
 
-  const handleDeleteField = () => {
+  function handleAddSubField() {
+    if (selectedDataset) {
+      handleOpenModal({
+        type: MODAL_ACTIONS.ADD_FIELD,
+        datasetId: selectedDataset.id,
+        parentFieldID: field.id,
+      })
+    }
+  }
+
+  function handleDeleteField() {
     if (selectedDataset) {
       handleDeleteFieldService({ fieldId: field.id, datasetId: selectedDataset.id })
     }
   }
 
-  return { handleDeleteField, handleEditField }
+  return { handleDeleteField, handleEditField, handleAddSubField }
 }
