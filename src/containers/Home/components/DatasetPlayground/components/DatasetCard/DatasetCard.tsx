@@ -46,7 +46,7 @@ export default function DatasetCard({
   const { selectedDataset } = useDatasetServices()
 
   const CARD_CLASS = clsx(
-    "bg-darkColor absolute flex flex-col w-[360px] rounded-lg text-white stroke-white cursor-grab",
+    "bg-darkColor absolute flex flex-col min-w-[360px] rounded-lg text-white stroke-white cursor-grab",
     { "outline outline-4 outline-principalColor": selectedDataset?.id === dataset.id },
   )
 
