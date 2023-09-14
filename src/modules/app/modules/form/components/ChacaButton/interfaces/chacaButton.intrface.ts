@@ -6,6 +6,7 @@ export interface ChacaButtonProps {
   className?: string
   full?: boolean
   type?: "submit" | "button"
+  id?: string
 }
 
 export interface ChacaIconButtonInterface extends ChacaButtonProps {

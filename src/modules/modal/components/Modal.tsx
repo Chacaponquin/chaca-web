@@ -11,7 +11,10 @@ import {
 
 const Modal = ({ modalProps }: { modalProps: ModalProps }) => {
   return (
-    <div className="w-full fixed top-0 left-0 h-screen bg-grayStrongColor/50 z-50 flex justify-center items-center">
+    <div
+      id="app-modal"
+      className="w-full fixed top-0 left-0 h-screen bg-grayStrongColor/50 z-50 flex justify-center items-center"
+    >
       <div className="bg-white rounded-md px-10 py-5 shadow-md min-w-[500px] w-max">
         {modalProps.type === MODAL_ACTIONS.EDIT_DATASET && (
           <EditDataset dataset={modalProps.dataset} />

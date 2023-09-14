@@ -20,6 +20,7 @@ export default function DatasetButtons({
         size="small"
         text={NEW_FIELD_TEXT}
         onClick={handleAddNewField}
+        id="create-field-button"
       />
 
       <ChacaSimpleButton
