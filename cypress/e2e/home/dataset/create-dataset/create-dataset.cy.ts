@@ -9,4 +9,9 @@ describe("# Create dataset test", () => {
     cy.get("#create-dataset-button").click()
     cy.get("#dataset-playground > div").should("have.length", 3)
   })
+
+  it("Create a three sequential datasets. Should show a three new dataset card", () => {
+    cy.get("#create-dataset-button").click().click().click().click()
+    cy.get("#dataset-playground > div").should("have.length", 5)
+  })
 })

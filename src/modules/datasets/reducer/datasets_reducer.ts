@@ -31,7 +31,6 @@ export type DatasetPayload =
     }
   | {
       type: DATASETS_ACTIONS.CREATE_NEW_DATASET
-      payload: { datasetName: DatasetName }
     }
   | {
       type: DATASETS_ACTIONS.EDIT_FIELD
@@ -86,7 +85,7 @@ export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
 
     case DATASETS_ACTIONS.CREATE_NEW_DATASET: {
       const useCase = new AddDataset(datasets)
-      return useCase.execute({ datasetName: action.payload.datasetName })
+      return useCase.execute()
     }
 
     case DATASETS_ACTIONS.CHANGE_DATASET_LIMIT: {

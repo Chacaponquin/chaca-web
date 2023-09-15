@@ -19,6 +19,10 @@ export class Dataset {
     this.root = new RootNode({ limit, name })
   }
 
+  public equalName(name: string): boolean {
+    return this.name.trim() === name.trim()
+  }
+
   get name() {
     return this.root.name
   }
