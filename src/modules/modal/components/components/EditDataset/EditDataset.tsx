@@ -23,7 +23,12 @@ export default function EditDataset({ dataset }: { dataset: Dataset }) {
         limit={datasetLimit}
         handleChangeLimit={handleChangeLimit}
       />
-      <ModalButtons handleNext={handleEditDataset} nextText={EDIT_TEXT} type="edit" />
+      <ModalButtons
+        handleNext={handleEditDataset}
+        nextButtonId="modal-edit-dataset-button"
+        nextText={EDIT_TEXT}
+        type="edit"
+      />
     </div>
   )
 }

@@ -35,6 +35,7 @@ export default function DatasetForm({
           onChange={handleDatasetName}
           id={datasetNameId}
           dimension="large"
+          name="dataset-name"
         />
       </FormInputSection>
 

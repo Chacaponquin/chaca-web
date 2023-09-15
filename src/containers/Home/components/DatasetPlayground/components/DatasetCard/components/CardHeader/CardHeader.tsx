@@ -1,4 +1,4 @@
-import { Config, DatasetMenu } from "./components"
+import { Config, DatasetInfo, DatasetMenu } from "./components"
 
 interface CardHeaderProps {
   openConfig: boolean
@@ -19,22 +19,18 @@ export default function CardHeader({
   limit,
   name,
 }: CardHeaderProps) {
-  const LIMIT = `(${limit})`
-
   return (
     <header className="flex relative justify-center py-3.5 px-10 border-b-[1px] border-white items-center">
-      <div className="flex items-end gap-x-3">
-        <h1 className="text-2xl font-fontBold">{name}</h1>
-        <p className="text-xl font-fontCodeBold">{LIMIT}</p>
-      </div>
+      <DatasetInfo limit={limit} name={name} />
 
-      <Config handleInteractOpenConfig={handleInteractOpenConfig} />
+      <Config handleInteractOpenConfig={handleInteractOpenConfig} name={name} />
 
       {openConfig && (
         <DatasetMenu
           handleDeleteDataset={handleDeleteDataset}
           handleEditDataset={handleEditDataset}
           handleExportDataset={handleExportDataset}
+          name={name}
         />
       )}
     </header>
