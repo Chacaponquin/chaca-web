@@ -10,14 +10,14 @@ interface SocketContextProps {
 const SocketContext = createContext<SocketContextProps>({} as SocketContextProps)
 
 const SocketProvider = ({ children }: { children: ReactElement }) => {
-  const { getTokenCookie } = useUserServices()
+  const { getToken } = useUserServices()
   const { API_ROUTE } = useEnvServices()
 
   const socket = useMemo(
     () =>
       io(API_ROUTE, {
         auth: {
-          token: `Bearer ${getTokenCookie()}`,
+          token: `Bearer ${getToken()}`,
         },
       }),
     [],

@@ -16,7 +16,7 @@ export class NodeObjectUtils {
   }
 
   public insertNode(node: FieldNode): void {
-    this.nodes.push(node)
+    this._nodes.push(node)
   }
 
   public hasKeyField(): boolean {

@@ -35,7 +35,7 @@ export default function useUserServices() {
     window.open(`${API_ROUTE}${API_ROUTES.AUTH_ROUTES.GITHUB_AUTH}`, "_self")
   }
 
-  const getTokenCookie = useCallback((): string => {
+  const getToken = useCallback((): string => {
     const cookies = new Cookies()
     const tokenCookie = cookies.get(TOKEN_LOCATION)
 
@@ -49,7 +49,7 @@ export default function useUserServices() {
   }, [])
 
   return {
-    getTokenCookie,
+    getToken,
     handleSignIn,
     handleSignOut,
     handleGoogleLogin,

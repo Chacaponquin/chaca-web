@@ -7,7 +7,7 @@ import { useEnvServices } from "@modules/app/modules/env/services"
 
 export const useConfig = () => {
   const { language } = useLanguageService()
-  const { getTokenCookie } = useUserServices()
+  const { getToken } = useUserServices()
   const { API_ROUTE } = useEnvServices()
 
   const axiosInstance = useMemo(
@@ -20,7 +20,7 @@ export const useConfig = () => {
 
   useEffect(() => {
     axiosInstance.interceptors.request.use(
-      (req) => handleRequestSuccess(req, getTokenCookie(), language),
+      (req) => handleRequestSuccess(req, getToken(), language),
       (error) => {
         Promise.reject(error)
       },

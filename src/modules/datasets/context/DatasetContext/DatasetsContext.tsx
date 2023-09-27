@@ -17,7 +17,7 @@ interface DatasetContextProps {
   datasets: Dataset[]
   datasetDispatch: Dispatch<DatasetPayload>
   selectedDataset: Dataset | null
-  handleSelectDataset: (id: string) => void
+  handleSelectDataset: (id: string | null) => void
   handleOpenFieldsMenu: () => void
   handleCloseFieldsMenu: () => void
   showFieldsMenu: boolean
@@ -50,11 +50,13 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
     setSelectedDataset(initialDatasets[0])
   }, [fileConfig])
 
-  const handleSelectDataset = (id: string) => {
+  const handleSelectDataset = (id: string | null) => {
     const findDataset = datasets.find((el) => el.id === id)
 
     if (findDataset) {
       setSelectedDataset(findDataset)
+    } else {
+      setSelectedDataset(null)
     }
   }
 

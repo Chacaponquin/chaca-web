@@ -3,7 +3,7 @@ import { Form, Header, ImageSection, SuccessModal } from "./components"
 import { useContactUs } from "./hooks"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 
-const ContactUs = () => {
+export default function ContactUs() {
   const { handleChange, handleSubmit, loading, modalOpen, contactForm } = useContactUs()
 
   const { DESCRIPTION } = useLanguage({
@@ -36,5 +36,3 @@ const ContactUs = () => {
     </Layout>
   )
 }
-
-export default ContactUs

@@ -119,7 +119,7 @@ export default function useDatasetServices() {
     })
   }
 
-  const handleUpdateField = ({ datasetId, fieldDTO, parentFieldID }: UpdateFieldProps) => {
+  function handleUpdateField({ datasetId, fieldDTO, parentFieldID }: UpdateFieldProps) {
     validateFieldName({ parentID: parentFieldID, datasetId, fieldName: fieldDTO.name })
 
     datasetDispatch({
@@ -151,7 +151,7 @@ export default function useDatasetServices() {
     })
   }
 
-  const hanldeDeleteDataset = (datasetID: string) => {
+  function hanldeDeleteDataset(datasetID: string) {
     datasetDispatch({
       type: DATASETS_ACTIONS.DELETE_DATASET,
       payload: { datasetID },
@@ -170,7 +170,7 @@ export default function useDatasetServices() {
     })
   }
 
-  const handleDeleteField = ({ datasetId, fieldId }: DeleteFieldProps) => {
+  function handleDeleteField({ datasetId, fieldId }: DeleteFieldProps) {
     datasetDispatch({
       type: DATASETS_ACTIONS.DELETE_FIELD,
       payload: { fieldID: fieldId, datasetID: datasetId },
