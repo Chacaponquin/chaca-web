@@ -26,7 +26,10 @@ export default function SchemaValueConfig({
     OPTION_TEXT: { en: "Option", es: "Opción" },
   })
 
-  const foundOptions = useMemo(() => findParentOptions(fieldType.schema), [findParentOptions])
+  const foundOptions = useMemo(
+    () => findParentOptions(fieldType.schema),
+    [findParentOptions, fieldType],
+  )
 
   function handleSelectModule(m: string) {
     handleSelectFieldSchema(m)
