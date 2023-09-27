@@ -3,6 +3,7 @@ import { FieldNode } from "./FieldNode"
 import { NodeObjectUtils } from "./NodeObjectUtils"
 import { DatasetName } from "@modules/datasets/value-object"
 import { v4 as uuid } from "uuid"
+import { ExportDatasetField } from "@modules/datasets/dto/dataset"
 
 interface RootProps {
   limit: number
@@ -47,5 +48,9 @@ export class RootNode {
 
   public setLimit(l: number) {
     this._limit = l
+  }
+
+  public exportFields(): Array<ExportDatasetField> {
+    return this.nodesUtils.exportFields()
   }
 }

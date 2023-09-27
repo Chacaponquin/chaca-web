@@ -9,6 +9,7 @@ import { useSocketServices } from "@modules/app/modules/socket/services"
 import { useDatasetServices } from "@modules/datasets/services"
 import { useModalServices } from "@modules/modal/services"
 import { Dataset } from "@modules/datasets/domain/tree"
+import { ExportDataset } from "@modules/datasets/dto/dataset"
 
 export const useHome = () => {
   const {
@@ -61,8 +62,10 @@ export const useHome = () => {
     if (socket.connected) {
       setCreateDataLoading(true)
 
+      const exportDatasets: Array<ExportDataset> = datasets.map((d) => d.exportObject())
+
       socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {
-        datasets: datasets.map((d) => d.object()),
+        datasets: exportDatasets,
         config,
       })
     } else {

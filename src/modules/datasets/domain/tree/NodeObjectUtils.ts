@@ -2,6 +2,7 @@ import { RefDataType } from "@modules/datasets/interfaces/dataset_field.interfac
 import { FieldNode, MixedNode } from "./FieldNode"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { RootNode } from "./RootNode"
+import { ExportDatasetField } from "@modules/datasets/dto/dataset"
 
 export class NodeObjectUtils {
   private _nodes: Array<FieldNode> = []
@@ -38,6 +39,16 @@ export class NodeObjectUtils {
     }
 
     return returnArray
+  }
+
+  public exportFields(): Array<ExportDatasetField> {
+    return this._nodes.map((n) => ({
+      name: n.name,
+      dataType: n.dataType,
+      isArray: n.isArray,
+      isKey: n.isKey,
+      isPossibleNull: n.isPossibleNull,
+    }))
   }
 
   public findFieldParentNode(nodeID: string): FieldNode | RootNode | null {

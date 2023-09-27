@@ -1,11 +1,12 @@
 import {
   DatasetField,
-  ExportDataset,
+  DatasetObject,
   RefDataType,
 } from "@modules/datasets/interfaces/datasets.interface"
 import { FieldNode } from "./FieldNode"
 import { RootNode } from "./RootNode"
 import { DatasetName } from "@modules/datasets/value-object"
+import { ExportDataset } from "@modules/datasets/dto/dataset"
 
 interface DatasetProps {
   name: DatasetName
@@ -21,6 +22,10 @@ export class Dataset {
 
   public equalName(name: string): boolean {
     return this.name.trim() === name.trim()
+  }
+
+  get exportFields() {
+    return this.root.exportFields()
   }
 
   get name() {
@@ -80,7 +85,15 @@ export class Dataset {
     return this.root.nodesUtils.getSameLevelNodes(fieldID)
   }
 
-  public object(): ExportDataset {
+  public exportObject(): ExportDataset {
+    return {
+      fields: this.exportFields,
+      limit: this.limit,
+      name: this.name,
+    }
+  }
+
+  public object(): DatasetObject {
     return {
       id: this.id,
       name: this.name,

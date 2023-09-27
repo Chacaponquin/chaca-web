@@ -8,7 +8,7 @@ import {
   SchemaValueTypeObject,
 } from "./dataset_field.interface"
 
-export interface ExportDataset {
+export interface DatasetObject {
   name: string
   id: string
   limit: number
