@@ -2,8 +2,8 @@ import { Argument } from "./argument.interface"
 
 export interface Schema {
   name: string
-  options: SubOption[]
   id: string
+  options: SubOption[]
   showName: string
 }
 
