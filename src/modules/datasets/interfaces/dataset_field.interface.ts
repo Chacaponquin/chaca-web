@@ -1,5 +1,6 @@
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { IsArrayConfig } from "./field_config.interface"
+import { ExportDatasetField } from "../dto/dataset"
 
 export interface DatasetField<T = FieldDataType> {
   name: string
@@ -10,14 +11,21 @@ export interface DatasetField<T = FieldDataType> {
   isKey: boolean
 }
 
-export type FieldDataType =
+export type CommonFieldDataType =
   | CustomDataType
-  | MixedDataType
   | SingleValueDataType
   | RefDataType
   | SequenceDataType
   | SequentialDataType
   | EnumDataType
+
+export type FieldDataType = CommonFieldDataType | MixedDataType
+export type ExportFieldDataType = CommonFieldDataType | ExportMixedDataType
+
+export type ExportMixedDataType = {
+  type: DATA_TYPES.MIXED
+  object: Array<ExportDatasetField>
+}
 
 export type CustomDataType = {
   type: DATA_TYPES.CUSTOM

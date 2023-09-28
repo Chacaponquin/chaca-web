@@ -24,7 +24,7 @@ export class Dataset {
     return this.name.trim() === name.trim()
   }
 
-  get exportFields() {
+  public exportFields() {
     return this.root.exportFields()
   }
 
@@ -87,7 +87,7 @@ export class Dataset {
 
   public exportObject(): ExportDataset {
     return {
-      fields: this.exportFields,
+      fields: this.exportFields(),
       limit: this.limit,
       name: this.name,
     }

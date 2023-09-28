@@ -1,4 +1,4 @@
-import { FieldDataType } from "../interfaces/dataset_field.interface"
+import { ExportFieldDataType } from "../interfaces/dataset_field.interface"
 import { IsArrayConfig } from "../interfaces/field_config.interface"
 
 export interface ExportDataset {
@@ -7,9 +7,9 @@ export interface ExportDataset {
   fields: ExportDatasetField[]
 }
 
-export type ExportDatasetField<T = FieldDataType> = {
+export type ExportDatasetField = {
   name: string
-  dataType: T
+  dataType: ExportFieldDataType
   isPossibleNull: number
   isArray: IsArrayConfig
   isKey: boolean

@@ -42,17 +42,11 @@ export class NodeObjectUtils {
   }
 
   public exportFields(): Array<ExportDatasetField> {
-    return this._nodes.map((n) => ({
-      name: n.name,
-      dataType: n.dataType,
-      isArray: n.isArray,
-      isKey: n.isKey,
-      isPossibleNull: n.isPossibleNull,
-    }))
+    return this._nodes.map((n) => n.exportObject())
   }
 
-  public findFieldParentNode(nodeID: string): FieldNode | RootNode | null {
-    const findNode = this.nodes.some((n) => n.id === nodeID)
+  public findFieldParentNode(nodeId: string): FieldNode | RootNode | null {
+    const findNode = this.nodes.some((n) => n.id === nodeId)
 
     if (findNode) {
       return this._instance
@@ -63,7 +57,7 @@ export class NodeObjectUtils {
         const node = this.nodes[i]
 
         if (node instanceof MixedNode) {
-          returnValue = node.nodesUtils.findFieldParentNode(nodeID)
+          returnValue = node.nodesUtils.findFieldParentNode(nodeId)
         }
       }
 

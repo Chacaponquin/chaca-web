@@ -14,10 +14,12 @@ import {
   CustomDataType,
   EnumDataType,
   SingleValueDataType,
+  ExportFieldDataType,
 } from "@modules/datasets/interfaces/dataset_field.interface"
 import { FieldName } from "@modules/datasets/value-object"
 import { NodeObjectUtils } from "./NodeObjectUtils"
 import { v4 as uuid } from "uuid"
+import { ExportDatasetField } from "@modules/datasets/dto/dataset"
 
 export abstract class FieldNode<T = FieldDataType> {
   private _dataType: T
@@ -91,6 +93,29 @@ export abstract class FieldNode<T = FieldDataType> {
 
   public setName(name: FieldName) {
     this._name = name
+  }
+
+  public exportObject(): ExportDatasetField {
+    if (this instanceof MixedNode) {
+      return {
+        name: this.name,
+        dataType: {
+          object: this.nodesUtils.nodes.map((el) => el.exportObject()),
+          type: DATA_TYPES.MIXED,
+        },
+        isArray: this._isArray,
+        isKey: this._isKey,
+        isPossibleNull: this.isPossibleNull,
+      }
+    } else {
+      return {
+        name: this.name,
+        dataType: this.dataType as ExportFieldDataType,
+        isArray: this.isArray,
+        isKey: this.isKey,
+        isPossibleNull: this.isPossibleNull,
+      }
+    }
   }
 
   public object(): DatasetField<T> {
