@@ -55,7 +55,7 @@ export const useFieldForm = ({ field: inputField }: { field: FieldForm }): Field
     }
   }
 
-  const handleChangePossibleNull = (isNull: boolean) => {
+  function handleChangePossibleNull(isNull: boolean) {
     formDispatch({ type: FORM_ACTIONS.CHANGE_POSIBLE_NULL, payload: { value: isNull ? 50 : 0 } })
   }
 
@@ -88,7 +88,7 @@ export const useFieldForm = ({ field: inputField }: { field: FieldForm }): Field
           fieldType: {
             args: {},
             schema: parent,
-            option: findParent(parent).options[0].name,
+            option: findParent(parent).options[0].id,
           },
         },
       },

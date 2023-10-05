@@ -46,56 +46,7 @@ export default function useDatasetServices() {
   const { validateDatasetName, validateFieldName } = useValidations()
 
   function initDatasets() {
-    const USER_DATASET = new Dataset({ name: new DatasetName("User") })
-    const id = FieldNode.create({
-      dataType: {
-        type: DATA_TYPES.SINGLE_VALUE,
-        fieldType: { args: {}, schema: "id", option: "uuid" },
-      },
-      name: new FieldName("id"),
-      isKey: true,
-    })
-
-    const username = FieldNode.create({
-      name: new FieldName("username"),
-      dataType: {
-        type: DATA_TYPES.SINGLE_VALUE,
-        fieldType: { args: {}, schema: "internet", option: "username" },
-      },
-    })
-
-    const password = FieldNode.create({
-      name: new FieldName("password"),
-      dataType: {
-        type: DATA_TYPES.SINGLE_VALUE,
-        fieldType: { args: {}, schema: "internet", option: "password" },
-      },
-    })
-
-    USER_DATASET.insertField(id)
-    USER_DATASET.insertField(username)
-    USER_DATASET.insertField(password)
-
-    const POST_DATASET = new Dataset({ name: new DatasetName("Post") })
-
-    const postId = FieldNode.create({
-      dataType: {
-        type: DATA_TYPES.SINGLE_VALUE,
-        fieldType: { args: {}, schema: "id", option: "uuid" },
-      },
-      name: new FieldName("id"),
-      isKey: true,
-    })
-
-    const userId = FieldNode.create({
-      name: new FieldName("userId"),
-      dataType: { type: DATA_TYPES.REF, ref: [USER_DATASET.id, id.id] },
-    })
-
-    POST_DATASET.insertField(postId)
-    POST_DATASET.insertField(userId)
-
-    return [USER_DATASET, POST_DATASET]
+    return []
   }
 
   const handleAddDataset = () => {
@@ -105,7 +56,7 @@ export default function useDatasetServices() {
     })
   }
 
-  const handleEditDataset = ({ datasetId, name, limit }: EditDatasetProps) => {
+  function handleEditDataset({ datasetId, name, limit }: EditDatasetProps) {
     validateDatasetName({ name, id: datasetId })
 
     datasetDispatch({
@@ -131,7 +82,7 @@ export default function useDatasetServices() {
     })
   }
 
-  const handleAddField = ({ datasetId, field, parentFieldID }: AddFieldProps) => {
+  function handleAddField({ datasetId, field, parentFieldID }: AddFieldProps) {
     validateFieldName({ parentID: parentFieldID, fieldName: field.name, datasetId })
 
     // crear el field

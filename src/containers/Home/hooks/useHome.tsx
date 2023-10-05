@@ -10,6 +10,7 @@ import { useDatasetServices } from "@modules/datasets/services"
 import { useModalServices } from "@modules/modal/services"
 import { Dataset } from "@modules/datasets/domain/tree"
 import { ExportDataset } from "@modules/datasets/dto/dataset"
+import { useSchemaServices } from "@modules/schemas/services"
 
 export const useHome = () => {
   const {
@@ -22,6 +23,7 @@ export const useHome = () => {
   const { toastError } = useToastServices()
   const { API_ROUTE } = useEnvServices()
   const { socket } = useSocketServices()
+  const { findParent, findType } = useSchemaServices()
 
   const { NETWORK_ERROR, CREATION_ERROR } = useLanguage({
     NETWORK_ERROR: { en: "Network connect error", es: "Error en la conexión" },
@@ -62,7 +64,9 @@ export const useHome = () => {
     if (socket.connected) {
       setCreateDataLoading(true)
 
-      const exportDatasets: Array<ExportDataset> = datasets.map((d) => d.exportObject())
+      const exportDatasets: Array<ExportDataset> = datasets.map((d) =>
+        d.exportObject({ findOption: findType, findParent: findParent }),
+      )
 
       socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {
         datasets: exportDatasets,

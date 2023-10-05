@@ -7,6 +7,7 @@ import { FieldNode } from "./FieldNode"
 import { RootNode } from "./RootNode"
 import { DatasetName } from "@modules/datasets/value-object"
 import { ExportDataset } from "@modules/datasets/dto/dataset"
+import { SearchProps } from "@modules/datasets/interfaces/tree.interface"
 
 interface DatasetProps {
   name: DatasetName
@@ -24,8 +25,8 @@ export class Dataset {
     return this.name.trim() === name.trim()
   }
 
-  public exportFields() {
-    return this.root.exportFields()
+  public exportFields(props: SearchProps) {
+    return this.root.exportFields(props)
   }
 
   get name() {
@@ -85,9 +86,9 @@ export class Dataset {
     return this.root.nodesUtils.getSameLevelNodes(fieldID)
   }
 
-  public exportObject(): ExportDataset {
+  public exportObject(props: SearchProps): ExportDataset {
     return {
-      fields: this.exportFields(),
+      fields: this.exportFields(props),
       limit: this.limit,
       name: this.name,
     }

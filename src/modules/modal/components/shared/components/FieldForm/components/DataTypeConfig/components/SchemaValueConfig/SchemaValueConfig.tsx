@@ -44,7 +44,7 @@ export default function SchemaValueConfig({
       <ChacaSelect
         options={schemas}
         labelKey="name"
-        valueKey="name"
+        valueKey="id"
         placeholder={MODULE_TEXT}
         value={fieldType.schema}
         onChange={handleSelectModule}
@@ -54,7 +54,7 @@ export default function SchemaValueConfig({
         value={fieldType.option}
         options={foundOptions}
         labelKey="name"
-        valueKey="name"
+        valueKey="id"
         placeholder={OPTION_TEXT}
         onChange={handleSelectModuleOption}
       />

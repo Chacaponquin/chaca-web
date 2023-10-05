@@ -4,7 +4,7 @@ import { IsArrayConfig } from "../interfaces/field_config.interface"
 export interface ExportDataset {
   name: string
   limit: number
-  fields: ExportDatasetField[]
+  fields: Array<ExportDatasetField>
 }
 
 export type ExportDatasetField = {

@@ -7,11 +7,11 @@ describe("# Create dataset test", () => {
 
   it("Create a single dataset. Should show a new dataset card", () => {
     cy.get("#create-dataset-button").click()
-    cy.get("#dataset-playground > div").should("have.length", 3)
+    cy.get("#dataset-playground > div").should("have.length", 1)
   })
 
   it("Create a three sequential datasets. Should show a three new dataset card", () => {
     cy.get("#create-dataset-button").click().click().click().click()
-    cy.get("#dataset-playground > div").should("have.length", 5)
+    cy.get("#dataset-playground > div").should("have.length", 3)
   })
 })

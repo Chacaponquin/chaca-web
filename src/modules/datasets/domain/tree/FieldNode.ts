@@ -1,6 +1,6 @@
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets.interface"
-import { NodeProps } from "@modules/datasets/interfaces/tree.interface"
+import { NodeProps, SearchProps } from "@modules/datasets/interfaces/tree.interface"
 import {
   IsArrayConfig,
   IsKeyConfig,
@@ -29,7 +29,7 @@ export abstract class FieldNode<T = FieldDataType> {
   private _name: FieldName
   private _id = uuid()
 
-  public abstract stringInf(): string
+  public abstract stringInf(props: SearchProps): string
 
   constructor({ name, dataType, isArray = null, isKey = false, isPossibleNull = 0 }: NodeProps<T>) {
     this._name = name
@@ -95,12 +95,49 @@ export abstract class FieldNode<T = FieldDataType> {
     this._name = name
   }
 
-  public exportObject(): ExportDatasetField {
+  public exportDatatype(props: SearchProps): ExportDatasetField {
+    const { findOption, findParent } = props
+
+    if (this instanceof MixedNode) {
+      return {
+        name: this.name,
+        dataType: { type: DATA_TYPES.MIXED, object: this.nodesUtils.exportFields(props) },
+        isArray: this.isArray,
+        isKey: this.isKey,
+        isPossibleNull: this.isPossibleNull,
+      }
+    } else if (this instanceof SchemaValueNode) {
+      const schemaId = this.dataType.fieldType.schema
+      const optionId = this.dataType.fieldType.option
+
+      const module = findParent(schemaId)
+      const option = findOption(schemaId, optionId)
+
+      return {
+        name: this.name,
+        dataType: {
+          type: DATA_TYPES.SINGLE_VALUE,
+          fieldType: {
+            args: this.dataType.fieldType.args,
+            option: option.name,
+            schema: module.name,
+          },
+        },
+        isArray: this.isArray,
+        isKey: this.isKey,
+        isPossibleNull: this.isPossibleNull,
+      }
+    } else {
+      return this.dataType as ExportDatasetField
+    }
+  }
+
+  public exportObject(props: SearchProps): ExportDatasetField {
     if (this instanceof MixedNode) {
       return {
         name: this.name,
         dataType: {
-          object: this.nodesUtils.nodes.map((el) => el.exportObject()),
+          object: this.nodesUtils.nodes.map((el) => el.exportObject(props)),
           type: DATA_TYPES.MIXED,
         },
         isArray: this._isArray,
@@ -144,11 +181,14 @@ export abstract class FieldNode<T = FieldDataType> {
 }
 
 export class SchemaValueNode extends FieldNode<SingleValueDataType> {
-  public stringInf(): string {
-    const module = this.dataType.fieldType.schema
+  public stringInf({ findOption, findParent }: SearchProps): string {
+    const schema = this.dataType.fieldType.schema
     const option = this.dataType.fieldType.option
 
-    return `${module}.${option}`
+    const module = findParent(schema)
+    const moduleOption = findOption(schema, option)
+
+    return `${module.showName}.${moduleOption.showName}`
   }
 }
 

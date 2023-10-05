@@ -3,6 +3,7 @@ import { FieldNode, MixedNode } from "./FieldNode"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { RootNode } from "./RootNode"
 import { ExportDatasetField } from "@modules/datasets/dto/dataset"
+import { SearchProps } from "@modules/datasets/interfaces/tree.interface"
 
 export class NodeObjectUtils {
   private _nodes: Array<FieldNode> = []
@@ -41,8 +42,8 @@ export class NodeObjectUtils {
     return returnArray
   }
 
-  public exportFields(): Array<ExportDatasetField> {
-    return this._nodes.map((n) => n.exportObject())
+  public exportFields(props: SearchProps): Array<ExportDatasetField> {
+    return this._nodes.map((n) => n.exportObject(props))
   }
 
   public findFieldParentNode(nodeId: string): FieldNode | RootNode | null {

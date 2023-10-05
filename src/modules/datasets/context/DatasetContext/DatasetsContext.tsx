@@ -40,14 +40,18 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
   const [selectedDataset, setSelectedDataset] = useState<Dataset | null>(null)
 
   useEffect(() => {
+    if (datasets.length === 1) {
+      handleSelectDataset(datasets[0].id)
+    }
+  }, [datasets])
+
+  useEffect(() => {
     const initialDatasets = initDatasets()
 
     datasetDispatch({
       type: DATASETS_ACTIONS.SET_INIT_DATASETS,
       payload: { datasets: initialDatasets },
     })
-
-    setSelectedDataset(initialDatasets[0])
   }, [fileConfig])
 
   const handleSelectDataset = (id: string | null) => {

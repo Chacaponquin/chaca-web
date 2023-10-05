@@ -1,5 +1,6 @@
 import { FieldName } from "../value-object"
 import { IsArrayConfig, IsKeyConfig } from "./field_config.interface"
+import { SubOption, Schema } from "@modules/schemas/interfaces/schema.interface"
 
 export interface NodeProps<T> {
   name: FieldName
@@ -7,4 +8,9 @@ export interface NodeProps<T> {
   isPossibleNull?: number
   isArray?: IsArrayConfig
   isKey?: IsKeyConfig
+}
+
+export interface SearchProps {
+  findOption: (p: string, o: string) => SubOption
+  findParent: (p: string) => Schema
 }

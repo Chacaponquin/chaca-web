@@ -26,7 +26,7 @@ export default function useDatatypes() {
 
   const DEFAULT_SCHEMA_VALUE_DATA_TYPE: SingleValueDataType = {
     type: DATA_TYPES.SINGLE_VALUE,
-    fieldType: { args: {}, schema: schemas[0].name, option: schemas[0].options[0].name },
+    fieldType: { args: {}, schema: schemas[0].id, option: schemas[0].options[0].id },
   }
 
   const DEFAULT_REF_DATA_TYPE: RefDataType = {
