@@ -95,6 +95,10 @@ export abstract class FieldNode<T = FieldDataType> {
     this._name = name
   }
 
+  public setIsKey(v: boolean): void {
+    this._isKey = v
+  }
+
   public exportDatatype(props: SearchProps): ExportDatasetField {
     const { findOption, findParent } = props
 

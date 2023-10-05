@@ -29,15 +29,15 @@ export const useFieldForm = ({ field: inputField }: { field: FieldForm }): Field
     formDispatch({ type: FORM_ACTIONS.RESET_CONFIG })
   }
 
-  const handleChangeName = (name: string) => {
+  function handleChangeName(name: string) {
     formDispatch({ type: FORM_ACTIONS.CHANGE_FIELD_NAME, payload: { newName: name } })
   }
 
-  const handleChangeIsArray = (value: boolean) => {
+  function handleChangeIsArray(value: boolean) {
     formDispatch({ type: FORM_ACTIONS.CHANGE_TO_ARRAY_TYPE, payload: { isArray: value } })
   }
 
-  const handleChangeMaxIsArray = (max: number | null) => {
+  function handleChangeMaxIsArray(max: number | null) {
     if (max && field.isArray) {
       formDispatch({
         type: FORM_ACTIONS.CHANGE_ARRAY_LIMITS,
@@ -46,7 +46,7 @@ export const useFieldForm = ({ field: inputField }: { field: FieldForm }): Field
     }
   }
 
-  const handleChangeMinIsArray = (min: number | null) => {
+  function handleChangeMinIsArray(min: number | null) {
     if (min && field.isArray) {
       formDispatch({
         type: FORM_ACTIONS.CHANGE_ARRAY_LIMITS,
@@ -59,7 +59,7 @@ export const useFieldForm = ({ field: inputField }: { field: FieldForm }): Field
     formDispatch({ type: FORM_ACTIONS.CHANGE_POSIBLE_NULL, payload: { value: isNull ? 50 : 0 } })
   }
 
-  const handleChangePossibleNullValue = (value: number) => {
+  function handleChangePossibleNullValue(value: number) {
     formDispatch({
       type: FORM_ACTIONS.CHANGE_POSIBLE_NULL,
       payload: { value },

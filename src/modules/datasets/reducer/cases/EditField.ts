@@ -18,6 +18,7 @@ export class EditField extends DatasetUseCase<ExecuteProps> {
           findField.setName(new FieldName(form.name))
           findField.setIsArray(form.isArray)
           findField.setIsPossibleNull(form.isPossibleNull)
+          findField.setIsKey(form.isKey)
         }
       }
 

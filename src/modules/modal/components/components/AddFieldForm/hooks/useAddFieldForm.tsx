@@ -50,6 +50,7 @@ export function useAddFieldForm({
         field: fieldActions.field,
         parentFieldID: parentFieldID,
       })
+
       handleCloseModal()
     } catch (error) {
       if (error instanceof EmptyFieldNameError) {

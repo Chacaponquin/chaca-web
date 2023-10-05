@@ -42,13 +42,14 @@ export function useEditFieldForm({
     },
   })
 
-  const handleEditField = () => {
+  function handleEditField() {
     try {
       handleUpdateField({
         fieldDTO: fieldActions.field,
         parentFieldID: parentFieldID,
         datasetId: datasetId,
       })
+
       handleCloseModal()
     } catch (error) {
       if (error instanceof EmptyFieldNameError) {
