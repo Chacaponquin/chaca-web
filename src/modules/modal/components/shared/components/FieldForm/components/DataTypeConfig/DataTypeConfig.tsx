@@ -25,6 +25,7 @@ export default function DataTypeConfig({
   handleChangeEnumValues,
   handleChangeSequenceStartsWith,
   handleChangeSequenceStep,
+  handleChangeRefField,
 }: {
   datasetId: string
   dataType: FieldDataType
@@ -36,6 +37,7 @@ export default function DataTypeConfig({
   handleChangeEnumValues: (v: string) => void
   handleChangeSequenceStartsWith: (v: number) => void
   handleChangeSequenceStep: (v: number) => void
+  handleChangeRefField: (r: string) => void
 }) {
   return (
     <section>
@@ -46,7 +48,11 @@ export default function DataTypeConfig({
         <CustomConfig code={dataType.code} handleUpdateCustomField={handleUpdateCustomField} />
       )}
       {dataType.type === DATA_TYPES.REF && (
-        <RefConfig refField={dataType.ref} datasetId={datasetId} />
+        <RefConfig
+          refField={dataType.ref}
+          datasetId={datasetId}
+          handleChangeRefField={handleChangeRefField}
+        />
       )}
       {dataType.type === DATA_TYPES.SEQUENCE && (
         <SequenceConfig

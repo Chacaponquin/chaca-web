@@ -5,6 +5,12 @@ import { RootNode } from "./RootNode"
 import { ExportDatasetField } from "@modules/datasets/dto/dataset"
 import { SearchProps } from "@modules/datasets/interfaces/tree.interface"
 
+interface GetLocationProps {
+  fieldId: string
+  location: Array<string>
+  isIdLocation?: boolean
+}
+
 export class NodeObjectUtils {
   private _nodes: Array<FieldNode> = []
   private _instance: FieldNode | RootNode
@@ -116,23 +122,30 @@ export class NodeObjectUtils {
     }
   }
 
-  public getFieldLocation(fieldID: string, location: string[]): string[] | null {
+  public getFieldLocation({
+    fieldId,
+    location,
+    isIdLocation = false,
+  }: GetLocationProps): string[] | null {
     if (this.nodes.length === 0) {
       return null
     }
 
-    const found = this.nodes.find((n) => n.id === fieldID)
+    const found = this.nodes.find((n) => n.id === fieldId)
     if (found) {
-      return [...location, this._instance.name, found.name]
+      const newLocation = isIdLocation
+        ? [...location, this._instance.id, found.id]
+        : [...location, this._instance.name, found.name]
+      return newLocation
     }
 
     let ret: string[] | null = null
-
     for (let i = 0; i < this.nodes.length && !ret; i++) {
       const node = this.nodes[i]
 
       if (node instanceof MixedNode) {
-        ret = node.nodesUtils.getFieldLocation(fieldID, [...location, node.name])
+        const newLocation = isIdLocation ? [...location, node.id] : [...location, node.name]
+        ret = node.nodesUtils.getFieldLocation({ fieldId, location: newLocation })
       }
     }
 

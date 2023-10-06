@@ -13,6 +13,12 @@ export type FieldFormPayload =
       }
     }
   | {
+      type: FORM_ACTIONS.CHANGE_REF_DATATYPE
+      payload: {
+        ref: Array<string>
+      }
+    }
+  | {
       type: FORM_ACTIONS.CHANGE_FIELD_DATATYPE
       payload: {
         dataType: FieldDataType
@@ -84,6 +90,10 @@ export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
 
     case FORM_ACTIONS.CHNAGE_ENUM_FIELD: {
       return { ...form, dataType: { type: DATA_TYPES.ENUM, values: action.payload.values } }
+    }
+
+    case FORM_ACTIONS.CHANGE_REF_DATATYPE: {
+      return { ...form, dataType: { type: DATA_TYPES.REF, ref: action.payload.ref } }
     }
 
     case FORM_ACTIONS.CHANGE_SEQUENCE_FIELD: {

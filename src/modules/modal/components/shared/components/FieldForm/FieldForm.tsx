@@ -30,6 +30,7 @@ export default function FieldForm({
   handleChangeEnumValues,
   handleChangeSequenceStartsWith,
   handleChangeSequenceStep,
+  handleChangeRef,
   datasetId,
 }: FieldFormProps) {
   const { FIELD_NAME_TEXT, DATA_TYPE_TEXT } = useLanguage({
@@ -63,6 +64,7 @@ export default function FieldForm({
         handleChangeEnumValues={handleChangeEnumValues}
         handleChangeSequenceStartsWith={handleChangeSequenceStartsWith}
         handleChangeSequenceStep={handleChangeSequenceStep}
+        handleChangeRefField={handleChangeRef}
       />
 
       <section className="flex flex-col gap-3">

@@ -4,13 +4,13 @@ import { useDatasetServices } from "@modules/datasets/services"
 import { FormInputSection } from "@modules/modal/components/shared/shared/components"
 import { useId } from "react"
 
-export default function RefConfig({
-  refField,
-  datasetId,
-}: {
+interface RefConfigProps {
   refField: Array<string>
   datasetId: string
-}) {
+  handleChangeRefField: (r: string) => void
+}
+
+export default function RefConfig({ refField, datasetId, handleChangeRefField }: RefConfigProps) {
   const fieldRefId = useId()
   const { searchPossibleFieldsToRef, findFieldByLocation } = useDatasetServices()
 
@@ -28,10 +28,11 @@ export default function RefConfig({
         <ChacaSelect
           dimension="large"
           options={possibleFields}
-          labelKey="location"
-          valueKey="fieldId"
+          labelKey="locationNames"
+          valueKey="locationIds"
           placeholder={PLACEHOLDER}
           value={foundField?.id}
+          onChange={handleChangeRefField}
         />
       </FormInputSection>
     </div>

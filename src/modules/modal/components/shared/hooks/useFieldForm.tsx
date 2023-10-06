@@ -184,6 +184,13 @@ export const useFieldForm = ({ field: inputField }: { field: FieldForm }): Field
     })
   }
 
+  function handleChangeRef(ref: string): void {
+    formDispatch({
+      type: FORM_ACTIONS.CHANGE_REF_DATATYPE,
+      payload: { ref: ref.split(".") },
+    })
+  }
+
   return {
     field,
     handleChangeIsArray,
@@ -203,5 +210,6 @@ export const useFieldForm = ({ field: inputField }: { field: FieldForm }): Field
     handleChangeEnumValues,
     handleChangeSequenceStartsWith,
     handleChangeSequenceStep,
+    handleChangeRef,
   }
 }

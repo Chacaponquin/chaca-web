@@ -111,13 +111,17 @@ export class Dataset {
     return this.root.nodesUtils.refFields()
   }
 
-  public getFieldLocation(fieldID: string): string[] {
-    const ret = this.root.nodesUtils.getFieldLocation(fieldID, [])
+  public getFieldLocationIds(fieldId: string): string[] {
+    const ret = this.root.nodesUtils.getFieldLocation({ fieldId, location: [], isIdLocation: true })
+    return ret ? ret : []
+  }
 
-    if (ret) {
-      return ret
-    } else {
-      return []
-    }
+  public getFieldLocation(fieldId: string): string[] {
+    const ret = this.root.nodesUtils.getFieldLocation({
+      fieldId,
+      location: [],
+      isIdLocation: false,
+    })
+    return ret ? ret : []
   }
 }

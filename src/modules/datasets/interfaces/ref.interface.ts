@@ -1,4 +1,4 @@
 export interface PossibleFieldToRef {
-  fieldId: string
-  location: string
+  locationIds: string
+  locationNames: string
 }

@@ -50,7 +50,6 @@ export default function useDatasetServices() {
   }
 
   const handleAddDataset = () => {
-    // create dataset
     datasetDispatch({
       type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
     })
@@ -85,7 +84,6 @@ export default function useDatasetServices() {
   function handleAddField({ datasetId, field, parentFieldID }: AddFieldProps) {
     validateFieldName({ parentID: parentFieldID, fieldName: field.name, datasetId })
 
-    // crear el field
     datasetDispatch({
       type: DATASETS_ACTIONS.ADD_NEW_FIELD,
       payload: {
@@ -186,7 +184,10 @@ export default function useDatasetServices() {
         const fields = dat.allPossibleFieldsToRef()
 
         for (const f of fields) {
-          returnFields.push({ fieldId: f.id, location: dat.getFieldLocation(f.id).join(".") })
+          returnFields.push({
+            locationIds: dat.getFieldLocationIds(f.id).join("."),
+            locationNames: dat.getFieldLocation(f.id).join("."),
+          })
         }
       }
     }

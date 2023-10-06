@@ -38,4 +38,5 @@ export interface FieldActions {
   handleChangeEnumValues(v: string): void
   handleChangeSequenceStep(v: number): void
   handleChangeSequenceStartsWith(v: number): void
+  handleChangeRef: (ref: string) => void
 }
