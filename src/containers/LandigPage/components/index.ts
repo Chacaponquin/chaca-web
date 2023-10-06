@@ -1,4 +1,5 @@
-import LandingNavbar from "./LandingNavbar/LandingNavbar"
+import Footer from "./Footer/Footer"
 import LinksSection from "./LinksSection/LinksSection"
+import Presentation from "./Presentation/Presentation"
 
-export { LinksSection, LandingNavbar }
+export { LinksSection, Presentation, Footer }
