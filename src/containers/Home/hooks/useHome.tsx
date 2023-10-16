@@ -39,11 +39,8 @@ export const useHome = () => {
 
     // evento cuando se termine la creacion de los datasets
     socket.on(SOCKET_EVENTS.GET_FILE_URL, (downUrl) => {
-      // abrir el link de descarga
       window.open(`${API_ROUTE}/${downUrl}`)
-      // cerrar el modal de creation loading
       setCreateDataLoading(false)
-      // resetear la configuracion de exportacion
       resetConfig()
     })
 
@@ -78,7 +75,7 @@ export const useHome = () => {
     }
   }
 
-  const handleCreateAllDatasets = () => {
+  function handleCreateAllDatasets() {
     handleOpenModal({
       type: MODAL_ACTIONS.EXPORT_ALL_DATASETS,
       handleCreateAllDatasets: handleExportAllDatasets,
@@ -133,5 +130,6 @@ export const useHome = () => {
     handleExportDatasetByIndex,
     handleAddNewField,
     handleAddDataset,
+    datasets,
   }
 }

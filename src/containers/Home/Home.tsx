@@ -1,4 +1,9 @@
-import { CreationLoadingModal, DatasetPlayground, FieldsMenu } from "./components"
+import {
+  CreationLoadingModal,
+  DatasetPlayground,
+  FieldsMenu,
+  NoDatasetsMessage,
+} from "./components"
 import { useHome } from "./hooks"
 import { useContext } from "react"
 import { LazyRoute } from "@modules/app/components"
@@ -14,6 +19,7 @@ const Home = () => {
     handleAddNewField,
     handleCreateAllDatasets,
     handleAddDataset,
+    datasets,
   } = useHome()
   const { showFieldsMenu } = useDatasetServices()
   const { smallWindow } = useContext(HomeContext)
@@ -32,22 +38,26 @@ const Home = () => {
           <main className="flex flex-col w-full min-h-screen h-screen">
             <HomeNavbar />
 
-            <section className="flex">
-              {createDataLoading && <CreationLoadingModal />}
+            {datasets.length === 0 && <NoDatasetsMessage handleCreateDataset={handleAddDataset} />}
 
-              {(!smallWindow || (smallWindow && showFieldsMenu)) && (
-                <FieldsMenu
-                  handleExportSelectedDataset={handleExportSelectedDataset}
-                  handleAddNewField={handleAddNewField}
+            {datasets.length > 0 && (
+              <section className="flex">
+                {createDataLoading && <CreationLoadingModal />}
+
+                {(!smallWindow || (smallWindow && showFieldsMenu)) && (
+                  <FieldsMenu
+                    handleExportSelectedDataset={handleExportSelectedDataset}
+                    handleAddNewField={handleAddNewField}
+                  />
+                )}
+
+                <DatasetPlayground
+                  handleCreateSelectDataset={handleExportSelectedDataset}
+                  handleAddDataset={handleAddDataset}
+                  handleCreateAllDatasets={handleCreateAllDatasets}
                 />
-              )}
-
-              <DatasetPlayground
-                handleCreateSelectDataset={handleExportSelectedDataset}
-                handleAddDataset={handleAddDataset}
-                handleCreateAllDatasets={handleCreateAllDatasets}
-              />
-            </section>
+              </section>
+            )}
           </main>
         </Layout>
       </HomeProvider>
