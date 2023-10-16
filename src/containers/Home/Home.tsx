@@ -35,13 +35,13 @@ const Home = () => {
     <LazyRoute>
       <HomeProvider>
         <Layout description={HOME_DESCRIPTION} title="Chaca | Home">
-          <main className="flex flex-col w-full min-h-screen h-screen">
+          <main className="flex flex-col w-full h-screen">
             <HomeNavbar />
 
             {datasets.length === 0 && <NoDatasetsMessage handleCreateDataset={handleAddDataset} />}
 
             {datasets.length > 0 && (
-              <section className="flex">
+              <section className="flex flex-grow">
                 {createDataLoading && <CreationLoadingModal />}
 
                 {(!smallWindow || (smallWindow && showFieldsMenu)) && (

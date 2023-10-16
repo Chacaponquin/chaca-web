@@ -17,7 +17,7 @@ export default function DatasetPlayground({
   const { playgroundRef } = useContext(HomeContext)
 
   return (
-    <section className="w-full">
+    <section className="w-full h-full flex flex-col">
       <DatasetsButtons
         handleAddDataset={handleAddDataset}
         handleCreateAllDatasets={handleCreateAllDatasets}

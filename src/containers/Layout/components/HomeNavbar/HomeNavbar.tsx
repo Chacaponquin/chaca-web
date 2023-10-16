@@ -34,7 +34,7 @@ export default function HomeNavbar() {
   const ICON_SIZE = 22
 
   return (
-    <nav className="w-full bg-white dark:bg-darkColorLight text-black dark:text-white flex items-center px-6 esm:px-4 justify-between min-h-[55px] md:min-h-[65px] dark:border-b-[1px] border-b-2 border-grayColor dark:border-white">
+    <nav className="w-full bg-white dark:bg-darkColorLight text-black dark:text-white flex items-center px-6 esm:px-4 justify-between min-h-[60px] max-h-[60px] dark:border-b-[1px] border-b-2 border-grayColor dark:border-white">
       <section className="flex items-center">
         {smallWindow && (
           <button onClick={handleOpenFieldsMenu} className="mr-4">

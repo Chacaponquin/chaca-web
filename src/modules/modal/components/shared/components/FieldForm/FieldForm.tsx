@@ -67,7 +67,7 @@ export default function FieldForm({
         handleChangeRefField={handleChangeRef}
       />
 
-      <section className="flex flex-col gap-3">
+      <section className="flex flex-col gap-3 mt-1">
         {canBeArray && (
           <ArrayConfig
             isArray={field.isArray}

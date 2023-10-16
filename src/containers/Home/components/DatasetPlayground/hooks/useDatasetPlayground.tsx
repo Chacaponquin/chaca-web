@@ -5,6 +5,7 @@ import { Dataset } from "@modules/datasets/domain/tree"
 import { DatasetConnection } from "@modules/datasets/interfaces/dataset_connect.interface"
 import { getGroupedConnections, getPathData, pathify, getElement } from "../utils"
 import { ChangePositionProps } from "../interfaces/position.interface"
+import { ConnectElement } from "../interfaces/connect.interface"
 
 interface ShowDataset {
   dataset: Dataset
@@ -23,8 +24,8 @@ export default function useDatasetPlayground() {
 
     let x = 50
     let y = 100
-    for (let i = 0; i < datasets.length; i++) {
-      show.push({ dataset: datasets[i], positionX: x, positionY: y })
+    for (const dat of datasets) {
+      show.push({ dataset: dat, positionX: x, positionY: y })
       x += 500
       y += 100
     }
@@ -44,7 +45,7 @@ export default function useDatasetPlayground() {
   }, [datasets])
 
   const handleCalcPoints = useCallback(() => {
-    const connections = getGroupedConnections({ elements: connectDatasets })
+    const connections: Array<ConnectElement> = getGroupedConnections({ elements: connectDatasets })
     const returnPoints = [] as Array<Point>
 
     for (const conn of connections) {
