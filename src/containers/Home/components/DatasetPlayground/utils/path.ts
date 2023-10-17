@@ -1,4 +1,4 @@
-import { Coords } from "../interfaces/point.interface"
+import { ArrowCoords, ArrowDirection, Coords } from "../interfaces/point.interface"
 
 interface GetPathDataProps {
   from: DOMRect
@@ -10,7 +10,7 @@ const POS_OFFSET = 40
 
 const DESVIATION = 35
 
-function getPosition({ from, to }: GetPathDataProps) {
+export function getPosition({ from, to }: GetPathDataProps): ArrowDirection {
   const allowYConnect =
     from.left - POS_OFFSET < to.right && from.right + to.width > to.right - POS_OFFSET
 
@@ -43,15 +43,78 @@ function getPosition({ from, to }: GetPathDataProps) {
 
   if (leftToRight) {
     return "left-to-right"
+  } else {
+    return "right-to-left"
   }
 }
 
-export function getPathData({ from, to }: GetPathDataProps): Array<Coords> {
+export function orderCoords(arrows: Array<ArrowCoords>): void {
+  const EQUAL_DESVIATION = 11
+
+  for (let i = 0; i < arrows.length; i++) {
+    const actualArrow = arrows[i]
+
+    for (let j = 0; j < arrows.length; j++) {
+      if (j !== i) {
+        const compareArrow = arrows[j]
+
+        const final1 = actualArrow.coords.at(-1)
+        const final2 = compareArrow.coords.at(-1)
+
+        if (final1 && final2) {
+          if (final1.x === final2.x && final1.y === final2.y) {
+            const { direction } = compareArrow
+
+            if (direction === "bootom-to-top-by-left") {
+              final2.y -= EQUAL_DESVIATION
+            } else if (direction === "bottom-to-top-by-right") {
+              final2.y -= EQUAL_DESVIATION
+              const semiFinal1 = compareArrow.coords.at(-2)
+              const semiFinal2 = compareArrow.coords.at(-3)
+
+              if (semiFinal1 && semiFinal2) {
+                semiFinal1.y -= EQUAL_DESVIATION
+                semiFinal2.y -= EQUAL_DESVIATION
+              }
+            } else if (direction === "left-to-right") {
+              final2.y -= EQUAL_DESVIATION
+              const semiFinal1 = compareArrow.coords.at(-2)
+              if (semiFinal1) {
+                semiFinal1.y -= EQUAL_DESVIATION
+              }
+            } else if (direction === "right-to-left") {
+              final2.y -= EQUAL_DESVIATION
+
+              const semiFinal1 = compareArrow.coords.at(-2)
+              if (semiFinal1) {
+                semiFinal1.y -= EQUAL_DESVIATION
+              }
+            } else if (direction === "top-to-bottom-by-left") {
+              final2.y -= EQUAL_DESVIATION
+            } else if (direction === "top-to-bottom-by-right") {
+              final2.y -= EQUAL_DESVIATION
+              const semiFinal1 = compareArrow.coords.at(-2)
+              const semiFinal2 = compareArrow.coords.at(-3)
+
+              if (semiFinal1 && semiFinal2) {
+                semiFinal1.y -= EQUAL_DESVIATION
+                semiFinal2.y -= EQUAL_DESVIATION
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+export function getPathData({ from, to }: GetPathDataProps): ArrowCoords {
   const position = getPosition({ from, to })
+  let coords: Array<Coords>
 
   switch (position) {
     case "top-to-bottom-by-left": {
-      return [
+      coords = [
         {
           x: from.left,
           y: from.top + from.height / 2,
@@ -73,10 +136,11 @@ export function getPathData({ from, to }: GetPathDataProps): Array<Coords> {
           y: to.top + to.height / 2,
         },
       ]
+      break
     }
 
     case "top-to-bottom-by-right": {
-      return [
+      coords = [
         {
           x: from.right,
           y: from.top + from.height / 2,
@@ -98,10 +162,11 @@ export function getPathData({ from, to }: GetPathDataProps): Array<Coords> {
           y: to.top + to.height / 2,
         },
       ]
+      break
     }
 
     case "right-to-left": {
-      return [
+      coords = [
         {
           x: from.left,
           y: from.bottom - from.height / 2,
@@ -119,10 +184,11 @@ export function getPathData({ from, to }: GetPathDataProps): Array<Coords> {
           y: to.top + to.height / 2,
         },
       ]
+      break
     }
 
     case "left-to-right": {
-      return [
+      coords = [
         {
           x: from.right,
           y: from.bottom - from.height / 2,
@@ -140,10 +206,11 @@ export function getPathData({ from, to }: GetPathDataProps): Array<Coords> {
           y: to.top + to.height / 2,
         },
       ]
+      break
     }
 
-    case "bottom-to-top-by-right":
-      return [
+    case "bottom-to-top-by-right": {
+      coords = [
         {
           x: from.left,
           y: from.top + from.height / 2,
@@ -162,9 +229,11 @@ export function getPathData({ from, to }: GetPathDataProps): Array<Coords> {
           y: to.top + to.height / 2,
         },
       ]
+      break
+    }
 
     case "bootom-to-top-by-left":
-      return [
+      coords = [
         {
           x: from.right,
           y: from.top + from.height / 2,
@@ -183,8 +252,13 @@ export function getPathData({ from, to }: GetPathDataProps): Array<Coords> {
           y: to.top + to.height / 2,
         },
       ]
+      break
 
-    default:
-      return []
+    default: {
+      coords = []
+      break
+    }
   }
+
+  return { coords: coords, direction: position, to: to }
 }

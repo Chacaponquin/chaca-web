@@ -9,7 +9,7 @@ export default function Config({
 }) {
   return (
     <button
-      className="absolute right-7 flex items-center fill-white"
+      className="absolute right-4 flex items-center fill-white"
       onClick={handleInteractOpenConfig}
       id={`${name}-dataset-config-button`}
     >

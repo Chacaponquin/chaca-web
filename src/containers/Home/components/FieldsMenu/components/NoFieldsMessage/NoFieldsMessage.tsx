@@ -15,7 +15,7 @@ const NoFieldsMessage = ({ handleAddNewField }: { handleAddNewField: () => void 
         alt={APP_IMAGES.EMPTY_FIELDS.alt}
         className="w-[200px] my-5"
       />
-      <p className="text-xl text-slate-500 dark:text-white font-fontBold">{NO_FIELDS_TEXT}</p>
+      <p className="text-xl text-slate-500 dark:text-white font-fontMedium">{NO_FIELDS_TEXT}</p>
 
       <ChacaSimpleButton
         onClick={handleAddNewField}

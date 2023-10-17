@@ -1,5 +1,5 @@
 import { getGroupedConnections, getElement } from "./connection"
-import { getPathData } from "./path"
+import { getPathData, orderCoords } from "./path"
 import { pathify } from "./pathify"
 
-export { getPathData, pathify, getGroupedConnections, getElement }
+export { getPathData, pathify, getGroupedConnections, getElement, orderCoords }

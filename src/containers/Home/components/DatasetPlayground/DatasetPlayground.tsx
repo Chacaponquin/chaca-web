@@ -3,17 +3,25 @@ import { ArrowSvg, DatasetCard, DatasetsButtons } from "./components"
 import { useDatasetPlayground } from "./hooks"
 import { HomeContext } from "@containers/Home/context"
 
+interface Props {
+  handleCreateSelectDataset: (i: number) => void
+  handleCreateAllDatasets: () => void
+  handleAddDataset: () => void
+}
+
 export default function DatasetPlayground({
   handleCreateSelectDataset,
   handleCreateAllDatasets,
   handleAddDataset,
-}: {
-  handleCreateSelectDataset: (i: number) => void
-  handleCreateAllDatasets: () => void
-  handleAddDataset: () => void
-}) {
-  const { points, handleClickPoint, showDatasets, selectFieldPoint, handleUpdateLines } =
-    useDatasetPlayground()
+}: Props) {
+  const {
+    points,
+    handleClickPoint,
+    showDatasets,
+    selectFieldPoint,
+    handleUpdateLines,
+    handleChangeDatasetCardPosition,
+  } = useDatasetPlayground()
   const { playgroundRef } = useContext(HomeContext)
 
   return (
@@ -39,6 +47,7 @@ export default function DatasetPlayground({
             dataset={d.dataset}
             selectFieldPoint={selectFieldPoint}
             handleUpdateLines={handleUpdateLines}
+            handleChangeDatasetCardPosition={handleChangeDatasetCardPosition}
           />
         ))}
 

@@ -1,12 +1,13 @@
 import { Dataset } from "@modules/datasets/domain/tree"
 import { ClickPointProps } from "../../interfaces/point.interface"
 import { CardHeader, Field } from "./components"
-import { useDatasetCard, usePress } from "./hooks"
+import { useDatasetCard } from "./hooks"
 import { motion } from "framer-motion"
 import { useContext } from "react"
 import { HomeContext } from "@containers/Home/context"
 import clsx from "clsx"
 import { useDatasetServices } from "@modules/datasets/services"
+import { ChangeDatasetCardProps } from "../../interfaces/card.interface"
 
 interface DatasetCardProps {
   handleCreateSelectDataset: (i: number) => void
@@ -17,6 +18,7 @@ interface DatasetCardProps {
   dataset: Dataset
   selectFieldPoint: null | string
   handleUpdateLines: () => void
+  handleChangeDatasetCardPosition(props: ChangeDatasetCardProps): void
 }
 
 export default function DatasetCard({
@@ -27,6 +29,7 @@ export default function DatasetCard({
   dataset,
   selectFieldPoint,
   handleUpdateLines,
+  handleChangeDatasetCardPosition,
 }: DatasetCardProps) {
   const { playgroundRef } = useContext(HomeContext)
 
@@ -37,16 +40,18 @@ export default function DatasetCard({
     handleExportDataset,
     handleInteractOpenConfig,
     handleClickCard,
-  } = useDatasetCard({ handleCreateSelectDataset, index })
-
-  const { onDrangEnd } = usePress({
+    onDrangEnd,
+  } = useDatasetCard({
+    handleCreateSelectDataset,
+    index,
     handleUpdateLines,
+    handleChangeDatasetCardPosition,
   })
 
   const { selectedDataset } = useDatasetServices()
 
   const CARD_CLASS = clsx(
-    "bg-darkColor absolute flex flex-col min-w-[360px] rounded-lg text-white stroke-white cursor-grab",
+    "bg-darkColor absolute flex flex-col min-w-[380px] rounded-lg text-white stroke-white cursor-grab",
     { "outline outline-4 outline-principalColor": selectedDataset?.id === dataset.id },
   )
 
@@ -55,7 +60,7 @@ export default function DatasetCard({
       drag
       dragMomentum={false}
       dragConstraints={playgroundRef.current ? playgroundRef : undefined}
-      onDragEnd={onDrangEnd}
+      onDragEnd={(_, info) => onDrangEnd(dataset.id, info)}
       className={CARD_CLASS}
       style={{
         left: `${positionX}px`,

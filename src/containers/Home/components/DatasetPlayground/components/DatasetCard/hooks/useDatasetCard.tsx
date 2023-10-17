@@ -2,15 +2,23 @@ import { useDatasetServices } from "@modules/datasets/services"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { useModalServices } from "@modules/modal/services"
 import { useMenu } from "@modules/shared/hooks"
+import { PanInfo } from "framer-motion"
 import { createRef } from "react"
+import { ChangeDatasetCardProps } from "../../../interfaces/card.interface"
+
+interface Props {
+  index: number
+  handleCreateSelectDataset: (i: number) => void
+  handleUpdateLines: () => void
+  handleChangeDatasetCardPosition: (props: ChangeDatasetCardProps) => void
+}
 
 export default function useDatasetCard({
   handleCreateSelectDataset,
   index,
-}: {
-  index: number
-  handleCreateSelectDataset: (i: number) => void
-}) {
+  handleUpdateLines,
+  handleChangeDatasetCardPosition,
+}: Props) {
   const menuRef = createRef<HTMLDivElement | null>()
   const { handleCloseMenu, handleOpenMenu, isOpen } = useMenu({ ref: menuRef })
   const { handleOpenModal } = useModalServices()
@@ -54,6 +62,11 @@ export default function useDatasetCard({
     handleSelectDataset(dat.id)
   }
 
+  function onDrangEnd(datasetId: string, info: PanInfo) {
+    handleChangeDatasetCardPosition({ datasetId: datasetId, x: info.point.x, y: info.point.y })
+    handleUpdateLines()
+  }
+
   return {
     openConfig: isOpen,
     handleInteractOpenConfig,
@@ -61,5 +74,6 @@ export default function useDatasetCard({
     handleEditDataset,
     handleExportDataset,
     handleClickCard,
+    onDrangEnd,
   }
 }

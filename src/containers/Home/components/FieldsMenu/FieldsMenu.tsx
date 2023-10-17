@@ -15,7 +15,7 @@ const FieldsMenu = ({
   const { fieldsMenuRef, smallWindow } = useContext(HomeContext)
 
   const containerClass = clsx(
-    "min-w-[300px] max-w-[300px] bg-white border-r-2 dark:border-r-[1px] flex flex-col justify-between",
+    "min-w-[300px] max-w-[300px] bg-white border-r-2 dark:border-r-[1px] flex flex-col h-full justify-between",
     { "fit-screen-box": !smallWindow },
     { "top-0 left-0 h-screen absolute z-40": smallWindow },
   )

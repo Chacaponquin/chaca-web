@@ -1,17 +1,10 @@
 import { useMemo, useState, useCallback, useEffect } from "react"
-import { ClickPointProps, Point } from "../interfaces/point.interface"
+import { ArrowCoords, ClickPointProps, Point } from "../interfaces/point.interface"
 import { useDatasetServices } from "@modules/datasets/services"
-import { Dataset } from "@modules/datasets/domain/tree"
 import { DatasetConnection } from "@modules/datasets/interfaces/dataset_connect.interface"
-import { getGroupedConnections, getPathData, pathify, getElement } from "../utils"
-import { ChangePositionProps } from "../interfaces/position.interface"
+import { getGroupedConnections, getPathData, pathify, getElement, orderCoords } from "../utils"
 import { ConnectElement } from "../interfaces/connect.interface"
-
-interface ShowDataset {
-  dataset: Dataset
-  positionX: number
-  positionY: number
-}
+import { ChangeDatasetCardProps, ShowDataset } from "../interfaces/card.interface"
 
 export default function useDatasetPlayground() {
   const { datasets, getDatasetConnections } = useDatasetServices()
@@ -22,8 +15,8 @@ export default function useDatasetPlayground() {
   useEffect(() => {
     const show = [] as Array<ShowDataset>
 
-    let x = 50
-    let y = 100
+    let x = 0
+    let y = 0
     for (const dat of datasets) {
       show.push({ dataset: dat, positionX: x, positionY: y })
       x += 500
@@ -47,16 +40,26 @@ export default function useDatasetPlayground() {
   const handleCalcPoints = useCallback(() => {
     const connections: Array<ConnectElement> = getGroupedConnections({ elements: connectDatasets })
     const returnPoints = [] as Array<Point>
+    const arrowCoords = [] as Array<ArrowCoords>
 
     for (const conn of connections) {
       conn.to.forEach((to) => {
         const coords = getPathData({ from: conn.from, to: to.rect })
-        const path = pathify({ paths: coords })
-
-        const savePoint: Point = { path: path, rect: to.rect }
-
-        returnPoints.push(savePoint)
+        arrowCoords.push(coords)
       })
+    }
+
+    console.log(arrowCoords)
+
+    orderCoords(arrowCoords)
+
+    console.log(arrowCoords)
+
+    for (const arrow of arrowCoords) {
+      const path = pathify({ paths: arrow.coords })
+      const savePoint: Point = { path: path, rect: arrow.to }
+
+      returnPoints.push(savePoint)
     }
 
     setPoints(returnPoints)
@@ -102,20 +105,12 @@ export default function useDatasetPlayground() {
     }
   }, [handleCalcPoints])
 
-  function handleChangeDatasetPosition({ x, datasetId, y }: ChangePositionProps) {
-    setShowDatasets((prev) => {
-      return prev.map((d) => {
-        if (d.dataset.id === datasetId) {
-          return { dataset: d.dataset, positionX: x, positionY: y }
-        } else {
-          return d
-        }
-      })
-    })
-  }
-
   function handleUpdateLines() {
     handleCalcPoints()
+  }
+
+  function handleChangeDatasetCardPosition({ datasetId, x, y }: ChangeDatasetCardProps): void {
+    console.log({ x, y, datasetId })
   }
 
   return {
@@ -124,7 +119,7 @@ export default function useDatasetPlayground() {
     handleClickPoint,
     showDatasets,
     points,
-    handleChangeDatasetPosition,
     handleUpdateLines,
+    handleChangeDatasetCardPosition,
   }
 }

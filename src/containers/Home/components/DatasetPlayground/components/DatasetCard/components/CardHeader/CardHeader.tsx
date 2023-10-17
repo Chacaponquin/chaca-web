@@ -20,7 +20,7 @@ export default function CardHeader({
   name,
 }: CardHeaderProps) {
   return (
-    <header className="flex relative justify-center py-3.5 px-10 border-b-[1px] border-white items-center">
+    <header className="flex relative justify-center py-3.5 px-12 border-b-[1px] border-white items-center">
       <DatasetInfo limit={limit} name={name} />
 
       <Config handleInteractOpenConfig={handleInteractOpenConfig} name={name} />

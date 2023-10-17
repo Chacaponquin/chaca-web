@@ -3,8 +3,8 @@ export default function DatasetInfo({ limit, name }: { limit: number; name: stri
 
   return (
     <div className="flex items-end gap-x-3">
-      <h1 className="text-2xl font-fontBold">{name}</h1>
-      <p className="text-xl font-fontCodeBold">{LIMIT}</p>
+      <h1 className="text-2xl font-fontMedium whitespace-nowrap">{name}</h1>
+      <p className="text-xl font-fontCodeMedium">{LIMIT}</p>
     </div>
   )
 }
