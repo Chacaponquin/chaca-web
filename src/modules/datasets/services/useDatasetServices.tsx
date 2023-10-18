@@ -143,7 +143,7 @@ export default function useDatasetServices() {
 
   function fieldCanBeNull(field: FieldForm): boolean {
     const type = field.dataType.type
-    return type !== DATA_TYPES.SEQUENTIAL && type !== DATA_TYPES.SEQUENCE && !field.isKey
+    return type !== DATA_TYPES.SEQUENCE && !field.isKey
   }
 
   function getDatasetConnections({ dataset }: { dataset: Dataset }): Array<DatasetConnection> {
