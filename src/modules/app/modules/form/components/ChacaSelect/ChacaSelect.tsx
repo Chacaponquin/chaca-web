@@ -13,6 +13,7 @@ interface ChacaObjectSelectProps<T> extends ChacaFormProps<any> {
   options: Array<T>
   labelKey: keyof T
   valueKey: keyof T
+  height?: number
 }
 
 type Props<T> = ChacaObjectSelectProps<T>
@@ -23,7 +24,7 @@ interface SelectOptions {
 }
 
 export default function ChacaSelect<T>(props: Props<T>) {
-  const { onChange, options, placeholder, value, dimension = "normal" } = props
+  const { onChange, options, placeholder, value, dimension = "normal", height = 300 } = props
 
   const { paddingClass, textClass } = useFilters({ dimension })
 
@@ -31,8 +32,6 @@ export default function ChacaSelect<T>(props: Props<T>) {
 
   const [selectIndex, setSelectIndex] = useState<null | number>(null)
   const [selectOptions, setSelectOptions] = useState<Array<SelectOptions>>([])
-
-  // const parentDiv = useRef<null | HTMLDivElement>(null)
 
   useEffect(() => {
     setSelectOptions([])
@@ -62,17 +61,6 @@ export default function ChacaSelect<T>(props: Props<T>) {
       onChange(selectOptions[index].value)
     }
   }
-
-  /* const optionsStyle = useMemo(() => {
-    if (parentDiv.current) {
-      return {
-        width: `${parentDiv.current.clientWidth + 2.5}px`,
-        translateY: `${parentDiv.current.clientHeight + 5}px`,
-      }
-    } else {
-      return { width: `${100}px`, translateY: `${50}px` }
-    }
-  }, [parentDiv.current?.clientHeight, size, dimension])*/
 
   const parentClass = clsx(
     "w-full flex items-center border-solid transition-all duration-300 justify-between bg-white py-[2px] border-2 border-grayColor cursor-pointer rounded-sm gap-5 whitespace-nowrap",
@@ -107,6 +95,7 @@ export default function ChacaSelect<T>(props: Props<T>) {
         />
       }
       className="bg-white"
+      height={height}
     >
       <Fragment>
         {options.map((_, index) => (

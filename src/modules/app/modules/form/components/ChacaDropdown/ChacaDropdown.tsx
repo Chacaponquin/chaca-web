@@ -6,15 +6,22 @@ interface Props {
   children: React.ReactNode
   className?: string
   id?: string
+  height?: number
 }
 
-export default function ChacaDropdown({ children, header, className: inputClassName, id }: Props) {
+export default function ChacaDropdown({
+  children,
+  header,
+  className: inputClassName,
+  id,
+  height,
+}: Props) {
   const [open, setOpen] = useState(false)
 
   const wrapperRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
 
-  const className = clsx("absolute z-20 mt-2", inputClassName)
+  const className = clsx("absolute z-20 mt-2 overflow-auto", inputClassName)
 
   const onClickOutside = useCallback(() => {
     setOpen(false)
@@ -51,7 +58,10 @@ export default function ChacaDropdown({ children, header, className: inputClassN
       {open && (
         <ul
           onClick={handleClickList}
-          style={{ minWidth: `${headerRef.current?.clientWidth}px` }}
+          style={{
+            minWidth: `${headerRef.current?.clientWidth}px`,
+            maxHeight: height ? `${height}px` : undefined,
+          }}
           className={className}
         >
           {children}
