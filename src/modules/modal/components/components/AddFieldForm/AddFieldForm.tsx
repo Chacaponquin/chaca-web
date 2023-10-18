@@ -10,7 +10,7 @@ const AddFieldForm = ({ modalProps }: { modalProps: ModalAddFieldProps }) => {
   })
 
   const { handleAddField, fieldActions, datasetId } = useAddFieldForm({
-    parentFieldID: modalProps.parentFieldID,
+    parentFieldId: modalProps.parentFieldID,
     datasetId: modalProps.datasetId,
   })
 

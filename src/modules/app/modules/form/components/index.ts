@@ -7,6 +7,7 @@ import ChacaTextInput from "./ChacaTextInput/ChacaTextInput"
 import { ChacaIconButton, ChacaLinkButton, ChacaSimpleButton } from "./ChacaButton"
 import ChacaCheckbox from "./ChacaCheckbox/ChacaCheckbox"
 import ChacaSlider from "./ChacaSlider/ChacaSlider"
+import ChacaDropdown from "./ChacaDropdown/ChacaDropdown"
 
 export {
   ChacaNumberInput,
@@ -20,4 +21,5 @@ export {
   ChacaLinkButton,
   ChacaSimpleButton,
   ChacaSlider,
+  ChacaDropdown,
 }

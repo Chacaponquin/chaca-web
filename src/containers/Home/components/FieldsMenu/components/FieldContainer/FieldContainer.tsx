@@ -11,8 +11,7 @@ const FieldContainer = ({
   field: DatasetField<FieldDataType>
   margin: number
 }) => {
-  const { subFieldsOpen, openMenu, handleInteractSubFields, handleInteractOpenMenu } =
-    useFieldContainer()
+  const { subFieldsOpen, handleInteractSubFields } = useFieldContainer()
 
   return (
     <section className="flex flex-col w-full">
@@ -34,11 +33,7 @@ const FieldContainer = ({
             <FieldName name={field.name} />
           </div>
 
-          <FieldOptions
-            field={field}
-            handleInteractOpenMenu={handleInteractOpenMenu}
-            openMenu={openMenu}
-          />
+          <FieldOptions field={field} />
         </div>
       </div>
 

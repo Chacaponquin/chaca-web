@@ -4,19 +4,18 @@ import clsx from "clsx"
 import { useDatasetServices } from "@modules/datasets/services"
 import { HomeContext } from "@containers/Home/context"
 
-const FieldsMenu = ({
-  handleExportSelectedDataset,
-  handleAddNewField,
-}: {
+interface Props {
   handleExportSelectedDataset: () => void
   handleAddNewField: () => void
-}) => {
+}
+
+const FieldsMenu = ({ handleExportSelectedDataset, handleAddNewField }: Props) => {
   const { selectedDataset, showFieldsMenu, handleCloseFieldsMenu } = useDatasetServices()
   const { fieldsMenuRef, smallWindow } = useContext(HomeContext)
 
   const containerClass = clsx(
     "min-w-[300px] max-w-[300px] bg-white border-r-2 dark:border-r-[1px] flex flex-col h-full justify-between",
-    { "fit-screen-box": !smallWindow },
+    { "": !smallWindow },
     { "top-0 left-0 h-screen absolute z-40": smallWindow },
   )
 
@@ -29,8 +28,8 @@ const FieldsMenu = ({
       <div className="h-full bg-white dark:bg-darkColorLight w-full flex flex-col text-black dark:text-white pt-1">
         {selectedDataset && selectedDataset.fields.length > 0 ? (
           <Fragment>
-            {selectedDataset.fields.map((f) => (
-              <FieldContainer key={f.id} margin={0} field={f} />
+            {selectedDataset.fields.map((field) => (
+              <FieldContainer key={field.id} margin={0} field={field} />
             ))}
 
             <DatasetButtons

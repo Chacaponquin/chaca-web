@@ -6,15 +6,13 @@ import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useToastServices } from "@modules/app/modules/toast/services"
 import { useModalServices } from "@modules/modal/services"
 
-export function useEditFieldForm({
-  field,
-  parentFieldID,
-  datasetId,
-}: {
+interface Props {
   field: DatasetField
   parentFieldID: string
   datasetId: string
-}) {
+}
+
+export function useEditFieldForm({ field, parentFieldID, datasetId }: Props) {
   const { REPEAT_NAME, EMPTY_NAME } = useLanguage({
     REPEAT_NAME: {
       en: `Aldready exists an field with that name`,
@@ -40,6 +38,7 @@ export function useEditFieldForm({
       dataType: field.dataType,
       isKey: field.isKey,
     },
+    datasetId: datasetId,
   })
 
   function handleEditField() {

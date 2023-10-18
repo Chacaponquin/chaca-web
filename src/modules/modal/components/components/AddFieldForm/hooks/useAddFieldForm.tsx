@@ -7,14 +7,18 @@ import { useDatatypes } from "@modules/datasets/hooks"
 import { useToastServices } from "@modules/app/modules/toast/services"
 import { useModalServices } from "@modules/modal/services"
 
-export function useAddFieldForm({
-  datasetId,
-  parentFieldID,
-}: {
-  parentFieldID: string
+interface Props {
+  parentFieldId: string
   datasetId: string
-}) {
-  const { DEFAULT_SCHEMA_VALUE_DATA_TYPE } = useDatatypes()
+}
+
+export function useAddFieldForm({ datasetId, parentFieldId }: Props) {
+  const fieldId = uuid()
+
+  const { DEFAULT_SCHEMA_VALUE_DATA_TYPE } = useDatatypes({
+    datasetId: datasetId,
+    fieldId: fieldId,
+  })
 
   const { REPEAT_NAME, EMPTY_NAME } = useLanguage({
     REPEAT_NAME: {
@@ -34,13 +38,14 @@ export function useAddFieldForm({
 
   const fieldActions = useFieldForm({
     field: {
-      id: uuid(),
+      id: fieldId,
       name: "",
       isArray: null,
       isPossibleNull: 0,
       dataType: DEFAULT_SCHEMA_VALUE_DATA_TYPE,
       isKey: false,
     },
+    datasetId: datasetId,
   })
 
   function handleAddField() {
@@ -48,7 +53,7 @@ export function useAddFieldForm({
       handleAddFieldService({
         datasetId: datasetId,
         field: fieldActions.field,
-        parentFieldID: parentFieldID,
+        parentFieldID: parentFieldId,
       })
 
       handleCloseModal()

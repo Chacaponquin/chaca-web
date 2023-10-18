@@ -10,7 +10,7 @@ export default function NoDatasetsMessage({
   const { MESSAGE } = useLanguage({ MESSAGE: { en: "Create Dataset", es: "Crear Dataset" } })
 
   return (
-    <section className="bg-white w-full flex flex-grow flex-col pt-32 items-center">
+    <section className="bg-white dark:bg-darkColor w-full flex flex-grow flex-col pt-32 items-center">
       <img
         src={APP_IMAGES.WAIT_REQUEST.image}
         alt={APP_IMAGES.WAIT_REQUEST.alt}

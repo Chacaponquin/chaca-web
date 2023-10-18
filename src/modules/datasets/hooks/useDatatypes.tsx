@@ -10,13 +10,20 @@ import {
 } from "../interfaces/dataset_field.interface"
 import { useSchemaServices } from "@modules/schemas/services"
 import { DataTypeInf } from "../dto/field"
+import { useDatasetServices } from "../services"
 
-export default function useDatatypes() {
+interface Props {
+  fieldId: string
+  datasetId: string
+}
+
+export default function useDatatypes({ fieldId, datasetId }: Props) {
   const { schemas } = useSchemaServices()
+  const { searchPossibleFieldsToRef } = useDatasetServices()
 
   const DEFAULT_CUSTOM_DATA_TYPE: CustomDataType = {
     type: DATA_TYPES.CUSTOM,
-    code: `function getValue(props){\n// logic of your function\n}`,
+    code: `function getValue(props){\n   // logic of your function\n}`,
   }
 
   const DEFAULT_MIXED_DATA_TYPE: MixedDataType = {
@@ -53,22 +60,49 @@ export default function useDatatypes() {
       title: "Schema Value",
       id: 7,
       default: DEFAULT_SCHEMA_VALUE_DATA_TYPE,
+      condition: schemas.length > 0,
     },
-    { dataType: DATA_TYPES.CUSTOM, title: "Custom", id: 1, default: DEFAULT_CUSTOM_DATA_TYPE },
-    { dataType: DATA_TYPES.ENUM, title: "Enum", id: 2, default: DEFAULT_ENUM_DATA_TYPE },
-    { dataType: DATA_TYPES.MIXED, title: "Object", id: 3, default: DEFAULT_MIXED_DATA_TYPE },
-    { dataType: DATA_TYPES.REF, title: "Reference", id: 4, default: DEFAULT_REF_DATA_TYPE },
+    {
+      dataType: DATA_TYPES.CUSTOM,
+      title: "Custom",
+      id: 1,
+      default: DEFAULT_CUSTOM_DATA_TYPE,
+      condition: true,
+    },
+    {
+      dataType: DATA_TYPES.ENUM,
+      title: "Enum",
+      id: 2,
+      default: DEFAULT_ENUM_DATA_TYPE,
+      condition: true,
+    },
+    {
+      dataType: DATA_TYPES.MIXED,
+      title: "Object",
+      id: 3,
+      default: DEFAULT_MIXED_DATA_TYPE,
+      condition: true,
+    },
+    {
+      dataType: DATA_TYPES.REF,
+      title: "Reference",
+      id: 4,
+      default: DEFAULT_REF_DATA_TYPE,
+      condition: searchPossibleFieldsToRef({ datasetId: datasetId, fieldId: fieldId }).length !== 0,
+    },
     {
       dataType: DATA_TYPES.SEQUENCE,
       title: "Sequence",
       id: 5,
       default: DEFAULT_SEQUENCE_DATA_TYPE,
+      condition: true,
     },
     {
       dataType: DATA_TYPES.SEQUENTIAL,
       title: "Sequential",
       id: 6,
       default: DEFAULT_SEQUENTIAL_DATA_TYPE,
+      condition: true,
     },
   ]
 

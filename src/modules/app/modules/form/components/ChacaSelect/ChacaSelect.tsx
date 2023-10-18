@@ -1,11 +1,10 @@
-import { ArrowDown } from "@modules/app/modules/icon/components"
-import React, { useState, useRef, useMemo, useEffect } from "react"
-import { v4 as uuid } from "uuid"
+import { useState, useEffect, Fragment } from "react"
 import clsx from "clsx"
-import { useFilters } from "../../../../modules/form/hooks"
+import { useFilters } from "@form/hooks"
 import { ChacaFormProps } from "../../interfaces/chacaForm.interface"
 import { Size } from "../../interfaces/dimension.interface"
-import { useMenu } from "@modules/shared/hooks"
+import { Option, Select } from "./components"
+import { ChacaDropdown } from ".."
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface ChacaObjectSelectProps<T> extends ChacaFormProps<any> {
@@ -24,15 +23,16 @@ interface SelectOptions {
 }
 
 export default function ChacaSelect<T>(props: Props<T>) {
-  const { onChange, options, placeholder, value, dimension = "normal", size = "full" } = props
+  const { onChange, options, placeholder, value, dimension = "normal" } = props
+
+  const { paddingClass, textClass } = useFilters({ dimension })
+
+  const [openOptions, setOpenOptions] = useState(false)
 
   const [selectIndex, setSelectIndex] = useState<null | number>(null)
   const [selectOptions, setSelectOptions] = useState<Array<SelectOptions>>([])
 
-  const parentDiv = useRef<null | HTMLDivElement>(null)
-  const refDiv = useRef<null | HTMLDivElement>(null)
-
-  const { handleCloseMenu, handleOpenMenu, isOpen: openOptions } = useMenu({ ref: refDiv })
+  // const parentDiv = useRef<null | HTMLDivElement>(null)
 
   useEffect(() => {
     setSelectOptions([])
@@ -49,35 +49,21 @@ export default function ChacaSelect<T>(props: Props<T>) {
 
   useEffect(() => {
     selectOptions.forEach((o, index) => {
-      if (o["value"] === value) {
+      if (o.value === value) {
         setSelectIndex(index)
       }
     })
   }, [value, selectOptions])
 
-  const { paddingClass, textClass } = useFilters({ dimension })
-
-  const handleInteractiveOptions = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (openOptions) {
-      handleCloseMenu()
-    } else {
-      event.stopPropagation()
-      handleOpenMenu()
-    }
-  }
-
-  const handleSelectOption = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
-    e.stopPropagation()
+  const handleSelectOption = (index: number) => {
     setSelectIndex(index)
 
     if (onChange) {
-      onChange(selectOptions[index]["value"])
+      onChange(selectOptions[index].value)
     }
-
-    handleCloseMenu()
   }
 
-  const optionsStyle = useMemo(() => {
+  /* const optionsStyle = useMemo(() => {
     if (parentDiv.current) {
       return {
         width: `${parentDiv.current.clientWidth + 2.5}px`,
@@ -86,7 +72,7 @@ export default function ChacaSelect<T>(props: Props<T>) {
     } else {
       return { width: `${100}px`, translateY: `${50}px` }
     }
-  }, [parentDiv.current?.clientHeight, size, dimension])
+  }, [parentDiv.current?.clientHeight, size, dimension])*/
 
   const parentClass = clsx(
     "w-full flex items-center border-solid transition-all duration-300 justify-between bg-white py-[2px] border-2 border-grayColor cursor-pointer rounded-sm gap-5 whitespace-nowrap",
@@ -95,8 +81,8 @@ export default function ChacaSelect<T>(props: Props<T>) {
     paddingClass,
   )
 
-  const optionClass = (index: number) =>
-    clsx(
+  const optionClass = (index: number) => {
+    return clsx(
       "py-2 cursor-pointer duration-300 transition-all",
       {
         "bg-slate-100": index === selectIndex,
@@ -105,43 +91,33 @@ export default function ChacaSelect<T>(props: Props<T>) {
       textClass,
       paddingClass,
     )
+  }
+
+  function handleChangeOpenOptions() {
+    setOpenOptions((prev) => !prev)
+  }
 
   return (
-    <div
-      className="flex flex-col relative"
-      style={{
-        width: size === "full" ? "100%" : `${size}px`,
-        minWidth: size === "full" ? "100px" : `${size}px`,
-      }}
+    <ChacaDropdown
+      header={
+        <Select
+          text={selectIndex !== null ? selectOptions[selectIndex].label : placeholder}
+          className={parentClass}
+          onClick={handleChangeOpenOptions}
+        />
+      }
+      className="bg-white"
     >
-      <div className={parentClass} onClick={(e) => handleInteractiveOptions(e)} ref={parentDiv}>
-        <p className="pointer-events-none overflow-x-auto no-scroll">
-          {selectIndex !== null ? String(selectOptions[selectIndex]["label"]) : placeholder}
-        </p>
-
-        <button>
-          <ArrowDown size={18} />
-        </button>
-      </div>
-
-      {openOptions && (
-        <div
-          className="flex w-full flex-col z-50 bg-white rounded-sm shadow-lg absolute max-h-[300px] overflow-y-auto"
-          style={{
-            transform: `translateY(${optionsStyle.translateY})`,
-          }}
-        >
-          {options.map((_, index) => (
-            <div
-              key={uuid()}
-              className={optionClass(index)}
-              onClick={(e) => handleSelectOption(e, index)}
-            >
-              {String(selectOptions[index]["label"])}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+      <Fragment>
+        {options.map((_, index) => (
+          <Option
+            key={index}
+            text={selectOptions[index]?.label}
+            className={optionClass(index)}
+            onClick={() => handleSelectOption(index)}
+          />
+        ))}
+      </Fragment>
+    </ChacaDropdown>
   )
 }

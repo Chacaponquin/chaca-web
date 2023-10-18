@@ -8,9 +8,15 @@ interface RefConfigProps {
   refField: Array<string>
   datasetId: string
   handleChangeRefField: (r: string) => void
+  id: string
 }
 
-export default function RefConfig({ refField, datasetId, handleChangeRefField }: RefConfigProps) {
+export default function RefConfig({
+  refField,
+  datasetId,
+  handleChangeRefField,
+  id,
+}: RefConfigProps) {
   const fieldRefId = useId()
   const { searchPossibleFieldsToRef, findFieldByLocation } = useDatasetServices()
 
@@ -19,7 +25,7 @@ export default function RefConfig({ refField, datasetId, handleChangeRefField }:
     PLACEHOLDER: { en: "Select a field", es: "Selecciona un campo" },
   })
 
-  const possibleFields = searchPossibleFieldsToRef({ datasetId })
+  const possibleFields = searchPossibleFieldsToRef({ datasetId, fieldId: id })
   const foundField = findFieldByLocation(refField)
 
   return (

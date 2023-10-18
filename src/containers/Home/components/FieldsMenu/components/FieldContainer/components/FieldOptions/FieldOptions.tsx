@@ -1,22 +1,25 @@
 import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets.interface"
 import { Config } from "@modules/app/modules/icon/components"
 import { FieldConfigMenu } from "./components"
+import { ChacaDropdown } from "@form/components"
 
-export default function FieldOptions({
-  field,
-  handleInteractOpenMenu,
-  openMenu,
-}: {
-  openMenu: boolean
-  handleInteractOpenMenu: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+interface Props {
   field: DatasetField<FieldDataType>
-}) {
+}
+
+export default function FieldOptions({ field }: Props) {
   return (
     <div className="flex flex-col relative dark:fill-white fill-black">
-      <button onClick={handleInteractOpenMenu}>
-        <Config size={19} />
-        {openMenu && <FieldConfigMenu field={field} />}
-      </button>
+      <ChacaDropdown
+        header={
+          <button>
+            <Config size={19} />
+          </button>
+        }
+        className="bg-white dark:bg-darkColorExtraLight text-black dark:text-white shadow-md rounded-sm"
+      >
+        <FieldConfigMenu field={field} />
+      </ChacaDropdown>
     </div>
   )
 }

@@ -51,9 +51,12 @@ export default function FieldForm({
         label={DATA_TYPE_TEXT}
         handleChangeDataType={handleChangeDataType}
         dataType={field.dataType.type}
+        fieldId={field.id}
+        datasetId={datasetId}
       />
 
       <DataTypeConfig
+        id={field.id}
         datasetId={datasetId}
         handleSelectFieldSchema={handleSelectFieldSchema}
         handleSelectFieldSchemaOption={handleSelectFieldSchemaOption}

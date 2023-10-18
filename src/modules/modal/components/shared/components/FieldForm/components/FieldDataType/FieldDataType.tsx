@@ -1,19 +1,25 @@
 import { ChacaSelect } from "@form/components"
 import { useDatatypes } from "@modules/datasets/hooks"
 import { DATA_TYPES } from "@modules/schemas/constants"
-import FormInputSection from "../../../../shared/components/FormInputSection/FormInputSection"
+import { FormInputSection } from "../../../../shared/components"
 import { useId } from "react"
+
+interface Props {
+  label: string
+  handleChangeDataType: (i: number) => void
+  dataType: DATA_TYPES
+  fieldId: string
+  datasetId: string
+}
 
 export default function FieldDataType({
   label,
   handleChangeDataType,
   dataType,
-}: {
-  label: string
-  handleChangeDataType: (i: number) => void
-  dataType: DATA_TYPES
-}) {
-  const { DATA_TYPES_ARRAY, foundDataTypeByName } = useDatatypes()
+  datasetId,
+  fieldId,
+}: Props) {
+  const { DATA_TYPES_ARRAY, foundDataTypeByName } = useDatatypes({ fieldId, datasetId })
   const foundDataType = foundDataTypeByName(dataType)
 
   const inputId = useId()
@@ -23,7 +29,7 @@ export default function FieldDataType({
       <ChacaSelect
         id={inputId}
         placeholder="Tipo"
-        options={DATA_TYPES_ARRAY}
+        options={DATA_TYPES_ARRAY.filter((d) => d.condition)}
         labelKey="title"
         valueKey="id"
         value={foundDataType.id}

@@ -14,6 +14,21 @@ import {
   UpdateCustomProps,
 } from "@modules/modal/components/shared/interfaces/form.interfaces"
 
+interface Props {
+  datasetId: string
+  dataType: FieldDataType
+  handleSelectFieldSchema: (v: string) => void
+  handleSelectFieldSchemaOption: (p: SelectFieldSchemaOptionProps) => void
+  handleUpdateCustomField: (p: UpdateCustomProps) => void
+  handleUpdateFieldSchemaArguments: (p: UpdateArgumentsProps) => void
+  handleChangeSequentialValues: (v: string) => void
+  handleChangeEnumValues: (v: string) => void
+  handleChangeSequenceStartsWith: (v: number) => void
+  handleChangeSequenceStep: (v: number) => void
+  handleChangeRefField: (r: string) => void
+  id: string
+}
+
 export default function DataTypeConfig({
   datasetId,
   dataType,
@@ -26,19 +41,8 @@ export default function DataTypeConfig({
   handleChangeSequenceStartsWith,
   handleChangeSequenceStep,
   handleChangeRefField,
-}: {
-  datasetId: string
-  dataType: FieldDataType
-  handleSelectFieldSchema: (v: string) => void
-  handleSelectFieldSchemaOption: (p: SelectFieldSchemaOptionProps) => void
-  handleUpdateCustomField: (p: UpdateCustomProps) => void
-  handleUpdateFieldSchemaArguments: (p: UpdateArgumentsProps) => void
-  handleChangeSequentialValues: (v: string) => void
-  handleChangeEnumValues: (v: string) => void
-  handleChangeSequenceStartsWith: (v: number) => void
-  handleChangeSequenceStep: (v: number) => void
-  handleChangeRefField: (r: string) => void
-}) {
+  id,
+}: Props) {
   return (
     <section>
       {dataType.type === DATA_TYPES.ENUM && (
@@ -52,6 +56,7 @@ export default function DataTypeConfig({
           refField={dataType.ref}
           datasetId={datasetId}
           handleChangeRefField={handleChangeRefField}
+          id={id}
         />
       )}
       {dataType.type === DATA_TYPES.SEQUENCE && (

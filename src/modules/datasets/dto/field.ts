@@ -16,4 +16,5 @@ export interface DataTypeInf {
   dataType: DATA_TYPES
   id: number
   default: FieldDataType
+  condition: boolean
 }

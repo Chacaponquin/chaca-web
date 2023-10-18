@@ -17,8 +17,13 @@ import {
 } from "../interfaces/form.interfaces"
 import { EnumField, SequentialField } from "@modules/datasets/domain/fields"
 
-export const useFieldForm = ({ field: inputField }: { field: FieldForm }): FieldActions => {
-  const { DATA_TYPES_ARRAY } = useDatatypes()
+interface Props {
+  field: FieldForm
+  datasetId: string
+}
+
+export const useFieldForm = ({ field: inputField, datasetId }: Props): FieldActions => {
+  const { DATA_TYPES_ARRAY } = useDatatypes({ fieldId: inputField.id, datasetId: datasetId })
   const [field, formDispatch] = useReducer<Reducer<FieldForm, FieldFormPayload>>(
     fieldFormReducer,
     inputField,

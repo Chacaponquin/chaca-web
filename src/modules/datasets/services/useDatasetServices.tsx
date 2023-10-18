@@ -32,6 +32,11 @@ interface DeleteFieldProps {
   fieldId: string
 }
 
+interface SearchRefFieldsProps {
+  datasetId: string
+  fieldId: string
+}
+
 export default function useDatasetServices() {
   const {
     datasetDispatch,
@@ -174,9 +179,8 @@ export default function useDatasetServices() {
 
   function searchPossibleFieldsToRef({
     datasetId,
-  }: {
-    datasetId: string
-  }): Array<PossibleFieldToRef> {
+    fieldId,
+  }: SearchRefFieldsProps): Array<PossibleFieldToRef> {
     const returnFields = [] as Array<PossibleFieldToRef>
 
     for (const dat of datasets) {
@@ -184,10 +188,12 @@ export default function useDatasetServices() {
         const fields = dat.allPossibleFieldsToRef()
 
         for (const f of fields) {
-          returnFields.push({
-            locationIds: dat.getFieldLocationIds(f.id).join("."),
-            locationNames: dat.getFieldLocation(f.id).join("."),
-          })
+          if (fieldId !== f.id) {
+            returnFields.push({
+              locationIds: dat.getFieldLocationIds(f.id).join("."),
+              locationNames: dat.getFieldLocation(f.id).join("."),
+            })
+          }
         }
       }
     }
