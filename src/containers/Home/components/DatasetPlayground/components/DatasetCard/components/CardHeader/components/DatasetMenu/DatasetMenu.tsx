@@ -1,6 +1,7 @@
 import { Delete, Edit, Share } from "@modules/app/modules/icon/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { Fragment } from "react"
+import { Item } from "./components"
 
 interface DatasetMenuProps {
   handleEditDataset: () => void
@@ -21,33 +22,28 @@ export default function DatasetMenu({
     EDIT_OPTION: { en: "Edit", es: "Editar" },
   })
 
-  const OPTION_CLASS =
-    "flex items-center gap-x-5 text-lg py-2 px-5 transition-all duration-300 hover:bg-grayColor cursor-pointer"
-
-  const ICON_SIZE = 17
-
   return (
     <Fragment>
-      <li onClick={handleEditDataset} id={`${name}-dataset-edit-button`} className={OPTION_CLASS}>
-        <Edit size={ICON_SIZE} />
-        <p>{EDIT_OPTION}</p>
-      </li>
-      <li
+      <Item
+        onClick={handleEditDataset}
+        text={EDIT_OPTION}
+        icon={Edit}
+        id={`${name}-dataset-edit-button`}
+      />
+
+      <Item
         onClick={handleExportDataset}
-        className={OPTION_CLASS}
+        icon={Share}
         id={`${name}-dataset-export-button`}
-      >
-        <Share size={ICON_SIZE} />
-        <p>{EXPORT_OPTION}</p>
-      </li>
-      <li
+        text={EXPORT_OPTION}
+      />
+
+      <Item
+        text={DELETE_OPTION}
         onClick={handleDeleteDataset}
-        className={OPTION_CLASS}
+        icon={Delete}
         id={`${name}-dataset-delete-button`}
-      >
-        <Delete size={ICON_SIZE} />
-        <p>{DELETE_OPTION}</p>
-      </li>
+      />
     </Fragment>
   )
 }

@@ -25,7 +25,7 @@ export default function CardHeader({
       <ChacaDropdown
         header={<Config name={name} />}
         id={`${name}-dataset-config-menu`}
-        className="bg-white shadow-lg z-50 rounded text-black fill-black stroke-black"
+        className="bg-white shadow-lg mt-5 -translate-x-6 z-50 rounded text-black fill-black stroke-black"
       >
         <DatasetMenu
           handleDeleteDataset={handleDeleteDataset}
