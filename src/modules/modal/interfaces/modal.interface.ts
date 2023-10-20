@@ -16,6 +16,7 @@ export type ModalAddFieldProps = {
 export type ModalDeleteDataset = {
   type: MODAL_ACTIONS.DELETE_DATASET
   datasetName: string
+  datasetId: string
 }
 
 export type ModalEditField = {

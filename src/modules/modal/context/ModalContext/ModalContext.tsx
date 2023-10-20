@@ -1,6 +1,6 @@
 import { ModalProps } from "@modules/modal/interfaces/modal.interface"
 import { AppContext } from "@modules/app/context"
-import { createContext, ReactElement, useState, useContext, Fragment } from "react"
+import { createContext, ReactElement, useState, useContext } from "react"
 import { Modal } from "@modules/modal/components"
 
 interface ModalContextProps {
@@ -29,10 +29,8 @@ const ModalProvider = ({ children }: { children: ReactElement }) => {
 
   return (
     <ModalContext.Provider value={data}>
-      <Fragment>
-        {openModal && <Modal modalProps={openModal} />}
-        {children}
-      </Fragment>
+      {openModal && <Modal modalProps={openModal} />}
+      {children}
     </ModalContext.Provider>
   )
 }

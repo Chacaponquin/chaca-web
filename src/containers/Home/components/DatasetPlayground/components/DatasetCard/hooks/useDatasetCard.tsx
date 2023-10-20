@@ -35,17 +35,19 @@ export default function useDatasetCard({
     }
   }
 
-  const handleDeleteDataset = () => {
+  function handleDeleteDataset() {
     const dat = get(index)
 
     handleOpenModal({
       type: MODAL_ACTIONS.DELETE_DATASET,
       datasetName: dat.name,
+      datasetId: dat.id,
     })
+
     handleCloseMenu()
   }
 
-  const handleEditDataset = () => {
+  function handleEditDataset() {
     const dat = get(index)
 
     handleOpenModal({ type: MODAL_ACTIONS.EDIT_DATASET, dataset: dat })

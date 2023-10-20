@@ -21,7 +21,10 @@ const Modal = ({ modalProps }: { modalProps: ModalProps }) => {
         )}
         {modalProps.type === MODAL_ACTIONS.ADD_FIELD && <AddFieldForm modalProps={modalProps} />}
         {modalProps.type === MODAL_ACTIONS.DELETE_DATASET && (
-          <DeleteDatasetForm datasetName={modalProps.datasetName} />
+          <DeleteDatasetForm
+            datasetName={modalProps.datasetName}
+            datasetId={modalProps.datasetId}
+          />
         )}
         {modalProps.type === MODAL_ACTIONS.EDIT_FIELD && <EditFieldForm modalProps={modalProps} />}
         {modalProps.type === MODAL_ACTIONS.EXPORT_SELECT_DATASET && (

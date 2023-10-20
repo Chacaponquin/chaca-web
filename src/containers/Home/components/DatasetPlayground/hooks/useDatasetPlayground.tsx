@@ -17,20 +17,9 @@ export default function useDatasetPlayground() {
   const { datasets, getDatasetConnections } = useDatasetServices()
   const [selectFieldPoint, setSelectFieldPoint] = useState<string | null>(null)
   const [points, setPoints] = useState<Array<Point>>([])
-  const [showDatasets, setShowDatasets] = useState<Array<ShowDataset>>([])
 
-  useEffect(() => {
-    const show = [] as Array<ShowDataset>
-
-    let x = 0
-    let y = 0
-    for (const dat of datasets) {
-      show.push({ dataset: dat, positionX: x, positionY: y })
-      x += 500
-      y += 100
-    }
-
-    setShowDatasets(show)
+  const showDatasets: Array<ShowDataset> = useMemo(() => {
+    return datasets.map((d) => ({ dataset: d, positionX: 0, positionY: 0 }))
   }, [datasets])
 
   const connectDatasets: Array<DatasetConnection> = useMemo(() => {
