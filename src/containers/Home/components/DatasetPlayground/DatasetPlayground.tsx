@@ -2,7 +2,6 @@ import { useContext } from "react"
 import { ArrowSvg, DatasetCard, DatasetsButtons } from "./components"
 import { useDatasetPlayground } from "./hooks"
 import { HomeContext } from "@containers/Home/context"
-import { motion } from "framer-motion"
 
 interface Props {
   handleCreateSelectDataset: (i: number) => void
@@ -32,7 +31,7 @@ export default function DatasetPlayground({
         handleCreateAllDatasets={handleCreateAllDatasets}
       />
 
-      <motion.div
+      <div
         className="relative w-full h-full bg-grayColor dark:bg-darkColorExtraLight"
         ref={playgroundRef}
         id="dataset-playground"
@@ -41,7 +40,7 @@ export default function DatasetPlayground({
           <DatasetCard
             handleCreateSelectDataset={handleCreateSelectDataset}
             index={index}
-            key={index}
+            key={d.dataset.id}
             positionX={d.positionX}
             positionY={d.positionY}
             handleClickPoint={handleClickPoint}
@@ -53,7 +52,7 @@ export default function DatasetPlayground({
         ))}
 
         <ArrowSvg points={points} />
-      </motion.div>
+      </div>
     </section>
   )
 }

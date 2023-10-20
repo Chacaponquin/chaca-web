@@ -94,7 +94,7 @@ export default function ChacaSelect<T>(props: Props<T>) {
           onClick={handleChangeOpenOptions}
         />
       }
-      className="bg-white"
+      className="bg-white shadow-lg"
       height={height}
     >
       <Fragment>

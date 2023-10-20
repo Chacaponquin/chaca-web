@@ -2,7 +2,14 @@ import { useMemo, useState, useCallback, useEffect } from "react"
 import { ArrowCoords, ClickPointProps, Point } from "../interfaces/point.interface"
 import { useDatasetServices } from "@modules/datasets/services"
 import { DatasetConnection } from "@modules/datasets/interfaces/dataset_connect.interface"
-import { getGroupedConnections, getPathData, pathify, getElement, orderCoords } from "../utils"
+import {
+  getGroupedConnections,
+  getPathData,
+  pathify,
+  getElement,
+  groupArrows,
+  reubicateArrows,
+} from "../utils"
 import { ConnectElement } from "../interfaces/connect.interface"
 import { ChangeDatasetCardProps, ShowDataset } from "../interfaces/card.interface"
 
@@ -49,11 +56,9 @@ export default function useDatasetPlayground() {
       })
     }
 
-    console.log(arrowCoords)
+    const groups = groupArrows(arrowCoords)
 
-    orderCoords(arrowCoords)
-
-    console.log(arrowCoords)
+    reubicateArrows(groups)
 
     for (const arrow of arrowCoords) {
       const path = pathify({ paths: arrow.coords })

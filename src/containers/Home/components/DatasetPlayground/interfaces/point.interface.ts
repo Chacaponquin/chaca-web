@@ -19,6 +19,7 @@ export interface ArrowCoords {
   direction: ArrowDirection
   coords: Array<Coords>
   to: DOMRect
+  id: string
 }
 
 export type ArrowDirection =
