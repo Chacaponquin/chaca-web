@@ -34,11 +34,9 @@ export default function DatasetCard({
   const { playgroundRef } = useContext(HomeContext)
 
   const {
-    openConfig,
     handleEditDataset,
     handleDeleteDataset,
     handleExportDataset,
-    handleInteractOpenConfig,
     handleClickCard,
     onDrangEnd,
   } = useDatasetCard({
@@ -70,8 +68,6 @@ export default function DatasetCard({
       onClick={handleClickCard}
     >
       <CardHeader
-        openConfig={openConfig}
-        handleInteractOpenConfig={handleInteractOpenConfig}
         handleDeleteDataset={handleDeleteDataset}
         handleEditDataset={handleEditDataset}
         handleExportDataset={handleExportDataset}

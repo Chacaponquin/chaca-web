@@ -1,6 +1,5 @@
 import { ModalProps } from "@modules/modal/interfaces/modal.interface"
-import { AppContext } from "@modules/app/context"
-import { createContext, ReactElement, useState, useContext } from "react"
+import { createContext, ReactElement, useState } from "react"
 import { Modal } from "@modules/modal/components"
 
 interface ModalContextProps {
@@ -12,13 +11,10 @@ interface ModalContextProps {
 const ModalContext = createContext<ModalContextProps>({} as ModalContextProps)
 
 const ModalProvider = ({ children }: { children: ReactElement }) => {
-  const { handleOpenDropDown } = useContext(AppContext)
-
   const [openModal, setOpenModal] = useState<null | ModalProps>(null)
 
   const handleOpenModal = (props: ModalProps) => {
     setOpenModal(props)
-    handleOpenDropDown("")
   }
 
   const handleCloseModal = () => {

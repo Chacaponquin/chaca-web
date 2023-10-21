@@ -2,8 +2,6 @@ import { ChacaDropdown } from "@form/components"
 import { Config, DatasetInfo, DatasetMenu } from "./components"
 
 interface CardHeaderProps {
-  openConfig: boolean
-  handleInteractOpenConfig: (e: React.MouseEvent) => void
   handleEditDataset: () => void
   handleDeleteDataset: () => void
   handleExportDataset: () => void

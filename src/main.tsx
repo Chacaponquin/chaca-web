@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Landing, ContactUs, Error404, SignUp, Login, Home } from "./containers"
 
 // CONTEXT PROVIDERS
-import { AppProvider } from "@modules/app/context"
 import { DatasetsProvider } from "@modules/datasets/context"
 import { UserProvider } from "@modules/user/context/UserContext"
 import { LanguageProvider } from "@modules/app/modules/language/context"
@@ -57,25 +56,23 @@ root.render(
   <ErrorBoundary fallback={<Error />}>
     <BrowserRouter>
       <ToastProvider>
-        <AppProvider>
-          <SchemasProvider>
-            <LanguageProvider>
-              <ThemeProvider>
-                <UserProvider>
-                  <ConfigProvider>
-                    <DatasetsProvider>
-                      <ModalProvider>
-                        <SocketProvider>
-                          <AppRoutes />
-                        </SocketProvider>
-                      </ModalProvider>
-                    </DatasetsProvider>
-                  </ConfigProvider>
-                </UserProvider>
-              </ThemeProvider>
-            </LanguageProvider>
-          </SchemasProvider>
-        </AppProvider>
+        <SchemasProvider>
+          <LanguageProvider>
+            <ThemeProvider>
+              <UserProvider>
+                <ConfigProvider>
+                  <DatasetsProvider>
+                    <ModalProvider>
+                      <SocketProvider>
+                        <AppRoutes />
+                      </SocketProvider>
+                    </ModalProvider>
+                  </DatasetsProvider>
+                </ConfigProvider>
+              </UserProvider>
+            </ThemeProvider>
+          </LanguageProvider>
+        </SchemasProvider>
       </ToastProvider>
     </BrowserRouter>
   </ErrorBoundary>,
