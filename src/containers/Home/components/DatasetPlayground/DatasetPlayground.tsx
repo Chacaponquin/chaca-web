@@ -25,17 +25,13 @@ export default function DatasetPlayground({
   const { playgroundRef } = useContext(HomeContext)
 
   return (
-    <section className="w-full h-full flex flex-col">
+    <section className="w-full h-full flex flex-col dark:bg-darkColorExtraLight bg-grayColor">
       <DatasetsButtons
         handleAddDataset={handleAddDataset}
         handleCreateAllDatasets={handleCreateAllDatasets}
       />
 
-      <div
-        className="relative w-full h-full bg-grayColor dark:bg-darkColorExtraLight"
-        ref={playgroundRef}
-        id="dataset-playground"
-      >
+      <div className="relative w-full h-full" ref={playgroundRef} id="dataset-playground">
         {showDatasets.map((d, index) => (
           <DatasetCard
             handleCreateSelectDataset={handleCreateSelectDataset}
