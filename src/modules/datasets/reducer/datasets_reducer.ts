@@ -24,7 +24,7 @@ export type DatasetPayload =
   | {
       type: DATASETS_ACTIONS.ADD_NEW_FIELD
       payload: {
-        parentFieldID: string
+        parentfieldId: string
         fieldInfo: NodeProps<FieldDataType>
         datasetID: string
       }
@@ -45,7 +45,7 @@ export type DatasetPayload =
     }
   | {
       type: DATASETS_ACTIONS.DELETE_FIELD
-      payload: { datasetID: string; fieldID: string }
+      payload: { datasetID: string; fieldId: string }
     }
   | {
       type: DATASETS_ACTIONS.CHANGE_DATASET_NAME
@@ -79,7 +79,7 @@ export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
       return useCase.execute({
         datasetId: action.payload.datasetID,
         field: action.payload.fieldInfo,
-        parentId: action.payload.parentFieldID,
+        parentId: action.payload.parentfieldId,
       })
     }
 
@@ -100,7 +100,7 @@ export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
       const useCase = new DeleteField(datasets)
       return useCase.execute({
         datasetId: action.payload.datasetID,
-        fieldId: action.payload.fieldID,
+        fieldId: action.payload.fieldId,
       })
     }
 

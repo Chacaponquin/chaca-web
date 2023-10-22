@@ -133,13 +133,13 @@ export const useFieldForm = ({ field: inputField, datasetId }: Props): FieldActi
     })
   }
 
-  function handleUpdateRefField({ currentFieldID, currentLocation }: UpdateRefProps) {
+  function handleUpdateRefField({ currentfieldId, currentLocation }: UpdateRefProps) {
     formDispatch({
       type: FORM_ACTIONS.CHANGE_FIELD_DATATYPE,
       payload: {
         dataType: {
           type: DATA_TYPES.REF,
-          ref: [...currentLocation, currentFieldID],
+          ref: [...currentLocation, currentfieldId],
         },
       },
     })

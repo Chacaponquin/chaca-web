@@ -5,7 +5,7 @@ import { MixedNode } from "../domain/tree/FieldNode"
 
 interface ValidateFieldProps {
   datasetId: string
-  parentID: string
+  parentId: string
   fieldName: string
 }
 
@@ -36,13 +36,13 @@ export function useValidations() {
   const validateNoDuplicateLevelFieldName = ({
     datasetId,
     fieldName,
-    parentID,
+    parentId,
   }: ValidateFieldProps) => {
     const foundDataset = datasets.find((d) => d.id === datasetId)
 
     if (foundDataset) {
       let cont = 0
-      const findParent = foundDataset.findNodeById(parentID)
+      const findParent = foundDataset.findNodeById(parentId)
 
       if (findParent) {
         if (findParent instanceof MixedNode) {

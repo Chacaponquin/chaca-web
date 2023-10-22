@@ -8,9 +8,9 @@ import { useEnvServices } from "@modules/app/modules/env/services"
 import { useSocketServices } from "@modules/app/modules/socket/services"
 import { useDatasetServices } from "@modules/datasets/services"
 import { useModalServices } from "@modules/modal/services"
-import { Dataset } from "@modules/datasets/domain/tree"
-import { ExportDataset } from "@modules/datasets/dto/dataset"
+import { Dataset, ExportDataset } from "@modules/datasets/domain/tree"
 import { useSchemaServices } from "@modules/schemas/services"
+import { EmptyRefFieldError } from "@modules/datasets/errors"
 
 export const useHome = () => {
   const {
@@ -25,9 +25,13 @@ export const useHome = () => {
   const { socket } = useSocketServices()
   const { findParent, findType } = useSchemaServices()
 
-  const { NETWORK_ERROR, CREATION_ERROR } = useLanguage({
+  const { NETWORK_ERROR, CREATION_ERROR, EMPTY_REF_FIELD_ERROR } = useLanguage({
     NETWORK_ERROR: { en: "Network connect error", es: "Error en la conexión" },
     CREATION_ERROR: { en: "Creation error", es: "Hubo un error en la creación de los datasets" },
+    EMPTY_REF_FIELD_ERROR: {
+      en: "Can't export a ref field that doesn't point to another field",
+      es: "No se puede exportar un campo ref que no apunte a otro campo",
+    },
   })
 
   const [createDataLoading, setCreateDataLoading] = useState(false)
@@ -37,7 +41,6 @@ export const useHome = () => {
       setTimeout(() => socket.connect(), 5000)
     })
 
-    // evento cuando se termine la creacion de los datasets
     socket.on(SOCKET_EVENTS.GET_FILE_URL, (downUrl) => {
       window.open(`${API_ROUTE}/${downUrl}`)
       setCreateDataLoading(false)
@@ -57,21 +60,29 @@ export const useHome = () => {
     }
   }, [socket])
 
-  const handleExportAllDatasets = async () => {
-    if (socket.connected) {
-      setCreateDataLoading(true)
+  function handleExportAllDatasets() {
+    try {
+      if (socket.connected) {
+        setCreateDataLoading(true)
 
-      const exportDatasets: Array<ExportDataset> = datasets.map((d) =>
-        d.exportObject({ findOption: findType, findParent: findParent }),
-      )
+        const exportDatasets: Array<ExportDataset> = datasets.map((dat) =>
+          dat.exportObject({ findOption: findType, findParent: findParent }),
+        )
 
-      socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {
-        datasets: exportDatasets,
-        config,
-      })
-    } else {
-      toastError(NETWORK_ERROR)
+        socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {
+          datasets: exportDatasets,
+          config,
+        })
+      } else {
+        toastError(NETWORK_ERROR)
+        setCreateDataLoading(false)
+      }
+    } catch (error) {
       setCreateDataLoading(false)
+
+      if (error instanceof EmptyRefFieldError) {
+        toastError(EMPTY_REF_FIELD_ERROR)
+      }
     }
   }
 
@@ -82,7 +93,7 @@ export const useHome = () => {
     })
   }
 
-  const handleExportDataset = (dataset: Dataset) => {
+  function handleExportDataset(dataset: Dataset) {
     if (socket.connected) {
       setCreateDataLoading(true)
 
@@ -96,11 +107,11 @@ export const useHome = () => {
     }
   }
 
-  const handleExportDatasetByIndex = (datasetIndex: number) => {
+  function handleExportDatasetByIndex(datasetIndex: number) {
     handleExportDataset(datasets[datasetIndex])
   }
 
-  const handleExportSelectedDataset = () => {
+  function handleExportSelectedDataset() {
     if (selectedDataset) {
       handleOpenModal({
         type: MODAL_ACTIONS.EXPORT_SELECT_DATASET,
@@ -113,7 +124,7 @@ export const useHome = () => {
     if (selectedDataset) {
       handleOpenModal({
         type: MODAL_ACTIONS.ADD_FIELD,
-        parentFieldID: selectedDataset.id,
+        parentfieldId: selectedDataset.id,
         datasetId: selectedDataset.id,
       })
     }

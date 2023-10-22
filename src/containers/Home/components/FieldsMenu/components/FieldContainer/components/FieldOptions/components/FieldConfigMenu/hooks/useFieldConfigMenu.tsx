@@ -15,7 +15,7 @@ export function useFieldConfigMenu({ field }: { field: DatasetField }) {
         handleOpenModal({
           type: MODAL_ACTIONS.EDIT_FIELD,
           field,
-          parentFieldID: findParent.id,
+          parentfieldId: findParent.id,
           datasetId: selectedDataset.id,
         })
       }
@@ -27,7 +27,7 @@ export function useFieldConfigMenu({ field }: { field: DatasetField }) {
       handleOpenModal({
         type: MODAL_ACTIONS.ADD_FIELD,
         datasetId: selectedDataset.id,
-        parentFieldID: field.id,
+        parentfieldId: field.id,
       })
     }
   }

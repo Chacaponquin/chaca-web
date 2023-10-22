@@ -11,7 +11,7 @@ const EditFieldForm = ({ modalProps }: { modalProps: ModalEditField }) => {
 
   const { handleEditField, fieldActions, datasetId } = useEditFieldForm({
     field: modalProps.field,
-    parentFieldID: modalProps.parentFieldID,
+    parentfieldId: modalProps.parentfieldId,
     datasetId: modalProps.datasetId,
   })
 

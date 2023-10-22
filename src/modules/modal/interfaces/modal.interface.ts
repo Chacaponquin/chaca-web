@@ -9,7 +9,7 @@ export type ModalEditDataset = {
 
 export type ModalAddFieldProps = {
   type: MODAL_ACTIONS.ADD_FIELD
-  parentFieldID: string
+  parentfieldId: string
   datasetId: string
 }
 
@@ -22,7 +22,7 @@ export type ModalDeleteDataset = {
 export type ModalEditField = {
   type: MODAL_ACTIONS.EDIT_FIELD
   field: DatasetField<FieldDataType>
-  parentFieldID: string
+  parentfieldId: string
   datasetId: string
 }
 

@@ -19,7 +19,7 @@ export class AddField extends DatasetUseCase<ExecuteProps> {
         if (datasetId === parentId) {
           d.insertField(newNode)
         } else {
-          const findParent = d.findFieldByID(parentId)
+          const findParent = d.findFieldById(parentId)
 
           if (findParent && findParent instanceof MixedNode) {
             findParent.nodesUtils.insertNode(newNode)

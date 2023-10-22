@@ -14,7 +14,7 @@ export class DeleteDataset extends DatasetUseCase<string> {
       const refFields = dat.refFields()
 
       for (const ref of refFields) {
-        if (ref.dataType.ref[0] === datasetId) {
+        if (ref.dataType.ref.includes(datasetId)) {
           ref.dataType.ref = []
         }
       }

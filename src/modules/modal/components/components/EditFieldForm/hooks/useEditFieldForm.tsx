@@ -8,11 +8,11 @@ import { useModalServices } from "@modules/modal/services"
 
 interface Props {
   field: DatasetField
-  parentFieldID: string
+  parentfieldId: string
   datasetId: string
 }
 
-export function useEditFieldForm({ field, parentFieldID, datasetId }: Props) {
+export function useEditFieldForm({ field, parentfieldId, datasetId }: Props) {
   const { REPEAT_NAME, EMPTY_NAME } = useLanguage({
     REPEAT_NAME: {
       en: `Aldready exists an field with that name`,
@@ -45,7 +45,7 @@ export function useEditFieldForm({ field, parentFieldID, datasetId }: Props) {
     try {
       handleUpdateField({
         fieldDTO: fieldActions.field,
-        parentFieldID: parentFieldID,
+        parentfieldId: parentfieldId,
         datasetId: datasetId,
       })
 

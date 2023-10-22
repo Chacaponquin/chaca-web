@@ -14,7 +14,7 @@ export default function NoDatasetsMessage({
     <section className="bg-white dark:bg-darkColor w-full flex flex-grow flex-col pt-24 items-center">
       <Image image={APP_IMAGES.WELCOME} className="object-contain w-[460px]" />
 
-      <p className="text-xl mt-8">
+      <p className="text-xl mt-8 text-black dark:text-white">
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur, officia.
       </p>
 

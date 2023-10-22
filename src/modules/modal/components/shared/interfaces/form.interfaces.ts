@@ -12,7 +12,7 @@ export interface UpdateArgumentsProps {
 
 export interface UpdateRefProps {
   currentLocation: Array<string>
-  currentFieldID: string
+  currentfieldId: string
 }
 
 export interface UpdateCustomProps {

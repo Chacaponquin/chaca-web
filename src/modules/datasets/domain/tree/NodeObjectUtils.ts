@@ -35,8 +35,8 @@ export class NodeObjectUtils {
     return this.nodes.some((n) => n.isKey)
   }
 
-  public getSameLevelNodes(fieldID: string): Array<FieldNode<FieldDataType, ExportDatatype>> {
-    const findNode = this.nodes.some((n) => n.id === fieldID)
+  public getSameLevelNodes(fieldId: string): Array<FieldNode<FieldDataType, ExportDatatype>> {
+    const findNode = this.nodes.some((n) => n.id === fieldId)
     if (findNode) return this.nodes
 
     let returnArray = [] as Array<FieldNode<FieldDataType, ExportDatatype>>
@@ -45,7 +45,7 @@ export class NodeObjectUtils {
       const node = this.nodes[i]
 
       if (node instanceof MixedNode) {
-        returnArray = node.nodesUtils.getSameLevelNodes(fieldID)
+        returnArray = node.nodesUtils.getSameLevelNodes(fieldId)
       }
     }
 
@@ -78,7 +78,7 @@ export class NodeObjectUtils {
     }
   }
 
-  public findNodeById(nodeID: string): null | FieldNode<FieldDataType, ExportDatatype> {
+  public findNodeById(nodeID: string): FieldNode<FieldDataType, ExportDatatype> | null {
     if (this.nodes.length === 0) {
       return null
     } else {
@@ -100,13 +100,13 @@ export class NodeObjectUtils {
     }
   }
 
-  public deleteField(fieldID: string): boolean {
+  public deleteField(fieldId: string): boolean {
     let deleted = false
 
     for (let i = 0; i < this.nodes.length && !deleted; i++) {
-      if (this.nodes[i].id === fieldID) {
+      if (this.nodes[i].id === fieldId) {
         deleted = true
-        this._nodes = this.nodes.filter((el) => el.id !== fieldID)
+        this._nodes = this.nodes.filter((el) => el.id !== fieldId)
       }
     }
 
@@ -117,7 +117,7 @@ export class NodeObjectUtils {
         const node = this.nodes[i]
 
         if (node instanceof MixedNode) {
-          if (node.nodesUtils.deleteField(fieldID)) {
+          if (node.nodesUtils.deleteField(fieldId)) {
             stop = true
           }
         }

@@ -7,13 +7,13 @@ import {
 import { FieldNode } from "./FieldNode"
 import { RootNode } from "./RootNode"
 import { DatasetName } from "@modules/datasets/value-object"
-import { ExportDataset } from "@modules/datasets/dto/dataset"
 import { SearchProps } from "@modules/datasets/interfaces/tree.interface"
 import {
   ExportDatatype,
   ExportMixedDataType,
   MixedDataType,
 } from "@modules/datasets/interfaces/dataset_field.interface"
+import { ExportDataset } from "./ExportDataset"
 
 interface DatasetProps {
   name: DatasetName
@@ -86,20 +86,20 @@ export class Dataset {
     else return this.root.nodesUtils.findNodeById(nodeID)
   }
 
-  public findFieldByID(fieldID: string): FieldNode<FieldDataType, ExportDatatype> | null {
-    return this.root.nodesUtils.findNodeById(fieldID)
+  public findFieldById(fieldId: string): FieldNode<FieldDataType, ExportDatatype> | null {
+    return this.root.nodesUtils.findNodeById(fieldId)
   }
 
-  public findSameLevelFields(fieldID: string): Array<FieldNode<FieldDataType, ExportDatatype>> {
-    return this.root.nodesUtils.getSameLevelNodes(fieldID)
+  public findSameLevelFields(fieldId: string): Array<FieldNode<FieldDataType, ExportDatatype>> {
+    return this.root.nodesUtils.getSameLevelNodes(fieldId)
   }
 
   public exportObject(props: SearchProps): ExportDataset {
-    return {
+    return new ExportDataset({
       fields: this.exportFields(props),
       limit: this.limit,
       name: this.name,
-    }
+    })
   }
 
   public object(): DatasetObject {
@@ -111,8 +111,8 @@ export class Dataset {
     }
   }
 
-  public deleteField(fieldID: string): void {
-    this.root.nodesUtils.deleteField(fieldID)
+  public deleteField(fieldId: string): void {
+    this.root.nodesUtils.deleteField(fieldId)
   }
 
   public refFields(): Array<FieldNode<RefDataType, RefDataType>> {

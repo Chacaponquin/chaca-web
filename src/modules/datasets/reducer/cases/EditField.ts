@@ -12,7 +12,7 @@ export class EditField extends DatasetUseCase<ExecuteProps> {
   execute({ datasetId, form }: ExecuteProps): Array<Dataset> {
     const newDatasets = this.datasets.map((d) => {
       if (d.id === datasetId) {
-        const findField = d.findFieldByID(form.id)
+        const findField = d.findFieldById(form.id)
 
         if (findField) {
           findField.setName(new FieldName(form.name))

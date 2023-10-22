@@ -8,11 +8,11 @@ import { useToastServices } from "@modules/app/modules/toast/services"
 import { useModalServices } from "@modules/modal/services"
 
 interface Props {
-  parentFieldId: string
+  parentfieldId: string
   datasetId: string
 }
 
-export function useAddFieldForm({ datasetId, parentFieldId }: Props) {
+export function useAddFieldForm({ datasetId, parentfieldId }: Props) {
   const fieldId = uuid()
 
   const { DEFAULT_SCHEMA_VALUE_DATA_TYPE } = useDatatypes({
@@ -53,7 +53,7 @@ export function useAddFieldForm({ datasetId, parentFieldId }: Props) {
       handleAddFieldService({
         datasetId: datasetId,
         field: fieldActions.field,
-        parentFieldID: parentFieldId,
+        parentfieldId: parentfieldId,
       })
 
       handleCloseModal()

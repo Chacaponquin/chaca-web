@@ -21,6 +21,7 @@ import { FieldName } from "@modules/datasets/value-object"
 import { NodeObjectUtils } from "./NodeObjectUtils"
 import { v4 as uuid } from "uuid"
 import { ExportDatasetField } from "@modules/datasets/dto/dataset"
+import { EmptyRefFieldError } from "@modules/datasets/errors"
 
 export abstract class FieldNode<T, E extends ExportDatatype> {
   private _dataType: T
@@ -224,12 +225,16 @@ export class RefNode extends FieldNode<RefDataType, RefDataType> {
   }
 
   public exportObject(): ExportDatasetField<RefDataType> {
-    return {
-      name: this.name,
-      dataType: this.dataType,
-      isArray: this.isArray,
-      isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+    if (this.dataType.ref.length > 1) {
+      return {
+        name: this.name,
+        dataType: this.dataType,
+        isArray: this.isArray,
+        isKey: this.isKey,
+        isPossibleNull: this.isPossibleNull,
+      }
+    } else {
+      throw new EmptyRefFieldError()
     }
   }
 }

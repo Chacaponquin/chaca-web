@@ -12,13 +12,13 @@ import { ExportDatatype, FieldDataType } from "../interfaces/dataset_field.inter
 
 interface AddFieldProps {
   field: FieldForm
-  parentFieldID: string
+  parentfieldId: string
   datasetId: string
 }
 
 interface UpdateFieldProps {
   fieldDTO: FieldForm
-  parentFieldID: string
+  parentfieldId: string
   datasetId: string
 }
 
@@ -75,8 +75,8 @@ export default function useDatasetServices() {
     })
   }
 
-  function handleUpdateField({ datasetId, fieldDTO, parentFieldID }: UpdateFieldProps) {
-    validateFieldName({ parentID: parentFieldID, datasetId, fieldName: fieldDTO.name })
+  function handleUpdateField({ datasetId, fieldDTO, parentfieldId }: UpdateFieldProps) {
+    validateFieldName({ parentId: parentfieldId, datasetId, fieldName: fieldDTO.name })
 
     datasetDispatch({
       type: DATASETS_ACTIONS.EDIT_FIELD,
@@ -87,8 +87,8 @@ export default function useDatasetServices() {
     })
   }
 
-  function handleAddField({ datasetId, field, parentFieldID }: AddFieldProps) {
-    validateFieldName({ parentID: parentFieldID, fieldName: field.name, datasetId })
+  function handleAddField({ datasetId, field, parentfieldId }: AddFieldProps) {
+    validateFieldName({ parentId: parentfieldId, fieldName: field.name, datasetId })
 
     datasetDispatch({
       type: DATASETS_ACTIONS.ADD_NEW_FIELD,
@@ -100,7 +100,7 @@ export default function useDatasetServices() {
           dataType: field.dataType,
           isKey: field.isKey,
         },
-        parentFieldID,
+        parentfieldId,
         datasetID: datasetId,
       },
     })
@@ -112,7 +112,9 @@ export default function useDatasetServices() {
       payload: { datasetID },
     })
 
-    handleSelectDataset(datasets[0].id)
+    if (datasets.length) {
+      handleSelectDataset(datasets[0].id)
+    }
   }
 
   function handleChangeDocumentsLimit(datasetId: string, limit: number) {
@@ -128,7 +130,7 @@ export default function useDatasetServices() {
   function handleDeleteField({ datasetId, fieldId }: DeleteFieldProps) {
     datasetDispatch({
       type: DATASETS_ACTIONS.DELETE_FIELD,
-      payload: { fieldID: fieldId, datasetID: datasetId },
+      payload: { fieldId: fieldId, datasetID: datasetId },
     })
   }
 
@@ -149,7 +151,6 @@ export default function useDatasetServices() {
 
   function getDatasetConnections({ dataset }: { dataset: Dataset }): Array<DatasetConnection> {
     const connections: Array<DatasetConnection> = []
-
     const refFields = dataset.refFields()
 
     for (const dat of datasets) {
@@ -159,7 +160,7 @@ export default function useDatasetServices() {
           const fieldToRef = f.dataType.ref.at(-1)
 
           if (fieldToRef) {
-            const found = dat.findFieldByID(fieldToRef)
+            const found = dat.findFieldById(fieldToRef)
 
             if (found) {
               saveConnection.to.push(fieldToRef)
@@ -210,7 +211,7 @@ export default function useDatasetServices() {
     let found: FieldNode<FieldDataType, ExportDatatype> | null = null
 
     for (let i = 0; i < datasets.length && found === null; i++) {
-      found = datasets[i].findFieldByID(fieldId)
+      found = datasets[i].findFieldById(fieldId)
     }
 
     return found
