@@ -49,18 +49,24 @@ export default function ChacaNumberInput({
   const handleIncrease = () => {
     const nextValue = value ? Number(Number(value + step).toFixed(2)) : 1
 
-    if (onChange) onChange(validateValue(nextValue, max))
+    if (onChange) {
+      onChange(validateValue(nextValue, max))
+    }
   }
 
   const handleDecrease = () => {
     const nextValue = value ? Number(Number(value - step).toFixed(2)) : -1
 
-    if (onChange) onChange(validateValue(nextValue, min))
+    if (onChange) {
+      onChange(validateValue(nextValue, min))
+    }
   }
 
   const handleChangeInputValue = (value: string) => {
     if (typeof Number(value) === "number") {
-      if (onChange) onChange(validateValue(Number(value), wichIsCloser(Number(value))))
+      if (onChange) {
+        onChange(validateValue(Number(value), wichIsCloser(Number(value))))
+      }
     }
   }
 
@@ -91,7 +97,7 @@ export default function ChacaNumberInput({
     }
   }
 
-  const validateValue = (value: number, returnDefaultValue: number | undefined = 0): number => {
+  function validateValue(value: number, returnDefaultValue: number | undefined = 0): number {
     if (!min && !max) {
       return value
     } else if (min && !max) {
@@ -121,7 +127,7 @@ export default function ChacaNumberInput({
     },
   )
 
-  const handleFocus = () => {
+  function handleFocus() {
     setIsFocus(true)
 
     document.onkeydown = (key) => {
@@ -137,7 +143,7 @@ export default function ChacaNumberInput({
     }
   }
 
-  const handleBlur = () => {
+  function handleBlur() {
     setIsFocus(false)
 
     document.onkeydown = () => {}
@@ -163,7 +169,7 @@ export default function ChacaNumberInput({
       />
       <div className="grid grid-rows-2 h-full w-[25px] justify-center justify-items-center border-l-grayColor border-l-2">
         <button
-          className="flex justify-center text-center items-center border-b-2 border-grayColor w-full cursor-auto"
+          className="flex stroke-black dark:stroke-white justify-center text-center items-center border-b-2 border-grayColor w-full cursor-auto"
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
           onClick={handleIncrease}
@@ -173,7 +179,7 @@ export default function ChacaNumberInput({
         </button>
 
         <button
-          className="flex justify-center text-center items-center w-full cursor-auto"
+          className="flex stroke-black dark:stroke-white justify-center text-center items-center w-full cursor-auto"
           onClick={handleDecrease}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}

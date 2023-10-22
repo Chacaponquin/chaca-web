@@ -12,7 +12,7 @@ export default function ArrowDown({ size = DEFAULT_ICON_SIZE }: IconProps) {
     >
       <path
         d="M36 18L24 30L12 18"
-        stroke="#333"
+        stroke="inherit"
         strokeWidth="4"
         strokeLinecap="round"
         strokeLinejoin="round"

@@ -44,20 +44,25 @@ export default function ChacaTextarea({
 
   const textareaClass = clsx(
     "hover:border-principalColor border-2 border-grayColor rounded-sm outline-none focus:border-principalColor resize-none transition-all duration-300",
+    "bg-white dark:bg-darkColor",
     textClass,
     paddingClass,
     className,
     `py-2`,
   )
 
+  function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    if (onChange) {
+      onChange(e.target.value)
+    }
+  }
+
   return (
     <textarea
       className={textareaClass}
       value={value}
       placeholder={placeholder}
-      onChange={(e) => {
-        if (onChange) onChange(e.target.value)
-      }}
+      onChange={handleChange}
       style={{ width: size === "full" ? `100%` : `${size}px`, height: `${h}px` }}
       name={name}
     ></textarea>

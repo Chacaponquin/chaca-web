@@ -1,5 +1,5 @@
 import CodeEditor from "./CodeEditor/CodeEditor"
 import ExampleCode from "./ExampleCode/ExampleCode"
-import MDView from "./MDView/MDView"
+import Markdown from "./MDView/MDView"
 
-export { MDView, ExampleCode, CodeEditor }
+export { Markdown, ExampleCode, CodeEditor }

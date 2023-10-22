@@ -1,6 +1,14 @@
 import { ModalProps } from "@modules/modal/interfaces/modal.interface"
-import { createContext, ReactElement, useState } from "react"
-import { Modal } from "@modules/modal/components"
+import { createContext, ReactElement, useState, Fragment } from "react"
+import { MODAL_ACTIONS } from "@modules/modal/constants"
+import {
+  AddFieldForm,
+  DeleteDatasetForm,
+  EditDataset,
+  EditFieldForm,
+  ExportAllDatasetForm,
+  ExportSelectDatasetForm,
+} from "@modules/modal/components"
 
 interface ModalContextProps {
   openModal: null | ModalProps
@@ -13,11 +21,11 @@ const ModalContext = createContext<ModalContextProps>({} as ModalContextProps)
 const ModalProvider = ({ children }: { children: ReactElement }) => {
   const [openModal, setOpenModal] = useState<null | ModalProps>(null)
 
-  const handleOpenModal = (props: ModalProps) => {
+  function handleOpenModal(props: ModalProps) {
     setOpenModal(props)
   }
 
-  const handleCloseModal = () => {
+  function handleCloseModal() {
     setOpenModal(null)
   }
 
@@ -25,7 +33,28 @@ const ModalProvider = ({ children }: { children: ReactElement }) => {
 
   return (
     <ModalContext.Provider value={data}>
-      {openModal && <Modal modalProps={openModal} />}
+      {openModal && (
+        <Fragment>
+          {openModal.type === MODAL_ACTIONS.EDIT_DATASET && (
+            <EditDataset dataset={openModal.dataset} />
+          )}
+          {openModal.type === MODAL_ACTIONS.ADD_FIELD && <AddFieldForm modalProps={openModal} />}
+          {openModal.type === MODAL_ACTIONS.DELETE_DATASET && (
+            <DeleteDatasetForm
+              datasetName={openModal.datasetName}
+              datasetId={openModal.datasetId}
+            />
+          )}
+          {openModal.type === MODAL_ACTIONS.EDIT_FIELD && <EditFieldForm modalProps={openModal} />}
+          {openModal.type === MODAL_ACTIONS.EXPORT_SELECT_DATASET && (
+            <ExportSelectDatasetForm {...openModal} />
+          )}
+          {openModal.type === MODAL_ACTIONS.EXPORT_ALL_DATASETS && (
+            <ExportAllDatasetForm {...openModal} />
+          )}
+        </Fragment>
+      )}
+
       {children}
     </ModalContext.Provider>
   )

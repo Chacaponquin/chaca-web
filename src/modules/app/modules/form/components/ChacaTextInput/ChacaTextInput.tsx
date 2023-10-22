@@ -23,29 +23,34 @@ export default function ChacaTextInput({
   id,
   disabled = false,
 }: ChacaTextInputProps) {
+  const inputId = id ? id : useId()
+
   const { textClass, paddingClass } = useFilters({ dimension })
 
   const inputClass = clsx(
     "py-[2px] transition-all duration-300 rounded-sm px-3 outline-none transition-all duration-300 hover:border-principalColor border-2 border-grayColor focus:border-principalColor",
+    "bg-white dark:bg-darkColor",
     className,
     textClass,
     paddingClass,
   )
 
-  const inputId = id ? id : useId()
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
+    if (onChange) {
+      onChange(e.target.value)
+    }
+  }
 
   return (
     <input
       type={type}
       placeholder={placeholder}
-      onChange={(e) => {
-        if (onChange) onChange(e.target.value)
-      }}
+      onChange={handleChange}
       className={inputClass}
       style={{
         width: size === "full" ? `100%` : `${size}px`,
       }}
-      value={value === undefined ? "" : value}
+      value={value ? value : ""}
       name={name}
       id={inputId}
       disabled={disabled}

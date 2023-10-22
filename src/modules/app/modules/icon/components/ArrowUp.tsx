@@ -12,7 +12,7 @@ export default function ArrowUp({ size = DEFAULT_ICON_SIZE }: IconProps) {
     >
       <path
         d="M13 30L25 18L37 30"
-        stroke="#333"
+        stroke="inherit"
         strokeWidth="4"
         strokeLinecap="round"
         strokeLinejoin="round"

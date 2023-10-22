@@ -11,9 +11,9 @@ export default function Select({ text, className }: Props) {
     <button className={className}>
       <p className="pointer-events-none overflow-x-auto no-scroll">{text}</p>
 
-      <button>
+      <div className="stroke-black dark:stroke-white">
         <ArrowDown size={18} />
-      </button>
+      </div>
     </button>
   )
 }
