@@ -1,15 +1,10 @@
-import { APP_IMAGES } from "@modules/app/constants"
+import { Logo as AppLogo } from "@modules/app/components"
 
 export default function Logo() {
   return (
     <div className="flex items-center gap-x-5">
-      <img
-        src={APP_IMAGES.LOGO.image}
-        alt={APP_IMAGES.LOGO.alt}
-        className="object-cover w-[70px]"
-      />
-
-      <h1 className="font-fontBold text-white text-2xl uppercase esm:hidden">Chaca</h1>
+      <AppLogo size={60} />
+      <h1 className="font-fontBold text-white text-2xl uppercase esm:hidden">CHACA</h1>
     </div>
   )
 }
