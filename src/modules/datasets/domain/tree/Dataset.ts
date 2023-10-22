@@ -1,6 +1,7 @@
 import {
   DatasetField,
   DatasetObject,
+  FieldDataType,
   RefDataType,
 } from "@modules/datasets/interfaces/datasets.interface"
 import { FieldNode } from "./FieldNode"
@@ -8,6 +9,11 @@ import { RootNode } from "./RootNode"
 import { DatasetName } from "@modules/datasets/value-object"
 import { ExportDataset } from "@modules/datasets/dto/dataset"
 import { SearchProps } from "@modules/datasets/interfaces/tree.interface"
+import {
+  ExportDatatype,
+  ExportMixedDataType,
+  MixedDataType,
+} from "@modules/datasets/interfaces/dataset_field.interface"
 
 interface DatasetProps {
   name: DatasetName
@@ -57,7 +63,7 @@ export class Dataset {
     this.root.setName(name)
   }
 
-  public insertField(node: FieldNode) {
+  public insertField(node: FieldNode<FieldDataType, ExportDatatype>) {
     this.root.nodesUtils.insertNode(node)
   }
 
@@ -65,24 +71,26 @@ export class Dataset {
     return this.root.nodesUtils.hasKeyField()
   }
 
-  public allPossibleFieldsToRef(): Array<FieldNode> {
+  public allPossibleFieldsToRef(): Array<FieldNode<FieldDataType, ExportDatatype>> {
     return this.root.nodesUtils.allPossibleFieldsToRef()
   }
 
-  public findFieldParentNode(nodeID: string): FieldNode | RootNode | null {
+  public findFieldParentNode(
+    nodeID: string,
+  ): FieldNode<MixedDataType, ExportMixedDataType> | RootNode | null {
     return this.root.nodesUtils.findFieldParentNode(nodeID)
   }
 
-  public findNodeByID(nodeID: string): FieldNode | RootNode | null {
+  public findNodeById(nodeID: string): FieldNode<FieldDataType, ExportDatatype> | RootNode | null {
     if (this.id === nodeID) return this.root
-    else return this.root.nodesUtils.findNodeByID(nodeID)
+    else return this.root.nodesUtils.findNodeById(nodeID)
   }
 
-  public findFieldByID(fieldID: string): FieldNode | null {
-    return this.root.nodesUtils.findNodeByID(fieldID)
+  public findFieldByID(fieldID: string): FieldNode<FieldDataType, ExportDatatype> | null {
+    return this.root.nodesUtils.findNodeById(fieldID)
   }
 
-  public findSameLevelFields(fieldID: string): Array<FieldNode> {
+  public findSameLevelFields(fieldID: string): Array<FieldNode<FieldDataType, ExportDatatype>> {
     return this.root.nodesUtils.getSameLevelNodes(fieldID)
   }
 
@@ -107,7 +115,7 @@ export class Dataset {
     this.root.nodesUtils.deleteField(fieldID)
   }
 
-  public refFields(): Array<FieldNode<RefDataType>> {
+  public refFields(): Array<FieldNode<RefDataType, RefDataType>> {
     return this.root.nodesUtils.refFields()
   }
 
@@ -122,6 +130,7 @@ export class Dataset {
       location: [],
       isIdLocation: false,
     })
+
     return ret ? ret : []
   }
 }

@@ -2,6 +2,8 @@ import { DATA_TYPES } from "@modules/schemas/constants"
 import { IsArrayConfig } from "./field_config.interface"
 import { ExportDatasetField } from "../dto/dataset"
 
+export interface ExportDatatype {}
+
 export interface DatasetField<T = FieldDataType> {
   name: string
   id: string
@@ -20,45 +22,44 @@ export type CommonFieldDataType =
   | EnumDataType
 
 export type FieldDataType = CommonFieldDataType | MixedDataType
-export type ExportFieldDataType = CommonFieldDataType | ExportMixedDataType
 
-export type ExportMixedDataType = {
+export interface ExportMixedDataType extends ExportDatatype {
   type: DATA_TYPES.MIXED
-  object: Array<ExportDatasetField>
+  object: Array<ExportDatasetField<ExportDatatype>>
 }
 
-export type CustomDataType = {
+export interface CustomDataType extends ExportDatatype {
   type: DATA_TYPES.CUSTOM
   code: string
 }
 
-export type MixedDataType = {
+export interface MixedDataType {
   type: DATA_TYPES.MIXED
   object: DatasetField[]
 }
 
-export type SingleValueDataType = {
+export interface SingleValueDataType extends ExportDatatype {
   type: DATA_TYPES.SINGLE_VALUE
   fieldType: SchemaValueTypeObject
 }
 
-export type RefDataType = {
+export interface RefDataType extends ExportDatatype {
   type: DATA_TYPES.REF
-  ref: string[]
+  ref: Array<string>
 }
 
-export type SequenceDataType = {
+export interface SequenceDataType extends ExportDatatype {
   type: DATA_TYPES.SEQUENCE
   startsWith: number
   step: number
 }
 
-export type SequentialDataType = {
+export interface SequentialDataType extends ExportDatatype {
   type: DATA_TYPES.SEQUENTIAL
   values: Array<string>
 }
 
-export type EnumDataType = {
+export interface EnumDataType extends ExportDatatype {
   type: DATA_TYPES.ENUM
   values: Array<string>
 }

@@ -42,7 +42,7 @@ export function useValidations() {
 
     if (foundDataset) {
       let cont = 0
-      const findParent = foundDataset.findNodeByID(parentID)
+      const findParent = foundDataset.findNodeById(parentID)
 
       if (findParent) {
         if (findParent instanceof MixedNode) {

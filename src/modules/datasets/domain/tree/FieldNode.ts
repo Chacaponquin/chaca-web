@@ -14,14 +14,15 @@ import {
   CustomDataType,
   EnumDataType,
   SingleValueDataType,
-  ExportFieldDataType,
+  ExportMixedDataType,
+  ExportDatatype,
 } from "@modules/datasets/interfaces/dataset_field.interface"
 import { FieldName } from "@modules/datasets/value-object"
 import { NodeObjectUtils } from "./NodeObjectUtils"
 import { v4 as uuid } from "uuid"
 import { ExportDatasetField } from "@modules/datasets/dto/dataset"
 
-export abstract class FieldNode<T = FieldDataType> {
+export abstract class FieldNode<T, E extends ExportDatatype> {
   private _dataType: T
   private _isArray: IsArrayConfig
   private _possibleNull: PossibleNullConfig
@@ -39,7 +40,9 @@ export abstract class FieldNode<T = FieldDataType> {
     this._isKey = isKey
   }
 
-  public static create(props: NodeProps<FieldDataType>): FieldNode {
+  public abstract exportObject(props: SearchProps): ExportDatasetField<E>
+
+  public static create(props: NodeProps<FieldDataType>): FieldNode<FieldDataType, ExportDatatype> {
     if (props.dataType.type === DATA_TYPES.SINGLE_VALUE) {
       return new SchemaValueNode(props as NodeProps<SingleValueDataType>)
     } else if (props.dataType.type === DATA_TYPES.CUSTOM) {
@@ -56,6 +59,30 @@ export abstract class FieldNode<T = FieldDataType> {
       return new SequentialNode(props as NodeProps<SequentialDataType>)
     } else {
       throw Error("Incorrect data type for node")
+    }
+  }
+
+  public object(): DatasetField<T> {
+    if (this instanceof MixedNode) {
+      return {
+        id: this.id,
+        name: this.name,
+        dataType: {
+          object: this.nodesUtils.nodes.map((el) => el.object()),
+          type: DATA_TYPES.MIXED,
+        },
+        isArray: this._isArray,
+        isKey: this._isKey,
+      } as DatasetField<T>
+    } else {
+      return {
+        id: this.id,
+        name: this.name,
+        dataType: this.dataType,
+        isArray: this.isArray,
+        isKey: this.isKey,
+        isPossibleNull: this._possibleNull,
+      }
     }
   }
 
@@ -98,93 +125,9 @@ export abstract class FieldNode<T = FieldDataType> {
   public setIsKey(v: boolean): void {
     this._isKey = v
   }
-
-  public exportDatatype(props: SearchProps): ExportDatasetField {
-    const { findOption, findParent } = props
-
-    if (this instanceof MixedNode) {
-      return {
-        name: this.name,
-        dataType: { type: DATA_TYPES.MIXED, object: this.nodesUtils.exportFields(props) },
-        isArray: this.isArray,
-        isKey: this.isKey,
-        isPossibleNull: this.isPossibleNull,
-      }
-    } else if (this instanceof SchemaValueNode) {
-      const schemaId = this.dataType.fieldType.schema
-      const optionId = this.dataType.fieldType.option
-
-      const module = findParent(schemaId)
-      const option = findOption(schemaId, optionId)
-
-      return {
-        name: this.name,
-        dataType: {
-          type: DATA_TYPES.SINGLE_VALUE,
-          fieldType: {
-            args: this.dataType.fieldType.args,
-            option: option.name,
-            schema: module.name,
-          },
-        },
-        isArray: this.isArray,
-        isKey: this.isKey,
-        isPossibleNull: this.isPossibleNull,
-      }
-    } else {
-      return this.dataType as ExportDatasetField
-    }
-  }
-
-  public exportObject(props: SearchProps): ExportDatasetField {
-    if (this instanceof MixedNode) {
-      return {
-        name: this.name,
-        dataType: {
-          object: this.nodesUtils.nodes.map((el) => el.exportObject(props)),
-          type: DATA_TYPES.MIXED,
-        },
-        isArray: this._isArray,
-        isKey: this._isKey,
-        isPossibleNull: this.isPossibleNull,
-      }
-    } else {
-      return {
-        name: this.name,
-        dataType: this.dataType as ExportFieldDataType,
-        isArray: this.isArray,
-        isKey: this.isKey,
-        isPossibleNull: this.isPossibleNull,
-      }
-    }
-  }
-
-  public object(): DatasetField<T> {
-    if (this instanceof MixedNode) {
-      return {
-        id: this.id,
-        name: this.name,
-        dataType: {
-          object: this.nodesUtils.nodes.map((el) => el.object()),
-          type: DATA_TYPES.MIXED,
-        },
-        isArray: this._isArray,
-        isKey: this._isKey,
-      } as DatasetField<T>
-    } else {
-      return {
-        id: this.id,
-        name: this.name,
-        dataType: this._dataType,
-        isArray: this._isArray,
-        isKey: this._isKey,
-        isPossibleNull: this._possibleNull,
-      }
-    }
-  }
 }
 
-export class SchemaValueNode extends FieldNode<SingleValueDataType> {
+export class SchemaValueNode extends FieldNode<SingleValueDataType, SingleValueDataType> {
   public stringInf({ findOption, findParent }: SearchProps): string {
     const schema = this.dataType.fieldType.schema
     const option = this.dataType.fieldType.option
@@ -194,42 +137,131 @@ export class SchemaValueNode extends FieldNode<SingleValueDataType> {
 
     return `${module.showName}.${moduleOption.showName}`
   }
+
+  public exportObject({
+    findOption,
+    findParent,
+  }: SearchProps): ExportDatasetField<SingleValueDataType> {
+    const schemaId = this.dataType.fieldType.schema
+    const optionId = this.dataType.fieldType.option
+
+    const module = findParent(schemaId)
+    const option = findOption(schemaId, optionId)
+
+    return {
+      name: this.name,
+      dataType: {
+        type: DATA_TYPES.SINGLE_VALUE,
+        fieldType: {
+          args: this.dataType.fieldType.args,
+          option: option.name,
+          schema: module.name,
+        },
+      },
+      isArray: this.isArray,
+      isKey: this.isKey,
+      isPossibleNull: this.isPossibleNull,
+    }
+  }
 }
 
-export class SequenceNode extends FieldNode<SequenceDataType> {
+export class SequenceNode extends FieldNode<SequenceDataType, SequenceDataType> {
   public stringInf(): string {
     return `sequence`
   }
-}
 
-export class SequentialNode extends FieldNode<SequentialDataType> {
-  public stringInf(): string {
-    return `sequential`
+  public exportObject(): ExportDatasetField<SequenceDataType> {
+    return {
+      name: this.name,
+      dataType: this.dataType,
+      isArray: this.isArray,
+      isKey: this.isKey,
+      isPossibleNull: this.isPossibleNull,
+    }
   }
 }
 
-export class MixedNode extends FieldNode<MixedDataType> {
+export class SequentialNode extends FieldNode<SequentialDataType, SequentialDataType> {
+  public stringInf(): string {
+    return `sequential`
+  }
+
+  public exportObject(): ExportDatasetField<SequentialDataType> {
+    return {
+      name: this.name,
+      dataType: this.dataType,
+      isArray: this.isArray,
+      isKey: this.isKey,
+      isPossibleNull: this.isPossibleNull,
+    }
+  }
+}
+
+export class MixedNode extends FieldNode<MixedDataType, ExportMixedDataType> {
   public nodesUtils = new NodeObjectUtils(this)
 
   public stringInf(): string {
     return `mixed`
   }
+
+  public exportObject(props: SearchProps): ExportDatasetField<ExportMixedDataType> {
+    return {
+      name: this.name,
+      dataType: {
+        type: DATA_TYPES.MIXED,
+        object: this.nodesUtils.exportFields(props),
+      },
+      isArray: this.isArray,
+      isKey: this.isKey,
+      isPossibleNull: this.isPossibleNull,
+    }
+  }
 }
 
-export class RefNode extends FieldNode<RefDataType> {
+export class RefNode extends FieldNode<RefDataType, RefDataType> {
   public stringInf(): string {
     return `ref`
   }
-}
 
-export class CustomNode extends FieldNode<CustomDataType> {
-  public stringInf(): string {
-    return `custom`
+  public exportObject(): ExportDatasetField<RefDataType> {
+    return {
+      name: this.name,
+      dataType: this.dataType,
+      isArray: this.isArray,
+      isKey: this.isKey,
+      isPossibleNull: this.isPossibleNull,
+    }
   }
 }
 
-export class EnumNode extends FieldNode<EnumDataType> {
+export class CustomNode extends FieldNode<CustomDataType, CustomDataType> {
+  public stringInf(): string {
+    return `custom`
+  }
+
+  public exportObject(): ExportDatasetField<CustomDataType> {
+    return {
+      name: this.name,
+      dataType: this.dataType,
+      isArray: this.isArray,
+      isKey: this.isKey,
+      isPossibleNull: this.isPossibleNull,
+    }
+  }
+}
+
+export class EnumNode extends FieldNode<EnumDataType, EnumDataType> {
   public stringInf(): string {
     return `enum`
+  }
+
+  public exportObject(): ExportDatasetField<EnumDataType> {
+    return {
+      name: this.name,
+      dataType: this.dataType,
+      isArray: this.isArray,
+      isKey: this.isKey,
+      isPossibleNull: this.isPossibleNull,
+    }
   }
 }

@@ -1,12 +1,13 @@
 import { FieldNode } from "@modules/datasets/domain/tree"
 import { FieldKeyIcon, FieldName, FieldType } from "./components"
 import { useSchemaServices } from "@modules/schemas/services"
+import { ExportDatatype, FieldDataType } from "@modules/datasets/interfaces/dataset_field.interface"
 
 export default function Field({
   field,
   datasetHasKeys,
 }: {
-  field: FieldNode
+  field: FieldNode<FieldDataType, ExportDatatype>
   selectFieldPoint: null | string
   datasetHasKeys: boolean
 }) {

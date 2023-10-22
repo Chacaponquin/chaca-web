@@ -1,6 +1,10 @@
-import { RefDataType } from "@modules/datasets/interfaces/dataset_field.interface"
-import { FieldNode, MixedNode } from "./FieldNode"
-import { DATA_TYPES } from "@modules/schemas/constants"
+import {
+  ExportDatatype,
+  ExportMixedDataType,
+  FieldDataType,
+  MixedDataType,
+} from "@modules/datasets/interfaces/dataset_field.interface"
+import { FieldNode, MixedNode, RefNode } from "./FieldNode"
 import { RootNode } from "./RootNode"
 import { ExportDatasetField } from "@modules/datasets/dto/dataset"
 import { SearchProps } from "@modules/datasets/interfaces/tree.interface"
@@ -12,10 +16,10 @@ interface GetLocationProps {
 }
 
 export class NodeObjectUtils {
-  private _nodes: Array<FieldNode> = []
-  private _instance: FieldNode | RootNode
+  private _nodes: Array<FieldNode<FieldDataType, ExportDatatype>> = []
+  private _instance: FieldNode<MixedDataType, ExportMixedDataType> | RootNode
 
-  constructor(instance: FieldNode | RootNode) {
+  constructor(instance: FieldNode<MixedDataType, ExportMixedDataType> | RootNode) {
     this._instance = instance
   }
 
@@ -23,7 +27,7 @@ export class NodeObjectUtils {
     return this._nodes
   }
 
-  public insertNode(node: FieldNode): void {
+  public insertNode(node: FieldNode<FieldDataType, ExportDatatype>): void {
     this._nodes.push(node)
   }
 
@@ -31,11 +35,11 @@ export class NodeObjectUtils {
     return this.nodes.some((n) => n.isKey)
   }
 
-  public getSameLevelNodes(fieldID: string): Array<FieldNode> {
+  public getSameLevelNodes(fieldID: string): Array<FieldNode<FieldDataType, ExportDatatype>> {
     const findNode = this.nodes.some((n) => n.id === fieldID)
     if (findNode) return this.nodes
 
-    let returnArray = [] as Array<FieldNode>
+    let returnArray = [] as Array<FieldNode<FieldDataType, ExportDatatype>>
 
     for (let i = 0; i < this.nodes.length && returnArray.length === 0; i++) {
       const node = this.nodes[i]
@@ -48,11 +52,13 @@ export class NodeObjectUtils {
     return returnArray
   }
 
-  public exportFields(props: SearchProps): Array<ExportDatasetField> {
+  public exportFields(props: SearchProps): Array<ExportDatasetField<ExportDatatype>> {
     return this._nodes.map((n) => n.exportObject(props))
   }
 
-  public findFieldParentNode(nodeId: string): FieldNode | RootNode | null {
+  public findFieldParentNode(
+    nodeId: string,
+  ): FieldNode<MixedDataType, ExportMixedDataType> | RootNode | null {
     const findNode = this.nodes.some((n) => n.id === nodeId)
 
     if (findNode) {
@@ -72,10 +78,11 @@ export class NodeObjectUtils {
     }
   }
 
-  public findNodeByID(nodeID: string): null | FieldNode {
-    if (this.nodes.length === 0) return null
-    else {
-      let find: FieldNode | null = null
+  public findNodeById(nodeID: string): null | FieldNode<FieldDataType, ExportDatatype> {
+    if (this.nodes.length === 0) {
+      return null
+    } else {
+      let find: FieldNode<FieldDataType, ExportDatatype> | null = null
 
       find = this.nodes.find((n) => n.id === nodeID) || null
 
@@ -84,7 +91,7 @@ export class NodeObjectUtils {
           const node = this.nodes[i]
 
           if (node instanceof MixedNode) {
-            find = node.nodesUtils.findNodeByID(nodeID)
+            find = node.nodesUtils.findNodeById(nodeID)
           }
         }
       }
@@ -152,12 +159,12 @@ export class NodeObjectUtils {
     return ret ? ret : null
   }
 
-  public refFields(): Array<FieldNode<RefDataType>> {
-    let ref = [] as Array<FieldNode<RefDataType>>
+  public refFields(): Array<RefNode> {
+    let ref = [] as Array<RefNode>
 
     this.nodes.forEach((f) => {
-      if (f.dataType.type === DATA_TYPES.REF) {
-        ref.push(f as FieldNode<RefDataType>)
+      if (f instanceof RefNode) {
+        ref.push(f)
       } else if (f instanceof MixedNode) {
         ref = [...ref, ...f.nodesUtils.refFields()]
       }
@@ -166,8 +173,8 @@ export class NodeObjectUtils {
     return ref
   }
 
-  public allPossibleFieldsToRef(): Array<FieldNode> {
-    let returnFields = [] as Array<FieldNode>
+  public allPossibleFieldsToRef(): Array<FieldNode<FieldDataType, ExportDatatype>> {
+    let returnFields = [] as Array<FieldNode<FieldDataType, ExportDatatype>>
 
     for (const node of this.nodes) {
       if (node instanceof MixedNode) {

@@ -5,6 +5,7 @@ import { DatasetName } from "@modules/datasets/value-object"
 import { v4 as uuid } from "uuid"
 import { ExportDatasetField } from "@modules/datasets/dto/dataset"
 import { SearchProps } from "@modules/datasets/interfaces/tree.interface"
+import { ExportDatatype, FieldDataType } from "@modules/datasets/interfaces/dataset_field.interface"
 
 interface RootProps {
   limit: number
@@ -39,7 +40,7 @@ export class RootNode {
     this._name = name
   }
 
-  public setField(field: FieldNode) {
+  public setField(field: FieldNode<FieldDataType, ExportDatatype>) {
     this.nodesUtils.nodes.push(field)
   }
 
@@ -51,7 +52,7 @@ export class RootNode {
     this._limit = l
   }
 
-  public exportFields(props: SearchProps): Array<ExportDatasetField> {
+  public exportFields(props: SearchProps): Array<ExportDatasetField<ExportDatatype>> {
     return this.nodesUtils.exportFields(props)
   }
 }

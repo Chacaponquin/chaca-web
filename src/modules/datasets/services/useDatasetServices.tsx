@@ -8,6 +8,7 @@ import { DATA_TYPES } from "@modules/schemas/constants"
 import { DatasetConnection } from "../interfaces/dataset_connect.interface"
 import { DatasetName, FieldName } from "../value-object"
 import { PossibleFieldToRef } from "../interfaces/ref.interface"
+import { ExportDatatype, FieldDataType } from "../interfaces/dataset_field.interface"
 
 interface AddFieldProps {
   field: FieldForm
@@ -201,10 +202,12 @@ export default function useDatasetServices() {
     return returnFields
   }
 
-  function findField(fieldId?: string): FieldNode | null {
-    if (!fieldId) return null
+  function findField(fieldId?: string): FieldNode<FieldDataType, ExportDatatype> | null {
+    if (!fieldId) {
+      return null
+    }
 
-    let found: FieldNode | null = null
+    let found: FieldNode<FieldDataType, ExportDatatype> | null = null
 
     for (let i = 0; i < datasets.length && found === null; i++) {
       found = datasets[i].findFieldByID(fieldId)
@@ -213,7 +216,9 @@ export default function useDatasetServices() {
     return found
   }
 
-  function findFieldByLocation(fieldLocation: Array<string>): FieldNode | null {
+  function findFieldByLocation(
+    fieldLocation: Array<string>,
+  ): FieldNode<FieldDataType, ExportDatatype> | null {
     const id = fieldLocation.at(-1)
     const found = findField(id)
 
