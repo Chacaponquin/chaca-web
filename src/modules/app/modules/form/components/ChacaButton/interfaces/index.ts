@@ -7,6 +7,7 @@ export interface ChacaButtonProps {
   full?: boolean
   type?: "submit" | "button"
   id?: string
+  rounded?: boolean
 }
 
 export interface ChacaIconButtonInterface extends ChacaButtonProps {

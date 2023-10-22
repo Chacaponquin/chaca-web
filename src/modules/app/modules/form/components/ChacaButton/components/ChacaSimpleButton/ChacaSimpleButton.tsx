@@ -1,5 +1,5 @@
 import { buttonClass } from "../../helpers/buttonClass"
-import { ChacaButtonProps } from "../../interfaces/chacaButton.intrface"
+import { ChacaButtonProps } from "../../interfaces"
 
 const ChacaSimpleButton = (props: ChacaButtonProps) => {
   return (

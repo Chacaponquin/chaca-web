@@ -7,6 +7,5 @@ export const APP_IMAGES = {
   CONTACT: { image: "/images/contact.png", alt: "contact-image" },
   SUCCESS: { image: "/images/modal.png", alt: "success-image" },
   SIGN_UP_IMAGE: { image: "/images/signUp-image.png", alt: "sign-up-image" },
-  ME_IMAGE: { image: "/images/me.png", alt: "chaca-me-image" },
-  LANDING_CODE: { image: "/images/landing_code.png", alt: "chaca_landing_code" },
+  WELCOME: { image: "/images/welcome.png", alt: "chaca-welcome-image" },
 }
