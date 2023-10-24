@@ -17,7 +17,7 @@ interface AddFieldProps {
 }
 
 interface UpdateFieldProps {
-  fieldDTO: FieldForm
+  field: FieldForm
   parentfieldId: string
   datasetId: string
 }
@@ -75,13 +75,13 @@ export default function useDatasetServices() {
     })
   }
 
-  function handleUpdateField({ datasetId, fieldDTO, parentfieldId }: UpdateFieldProps) {
-    validateFieldName({ parentId: parentfieldId, datasetId, fieldName: fieldDTO.name })
+  function handleUpdateField({ datasetId, field, parentfieldId }: UpdateFieldProps) {
+    validateFieldName({ parentId: parentfieldId, datasetId, fieldName: field.name })
 
     datasetDispatch({
       type: DATASETS_ACTIONS.EDIT_FIELD,
       payload: {
-        field: fieldDTO,
+        field: field,
         datasetID: datasetId,
       },
     })

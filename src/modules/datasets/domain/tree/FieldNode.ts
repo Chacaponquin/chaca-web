@@ -223,11 +223,16 @@ export class RefNode extends FieldNode<RefDataType, RefDataType> {
     return `ref`
   }
 
-  public exportObject(): ExportDatasetField<RefDataType> {
+  public exportObject({ searchRefField }: SearchProps): ExportDatasetField<RefDataType> {
     if (this.dataType.ref.length > 1) {
+      const locationNames = searchRefField(this.dataType.ref).map((n) => n.name)
+
       return {
         name: this.name,
-        dataType: this.dataType,
+        dataType: {
+          type: DATA_TYPES.REF,
+          ref: locationNames,
+        },
         isArray: this.isArray,
         isKey: this.isKey,
         isPossibleNull: this.isPossibleNull,

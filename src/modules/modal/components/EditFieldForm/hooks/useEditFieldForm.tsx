@@ -44,7 +44,7 @@ export function useEditFieldForm({ field, parentfieldId, datasetId }: Props) {
   function handleEditField() {
     try {
       handleUpdateField({
-        fieldDTO: fieldActions.field,
+        field: fieldActions.field,
         parentfieldId: parentfieldId,
         datasetId: datasetId,
       })
