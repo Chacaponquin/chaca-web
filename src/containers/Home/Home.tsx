@@ -9,7 +9,7 @@ import { useContext } from "react"
 import { LazyRoute } from "@modules/app/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { HomeNavbar, Layout } from "@containers/Layout/components"
-import { useDatasetServices } from "@modules/datasets/services"
+import { useDatasets } from "@modules/datasets/hooks"
 import { HomeContext, HomeProvider } from "./context"
 
 const Home = () => {
@@ -21,7 +21,7 @@ const Home = () => {
     handleAddDataset,
     datasets,
   } = useHome()
-  const { showFieldsMenu } = useDatasetServices()
+  const { showFieldsMenu } = useDatasets()
   const { smallWindow } = useContext(HomeContext)
 
   const { HOME_DESCRIPTION } = useLanguage({

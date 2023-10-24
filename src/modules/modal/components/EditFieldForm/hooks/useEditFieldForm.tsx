@@ -1,5 +1,5 @@
 import { DatasetField } from "@modules/datasets/interfaces/datasets.interface"
-import { useDatasetServices } from "@modules/datasets/services"
+import { useDatasets } from "@modules/datasets/hooks"
 import { useFieldForm } from "../../../shared/hooks"
 import { EmptyFieldNameError, RepeatSameLevelFieldNameError } from "@modules/datasets/errors"
 import { useLanguage } from "@modules/app/modules/language/hooks"
@@ -27,7 +27,7 @@ export function useEditFieldForm({ field, parentfieldId, datasetId }: Props) {
   const { toastError } = useToastServices()
 
   const { handleCloseModal } = useModalServices()
-  const { handleUpdateField } = useDatasetServices()
+  const { handleUpdateField } = useDatasets()
 
   const fieldActions = useFieldForm({
     field: {

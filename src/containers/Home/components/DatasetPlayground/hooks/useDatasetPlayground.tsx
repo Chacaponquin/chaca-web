@@ -1,6 +1,6 @@
 import { useMemo, useState, useCallback, useEffect } from "react"
 import { ArrowCoords, ClickPointProps, Point } from "../interfaces/point.interface"
-import { useDatasetServices } from "@modules/datasets/services"
+import { useDatasets } from "@modules/datasets/hooks"
 import { DatasetConnection } from "@modules/datasets/interfaces/dataset_connect.interface"
 import {
   getGroupedConnections,
@@ -14,7 +14,7 @@ import { ConnectElement } from "../interfaces/connect.interface"
 import { ChangeDatasetCardProps, ShowDataset } from "../interfaces/card.interface"
 
 export default function useDatasetPlayground() {
-  const { datasets, getDatasetConnections } = useDatasetServices()
+  const { datasets, getDatasetConnections } = useDatasets()
   const [selectFieldPoint, setSelectFieldPoint] = useState<string | null>(null)
   const [points, setPoints] = useState<Array<Point>>([])
 

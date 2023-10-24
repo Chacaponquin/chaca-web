@@ -8,7 +8,7 @@ import {
   KeyConfig,
 } from "./components"
 import { FieldActions } from "../../interfaces/form.interfaces"
-import { useDatasetServices } from "@modules/datasets/services"
+import { useDatasets } from "@modules/datasets/hooks"
 
 type FieldFormProps = FieldActions & { datasetId: string }
 
@@ -38,7 +38,7 @@ export default function FieldForm({
     DATA_TYPE_TEXT: { en: "Data type", es: "Tipo" },
   })
 
-  const { fieldCanBeKey, fieldCanBeArray, fieldCanBeNull } = useDatasetServices()
+  const { fieldCanBeKey, fieldCanBeArray, fieldCanBeNull } = useDatasets()
   const canBeArray = fieldCanBeArray(field)
   const canBeKey = fieldCanBeKey(field)
   const canBeNull = fieldCanBeNull(field)

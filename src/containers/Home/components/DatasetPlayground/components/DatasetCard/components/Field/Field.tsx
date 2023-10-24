@@ -2,7 +2,7 @@ import { FieldNode } from "@modules/datasets/domain/tree"
 import { FieldKeyIcon, FieldName, FieldType } from "./components"
 import { useSchemaServices } from "@modules/schemas/services"
 import { ExportDatatype, FieldDataType } from "@modules/datasets/interfaces/dataset_field.interface"
-import { useDatasetServices } from "@modules/datasets/services"
+import { useDatasets } from "@modules/datasets/hooks"
 
 export default function Field({
   field,
@@ -13,7 +13,7 @@ export default function Field({
   datasetHasKeys: boolean
 }) {
   const { findParent, findType } = useSchemaServices()
-  const { searchRefField } = useDatasetServices()
+  const { searchRefField } = useDatasets()
 
   return (
     <div

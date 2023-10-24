@@ -1,9 +1,8 @@
-import { useDatasetServices } from "@modules/datasets/services"
+import { useDatasets, useDatatypes } from "@modules/datasets/hooks"
 import { useFieldForm } from "../../../shared/hooks"
 import { v4 as uuid } from "uuid"
 import { EmptyFieldNameError, RepeatSameLevelFieldNameError } from "@modules/datasets/errors"
 import { useLanguage } from "@modules/app/modules/language/hooks"
-import { useDatatypes } from "@modules/datasets/hooks"
 import { useToastServices } from "@modules/app/modules/toast/services"
 import { useModalServices } from "@modules/modal/services"
 
@@ -34,7 +33,7 @@ export function useAddFieldForm({ datasetId, parentfieldId }: Props) {
   const { toastError } = useToastServices()
 
   const { handleCloseModal } = useModalServices()
-  const { handleAddField: handleAddFieldService } = useDatasetServices()
+  const { handleAddField: handleAddFieldService } = useDatasets()
 
   const fieldActions = useFieldForm({
     field: {

@@ -10,7 +10,7 @@ import {
 } from "../interfaces/dataset_field.interface"
 import { useSchemaServices } from "@modules/schemas/services"
 import { Datatype } from "../dto/field"
-import { useDatasetServices } from "../services"
+import { useDatasets } from "./"
 
 interface Props {
   fieldId: string
@@ -19,7 +19,7 @@ interface Props {
 
 export default function useDatatypes({ fieldId, datasetId }: Props) {
   const { schemas } = useSchemaServices()
-  const { searchPossibleFieldsToRef } = useDatasetServices()
+  const { searchPossibleFieldsToRef } = useDatasets()
 
   const DEFAULT_CUSTOM_DATA_TYPE: CustomDataType = {
     type: DATA_TYPES.CUSTOM,

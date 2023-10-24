@@ -6,7 +6,7 @@ import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useToastServices } from "@modules/app/modules/toast/services"
 import { useEnvServices } from "@modules/app/modules/env/services"
 import { useSocketServices } from "@modules/app/modules/socket/services"
-import { useDatasetServices } from "@modules/datasets/services"
+import { useDatasets } from "@modules/datasets/hooks"
 import { useModalServices } from "@modules/modal/services"
 import { Dataset, ExportDataset } from "@modules/datasets/domain/tree"
 import { useSchemaServices } from "@modules/schemas/services"
@@ -18,7 +18,7 @@ export const useHome = () => {
     selectedDataset,
     handleAddDataset: handleAddDatasetService,
     searchRefField,
-  } = useDatasetServices()
+  } = useDatasets()
   const { resetConfig, config } = useConfigServices()
   const { handleOpenModal } = useModalServices()
   const { toastError } = useToastServices()

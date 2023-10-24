@@ -1,4 +1,4 @@
-import { useDatasetServices } from "@modules/datasets/services"
+import { useDatasets } from "@modules/datasets/hooks"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { useModalServices } from "@modules/modal/services"
 import { PanInfo } from "framer-motion"
@@ -18,8 +18,8 @@ export default function useDatasetCard({
   handleChangeDatasetCardPosition,
 }: Props) {
   const { handleOpenModal } = useModalServices()
-  const { handleSelectDataset } = useDatasetServices()
-  const { get } = useDatasetServices()
+  const { handleSelectDataset } = useDatasets()
+  const { get } = useDatasets()
 
   function handleDeleteDataset() {
     const dat = get(index)

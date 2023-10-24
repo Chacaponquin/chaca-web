@@ -9,7 +9,7 @@ import {
 } from "react"
 import { DatasetPayload, datasetsReducer } from "../../reducer/datasets_reducer"
 import { Dataset } from "@modules/datasets/domain/tree"
-import { useDatasetServices } from "@modules/datasets/services"
+import { useDatasets } from "@modules/datasets/hooks"
 import { DATASETS_ACTIONS } from "@modules/datasets/constants"
 import { useConfigServices } from "@modules/config/services"
 
@@ -27,7 +27,7 @@ const DatasetsContext = createContext<DatasetContextProps>({} as DatasetContextP
 
 const DatasetsProvider = ({ children }: { children: ReactElement }) => {
   const [showFieldsMenu, setShowFieldsMenu] = useState(false)
-  const { initDatasets } = useDatasetServices()
+  const { initDatasets } = useDatasets()
   const { fileConfig } = useConfigServices()
 
   // created datasets

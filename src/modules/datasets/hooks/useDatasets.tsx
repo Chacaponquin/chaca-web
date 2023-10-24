@@ -3,7 +3,7 @@ import { useContext } from "react"
 import { DATASETS_ACTIONS } from "../constants"
 import { FieldForm } from "../dto/field"
 import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
-import { useValidations } from "../hooks"
+import { useValidations } from "."
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { DatasetConnection } from "../interfaces/dataset_connect.interface"
 import { DatasetName, FieldName } from "../value-object"
@@ -38,7 +38,7 @@ interface SearchRefFieldsProps {
   fieldId: string
 }
 
-export default function useDatasetServices() {
+export default function useDatasets() {
   const {
     datasetDispatch,
     selectedDataset,

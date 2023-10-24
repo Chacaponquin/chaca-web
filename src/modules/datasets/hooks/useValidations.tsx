@@ -14,7 +14,7 @@ interface ValidateDatasetProps {
   id?: string
 }
 
-export function useValidations() {
+export default function useValidations() {
   const { datasets } = useContext(DatasetsContext)
 
   const validateNoDuplicateDataset = ({ name, id }: ValidateDatasetProps) => {

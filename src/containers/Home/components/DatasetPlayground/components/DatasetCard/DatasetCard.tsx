@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 import { useContext } from "react"
 import { HomeContext } from "@containers/Home/context"
 import clsx from "clsx"
-import { useDatasetServices } from "@modules/datasets/services"
+import { useDatasets } from "@modules/datasets/hooks"
 import { ChangeDatasetCardProps } from "../../interfaces/card.interface"
 
 interface DatasetCardProps {
@@ -46,7 +46,7 @@ export default function DatasetCard({
     handleChangeDatasetCardPosition,
   })
 
-  const { selectedDataset } = useDatasetServices()
+  const { selectedDataset } = useDatasets()
 
   const CARD_CLASS = clsx(
     "bg-darkColor absolute flex flex-col min-w-[380px] rounded-lg text-white stroke-white cursor-grab",

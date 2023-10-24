@@ -1,6 +1,6 @@
 import { ChacaSelect } from "@form/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
-import { useDatasetServices } from "@modules/datasets/services"
+import { useDatasets } from "@modules/datasets/hooks"
 import { FormInputSection } from "@modules/modal/shared/shared/components"
 import { useId } from "react"
 
@@ -18,7 +18,7 @@ export default function RefConfig({
   id,
 }: RefConfigProps) {
   const fieldRefId = useId()
-  const { searchPossibleFieldsToRef, findFieldByLocation } = useDatasetServices()
+  const { searchPossibleFieldsToRef, findFieldByLocation } = useDatasets()
 
   const { REF_TEXT, PLACEHOLDER } = useLanguage({
     REF_TEXT: { en: "Ref", es: "Ref" },

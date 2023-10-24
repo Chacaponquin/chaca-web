@@ -1,10 +1,10 @@
 import { DatasetField } from "@modules/datasets/interfaces/datasets.interface"
-import { useDatasetServices } from "@modules/datasets/services"
+import { useDatasets } from "@modules/datasets/hooks"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { useModalServices } from "@modules/modal/services"
 
 export function useFieldConfigMenu({ field }: { field: DatasetField }) {
-  const { selectedDataset, handleDeleteField: handleDeleteFieldService } = useDatasetServices()
+  const { selectedDataset, handleDeleteField: handleDeleteFieldService } = useDatasets()
   const { handleOpenModal } = useModalServices()
 
   function handleEditField() {

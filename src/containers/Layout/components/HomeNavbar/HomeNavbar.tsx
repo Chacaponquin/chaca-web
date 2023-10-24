@@ -7,11 +7,11 @@ import { ChacaSimpleButton } from "@form/components"
 import { useContext } from "react"
 import { ThemeSwitch } from "@modules/app/modules/theme/components"
 import { HomeContext } from "@containers/Home/context"
-import { useDatasetServices } from "@modules/datasets/services"
+import { useDatasets } from "@modules/datasets/hooks"
 
 export default function HomeNavbar() {
   const { smallWindow } = useContext(HomeContext)
-  const { handleOpenFieldsMenu } = useDatasetServices()
+  const { handleOpenFieldsMenu } = useDatasets()
 
   const { ACCOUNT_TEXT } = useLanguage({
     HOME_TEXT: { en: "Home", es: "Inicio" },

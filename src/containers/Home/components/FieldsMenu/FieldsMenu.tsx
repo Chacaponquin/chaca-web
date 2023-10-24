@@ -1,7 +1,7 @@
 import { Fragment, useContext } from "react"
 import { CloseSection, DatasetButtons, FieldContainer, NoFieldsMessage } from "./components"
 import clsx from "clsx"
-import { useDatasetServices } from "@modules/datasets/services"
+import { useDatasets } from "@modules/datasets/hooks"
 import { HomeContext } from "@containers/Home/context"
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const FieldsMenu = ({ handleExportSelectedDataset, handleAddNewField }: Props) => {
-  const { selectedDataset, showFieldsMenu, handleCloseFieldsMenu } = useDatasetServices()
+  const { selectedDataset, showFieldsMenu, handleCloseFieldsMenu } = useDatasets()
   const { fieldsMenuRef, smallWindow } = useContext(HomeContext)
 
   const containerClass = clsx(
