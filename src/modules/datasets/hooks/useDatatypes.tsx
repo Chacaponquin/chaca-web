@@ -9,7 +9,7 @@ import {
   SingleValueDataType,
 } from "../interfaces/dataset_field.interface"
 import { useSchemaServices } from "@modules/schemas/services"
-import { DataTypeInf } from "../dto/field"
+import { Datatype } from "../dto/field"
 import { useDatasetServices } from "../services"
 
 interface Props {
@@ -54,7 +54,7 @@ export default function useDatatypes({ fieldId, datasetId }: Props) {
 
   const DEFAULT_ENUM_DATA_TYPE: EnumDataType = { type: DATA_TYPES.ENUM, values: [] }
 
-  const DATA_TYPES_ARRAY: Array<DataTypeInf> = [
+  const DATA_TYPES_ARRAY: Array<Datatype> = [
     {
       dataType: DATA_TYPES.SINGLE_VALUE,
       title: "Schema Value",
@@ -106,8 +106,8 @@ export default function useDatatypes({ fieldId, datasetId }: Props) {
     },
   ]
 
-  function foundDataTypeByName(dataType: DATA_TYPES): DataTypeInf {
-    const found = DATA_TYPES_ARRAY.find((d) => d.dataType === dataType) as DataTypeInf
+  function foundDataTypeByName(dataType: DATA_TYPES): Datatype {
+    const found = DATA_TYPES_ARRAY.find((d) => d.dataType === dataType) as Datatype
     return found
   }
 

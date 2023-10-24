@@ -21,9 +21,11 @@ interface DatasetProps {
 }
 
 export class Dataset {
+  public static DEFAULT_LIMIT = 50
+
   private root: RootNode
 
-  constructor({ limit = 50, name }: DatasetProps) {
+  constructor({ limit = Dataset.DEFAULT_LIMIT, name }: DatasetProps) {
     this.root = new RootNode({ limit, name })
   }
 

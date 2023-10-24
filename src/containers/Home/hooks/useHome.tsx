@@ -17,6 +17,7 @@ export const useHome = () => {
     datasets,
     selectedDataset,
     handleAddDataset: handleAddDatasetService,
+    searchRefField,
   } = useDatasetServices()
   const { resetConfig, config } = useConfigServices()
   const { handleOpenModal } = useModalServices()
@@ -66,7 +67,11 @@ export const useHome = () => {
         setCreateDataLoading(true)
 
         const exportDatasets: Array<ExportDataset> = datasets.map((dat) =>
-          dat.exportObject({ findOption: findType, findParent: findParent }),
+          dat.exportObject({
+            findOption: findType,
+            findParent: findParent,
+            searchRefField: searchRefField,
+          }),
         )
 
         socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {

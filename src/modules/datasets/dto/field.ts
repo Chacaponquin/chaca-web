@@ -11,7 +11,7 @@ export interface FieldForm {
   isKey: boolean
 }
 
-export interface DataTypeInf {
+export interface Datatype {
   title: string
   dataType: DATA_TYPES
   id: number

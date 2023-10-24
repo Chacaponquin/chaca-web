@@ -226,6 +226,28 @@ export default function useDatasetServices() {
     return found
   }
 
+  function searchRefField(ref: Array<string>): Array<FieldNode<FieldDataType, ExportDatatype>> {
+    const result = [] as Array<FieldNode<FieldDataType, ExportDatatype>>
+
+    const datasetId = ref[0]
+    const refFields = ref.slice(1)
+
+    for (const refId of refFields) {
+      for (const dataset of datasets) {
+        if (dataset.id === datasetId) {
+          const found = dataset.findFieldById(refId)
+
+          if (found) {
+            result.push(found)
+            break
+          }
+        }
+      }
+    }
+
+    return result
+  }
+
   return {
     handleAddDataset,
     handleAddField,
@@ -249,5 +271,6 @@ export default function useDatasetServices() {
     searchPossibleFieldsToRef,
     findFieldByLocation,
     handleOpenFieldsMenu,
+    searchRefField,
   }
 }

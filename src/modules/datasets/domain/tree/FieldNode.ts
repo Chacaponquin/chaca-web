@@ -18,7 +18,7 @@ import {
   ExportDatatype,
 } from "@modules/datasets/interfaces/dataset_field.interface"
 import { FieldName } from "@modules/datasets/value-object"
-import { NodeObjectUtils } from "./NodeObjectUtils"
+import { NodesUtils } from "./NodesUtils"
 import { v4 as uuid } from "uuid"
 import { ExportDatasetField } from "@modules/datasets/dto/dataset"
 import { EmptyRefFieldError } from "@modules/datasets/errors"
@@ -31,8 +31,6 @@ export abstract class FieldNode<T, E extends ExportDatatype> {
   private _name: FieldName
   private _id = uuid()
 
-  public abstract stringInf(props: SearchProps): string
-
   constructor({ name, dataType, isArray = null, isKey = false, isPossibleNull = 0 }: NodeProps<T>) {
     this._name = name
     this._dataType = dataType
@@ -42,6 +40,7 @@ export abstract class FieldNode<T, E extends ExportDatatype> {
   }
 
   public abstract exportObject(props: SearchProps): ExportDatasetField<E>
+  public abstract stringInf(props: SearchProps): string
 
   public static create(props: NodeProps<FieldDataType>): FieldNode<FieldDataType, ExportDatatype> {
     if (props.dataType.type === DATA_TYPES.SINGLE_VALUE) {
@@ -199,7 +198,7 @@ export class SequentialNode extends FieldNode<SequentialDataType, SequentialData
 }
 
 export class MixedNode extends FieldNode<MixedDataType, ExportMixedDataType> {
-  public nodesUtils = new NodeObjectUtils(this)
+  public nodesUtils = new NodesUtils(this)
 
   public stringInf(): string {
     return `mixed`

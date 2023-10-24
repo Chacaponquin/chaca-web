@@ -15,7 +15,7 @@ interface GetLocationProps {
   isIdLocation?: boolean
 }
 
-export class NodeObjectUtils {
+export class NodesUtils {
   private _nodes: Array<FieldNode<FieldDataType, ExportDatatype>> = []
   private _instance: FieldNode<MixedDataType, ExportMixedDataType> | RootNode
 
@@ -53,7 +53,7 @@ export class NodeObjectUtils {
   }
 
   public exportFields(props: SearchProps): Array<ExportDatasetField<ExportDatatype>> {
-    return this._nodes.map((n) => n.exportObject(props))
+    return this.nodes.map((n) => n.exportObject(props))
   }
 
   public findFieldParentNode(

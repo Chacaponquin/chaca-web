@@ -1,6 +1,6 @@
 import { DatasetField } from "@modules/datasets/interfaces/datasets.interface"
 import { FieldNode } from "./FieldNode"
-import { NodeObjectUtils } from "./NodeObjectUtils"
+import { NodesUtils } from "./NodesUtils"
 import { DatasetName } from "@modules/datasets/value-object"
 import { v4 as uuid } from "uuid"
 import { ExportDatasetField } from "@modules/datasets/dto/dataset"
@@ -17,7 +17,7 @@ export class RootNode {
   private _name: DatasetName
   private _id = uuid()
 
-  public nodesUtils = new NodeObjectUtils(this)
+  public nodesUtils = new NodesUtils(this)
 
   constructor({ limit, name }: RootProps) {
     this._limit = limit
