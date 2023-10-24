@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { SOCKET_EVENTS } from "@modules/app/modules/socket/constants"
-import { useConfigServices } from "@modules/config/services"
+import { useConfig } from "@modules/config/hooks"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useToastServices } from "@modules/app/modules/toast/services"
@@ -19,7 +19,7 @@ export const useHome = () => {
     handleAddDataset: handleAddDatasetService,
     searchRefField,
   } = useDatasets()
-  const { resetConfig, config } = useConfigServices()
+  const { resetConfig, config } = useConfig()
   const { handleOpenModal } = useModalServices()
   const { toastError } = useToastServices()
   const { API_ROUTE } = useEnvServices()

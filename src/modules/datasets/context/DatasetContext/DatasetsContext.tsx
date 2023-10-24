@@ -11,7 +11,7 @@ import { DatasetPayload, datasetsReducer } from "../../reducer/datasets_reducer"
 import { Dataset } from "@modules/datasets/domain/tree"
 import { useDatasets } from "@modules/datasets/hooks"
 import { DATASETS_ACTIONS } from "@modules/datasets/constants"
-import { useConfigServices } from "@modules/config/services"
+import { useConfig } from "@modules/config/hooks"
 
 interface DatasetContextProps {
   datasets: Dataset[]
@@ -28,7 +28,7 @@ const DatasetsContext = createContext<DatasetContextProps>({} as DatasetContextP
 const DatasetsProvider = ({ children }: { children: ReactElement }) => {
   const [showFieldsMenu, setShowFieldsMenu] = useState(false)
   const { initDatasets } = useDatasets()
-  const { fileConfig } = useConfigServices()
+  const { fileConfig } = useConfig()
 
   // created datasets
   const [datasets, datasetDispatch] = useReducer<Reducer<Dataset[], DatasetPayload>>(

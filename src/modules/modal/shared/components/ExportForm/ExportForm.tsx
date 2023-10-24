@@ -3,12 +3,12 @@ import { ArgumentFilter } from "@modules/schemas/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { ChacaSelect } from "@form/components"
 import { FILE_TYPE } from "@modules/config/constants"
-import { useConfigServices } from "@modules/config/services"
+import { useConfig } from "@modules/config/hooks"
 import { FormInputSection } from "../../shared/components"
 
 export default function ExportForm({ saveModelOption }: { saveModelOption: boolean }) {
-  const { config, fileConfig } = useConfigServices()
-  const { changeFileArgument, changeFileType } = useConfigServices()
+  const { config, fileConfig } = useConfig()
+  const { changeFileArgument, changeFileType } = useConfig()
 
   const handleChangeFileArgument = (argument: string, value: unknown) => {
     changeFileArgument(argument, value)
