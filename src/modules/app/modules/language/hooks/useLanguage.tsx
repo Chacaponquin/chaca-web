@@ -7,7 +7,7 @@ import {
 } from "../interfaces/language.interface"
 import { LanguageContext } from "../context"
 
-export function useLanguage<T>(languageObject: LanguageObject<T>) {
+export default function useLanguage<T>(languageObject: LanguageObject<T>) {
   const { language } = useContext(LanguageContext)
 
   function filterLanguage(

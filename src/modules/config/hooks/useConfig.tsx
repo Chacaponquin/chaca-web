@@ -12,7 +12,7 @@ export function useConfig() {
     })
   }
 
-  function changeSaveSchema(value: boolean) {
+  function handleChangeSaveSchema(value: boolean) {
     configDispatch({
       type: CONFIG_ACTIONS.CHANGE_SAVE_SCHEMA,
       payload: {
@@ -27,7 +27,7 @@ export function useConfig() {
     })
   }
 
-  function changeFileType(fileType: FILE_TYPE) {
+  function handleChangeFileType(fileType: FILE_TYPE) {
     configDispatch({
       type: CONFIG_ACTIONS.CHANGE_FILE_TYPE,
       payload: {
@@ -37,9 +37,9 @@ export function useConfig() {
   }
 
   return {
-    changeSaveSchema,
+    handleChangeSaveSchema,
     resetConfig,
-    changeFileType,
+    handleChangeFileType,
     config,
     fileConfig,
   }

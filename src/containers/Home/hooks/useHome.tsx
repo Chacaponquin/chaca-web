@@ -3,9 +3,9 @@ import { SOCKET_EVENTS } from "@modules/app/modules/socket/constants"
 import { useConfig } from "@modules/config/hooks"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { useLanguage } from "@modules/app/modules/language/hooks"
-import { useToastServices } from "@modules/app/modules/toast/services"
-import { useEnvServices } from "@modules/app/modules/env/services"
-import { useSocketServices } from "@modules/app/modules/socket/services"
+import { useToast } from "@modules/app/modules/toast/hooks"
+import { useEnv } from "@modules/app/modules/env/hooks"
+import { useSocket } from "@modules/app/modules/socket/hooks"
 import { useDatasets } from "@modules/datasets/hooks"
 import { useModal } from "@modules/modal/hooks"
 import { Dataset, ExportDataset } from "@modules/datasets/domain/tree"
@@ -21,9 +21,9 @@ export const useHome = () => {
   } = useDatasets()
   const { resetConfig, config } = useConfig()
   const { handleOpenModal } = useModal()
-  const { toastError } = useToastServices()
-  const { API_ROUTE } = useEnvServices()
-  const { socket } = useSocketServices()
+  const { toastError } = useToast()
+  const { API_ROUTE } = useEnv()
+  const { socket } = useSocket()
   const { findParent, findType } = useSchemas()
 
   const { NETWORK_ERROR, CREATION_ERROR, EMPTY_REF_FIELD_ERROR } = useLanguage({

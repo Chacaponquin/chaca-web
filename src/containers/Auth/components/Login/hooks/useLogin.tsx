@@ -3,12 +3,12 @@ import { usePost } from "@modules/app/modules/http/hooks"
 import { useState } from "react"
 import { LoginUserDTO } from "@modules/user/dto/user"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
-import { useToastServices } from "@modules/app/modules/toast/services"
+import { useToast } from "@modules/app/modules/toast/hooks"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 
 export function useLogin() {
   const { handleSignIn } = useUser()
-  const { toastError } = useToastServices()
+  const { toastError } = useToast()
 
   const { LOGIN_ERROR } = useLanguage({ LOGIN_ERROR: { en: "Network error", es: "Hubo un error" } })
 

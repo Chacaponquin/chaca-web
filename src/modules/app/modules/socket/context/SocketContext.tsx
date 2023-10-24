@@ -1,6 +1,6 @@
 import { useUser } from "@modules/user/hooks"
 import { createContext, ReactElement, useMemo } from "react"
-import { useEnvServices } from "../../env/services"
+import { useEnv } from "../../env/hooks"
 import { io, Socket } from "socket.io-client"
 
 interface SocketContextProps {
@@ -11,7 +11,7 @@ const SocketContext = createContext<SocketContextProps>({} as SocketContextProps
 
 const SocketProvider = ({ children }: { children: ReactElement }) => {
   const { getToken } = useUser()
-  const { API_ROUTE } = useEnvServices()
+  const { API_ROUTE } = useEnv()
 
   const socket = useMemo(
     () =>

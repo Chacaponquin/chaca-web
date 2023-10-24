@@ -1,12 +1,12 @@
 import clsx from "clsx"
 import { motion } from "framer-motion"
-import { useThemeServices } from "../../services"
+import { useTheme } from "../../hooks"
 import { THEME } from "../../constants/THEME"
 import { Dark, Light } from "@modules/app/modules/icon/components"
 import { useMemo } from "react"
 
 export default function ThemeSwitch() {
-  const { theme, handleChangeTheme } = useThemeServices()
+  const { theme, handleChangeTheme } = useTheme()
   const isLight = useMemo(() => theme === THEME.LIGHT, [theme])
 
   function handleToggleSwitch() {

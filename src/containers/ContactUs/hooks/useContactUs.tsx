@@ -5,7 +5,7 @@ import { usePost } from "@modules/app/modules/http/hooks"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { SaveUserMessage } from "@modules/user-message/domain"
-import { useToastServices } from "@modules/app/modules/toast/services"
+import { useToast } from "@modules/app/modules/toast/hooks"
 import {
   EmptyMessageTitleError,
   EmptyUserEmailError,
@@ -30,7 +30,7 @@ export function useContactUs() {
     EMPTY_TITLE: { en: "The message must have a title", es: "El mensaje debe tener un título" },
   })
 
-  const { toastError } = useToastServices()
+  const { toastError } = useToast()
 
   const [createMessage, { loading }] = usePost<void, CreateMessageDTO>({
     url: API_ROUTES.CREATE_USER_MESSAGE,

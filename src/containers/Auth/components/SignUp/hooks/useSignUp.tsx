@@ -10,7 +10,7 @@ import { usePost } from "@modules/app/modules/http/hooks"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { SaveUser } from "@modules/user/domain"
 import { useLanguage } from "@modules/app/modules/language/hooks"
-import { useToastServices } from "@modules/app/modules/toast/services"
+import { useToast } from "@modules/app/modules/toast/hooks"
 import { SignUpForm } from "../interfaces/form.interface"
 import { SignUpUserDTO } from "@modules/user/dto/user"
 
@@ -66,7 +66,7 @@ export function useSignUp() {
     },
   })
 
-  const { toastError } = useToastServices()
+  const { toastError } = useToast()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()

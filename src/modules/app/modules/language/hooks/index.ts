@@ -1,3 +1,4 @@
-import { useLanguage } from "./useLanguage"
+import useLanguage from "./useLanguage"
+import useLanguageContext from "./useLanguageContext"
 
-export { useLanguage }
+export { useLanguage, useLanguageContext }

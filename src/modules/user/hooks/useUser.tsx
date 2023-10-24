@@ -2,11 +2,11 @@ import { TOKEN_LOCATION } from "../constants"
 import Cookies from "universal-cookie"
 import { useCallback, useContext, useMemo } from "react"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
-import { useEnvServices } from "@modules/app/modules/env/services"
+import { useEnv } from "@modules/app/modules/env/hooks"
 import { UserContext } from "../context"
 
 export default function useUser() {
-  const { API_ROUTE } = useEnvServices()
+  const { API_ROUTE } = useEnv()
   const { actualUser, noUserLimits, loading } = useContext(UserContext)
 
   const USER_DATASETS_LIMIT = useMemo(() => {

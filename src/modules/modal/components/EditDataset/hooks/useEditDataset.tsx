@@ -1,5 +1,5 @@
 import { useLanguage } from "@modules/app/modules/language/hooks"
-import { useToastServices } from "@modules/app/modules/toast/services"
+import { useToast } from "@modules/app/modules/toast/hooks"
 import { Dataset } from "@modules/datasets/domain/tree"
 import { EmptyDatasetNameError, RepeatDatasetNameError } from "@modules/datasets/errors"
 import { useDatasets } from "@modules/datasets/hooks"
@@ -9,7 +9,7 @@ import { useState } from "react"
 export default function useEditDataset({ dataset }: { dataset: Dataset }) {
   const { handleEditDataset: handleEditDatasetService } = useDatasets()
   const { handleCloseModal } = useModal()
-  const { toastError } = useToastServices()
+  const { toastError } = useToast()
 
   const [datasetName, setDatasetName] = useState(dataset.name)
   const [datasetLimit, setDatasetLimit] = useState(dataset.limit)

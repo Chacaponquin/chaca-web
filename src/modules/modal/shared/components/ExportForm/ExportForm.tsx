@@ -6,11 +6,10 @@ import { useConfig } from "@modules/config/hooks"
 import { FormInputSection } from "../../shared/components"
 
 export default function ExportForm({ saveModelOption }: { saveModelOption: boolean }) {
-  const { config, fileConfig } = useConfig()
-  const { changeFileType } = useConfig()
+  const { config, fileConfig, handleChangeFileType: handleChangeFileTypeService } = useConfig()
 
   const handleChangeFileType = (fileType: FILE_TYPE) => {
-    changeFileType(fileType)
+    handleChangeFileTypeService(fileType)
   }
 
   const { FORMAT_TEXT, SELECT_FORMAT } = useLanguage({
@@ -28,9 +27,7 @@ export default function ExportForm({ saveModelOption }: { saveModelOption: boole
           labelKey={"title"}
           valueKey={"fileType"}
           placeholder={SELECT_FORMAT}
-          onChange={(value) => {
-            handleChangeFileType(value)
-          }}
+          onChange={(value) => handleChangeFileType(value)}
           value={config.file.fileType}
           dimension="large"
         />
