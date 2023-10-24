@@ -1,13 +1,13 @@
 import axios from "axios"
 import { useEffect, useMemo } from "react"
 import { handleRequestSuccess } from "./utils"
-import { useUserServices } from "@modules/user/services"
+import { useUser } from "@modules/user/hooks"
 import { useLanguageService } from "@modules/app/modules/language/services"
 import { useEnvServices } from "@modules/app/modules/env/services"
 
 export const useConfig = () => {
   const { language } = useLanguageService()
-  const { getToken } = useUserServices()
+  const { getToken } = useUser()
   const { API_ROUTE } = useEnvServices()
 
   const axiosInstance = useMemo(

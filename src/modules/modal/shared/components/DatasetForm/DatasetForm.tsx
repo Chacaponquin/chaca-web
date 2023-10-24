@@ -1,6 +1,6 @@
 import { ChacaNumberInput, ChacaTextInput } from "@form/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
-import { useUserServices } from "@modules/user/services"
+import { useUser } from "@modules/user/hooks"
 import { FormInputSection } from "../../shared/components"
 import { useId } from "react"
 
@@ -15,7 +15,7 @@ export default function DatasetForm({
   limit: number
   handleChangeLimit: (v: number) => void
 }) {
-  const { USER_DOCUMENTS_LIMIT } = useUserServices()
+  const { USER_DOCUMENTS_LIMIT } = useUser()
 
   const { DATASET_NAME_LABEL, FIELD_NAME_TEXT, COUNT_DOCUMENTS } = useLanguage({
     DATASET_NAME_LABEL: { en: "Dataset name", es: "Nombre de dataset" },

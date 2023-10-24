@@ -5,7 +5,7 @@ import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { useEnvServices } from "@modules/app/modules/env/services"
 import { UserContext } from "../context"
 
-export default function useUserServices() {
+export default function useUser() {
   const { API_ROUTE } = useEnvServices()
   const { actualUser, noUserLimits, loading } = useContext(UserContext)
 

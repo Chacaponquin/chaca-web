@@ -1,4 +1,4 @@
-import { useUserServices } from "@modules/user/services"
+import { useUser } from "@modules/user/hooks"
 import { useState } from "react"
 import {
   NotEqualUserPasswords,
@@ -50,7 +50,7 @@ export function useSignUp() {
     confirmPassword: "",
   })
 
-  const { handleSignIn } = useUserServices()
+  const { handleSignIn } = useUser()
 
   const [signUpUser, { loading }] = usePost<string, SignUpUserDTO>({
     url: API_ROUTES.AUTH_ROUTES.SIGN_UP,

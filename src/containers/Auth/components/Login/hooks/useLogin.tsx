@@ -1,4 +1,4 @@
-import { useUserServices } from "@modules/user/services"
+import { useUser } from "@modules/user/hooks"
 import { usePost } from "@modules/app/modules/http/hooks"
 import { useState } from "react"
 import { LoginUserDTO } from "@modules/user/dto/user"
@@ -7,7 +7,7 @@ import { useToastServices } from "@modules/app/modules/toast/services"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 
 export function useLogin() {
-  const { handleSignIn } = useUserServices()
+  const { handleSignIn } = useUser()
   const { toastError } = useToastServices()
 
   const { LOGIN_ERROR } = useLanguage({ LOGIN_ERROR: { en: "Network error", es: "Hubo un error" } })

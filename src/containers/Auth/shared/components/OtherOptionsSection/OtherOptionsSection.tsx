@@ -1,10 +1,10 @@
 import { Fragment } from "react"
 import { GitHub, Google } from "@modules/app/modules/icon/components"
-import { useUserServices } from "@modules/user/services"
+import { useUser } from "@modules/user/hooks"
 import { SocialButton } from "./components"
 
 const OtherOptionsSection = ({ loading }: { loading: boolean }) => {
-  const { handleGithubLogin, handleGoogleLogin } = useUserServices()
+  const { handleGithubLogin, handleGoogleLogin } = useUser()
 
   return (
     <Fragment>
