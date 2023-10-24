@@ -38,17 +38,15 @@ export const useHome = () => {
   const [createDataLoading, setCreateDataLoading] = useState(false)
 
   useEffect(() => {
-    socket.on(SOCKET_EVENTS.CONNECT_ERROR, () => {
-      setTimeout(() => socket.connect(), 5000)
-    })
-
     socket.on(SOCKET_EVENTS.GET_FILE_URL, (downUrl) => {
       window.open(`${API_ROUTE}/${downUrl}`)
       setCreateDataLoading(false)
       resetConfig()
     })
 
-    socket.on(SOCKET_EVENTS.CREATION_ERROR, () => {
+    socket.on(SOCKET_EVENTS.CREATION_ERROR, (error) => {
+      console.log(error)
+
       toastError(CREATION_ERROR)
       setCreateDataLoading(false)
     })
@@ -56,8 +54,7 @@ export const useHome = () => {
     return () => {
       socket.off(SOCKET_EVENTS.GET_FILE_URL)
       socket.off(SOCKET_EVENTS.CREATION_ERROR)
-      socket.off(SOCKET_EVENTS.CONNECT)
-      socket.off(SOCKET_EVENTS.DISCONNECT)
+      socket.off(SOCKET_EVENTS.CREATE_DATASETS)
     }
   }, [socket])
 

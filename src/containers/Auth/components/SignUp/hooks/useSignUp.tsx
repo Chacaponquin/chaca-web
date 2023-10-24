@@ -58,7 +58,7 @@ export function useSignUp() {
       handleSignIn(userToken)
     },
     onError: (error) => {
-      if (error.status === 401) {
+      if (error.status === 409) {
         toastError(ALREADY_EXIST_USER_TEXT)
       } else {
         toastError(CREATING_USER_TEXT)
