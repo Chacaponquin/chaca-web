@@ -8,7 +8,7 @@ import {
   SequentialDataType,
   SingleValueDataType,
 } from "../interfaces/dataset_field.interface"
-import { useSchemaServices } from "@modules/schemas/services"
+import { useSchemas } from "@modules/schemas/hooks"
 import { Datatype } from "../dto/field"
 import { useDatasets } from "./"
 
@@ -18,7 +18,7 @@ interface Props {
 }
 
 export default function useDatatypes({ fieldId, datasetId }: Props) {
-  const { schemas } = useSchemaServices()
+  const { schemas } = useSchemas()
   const { searchPossibleFieldsToRef } = useDatasets()
 
   const DEFAULT_CUSTOM_DATA_TYPE: CustomDataType = {

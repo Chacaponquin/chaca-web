@@ -9,7 +9,7 @@ import { useSocketServices } from "@modules/app/modules/socket/services"
 import { useDatasets } from "@modules/datasets/hooks"
 import { useModalServices } from "@modules/modal/services"
 import { Dataset, ExportDataset } from "@modules/datasets/domain/tree"
-import { useSchemaServices } from "@modules/schemas/services"
+import { useSchemas } from "@modules/schemas/hooks"
 import { EmptyRefFieldError } from "@modules/datasets/errors"
 
 export const useHome = () => {
@@ -24,7 +24,7 @@ export const useHome = () => {
   const { toastError } = useToastServices()
   const { API_ROUTE } = useEnvServices()
   const { socket } = useSocketServices()
-  const { findParent, findType } = useSchemaServices()
+  const { findParent, findType } = useSchemas()
 
   const { NETWORK_ERROR, CREATION_ERROR, EMPTY_REF_FIELD_ERROR } = useLanguage({
     NETWORK_ERROR: { en: "Network connect error", es: "Error en la conexión" },

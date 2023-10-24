@@ -5,7 +5,7 @@ import {
   SelectFieldSchemaOptionProps,
   UpdateArgumentsProps,
 } from "@modules/modal/shared/interfaces/form.interfaces"
-import { useSchemaServices } from "@modules/schemas/services"
+import { useSchemas } from "@modules/schemas/hooks"
 import { OptionArguments } from "./components"
 import { useMemo } from "react"
 
@@ -20,7 +20,7 @@ export default function SchemaValueConfig({
   handleSelectFieldSchemaOption: (p: SelectFieldSchemaOptionProps) => void
   handleUpdateFieldSchemaArguments: (p: UpdateArgumentsProps) => void
 }) {
-  const { schemas, findParentOptions } = useSchemaServices()
+  const { schemas, findParentOptions } = useSchemas()
   const { MODULE_TEXT, OPTION_TEXT } = useLanguage({
     MODULE_TEXT: { en: "Module", es: "Módulo" },
     OPTION_TEXT: { en: "Option", es: "Opción" },

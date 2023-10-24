@@ -4,7 +4,7 @@ import { useReducer, Reducer } from "react"
 import { FieldFormPayload, fieldFormReducer } from "../reducer"
 import { FORM_ACTIONS } from "../constants/FORM_ACTIONS"
 import { DATA_TYPES } from "@modules/schemas/constants"
-import { useSchemaServices } from "@modules/schemas/services"
+import { useSchemas } from "@modules/schemas/hooks"
 import {
   SequenceDataType,
   SingleValueDataType,
@@ -28,7 +28,7 @@ export const useFieldForm = ({ field: inputField, datasetId }: Props): FieldActi
     fieldFormReducer,
     inputField,
   )
-  const { findParent } = useSchemaServices()
+  const { findParent } = useSchemas()
 
   function resetForm(): void {
     formDispatch({ type: FORM_ACTIONS.RESET_CONFIG })

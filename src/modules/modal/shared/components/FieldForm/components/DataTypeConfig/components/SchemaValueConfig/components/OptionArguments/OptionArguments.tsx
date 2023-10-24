@@ -1,6 +1,6 @@
 import { ArgumentObject } from "@modules/datasets/interfaces/dataset_field.interface"
 import { UpdateArgumentsProps } from "@modules/modal/shared/interfaces/form.interfaces"
-import { useSchemaServices } from "@modules/schemas/services"
+import { useSchemas } from "@modules/schemas/hooks"
 import { ArgumentFilter } from "@modules/schemas/components"
 import { Fragment } from "react"
 
@@ -17,7 +17,7 @@ export default function OptionArguments({
   args,
   handleUpdateFieldSchemaArguments,
 }: OptionArgumentsProps) {
-  const { findType } = useSchemaServices()
+  const { findType } = useSchemas()
   const foundOption = findType(module, option)
 
   return (

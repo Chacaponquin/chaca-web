@@ -3,7 +3,7 @@ import { Schema, SubOption } from "../interfaces/schema.interface"
 import { useEnvServices } from "@modules/app/modules/env/services"
 import { SchemasContext } from "../context"
 
-export function useSchemaServices() {
+export function useSchemas() {
   const { schemas } = useContext(SchemasContext)
   const { API_ROUTE } = useEnvServices()
 
