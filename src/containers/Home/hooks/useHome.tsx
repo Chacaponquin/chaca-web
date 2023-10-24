@@ -7,7 +7,7 @@ import { useToastServices } from "@modules/app/modules/toast/services"
 import { useEnvServices } from "@modules/app/modules/env/services"
 import { useSocketServices } from "@modules/app/modules/socket/services"
 import { useDatasets } from "@modules/datasets/hooks"
-import { useModalServices } from "@modules/modal/services"
+import { useModal } from "@modules/modal/hooks"
 import { Dataset, ExportDataset } from "@modules/datasets/domain/tree"
 import { useSchemas } from "@modules/schemas/hooks"
 import { EmptyRefFieldError } from "@modules/datasets/errors"
@@ -20,7 +20,7 @@ export const useHome = () => {
     searchRefField,
   } = useDatasets()
   const { resetConfig, config } = useConfig()
-  const { handleOpenModal } = useModalServices()
+  const { handleOpenModal } = useModal()
   const { toastError } = useToastServices()
   const { API_ROUTE } = useEnvServices()
   const { socket } = useSocketServices()

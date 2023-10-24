@@ -4,7 +4,7 @@ import { useFieldForm } from "../../../shared/hooks"
 import { EmptyFieldNameError, RepeatSameLevelFieldNameError } from "@modules/datasets/errors"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useToastServices } from "@modules/app/modules/toast/services"
-import { useModalServices } from "@modules/modal/services"
+import { useModal } from "@modules/modal/hooks"
 
 interface Props {
   field: DatasetField
@@ -26,7 +26,7 @@ export function useEditFieldForm({ field, parentfieldId, datasetId }: Props) {
 
   const { toastError } = useToastServices()
 
-  const { handleCloseModal } = useModalServices()
+  const { handleCloseModal } = useModal()
   const { handleUpdateField } = useDatasets()
 
   const fieldActions = useFieldForm({

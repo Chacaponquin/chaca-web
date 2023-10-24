@@ -1,5 +1,4 @@
-import { useMemo, useId } from "react"
-import { ArgumentFilter } from "@modules/schemas/components"
+import { useId, Fragment } from "react"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { ChacaSelect } from "@form/components"
 import { FILE_TYPE } from "@modules/config/constants"
@@ -8,25 +7,11 @@ import { FormInputSection } from "../../shared/components"
 
 export default function ExportForm({ saveModelOption }: { saveModelOption: boolean }) {
   const { config, fileConfig } = useConfig()
-  const { changeFileArgument, changeFileType } = useConfig()
-
-  const handleChangeFileArgument = (argument: string, value: unknown) => {
-    changeFileArgument(argument, value)
-  }
+  const { changeFileType } = useConfig()
 
   const handleChangeFileType = (fileType: FILE_TYPE) => {
     changeFileType(fileType)
   }
-
-  const fileArguments = useMemo(() => {
-    const fileFound = fileConfig.find((el) => el.fileType === config.file.fileType)
-
-    if (fileFound) {
-      return fileFound.arguments
-    } else {
-      return []
-    }
-  }, [fileConfig, config.file.fileType])
 
   const { FORMAT_TEXT, SELECT_FORMAT } = useLanguage({
     FORMAT_TEXT: { en: "Format", es: "Formato" },
@@ -51,22 +36,7 @@ export default function ExportForm({ saveModelOption }: { saveModelOption: boole
         />
       </FormInputSection>
 
-      {(fileArguments.length || saveModelOption) && (
-        <div className="flex flex-col gap-2">
-          {fileArguments.map((a, i) => (
-            <div className="flex items-center justify-between gap-2" key={i}>
-              <label htmlFor="" className="font-fontBold text-lg whitespace-nowrap">
-                {a.argument}:
-              </label>
-              <ArgumentFilter
-                arg={a}
-                handleChangeArgumentValue={(v) => handleChangeFileArgument(a.argument, v)}
-                value={config.file.arguments[a.argument]}
-              />
-            </div>
-          ))}
-        </div>
-      )}
+      {saveModelOption && <Fragment></Fragment>}
     </div>
   )
 }

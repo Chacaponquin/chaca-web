@@ -1,6 +1,6 @@
 import { ChacaSimpleButton } from "@form/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
-import { useModalServices } from "@modules/modal/services"
+import { useModal } from "@modules/modal/hooks"
 
 const ModalButtons = ({
   nextText,
@@ -13,7 +13,7 @@ const ModalButtons = ({
   type: "delete" | "edit"
   nextButtonId?: string
 }) => {
-  const { handleCloseModal } = useModalServices()
+  const { handleCloseModal } = useModal()
   const { CANCEL_TEXT } = useLanguage({ CANCEL_TEXT: { en: "Cancel", es: "Cancelar" } })
 
   return (

@@ -1,4 +1,4 @@
-import { useModalServices } from "@modules/modal/services"
+import { useModal } from "@modules/modal/hooks"
 import React from "react"
 import { ModalButtons, ModalTitle } from "./components"
 
@@ -20,7 +20,7 @@ export default function ModalContainer({
   title,
   type,
 }: Props) {
-  const { handleCloseModal } = useModalServices()
+  const { handleCloseModal } = useModal()
 
   return (
     <div
