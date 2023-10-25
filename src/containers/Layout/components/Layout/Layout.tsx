@@ -1,13 +1,13 @@
-import React, { Fragment } from "react"
+import { Fragment } from "react"
 import { Helmet } from "react-helmet"
 
-interface LayoutProps {
+interface Props {
   children: React.ReactElement
   description: string
   title: string
 }
 
-export default function Layout({ children, description, title }: LayoutProps) {
+export default function Layout({ children, description, title }: Props) {
   return (
     <Fragment>
       <Helmet>

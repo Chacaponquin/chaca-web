@@ -1,5 +1,5 @@
 import { useSignUp } from "./hooks"
-import { LazyRoute, NoUserRoute } from "@modules/app/components"
+import { NoUserRoute } from "@modules/app/components"
 import { Form, Panel, Redirect } from "./components"
 import { Layout } from "@containers/Layout/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
@@ -14,25 +14,23 @@ const SignUp = () => {
   })
 
   return (
-    <LazyRoute full={true}>
-      <NoUserRoute>
-        <Layout description={DESCRIPTION} title="Chaca | SignUp">
-          <main className="w-full h-screen flex">
-            <section className="py-10 px-20 esm:px-5 flex justify-center items-center xl:w-[50%] w-full flex-col">
-              <Redirect />
-              <Form
-                handleChange={handleChange}
-                form={signUpData}
-                handleSubmit={handleSubmit}
-                loading={loading}
-              />
-            </section>
+    <NoUserRoute>
+      <Layout description={DESCRIPTION} title="Chaca | SignUp">
+        <main className="w-full h-screen flex">
+          <section className="py-10 px-20 esm:px-5 flex justify-center items-center xl:w-[50%] w-full flex-col">
+            <Redirect />
+            <Form
+              handleChange={handleChange}
+              form={signUpData}
+              handleSubmit={handleSubmit}
+              loading={loading}
+            />
+          </section>
 
-            <Panel />
-          </main>
-        </Layout>
-      </NoUserRoute>
-    </LazyRoute>
+          <Panel />
+        </main>
+      </Layout>
+    </NoUserRoute>
   )
 }
 

@@ -22,6 +22,7 @@ export const useHome = () => {
     selectedDataset,
     handleAddDataset: handleAddDatasetService,
     searchRefField,
+    showFieldsMenu,
   } = useDatasets()
   const { handleResetConfig, config } = useConfig()
   const { handleOpenModal } = useModal()
@@ -159,5 +160,6 @@ export const useHome = () => {
     handleAddNewField,
     handleAddDataset,
     datasets,
+    showFieldsMenu,
   }
 }

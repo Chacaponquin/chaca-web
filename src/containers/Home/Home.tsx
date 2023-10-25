@@ -2,15 +2,12 @@ import {
   CreationLoadingModal,
   DatasetPlayground,
   FieldsMenu,
+  HomeLayout,
   NoDatasetsMessage,
 } from "./components"
 import { useHome } from "./hooks"
-import { useContext } from "react"
-import { LazyRoute } from "@modules/app/components"
-import { useLanguage } from "@modules/app/modules/language/hooks"
-import { HomeNavbar, Layout } from "@containers/Layout/components"
-import { useDatasets } from "@modules/datasets/hooks"
-import { HomeContext, HomeProvider } from "./context"
+import { Fragment, useContext } from "react"
+import { HomeContext } from "./context"
 
 export default function Home() {
   const {
@@ -20,47 +17,36 @@ export default function Home() {
     handleCreateAllDatasets,
     handleAddDataset,
     datasets,
+    showFieldsMenu,
   } = useHome()
-  const { showFieldsMenu } = useDatasets()
   const { smallWindow } = useContext(HomeContext)
 
-  const { HOME_DESCRIPTION } = useLanguage({
-    HOME_DESCRIPTION: {
-      en: "An interactive application so you can easily create your mock data to test or develop applications",
-      es: "Una aplicación interactiva para que puedas crear fácilmente tu mock data para realizar tests o desarrollar aplicaciones",
-    },
-  })
-
   return (
-    <LazyRoute>
-      <HomeProvider>
-        <Layout description={HOME_DESCRIPTION} title="Chaca | Home">
-          <main className="flex flex-col w-full h-screen">
-            <HomeNavbar />
+    <HomeLayout>
+      <Fragment>
+        {datasets && datasets.length === 0 && (
+          <NoDatasetsMessage handleCreateDataset={handleAddDataset} />
+        )}
 
-            {datasets.length === 0 && <NoDatasetsMessage handleCreateDataset={handleAddDataset} />}
+        {datasets && datasets.length > 0 && (
+          <section className="flex flex-grow">
+            {createDataLoading && <CreationLoadingModal />}
 
-            {datasets.length > 0 && (
-              <section className="flex flex-grow">
-                {createDataLoading && <CreationLoadingModal />}
-
-                {(!smallWindow || (smallWindow && showFieldsMenu)) && (
-                  <FieldsMenu
-                    handleExportSelectedDataset={handleExportSelectedDataset}
-                    handleAddNewField={handleAddNewField}
-                  />
-                )}
-
-                <DatasetPlayground
-                  handleCreateSelectDataset={handleExportSelectedDataset}
-                  handleAddDataset={handleAddDataset}
-                  handleCreateAllDatasets={handleCreateAllDatasets}
-                />
-              </section>
+            {(!smallWindow || (smallWindow && showFieldsMenu)) && (
+              <FieldsMenu
+                handleExportSelectedDataset={handleExportSelectedDataset}
+                handleAddNewField={handleAddNewField}
+              />
             )}
-          </main>
-        </Layout>
-      </HomeProvider>
-    </LazyRoute>
+
+            <DatasetPlayground
+              handleCreateSelectDataset={handleExportSelectedDataset}
+              handleAddDataset={handleAddDataset}
+              handleCreateAllDatasets={handleCreateAllDatasets}
+            />
+          </section>
+        )}
+      </Fragment>
+    </HomeLayout>
   )
 }

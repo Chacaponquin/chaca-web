@@ -51,11 +51,7 @@ export default function useDatasets() {
 
   const { validateDatasetName, validateFieldName } = useValidations()
 
-  function initDatasets() {
-    return []
-  }
-
-  const handleAddDataset = () => {
+  function handleAddDataset() {
     datasetDispatch({
       type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
     })
@@ -253,7 +249,6 @@ export default function useDatasets() {
     handleAddField,
     hanldeDeleteDataset,
     handleChangeDocumentsLimit,
-    initDatasets,
     handleEditDataset,
     handleUpdateField,
     fieldCanBeKey,

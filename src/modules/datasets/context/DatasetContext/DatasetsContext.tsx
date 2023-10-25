@@ -9,11 +9,8 @@ import {
 } from "react"
 import { DatasetPayload, datasetsReducer } from "../../reducer/datasets_reducer"
 import { Dataset } from "@modules/datasets/domain/tree"
-import { useDatasets } from "@modules/datasets/hooks"
-import { DATASETS_ACTIONS } from "@modules/datasets/constants"
-import { useConfig } from "@modules/config/hooks"
 
-interface DatasetContextProps {
+interface Props {
   datasets: Dataset[]
   datasetDispatch: Dispatch<DatasetPayload>
   selectedDataset: Dataset | null
@@ -23,21 +20,16 @@ interface DatasetContextProps {
   showFieldsMenu: boolean
 }
 
-const DatasetsContext = createContext<DatasetContextProps>({} as DatasetContextProps)
+const DatasetsContext = createContext<Props>({} as Props)
 
-const DatasetsProvider = ({ children }: { children: ReactElement }) => {
+function DatasetsProvider({ children }: { children: ReactElement }) {
   const [showFieldsMenu, setShowFieldsMenu] = useState(false)
-  const { initDatasets } = useDatasets()
-  const { fileConfig } = useConfig()
 
-  // created datasets
+  const [selectedDataset, setSelectedDataset] = useState<Dataset | null>(null)
   const [datasets, datasetDispatch] = useReducer<Reducer<Dataset[], DatasetPayload>>(
     datasetsReducer,
     [],
   )
-
-  // select dataset
-  const [selectedDataset, setSelectedDataset] = useState<Dataset | null>(null)
 
   useEffect(() => {
     if (datasets.length === 1) {
@@ -45,16 +37,7 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
     }
   }, [datasets])
 
-  useEffect(() => {
-    const initialDatasets = initDatasets()
-
-    datasetDispatch({
-      type: DATASETS_ACTIONS.SET_INIT_DATASETS,
-      payload: { datasets: initialDatasets },
-    })
-  }, [fileConfig])
-
-  const handleSelectDataset = (id: string | null) => {
+  function handleSelectDataset(id: string | null) {
     const findDataset = datasets.find((el) => el.id === id)
 
     if (findDataset) {
@@ -64,11 +47,11 @@ const DatasetsProvider = ({ children }: { children: ReactElement }) => {
     }
   }
 
-  const handleOpenFieldsMenu = () => {
+  function handleOpenFieldsMenu() {
     setShowFieldsMenu(true)
   }
 
-  const handleCloseFieldsMenu = () => {
+  function handleCloseFieldsMenu() {
     setShowFieldsMenu(false)
   }
 
