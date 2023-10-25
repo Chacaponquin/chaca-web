@@ -13,6 +13,8 @@ interface PositionStyle {
 
 export default function Tooltip({ position = "top", children, text }: Props) {
   const [show, setShow] = useState(false)
+
+  const textRef = useRef<HTMLDivElement>(null)
   const elementRef = useRef<HTMLDivElement>(null)
 
   function handleShow() {
@@ -29,8 +31,8 @@ export default function Tooltip({ position = "top", children, text }: Props) {
 
     const OFFSET = 15
 
-    if (elementRef.current) {
-      width = elementRef.current.clientWidth
+    if (elementRef.current && textRef.current) {
+      width = textRef.current.clientWidth
       height = elementRef.current.clientHeight
     }
 
@@ -38,24 +40,29 @@ export default function Tooltip({ position = "top", children, text }: Props) {
       case "top":
         return { translateX: 0, translateY: -height - OFFSET }
       case "right":
-        return { translateX: width + OFFSET, translateY: 0 }
+        return { translateX: width / 2 + OFFSET, translateY: 0 }
       case "left":
-        return { translateX: -width - OFFSET, translateY: 0 }
+        return { translateX: -(width / 2) - OFFSET, translateY: 0 }
       case "bottom":
         return { translateX: 0, translateY: height + OFFSET }
       default:
         return { translateX: 0, translateY: -height - OFFSET }
     }
-  }, [position, elementRef.current])
+  }, [position, elementRef.current, textRef.current])
 
   return (
-    <div className="relative" onMouseEnter={handleShow} onMouseLeave={handleHide}>
+    <div
+      className="relative flex justify-center items-center"
+      onMouseEnter={handleShow}
+      onMouseLeave={handleHide}
+    >
       {show && (
         <div
           className="shadow-lg bg-darkColor text-white px-3 py-1 rounded absolute"
           style={{
             transform: `translateX(${posStyle.translateX}px) translateY(${posStyle.translateY}px)`,
           }}
+          ref={textRef}
         >
           {text}
         </div>
