@@ -1,7 +1,5 @@
-import { useContext } from "react"
-import { ArrowSvg, DatasetCard, DatasetsButtons } from "./components"
+import { ArrowSvg, DatasetCard, DatasetsButtons, Playground } from "./components"
 import { useDatasetPlayground } from "./hooks"
-import { HomeContext } from "@containers/Home/context"
 
 interface Props {
   handleCreateSelectDataset: (i: number) => void
@@ -22,7 +20,6 @@ export default function DatasetPlayground({
     handleUpdateLines,
     handleChangeDatasetCardPosition,
   } = useDatasetPlayground()
-  const { playgroundRef } = useContext(HomeContext)
 
   return (
     <section className="w-full h-full flex flex-col dark:bg-darkColorExtraLight bg-grayColor">
@@ -31,7 +28,7 @@ export default function DatasetPlayground({
         handleCreateAllDatasets={handleCreateAllDatasets}
       />
 
-      <div className="relative w-full h-full" ref={playgroundRef} id="dataset-playground">
+      <Playground>
         {showDatasets.map((d, index) => (
           <DatasetCard
             handleCreateSelectDataset={handleCreateSelectDataset}
@@ -48,7 +45,7 @@ export default function DatasetPlayground({
         ))}
 
         <ArrowSvg points={points} />
-      </div>
+      </Playground>
     </section>
   )
 }

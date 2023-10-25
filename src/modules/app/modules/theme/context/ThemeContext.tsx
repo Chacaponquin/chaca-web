@@ -1,5 +1,5 @@
 import { createContext, useState, ReactElement, useEffect } from "react"
-import { THEME } from "../constants/THEME"
+import { THEME } from "../constants"
 
 type ThemeContextProps = {
   theme: THEME

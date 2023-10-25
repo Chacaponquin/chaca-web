@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import { motion } from "framer-motion"
 import { useTheme } from "../../hooks"
-import { THEME } from "../../constants/THEME"
+import { THEME } from "../../constants"
 import { Dark, Light } from "@modules/app/modules/icon/components"
 import { useMemo } from "react"
 

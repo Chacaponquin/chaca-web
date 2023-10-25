@@ -1,5 +1,8 @@
 import React from "react"
 import { Point } from "../../interfaces/point.interface"
+import { useTheme } from "@modules/app/modules/theme/hooks"
+import { THEME } from "@modules/app/modules/theme/constants"
+import { APP_COLORS } from "@modules/app/constants"
 
 const SVG_STYLE: React.CSSProperties = {
   position: "fixed",
@@ -13,9 +16,13 @@ const SVG_STYLE: React.CSSProperties = {
 }
 
 export default function ArrowSvg({ points }: { points: Array<Point> }) {
+  const { theme } = useTheme()
+
+  const color = theme === THEME.LIGHT ? APP_COLORS.PRIMARY_COLOR : "#ffffff"
+
   return (
     <svg style={SVG_STYLE}>
-      {["#000000"].map((c) => (
+      {[color].map((c) => (
         <defs key={c}>
           <marker
             id={`triangle-${c}`}
@@ -40,8 +47,8 @@ export default function ArrowSvg({ points }: { points: Array<Point> }) {
             d={p.path}
             fill="none"
             key={p.path}
-            markerEnd={`url(#triangle-${"#000000"})`}
-            stroke={"#000000"}
+            markerEnd={`url(#triangle-${color})`}
+            stroke={color}
             strokeWidth="2"
             strokeDasharray={"dashed"}
             strokeLinejoin="round"

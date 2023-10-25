@@ -69,18 +69,6 @@ export default function ChacaSelect<T>(props: Props<T>) {
     paddingClass,
   )
 
-  function optionClass(index: number) {
-    return clsx(
-      "py-2 cursor-pointer duration-300 transition-all",
-      {
-        "bg-darkColor": index === selectIndex,
-        "hover:bg-darkColor": index !== selectIndex,
-      },
-      textClass,
-      paddingClass,
-    )
-  }
-
   function handleChangeOpenOptions() {
     setOpenOptions((prev) => !prev)
   }
@@ -102,8 +90,10 @@ export default function ChacaSelect<T>(props: Props<T>) {
           <Option
             key={index}
             text={selectOptions[index]?.label}
-            className={optionClass(index)}
             onClick={() => handleSelectOption(index)}
+            selected={index === selectIndex}
+            textClass={textClass}
+            paddingClass={paddingClass}
           />
         ))}
       </Fragment>

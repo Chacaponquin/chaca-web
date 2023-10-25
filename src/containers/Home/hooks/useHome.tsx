@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { SOCKET_EVENTS } from "@modules/app/modules/socket/constants"
 import { useConfig } from "@modules/config/hooks"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useLanguage, useLanguageContext } from "@modules/app/modules/language/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { useEnv } from "@modules/app/modules/env/hooks"
 import { useSocket } from "@modules/app/modules/socket/hooks"
@@ -27,6 +27,7 @@ export const useHome = () => {
   const { handleOpenModal } = useModal()
   const { toastError } = useToast()
   const { API_ROUTE } = useEnv()
+  const { language } = useLanguageContext()
   const { socket } = useSocket()
   const { findParent, findType } = useSchemas()
   const { handleExportDatasets: handleExportDatasetsServices } = useDatasetServices()
@@ -61,7 +62,7 @@ export const useHome = () => {
       socket.off(SOCKET_EVENTS.CREATION_ERROR)
       socket.off(SOCKET_EVENTS.CREATE_DATASETS)
     }
-  }, [socket])
+  }, [socket, language])
 
   function handleExportAllDatasets() {
     try {
