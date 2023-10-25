@@ -12,7 +12,7 @@ import { HomeNavbar, Layout } from "@containers/Layout/components"
 import { useDatasets } from "@modules/datasets/hooks"
 import { HomeContext, HomeProvider } from "./context"
 
-const Home = () => {
+export default function Home() {
   const {
     handleExportSelectedDataset,
     createDataLoading,
@@ -64,5 +64,3 @@ const Home = () => {
     </LazyRoute>
   )
 }
-
-export default Home

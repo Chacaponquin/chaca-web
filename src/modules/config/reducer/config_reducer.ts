@@ -39,18 +39,18 @@ export const configReducer: Reducer<Config, ConfigPayload> = (
         },
       }
     }
+
     case CONFIG_ACTIONS.CHANGE_SAVE_SCHEMA: {
       return { ...config, saveSchema: action.payload.value }
     }
+
     case CONFIG_ACTIONS.SET_INITIAL_CONFIG: {
       return {
-        file: {
-          fileType: action.payload.fileConfig[0].fileType,
-          arguments: {},
-        },
+        file: { fileType: FILE_TYPE.JSON, arguments: {} },
         saveSchema: null,
       }
     }
+
     case CONFIG_ACTIONS.CHANGE_FILE_ARGUMENTS: {
       const { file } = config
 
@@ -61,7 +61,9 @@ export const configReducer: Reducer<Config, ConfigPayload> = (
 
       return { ...config, file }
     }
-    default:
+
+    default: {
       return config
+    }
   }
 }

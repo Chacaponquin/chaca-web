@@ -11,6 +11,10 @@ import { useModal } from "@modules/modal/hooks"
 import { Dataset, ExportDataset } from "@modules/datasets/domain/tree"
 import { useSchemas } from "@modules/schemas/hooks"
 import { EmptyRefFieldError } from "@modules/datasets/errors"
+import { useDatasetServices } from "@modules/datasets/services"
+import { ExportDatasetDTO } from "@modules/datasets/dto/dataset"
+import { ConnectSockerError } from "@modules/app/modules/socket/errors"
+import { API_ROUTES } from "@modules/app/constants/ROUTES"
 
 export const useHome = () => {
   const {
@@ -19,12 +23,13 @@ export const useHome = () => {
     handleAddDataset: handleAddDatasetService,
     searchRefField,
   } = useDatasets()
-  const { resetConfig, config } = useConfig()
+  const { handleResetConfig, config } = useConfig()
   const { handleOpenModal } = useModal()
   const { toastError } = useToast()
   const { API_ROUTE } = useEnv()
   const { socket } = useSocket()
   const { findParent, findType } = useSchemas()
+  const { handleExportDatasets: handleExportDatasetsServices } = useDatasetServices()
 
   const { NETWORK_ERROR, CREATION_ERROR, EMPTY_REF_FIELD_ERROR } = useLanguage({
     NETWORK_ERROR: { en: "Network connect error", es: "Error en la conexión" },
@@ -38,10 +43,10 @@ export const useHome = () => {
   const [createDataLoading, setCreateDataLoading] = useState(false)
 
   useEffect(() => {
-    socket.on(SOCKET_EVENTS.GET_FILE_URL, (downUrl) => {
-      window.open(`${API_ROUTE}/${downUrl}`)
+    socket.on(SOCKET_EVENTS.GET_FILE_URL, (fileName) => {
+      window.open(API_ROUTES.DOWNLOAD_FILE(API_ROUTE, fileName))
       setCreateDataLoading(false)
-      resetConfig()
+      handleResetConfig()
     })
 
     socket.on(SOCKET_EVENTS.CREATION_ERROR, (error) => {
@@ -60,25 +65,34 @@ export const useHome = () => {
 
   function handleExportAllDatasets() {
     try {
-      if (socket.connected) {
-        setCreateDataLoading(true)
+      setCreateDataLoading(true)
 
-        const exportDatasets: Array<ExportDataset> = datasets.map((dat) =>
-          dat.exportObject({
-            findOption: findType,
-            findParent: findParent,
-            searchRefField: searchRefField,
-          }),
-        )
+      const exportDatasets: Array<ExportDataset> = datasets.map((dat) =>
+        dat.exportObject({
+          findOption: findType,
+          findParent: findParent,
+          searchRefField: searchRefField,
+        }),
+      )
 
-        socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {
-          datasets: exportDatasets,
-          config,
+      const datasetsDTO: Array<ExportDatasetDTO> = exportDatasets.map((d) => ({
+        name: d.name,
+        limit: d.limit,
+        fields: d.fields,
+      }))
+
+      handleExportDatasetsServices({
+        datasets: datasetsDTO,
+        config: { fileType: config.file.fileType, arguments: {} },
+      })
+        .catch((error) => {
+          if (error instanceof ConnectSockerError) {
+            toastError(NETWORK_ERROR)
+          }
         })
-      } else {
-        toastError(NETWORK_ERROR)
-        setCreateDataLoading(false)
-      }
+        .finally(() => {
+          setCreateDataLoading(false)
+        })
     } catch (error) {
       setCreateDataLoading(false)
 

@@ -8,10 +8,12 @@ import { useContext } from "react"
 import { ThemeSwitch } from "@modules/app/modules/theme/components"
 import { HomeContext } from "@containers/Home/context"
 import { useDatasets } from "@modules/datasets/hooks"
+import { useUser } from "@modules/user/hooks"
 
 export default function HomeNavbar() {
   const { smallWindow } = useContext(HomeContext)
   const { handleOpenFieldsMenu } = useDatasets()
+  const { actualUser } = useUser()
 
   const { ACCOUNT_TEXT } = useLanguage({
     HOME_TEXT: { en: "Home", es: "Inicio" },
@@ -33,9 +35,11 @@ export default function HomeNavbar() {
       <section className="flex items-center gap-x-6 h-full">
         <ThemeSwitch />
 
-        <Link to={APP_ROUTES.AUTH_ROUTES.LOGIN}>
-          <ChacaSimpleButton text={ACCOUNT_TEXT} color="primary" size="large" />
-        </Link>
+        {!actualUser && (
+          <Link to={APP_ROUTES.AUTH_ROUTES.LOGIN}>
+            <ChacaSimpleButton text={ACCOUNT_TEXT} color="primary" size="large" />
+          </Link>
+        )}
       </section>
     </nav>
   )

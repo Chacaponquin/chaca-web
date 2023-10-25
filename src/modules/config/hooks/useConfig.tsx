@@ -5,7 +5,7 @@ import { ConfigContext } from "../context"
 export function useConfig() {
   const { fileConfig, config, configDispatch } = useContext(ConfigContext)
 
-  function resetConfig() {
+  function handleResetConfig() {
     configDispatch({
       type: CONFIG_ACTIONS.SET_INITIAL_CONFIG,
       payload: { fileConfig },
@@ -38,7 +38,7 @@ export function useConfig() {
 
   return {
     handleChangeSaveSchema,
-    resetConfig,
+    handleResetConfig,
     handleChangeFileType,
     config,
     fileConfig,
