@@ -3,7 +3,7 @@ import { ChacaTextInput } from "@form/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useId } from "react"
 import { FormSection, HeaderText, SignButton } from "./components"
-import { SignUpForm } from "../../interfaces/form.interface"
+import { SignUpForm } from "../../interfaces"
 
 export default function Form({
   handleSubmit,

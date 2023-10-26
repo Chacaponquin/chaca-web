@@ -4,7 +4,7 @@ import { Form, Panel, Redirect } from "./components"
 import { Layout } from "@containers/Layout/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 
-const SignUp = () => {
+export default function SignUp() {
   const { handleChange, handleSubmit, loading, signUpData } = useSignUp()
   const { DESCRIPTION } = useLanguage({
     DESCRIPTION: {
@@ -33,5 +33,3 @@ const SignUp = () => {
     </NoUserRoute>
   )
 }
-
-export default SignUp

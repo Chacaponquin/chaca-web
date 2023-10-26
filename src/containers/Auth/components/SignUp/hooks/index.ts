@@ -1,3 +1,3 @@
-import { useSignUp } from "./useSignUp"
+import useSignUp from "./useSignUp"
 
 export { useSignUp }

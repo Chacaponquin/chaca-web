@@ -6,15 +6,25 @@ import {
   EmailEmptyError,
   PasswordEmptyError,
 } from "@modules/user/errors"
-import { usePost } from "@modules/app/modules/http/hooks"
-import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { SaveUser } from "@modules/user/domain"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
-import { SignUpForm } from "../interfaces/form.interface"
-import { SignUpUserDTO } from "@modules/user/dto/user"
+import { SignUpForm } from "../interfaces"
+import { useUserServices } from "@modules/user/services"
 
-export function useSignUp() {
+export default function useSignUp() {
+  const [signUpData, setSignUpData] = useState<SignUpForm>({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  })
+  const [loading, setLoading] = useState(false)
+
+  const { toastError } = useToast()
+  const { handleSignIn } = useUser()
+  const { signUpUser } = useUserServices()
+
   const {
     ALREADY_EXIST_USER_TEXT,
     CREATING_USER_TEXT,
@@ -43,38 +53,28 @@ export function useSignUp() {
     },
   })
 
-  const [signUpData, setSignUpData] = useState<SignUpForm>({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  })
-
-  const { handleSignIn } = useUser()
-
-  const [signUpUser, { loading }] = usePost<string, SignUpUserDTO>({
-    url: API_ROUTES.AUTH_ROUTES.SIGN_UP,
-    onCompleted: (userToken) => {
-      handleSignIn(userToken)
-    },
-    onError: (error) => {
-      if (error.status === 409) {
-        toastError(ALREADY_EXIST_USER_TEXT)
-      } else {
-        toastError(CREATING_USER_TEXT)
-      }
-    },
-  })
-
-  const { toastError } = useToast()
-
-  const handleSubmit = (e: React.FormEvent) => {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
 
     try {
       const saveUser = new SaveUser({ ...signUpData })
+
+      setLoading(true)
       signUpUser({
         body: { email: saveUser.email, password: saveUser.password, username: saveUser.password },
+        onSuccess: (userToken) => {
+          handleSignIn(userToken)
+        },
+        onError: (error) => {
+          if (error.status === 409) {
+            toastError(ALREADY_EXIST_USER_TEXT)
+          } else {
+            toastError(CREATING_USER_TEXT)
+          }
+        },
+        onFinally: () => {
+          setLoading(true)
+        },
       })
     } catch (error) {
       if (error instanceof UsernameShortError) {
@@ -89,7 +89,7 @@ export function useSignUp() {
     }
   }
 
-  const handleChange = (key: keyof SignUpForm, value: string) => {
+  function handleChange(key: keyof SignUpForm, value: string) {
     setSignUpData({ ...signUpData, [key]: value })
   }
 
