@@ -2,17 +2,14 @@ import { ChacaSimpleButton } from "@form/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useModal } from "@modules/modal/hooks"
 
-const ModalButtons = ({
-  nextText,
-  handleNext,
-  type,
-  nextButtonId,
-}: {
+interface Props {
   handleNext: () => void
   nextText: string
   type: "delete" | "edit"
   nextButtonId?: string
-}) => {
+}
+
+const ModalButtons = ({ nextText, handleNext, type, nextButtonId }: Props) => {
   const { handleCloseModal } = useModal()
   const { CANCEL_TEXT } = useLanguage({ CANCEL_TEXT: { en: "Cancel", es: "Cancelar" } })
 
@@ -27,6 +24,7 @@ const ModalButtons = ({
           className="text-center flex justify-center"
           full={true}
           id={nextButtonId}
+          type="submit"
         />
       </div>
 

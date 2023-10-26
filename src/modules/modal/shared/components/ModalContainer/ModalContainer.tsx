@@ -28,7 +28,7 @@ export default function ModalContainer({
       id="app-modal"
       className="w-full fixed top-0 left-0 h-screen bg-grayColor/50 z-[999] flex justify-center items-center"
     >
-      <div
+      <form
         className="bg-white dark:bg-darkColorLight flex flex-col rounded-md px-10 py-5 shadow-md text-black dark:text-white"
         onClick={(e) => e.stopPropagation()}
         style={{ minWidth: `${width}px` }}
@@ -38,7 +38,7 @@ export default function ModalContainer({
         {children}
 
         <ModalButtons type={type} handleNext={handleNext} nextText={nextText} />
-      </div>
+      </form>
     </div>
   )
 }
