@@ -4,9 +4,10 @@ import { configReducer } from "../reducer"
 import { ConfigPayload } from "../reducer/config_reducer"
 import { useErrorBoundary } from "react-error-boundary"
 import { useConfigServices } from "../services"
+import { CONFIG_ACTIONS } from "../constants"
 
 interface Props {
-  fileConfig: Array<FileConfigOption>
+  fileOptions: Array<FileConfigOption>
   config: Config
   configDispatch: Dispatch<ConfigPayload>
   loading: boolean
@@ -15,7 +16,7 @@ interface Props {
 const ConfigContext = createContext<Props>({} as Props)
 
 const ConfigProvider = ({ children }: { children: React.ReactElement }) => {
-  const [fileConfig, setFileConfig] = useState<Array<FileConfigOption>>([])
+  const [fileOptions, setFileOptions] = useState<Array<FileConfigOption>>([])
   const [loading, setLoading] = useState(false)
 
   const { getFileOptions } = useConfigServices()
@@ -31,7 +32,12 @@ const ConfigProvider = ({ children }: { children: React.ReactElement }) => {
 
     getFileOptions({
       onSuccess: (data) => {
-        setFileConfig(data)
+        setFileOptions(data)
+
+        configDispatch({
+          type: CONFIG_ACTIONS.SET_INITIAL_CONFIG,
+          payload: { options: data },
+        })
       },
       onError: (error) => {
         showBoundary(error)
@@ -42,7 +48,7 @@ const ConfigProvider = ({ children }: { children: React.ReactElement }) => {
     })
   }, [])
 
-  const data: Props = { fileConfig, config, configDispatch, loading }
+  const data: Props = { fileOptions, config, configDispatch, loading }
 
   return <ConfigContext.Provider value={data}>{children}</ConfigContext.Provider>
 }

@@ -31,7 +31,7 @@ export const useHome = () => {
   const { language } = useLanguageContext()
   const { socket } = useSocket()
   const { findParent, findType } = useSchemas()
-  const { handleExportDatasets: handleExportDatasetsServices } = useDatasetServices()
+  const { exportDatasets: exportDatasetsService } = useDatasetServices()
 
   const { NETWORK_ERROR, CREATION_ERROR, EMPTY_REF_FIELD_ERROR } = useLanguage({
     NETWORK_ERROR: { en: "Network connect error", es: "Error en la conexión" },
@@ -46,14 +46,12 @@ export const useHome = () => {
 
   useEffect(() => {
     socket.on(SOCKET_EVENTS.GET_FILE_URL, (fileName) => {
-      window.open(API_ROUTES.DOWNLOAD_FILE(API_ROUTE, fileName))
+      window.open(API_ROUTES.DOWNLOAD_FILE(API_ROUTE, fileName), "_blank")
       setCreateDataLoading(false)
       handleResetConfig()
     })
 
-    socket.on(SOCKET_EVENTS.CREATION_ERROR, (error) => {
-      console.log(error)
-
+    socket.on(SOCKET_EVENTS.CREATION_ERROR, () => {
       toastError(CREATION_ERROR)
       setCreateDataLoading(false)
     })
@@ -83,18 +81,14 @@ export const useHome = () => {
         fields: d.fields,
       }))
 
-      handleExportDatasetsServices({
+      exportDatasetsService({
         datasets: datasetsDTO,
         config: { fileType: config.file.fileType, arguments: {} },
+      }).catch((error) => {
+        if (error instanceof ConnectSockerError) {
+          toastError(NETWORK_ERROR)
+        }
       })
-        .catch((error) => {
-          if (error instanceof ConnectSockerError) {
-            toastError(NETWORK_ERROR)
-          }
-        })
-        .finally(() => {
-          setCreateDataLoading(false)
-        })
     } catch (error) {
       setCreateDataLoading(false)
 

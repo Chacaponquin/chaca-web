@@ -8,7 +8,7 @@ interface Props {
 
 export default function Select({ text, className }: Props) {
   return (
-    <button className={className}>
+    <button className={className} type="button">
       <p className="pointer-events-none overflow-x-auto no-scroll">{text}</p>
 
       <div className="stroke-black dark:stroke-white">

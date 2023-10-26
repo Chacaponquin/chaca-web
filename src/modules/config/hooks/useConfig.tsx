@@ -3,12 +3,12 @@ import { CONFIG_ACTIONS } from "../constants"
 import { ConfigContext } from "../context"
 
 export function useConfig() {
-  const { fileConfig, config, configDispatch } = useContext(ConfigContext)
+  const { fileOptions, config, configDispatch } = useContext(ConfigContext)
 
   function handleResetConfig() {
     configDispatch({
       type: CONFIG_ACTIONS.SET_INITIAL_CONFIG,
-      payload: { fileConfig },
+      payload: { options: fileOptions },
     })
   }
 
@@ -28,16 +28,12 @@ export function useConfig() {
   }
 
   function handleChangeFileType(fileId: string) {
-    const found = fileConfig.find((f) => f.id === fileId)
-
-    if (found) {
-      configDispatch({
-        type: CONFIG_ACTIONS.CHANGE_FILE_TYPE,
-        payload: {
-          file: found.fileType,
-        },
-      })
-    }
+    configDispatch({
+      type: CONFIG_ACTIONS.CHANGE_FILE_TYPE,
+      payload: {
+        file: fileId,
+      },
+    })
   }
 
   return {
@@ -45,6 +41,6 @@ export function useConfig() {
     handleResetConfig,
     handleChangeFileType,
     config,
-    fileConfig,
+    fileOptions,
   }
 }

@@ -15,7 +15,7 @@ export type ConfigPayload =
     }
   | {
       type: CONFIG_ACTIONS.SET_INITIAL_CONFIG
-      payload: { fileConfig: FileConfigOption[] }
+      payload: { options: FileConfigOption[] }
     }
   | {
       type: CONFIG_ACTIONS.CHANGE_FILE_ARGUMENTS
@@ -46,7 +46,7 @@ export const configReducer: Reducer<Config, ConfigPayload> = (
 
     case CONFIG_ACTIONS.SET_INITIAL_CONFIG: {
       return {
-        file: { fileType: "", arguments: {} },
+        file: { fileType: action.payload.options[0].id, arguments: {} },
         saveSchema: null,
       }
     }
