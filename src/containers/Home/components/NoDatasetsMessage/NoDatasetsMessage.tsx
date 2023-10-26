@@ -14,7 +14,7 @@ export default function NoDatasetsMessage({ handleCreateDataset }: Props) {
     <section className="bg-white dark:bg-darkColor w-full flex flex-grow flex-col pt-24 items-center px-20">
       <Image image={APP_IMAGES.WELCOME} className="object-contain w-[460px]" />
 
-      <p className="text-xl mt-8 text-black dark:text-white">
+      <p className="text-xl mt-8 text-black dark:text-white text-center">
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur, officia.
       </p>
 
