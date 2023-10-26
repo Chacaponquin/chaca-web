@@ -222,20 +222,26 @@ export default function useDatasets() {
     return found
   }
 
-  function searchRefField(ref: Array<string>): Array<FieldNode<FieldDataType, ExportDatatype>> {
-    const result = [] as Array<FieldNode<FieldDataType, ExportDatatype>>
+  function searchRefField(ref: Array<string>): Array<string> {
+    const result = [] as Array<string>
 
     const datasetId = ref[0]
     const refFields = ref.slice(1)
 
-    for (const refId of refFields) {
-      for (const dataset of datasets) {
-        if (dataset.id === datasetId) {
-          const found = dataset.findFieldById(refId)
+    const foundDataset = datasets.find((d) => d.id === datasetId)
 
-          if (found) {
-            result.push(found)
-            break
+    if (foundDataset) {
+      result.push(foundDataset.name)
+
+      for (const refId of refFields) {
+        for (const dataset of datasets) {
+          if (dataset.id === datasetId) {
+            const found = dataset.findFieldById(refId)
+
+            if (found) {
+              result.push(found.name)
+              break
+            }
           }
         }
       }

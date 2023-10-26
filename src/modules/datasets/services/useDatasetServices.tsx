@@ -13,6 +13,8 @@ export default function useDatasetServices() {
   const { socket } = useSocket()
 
   async function handleExportDatasets({ config, datasets }: ExportDatasetsProps): Promise<void> {
+    console.log(datasets)
+
     if (socket.connected) {
       socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {
         datasets: datasets,

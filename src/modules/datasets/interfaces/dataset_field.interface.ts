@@ -28,6 +28,11 @@ export interface ExportMixedDataType extends ExportDatatype {
   object: Array<ExportDatasetField<ExportDatatype>>
 }
 
+export interface ExportRefDataType extends ExportDatatype {
+  type: DATA_TYPES.REF
+  ref: string
+}
+
 export interface CustomDataType extends ExportDatatype {
   type: DATA_TYPES.CUSTOM
   code: string
@@ -43,7 +48,7 @@ export interface SingleValueDataType extends ExportDatatype {
   fieldType: SchemaValueTypeObject
 }
 
-export interface RefDataType extends ExportDatatype {
+export interface RefDataType {
   type: DATA_TYPES.REF
   ref: Array<string>
 }

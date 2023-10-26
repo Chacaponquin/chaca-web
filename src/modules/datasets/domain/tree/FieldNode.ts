@@ -16,6 +16,7 @@ import {
   SingleValueDataType,
   ExportMixedDataType,
   ExportDatatype,
+  ExportRefDataType,
 } from "@modules/datasets/interfaces/dataset_field.interface"
 import { FieldName } from "@modules/datasets/value-object"
 import { NodesUtils } from "./NodesUtils"
@@ -218,20 +219,20 @@ export class MixedNode extends FieldNode<MixedDataType, ExportMixedDataType> {
   }
 }
 
-export class RefNode extends FieldNode<RefDataType, RefDataType> {
+export class RefNode extends FieldNode<RefDataType, ExportRefDataType> {
   public stringInf(): string {
     return `ref`
   }
 
-  public exportObject({ searchRefField }: SearchProps): ExportDatasetField<RefDataType> {
+  public exportObject({ searchRefField }: SearchProps): ExportDatasetField<ExportRefDataType> {
     if (this.dataType.ref.length > 1) {
-      const locationNames = searchRefField(this.dataType.ref).map((n) => n.name)
+      const locationNames = searchRefField(this.dataType.ref)
 
       return {
         name: this.name,
         dataType: {
           type: DATA_TYPES.REF,
-          ref: locationNames,
+          ref: locationNames.join("."),
         },
         isArray: this.isArray,
         isKey: this.isKey,

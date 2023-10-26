@@ -1,6 +1,4 @@
-import { FieldNode } from "../domain/tree"
 import { FieldName } from "../value-object"
-import { ExportDatatype, FieldDataType } from "./dataset_field.interface"
 import { IsArrayConfig, IsKeyConfig } from "./field_config.interface"
 import { SubOption, Schema } from "@modules/schemas/interfaces/schema.interface"
 
@@ -15,5 +13,5 @@ export interface NodeProps<T> {
 export interface SearchProps {
   findOption: (p: string, o: string) => SubOption
   findParent: (p: string) => Schema
-  searchRefField: (ref: Array<string>) => Array<FieldNode<FieldDataType, ExportDatatype>>
+  searchRefField: (ref: Array<string>) => Array<string>
 }

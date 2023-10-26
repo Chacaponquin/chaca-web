@@ -11,6 +11,7 @@ import { SearchProps } from "@modules/datasets/interfaces/tree.interface"
 import {
   ExportDatatype,
   ExportMixedDataType,
+  ExportRefDataType,
   MixedDataType,
 } from "@modules/datasets/interfaces/dataset_field.interface"
 import { ExportDataset } from "./ExportDataset"
@@ -117,7 +118,7 @@ export class Dataset {
     this.root.nodesUtils.deleteField(fieldId)
   }
 
-  public refFields(): Array<FieldNode<RefDataType, RefDataType>> {
+  public refFields(): Array<FieldNode<RefDataType, ExportRefDataType>> {
     return this.root.nodesUtils.refFields()
   }
 
