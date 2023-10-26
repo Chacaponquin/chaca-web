@@ -1,19 +1,18 @@
-import { Bars } from "@modules/app/modules/icon/components"
 import { Link } from "react-router-dom"
 import { APP_ROUTES } from "@modules/app/constants"
-import { ChacaLogo } from "./components"
+import { ChacaLogo, OpenFields } from "./components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { ChacaSimpleButton } from "@form/components"
 import { useContext } from "react"
 import { ThemeSwitch } from "@modules/app/modules/theme/components"
 import { HomeContext } from "@containers/Home/context"
-import { useDatasets } from "@modules/datasets/hooks"
 import { useUser } from "@modules/user/hooks"
+import { useDatasets } from "@modules/datasets/hooks"
 
 export default function HomeNavbar() {
   const { smallWindow } = useContext(HomeContext)
-  const { handleOpenFieldsMenu } = useDatasets()
   const { actualUser } = useUser()
+  const { datasets } = useDatasets()
 
   const { ACCOUNT_TEXT } = useLanguage({
     HOME_TEXT: { en: "Home", es: "Inicio" },
@@ -23,11 +22,7 @@ export default function HomeNavbar() {
   return (
     <nav className="w-full bg-white dark:bg-darkColorLight text-black dark:text-white flex items-center px-6 esm:px-4 justify-between min-h-[65px] max-h-[65px] dark:border-b-[1px] border-b-2 border-grayColor dark:border-white">
       <section className="flex items-center">
-        {smallWindow && (
-          <button onClick={handleOpenFieldsMenu} className="mr-4">
-            <Bars size={20} />
-          </button>
-        )}
+        {smallWindow && datasets.length > 0 && <OpenFields />}
 
         <ChacaLogo />
       </section>

@@ -12,6 +12,7 @@ import { SchemasProvider } from "@modules/schemas/context"
 import { DatasetsProvider } from "@modules/datasets/context"
 import { ConfigProvider } from "@modules/config/context"
 import { ModalProvider } from "@modules/modal/context"
+import { HomeProvider } from "@containers/Home/context"
 
 function App() {
   return (
@@ -35,7 +36,9 @@ function App() {
                           <DatasetsProvider>
                             <ConfigProvider>
                               <ModalProvider>
-                                <Home />
+                                <HomeProvider>
+                                  <Home />
+                                </HomeProvider>
                               </ModalProvider>
                             </ConfigProvider>
                           </DatasetsProvider>

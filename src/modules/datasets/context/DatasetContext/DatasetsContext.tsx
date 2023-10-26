@@ -23,7 +23,7 @@ interface Props {
 const DatasetsContext = createContext<Props>({} as Props)
 
 function DatasetsProvider({ children }: { children: ReactElement }) {
-  const [showFieldsMenu, setShowFieldsMenu] = useState(false)
+  const [showFieldsMenu, setShowFieldsMenu] = useState(true)
 
   const [selectedDataset, setSelectedDataset] = useState<Dataset | null>(null)
   const [datasets, datasetDispatch] = useReducer<Reducer<Dataset[], DatasetPayload>>(

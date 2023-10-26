@@ -3,15 +3,15 @@ import { Image } from "@modules/app/components"
 import { APP_IMAGES } from "@modules/app/constants"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 
-export default function NoDatasetsMessage({
-  handleCreateDataset,
-}: {
+interface Props {
   handleCreateDataset: () => void
-}) {
+}
+
+export default function NoDatasetsMessage({ handleCreateDataset }: Props) {
   const { MESSAGE } = useLanguage({ MESSAGE: { en: "Create Dataset", es: "Crear Dataset" } })
 
   return (
-    <section className="bg-white dark:bg-darkColor w-full flex flex-grow flex-col pt-24 items-center">
+    <section className="bg-white dark:bg-darkColor w-full flex flex-grow flex-col pt-24 items-center px-20">
       <Image image={APP_IMAGES.WELCOME} className="object-contain w-[460px]" />
 
       <p className="text-xl mt-8 text-black dark:text-white">

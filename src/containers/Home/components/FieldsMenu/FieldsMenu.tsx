@@ -10,13 +10,15 @@ interface Props {
 }
 
 const FieldsMenu = ({ handleExportSelectedDataset, handleAddNewField }: Props) => {
-  const { selectedDataset, showFieldsMenu, handleCloseFieldsMenu } = useDatasets()
+  const { selectedDataset, handleCloseFieldsMenu, showFieldsMenu } = useDatasets()
   const { fieldsMenuRef, smallWindow } = useContext(HomeContext)
 
   const containerClass = clsx(
-    "min-w-[300px] max-w-[300px] bg-white border-r-2 dark:border-r-[1px] flex flex-col h-full justify-between",
+    "bg-white dark:bg-darkColorLight min-w-[300px] max-w-[300px]  flex flex-col h-full justify-between",
     { "": !smallWindow },
     { "top-0 left-0 h-screen absolute z-40": smallWindow },
+    { "border-r-2 dark:border-r-[1px]": !smallWindow },
+    { "shadow-lg": smallWindow },
   )
 
   return (
@@ -25,7 +27,7 @@ const FieldsMenu = ({ handleExportSelectedDataset, handleAddNewField }: Props) =
         <CloseSection handleCloseFieldsMenu={handleCloseFieldsMenu} />
       )}
 
-      <div className="h-full bg-white dark:bg-darkColorLight w-full flex flex-col text-black dark:text-white pt-1">
+      <div className="h-full w-full flex flex-col text-black dark:text-white pt-1">
         {selectedDataset && selectedDataset.fields.length > 0 ? (
           <Fragment>
             {selectedDataset.fields.map((field) => (

@@ -1,4 +1,3 @@
-import { HomeProvider } from "@containers/Home/context"
 import { Layout } from "@containers/Layout/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { HomeNavbar } from "./components"
@@ -16,13 +15,11 @@ export default function HomeLayout({ children }: Props) {
   })
 
   return (
-    <HomeProvider>
-      <Layout description={HOME_DESCRIPTION} title="Chaca | Home">
-        <main className="flex flex-col w-full h-screen">
-          <HomeNavbar />
-          {children}
-        </main>
-      </Layout>
-    </HomeProvider>
+    <Layout description={HOME_DESCRIPTION} title="Chaca | Home">
+      <main className="flex flex-col w-full h-screen">
+        <HomeNavbar />
+        {children}
+      </main>
+    </Layout>
   )
 }

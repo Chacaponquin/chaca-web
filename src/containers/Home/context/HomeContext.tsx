@@ -8,20 +8,11 @@ interface HomeContextProps {
 
 const HomeContext = createContext<HomeContextProps>({ smallWindow: false } as HomeContextProps)
 
-const HomeProvider = ({ children }: { children: React.ReactElement }) => {
+function HomeProvider({ children }: { children: React.ReactElement }) {
   const fieldsMenuRef = createRef<HTMLElement>()
   const playgroundRef = createRef<HTMLDivElement>()
 
   const [smallWindow, setSmallWindow] = useState(false)
-
-  useEffect(() => {
-    window.addEventListener("resize", handleWindowResize)
-    handleWindowResize()
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize)
-    }
-  }, [])
 
   function handleWindowResize() {
     const width = window.innerWidth
@@ -31,6 +22,15 @@ const HomeProvider = ({ children }: { children: React.ReactElement }) => {
       setSmallWindow(true)
     }
   }
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowResize)
+    handleWindowResize()
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize)
+    }
+  }, [window])
 
   const data: HomeContextProps = {
     fieldsMenuRef,
