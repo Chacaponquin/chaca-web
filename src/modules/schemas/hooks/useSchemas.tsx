@@ -1,5 +1,5 @@
 import { useContext, useCallback } from "react"
-import { Schema, SubOption } from "../interfaces/schema.interface"
+import { Schema, SubOption } from "../interfaces/schema"
 import { useEnv } from "@modules/app/modules/env/hooks"
 import { SchemasContext } from "../context"
 

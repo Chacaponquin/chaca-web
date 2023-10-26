@@ -1,4 +1,4 @@
-import { Argument } from "../interfaces/argument.interface"
+import { Argument } from "../interfaces/argument"
 
 export interface ApiSchemaResponse {
   name: string

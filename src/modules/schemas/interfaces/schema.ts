@@ -1,4 +1,4 @@
-import { Argument } from "./argument.interface"
+import { Argument } from "./argument"
 
 export interface Schema {
   name: string

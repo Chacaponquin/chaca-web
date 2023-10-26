@@ -1,4 +1,4 @@
-import { Argument } from "@modules/schemas/interfaces/argument.interface"
+import { Argument } from "@modules/schemas/interfaces/argument"
 
 export interface ApiFileOptionResponse {
   fileType: string

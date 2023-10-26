@@ -1,6 +1,6 @@
 import { FieldName } from "../value-object"
 import { IsArrayConfig, IsKeyConfig } from "./field_config.interface"
-import { SubOption, Schema } from "@modules/schemas/interfaces/schema.interface"
+import { SubOption, Schema } from "@modules/schemas/interfaces/schema"
 
 export interface NodeProps<T> {
   name: FieldName
