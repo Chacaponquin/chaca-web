@@ -1,8 +1,5 @@
 import { useState } from "react"
-import { CreateMessageDTO } from "@modules/user-message/dto/user_message"
-import { MessageForm } from "../interfaces/form.interface"
-import { usePost } from "@modules/app/modules/http/hooks"
-import { API_ROUTES } from "@modules/app/constants/ROUTES"
+import { MessageForm } from "../interfaces"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { SaveUserMessage } from "@modules/user-message/domain"
 import { useToast } from "@modules/app/modules/toast/hooks"
@@ -11,14 +8,19 @@ import {
   EmptyUserEmailError,
   EmptyUserMessageError,
 } from "@modules/user-message/errors"
+import { useUserMessageServices } from "@modules/user-message/services"
 
-export function useContactUs() {
+export default function useContactUs() {
+  const [loading, setLoading] = useState(false)
   const [contactForm, setContactForm] = useState<MessageForm>({
     title: "",
     email: "",
     message: "",
   })
   const [modalOpen, setModalOpen] = useState(false)
+
+  const { toastError } = useToast()
+  const { sendMessage } = useUserMessageServices()
 
   const { POST_ERROR, EMPTY_MESSAGE, EMPTY_TITLE, EMPTY_EMAIL } = useLanguage({
     POST_ERROR: {
@@ -30,29 +32,28 @@ export function useContactUs() {
     EMPTY_TITLE: { en: "The message must have a title", es: "El mensaje debe tener un título" },
   })
 
-  const { toastError } = useToast()
-
-  const [createMessage, { loading }] = usePost<void, CreateMessageDTO>({
-    url: API_ROUTES.CREATE_USER_MESSAGE,
-    onCompleted: () => {
-      setModalOpen(true)
-    },
-    onError: () => {
-      toastError(POST_ERROR)
-    },
-  })
-
-  const handleChange = (key: keyof MessageForm, value: string) => {
+  function handleChange(key: keyof MessageForm, value: string) {
     setContactForm({ ...contactForm, [key]: value })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
 
     try {
       const saveMessage = new SaveUserMessage(contactForm)
-      createMessage({
+
+      setLoading(true)
+      sendMessage({
         body: { email: saveMessage.email, message: saveMessage.message, title: saveMessage.title },
+        onSuccess: () => {
+          setModalOpen(true)
+        },
+        onError: () => {
+          toastError(POST_ERROR)
+        },
+        onFinally: () => {
+          setLoading(false)
+        },
       })
     } catch (error) {
       if (error instanceof EmptyMessageTitleError) {

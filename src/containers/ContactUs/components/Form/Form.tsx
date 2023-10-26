@@ -2,7 +2,7 @@ import { ChacaTextInput, ChacaTextarea } from "@form/components"
 import { useId } from "react"
 import { ButtonSection, FormSection } from "./components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
-import { MessageForm } from "../../interfaces/form.interface"
+import { MessageForm } from "../../interfaces"
 
 export default function Form({
   handleSubmit,

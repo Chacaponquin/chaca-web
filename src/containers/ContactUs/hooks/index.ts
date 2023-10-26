@@ -1,3 +1,3 @@
-import { useContactUs } from "./useContactUs"
+import useContactUs from "./useContactUs"
 
 export { useContactUs }
