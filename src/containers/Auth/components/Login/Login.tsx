@@ -17,8 +17,8 @@ export default function Login() {
   })
 
   return (
-    <NoUserRoute>
-      <Layout description={DESCRIPTION} title="Chaca | Login">
+    <Layout description={DESCRIPTION} title="Chaca | Login">
+      <NoUserRoute>
         <main className="w-full h-screen flex flex-col py-8 px-20 esm:px-5">
           <Redirect />
 
@@ -31,7 +31,7 @@ export default function Login() {
             </div>
           </section>
         </main>
-      </Layout>
-    </NoUserRoute>
+      </NoUserRoute>
+    </Layout>
   )
 }

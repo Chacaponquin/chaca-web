@@ -32,6 +32,9 @@ const UserProvider = ({ children }: { children: ReactElement }) => {
       onError: () => {
         setActualUser(null)
       },
+      onFinally: () => {
+        setLoading(false)
+      },
     })
   }, [])
 

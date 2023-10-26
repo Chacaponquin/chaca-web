@@ -1,12 +1,19 @@
-import { useContext, ReactElement, Fragment } from "react"
-import { UserContext } from "@modules/user/context/UserContext"
+import { ReactElement, Fragment } from "react"
 import { Navigate } from "react-router-dom"
 import { APP_ROUTES } from "@modules/app/constants"
+import { useUser } from "@modules/user/hooks"
+import { Loading } from "./components"
 
-const NoUserRoute = ({ children }: { children: ReactElement }) => {
-  const { actualUser } = useContext(UserContext)
+export default function NoUserRoute({ children }: { children: ReactElement }) {
+  const { actualUser, fetchUserLoading } = useUser()
 
-  return <Fragment>{!actualUser ? children : <Navigate to={APP_ROUTES.HOME} />}</Fragment>
+  return (
+    <Fragment>
+      {fetchUserLoading ? (
+        <Loading />
+      ) : (
+        <Fragment>{!actualUser ? children : <Navigate to={APP_ROUTES.HOME} />}</Fragment>
+      )}
+    </Fragment>
+  )
 }
-
-export default NoUserRoute

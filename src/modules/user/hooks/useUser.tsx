@@ -17,21 +17,21 @@ export default function useUser() {
     return actualUser ? actualUser.limitDocuments : noUserLimits.LIMIT_DOCUMENTS
   }, [actualUser])
 
-  const handleSignIn = (token: string) => {
+  function handleSignIn(token: string) {
     localStorage.setItem(TOKEN_LOCATION, token)
     window.location.reload()
   }
 
-  const handleSignOut = () => {
+  function handleSignOut() {
     localStorage.removeItem(TOKEN_LOCATION)
     window.location.reload()
   }
 
-  const handleGoogleLogin = () => {
+  function handleGoogleLogin() {
     window.open(`${API_ROUTE}${API_ROUTES.AUTH_ROUTES.GOOGLE_AUTH}`, "_self")
   }
 
-  const handleGithubLogin = () => {
+  function handleGithubLogin() {
     window.open(`${API_ROUTE}${API_ROUTES.AUTH_ROUTES.GITHUB_AUTH}`, "_self")
   }
 
