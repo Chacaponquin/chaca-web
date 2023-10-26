@@ -34,9 +34,7 @@ export default function ModalContainer({
         style={{ minWidth: `${width}px` }}
       >
         <ModalTitle titleText={title} />
-
         {children}
-
         <ModalButtons type={type} handleNext={handleNext} nextText={nextText} />
       </form>
     </div>

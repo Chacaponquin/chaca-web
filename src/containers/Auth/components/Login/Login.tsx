@@ -6,13 +6,13 @@ import { Layout } from "@containers/Layout/components"
 
 import "../../auth.css"
 
-const Login = () => {
+export default function Login() {
   const { handleChange, handleSubmit, loading } = useLogin()
 
   const { DESCRIPTION } = useLanguage({
     DESCRIPTION: {
       en: "Register with your account in Chaca to access more features",
-      es: "Regístrate con tu cuenta en Chaca para poder acceder a ms funcionalidades",
+      es: "Regístrate con tu cuenta en Chaca para poder acceder a más funcionalidades",
     },
   })
 
@@ -35,5 +35,3 @@ const Login = () => {
     </NoUserRoute>
   )
 }
-
-export default Login

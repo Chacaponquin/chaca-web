@@ -1,3 +1,3 @@
-import { useLogin } from "./useLogin"
+import useLogin from "./useLogin"
 
 export { useLogin }

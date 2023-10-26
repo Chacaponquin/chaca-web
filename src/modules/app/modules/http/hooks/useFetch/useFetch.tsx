@@ -48,7 +48,7 @@ export default function useFetch() {
       })
   }
 
-  async function post<T, B>(props: PostProps<T, B>): Promise<void> {
+  async function post<T, B>(props: PostProps<T, B> & { url: string }): Promise<void> {
     return axiosInstance
       .post<T>(props.url, props.body)
       .then((data) => {

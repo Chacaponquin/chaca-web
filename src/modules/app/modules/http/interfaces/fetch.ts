@@ -12,6 +12,6 @@ export interface FetchProps<T> extends FetchFunctionsProps<T> {
 
 export interface GetProps<T> extends FetchProps<T> {}
 
-export interface PostProps<T, B> extends FetchProps<T> {
+export interface PostProps<T, B> extends FetchFunctionsProps<T> {
   body: B
 }

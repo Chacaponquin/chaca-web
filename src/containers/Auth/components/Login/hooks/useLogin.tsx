@@ -1,36 +1,46 @@
 import { useUser } from "@modules/user/hooks"
-import { usePost } from "@modules/app/modules/http/hooks"
 import { useState } from "react"
 import { LoginUserDTO } from "@modules/user/dto/user"
-import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { useLanguage } from "@modules/app/modules/language/hooks"
+import { LoginForm } from "../interfaces"
+import { useUserServices } from "@modules/user/services"
 
-export function useLogin() {
+export default function useLogin() {
   const { handleSignIn } = useUser()
   const { toastError } = useToast()
 
+  const [loading, setLoading] = useState(false)
+
+  const { loginUser } = useUserServices()
+
   const { LOGIN_ERROR } = useLanguage({ LOGIN_ERROR: { en: "Network error", es: "Hubo un error" } })
 
-  const [loginData, setLoginData] = useState<LoginUserDTO>({
+  const [loginData, setLoginData] = useState<LoginForm>({
     email: "",
     password: "",
   })
 
-  const [loginUser, { loading }] = usePost<string, LoginUserDTO>({
-    url: API_ROUTES.AUTH_ROUTES.LOGIN,
-    onError: () => {
-      toastError(LOGIN_ERROR)
-    },
-    onCompleted: (token) => handleSignIn(token),
-  })
-
-  const handleChange = (key: keyof LoginUserDTO, value: string) =>
+  function handleChange(key: keyof LoginUserDTO, value: string) {
     setLoginData({ ...loginData, [key]: value })
+  }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    loginUser({ body: loginData })
+
+    setLoading(true)
+    loginUser({
+      body: loginData,
+      onError: () => {
+        toastError(LOGIN_ERROR)
+      },
+      onSuccess: (token) => {
+        handleSignIn(token)
+      },
+      onFinally: () => {
+        setLoading(false)
+      },
+    })
   }
 
   return { loading, handleChange, handleSubmit }
