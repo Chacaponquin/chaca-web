@@ -1,4 +1,3 @@
-import { FILE_TYPE } from "../constants"
 import { Argument } from "@modules/schemas/interfaces/argument.interface"
 
 export type SaveSchemaValue = null | SaveSchemaForm
@@ -15,14 +14,15 @@ export interface Config {
 }
 
 export interface ConfigFile {
-  fileType: FILE_TYPE
+  fileType: string
   arguments: Record<string, unknown>
 }
 
 export interface FileConfigOption {
-  fileType: FILE_TYPE
-  arguments: Argument[]
+  fileType: string
+  arguments: Array<Argument>
   title: string
+  id: string
 }
 
 export interface NoUserLimits {

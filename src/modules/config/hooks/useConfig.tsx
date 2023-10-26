@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { CONFIG_ACTIONS, FILE_TYPE } from "../constants"
+import { CONFIG_ACTIONS } from "../constants"
 import { ConfigContext } from "../context"
 
 export function useConfig() {
@@ -27,13 +27,17 @@ export function useConfig() {
     })
   }
 
-  function handleChangeFileType(fileType: FILE_TYPE) {
-    configDispatch({
-      type: CONFIG_ACTIONS.CHANGE_FILE_TYPE,
-      payload: {
-        value: fileType,
-      },
-    })
+  function handleChangeFileType(fileId: string) {
+    const found = fileConfig.find((f) => f.id === fileId)
+
+    if (found) {
+      configDispatch({
+        type: CONFIG_ACTIONS.CHANGE_FILE_TYPE,
+        payload: {
+          file: found.fileType,
+        },
+      })
+    }
   }
 
   return {

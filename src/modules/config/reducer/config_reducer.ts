@@ -1,12 +1,12 @@
 import { Config, FileConfigOption, SaveSchemaValue } from "../interfaces/config.iterface"
 import { Reducer } from "react"
-import { FILE_TYPE, CONFIG_ACTIONS } from "../constants"
+import { CONFIG_ACTIONS } from "../constants"
 
 export type ConfigPayload =
   | {
       type: CONFIG_ACTIONS.CHANGE_FILE_TYPE
       payload: {
-        value: FILE_TYPE
+        file: string
       }
     }
   | {
@@ -34,7 +34,7 @@ export const configReducer: Reducer<Config, ConfigPayload> = (
       return {
         ...config,
         file: {
-          fileType: action.payload.value,
+          fileType: action.payload.file,
           arguments: {},
         },
       }
@@ -46,7 +46,7 @@ export const configReducer: Reducer<Config, ConfigPayload> = (
 
     case CONFIG_ACTIONS.SET_INITIAL_CONFIG: {
       return {
-        file: { fileType: FILE_TYPE.JSON, arguments: {} },
+        file: { fileType: "", arguments: {} },
         saveSchema: null,
       }
     }

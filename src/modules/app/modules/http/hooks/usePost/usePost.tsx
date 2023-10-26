@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react"
 import { useConfig } from "@modules/app/hooks"
-import { ChacaHttpError } from "../../interfaces/error.interface"
+import { ChacaHttpError } from "../../interfaces/error"
 import { handleResponseError } from "../../utils"
 
 interface UsePostProps<T> {

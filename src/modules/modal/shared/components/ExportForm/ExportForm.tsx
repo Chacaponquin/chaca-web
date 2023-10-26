@@ -1,14 +1,13 @@
 import { useId, Fragment } from "react"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { ChacaSelect } from "@form/components"
-import { FILE_TYPE } from "@modules/config/constants"
 import { useConfig } from "@modules/config/hooks"
 import { FormInputSection } from "../../shared/components"
 
 export default function ExportForm({ saveModelOption }: { saveModelOption: boolean }) {
   const { config, fileConfig, handleChangeFileType: handleChangeFileTypeService } = useConfig()
 
-  const handleChangeFileType = (fileType: FILE_TYPE) => {
+  function handleChangeFileType(fileType: string) {
     handleChangeFileTypeService(fileType)
   }
 
@@ -25,11 +24,12 @@ export default function ExportForm({ saveModelOption }: { saveModelOption: boole
         <ChacaSelect
           options={fileConfig}
           labelKey={"title"}
-          valueKey={"fileType"}
+          valueKey={"id"}
           placeholder={SELECT_FORMAT}
           onChange={(value) => handleChangeFileType(value)}
           value={config.file.fileType}
           dimension="large"
+          id={formatId}
         />
       </FormInputSection>
 

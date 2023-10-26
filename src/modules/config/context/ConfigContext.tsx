@@ -1,40 +1,48 @@
-import { Dispatch, createContext, useReducer, useState } from "react"
+import { Dispatch, createContext, useReducer, useState, useEffect } from "react"
 import { Config, FileConfigOption } from "../interfaces/config.iterface"
-import { useQuery } from "@modules/app/modules/http/hooks"
-import { API_ROUTES } from "@modules/app/constants/ROUTES"
-import { FILE_TYPE } from "../constants"
 import { configReducer } from "../reducer"
 import { ConfigPayload } from "../reducer/config_reducer"
 import { useErrorBoundary } from "react-error-boundary"
+import { useConfigServices } from "../services"
 
-interface ConfigContextProps {
+interface Props {
   fileConfig: Array<FileConfigOption>
   config: Config
   configDispatch: Dispatch<ConfigPayload>
+  loading: boolean
 }
 
-const ConfigContext = createContext<ConfigContextProps>({} as ConfigContextProps)
+const ConfigContext = createContext<Props>({} as Props)
 
 const ConfigProvider = ({ children }: { children: React.ReactElement }) => {
-  const [fileConfig, setFileConfig] = useState<FileConfigOption[]>([])
+  const [fileConfig, setFileConfig] = useState<Array<FileConfigOption>>([])
+  const [loading, setLoading] = useState(false)
+
+  const { getFileOptions } = useConfigServices()
   const { showBoundary } = useErrorBoundary()
 
   const [config, configDispatch] = useReducer(configReducer, {
-    file: { fileType: FILE_TYPE.JSON, arguments: {} },
+    file: { fileType: "", arguments: {} },
     saveSchema: null,
   })
 
-  useQuery<Array<FileConfigOption>>({
-    url: API_ROUTES.GET_FILE_OPTIONS,
-    onCompleted: (data) => {
-      setFileConfig(data)
-    },
-    onError: (error) => {
-      showBoundary(error)
-    },
-  })
+  useEffect(() => {
+    setLoading(true)
 
-  const data: ConfigContextProps = { fileConfig, config, configDispatch }
+    getFileOptions({
+      onSuccess: (data) => {
+        setFileConfig(data)
+      },
+      onError: (error) => {
+        showBoundary(error)
+      },
+      onFinally: () => {
+        setLoading(false)
+      },
+    })
+  }, [])
+
+  const data: Props = { fileConfig, config, configDispatch, loading }
 
   return <ConfigContext.Provider value={data}>{children}</ConfigContext.Provider>
 }
