@@ -23,6 +23,7 @@ const NoFieldsMessage = ({ handleAddNewField }: { handleAddNewField: () => void 
         color="primary"
         size="medium"
         className="mt-2"
+        type="button"
       />
     </div>
   )

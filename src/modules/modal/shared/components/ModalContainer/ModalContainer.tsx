@@ -1,5 +1,5 @@
 import { useModal } from "@modules/modal/hooks"
-import React from "react"
+import React, { useEffect } from "react"
 import { ModalButtons, ModalTitle } from "./components"
 
 interface Props {
@@ -24,15 +24,33 @@ export default function ModalContainer({
 }: Props) {
   const { handleCloseModal } = useModal()
 
+  function handleCloseWithClick(key: KeyboardEvent) {
+    if (key.key === "Enter" && !key.shiftKey) {
+      handleNext()
+    }
+  }
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
-    console.log("Hola")
     e.preventDefault()
     handleNext()
   }
 
+  function handleClose() {
+    document.removeEventListener("keypress", handleCloseWithClick)
+    handleCloseModal()
+  }
+
+  useEffect(() => {
+    document.addEventListener("keypress", handleCloseWithClick)
+
+    return () => {
+      document.removeEventListener("keypress", handleCloseWithClick)
+    }
+  }, [handleNext])
+
   return (
     <div
-      onClick={handleCloseModal}
+      onClick={handleClose}
       id={`${name}-modal`}
       className="w-full fixed top-0 left-0 h-screen bg-grayColor/50 z-[999] flex justify-center items-center"
     >
@@ -41,6 +59,7 @@ export default function ModalContainer({
         style={{ minWidth: `${width}px` }}
         onSubmit={handleSubmit}
         onClick={(e) => e.stopPropagation()}
+        autoFocus={true}
       >
         <ModalTitle titleText={title} />
         {children}

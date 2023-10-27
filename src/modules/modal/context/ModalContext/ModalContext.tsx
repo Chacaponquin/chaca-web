@@ -18,8 +18,8 @@ interface ModalContextProps {
 
 const ModalContext = createContext<ModalContextProps>({} as ModalContextProps)
 
-const ModalProvider = ({ children }: { children: ReactElement }) => {
-  const [openModal, setOpenModal] = useState<null | ModalProps>(null)
+function ModalProvider({ children }: { children: ReactElement }) {
+  const [openModal, setOpenModal] = useState<ModalProps | null>(null)
 
   function handleOpenModal(props: ModalProps) {
     setOpenModal(props)
