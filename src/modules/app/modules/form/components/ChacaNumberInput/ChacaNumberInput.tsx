@@ -46,7 +46,7 @@ export default function ChacaNumberInput({
 
   const iconSize = 11
 
-  const handleIncrease = () => {
+  function handleIncrease() {
     const nextValue = value ? Number(Number(value + step).toFixed(2)) : 1
 
     if (onChange) {
@@ -54,7 +54,7 @@ export default function ChacaNumberInput({
     }
   }
 
-  const handleDecrease = () => {
+  function handleDecrease() {
     const nextValue = value ? Number(Number(value - step).toFixed(2)) : -1
 
     if (onChange) {
@@ -62,7 +62,7 @@ export default function ChacaNumberInput({
     }
   }
 
-  const handleChangeInputValue = (value: string) => {
+  function handleChangeInputValue(value: string) {
     if (typeof Number(value) === "number") {
       if (onChange) {
         onChange(validateValue(Number(value), wichIsCloser(Number(value))))
@@ -70,7 +70,7 @@ export default function ChacaNumberInput({
     }
   }
 
-  const wichIsCloser = (nextValue: number): number => {
+  function wichIsCloser(nextValue: number): number {
     if (!nextValue) return value
 
     if (max && min) {
@@ -127,26 +127,26 @@ export default function ChacaNumberInput({
     },
   )
 
-  function handleFocus() {
-    setIsFocus(true)
-
-    document.onkeydown = (key) => {
-      if (key.key === "ArrowUp") {
-        if (upButton.current) {
-          upButton.current.click()
-        }
-      } else if (key.key === "ArrowDown") {
-        if (downButton.current) {
-          downButton.current.click()
-        }
+  function handleInteractKey(key: KeyboardEvent) {
+    if (key.key === "ArrowUp") {
+      if (upButton.current) {
+        upButton.current.click()
+      }
+    } else if (key.key === "ArrowDown") {
+      if (downButton.current) {
+        downButton.current.click()
       }
     }
   }
 
+  function handleFocus() {
+    setIsFocus(true)
+    document.addEventListener("keydown", handleInteractKey)
+  }
+
   function handleBlur() {
     setIsFocus(false)
-
-    document.onkeydown = () => {}
+    document.removeEventListener("keydown", handleInteractKey)
   }
 
   return (
@@ -170,6 +170,7 @@ export default function ChacaNumberInput({
       <div className="grid grid-rows-2 h-full w-[25px] justify-center justify-items-center border-l-grayColor border-l-2">
         <button
           className="flex stroke-black dark:stroke-white justify-center text-center items-center border-b-2 border-grayColor w-full cursor-auto"
+          type="button"
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
           onClick={handleIncrease}
@@ -184,6 +185,7 @@ export default function ChacaNumberInput({
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
           ref={downButton}
+          type="button"
         >
           <ArrowDown size={iconSize} />
         </button>

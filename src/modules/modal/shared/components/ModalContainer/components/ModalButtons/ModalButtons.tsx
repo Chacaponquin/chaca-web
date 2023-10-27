@@ -35,6 +35,7 @@ export default function ModalButtons({ nextText, type, nextButtonId }: Props) {
           className="text-center flex justify-center"
           full={true}
           id="modal-cancel-button"
+          type="button"
         />
       </div>
     </section>
