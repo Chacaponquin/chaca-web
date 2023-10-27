@@ -14,6 +14,7 @@ const ExportSelectDatasetForm = ({ handleCreateSelectDataset }: ModalExportSelec
       handleNext={handleCreateSelectDataset}
       nextText={SUBMIT_TEXT}
       type="edit"
+      name="export-select-dataset"
     >
       <ExportForm saveModelOption={true} />
     </ModalContainer>

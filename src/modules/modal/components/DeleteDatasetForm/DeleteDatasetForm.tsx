@@ -25,6 +25,7 @@ const DeleteDatasetForm = ({
       type="delete"
       nextText={DELETE_DATASET_TEXT}
       handleNext={handleDeleteDataset}
+      name="delete-dataset"
     >
       <DeleteForm message={DELETE_DATASET_MESSAGE} elementName={datasetName} />
     </ModalContainer>

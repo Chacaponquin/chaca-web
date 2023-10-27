@@ -21,6 +21,7 @@ const EditFieldForm = ({ modalProps }: { modalProps: ModalEditField }) => {
       handleNext={handleEditField}
       nextText={SUBMIT_TEXT}
       type="edit"
+      name="edit-field"
     >
       <FieldForm {...fieldActions} datasetId={datasetId} />
     </ModalContainer>

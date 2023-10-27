@@ -14,6 +14,7 @@ const ExportAllDatasetForm = ({ handleCreateAllDatasets }: ModalExportAllDataset
       nextText={SUBMIT_TEXT}
       handleNext={handleCreateAllDatasets}
       type="edit"
+      name="export-all-datasets"
     >
       <ExportForm saveModelOption={false} />
     </ModalContainer>

@@ -21,6 +21,7 @@ export default function EditDataset({ dataset }: { dataset: Dataset }) {
       nextButtonId="modal-edit-dataset-button"
       nextText={EDIT_TEXT}
       type="edit"
+      name="edit-dataset"
     >
       <DatasetForm
         datasetName={datasetName}

@@ -10,6 +10,7 @@ interface Props {
   nextText: string
   type: "delete" | "edit"
   nextButtonId?: string
+  name: string
 }
 
 export default function ModalContainer({
@@ -19,6 +20,7 @@ export default function ModalContainer({
   nextText,
   title,
   type,
+  name,
 }: Props) {
   const { handleCloseModal } = useModal()
 
@@ -30,7 +32,7 @@ export default function ModalContainer({
   return (
     <div
       onClick={handleCloseModal}
-      id="app-modal"
+      id={`${name}-modal`}
       className="w-full fixed top-0 left-0 h-screen bg-grayColor/50 z-[999] flex justify-center items-center"
     >
       <div onClick={(e) => e.stopPropagation()}>

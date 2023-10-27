@@ -20,6 +20,7 @@ const AddFieldForm = ({ modalProps }: { modalProps: ModalAddFieldProps }) => {
       type="edit"
       nextText={SUBMIT_TEXT}
       handleNext={handleAddField}
+      name="add-field"
     >
       <FieldForm {...fieldActions} datasetId={datasetId} />
     </ModalContainer>
