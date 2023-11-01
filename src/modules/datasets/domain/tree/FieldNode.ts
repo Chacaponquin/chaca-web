@@ -22,7 +22,11 @@ import { FieldName } from "@modules/datasets/value-object"
 import { NodesUtils } from "./NodesUtils"
 import { v4 as uuid } from "uuid"
 import { ExportDatasetField } from "@modules/datasets/dto/dataset"
-import { EmptyRefFieldError } from "@modules/datasets/errors"
+import {
+  EmptyEnumFieldError,
+  EmptyRefFieldError,
+  EmptySequentialFieldError,
+} from "@modules/datasets/errors"
 
 export abstract class FieldNode<T, E extends ExportDatatype> {
   private _dataType: T
@@ -188,6 +192,10 @@ export class SequentialNode extends FieldNode<SequentialDataType, SequentialData
   }
 
   public exportObject(): ExportDatasetField<SequentialDataType> {
+    if (this.dataType.values.length === 0) {
+      throw new EmptySequentialFieldError()
+    }
+
     return {
       name: this.name,
       dataType: this.dataType,
@@ -266,6 +274,10 @@ export class EnumNode extends FieldNode<EnumDataType, EnumDataType> {
   }
 
   public exportObject(): ExportDatasetField<EnumDataType> {
+    if (this.dataType.values.length === 0) {
+      throw new EmptyEnumFieldError()
+    }
+
     return {
       name: this.name,
       dataType: this.dataType,
