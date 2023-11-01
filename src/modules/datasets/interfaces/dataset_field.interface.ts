@@ -13,15 +13,14 @@ export interface DatasetField<T = FieldDataType> {
   isKey: boolean
 }
 
-export type CommonFieldDataType =
+export type FieldDataType =
   | CustomDataType
   | SingleValueDataType
   | RefDataType
   | SequenceDataType
   | SequentialDataType
   | EnumDataType
-
-export type FieldDataType = CommonFieldDataType | MixedDataType
+  | MixedDataType
 
 export interface ExportMixedDataType extends ExportDatatype {
   type: DATA_TYPES.MIXED

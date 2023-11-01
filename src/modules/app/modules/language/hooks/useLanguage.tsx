@@ -1,27 +1,19 @@
-import { useContext } from "react"
-import {
-  LanguageConfig,
-  LanguageObject,
-  Languages,
-  ReturnLanguageObject,
-} from "../interfaces/language.interface"
+import { useContext, useMemo } from "react"
+import { LanguageStringConfig, LanguageObject, ReturnLanguageObject } from "../interfaces"
 import { LanguageContext } from "../context"
 
 export default function useLanguage<T>(languageObject: LanguageObject<T>) {
   const { language } = useContext(LanguageContext)
 
-  function filterLanguage(
-    languageObject: LanguageObject<T>,
-    language: Languages,
-  ): ReturnLanguageObject<T> {
+  const object: ReturnLanguageObject<T> = useMemo(() => {
     let returnObject: ReturnLanguageObject<T> = {} as ReturnLanguageObject<T>
 
-    for (const [key, object] of Object.entries<LanguageConfig>(languageObject)) {
+    for (const [key, object] of Object.entries<LanguageStringConfig>(languageObject)) {
       returnObject = { ...returnObject, [key]: object[language] }
     }
 
     return returnObject
-  }
+  }, [language])
 
-  return filterLanguage(languageObject, language)
+  return object
 }

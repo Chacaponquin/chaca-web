@@ -2,7 +2,11 @@ import { useEffect, useState } from "react"
 import { SOCKET_EVENTS } from "@modules/app/modules/socket/constants"
 import { useConfig } from "@modules/config/hooks"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
-import { useLanguage, useLanguageContext } from "@modules/app/modules/language/hooks"
+import {
+  useLanguage,
+  useLanguageContext,
+  useLanguageFunc,
+} from "@modules/app/modules/language/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { useEnv } from "@modules/app/modules/env/hooks"
 import { useSocket } from "@modules/app/modules/socket/hooks"
@@ -10,13 +14,23 @@ import { useDatasets } from "@modules/datasets/hooks"
 import { useModal } from "@modules/modal/hooks"
 import { Dataset, ExportDataset } from "@modules/datasets/domain/tree"
 import { useSchemas } from "@modules/schemas/hooks"
-import { EmptyRefFieldError } from "@modules/datasets/errors"
+import {
+  EmptyEnumFieldError,
+  EmptyRefFieldError,
+  EmptySequentialFieldError,
+} from "@modules/datasets/errors"
 import { useDatasetServices } from "@modules/datasets/services"
 import { ExportDatasetDTO } from "@modules/datasets/dto/dataset"
 import { ConnectSockerError } from "@modules/app/modules/socket/errors"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
 
-export const useHome = () => {
+interface MessageFieldProps {
+  field: string
+}
+
+export default function useHome() {
+  const [createDataLoading, setCreateDataLoading] = useState(false)
+
   const {
     datasets,
     selectedDataset,
@@ -42,7 +56,24 @@ export const useHome = () => {
     },
   })
 
-  const [createDataLoading, setCreateDataLoading] = useState(false)
+  const { EMPTY_ENUM_FIELD, EMPTY_SEQUENTIAL_FIELD } = useLanguageFunc({
+    EMPTY_ENUM_FIELD: {
+      en: (p: MessageFieldProps) => {
+        return `The ${p.field} field is an enum and has no values to select from`
+      },
+      es: (p: MessageFieldProps) => {
+        return `El campo ${p.field} es enum y no tiene valores para seleccionar`
+      },
+    },
+    EMPTY_SEQUENTIAL_FIELD: {
+      en: (p: MessageFieldProps) => {
+        return `The field ${p.field} is sequential and has no values to generate`
+      },
+      es: (p: MessageFieldProps) => {
+        return `El campo ${p.field} es sequencial y no tiene valores para generar`
+      },
+    },
+  })
 
   useEffect(() => {
     socket.on(SOCKET_EVENTS.GET_FILE_URL, (fileName) => {
@@ -72,6 +103,7 @@ export const useHome = () => {
           findOption: findType,
           findParent: findParent,
           searchRefField: searchRefField,
+          fieldRoute: [],
         }),
       )
 
@@ -94,6 +126,10 @@ export const useHome = () => {
 
       if (error instanceof EmptyRefFieldError) {
         toastError(EMPTY_REF_FIELD_ERROR)
+      } else if (error instanceof EmptyEnumFieldError) {
+        toastError(EMPTY_ENUM_FIELD({ field: error.field }))
+      } else if (error instanceof EmptySequentialFieldError) {
+        toastError(EMPTY_SEQUENTIAL_FIELD({ field: error.field }))
       }
     }
   }

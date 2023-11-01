@@ -1,6 +1,6 @@
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets.interface"
-import { NodeProps, SearchProps } from "@modules/datasets/interfaces/tree.interface"
+import { NodeProps, SearchProps, StringInfProps } from "@modules/datasets/interfaces/tree.interface"
 import {
   IsArrayConfig,
   IsKeyConfig,
@@ -45,7 +45,11 @@ export abstract class FieldNode<T, E extends ExportDatatype> {
   }
 
   public abstract exportObject(props: SearchProps): ExportDatasetField<E>
-  public abstract stringInf(props: SearchProps): string
+  public abstract stringInf(props: StringInfProps): string
+
+  protected getRouteString(route: Array<string>): string {
+    return [...route, this.name].join(".")
+  }
 
   public static create(props: NodeProps<FieldDataType>): FieldNode<FieldDataType, ExportDatatype> {
     if (props.dataType.type === DATA_TYPES.SINGLE_VALUE) {
@@ -76,8 +80,8 @@ export abstract class FieldNode<T, E extends ExportDatatype> {
           object: this.nodesUtils.nodes.map((el) => el.object()),
           type: DATA_TYPES.MIXED,
         },
-        isArray: this._isArray,
-        isKey: this._isKey,
+        isArray: this.isArray,
+        isKey: this.isKey,
       } as DatasetField<T>
     } else {
       return {
@@ -86,7 +90,7 @@ export abstract class FieldNode<T, E extends ExportDatatype> {
         dataType: this.dataType,
         isArray: this.isArray,
         isKey: this.isKey,
-        isPossibleNull: this._possibleNull,
+        isPossibleNull: this.isPossibleNull,
       }
     }
   }
@@ -191,9 +195,9 @@ export class SequentialNode extends FieldNode<SequentialDataType, SequentialData
     return `sequential`
   }
 
-  public exportObject(): ExportDatasetField<SequentialDataType> {
+  public exportObject(props: SearchProps): ExportDatasetField<SequentialDataType> {
     if (this.dataType.values.length === 0) {
-      throw new EmptySequentialFieldError()
+      throw new EmptySequentialFieldError(this.getRouteString(props.fieldRoute))
     }
 
     return {
@@ -273,9 +277,9 @@ export class EnumNode extends FieldNode<EnumDataType, EnumDataType> {
     return `enum`
   }
 
-  public exportObject(): ExportDatasetField<EnumDataType> {
+  public exportObject(props: SearchProps): ExportDatasetField<EnumDataType> {
     if (this.dataType.values.length === 0) {
-      throw new EmptyEnumFieldError()
+      throw new EmptyEnumFieldError(this.getRouteString(props.fieldRoute))
     }
 
     return {

@@ -1,3 +1,3 @@
-import { useHome } from "./useHome"
+import useHome from "./useHome"
 
 export { useHome }

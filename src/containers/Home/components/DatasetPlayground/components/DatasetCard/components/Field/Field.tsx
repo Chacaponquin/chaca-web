@@ -4,14 +4,13 @@ import { useSchemas } from "@modules/schemas/hooks"
 import { ExportDatatype, FieldDataType } from "@modules/datasets/interfaces/dataset_field.interface"
 import { useDatasets } from "@modules/datasets/hooks"
 
-export default function Field({
-  field,
-  datasetHasKeys,
-}: {
+interface Props {
   field: FieldNode<FieldDataType, ExportDatatype>
   selectFieldPoint: null | string
   datasetHasKeys: boolean
-}) {
+}
+
+export default function Field({ field, datasetHasKeys }: Props) {
   const { findParent, findType } = useSchemas()
   const { searchRefField } = useDatasets()
 
