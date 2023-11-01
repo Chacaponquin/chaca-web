@@ -14,7 +14,7 @@ const FieldsMenu = ({ handleExportSelectedDataset, handleAddNewField }: Props) =
   const { fieldsMenuRef, smallWindow } = useContext(HomeContext)
 
   const containerClass = clsx(
-    "bg-white dark:bg-scale-5 min-w-[300px] max-w-[300px]  flex flex-col h-full justify-between",
+    "bg-white dark:bg-scale-3 min-w-[300px] max-w-[300px]  flex flex-col h-full justify-between",
     { "top-0 left-0 h-screen absolute z-40 shadow-lg": smallWindow },
     {
       "shadow-lg": !smallWindow,
