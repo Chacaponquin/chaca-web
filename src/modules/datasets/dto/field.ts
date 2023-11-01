@@ -1,6 +1,6 @@
 import { DATA_TYPES } from "@modules/schemas/constants"
-import { FieldDataType } from "../interfaces/dataset_field.interface"
-import { IsArrayConfig } from "../interfaces/field_config.interface"
+import { FieldDataType } from "../interfaces/dataset_field"
+import { IsArrayConfig } from "../interfaces/field_config"
 
 export interface FieldForm {
   id: string

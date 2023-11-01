@@ -1,4 +1,4 @@
-import { DatasetConnection } from "@modules/datasets/interfaces/dataset_connect.interface"
+import { DatasetConnection } from "@modules/datasets/interfaces/dataset_connect"
 import { ConnectElement, ToConnect } from "../interfaces/connect.interface"
 
 interface GetGroupedConnectionsProps {

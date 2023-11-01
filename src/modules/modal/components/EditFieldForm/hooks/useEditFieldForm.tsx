@@ -1,4 +1,4 @@
-import { DatasetField } from "@modules/datasets/interfaces/datasets.interface"
+import { DatasetField } from "@modules/datasets/interfaces/datasets"
 import { useDatasets } from "@modules/datasets/hooks"
 import { useFieldForm } from "../../../shared/hooks"
 import { EmptyFieldNameError, RepeatSameLevelFieldNameError } from "@modules/datasets/errors"

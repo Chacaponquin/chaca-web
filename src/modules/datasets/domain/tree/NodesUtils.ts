@@ -3,11 +3,11 @@ import {
   ExportMixedDataType,
   FieldDataType,
   MixedDataType,
-} from "@modules/datasets/interfaces/dataset_field.interface"
+} from "@modules/datasets/interfaces/dataset_field"
 import { FieldNode, MixedNode, RefNode } from "./FieldNode"
 import { RootNode } from "./RootNode"
 import { ExportDatasetField } from "@modules/datasets/dto/dataset"
-import { SearchProps } from "@modules/datasets/interfaces/tree.interface"
+import { SearchProps } from "@modules/datasets/interfaces/tree"
 
 interface GetLocationProps {
   fieldId: string

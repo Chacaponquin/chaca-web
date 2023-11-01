@@ -1,5 +1,5 @@
 import { useLanguage } from "@modules/app/modules/language/hooks"
-import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets.interface"
+import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets"
 import { useFieldConfigMenu } from "./hooks"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { Fragment } from "react"

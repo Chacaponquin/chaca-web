@@ -1,4 +1,4 @@
-import { DatasetField } from "@modules/datasets/interfaces/datasets.interface"
+import { DatasetField } from "@modules/datasets/interfaces/datasets"
 import { useDatasets } from "@modules/datasets/hooks"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { useModal } from "@modules/modal/hooks"

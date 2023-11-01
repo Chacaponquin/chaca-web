@@ -7,7 +7,7 @@ import {
   SequenceConfig,
   SequentialConfig,
 } from "./components"
-import { FieldDataType } from "@modules/datasets/interfaces/dataset_field.interface"
+import { FieldDataType } from "@modules/datasets/interfaces/dataset_field"
 import {
   SelectFieldSchemaOptionProps,
   UpdateArgumentsProps,

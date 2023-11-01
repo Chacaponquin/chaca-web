@@ -1,11 +1,11 @@
 import { DATA_TYPES } from "@modules/schemas/constants"
-import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets.interface"
-import { NodeProps, SearchProps, StringInfProps } from "@modules/datasets/interfaces/tree.interface"
+import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets"
+import { NodeProps, SearchProps, StringInfProps } from "@modules/datasets/interfaces/tree"
 import {
   IsArrayConfig,
   IsKeyConfig,
   PossibleNullConfig,
-} from "@modules/datasets/interfaces/field_config.interface"
+} from "@modules/datasets/interfaces/field_config"
 import {
   MixedDataType,
   RefDataType,
@@ -17,7 +17,7 @@ import {
   ExportMixedDataType,
   ExportDatatype,
   ExportRefDataType,
-} from "@modules/datasets/interfaces/dataset_field.interface"
+} from "@modules/datasets/interfaces/dataset_field"
 import { FieldName } from "@modules/datasets/value-object"
 import { NodesUtils } from "./NodesUtils"
 import { v4 as uuid } from "uuid"

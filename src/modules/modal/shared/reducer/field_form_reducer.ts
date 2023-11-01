@@ -1,4 +1,4 @@
-import { FieldDataType } from "@modules/datasets/interfaces/dataset_field.interface"
+import { FieldDataType } from "@modules/datasets/interfaces/dataset_field"
 import { FORM_ACTIONS } from "../constants/FORM_ACTIONS"
 import { Reducer } from "react"
 import { FieldForm } from "@modules/datasets/dto/field"

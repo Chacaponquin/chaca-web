@@ -1,4 +1,4 @@
-import { DatasetField, FieldDataType } from "../../datasets/interfaces/datasets.interface"
+import { DatasetField, FieldDataType } from "../../datasets/interfaces/datasets"
 import { MODAL_ACTIONS } from "../constants/MODAL_ACTIONS"
 import { Dataset } from "@modules/datasets/domain/tree"
 

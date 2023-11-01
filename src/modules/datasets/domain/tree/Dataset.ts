@@ -3,17 +3,17 @@ import {
   DatasetObject,
   FieldDataType,
   RefDataType,
-} from "@modules/datasets/interfaces/datasets.interface"
+} from "@modules/datasets/interfaces/datasets"
 import { FieldNode } from "./FieldNode"
 import { RootNode } from "./RootNode"
 import { DatasetName } from "@modules/datasets/value-object"
-import { SearchProps } from "@modules/datasets/interfaces/tree.interface"
+import { SearchProps } from "@modules/datasets/interfaces/tree"
 import {
   ExportDatatype,
   ExportMixedDataType,
   ExportRefDataType,
   MixedDataType,
-} from "@modules/datasets/interfaces/dataset_field.interface"
+} from "@modules/datasets/interfaces/dataset_field"
 import { ExportDataset } from "./ExportDataset"
 
 interface DatasetProps {

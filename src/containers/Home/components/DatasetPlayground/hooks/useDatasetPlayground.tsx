@@ -1,7 +1,7 @@
 import { useMemo, useState, useCallback, useEffect } from "react"
 import { ArrowCoords, ClickPointProps, Point } from "../interfaces/point.interface"
 import { useDatasets } from "@modules/datasets/hooks"
-import { DatasetConnection } from "@modules/datasets/interfaces/dataset_connect.interface"
+import { DatasetConnection } from "@modules/datasets/interfaces/dataset_connect"
 import {
   getGroupedConnections,
   getPathData,

@@ -1,6 +1,6 @@
 import { Fragment } from "react"
 import { DATA_TYPES } from "@modules/schemas/constants"
-import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets.interface"
+import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets"
 import { FieldName, FieldOptions, OpenFieldsButton, Point } from "./components"
 import { useFieldContainer } from "./hooks"
 

@@ -5,10 +5,10 @@ import { FieldForm } from "../dto/field"
 import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
 import { useValidations } from "."
 import { DATA_TYPES } from "@modules/schemas/constants"
-import { DatasetConnection } from "../interfaces/dataset_connect.interface"
+import { DatasetConnection } from "../interfaces/dataset_connect"
 import { DatasetName, FieldName } from "../value-object"
 import { PossibleFieldToRef } from "../interfaces/ref.interface"
-import { ExportDatatype, FieldDataType } from "../interfaces/dataset_field.interface"
+import { ExportDatatype, FieldDataType } from "../interfaces/dataset_field"
 
 interface AddFieldProps {
   field: FieldForm

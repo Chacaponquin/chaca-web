@@ -1,4 +1,4 @@
-import { ArgumentObject } from "@modules/datasets/interfaces/dataset_field.interface"
+import { ArgumentObject } from "@modules/datasets/interfaces/dataset_field"
 import { UpdateArgumentsProps } from "@modules/modal/shared/interfaces/form.interfaces"
 import { useSchemas } from "@modules/schemas/hooks"
 import { ArgumentFilter } from "@modules/schemas/components"

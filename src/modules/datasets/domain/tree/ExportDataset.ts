@@ -1,5 +1,5 @@
 import { ExportDatasetField } from "@modules/datasets/dto/dataset"
-import { ExportDatatype } from "@modules/datasets/interfaces/dataset_field.interface"
+import { ExportDatatype } from "@modules/datasets/interfaces/dataset_field"
 
 export interface ExportDatasetProps {
   name: string

@@ -1,4 +1,4 @@
-import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets.interface"
+import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets"
 import { Config } from "@modules/app/modules/icon/components"
 import { FieldConfigMenu } from "./components"
 import { ChacaDropdown } from "@form/components"
