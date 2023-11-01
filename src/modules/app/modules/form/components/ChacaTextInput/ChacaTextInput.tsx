@@ -28,8 +28,11 @@ export default function ChacaTextInput({
   const { textClass, paddingClass } = useFilters({ dimension })
 
   const inputClass = clsx(
-    "py-[2px] transition-all duration-300 rounded-sm px-3 outline-none transition-all duration-300 hover:border-principalColor border-2 border-grayColor focus:border-principalColor",
-    "bg-white dark:bg-darkColor",
+    "py-[2px] transition-all duration-300 rounded-sm px-3 outline-none transition-all duration-300 ",
+    "bg-white dark:bg-scale-9",
+    "hover:border-purple-6 border-2 border-scale-5 focus:border-purple-6",
+    "dark:border-scale-3 dark:focus:border-scale-9 dark:hover:border-scale-9",
+    "dark:text-scale-12",
     className,
     textClass,
     paddingClass,

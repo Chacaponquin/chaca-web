@@ -12,8 +12,8 @@ export default function Option({ onClick, text, selected, paddingClass, textClas
   const className = clsx(
     "py-2 cursor-pointer duration-300 transition-all",
     {
-      "bg-grayColor dark:bg-darkColor": selected,
-      "hover:bg-grayColor dark:hover:bg-darkColor": !selected,
+      "bg-scale-5 dark:bg-scale-9": selected,
+      "hover:bg-scale-5 dark:hover:bg-scale-9": !selected,
     },
     textClass,
     paddingClass,

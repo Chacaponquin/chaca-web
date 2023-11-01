@@ -20,7 +20,7 @@ export default function HomeNavbar() {
   })
 
   return (
-    <nav className="w-full bg-white dark:bg-darkColorLight text-black dark:text-white flex items-center px-6 esm:px-4 justify-between min-h-[65px] max-h-[65px] dark:border-b-[1px] border-b-2 border-grayColor dark:border-white">
+    <nav className="w-full bg-white dark:bg-scale-5 text-black dark:text-white flex items-center px-6 esm:px-4 justify-between min-h-[65px] max-h-[65px] dark:border-b-[1px] dark:border-scale-3 border-b-2 border-scale-5 dark:border-white">
       <section className="flex items-center">
         {smallWindow && datasets.length > 0 && <OpenFields />}
 

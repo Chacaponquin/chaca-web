@@ -7,7 +7,7 @@ import { useValidations } from "."
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { DatasetConnection } from "../interfaces/dataset_connect"
 import { DatasetName, FieldName } from "../value-object"
-import { PossibleFieldToRef } from "../interfaces/ref.interface"
+import { PossibleFieldToRef } from "../interfaces/ref"
 import { ExportDatatype, FieldDataType } from "../interfaces/dataset_field"
 
 interface AddFieldProps {

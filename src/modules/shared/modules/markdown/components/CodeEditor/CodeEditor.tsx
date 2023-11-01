@@ -20,7 +20,7 @@ export default function CodeEditor({
       extensions={[javascript()]}
       theme={vscodeDark}
       width="500px"
-      className="bg-darkColor"
+      className="bg-scale-9"
     />
   )
 }

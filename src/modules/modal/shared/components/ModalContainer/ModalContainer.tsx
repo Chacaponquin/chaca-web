@@ -52,10 +52,10 @@ export default function ModalContainer({
     <div
       onClick={handleClose}
       id={`${name}-modal`}
-      className="w-full fixed top-0 left-0 h-screen bg-grayColor/50 z-[999] flex justify-center items-center"
+      className="w-full fixed top-0 left-0 h-screen bg-scale-5/50 z-[999] flex justify-center items-center"
     >
       <form
-        className="bg-white dark:bg-darkColorLight flex flex-col rounded-md px-10 py-5 shadow-md text-black dark:text-white"
+        className="bg-white dark:bg-scale-3 flex flex-col rounded-md px-10 py-5 shadow-md text-black dark:text-scale-11"
         style={{ minWidth: `${width}px` }}
         onSubmit={handleSubmit}
         onClick={(e) => e.stopPropagation()}

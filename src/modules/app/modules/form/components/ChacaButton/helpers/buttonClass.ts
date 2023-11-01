@@ -9,7 +9,7 @@ export const buttonClass = ({
   rounded = false,
 }: ChacaButtonProps) => {
   return clsx(
-    "flex justify-center font-fontMedium flex items-center transition-all duration-300 hover:brightness-150",
+    "flex justify-center flex items-center transition-all duration-300 hover:brightness-150",
     {
       "py-[3px] px-3 text-sm": size === "small",
       "py-1 px-5 text-base": size === "medium",
@@ -17,12 +17,13 @@ export const buttonClass = ({
       "py-2.5 px-8 text-2xl": size === "extra-large",
     },
     {
-      "bg-principalColor text-white": color === "primary",
-      "bg-gradient-to-tr from-principalColor to-secondColor text-white": color === "gradient",
-      "bg-dangerColor text-white": color === "danger",
-      "bg-secondColor text-white": color === "secondary",
-      "bg-slate-200 text-black": color === "cancel",
+      "bg-purple-6 text-white": color === "primary",
+      "bg-gradient-to-tr from-purple-6 to-purple-7 text-white": color === "gradient",
+      "bg-red-2 text-white": color === "danger",
+      "bg-purple-7 text-white": color === "secondary",
+      "bg-slate-200 text-black dark:bg-scale-5 text-white": color === "cancel",
     },
+    { "dark:border-[1px] dark:border-scale-7": color === "cancel" },
     {
       "text-white fill-white":
         color === "primary" || color === "secondary" || color === "gradient" || color === "danger",

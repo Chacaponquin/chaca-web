@@ -120,10 +120,10 @@ export default function ChacaNumberInput({
   }
 
   const containerClass = clsx(
-    "flex items-center border-2 rounded-sm pl-1 transition-all duration-300",
+    "flex items-center border-2 rounded-sm pl-1 transition-all duration-300 dark:border-scale-3",
     {
-      "border-principalColor": isFocus || isHover,
-      "border-grayColor": !isFocus && !isHover,
+      "border-purple-6": isFocus || isHover,
+      "border-scale-5": !isFocus && !isHover,
     },
   )
 
@@ -155,7 +155,7 @@ export default function ChacaNumberInput({
       style={{ height, width: size === "full" ? `100%` : `${size}px` }}
     >
       <input
-        className="h-full w-full outline-none px-2 text-sm bg-transparent focus:border-principalColor hover:border-principalColor py-[2px]"
+        className="h-full w-full outline-none px-2 text-sm bg-transparent focus:border-purple-6 hover:border-purple-6 py-[2px]"
         type="text"
         onChange={(e) => handleChangeInputValue(e.target.value)}
         onFocus={handleFocus}
@@ -167,9 +167,9 @@ export default function ChacaNumberInput({
         min={min}
         max={max}
       />
-      <div className="grid grid-rows-2 h-full w-[25px] justify-center justify-items-center border-l-grayColor border-l-2">
+      <div className="grid grid-rows-2 h-full w-[25px] justify-center justify-items-center border-l-scale-5 border-l-2">
         <button
-          className="flex stroke-black dark:stroke-white justify-center text-center items-center border-b-2 border-grayColor w-full cursor-auto"
+          className="flex stroke-black dark:stroke-white justify-center text-center items-center border-b-2 border-scale-5 w-full cursor-auto"
           type="button"
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}

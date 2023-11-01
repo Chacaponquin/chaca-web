@@ -23,7 +23,7 @@ export default function ChacaSwitchButton({
   }
 
   const containerClass = clsx("rounded-full  flex items-center px-2", {
-    "bg-gradient-to-tr from-principalColor to-secondColor": value,
+    "bg-gradient-to-tr from-purple-6 to-purple-7": value,
     "bg-slate-300": !value,
   })
 

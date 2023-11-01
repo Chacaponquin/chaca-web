@@ -5,7 +5,7 @@ import { validateCodeLanguage } from "./utils/validateCodeLanguage"
 
 export default function ExampleCode({ code, language }: { code: string; language: string }) {
   return (
-    <div className="code-view bg-darkColor px-3 py-2 rounded-sm overflow-x-auto no-scroll">
+    <div className="code-view bg-scale-9 px-3 py-2 rounded-sm overflow-x-auto no-scroll">
       <pre>
         <Highlight
           {...defaultProps}

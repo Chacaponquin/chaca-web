@@ -12,8 +12,8 @@ const ChacaLinkButton = ({
 }) => {
   const buttonClass = clsx(
     "px-12 py-3 rounded-full border-4 font-bold flex items-center esm:hidden hover:opacity-70 transition-all duration-300 border-solid w-max",
-    { "bg-white text-black border-grayColor": type === "cancel" },
-    { "bg-principalColor text-white border-principalColor": type === "link" },
+    { "bg-white text-black border-scale-5": type === "cancel" },
+    { "bg-purple-6 text-white border-purple-6": type === "link" },
   )
 
   return (

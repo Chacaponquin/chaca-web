@@ -7,7 +7,7 @@ const ProgessBar = () => {
     <div className="max-w-[550px] w-full rounded-full bg-slate-100 h-[17px]" ref={porcentDiv}>
       <div
         className={
-          "absolute rounded-full bg-gradient-to-r from-principalColor to-secondColor h-[17px] transition-all duration-75"
+          "absolute rounded-full bg-gradient-to-r from-purple-6 to-purple-7 h-[17px] transition-all duration-75"
         }
         style={{
           width: `${300}px`,

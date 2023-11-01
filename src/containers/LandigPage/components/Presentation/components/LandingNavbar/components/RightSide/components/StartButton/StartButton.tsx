@@ -7,7 +7,7 @@ export default function StartButton() {
 
   return (
     <Link to={APP_ROUTES.HOME}>
-      <button className="text-white px-8 py-3 transition-all duration-300 hover:opacity-80 font-fontMedium bg-principalColor text-lg rounded-full">
+      <button className="text-white px-8 py-3 transition-all duration-300 hover:opacity-80 font-fontMedium bg-purple-6 text-lg rounded-full">
         <p>{START_TEXT}</p>
       </button>
     </Link>

@@ -21,7 +21,7 @@ export default function SocialButton({
   const BUTTON_CLASS = clsx(
     "border-[3px] py-3 flex gap-3 rounded items-center justify-center transition-all duration-300 hover:text-white cursor-pointer esm:py-2",
     {
-      "border-secondColor fill-secondColor text-secondColor hover:bg-secondColor hover:fill-white":
+      "border-purple-7 fill-purple-7 text-purple-7 hover:bg-purple-7 hover:fill-white":
         color === "purple",
       "border-black text-black hover:bg-black hover:fill-white": color === "black",
     },

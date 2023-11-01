@@ -33,7 +33,7 @@ export default function MDView({
               props: { className: "mt-2 mb-4" },
             },
             p: {
-              props: { className: "text-grayStrongColor font-fontDoc" },
+              props: { className: "text-scale-7 font-fontDoc" },
             },
             strong: {
               props: { className: "text-black font-bold font-fontDoc" },

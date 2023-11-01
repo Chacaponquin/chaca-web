@@ -13,7 +13,7 @@ export default function HeaderText() {
     <section className="w-full flex flex-col esm:items-center">
       <div className="font-fontTitle text-left sm:text-6xl mb-3 whitespace-nowrap text-4xl esm:flex-wrap esm:whitespace-normal">
         {WELCOME_TEXT}{" "}
-        <p className="inline uppercase font-fontTitle text-transparent bg-clip-text bg-gradient-to-br from-principalColor to-secondColor">
+        <p className="inline uppercase font-fontTitle text-transparent bg-clip-text bg-gradient-to-br from-purple-6 to-purple-7">
           CHACA!
         </p>
       </div>

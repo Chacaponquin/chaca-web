@@ -11,7 +11,7 @@ export default function LoginButton({
 }) {
   return (
     <LoaderContainer loading={loading} size={50}>
-      <button className={className + " bg-principalColor text-white"} type="submit">
+      <button className={className + " bg-purple-6 text-white"} type="submit">
         {text}
       </button>
     </LoaderContainer>

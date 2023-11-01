@@ -63,8 +63,10 @@ export default function ChacaSelect<T>(props: Props<T>) {
   }
 
   const parentClass = clsx(
-    "w-full flex items-center text-black dark:text-white border-solid transition-all duration-300 justify-between bg-white dark:bg-darkColorLight py-[2px] border-2 border-grayColor cursor-pointer rounded-sm gap-5 whitespace-nowrap",
-    { "border-principalColor": openOptions, "hover:border-principalColor": !openOptions },
+    "w-full flex items-center text-black dark:text-white border-solid transition-all duration-300 justify-between bg-white dark:bg-scale-5 py-[2px] cursor-pointer rounded-sm gap-5 whitespace-nowrap",
+    { "border-purple-6": openOptions, "hover:border-purple-6": !openOptions },
+    "border-2 border-scale-5",
+    "dark:border-scale-3 dark:focus:border-scale-9 dark:hover:border-scale-9",
     textClass,
     paddingClass,
   )
@@ -82,7 +84,7 @@ export default function ChacaSelect<T>(props: Props<T>) {
           onClick={handleChangeOpenOptions}
         />
       }
-      className="bg-white dark:bg-darkColorLight shadow-lg"
+      className="bg-white dark:bg-scale-5 shadow-lg"
       height={height}
     >
       <Fragment>

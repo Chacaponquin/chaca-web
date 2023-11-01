@@ -7,7 +7,7 @@ export default function ModalTitle({ titleText }: { titleText: string }) {
 
   return (
     <section className="flex w-full justify-between mb-3 items-center">
-      <h1 className="font-fontBold text-2xl">{titleText}</h1>
+      <h1 className="font-fontMedium text-2xl dark:text-white">{titleText}</h1>
 
       <button onClick={handleCloseModal} className="fill-black dark:fill-white">
         <X size={20} />
