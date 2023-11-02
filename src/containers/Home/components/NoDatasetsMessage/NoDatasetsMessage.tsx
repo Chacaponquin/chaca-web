@@ -11,7 +11,7 @@ export default function NoDatasetsMessage({ handleCreateDataset }: Props) {
   const { MESSAGE } = useLanguage({ MESSAGE: { en: "Create Dataset", es: "Crear Dataset" } })
 
   return (
-    <section className="bg-white dark:bg-scale-9 w-full flex flex-grow flex-col pt-24 items-center px-20">
+    <section className="bg-white dark:bg-scale-4 w-full flex flex-grow flex-col pt-24 items-center px-20">
       <Image image={APP_IMAGES.WELCOME} className="object-contain w-[460px]" />
 
       <p className="text-xl mt-8 text-black dark:text-white text-center">

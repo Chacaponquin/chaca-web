@@ -22,7 +22,7 @@ export default function DatasetPlayground({
   } = useDatasetPlayground()
 
   return (
-    <section className="w-full h-full flex flex-col dark:bg-scale-2 bg-scale-11">
+    <section className="w-full h-full flex flex-col dark:bg-scale-2 bg-scale-12">
       <DatasetsButtons
         handleAddDataset={handleAddDataset}
         handleCreateAllDatasets={handleCreateAllDatasets}

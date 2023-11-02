@@ -18,7 +18,8 @@ export default function ThemeSwitch() {
   }
 
   const containerClass = clsx(
-    "esm:w-[90px] w-[90px] h-[35px] items-center bg-scale-5 dark:bg-white/20 flex px-4 rounded-sm cursor-pointer",
+    "esm:w-[90px] w-[90px] h-[35px] items-center flex px-4 rounded-sm cursor-pointer",
+    "bg-scale-11 dark:bg-scale-6",
     {
       "justify-start": isLight,
       "justify-end": !isLight,
@@ -29,7 +30,7 @@ export default function ThemeSwitch() {
     "rounded-sm esm:w-[30px] w-[35px] h-[25px] flex justify-center items-center",
     {
       "bg-purple-6 stroke-white": isLight,
-      "bg-scale-9 stroke-white": !isLight,
+      "bg-scale-3 stroke-white": !isLight,
     },
   )
 

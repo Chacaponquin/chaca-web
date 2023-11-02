@@ -15,6 +15,7 @@ export default function Option({ onClick, text, selected, paddingClass, textClas
       "bg-scale-5 dark:bg-scale-9": selected,
       "hover:bg-scale-5 dark:hover:bg-scale-9": !selected,
     },
+    "text-white dark:text-white",
     textClass,
     paddingClass,
   )
