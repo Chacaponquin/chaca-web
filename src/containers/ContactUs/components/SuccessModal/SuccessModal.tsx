@@ -5,7 +5,7 @@ export default function SuccessModal() {
     <div className="fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-white/40 ">
       <div
         id="message-success-modal"
-        className="py-6 px-20 bg-white shadow-lg rounded-md flex flex-col items-center esm:px-10 max-w-[95%]"
+        className="py-6 px-20 bg-white dark:bg-scale-3 shadow-lg rounded-md flex flex-col items-center esm:px-10 max-w-[95%]"
       >
         <Image />
         <Text />
