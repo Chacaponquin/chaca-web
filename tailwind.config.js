@@ -57,6 +57,9 @@ module.exports = {
         esm: { max: "640px" },
         "2xl": { min: "1400px" },
       },
+      boxShadow: {
+        input: "0 0 0 0.2rem",
+      },
     },
   },
   plugins: [],

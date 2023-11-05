@@ -4,8 +4,6 @@ import { Form, ImageSection, PresentationText, Redirect } from "./components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { Layout } from "@containers/Layout/components"
 
-import "../../auth.css"
-
 export default function Login() {
   const { handleChange, handleSubmit, loading } = useLogin()
 
@@ -19,7 +17,7 @@ export default function Login() {
   return (
     <Layout description={DESCRIPTION} title="Chaca | Login">
       <NoUserRoute>
-        <main className="w-full h-screen flex flex-col py-8 px-20 esm:px-5">
+        <main className="w-full h-screen flex flex-col py-8 px-20 esm:px-5 bg-white dark:bg-scale-3">
           <Redirect />
 
           <section className="w-full h-full grid lg:grid-cols-2 grid-cols-1 gap-3">

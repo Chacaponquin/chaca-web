@@ -1,17 +1,19 @@
 import { LoaderContainer } from "@modules/app/components/Loader"
 
-export default function LoginButton({
-  className,
-  loading,
-  text,
-}: {
+interface Props {
   text: string
-  className: string
   loading: boolean
-}) {
+}
+
+export default function LoginButton({ loading, text }: Props) {
   return (
     <LoaderContainer loading={loading} size={50}>
-      <button className={className + " bg-purple-6 text-white"} type="submit">
+      <button
+        className={
+          "rounded flex justify-center items-center py-4 esm:py-3 w-full esm:text-lg text-xl font-fontMedium uppercase transition-all duration-300 whitespace-nowrap hover:opacity-70 bg-purple-6 text-white"
+        }
+        type="submit"
+      >
         {text}
       </button>
     </LoaderContainer>
