@@ -65,7 +65,7 @@ export default function ChacaSelect<T>(props: Props<T>) {
   const parentClass = clsx(
     "w-full flex items-center text-black dark:text-white border-solid transition-all duration-300 justify-between cursor-pointer rounded-sm gap-5 whitespace-nowrap",
     { "border-purple-6": openOptions, "hover:border-purple-6": !openOptions },
-    "border-2 border-scale-5",
+    "border-2 border-scale-11",
     "dark:border-scale-3 dark:focus:border-scale-9 dark:hover:border-scale-9",
     "bg-white dark:bg-scale-5",
     textClass,

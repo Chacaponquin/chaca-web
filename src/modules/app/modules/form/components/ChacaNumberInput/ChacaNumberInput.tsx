@@ -34,17 +34,28 @@ export default function ChacaNumberInput({
   const height = useMemo(() => {
     switch (dimension) {
       case "small":
-        return 25
-      case "normal":
-        return 25
-      case "large":
         return 30
+      case "normal":
+        return 32
+      case "large":
+        return 35
       default:
-        return 60
+        return 30
     }
   }, [dimension])
 
-  const iconSize = 11
+  const iconSize = useMemo(() => {
+    switch (dimension) {
+      case "small":
+        return 11
+      case "normal":
+        return 13
+      case "large":
+        return 15
+      default:
+        return 13
+    }
+  }, [dimension])
 
   function handleIncrease() {
     const nextValue = value ? Number(Number(value + step).toFixed(2)) : 1
@@ -119,14 +130,6 @@ export default function ChacaNumberInput({
     }
   }
 
-  const containerClass = clsx(
-    "flex items-center border-2 rounded-sm pl-1 transition-all duration-300 dark:border-scale-3",
-    {
-      "border-purple-6": isFocus || isHover,
-      "border-scale-5": !isFocus && !isHover,
-    },
-  )
-
   function handleInteractKey(key: KeyboardEvent) {
     if (key.key === "ArrowUp") {
       if (upButton.current) {
@@ -149,13 +152,23 @@ export default function ChacaNumberInput({
     document.removeEventListener("keydown", handleInteractKey)
   }
 
+  const containerClass = clsx(
+    "flex items-center rounded-sm pl-1 transition-all duration-300",
+    "border-2",
+    "bg-white dark:bg-scale-5",
+    {
+      "border-purple-6": isFocus || isHover,
+      "border-scale-11": !isFocus && !isHover,
+    },
+  )
+
   return (
     <div
       className={containerClass}
-      style={{ height, width: size === "full" ? `100%` : `${size}px` }}
+      style={{ height: height, width: size === "full" ? `100%` : `${size}px` }}
     >
       <input
-        className="h-full w-full outline-none px-2 text-sm bg-transparent focus:border-purple-6 hover:border-purple-6 py-[2px]"
+        className="h-full w-full outline-none px-2 text-sm bg-transparent py-1.5"
         type="text"
         onChange={(e) => handleChangeInputValue(e.target.value)}
         onFocus={handleFocus}
@@ -167,9 +180,9 @@ export default function ChacaNumberInput({
         min={min}
         max={max}
       />
-      <div className="grid grid-rows-2 h-full w-[25px] justify-center justify-items-center border-l-scale-5 border-l-2">
+      <div className="grid grid-rows-2 h-full w-[25px] justify-center justify-items-center">
         <button
-          className="flex stroke-black dark:stroke-white justify-center text-center items-center border-b-2 border-scale-5 w-full cursor-auto"
+          className="flex stroke-black dark:stroke-white justify-center text-center items-center w-full cursor-auto"
           type="button"
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}

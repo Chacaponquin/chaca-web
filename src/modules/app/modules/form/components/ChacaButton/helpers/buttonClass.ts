@@ -21,9 +21,9 @@ export const buttonClass = ({
       "bg-gradient-to-tr from-purple-6 to-purple-7 text-white": color === "gradient",
       "bg-red-2 text-white": color === "danger",
       "bg-purple-7 text-white": color === "secondary",
-      "bg-slate-200 text-black dark:bg-scale-5 text-white": color === "cancel",
+      "bg-scale-12 text-black dark:bg-scale-5 text-black": color === "cancel",
     },
-    { "dark:border-[1px] dark:border-scale-7": color === "cancel" },
+    { "dark:border-[1px] dark:border-scale-7 dark:text-white": color === "cancel" },
     {
       "text-white fill-white":
         color === "primary" || color === "secondary" || color === "gradient" || color === "danger",

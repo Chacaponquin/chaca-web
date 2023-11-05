@@ -33,7 +33,8 @@ module.exports = {
         "scale-9": "#707070",
         "scale-10": "#7e7e7e",
         "scale-11": "#bbb",
-        "scale-12": "hsla(0,0%,100%,.803)",
+        "scale-12": "#e7e7e7",
+        "scale-13": "#f6f6f6",
       },
       fontFamily: {
         fontBold: "Poppins Bold",
