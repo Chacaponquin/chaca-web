@@ -24,6 +24,7 @@ export default function ChacaTextarea({
 
   const h = useMemo(() => {
     let retHeight: number
+
     switch (height) {
       case "large":
         retHeight = 150
@@ -43,12 +44,13 @@ export default function ChacaTextarea({
   }, [height])
 
   const textareaClass = clsx(
-    "hover:border-purple-6 border-2 border-scale-5 rounded-sm outline-none focus:border-purple-6 resize-none transition-all duration-300",
-    "bg-white dark:bg-scale-9",
+    "rounded-sm outline-none resize-none transition-all duration-300",
+    "bg-white dark:bg-scale-5",
+    "border-2 dark:border-scale-3 dark:focus:border-scale-9 dark:hover:border-scale-9 hover:border-purple-6 focus:border-purple-6 border-scale-11",
+    "dark:text-scale-12",
     textClass,
     paddingClass,
     className,
-    `py-2`,
   )
 
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {

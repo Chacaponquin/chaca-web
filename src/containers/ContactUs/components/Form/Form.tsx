@@ -4,17 +4,14 @@ import { ButtonSection, FormSection } from "./components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { MessageForm } from "../../interfaces"
 
-export default function Form({
-  handleSubmit,
-  form,
-  handleChange,
-  loading,
-}: {
+interface Props {
   handleSubmit: (e: React.FormEvent) => void
   form: MessageForm
   handleChange: (k: keyof MessageForm, v: string) => void
   loading: boolean
-}) {
+}
+
+export default function Form({ handleSubmit, form, handleChange, loading }: Props) {
   const { EMAIL_LABEL, MESSAGE_LABEL, TITLE_LABEL, SEND } = useLanguage({
     TITLE_LABEL: { en: "Title", es: "Título" },
     EMAIL_LABEL: { en: "Email", es: "Email" },

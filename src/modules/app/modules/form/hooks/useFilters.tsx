@@ -9,7 +9,7 @@ export function useFilters({ dimension }: { dimension: Dimension }) {
   })
 
   const paddingClass = clsx({
-    "px-3 py-[2px]": dimension === "small",
+    "px-3 py-1": dimension === "small",
     "px-4 py-1.5": dimension === "normal",
     "px-5 py-1.5": dimension === "large",
   })
