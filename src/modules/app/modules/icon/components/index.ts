@@ -4,6 +4,7 @@ import ArrowRight from "./ArrowRight"
 import ArrowUp from "./ArrowUp"
 import Bars from "./Bars"
 import Change from "./Change"
+import Check from "./Check"
 import Code from "./Code"
 import Config from "./Config"
 import Copy from "./Copy"
@@ -33,7 +34,6 @@ import SignOut from "./SignOut"
 import Smile from "./Smile"
 import User from "./User"
 import X from "./X"
-Dark
 
 export {
   Npm,
@@ -71,4 +71,5 @@ export {
   Key,
   Dark,
   Light,
+  Check,
 }
