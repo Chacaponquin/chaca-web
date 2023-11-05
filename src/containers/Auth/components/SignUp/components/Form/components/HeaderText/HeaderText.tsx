@@ -10,14 +10,15 @@ export default function HeaderText() {
   })
 
   return (
-    <section className="w-full flex flex-col esm:items-center">
-      <div className="font-fontTitle text-left sm:text-6xl mb-3 whitespace-nowrap text-4xl esm:flex-wrap esm:whitespace-normal">
+    <header className="w-full flex flex-col esm:items-center">
+      <div className="font-fontTitle text-left sm:text-6xl mb-3 whitespace-nowrap text-4xl esm:flex-wrap esm:whitespace-normal dark:text-white">
         {WELCOME_TEXT}{" "}
-        <p className="inline uppercase font-fontTitle text-transparent bg-clip-text bg-gradient-to-br from-purple-6 to-purple-7">
+        <p className="inline uppercase font-fontTitle text-transparent bg-clip-text bg-gradient-to-br from-purple-6 to-purple-7 dark:from-purple-5 dark:to-purple-6">
           CHACA!
         </p>
       </div>
-      <p className="text-slate-400 text-2xl esm:text-xl">{COMPLETE_FORM_TEXT}</p>
-    </section>
+
+      <p className="text-scale-10 dark:text-scale-11 text-2xl esm:text-xl">{COMPLETE_FORM_TEXT}</p>
+    </header>
   )
 }

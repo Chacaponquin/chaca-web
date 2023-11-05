@@ -15,8 +15,8 @@ export default function SignUp() {
 
   return (
     <NoUserRoute>
-      <Layout description={DESCRIPTION} title="Chaca | SignUp">
-        <main className="w-full h-screen flex">
+      <Layout description={DESCRIPTION} title="Chaca | Sign Up">
+        <main className="w-full h-screen flex bg-white dark:bg-scale-3">
           <section className="py-10 px-20 esm:px-5 flex justify-center items-center xl:w-[50%] w-full flex-col">
             <Redirect />
             <Form

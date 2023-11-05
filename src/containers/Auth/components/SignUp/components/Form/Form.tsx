@@ -5,17 +5,14 @@ import { useId } from "react"
 import { FormSection, HeaderText, SignButton } from "./components"
 import { SignUpForm } from "../../interfaces"
 
-export default function Form({
-  handleSubmit,
-  handleChange,
-  form,
-  loading,
-}: {
+interface Props {
   handleSubmit: (e: React.FormEvent) => void
   handleChange: (K: keyof SignUpForm, v: string) => void
   form: SignUpForm
   loading: boolean
-}) {
+}
+
+export default function Form({ handleSubmit, handleChange, form, loading }: Props) {
   const { COMFIRM_PASSWORD_TEXT, EMAIL_TEXT, PASSWORD_TEXT, USERNAME_TEXT } = useLanguage({
     USERNAME_TEXT: { en: "Username", es: "Usuario" },
     EMAIL_TEXT: { en: "Email", es: "Email" },
@@ -35,7 +32,7 @@ export default function Form({
       <div className="py-5 flex flex-col gap-3">
         <FormSection label={USERNAME_TEXT} id={usernameId}>
           <ChacaTextInput
-            placeholder="Username"
+            placeholder={USERNAME_TEXT}
             value={form.username}
             name="username"
             onChange={(v) => handleChange("username", v)}
@@ -47,7 +44,7 @@ export default function Form({
 
         <FormSection id={emailId} label={EMAIL_TEXT}>
           <ChacaTextInput
-            placeholder="Email"
+            placeholder={EMAIL_TEXT}
             value={form.email}
             name="email"
             onChange={(v) => handleChange("email", v)}
@@ -59,7 +56,7 @@ export default function Form({
 
         <FormSection label={PASSWORD_TEXT} id={passwordId}>
           <ChacaTextInput
-            placeholder="Password"
+            placeholder={PASSWORD_TEXT}
             value={form.password}
             name="password"
             onChange={(v) => handleChange("password", v)}
@@ -72,7 +69,7 @@ export default function Form({
 
         <FormSection label={COMFIRM_PASSWORD_TEXT} id={confirmId}>
           <ChacaTextInput
-            placeholder="Confirm Password"
+            placeholder={COMFIRM_PASSWORD_TEXT}
             value={form.confirmPassword}
             name="confirm_password"
             onChange={(v) => handleChange("confirmPassword", v)}
