@@ -1,13 +1,10 @@
-import { LinkButton } from "./components"
-import { LINKS } from "../../constants/Links"
+import { ImageSection, TextSection } from "./components"
 
 export default function LinksSection() {
   return (
-    <div className="w-full bg-scale-9 lg:py-14 py-14 flex justify-center px-10 esm:py-10">
-      <div className="flex items-center w-full max-w-[1000px] xl:flex-row xl:justify-between gap-5 flex-col justify-center">
-        <LinkButton link={LINKS.GITHUB} type="github" />
-        <LinkButton link={LINKS.NPM} type="npm" />
-      </div>
-    </div>
+    <section className="w-full py-20 max-w-[1200px] grid grid-cols-2">
+      <ImageSection />
+      <TextSection />
+    </section>
   )
 }

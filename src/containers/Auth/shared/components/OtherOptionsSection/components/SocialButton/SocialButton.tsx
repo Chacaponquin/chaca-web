@@ -1,4 +1,4 @@
-import { IconProps } from "@modules/app/modules/icon/interfaces/icon.interface"
+import { IconProps } from "@modules/app/modules/icon/interfaces"
 import clsx from "clsx"
 
 interface Props {

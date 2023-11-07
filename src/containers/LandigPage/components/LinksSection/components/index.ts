@@ -1,3 +1,4 @@
-import LinkButton from "./LinkButton/LinkButton"
+import ImageSection from "./ImageSection/ImageSection"
+import TextSection from "./TextSection/TextSection"
 
-export { LinkButton }
+export { ImageSection, TextSection }

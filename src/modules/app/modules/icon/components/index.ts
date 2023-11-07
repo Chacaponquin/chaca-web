@@ -10,6 +10,7 @@ import Config from "./Config"
 import Copy from "./Copy"
 import Dark from "./Dark"
 import Delete from "./Delete"
+import Discord from "./Discord"
 import Edit from "./Edit"
 import File from "./File"
 import FolderPlus from "./FolderPlus"
@@ -32,6 +33,7 @@ import Send from "./Send"
 import Share from "./Share"
 import SignOut from "./SignOut"
 import Smile from "./Smile"
+import Twitter from "./Twitter"
 import User from "./User"
 import X from "./X"
 
@@ -72,4 +74,6 @@ export {
   Dark,
   Light,
   Check,
+  Discord,
+  Twitter,
 }

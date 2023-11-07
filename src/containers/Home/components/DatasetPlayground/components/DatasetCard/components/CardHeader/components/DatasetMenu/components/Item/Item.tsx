@@ -1,4 +1,4 @@
-import { IconProps } from "@modules/app/modules/icon/interfaces/icon.interface"
+import { IconProps } from "@modules/app/modules/icon/interfaces"
 import React from "react"
 
 interface Props {

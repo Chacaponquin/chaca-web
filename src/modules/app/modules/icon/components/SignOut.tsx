@@ -1,5 +1,5 @@
 import { DEFAULT_ICON_SIZE } from "../constants/icons.enum"
-import { IconProps } from "../interfaces/icon.interface"
+import { IconProps } from "../interfaces"
 
 const SignOut = ({ size = DEFAULT_ICON_SIZE }: IconProps) => {
   return (

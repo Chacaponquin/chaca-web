@@ -1,13 +1,12 @@
-import { Footer, LinksSection, Presentation } from "./components"
+import { Adventages, Footer, LinksSection, Presentation } from "./components"
 
-const Landing = () => {
+export default function Landing() {
   return (
-    <main className="min-h-screen overflow-y-auto absolute top-0 overflow-x-hidden z-50 w-full">
+    <main className="min-h-screen overflow-y-auto flex flex-col items-center overflow-x-hidden w-full bg-scale-2">
       <Presentation />
+      <Adventages />
       <LinksSection />
       <Footer />
     </main>
   )
 }
-
-export default Landing
