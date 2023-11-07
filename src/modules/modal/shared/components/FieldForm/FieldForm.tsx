@@ -7,7 +7,7 @@ import {
   DataTypeConfig,
   KeyConfig,
 } from "./components"
-import { FieldActions } from "../../interfaces/form.interfaces"
+import { FieldActions } from "../../interfaces"
 import { useDatasets } from "@modules/datasets/hooks"
 
 type FieldFormProps = FieldActions & { datasetId: string }

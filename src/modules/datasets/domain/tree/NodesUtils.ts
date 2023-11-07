@@ -3,7 +3,7 @@ import {
   ExportMixedDataType,
   FieldDataType,
   MixedDataType,
-} from "@modules/datasets/interfaces/dataset_field"
+} from "@modules/datasets/interfaces/dataset-field"
 import { FieldNode, MixedNode, RefNode } from "./FieldNode"
 import { RootNode } from "./RootNode"
 import { ExportDatasetField } from "@modules/datasets/dto/dataset"

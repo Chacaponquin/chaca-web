@@ -1,10 +1,11 @@
 import { DATA_TYPES } from "@modules/schemas/constants"
-import { FieldDataType } from "../interfaces/dataset_field"
-import { IsArrayConfig } from "../interfaces/field_config"
+import { FieldDataType } from "../interfaces/dataset-field"
+import { IsArrayConfig } from "../interfaces/field-config"
+import { FieldName } from "../value-object"
 
-export interface FieldForm {
+export interface FieldProps {
   id: string
-  name: string
+  name: FieldName
   isPossibleNull: number
   isArray: IsArrayConfig
   dataType: FieldDataType

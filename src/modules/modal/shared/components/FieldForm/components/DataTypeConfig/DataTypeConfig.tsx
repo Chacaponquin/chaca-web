@@ -7,12 +7,12 @@ import {
   SequenceConfig,
   SequentialConfig,
 } from "./components"
-import { FieldDataType } from "@modules/datasets/interfaces/dataset_field"
+import { FieldDataType } from "@modules/datasets/interfaces/dataset-field"
 import {
   SelectFieldSchemaOptionProps,
   UpdateArgumentsProps,
   UpdateCustomProps,
-} from "@modules/modal/shared/interfaces/form.interfaces"
+} from "@modules/modal/shared/interfaces"
 
 interface Props {
   datasetId: string

@@ -1,4 +1,4 @@
-import { ModalAddFieldProps } from "@modules/modal/interfaces/modal.interface"
+import { ModalAddFieldProps } from "@modules/modal/interfaces"
 import { FieldForm, ModalContainer } from "../../shared/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useAddFieldForm } from "./hooks"

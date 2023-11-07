@@ -6,7 +6,7 @@ import {
   RefDataType,
   SingleValueDataType,
   SchemaValueTypeObject,
-} from "./dataset_field"
+} from "./dataset-field"
 
 export interface DatasetObject {
   name: string

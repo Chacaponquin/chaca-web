@@ -2,11 +2,12 @@ import { RepeatDatasetNameError, RepeatSameLevelFieldNameError } from "../errors
 import { DatasetsContext } from "../context"
 import { useContext } from "react"
 import { MixedNode } from "../domain/tree/FieldNode"
+import { FieldName } from "../value-object"
 
 interface ValidateFieldProps {
   datasetId: string
   parentId: string
-  fieldName: string
+  fieldName: FieldName
 }
 
 interface ValidateDatasetProps {
@@ -17,7 +18,7 @@ interface ValidateDatasetProps {
 export default function useValidations() {
   const { datasets } = useContext(DatasetsContext)
 
-  const validateNoDuplicateDataset = ({ name, id }: ValidateDatasetProps) => {
+  function validateNoDuplicateDataset({ name, id }: ValidateDatasetProps) {
     const found = datasets.filter((d) => d.id !== id).some((d) => d.name === name)
 
     if (found) {
@@ -25,19 +26,19 @@ export default function useValidations() {
     }
   }
 
-  const validateDatasetName = (props: ValidateDatasetProps) => {
+  function validateDatasetName(props: ValidateDatasetProps) {
     validateNoDuplicateDataset(props)
   }
 
-  const validateFieldName = (props: ValidateFieldProps) => {
+  function validateFieldName(props: ValidateFieldProps) {
     validateNoDuplicateLevelFieldName(props)
   }
 
-  const validateNoDuplicateLevelFieldName = ({
+  function validateNoDuplicateLevelFieldName({
     datasetId,
     fieldName,
     parentId,
-  }: ValidateFieldProps) => {
+  }: ValidateFieldProps) {
     const foundDataset = datasets.find((d) => d.id === datasetId)
 
     if (foundDataset) {
@@ -49,7 +50,7 @@ export default function useValidations() {
           const parentNodes = findParent.nodesUtils.nodes
 
           for (let i = 0; i < parentNodes.length; i++) {
-            if (parentNodes[i].name === fieldName) {
+            if (parentNodes[i].name === fieldName.value()) {
               cont++
             }
           }

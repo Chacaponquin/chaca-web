@@ -3,7 +3,6 @@ import { DATASETS_ACTIONS } from "../constants"
 import { Reducer } from "react"
 import { Dataset } from "@modules/datasets/domain/tree"
 import { NodeProps } from "@modules/datasets/interfaces/tree"
-import { FieldForm } from "@modules/datasets/dto/field"
 import { DatasetName } from "../value-object"
 import {
   AddDataset,
@@ -14,6 +13,7 @@ import {
   DeleteField,
   EditField,
 } from "./cases"
+import { FieldProps } from "../dto/field"
 
 export type DatasetPayload =
   | { type: DATASETS_ACTIONS.DELETE_DATASET; payload: { datasetID: string } }
@@ -35,7 +35,7 @@ export type DatasetPayload =
   | {
       type: DATASETS_ACTIONS.EDIT_FIELD
       payload: {
-        field: FieldForm
+        field: FieldProps
         datasetID: string
       }
     }

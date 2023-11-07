@@ -1,8 +1,10 @@
 import { ExportForm, ModalContainer } from "../../shared/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
-import { ModalExportSelectDataset } from "@modules/modal/interfaces/modal.interface"
+import { ModalExportSelectDataset } from "@modules/modal/interfaces"
 
-const ExportSelectDatasetForm = ({ handleCreateSelectDataset }: ModalExportSelectDataset) => {
+export default function ExportSelectDatasetForm({
+  handleCreateSelectDataset,
+}: ModalExportSelectDataset) {
   const { EXPORT_DATASET_TEXT, SUBMIT_TEXT } = useLanguage({
     EXPORT_DATASET_TEXT: { en: "Export Single Dataset", es: "Exportar Dataset" },
     SUBMIT_TEXT: { en: "Export", es: "Exportar" },
@@ -20,5 +22,3 @@ const ExportSelectDatasetForm = ({ handleCreateSelectDataset }: ModalExportSelec
     </ModalContainer>
   )
 }
-
-export default ExportSelectDatasetForm

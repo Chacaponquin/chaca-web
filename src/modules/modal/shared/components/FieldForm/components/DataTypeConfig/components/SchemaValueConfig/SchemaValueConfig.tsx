@@ -1,10 +1,10 @@
 import { ChacaSelect } from "@form/components"
 import { useLanguage } from "@modules/app/modules/language/hooks"
-import { SchemaValueTypeObject } from "@modules/datasets/interfaces/dataset_field"
+import { SchemaValueTypeObject } from "@modules/datasets/interfaces/dataset-field"
 import {
   SelectFieldSchemaOptionProps,
   UpdateArgumentsProps,
-} from "@modules/modal/shared/interfaces/form.interfaces"
+} from "@modules/modal/shared/interfaces"
 import { useSchemas } from "@modules/schemas/hooks"
 import { OptionArguments } from "./components"
 import { useMemo } from "react"

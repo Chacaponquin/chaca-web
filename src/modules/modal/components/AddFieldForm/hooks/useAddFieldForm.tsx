@@ -5,13 +5,14 @@ import { EmptyFieldNameError, RepeatSameLevelFieldNameError } from "@modules/dat
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { useModal } from "@modules/modal/hooks"
+import { FieldName } from "@modules/datasets/value-object"
 
 interface Props {
   parentfieldId: string
   datasetId: string
 }
 
-export function useAddFieldForm({ datasetId, parentfieldId }: Props) {
+export default function useAddFieldForm({ datasetId, parentfieldId }: Props) {
   const fieldId = uuid()
 
   const { DEFAULT_SCHEMA_VALUE_DATA_TYPE } = useDatatypes({
@@ -51,7 +52,7 @@ export function useAddFieldForm({ datasetId, parentfieldId }: Props) {
     try {
       handleAddFieldService({
         datasetId: datasetId,
-        field: fieldActions.field,
+        field: { ...fieldActions.field, name: new FieldName(fieldActions.field.name) },
         parentfieldId: parentfieldId,
       })
 

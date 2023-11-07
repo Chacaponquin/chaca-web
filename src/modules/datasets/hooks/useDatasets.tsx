@@ -1,23 +1,24 @@
 import { DatasetsContext } from "../context"
 import { useContext } from "react"
 import { DATASETS_ACTIONS } from "../constants"
-import { FieldForm } from "../dto/field"
+import { FieldProps } from "../dto/field"
 import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
 import { useValidations } from "."
 import { DATA_TYPES } from "@modules/schemas/constants"
-import { DatasetConnection } from "../interfaces/dataset_connect"
-import { DatasetName, FieldName } from "../value-object"
+import { DatasetConnection } from "../interfaces/dataset-connect"
+import { DatasetName } from "../value-object"
 import { PossibleFieldToRef } from "../interfaces/ref"
-import { ExportDatatype, FieldDataType } from "../interfaces/dataset_field"
+import { ExportDatatype, FieldDataType } from "../interfaces/dataset-field"
+import { FieldForm } from "@modules/modal/interfaces"
 
 interface AddFieldProps {
-  field: FieldForm
+  field: FieldProps
   parentfieldId: string
   datasetId: string
 }
 
 interface UpdateFieldProps {
-  field: FieldForm
+  field: FieldProps
   parentfieldId: string
   datasetId: string
 }
@@ -90,7 +91,7 @@ export default function useDatasets() {
       type: DATASETS_ACTIONS.ADD_NEW_FIELD,
       payload: {
         fieldInfo: {
-          name: new FieldName(field.name),
+          name: field.name,
           isArray: field.isArray,
           isPossibleNull: field.isPossibleNull,
           dataType: field.dataType,

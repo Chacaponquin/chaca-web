@@ -1,3 +1,3 @@
-import { useEditFieldForm } from "./useEditFieldForm"
+import useEditFieldForm from "./useEditFieldForm"
 
 export { useEditFieldForm }

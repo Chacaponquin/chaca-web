@@ -5,7 +5,7 @@ import { DatasetName } from "@modules/datasets/value-object"
 import { v4 as uuid } from "uuid"
 import { ExportDatasetField } from "@modules/datasets/dto/dataset"
 import { SearchProps } from "@modules/datasets/interfaces/tree"
-import { ExportDatatype, FieldDataType } from "@modules/datasets/interfaces/dataset_field"
+import { ExportDatatype, FieldDataType } from "@modules/datasets/interfaces/dataset-field"
 
 interface RootProps {
   limit: number

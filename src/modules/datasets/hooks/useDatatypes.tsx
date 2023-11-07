@@ -7,7 +7,7 @@ import {
   SequenceDataType,
   SequentialDataType,
   SingleValueDataType,
-} from "../interfaces/dataset_field"
+} from "../interfaces/dataset-field"
 import { useSchemas } from "@modules/schemas/hooks"
 import { Datatype } from "../dto/field"
 import { useDatasets } from "./"

@@ -5,7 +5,7 @@ import {
   IsArrayConfig,
   IsKeyConfig,
   PossibleNullConfig,
-} from "@modules/datasets/interfaces/field_config"
+} from "@modules/datasets/interfaces/field-config"
 import {
   MixedDataType,
   RefDataType,
@@ -17,7 +17,7 @@ import {
   ExportMixedDataType,
   ExportDatatype,
   ExportRefDataType,
-} from "@modules/datasets/interfaces/dataset_field"
+} from "@modules/datasets/interfaces/dataset-field"
 import { FieldName } from "@modules/datasets/value-object"
 import { NodesUtils } from "./NodesUtils"
 import { v4 as uuid } from "uuid"

@@ -1,5 +1,4 @@
-import { useModal } from "@modules/modal/hooks"
-import React, { useEffect } from "react"
+import { useEffect } from "react"
 import { ModalButtons, ModalTitle } from "./components"
 
 interface Props {
@@ -22,8 +21,6 @@ export default function ModalContainer({
   type,
   name,
 }: Props) {
-  const { handleCloseModal } = useModal()
-
   function handleCloseWithClick(key: KeyboardEvent) {
     if (key.key === "Enter" && !key.shiftKey) {
       handleNext()
@@ -37,7 +34,6 @@ export default function ModalContainer({
 
   function handleClose() {
     document.removeEventListener("keypress", handleCloseWithClick)
-    handleCloseModal()
   }
 
   useEffect(() => {
@@ -59,7 +55,6 @@ export default function ModalContainer({
         style={{ minWidth: `${width}px` }}
         onSubmit={handleSubmit}
         onClick={(e) => e.stopPropagation()}
-        autoFocus={true}
       >
         <ModalTitle titleText={title} />
         {children}

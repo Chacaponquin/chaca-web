@@ -7,7 +7,7 @@ import {
   useReducer,
   useState,
 } from "react"
-import { DatasetPayload, datasetsReducer } from "../../reducer/datasets_reducer"
+import { DatasetPayload, datasetsReducer } from "../../reducer/datasets-reducer"
 import { Dataset } from "@modules/datasets/domain/tree"
 
 interface Props {

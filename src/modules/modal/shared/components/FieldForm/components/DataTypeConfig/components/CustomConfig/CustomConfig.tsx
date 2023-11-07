@@ -1,4 +1,4 @@
-import { UpdateCustomProps } from "@modules/modal/shared/interfaces/form.interfaces"
+import { UpdateCustomProps } from "@modules/modal/shared/interfaces"
 import { CodeEditor } from "@modules/shared/modules/markdown/components"
 
 export default function CustomConfig({

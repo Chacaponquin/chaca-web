@@ -1,6 +1,16 @@
+import { IsArrayConfig } from "@modules/datasets/interfaces/field-config"
 import { DatasetField, FieldDataType } from "../../datasets/interfaces/datasets"
 import { MODAL_ACTIONS } from "../constants/MODAL_ACTIONS"
 import { Dataset } from "@modules/datasets/domain/tree"
+
+export interface FieldForm {
+  id: string
+  name: string
+  isPossibleNull: number
+  isArray: IsArrayConfig
+  dataType: FieldDataType
+  isKey: boolean
+}
 
 export type ModalEditDataset = {
   type: MODAL_ACTIONS.EDIT_DATASET

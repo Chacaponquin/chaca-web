@@ -1,9 +1,9 @@
 import { useLanguage } from "@modules/app/modules/language/hooks"
-import { ModalEditField } from "@modules/modal/interfaces/modal.interface"
+import { ModalEditField } from "@modules/modal/interfaces"
 import { FieldForm, ModalContainer } from "../../shared/components"
 import { useEditFieldForm } from "./hooks"
 
-const EditFieldForm = ({ modalProps }: { modalProps: ModalEditField }) => {
+export default function EditFieldForm({ modalProps }: { modalProps: ModalEditField }) {
   const { EDIT_FIELD_TEXT, SUBMIT_TEXT } = useLanguage({
     EDIT_FIELD_TEXT: { en: "Edit Field", es: "Editar Campo" },
     SUBMIT_TEXT: { en: "Edit", es: "Editar" },
@@ -27,5 +27,3 @@ const EditFieldForm = ({ modalProps }: { modalProps: ModalEditField }) => {
     </ModalContainer>
   )
 }
-
-export default EditFieldForm

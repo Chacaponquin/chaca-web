@@ -1,4 +1,4 @@
-import { fieldFormReducer, FieldFormPayload } from "./field_form_reducer"
+import { fieldFormReducer, FieldFormPayload } from "./field-form-reducer"
 
 export { fieldFormReducer }
 export type { FieldFormPayload }

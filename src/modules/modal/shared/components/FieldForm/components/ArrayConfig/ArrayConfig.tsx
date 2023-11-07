@@ -1,5 +1,5 @@
 import { ChacaNumberInput } from "@form/components"
-import { IsArrayConfig } from "@modules/datasets/interfaces/field_config"
+import { IsArrayConfig } from "@modules/datasets/interfaces/field-config"
 import { CheckField } from "@modules/modal/shared/shared/components"
 import { useId } from "react"
 

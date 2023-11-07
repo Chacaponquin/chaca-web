@@ -1,7 +1,7 @@
 import { useDatasets } from "@modules/datasets/hooks"
 import { useModal } from "@modules/modal/hooks"
 
-export function useDeleteDatasetForm({ datasetId }: { datasetId: string }) {
+export default function useDeleteDatasetForm({ datasetId }: { datasetId: string }) {
   const { handleCloseModal } = useModal()
   const { hanldeDeleteDataset: handleDeleteDatasetService } = useDatasets()
 

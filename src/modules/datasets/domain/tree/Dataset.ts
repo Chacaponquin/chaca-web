@@ -13,7 +13,7 @@ import {
   ExportMixedDataType,
   ExportRefDataType,
   MixedDataType,
-} from "@modules/datasets/interfaces/dataset_field"
+} from "@modules/datasets/interfaces/dataset-field"
 import { ExportDataset } from "./ExportDataset"
 
 interface DatasetProps {

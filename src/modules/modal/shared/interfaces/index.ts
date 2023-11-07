@@ -1,4 +1,4 @@
-import { FieldForm } from "@modules/datasets/dto/field"
+import { FieldForm } from "@modules/modal/interfaces"
 
 export interface SelectFieldSchemaOptionProps {
   optionName: string

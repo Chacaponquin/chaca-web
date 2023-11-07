@@ -1,4 +1,4 @@
-import { ModalProps } from "@modules/modal/interfaces/modal.interface"
+import { ModalProps } from "@modules/modal/interfaces"
 import { createContext, ReactElement, useState, Fragment } from "react"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import {

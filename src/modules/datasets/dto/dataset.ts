@@ -1,5 +1,5 @@
-import { ExportDatatype } from "../interfaces/dataset_field"
-import { IsArrayConfig, PossibleNullConfig } from "../interfaces/field_config"
+import { ExportDatatype } from "../interfaces/dataset-field"
+import { IsArrayConfig, PossibleNullConfig } from "../interfaces/field-config"
 
 export type ExportDatasetField<T extends ExportDatatype> = {
   name: string

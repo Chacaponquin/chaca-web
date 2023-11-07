@@ -1,5 +1,5 @@
 import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
-import { FieldDataType } from "@modules/datasets/interfaces/dataset_field"
+import { FieldDataType } from "@modules/datasets/interfaces/dataset-field"
 import { NodeProps } from "@modules/datasets/interfaces/tree"
 import { DatasetUseCase } from "./DatasetUseCase"
 import { MixedNode } from "@modules/datasets/domain/tree/FieldNode"

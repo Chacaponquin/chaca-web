@@ -1,3 +1,3 @@
-import { useDeleteDatasetForm } from "./useDeleteDatasetForm"
+import useDeleteDatasetForm from "./useDeleteDatasetForm"
 
 export { useDeleteDatasetForm }

@@ -5,6 +5,7 @@ import { EmptyFieldNameError, RepeatSameLevelFieldNameError } from "@modules/dat
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { useModal } from "@modules/modal/hooks"
+import { FieldName } from "@modules/datasets/value-object"
 
 interface Props {
   field: DatasetField
@@ -12,7 +13,7 @@ interface Props {
   datasetId: string
 }
 
-export function useEditFieldForm({ field, parentfieldId, datasetId }: Props) {
+export default function useEditFieldForm({ field, parentfieldId, datasetId }: Props) {
   const { REPEAT_NAME, EMPTY_NAME } = useLanguage({
     REPEAT_NAME: {
       en: `Aldready exists an field with that name`,
@@ -44,7 +45,7 @@ export function useEditFieldForm({ field, parentfieldId, datasetId }: Props) {
   function handleEditField() {
     try {
       handleUpdateField({
-        field: fieldActions.field,
+        field: { ...fieldActions.field, name: new FieldName(fieldActions.field.name) },
         parentfieldId: parentfieldId,
         datasetId: datasetId,
       })

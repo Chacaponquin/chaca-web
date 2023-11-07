@@ -1,18 +1,18 @@
-import { FieldForm } from "@modules/datasets/dto/field"
 import { useDatatypes } from "@modules/datasets/hooks"
 import { useReducer, Reducer } from "react"
 import { FieldFormPayload, fieldFormReducer } from "../reducer"
 import { FORM_ACTIONS } from "../constants/FORM_ACTIONS"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { useSchemas } from "@modules/schemas/hooks"
-import { SequenceDataType, SingleValueDataType } from "@modules/datasets/interfaces/dataset_field"
+import { SequenceDataType, SingleValueDataType } from "@modules/datasets/interfaces/dataset-field"
 import {
   FieldActions,
   SelectFieldSchemaOptionProps,
   UpdateArgumentsProps,
   UpdateRefProps,
-} from "../interfaces/form.interfaces"
+} from "../interfaces"
 import { EnumField, SequentialField } from "@modules/datasets/domain/fields"
+import { FieldForm } from "@modules/modal/interfaces"
 
 interface Props {
   field: FieldForm

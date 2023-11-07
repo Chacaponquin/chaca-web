@@ -1,11 +1,10 @@
 import { Dataset } from "@modules/datasets/domain/tree"
 import { DatasetUseCase } from "./DatasetUseCase"
-import { FieldForm } from "@modules/datasets/dto/field"
-import { FieldName } from "@modules/datasets/value-object"
+import { FieldProps } from "@modules/datasets/dto/field"
 
 interface ExecuteProps {
   datasetId: string
-  form: FieldForm
+  form: FieldProps
 }
 
 export class EditField extends DatasetUseCase<ExecuteProps> {
@@ -15,7 +14,7 @@ export class EditField extends DatasetUseCase<ExecuteProps> {
         const findField = d.findFieldById(form.id)
 
         if (findField) {
-          findField.setName(new FieldName(form.name))
+          findField.setName(form.name)
           findField.setIsArray(form.isArray)
           findField.setIsPossibleNull(form.isPossibleNull)
           findField.setIsKey(form.isKey)

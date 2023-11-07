@@ -1,8 +1,8 @@
-import { FieldDataType } from "@modules/datasets/interfaces/dataset_field"
+import { FieldDataType } from "@modules/datasets/interfaces/dataset-field"
 import { FORM_ACTIONS } from "../constants/FORM_ACTIONS"
 import { Reducer } from "react"
-import { FieldForm } from "@modules/datasets/dto/field"
 import { DATA_TYPES } from "@modules/schemas/constants"
+import { FieldForm } from "@modules/modal/interfaces"
 
 export type FieldFormPayload =
   | {

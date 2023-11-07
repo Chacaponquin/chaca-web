@@ -1,5 +1,5 @@
 import { DATA_TYPES } from "@modules/schemas/constants"
-import { IsArrayConfig } from "./field_config"
+import { IsArrayConfig } from "./field-config"
 import { ExportDatasetField } from "../dto/dataset"
 
 export interface ExportDatatype {}
