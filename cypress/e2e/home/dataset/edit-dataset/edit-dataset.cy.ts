@@ -7,7 +7,9 @@ describe("# Edit Dataset tests", () => {
     // create dataset
     cy.get("#create-first-dataset-button").click()
     cy.get("#dataset-playground > div").should("have.length", 1)
+  })
 
+  it("Try edit dataset name to empty string. Should show an error toast", () => {
     // open menu
     cy.get("#New-Dataset-dataset-config-button").click()
     cy.get("#New-Dataset-dataset-config-menu").should("exist")
@@ -15,11 +17,27 @@ describe("# Edit Dataset tests", () => {
     // open modal
     cy.get("#New-Dataset-dataset-edit-button").click()
     cy.get("#edit-dataset-modal").should("exist")
-  })
 
-  it("Try edit dataset name to empty string. Should show an error toast", () => {
     cy.get("input[name=dataset-name]").clear()
     cy.get("#modal-edit-dataset-button").click()
     cy.get("#toast-empty-dataset-name").should("exist")
+  })
+
+  it("Try edit a dataset name to an existing dataset", () => {
+    // create other dataset
+    cy.get("#create-dataset-button").click()
+
+    // open menu
+    cy.get("#New-Dataset_-dataset-config-button").click()
+    cy.get("#New-Dataset_-dataset-config-menu").should("exist")
+
+    // open modal
+    cy.get("#New-Dataset_-dataset-edit-button").click()
+    cy.get("#edit-dataset-modal").should("exist")
+
+    // type name
+    cy.get("input[name=dataset-name]").clear().type("New Dataset")
+    cy.get("#modal-edit-dataset-button").click()
+    cy.get("#toast-repeat-dataset-name").should("exist")
   })
 })

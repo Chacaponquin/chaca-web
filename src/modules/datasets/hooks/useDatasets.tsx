@@ -25,7 +25,7 @@ interface UpdateFieldProps {
 }
 
 interface EditDatasetProps {
-  name: string
+  name: DatasetName
   datasetId: string
   limit: number
 }
@@ -64,7 +64,7 @@ export default function useDatasets() {
 
     datasetDispatch({
       type: DATASETS_ACTIONS.CHANGE_DATASET_NAME,
-      payload: { datasetId: datasetId, newName: new DatasetName(name) },
+      payload: { datasetId: datasetId, newName: name },
     })
 
     datasetDispatch({

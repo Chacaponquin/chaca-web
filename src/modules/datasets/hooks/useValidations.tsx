@@ -2,7 +2,7 @@ import { RepeatDatasetNameError, RepeatSameLevelFieldNameError } from "../errors
 import { DatasetsContext } from "../context"
 import { useContext } from "react"
 import { MixedNode } from "../domain/tree/FieldNode"
-import { FieldName } from "../value-object"
+import { DatasetName, FieldName } from "../value-object"
 import { RootNode } from "../domain/tree"
 
 interface ValidateFieldProps {
@@ -12,7 +12,7 @@ interface ValidateFieldProps {
 }
 
 interface ValidateDatasetProps {
-  name: string
+  name: DatasetName
   id?: string
 }
 
@@ -20,7 +20,7 @@ export default function useValidations() {
   const { datasets } = useContext(DatasetsContext)
 
   function validateNoDuplicateDataset({ name, id }: ValidateDatasetProps) {
-    const found = datasets.filter((d) => d.id !== id).some((d) => d.name === name)
+    const found = datasets.filter((d) => d.id !== id).some((d) => d.name === name.value())
 
     if (found) {
       throw new RepeatDatasetNameError()
