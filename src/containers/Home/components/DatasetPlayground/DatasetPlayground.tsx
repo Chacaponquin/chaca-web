@@ -2,7 +2,7 @@ import { ArrowSvg, DatasetCard, DatasetsButtons, Playground } from "./components
 import { useDatasetPlayground } from "./hooks"
 
 interface Props {
-  handleCreateSelectDataset: (i: number) => void
+  handleCreateSelectDataset: (index: number) => void
   handleCreateAllDatasets: () => void
   handleAddDataset: () => void
 }

@@ -24,6 +24,7 @@ const NoFieldsMessage = ({ handleAddNewField }: { handleAddNewField: () => void 
         size="medium"
         className="mt-2"
         type="button"
+        id="create-first-field-button"
       />
     </div>
   )

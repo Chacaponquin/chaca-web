@@ -49,7 +49,7 @@ export default function useContactUs() {
           setModalOpen(true)
         },
         onError: () => {
-          toastError(POST_ERROR)
+          toastError({ message: POST_ERROR })
         },
         onFinally: () => {
           setLoading(false)
@@ -57,11 +57,11 @@ export default function useContactUs() {
       })
     } catch (error) {
       if (error instanceof EmptyMessageTitleError) {
-        toastError(EMPTY_TITLE)
+        toastError({ message: EMPTY_TITLE })
       } else if (error instanceof EmptyUserMessageError) {
-        toastError(EMPTY_MESSAGE)
+        toastError({ message: EMPTY_MESSAGE })
       } else if (error instanceof EmptyUserEmailError) {
-        toastError(EMPTY_EMAIL)
+        toastError({ message: EMPTY_EMAIL })
       }
     }
   }

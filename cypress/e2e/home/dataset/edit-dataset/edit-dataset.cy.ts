@@ -3,26 +3,23 @@ import { createAppRoute } from "cypress/fixtures/route"
 describe("# Edit Dataset tests", () => {
   beforeEach(() => {
     cy.visit(createAppRoute("home"))
-  })
 
-  it("Click config button. Should show config dropdown", () => {
-    cy.get("#User-dataset-config-button").click()
-    cy.get("#User-dataset-config-menu").should("exist")
-  })
+    // create dataset
+    cy.get("#create-first-dataset-button").click()
+    cy.get("#dataset-playground > div").should("have.length", 1)
 
-  it("Click edit button. Should show a modal", () => {
-    cy.get("#User-dataset-config-button").click()
-    cy.get("#User-dataset-config-menu").should("exist")
-    cy.get("#User-dataset-edit-button").click()
-    cy.get("#app-modal").should("exist")
+    // open menu
+    cy.get("#New-Dataset-dataset-config-button").click()
+    cy.get("#New-Dataset-dataset-config-menu").should("exist")
+
+    // open modal
+    cy.get("#New-Dataset-dataset-edit-button").click()
+    cy.get("#edit-dataset-modal").should("exist")
   })
 
   it("Try edit dataset name to empty string. Should show an error toast", () => {
-    cy.get("#User-dataset-config-button").click()
-    cy.get("#User-dataset-config-menu").should("exist")
-    cy.get("#User-dataset-edit-button").click()
     cy.get("input[name=dataset-name]").clear()
     cy.get("#modal-edit-dataset-button").click()
-    cy.get("#toast-error").should("exist")
+    cy.get("#toast-empty-dataset-name").should("exist")
   })
 })

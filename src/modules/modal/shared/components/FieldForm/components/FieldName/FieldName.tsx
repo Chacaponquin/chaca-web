@@ -23,6 +23,7 @@ export default function FieldName({ handleChangeName, text, name }: Props) {
         placeholder={PLACEHOLDER}
         value={name}
         dimension="large"
+        name="field-name"
       />
     </FormInputSection>
   )

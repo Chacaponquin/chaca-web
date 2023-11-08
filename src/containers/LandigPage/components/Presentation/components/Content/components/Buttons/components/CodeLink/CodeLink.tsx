@@ -7,7 +7,7 @@ export default function CodeLink() {
   const CODE = "npm install chaca -dev"
 
   function handleCopy() {
-    toastSuccess("Copied to clipoard")
+    toastSuccess({ message: "Copied to clipoard" })
     navigator.clipboard.writeText(CODE)
   }
 

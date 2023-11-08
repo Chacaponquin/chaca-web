@@ -9,7 +9,7 @@ import clsx from "clsx"
 import { useDatasets } from "@modules/datasets/hooks"
 import { ChangeDatasetCardProps } from "../../interfaces/card.interface"
 
-interface DatasetCardProps {
+interface Props {
   handleCreateSelectDataset: (i: number) => void
   index: number
   positionX: number
@@ -30,7 +30,7 @@ export default function DatasetCard({
   selectFieldPoint,
   handleUpdateLines,
   handleChangeDatasetCardPosition,
-}: DatasetCardProps) {
+}: Props) {
   const { playgroundRef } = useContext(HomeContext)
 
   const {

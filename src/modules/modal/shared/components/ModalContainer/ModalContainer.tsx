@@ -19,6 +19,7 @@ export default function ModalContainer({
   nextText,
   title,
   type,
+  nextButtonId,
   name,
 }: Props) {
   function handleCloseWithClick(key: KeyboardEvent) {
@@ -58,7 +59,7 @@ export default function ModalContainer({
       >
         <ModalTitle titleText={title} />
         {children}
-        <ModalButtons type={type} nextText={nextText} />
+        <ModalButtons type={type} nextText={nextText} nextButtonId={nextButtonId} />
       </form>
     </div>
   )

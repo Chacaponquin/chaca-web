@@ -39,9 +39,9 @@ export default function useEditDataset({ dataset }: { dataset: Dataset }) {
       handleCloseModal()
     } catch (error) {
       if (error instanceof EmptyDatasetNameError) {
-        toastError(EMPTY_NAME)
+        toastError({ message: EMPTY_NAME, id: "empty-dataset-name" })
       } else if (error instanceof RepeatDatasetNameError) {
-        toastError(REPEAT_NAME)
+        toastError({ message: REPEAT_NAME })
       }
     }
   }

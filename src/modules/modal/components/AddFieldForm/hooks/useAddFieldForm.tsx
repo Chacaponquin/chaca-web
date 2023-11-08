@@ -59,9 +59,9 @@ export default function useAddFieldForm({ datasetId, parentfieldId }: Props) {
       handleCloseModal()
     } catch (error) {
       if (error instanceof EmptyFieldNameError) {
-        toastError(EMPTY_NAME)
+        toastError({ message: EMPTY_NAME, id: "empty-field-name" })
       } else if (error instanceof RepeatSameLevelFieldNameError) {
-        toastError(REPEAT_NAME)
+        toastError({ message: REPEAT_NAME })
       }
     }
   }

@@ -67,9 +67,9 @@ export default function useSignUp() {
         },
         onError: (error) => {
           if (error.status === 409) {
-            toastError(ALREADY_EXIST_USER_TEXT)
+            toastError({ message: ALREADY_EXIST_USER_TEXT })
           } else {
-            toastError(CREATING_USER_TEXT)
+            toastError({ message: CREATING_USER_TEXT })
           }
         },
         onFinally: () => {
@@ -78,13 +78,13 @@ export default function useSignUp() {
       })
     } catch (error) {
       if (error instanceof UsernameShortError) {
-        toastError(LENGTH_USERNAME)
+        toastError({ message: LENGTH_USERNAME })
       } else if (error instanceof NotEqualUserPasswords) {
-        toastError(NOT_EQUAL_PASSWORDS)
+        toastError({ message: NOT_EQUAL_PASSWORDS })
       } else if (error instanceof EmailEmptyError) {
-        toastError(EMPTY_EMAIL)
+        toastError({ message: EMPTY_EMAIL })
       } else if (error instanceof PasswordEmptyError) {
-        toastError(EMPTY_PASSWORD)
+        toastError({ message: EMPTY_PASSWORD })
       }
     }
   }

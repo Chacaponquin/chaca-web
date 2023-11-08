@@ -53,9 +53,9 @@ export default function useEditFieldForm({ field, parentfieldId, datasetId }: Pr
       handleCloseModal()
     } catch (error) {
       if (error instanceof EmptyFieldNameError) {
-        toastError(EMPTY_NAME)
+        toastError({ message: EMPTY_NAME })
       } else if (error instanceof RepeatSameLevelFieldNameError) {
-        toastError(REPEAT_NAME)
+        toastError({ message: REPEAT_NAME })
       }
     }
   }

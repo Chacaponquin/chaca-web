@@ -83,7 +83,7 @@ export default function useHome() {
     })
 
     socket.on(SOCKET_EVENTS.CREATION_ERROR, () => {
-      toastError(CREATION_ERROR)
+      toastError({ message: CREATION_ERROR })
       setCreateDataLoading(false)
     })
 
@@ -118,14 +118,14 @@ export default function useHome() {
         config: { fileType: config.file.fileType, arguments: {} },
       }).catch((error) => {
         if (error instanceof ConnectSockerError) {
-          toastError(NETWORK_ERROR)
+          toastError({ message: NETWORK_ERROR })
         }
       })
     } catch (error) {
       setCreateDataLoading(false)
 
       if (error instanceof EmptyRefFieldError) {
-        toastError(EMPTY_REF_FIELD_ERROR)
+        toastError({ message: EMPTY_REF_FIELD_ERROR })
       } else if (error instanceof EmptyEnumFieldError) {
         toastError(EMPTY_ENUM_FIELD({ field: error.field }))
       } else if (error instanceof EmptySequentialFieldError) {
@@ -150,7 +150,7 @@ export default function useHome() {
         config,
       })
     } else {
-      toastError(NETWORK_ERROR)
+      toastError({ message: NETWORK_ERROR })
       setCreateDataLoading(false)
     }
   }

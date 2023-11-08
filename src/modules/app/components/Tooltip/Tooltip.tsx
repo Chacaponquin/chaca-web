@@ -58,7 +58,7 @@ export default function Tooltip({ position = "top", children, text }: Props) {
     >
       {show && (
         <div
-          className="shadow-lg bg-scale-9 text-white px-3 py-1 rounded absolute"
+          className="shadow-lg bg-scale-3 dark:bg-scale-3 text-white px-3 py-1 rounded absolute"
           style={{
             transform: `translateX(${posStyle.translateX}px) translateY(${posStyle.translateY}px)`,
           }}

@@ -25,6 +25,7 @@ export default function NoDatasetsMessage({ handleCreateDataset }: Props) {
         className="mt-6"
         onClick={handleCreateDataset}
         rounded
+        id="create-first-dataset-button"
       />
     </section>
   )

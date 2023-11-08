@@ -3,7 +3,7 @@ import { useLanguage } from "@modules/app/modules/language/hooks"
 import { Fragment } from "react"
 import { Item } from "./components"
 
-interface DatasetMenuProps {
+interface Props {
   handleEditDataset: () => void
   handleDeleteDataset: () => void
   handleExportDataset: () => void
@@ -15,7 +15,7 @@ export default function DatasetMenu({
   handleEditDataset,
   handleExportDataset,
   name,
-}: DatasetMenuProps) {
+}: Props) {
   const { DELETE_OPTION, EDIT_OPTION, EXPORT_OPTION } = useLanguage({
     DELETE_OPTION: { en: "Delete", es: "Borrar" },
     EXPORT_OPTION: { en: "Export", es: "Exportar" },
