@@ -16,7 +16,7 @@ import {
 import { FieldProps } from "../dto/field"
 
 export type DatasetPayload =
-  | { type: DATASETS_ACTIONS.DELETE_DATASET; payload: { datasetID: string } }
+  | { type: DATASETS_ACTIONS.DELETE_DATASET; payload: { datasetId: string } }
   | {
       type: DATASETS_ACTIONS.SET_INIT_DATASETS
       payload: { datasets: Array<Dataset> }
@@ -26,7 +26,7 @@ export type DatasetPayload =
       payload: {
         parentfieldId: string
         fieldInfo: NodeProps<FieldDataType>
-        datasetID: string
+        datasetId: string
       }
     }
   | {
@@ -36,21 +36,21 @@ export type DatasetPayload =
       type: DATASETS_ACTIONS.EDIT_FIELD
       payload: {
         field: FieldProps
-        datasetID: string
+        datasetId: string
       }
     }
   | {
       type: DATASETS_ACTIONS.CHANGE_DATASET_LIMIT
-      payload: { datasetID: string; newLimit: number }
+      payload: { datasetId: string; newLimit: number }
     }
   | {
       type: DATASETS_ACTIONS.DELETE_FIELD
-      payload: { datasetID: string; fieldId: string }
+      payload: { datasetId: string; fieldId: string }
     }
   | {
       type: DATASETS_ACTIONS.CHANGE_DATASET_NAME
       payload: {
-        datasetID: string
+        datasetId: string
         newName: DatasetName
       }
     }
@@ -62,12 +62,12 @@ export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
   switch (action.type) {
     case DATASETS_ACTIONS.EDIT_FIELD: {
       const useCase = new EditField(datasets)
-      return useCase.execute({ datasetId: action.payload.datasetID, form: action.payload.field })
+      return useCase.execute({ datasetId: action.payload.datasetId, form: action.payload.field })
     }
 
     case DATASETS_ACTIONS.DELETE_DATASET: {
       const useCase = new DeleteDataset(datasets)
-      return useCase.execute(action.payload.datasetID)
+      return useCase.execute(action.payload.datasetId)
     }
 
     case DATASETS_ACTIONS.SET_INIT_DATASETS: {
@@ -77,7 +77,7 @@ export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
     case DATASETS_ACTIONS.ADD_NEW_FIELD: {
       const useCase = new AddField(datasets)
       return useCase.execute({
-        datasetId: action.payload.datasetID,
+        datasetId: action.payload.datasetId,
         field: action.payload.fieldInfo,
         parentId: action.payload.parentfieldId,
       })
@@ -92,14 +92,14 @@ export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
       const useCase = new ChangeDatasetLimit(datasets)
       return useCase.execute({
         limit: action.payload.newLimit,
-        datasetId: action.payload.datasetID,
+        datasetId: action.payload.datasetId,
       })
     }
 
     case DATASETS_ACTIONS.DELETE_FIELD: {
       const useCase = new DeleteField(datasets)
       return useCase.execute({
-        datasetId: action.payload.datasetID,
+        datasetId: action.payload.datasetId,
         fieldId: action.payload.fieldId,
       })
     }
@@ -107,7 +107,7 @@ export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
     case DATASETS_ACTIONS.CHANGE_DATASET_NAME: {
       const useCase = new ChangeDatasetName(datasets)
       return useCase.execute({
-        datasetId: action.payload.datasetID,
+        datasetId: action.payload.datasetId,
         newName: action.payload.newName,
       })
     }

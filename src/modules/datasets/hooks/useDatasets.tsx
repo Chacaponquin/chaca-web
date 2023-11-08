@@ -21,6 +21,7 @@ interface UpdateFieldProps {
   field: FieldProps
   parentfieldId: string
   datasetId: string
+  oldName: string
 }
 
 interface EditDatasetProps {
@@ -63,23 +64,25 @@ export default function useDatasets() {
 
     datasetDispatch({
       type: DATASETS_ACTIONS.CHANGE_DATASET_NAME,
-      payload: { datasetID: datasetId, newName: new DatasetName(name) },
+      payload: { datasetId: datasetId, newName: new DatasetName(name) },
     })
 
     datasetDispatch({
       type: DATASETS_ACTIONS.CHANGE_DATASET_LIMIT,
-      payload: { datasetID: datasetId, newLimit: limit },
+      payload: { datasetId: datasetId, newLimit: limit },
     })
   }
 
-  function handleUpdateField({ datasetId, field, parentfieldId }: UpdateFieldProps) {
-    validateFieldName({ parentId: parentfieldId, datasetId, fieldName: field.name })
+  function handleUpdateField({ datasetId, field, parentfieldId, oldName }: UpdateFieldProps) {
+    if (field.name.value() !== oldName) {
+      validateFieldName({ parentId: parentfieldId, datasetId, fieldName: field.name })
+    }
 
     datasetDispatch({
       type: DATASETS_ACTIONS.EDIT_FIELD,
       payload: {
         field: field,
-        datasetID: datasetId,
+        datasetId: datasetId,
       },
     })
   }
@@ -98,15 +101,15 @@ export default function useDatasets() {
           isKey: field.isKey,
         },
         parentfieldId,
-        datasetID: datasetId,
+        datasetId: datasetId,
       },
     })
   }
 
-  function hanldeDeleteDataset(datasetID: string) {
+  function hanldeDeleteDataset(datasetId: string) {
     datasetDispatch({
       type: DATASETS_ACTIONS.DELETE_DATASET,
-      payload: { datasetID },
+      payload: { datasetId },
     })
 
     if (datasets.length) {
@@ -118,7 +121,7 @@ export default function useDatasets() {
     datasetDispatch({
       type: DATASETS_ACTIONS.CHANGE_DATASET_LIMIT,
       payload: {
-        datasetID: datasetId,
+        datasetId: datasetId,
         newLimit: limit,
       },
     })
@@ -127,7 +130,7 @@ export default function useDatasets() {
   function handleDeleteField({ datasetId, fieldId }: DeleteFieldProps) {
     datasetDispatch({
       type: DATASETS_ACTIONS.DELETE_FIELD,
-      payload: { fieldId: fieldId, datasetID: datasetId },
+      payload: { fieldId: fieldId, datasetId: datasetId },
     })
   }
 

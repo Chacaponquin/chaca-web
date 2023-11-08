@@ -2,9 +2,9 @@ import { Dataset } from "@modules/datasets/domain/tree"
 import { DatasetUseCase } from "./DatasetUseCase"
 
 export class DeleteDataset extends DatasetUseCase<string> {
-  public execute(deleteDatasetId: string): Array<Dataset> {
-    const newDatasets = this.datasets.filter((d) => d.id !== deleteDatasetId)
-    this.deleteRefFields(newDatasets, deleteDatasetId)
+  public execute(deletedatasetId: string): Array<Dataset> {
+    const newDatasets = this.datasets.filter((d) => d.id !== deletedatasetId)
+    this.deleteRefFields(newDatasets, deletedatasetId)
 
     return newDatasets
   }

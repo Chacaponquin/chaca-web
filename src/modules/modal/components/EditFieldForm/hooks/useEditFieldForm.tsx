@@ -48,6 +48,7 @@ export default function useEditFieldForm({ field, parentfieldId, datasetId }: Pr
         field: { ...fieldActions.field, name: new FieldName(fieldActions.field.name) },
         parentfieldId: parentfieldId,
         datasetId: datasetId,
+        oldName: field.name,
       })
 
       handleCloseModal()
