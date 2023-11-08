@@ -11,8 +11,8 @@ export default function TextSection() {
 
   return (
     <section className="flex flex-col xl:text-left text-center max-w-[500px] gap-5 esm:gap-2">
-      <h1 className="font-fontTitle text-6xl esm:text-4xl">{HEADER_TEXT}</h1>
-      <p className="text-slate-500 text-lg esm:text-base">{ERROR_MESSAGE}</p>
+      <h1 className="font-fontTitle dark:text-white text-6xl esm:text-4xl">{HEADER_TEXT}</h1>
+      <p className="text-scale-9 dark:text-scale-11 text-lg esm:text-base">{ERROR_MESSAGE}</p>
     </section>
   )
 }

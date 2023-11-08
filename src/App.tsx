@@ -16,11 +16,11 @@ import { HomeProvider } from "@containers/Home/context"
 
 function App() {
   return (
-    <ErrorBoundary fallback={<Error />}>
-      <BrowserRouter>
-        <ToastProvider>
-          <LanguageProvider>
-            <ThemeProvider>
+    <LanguageProvider>
+      <ThemeProvider>
+        <ErrorBoundary fallback={<Error />}>
+          <BrowserRouter>
+            <ToastProvider>
               <UserProvider>
                 <SocketProvider>
                   <Routes>
@@ -52,11 +52,11 @@ function App() {
                   </Routes>
                 </SocketProvider>
               </UserProvider>
-            </ThemeProvider>
-          </LanguageProvider>
-        </ToastProvider>
-      </BrowserRouter>
-    </ErrorBoundary>
+            </ToastProvider>
+          </BrowserRouter>
+        </ErrorBoundary>
+      </ThemeProvider>
+    </LanguageProvider>
   )
 }
 
