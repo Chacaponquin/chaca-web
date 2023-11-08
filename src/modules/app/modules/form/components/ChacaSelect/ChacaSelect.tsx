@@ -23,9 +23,16 @@ interface SelectOptions {
   value: string
 }
 
-export default function ChacaSelect<T>(props: Props<T>) {
-  const { onChange, options, placeholder, value, dimension = "normal", height = 300 } = props
-
+export default function ChacaSelect<T>({
+  valueKey,
+  labelKey,
+  onChange,
+  options,
+  placeholder,
+  value,
+  dimension = "normal",
+  height = 300,
+}: Props<T>) {
   const { paddingClass, textClass } = useFilters({ dimension })
 
   const [openOptions, setOpenOptions] = useState(false)
@@ -37,11 +44,9 @@ export default function ChacaSelect<T>(props: Props<T>) {
     setSelectOptions([])
 
     options.forEach((o) => {
-      const customProps = props as ChacaObjectSelectProps<T>
-
       setSelectOptions((prev) => [
         ...prev,
-        { label: o[customProps.labelKey] as string, value: o[customProps.valueKey] as string },
+        { label: o[labelKey] as string, value: o[valueKey] as string },
       ])
     })
   }, [options])
@@ -54,7 +59,7 @@ export default function ChacaSelect<T>(props: Props<T>) {
     })
   }, [value, selectOptions])
 
-  const handleSelectOption = (index: number) => {
+  function handleSelectOption(index: number) {
     setSelectIndex(index)
 
     if (onChange) {
@@ -63,8 +68,9 @@ export default function ChacaSelect<T>(props: Props<T>) {
   }
 
   const parentClass = clsx(
-    "w-full flex items-center text-black dark:text-white border-solid transition-all duration-300 justify-between cursor-pointer rounded-sm gap-5 whitespace-nowrap",
+    "w-full flex items-center border-solid transition-all duration-300 justify-between cursor-pointer rounded-sm gap-5 whitespace-nowrap",
     { "border-purple-6": openOptions, "hover:border-purple-6": !openOptions },
+    "text-black dark:text-white",
     "border-2 border-scale-11",
     "dark:border-scale-3 dark:focus:border-scale-9 dark:hover:border-scale-9",
     "bg-white dark:bg-scale-5",
