@@ -61,7 +61,7 @@ export default function useAddFieldForm({ datasetId, parentfieldId }: Props) {
       if (error instanceof EmptyFieldNameError) {
         toastError({ message: EMPTY_NAME, id: "empty-field-name" })
       } else if (error instanceof RepeatSameLevelFieldNameError) {
-        toastError({ message: REPEAT_NAME })
+        toastError({ message: REPEAT_NAME, id: "repeat-field-name" })
       }
     }
   }

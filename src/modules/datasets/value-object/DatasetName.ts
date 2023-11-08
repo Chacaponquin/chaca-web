@@ -9,6 +9,6 @@ export class DatasetName extends NameValidator {
   protected validate(name: string): string {
     if (name.trim() === "") throw new EmptyDatasetNameError()
 
-    return name
+    return name.trim()
   }
 }

@@ -3,6 +3,7 @@ import { DatasetsContext } from "../context"
 import { useContext } from "react"
 import { MixedNode } from "../domain/tree/FieldNode"
 import { FieldName } from "../value-object"
+import { RootNode } from "../domain/tree"
 
 interface ValidateFieldProps {
   datasetId: string
@@ -46,11 +47,11 @@ export default function useValidations() {
       const findParent = foundDataset.findNodeById(parentId)
 
       if (findParent) {
-        if (findParent instanceof MixedNode) {
+        if (findParent instanceof MixedNode || findParent instanceof RootNode) {
           const parentNodes = findParent.nodesUtils.nodes
 
-          for (let i = 0; i < parentNodes.length; i++) {
-            if (parentNodes[i].name === fieldName.value()) {
+          for (const node of parentNodes) {
+            if (node.name === fieldName.value()) {
               cont++
             }
           }

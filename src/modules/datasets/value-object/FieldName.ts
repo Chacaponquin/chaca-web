@@ -11,6 +11,6 @@ export class FieldName extends NameValidator {
       throw new EmptyFieldNameError()
     }
 
-    return name
+    return name.trim()
   }
 }
