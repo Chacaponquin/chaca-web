@@ -9,7 +9,7 @@ interface Props {
   handleAddNewField: () => void
 }
 
-const FieldsMenu = ({ handleExportSelectedDataset, handleAddNewField }: Props) => {
+export default function FieldsMenu({ handleExportSelectedDataset, handleAddNewField }: Props) {
   const { selectedDataset, handleCloseFieldsMenu, showFieldsMenu } = useDatasets()
   const { fieldsMenuRef, smallWindow } = useContext(HomeContext)
 
@@ -46,5 +46,3 @@ const FieldsMenu = ({ handleExportSelectedDataset, handleAddNewField }: Props) =
     </section>
   )
 }
-
-export default FieldsMenu

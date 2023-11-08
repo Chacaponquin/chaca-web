@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { CONFIG_ACTIONS } from "../constants"
 import { ConfigContext } from "../context"
 
-export function useConfig() {
+export default function useConfig() {
   const { fileOptions, config, configDispatch } = useContext(ConfigContext)
 
   function handleResetConfig() {

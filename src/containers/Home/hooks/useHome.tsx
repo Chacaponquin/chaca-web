@@ -23,6 +23,7 @@ import { useDatasetServices } from "@modules/datasets/services"
 import { ExportDatasetDTO } from "@modules/datasets/dto/dataset"
 import { ConnectSockerError } from "@modules/app/modules/socket/errors"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
+import { Config } from "@modules/config/interfaces"
 
 interface MessageFieldProps {
   field: string
@@ -38,7 +39,7 @@ export default function useHome() {
     searchRefField,
     showFieldsMenu,
   } = useDatasets()
-  const { handleResetConfig, config } = useConfig()
+  const { handleResetConfig } = useConfig()
   const { handleOpenModal } = useModal()
   const { toastError } = useToast()
   const { API_ROUTE } = useEnv()
@@ -92,13 +93,13 @@ export default function useHome() {
       socket.off(SOCKET_EVENTS.CREATION_ERROR)
       socket.off(SOCKET_EVENTS.CREATE_DATASETS)
     }
-  }, [socket, language])
+  }, [socket, language, handleResetConfig])
 
-  function handleExportAllDatasets() {
+  function exportDatasets(inputDatasets: Array<Dataset>, config: Config): void {
     try {
       setCreateDataLoading(true)
 
-      const exportDatasets: Array<ExportDataset> = datasets.map((dat) =>
+      const exportDatasets: Array<ExportDataset> = inputDatasets.map((dat) =>
         dat.exportObject({
           findOption: findType,
           findParent: findParent,
@@ -134,36 +135,26 @@ export default function useHome() {
     }
   }
 
+  function handleExportAllDatasets(config: Config) {
+    exportDatasets(datasets, config)
+  }
+
   function handleCreateAllDatasets() {
     handleOpenModal({
       type: MODAL_ACTIONS.EXPORT_ALL_DATASETS,
-      handleCreateAllDatasets: handleExportAllDatasets,
+      handleCreateAllDatasets: ({ config }) => handleExportAllDatasets(config),
     })
   }
 
-  function handleExportDataset(dataset: Dataset) {
-    if (socket.connected) {
-      setCreateDataLoading(true)
-
-      socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {
-        datasets: [dataset],
-        config,
-      })
-    } else {
-      toastError({ message: NETWORK_ERROR })
-      setCreateDataLoading(false)
-    }
-  }
-
-  function handleExportDatasetByIndex(datasetIndex: number) {
-    handleExportDataset(datasets[datasetIndex])
+  function handleExportDataset(dataset: Dataset, config: Config) {
+    exportDatasets([dataset], config)
   }
 
   function handleExportSelectedDataset() {
     if (selectedDataset) {
       handleOpenModal({
         type: MODAL_ACTIONS.EXPORT_SELECT_DATASET,
-        handleCreateSelectDataset: () => handleExportDataset(selectedDataset),
+        handleCreateSelectDataset: ({ config }) => handleExportDataset(selectedDataset, config),
       })
     }
   }
@@ -186,7 +177,6 @@ export default function useHome() {
     handleExportSelectedDataset,
     handleCreateAllDatasets,
     createDataLoading,
-    handleExportDatasetByIndex,
     handleAddNewField,
     handleAddDataset,
     datasets,

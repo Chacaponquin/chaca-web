@@ -1,3 +1,3 @@
-import { configReducer } from "./config_reducer"
+import { configReducer } from "./config-reducer"
 
 export { configReducer }

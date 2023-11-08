@@ -33,15 +33,15 @@ function App() {
                       path={APP_ROUTES.HOME}
                       element={
                         <SchemasProvider>
-                          <DatasetsProvider>
-                            <ConfigProvider>
+                          <ConfigProvider>
+                            <DatasetsProvider>
                               <ModalProvider>
                                 <HomeProvider>
                                   <Home />
                                 </HomeProvider>
                               </ModalProvider>
-                            </ConfigProvider>
-                          </DatasetsProvider>
+                            </DatasetsProvider>
+                          </ConfigProvider>
                         </SchemasProvider>
                       }
                     />

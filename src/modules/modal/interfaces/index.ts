@@ -2,6 +2,7 @@ import { IsArrayConfig } from "@modules/datasets/interfaces/field-config"
 import { DatasetField, FieldDataType } from "../../datasets/interfaces/datasets"
 import { MODAL_ACTIONS } from "../constants/MODAL_ACTIONS"
 import { Dataset } from "@modules/datasets/domain/tree"
+import { Config } from "@modules/config/interfaces"
 
 export interface FieldForm {
   id: string
@@ -38,12 +39,12 @@ export type ModalEditField = {
 
 export type ModalExportSelectDataset = {
   type: MODAL_ACTIONS.EXPORT_SELECT_DATASET
-  handleCreateSelectDataset: () => void
+  handleCreateSelectDataset: (props: { config: Config }) => void
 }
 
 export type ModalExportAllDatasets = {
   type: MODAL_ACTIONS.EXPORT_ALL_DATASETS
-  handleCreateAllDatasets: () => void
+  handleCreateAllDatasets: (props: { config: Config }) => void
 }
 
 export type ModalProps =

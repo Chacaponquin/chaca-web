@@ -1,5 +1,5 @@
 import { useFetch } from "@modules/app/modules/http/hooks"
-import { FileConfigOption } from "../interfaces/config.iterface"
+import { FileConfigOption } from "../interfaces"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { ApiFileOptionResponse } from "../dto/api"
 import { FetchFunctionsProps } from "@modules/app/modules/http/interfaces/fetch"

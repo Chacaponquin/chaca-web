@@ -1,6 +1,6 @@
 import { createContext, useState, ReactElement, useEffect } from "react"
 import { LoginUser } from "../interfaces/user"
-import { NoUserLimits } from "@modules/config/interfaces/config.iterface"
+import { NoUserLimits } from "@modules/config/interfaces"
 import { DEFAULT_LIMITS } from "../constants"
 import { useUserServices } from "../services"
 

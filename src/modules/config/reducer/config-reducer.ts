@@ -1,4 +1,4 @@
-import { Config, FileConfigOption, SaveSchemaValue } from "../interfaces/config.iterface"
+import { Config, FileConfigOption, SaveSchemaValue } from "../interfaces"
 import { Reducer } from "react"
 import { CONFIG_ACTIONS } from "../constants"
 
