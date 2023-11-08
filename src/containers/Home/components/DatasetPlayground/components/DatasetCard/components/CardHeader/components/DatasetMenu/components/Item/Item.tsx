@@ -13,7 +13,7 @@ export default function Item({ icon, id, onClick, text }: Props) {
     <li
       onClick={onClick}
       id={id}
-      className="flex items-center gap-x-5 text-base py-2 px-5 transition-all duration-300 hover:bg-scale-5 cursor-pointer dark:hover:bg-scale-5"
+      className="flex items-center gap-x-5 text-base py-2 px-5 transition-all duration-300 hover:bg-scale-12 cursor-pointer dark:hover:bg-scale-5"
     >
       {icon({ size: 16 })}
       <p>{text}</p>
