@@ -5,15 +5,13 @@ import { Argument } from "@modules/schemas/interfaces/argument"
 import { ARGUMENT_TYPE } from "@modules/schemas/constants"
 import { ChacaTextInput, ChacaSelect, ChacaNumberInput } from "@form/components"
 
-const ArgumentFilter = ({
-  arg,
-  value,
-  handleChangeArgumentValue,
-}: {
+interface Props {
   arg: Argument
   value: unknown
   handleChangeArgumentValue: (v: unknown) => void
-}) => {
+}
+
+export default function ArgumentFilter({ arg, value, handleChangeArgumentValue }: Props) {
   const filterArgument = useMemo(() => {
     const textClass = "text-sm"
 
@@ -35,6 +33,7 @@ const ArgumentFilter = ({
           />
         )
       }
+
       case ARGUMENT_TYPE.NUMBER: {
         return (
           <ChacaNumberInput
@@ -95,5 +94,3 @@ const ArgumentFilter = ({
 
   return <Fragment>{filterArgument}</Fragment>
 }
-
-export default ArgumentFilter

@@ -9,17 +9,19 @@ import { useSchemas } from "@modules/schemas/hooks"
 import { OptionArguments } from "./components"
 import { useMemo } from "react"
 
+interface Props {
+  fieldType: SchemaValueTypeObject
+  handleSelectFieldSchema: (v: string) => void
+  handleSelectFieldSchemaOption: (p: SelectFieldSchemaOptionProps) => void
+  handleUpdateFieldSchemaArguments: (p: UpdateArgumentsProps) => void
+}
+
 export default function SchemaValueConfig({
   fieldType,
   handleSelectFieldSchema,
   handleSelectFieldSchemaOption,
   handleUpdateFieldSchemaArguments,
-}: {
-  fieldType: SchemaValueTypeObject
-  handleSelectFieldSchema: (v: string) => void
-  handleSelectFieldSchemaOption: (p: SelectFieldSchemaOptionProps) => void
-  handleUpdateFieldSchemaArguments: (p: UpdateArgumentsProps) => void
-}) {
+}: Props) {
   const { schemas, findParentOptions } = useSchemas()
   const { MODULE_TEXT, OPTION_TEXT } = useLanguage({
     MODULE_TEXT: { en: "Module", es: "Módulo" },
