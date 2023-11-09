@@ -9,7 +9,8 @@ export const buttonClass = ({
   rounded = false,
 }: ChacaButtonProps) => {
   return clsx(
-    "flex justify-center flex items-center transition-all duration-300 hover:brightness-150",
+    "flex justify-center flex items-center",
+    "transition-all duration-300 hover:opacity-70",
     {
       "py-[3px] px-3 text-sm": size === "small",
       "py-1 px-5 text-base": size === "medium",
