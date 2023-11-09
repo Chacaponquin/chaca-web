@@ -12,10 +12,12 @@ export default function CodeLink() {
   }
 
   return (
-    <div className="px-6 py-2 border-[1px] border-scale-10 bg-scale-5 stroke-white fill-white rounded flex justify-center items-center">
-      <ArrowRight size={25} />
+    <div className="px-6 py-2.5 border-[1px] border-scale-10 bg-scale-5 stroke-white fill-white rounded md:flex justify-between items-center hidden">
+      <div className="flex items-center">
+        <ArrowRight size={25} />
 
-      <p className="font-fontCode ml-3 mr-7">{CODE}</p>
+        <p className="font-fontCode ml-3 mr-7 whitespace-nowrap">{CODE}</p>
+      </div>
 
       <button className="transition-all duration-200 hover:scale-105" onClick={handleCopy}>
         <Copy size={22} />

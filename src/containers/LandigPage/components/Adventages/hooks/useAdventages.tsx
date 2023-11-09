@@ -28,12 +28,6 @@ export default function useAdventages() {
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui non provident odio ad pariatur sed nihil, harum corrupti maxime suscipit.",
         icon: "📦",
       },
-      {
-        title: "Lorem ipsum dolor sit amet consectetur.",
-        content:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui non provident odio ad pariatur sed nihil, harum corrupti maxime suscipit.",
-        icon: "📦",
-      },
     ]
   }, [])
 

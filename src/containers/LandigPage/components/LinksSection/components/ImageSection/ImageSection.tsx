@@ -1,3 +1,3 @@
 export default function ImageSection() {
-  return <div></div>
+  return <div className="xl:flex hidden"></div>
 }

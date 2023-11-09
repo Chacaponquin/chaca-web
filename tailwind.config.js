@@ -51,7 +51,6 @@ module.exports = {
         "first-bg": 'url("./assets/images/first-bg.svg")',
         "second-bg": 'url("./assets/images/second-bg.svg")',
         "third-bg": 'url("./assets/images/third-bg.svg")',
-        "landing-bg": 'url("./assets/images/landing-bg.svg")',
       },
       screens: {
         exsm: { max: "400px" },

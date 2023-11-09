@@ -15,10 +15,10 @@ export default function LandingNavbar() {
   ]
 
   return (
-    <nav className="flex w-full items-center justify-between py-6 px-10 z-50 bg-transparent gap-8">
+    <nav className="flex w-full items-center justify-between py-6 px-10 z-50 bg-transparent gap-8 esm:px-5">
       <Logo />
 
-      <div className="flex items-center gap-1">
+      <div className="xl:flex hidden items-center gap-1">
         {LINKS.map((link, i) => (
           <BarLink route={link.route} key={i} text={link.title} />
         ))}

@@ -1,3 +1,4 @@
+import { SectionContent } from "@containers/LandigPage/shared/components"
 import { Left, Right } from "./components"
 import { useFooter } from "./hooks"
 
@@ -6,10 +7,10 @@ export default function Footer() {
 
   return (
     <footer className="flex justify-center border-t-[1px] border-scale-11 w-full py-7">
-      <div className="max-w-[1200px] w-full flex justify-between items-center">
+      <SectionContent className="flex justify-between items-center md:flex-row flex-col gap-4">
         <Left />
         <Right links={LINKS} />
-      </div>
+      </SectionContent>
     </footer>
   )
 }

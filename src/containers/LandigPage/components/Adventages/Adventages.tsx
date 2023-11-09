@@ -1,3 +1,4 @@
+import { SectionContent } from "@containers/LandigPage/shared/components"
 import { Cards, HeaderText } from "./components"
 import { useAdventages } from "./hooks"
 
@@ -5,9 +6,9 @@ export default function Adventages() {
   const { CARDS } = useAdventages()
 
   return (
-    <div className="flex flex-col w-full max-w-[1200px] py-7">
+    <SectionContent className="flex flex-col w-full py-20">
       <HeaderText />
       <Cards cards={CARDS} />
-    </div>
+    </SectionContent>
   )
 }
