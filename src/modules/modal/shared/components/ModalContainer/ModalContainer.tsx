@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { ModalButtons, ModalTitle } from "./components"
+import { useModal } from "@modules/modal/hooks"
 
 interface Props {
   children: React.ReactNode
@@ -22,6 +23,8 @@ export default function ModalContainer({
   nextButtonId,
   name,
 }: Props) {
+  const { handleCloseModal } = useModal()
+
   function handleCloseWithClick(key: KeyboardEvent) {
     if (key.key === "Enter" && !key.shiftKey) {
       handleNext()
@@ -35,6 +38,7 @@ export default function ModalContainer({
 
   function handleClose() {
     document.removeEventListener("keypress", handleCloseWithClick)
+    handleCloseModal()
   }
 
   useEffect(() => {

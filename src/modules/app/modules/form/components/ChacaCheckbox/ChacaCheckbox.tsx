@@ -28,9 +28,9 @@ export default function ChacaCheckbox({ check, handleChange, id }: Props) {
 
   return (
     <Fragment>
-      <div className={checkClass} onClick={() => handleChange(!check)}>
+      <button type="button" className={checkClass} onClick={() => handleChange(!check)}>
         {check && <Check size={15} />}
-      </div>
+      </button>
 
       <input
         type="checkbox"

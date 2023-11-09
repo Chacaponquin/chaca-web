@@ -55,16 +55,10 @@
   display: none;
 }
 
-.fit-screen-box {
-  height: calc(100vh - 65px);
-  min-width: 600px;
-  position: sticky;
-}
-
 .code-playground * {
   font-family: "JetBrains Mono Regular";
   font-size: 15px;
-  background-color: #282c34;
+  background-color: #232323;
 }
 
 .code-view * {
