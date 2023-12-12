@@ -3,11 +3,11 @@ import { createContext, ReactElement, useMemo } from "react"
 import { useEnv } from "../../env/hooks"
 import { io, Socket } from "socket.io-client"
 
-interface SocketContextProps {
+interface Props {
   socket: Socket
 }
 
-const SocketContext = createContext<SocketContextProps>({} as SocketContextProps)
+const SocketContext = createContext<Props>({} as Props)
 
 const SocketProvider = ({ children }: { children: ReactElement }) => {
   const { getToken } = useUser()

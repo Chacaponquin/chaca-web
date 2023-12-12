@@ -10,6 +10,8 @@ import { useContext } from "react"
 import { HomeContext } from "./context"
 
 export default function Home() {
+  const { smallWindow } = useContext(HomeContext)
+
   const {
     handleExportSelectedDataset,
     createDataLoading,
@@ -19,7 +21,6 @@ export default function Home() {
     datasets,
     showFieldsMenu,
   } = useHome()
-  const { smallWindow } = useContext(HomeContext)
 
   const showMenu = !smallWindow || (smallWindow && showFieldsMenu)
 

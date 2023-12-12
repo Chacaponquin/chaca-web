@@ -1,13 +1,13 @@
 import { createContext, createRef, RefObject, useState, useEffect } from "react"
 
-interface HomeContextProps {
+interface Props {
   fieldsMenuRef: RefObject<HTMLElement>
   playgroundRef: RefObject<HTMLDivElement>
   exportLink: RefObject<HTMLAnchorElement>
   smallWindow: boolean
 }
 
-const HomeContext = createContext<HomeContextProps>({ smallWindow: false } as HomeContextProps)
+const HomeContext = createContext<Props>({ smallWindow: false } as Props)
 
 function HomeProvider({ children }: { children: React.ReactElement }) {
   const fieldsMenuRef = createRef<HTMLElement>()
@@ -34,7 +34,7 @@ function HomeProvider({ children }: { children: React.ReactElement }) {
     }
   }, [window])
 
-  const data: HomeContextProps = {
+  const data: Props = {
     fieldsMenuRef,
     playgroundRef,
     smallWindow,

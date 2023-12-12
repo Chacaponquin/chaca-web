@@ -24,6 +24,7 @@ import { ExportDatasetDTO } from "@modules/datasets/dto/dataset"
 import { ConnectSockerError } from "@modules/app/modules/socket/errors"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { Config } from "@modules/config/interfaces"
+import { DatasetCreationError } from "@modules/app/modules/socket/domain/error"
 
 interface MessageFieldProps {
   field: string
@@ -83,7 +84,8 @@ export default function useHome() {
       handleResetConfig()
     })
 
-    socket.on(SOCKET_EVENTS.CREATION_ERROR, () => {
+    socket.on(SOCKET_EVENTS.CREATION_ERROR, (error: DatasetCreationError) => {
+      console.log(error)
       toastError({ message: CREATION_ERROR })
       setCreateDataLoading(false)
     })
