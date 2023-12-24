@@ -3,9 +3,9 @@ import { SOCKET_EVENTS } from "@modules/app/modules/socket/constants"
 import { useConfig } from "@modules/config/hooks"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import {
+  useTranslation,
   useLanguage,
-  useLanguageContext,
-  useLanguageFunc,
+  useTranslationFunc,
 } from "@modules/app/modules/language/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { useEnv } from "@modules/app/modules/env/hooks"
@@ -44,12 +44,12 @@ export default function useHome() {
   const { handleOpenModal } = useModal()
   const { toastError } = useToast()
   const { API_ROUTE } = useEnv()
-  const { language } = useLanguageContext()
+  const { language } = useLanguage()
   const { socket } = useSocket()
   const { findParent, findType } = useSchemas()
   const { exportDatasets: exportDatasetsService } = useDatasetServices()
 
-  const { NETWORK_ERROR, CREATION_ERROR, EMPTY_REF_FIELD_ERROR } = useLanguage({
+  const { NETWORK_ERROR, CREATION_ERROR, EMPTY_REF_FIELD_ERROR } = useTranslation({
     NETWORK_ERROR: { en: "Network connect error", es: "Error en la conexión" },
     CREATION_ERROR: { en: "Creation error", es: "Hubo un error en la creación de los datasets" },
     EMPTY_REF_FIELD_ERROR: {
@@ -58,7 +58,7 @@ export default function useHome() {
     },
   })
 
-  const { EMPTY_ENUM_FIELD, EMPTY_SEQUENTIAL_FIELD } = useLanguageFunc({
+  const { EMPTY_ENUM_FIELD, EMPTY_SEQUENTIAL_FIELD } = useTranslationFunc({
     EMPTY_ENUM_FIELD: {
       en: (p: MessageFieldProps) => {
         return `The ${p.field} field is an enum and has no values to select from`

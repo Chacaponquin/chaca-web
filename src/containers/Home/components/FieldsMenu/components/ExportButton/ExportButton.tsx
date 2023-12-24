@@ -1,7 +1,7 @@
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 
 const ExportButton = ({ handleExportAllDatasets }: { handleExportAllDatasets: () => void }) => {
-  const UI_TEXT = useLanguage({
+  const UI_TEXT = useTranslation({
     EXPORT_ALL_TEXT: { en: "Export All", es: "Exportar Datasets" },
   })
 

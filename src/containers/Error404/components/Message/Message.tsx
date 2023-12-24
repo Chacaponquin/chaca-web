@@ -1,7 +1,7 @@
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 
 export default function Message() {
-  const { ERROR_MESSAGE } = useLanguage({
+  const { ERROR_MESSAGE } = useTranslation({
     ERROR_MESSAGE: { en: "Opps! Page Not Found", es: "Opps! No se encontró la página" },
   })
 

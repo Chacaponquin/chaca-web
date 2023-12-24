@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { APP_ROUTES } from "@modules/app/constants"
 import { ChacaLogo, OpenFields } from "./components"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { ChacaSimpleButton } from "@form/components"
 import { useContext } from "react"
 import { ThemeSwitch } from "@modules/app/modules/theme/components"
@@ -14,7 +14,7 @@ export default function HomeNavbar() {
   const { actualUser } = useUser()
   const { datasets } = useDatasets()
 
-  const { ACCOUNT_TEXT } = useLanguage({
+  const { ACCOUNT_TEXT } = useTranslation({
     HOME_TEXT: { en: "Home", es: "Inicio" },
     ACCOUNT_TEXT: { en: "Account", es: "Cuenta" },
   })

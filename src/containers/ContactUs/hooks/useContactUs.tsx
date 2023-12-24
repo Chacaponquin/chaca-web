@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { MessageForm } from "../interfaces"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { SaveUserMessage } from "@modules/user-message/domain"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import {
@@ -22,7 +22,7 @@ export default function useContactUs() {
   const { toastError } = useToast()
   const { sendMessage } = useUserMessageServices()
 
-  const { POST_ERROR, EMPTY_MESSAGE, EMPTY_TITLE, EMPTY_EMAIL } = useLanguage({
+  const { POST_ERROR, EMPTY_MESSAGE, EMPTY_TITLE, EMPTY_EMAIL } = useTranslation({
     POST_ERROR: {
       en: "There was an error sending the message",
       es: "Hubo un error al enviar el mensaje",

@@ -2,7 +2,7 @@ import { useDatasets, useDatatypes } from "@modules/datasets/hooks"
 import { useFieldForm } from "../../../shared/hooks"
 import { v4 as uuid } from "uuid"
 import { EmptyFieldNameError, RepeatSameLevelFieldNameError } from "@modules/datasets/errors"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { useModal } from "@modules/modal/hooks"
 import { FieldName } from "@modules/datasets/value-object"
@@ -20,7 +20,7 @@ export default function useAddFieldForm({ datasetId, parentfieldId }: Props) {
     fieldId: fieldId,
   })
 
-  const { REPEAT_NAME, EMPTY_NAME } = useLanguage({
+  const { REPEAT_NAME, EMPTY_NAME } = useTranslation({
     REPEAT_NAME: {
       en: `Aldready exists an field with that name`,
       es: "Ya existe un campo con este nombre",

@@ -1,5 +1,5 @@
 import { ChacaNumberInput, ChacaTextInput } from "@form/components"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useUser } from "@modules/user/hooks"
 import { FormInputSection } from "../../shared/components"
 import { useId } from "react"
@@ -17,7 +17,7 @@ export default function DatasetForm({
 }) {
   const { USER_DOCUMENTS_LIMIT } = useUser()
 
-  const { DATASET_NAME_LABEL, FIELD_NAME_TEXT, COUNT_DOCUMENTS } = useLanguage({
+  const { DATASET_NAME_LABEL, FIELD_NAME_TEXT, COUNT_DOCUMENTS } = useTranslation({
     DATASET_NAME_LABEL: { en: "Dataset name", es: "Nombre de dataset" },
     FIELD_NAME_TEXT: { en: "Field name", es: "Nombre del campo" },
     COUNT_DOCUMENTS: { en: "Count Document", es: "Documentos" },

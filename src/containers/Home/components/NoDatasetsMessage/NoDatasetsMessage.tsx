@@ -1,14 +1,14 @@
 import { ChacaSimpleButton } from "@form/components"
 import { Image } from "@modules/app/components"
 import { APP_IMAGES } from "@modules/app/constants"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 
 interface Props {
   handleCreateDataset: () => void
 }
 
 export default function NoDatasetsMessage({ handleCreateDataset }: Props) {
-  const { MESSAGE, WELCOME_MESSAGE } = useLanguage({
+  const { MESSAGE, WELCOME_MESSAGE } = useTranslation({
     MESSAGE: { en: "Create Dataset", es: "Crear Dataset" },
     WELCOME_MESSAGE: {
       en: "Create your first dataset and see all the actions you can perform with its fields",

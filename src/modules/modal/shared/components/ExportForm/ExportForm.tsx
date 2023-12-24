@@ -1,5 +1,5 @@
 import { useId, Fragment } from "react"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { ChacaSelect } from "@form/components"
 import { useConfig } from "@modules/config/hooks"
 import { FormInputSection } from "../../shared/components"
@@ -15,7 +15,7 @@ export default function ExportForm({ saveModelOption }: Props) {
     handleChangeFileTypeService(fileId)
   }
 
-  const { FORMAT_TEXT, SELECT_FORMAT } = useLanguage({
+  const { FORMAT_TEXT, SELECT_FORMAT } = useTranslation({
     FORMAT_TEXT: { en: "Format", es: "Formato" },
     SELECT_FORMAT: { en: "Select a file format", es: "Selecciona el formato" },
   })

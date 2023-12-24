@@ -1,9 +1,9 @@
 import { Layout } from "@containers/Layout/components"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { Buttons, HeaderText, Message } from "./components"
 
 export default function Error404() {
-  const { DESCRIPTION } = useLanguage({
+  const { DESCRIPTION } = useTranslation({
     DESCRIPTION: { en: "Page not found", es: "Página no encontrada" },
   })
 

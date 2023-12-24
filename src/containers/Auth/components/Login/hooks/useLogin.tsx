@@ -2,7 +2,7 @@ import { useUser } from "@modules/user/hooks"
 import { useState } from "react"
 import { LoginUserDTO } from "@modules/user/dto/user"
 import { useToast } from "@modules/app/modules/toast/hooks"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { LoginForm } from "../interfaces"
 import { useUserServices } from "@modules/user/services"
 
@@ -14,7 +14,9 @@ export default function useLogin() {
 
   const { loginUser } = useUserServices()
 
-  const { LOGIN_ERROR } = useLanguage({ LOGIN_ERROR: { en: "Network error", es: "Hubo un error" } })
+  const { LOGIN_ERROR } = useTranslation({
+    LOGIN_ERROR: { en: "Network error", es: "Hubo un error" },
+  })
 
   const [loginData, setLoginData] = useState<LoginForm>({
     email: "",

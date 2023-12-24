@@ -1,9 +1,9 @@
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { APP_ROUTES } from "@modules/app/constants"
 import { BarLink, Logo, RightSide } from "./components"
 
 export default function LandingNavbar() {
-  const { HOME_TEXT, CONTACT_US_TEXT } = useLanguage({
+  const { HOME_TEXT, CONTACT_US_TEXT } = useTranslation({
     HOME_TEXT: { en: "Home", es: "Inicio" },
     DOCS_TEXT: { en: "Docs", es: "Docs" },
     CONTACT_US_TEXT: { en: "Contact Us", es: "Contáctanos" },

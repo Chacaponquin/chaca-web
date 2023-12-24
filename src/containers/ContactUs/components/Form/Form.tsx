@@ -1,7 +1,7 @@
 import { ChacaTextInput, ChacaTextarea } from "@form/components"
 import { useId } from "react"
 import { ButtonSection, FormSection } from "./components"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { MessageForm } from "../../interfaces"
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default function Form({ handleSubmit, form, handleChange, loading }: Props) {
-  const { EMAIL_LABEL, MESSAGE_LABEL, TITLE_LABEL, SEND } = useLanguage({
+  const { EMAIL_LABEL, MESSAGE_LABEL, TITLE_LABEL, SEND } = useTranslation({
     TITLE_LABEL: { en: "Title", es: "Título" },
     EMAIL_LABEL: { en: "Email", es: "Email" },
     MESSAGE_LABEL: { en: "Message", es: "Mensaje" },

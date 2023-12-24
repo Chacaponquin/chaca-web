@@ -1,13 +1,13 @@
 import { APP_ROUTES } from "@modules/app/constants"
 import { ArrowRight } from "@modules/app/modules/icon/components"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 
 export default function StartButton() {
   const [isHover, setIsHover] = useState(false)
 
-  const { START_TEXT } = useLanguage({ START_TEXT: { en: "Start", es: "Empezar" } })
+  const { START_TEXT } = useTranslation({ START_TEXT: { en: "Start", es: "Empezar" } })
 
   return (
     <Link to={APP_ROUTES.HOME}>

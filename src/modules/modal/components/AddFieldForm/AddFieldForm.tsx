@@ -1,10 +1,10 @@
 import { ModalAddFieldProps } from "@modules/modal/interfaces"
 import { FieldForm, ModalContainer } from "../../shared/components"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useAddFieldForm } from "./hooks"
 
 const AddFieldForm = ({ modalProps }: { modalProps: ModalAddFieldProps }) => {
-  const { NEW_FIELD_TEXT, SUBMIT_TEXT } = useLanguage({
+  const { NEW_FIELD_TEXT, SUBMIT_TEXT } = useTranslation({
     NEW_FIELD_TEXT: { en: "New Field", es: "Nuevo Campo" },
     SUBMIT_TEXT: { en: "Add Field", es: "Añadir Campo" },
   })

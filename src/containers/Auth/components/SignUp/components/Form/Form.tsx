@@ -1,6 +1,6 @@
 import { OtherOptionsSection } from "@containers/Auth/shared/components"
 import { ChacaTextInput } from "@form/components"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useId } from "react"
 import { FormSection, HeaderText, SignButton } from "./components"
 import { SignUpForm } from "../../interfaces"
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function Form({ handleSubmit, handleChange, form, loading }: Props) {
-  const { COMFIRM_PASSWORD_TEXT, EMAIL_TEXT, PASSWORD_TEXT, USERNAME_TEXT } = useLanguage({
+  const { COMFIRM_PASSWORD_TEXT, EMAIL_TEXT, PASSWORD_TEXT, USERNAME_TEXT } = useTranslation({
     USERNAME_TEXT: { en: "Username", es: "Usuario" },
     EMAIL_TEXT: { en: "Email", es: "Email" },
     PASSWORD_TEXT: { en: "Password", es: "Contraseña" },

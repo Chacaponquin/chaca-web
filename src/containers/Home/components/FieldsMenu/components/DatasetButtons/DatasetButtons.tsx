@@ -1,5 +1,5 @@
 import { ChacaSimpleButton } from "@form/components"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 
 interface Props {
   handleExportSelectedDataset: () => void
@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default function DatasetButtons({ handleExportSelectedDataset, handleAddNewField }: Props) {
-  const { EXPORT_TEXT, NEW_FIELD_TEXT } = useLanguage({
+  const { EXPORT_TEXT, NEW_FIELD_TEXT } = useTranslation({
     EXPORT_TEXT: { en: "Export", es: "Exportar" },
     NEW_FIELD_TEXT: { en: "New Field", es: "Nuevo Campo" },
   })

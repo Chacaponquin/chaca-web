@@ -1,5 +1,5 @@
 import { ChacaSimpleButton } from "@form/components"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useModal } from "@modules/modal/hooks"
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 
 export default function ModalButtons({ nextText, type, nextButtonId }: Props) {
   const { handleCloseModal } = useModal()
-  const { CANCEL_TEXT } = useLanguage({ CANCEL_TEXT: { en: "Cancel", es: "Cancelar" } })
+  const { CANCEL_TEXT } = useTranslation({ CANCEL_TEXT: { en: "Cancel", es: "Cancelar" } })
 
   return (
     <section className="grid grid-cols-2 gap-x-3 mt-5 w-full">

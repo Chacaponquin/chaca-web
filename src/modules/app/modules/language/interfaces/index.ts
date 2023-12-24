@@ -19,7 +19,7 @@ export type ReturnFunctionObject<T> = {
       any
 }
 
-export type ReturnLanguageObject<T> = {
+export type Translation<T> = {
   [key in keyof T]: string
 }
 

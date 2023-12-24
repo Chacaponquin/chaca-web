@@ -1,5 +1,5 @@
 import { ChacaSelect } from "@form/components"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { SchemaValueTypeObject } from "@modules/datasets/interfaces/dataset-field"
 import {
   SelectFieldSchemaOptionProps,
@@ -23,7 +23,7 @@ export default function SchemaValueConfig({
   handleUpdateFieldSchemaArguments,
 }: Props) {
   const { schemas, findParentOptions } = useSchemas()
-  const { MODULE_TEXT, OPTION_TEXT } = useLanguage({
+  const { MODULE_TEXT, OPTION_TEXT } = useTranslation({
     MODULE_TEXT: { en: "Module", es: "Módulo" },
     OPTION_TEXT: { en: "Option", es: "Opción" },
   })

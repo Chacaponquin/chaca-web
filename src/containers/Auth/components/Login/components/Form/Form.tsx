@@ -1,4 +1,4 @@
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { Input, LoginButton, OtherOptions } from "./components"
 import { LoginForm } from "../../interfaces"
 
@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function Form({ loading, handleChange, handleSubmit }: Props) {
-  const { LOGIN_BUTTON_TEXT, EMAIL_TEXT, PASSWORD_TEXT } = useLanguage({
+  const { LOGIN_BUTTON_TEXT, EMAIL_TEXT, PASSWORD_TEXT } = useTranslation({
     LOGIN_BUTTON_TEXT: { en: "Login", es: "Login" },
     FORGET_PASSWORD_BUTTON_TEXT: { en: "Forget Password?", es: "Olvidaste tu contraseña?" },
     EMAIL_TEXT: { en: "Email", es: "Email" },

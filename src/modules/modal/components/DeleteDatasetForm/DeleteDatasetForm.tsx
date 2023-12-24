@@ -1,4 +1,4 @@
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { DeleteForm, ModalContainer } from "../../shared/components"
 import { useDeleteDatasetForm } from "./hooks"
 
@@ -11,7 +11,7 @@ const DeleteDatasetForm = ({
 }) => {
   const { handleDeleteDataset } = useDeleteDatasetForm({ datasetId })
 
-  const { DELETE_DATASET_TEXT, DELETE_DATASET_MESSAGE } = useLanguage({
+  const { DELETE_DATASET_TEXT, DELETE_DATASET_MESSAGE } = useTranslation({
     DELETE_DATASET_TEXT: { en: "Delete Dataset", es: "Borrar Dataset" },
     DELETE_DATASET_MESSAGE: {
       en: "Are you sure you want to delete the dataset",

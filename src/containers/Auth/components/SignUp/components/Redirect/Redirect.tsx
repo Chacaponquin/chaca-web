@@ -1,9 +1,9 @@
 import { APP_ROUTES } from "@modules/app/constants"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { Link } from "react-router-dom"
 
 export default function Redirect() {
-  const { LOGIN_TEXT, QUESTION_TEXT } = useLanguage({
+  const { LOGIN_TEXT, QUESTION_TEXT } = useTranslation({
     QUESTION_TEXT: { en: "You have account?", es: "Tienes una cuenta?" },
     LOGIN_TEXT: { en: "Login", es: "Login" },
   })

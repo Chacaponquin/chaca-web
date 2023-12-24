@@ -1,9 +1,9 @@
 import { ChacaSimpleButton } from "@form/components"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { APP_IMAGES } from "@modules/app/constants"
 
 const NoFieldsMessage = ({ handleAddNewField }: { handleAddNewField: () => void }) => {
-  const { ADD_FIELD_TEXT, NO_FIELDS_TEXT } = useLanguage({
+  const { ADD_FIELD_TEXT, NO_FIELDS_TEXT } = useTranslation({
     ADD_FIELD_TEXT: { en: "Add Field", es: "Nuevo Campo" },
     NO_FIELDS_TEXT: { en: "No fields found", es: "No hay campos" },
   })

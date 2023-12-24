@@ -1,5 +1,5 @@
 import { ArrowLeft } from "@modules/app/modules/icon/components"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import clsx from "clsx"
 import { useState } from "react"
 
@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function CloseSection({ handleCloseFieldsMenu }: Props) {
-  const { CLOSE_MESSAGE } = useLanguage({ CLOSE_MESSAGE: { en: "Close", es: "Cerrar" } })
+  const { CLOSE_MESSAGE } = useTranslation({ CLOSE_MESSAGE: { en: "Close", es: "Cerrar" } })
   const [hover, setHover] = useState(false)
 
   const iconClass = clsx("transition-all duration-200 -translate-y-[1px]", {

@@ -1,7 +1,7 @@
 import { Layout } from "@containers/Layout/components"
 import { Form, Header, ImageSection, SuccessModal } from "./components"
 import { useContactUs } from "./hooks"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import clsx from "clsx"
 import { useTheme } from "@modules/app/modules/theme/hooks"
 import { THEME } from "@modules/app/modules/theme/constants"
@@ -10,7 +10,7 @@ export default function ContactUs() {
   const { handleChange, handleSubmit, loading, modalOpen, contactForm } = useContactUs()
   const { theme } = useTheme()
 
-  const { DESCRIPTION } = useLanguage({
+  const { DESCRIPTION } = useTranslation({
     DESCRIPTION: {
       en: "Send us a message to our Chaca team to know your opinion about the tool",
       es: "Envíanos un mensaje a nuestro equipo de Chaca para poder saber tu opnión sobre la herramienta",

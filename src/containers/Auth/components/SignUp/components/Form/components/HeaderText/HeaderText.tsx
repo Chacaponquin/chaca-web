@@ -1,7 +1,7 @@
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 
 export default function HeaderText() {
-  const { COMPLETE_FORM_TEXT, WELCOME_TEXT } = useLanguage({
+  const { COMPLETE_FORM_TEXT, WELCOME_TEXT } = useTranslation({
     COMPLETE_FORM_TEXT: {
       en: "Complete the form to continue",
       es: "Completa el formulario para continuar",

@@ -1,5 +1,5 @@
 import { ChacaTextarea } from "@form/components"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { SequentialField } from "@modules/datasets/domain/fields"
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function SequentialConfig({ values, handleChangeSequentialValues }: Props) {
-  const { PLACEHOLDER } = useLanguage({ PLACEHOLDER: { en: "Values", es: "Valores" } })
+  const { PLACEHOLDER } = useTranslation({ PLACEHOLDER: { en: "Values", es: "Valores" } })
 
   return (
     <div>

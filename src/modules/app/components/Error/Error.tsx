@@ -1,12 +1,12 @@
 import { Layout } from "@containers/Layout/components"
 import { ImageSection, TextSection } from "./components"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import clsx from "clsx"
 import { useTheme } from "@modules/app/modules/theme/hooks"
 import { THEME } from "@modules/app/modules/theme/constants"
 
 export default function Error() {
-  const { DESCRIPTION } = useLanguage({
+  const { DESCRIPTION } = useTranslation({
     DESCRIPTION: { en: "Something went wrong", es: "Algo salió mal" },
   })
 

@@ -7,7 +7,7 @@ import {
   PasswordEmptyError,
 } from "@modules/user/errors"
 import { SaveUser } from "@modules/user/domain"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { SignUpForm } from "../interfaces"
 import { useUserServices } from "@modules/user/services"
@@ -32,7 +32,7 @@ export default function useSignUp() {
     NOT_EQUAL_PASSWORDS,
     EMPTY_EMAIL,
     EMPTY_PASSWORD,
-  } = useLanguage({
+  } = useTranslation({
     ALREADY_EXIST_USER_TEXT: { en: "This user already exists", es: "Ya existe este usuario" },
     CREATING_USER_TEXT: {
       en: "There was an error creating the user",

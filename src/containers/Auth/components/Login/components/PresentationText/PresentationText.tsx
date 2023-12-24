@@ -1,7 +1,7 @@
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 
 export default function PresentationText() {
-  const { LOGIN_TEXT, WELCOME_BACK_TEXT } = useLanguage({
+  const { LOGIN_TEXT, WELCOME_BACK_TEXT } = useTranslation({
     WELCOME_BACK_TEXT: { en: "Welcome Back!!!", es: "Bienvenido!!!" },
     LOGIN_TEXT: { en: "Login to continue", es: "Pon tus datos para continuar" },
   })

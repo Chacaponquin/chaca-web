@@ -1,9 +1,9 @@
 import { APP_ROUTES } from "@modules/app/constants"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { Button } from "./components"
 
 export default function Buttons() {
-  const { REPORT_PROBLEM_TEXT, RETURN_HOME } = useLanguage({
+  const { REPORT_PROBLEM_TEXT, RETURN_HOME } = useTranslation({
     REPORT_PROBLEM_TEXT: { en: "Report Problem", es: "Reportar Problema" },
     RETURN_HOME: { en: "Return Home", es: "Volver" },
   })

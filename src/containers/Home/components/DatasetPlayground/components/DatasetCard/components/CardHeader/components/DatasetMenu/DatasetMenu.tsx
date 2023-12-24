@@ -1,5 +1,5 @@
 import { Delete, Edit, Share } from "@modules/app/modules/icon/components"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { Fragment } from "react"
 import { Item } from "./components"
 
@@ -16,7 +16,7 @@ export default function DatasetMenu({
   handleExportDataset,
   name,
 }: Props) {
-  const { DELETE_OPTION, EDIT_OPTION, EXPORT_OPTION } = useLanguage({
+  const { DELETE_OPTION, EDIT_OPTION, EXPORT_OPTION } = useTranslation({
     DELETE_OPTION: { en: "Delete", es: "Borrar" },
     EXPORT_OPTION: { en: "Export", es: "Exportar" },
     EDIT_OPTION: { en: "Edit", es: "Editar" },

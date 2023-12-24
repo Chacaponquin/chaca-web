@@ -1,7 +1,7 @@
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 
 export default function Message() {
-  const { MESSAGE } = useLanguage({ MESSAGE: { en: "or login with", es: "o usa tu cuenta en" } })
+  const { MESSAGE } = useTranslation({ MESSAGE: { en: "or login with", es: "o usa tu cuenta en" } })
 
   return (
     <div className="flex w-full justify-center items-center gap-x-3 mb-10">

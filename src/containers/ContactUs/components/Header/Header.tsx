@@ -1,7 +1,7 @@
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 
 export default function Header() {
-  const { CONTACT_US, LABEL_MESSAGE } = useLanguage({
+  const { CONTACT_US, LABEL_MESSAGE } = useTranslation({
     CONTACT_US: { en: "Contact Us", es: "Contáctanos" },
     LABEL_MESSAGE: {
       en: "Do you have any suggestions, questions or want to talk to us about something? Fill out a form with a message and we will answer it",

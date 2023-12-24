@@ -1,8 +1,8 @@
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { Fragment } from "react"
 
 export default function Text() {
-  const { FIRST_HEADER, SECOND_HEADER } = useLanguage({
+  const { FIRST_HEADER, SECOND_HEADER } = useTranslation({
     FIRST_HEADER: { en: "A simple way", es: "Una forma fácil" },
     SECOND_HEADER: { en: "To create your Data", es: "De crear tus Datos" },
   })

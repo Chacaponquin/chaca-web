@@ -1,4 +1,4 @@
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import {
   ArrayConfig,
   FieldName,
@@ -33,7 +33,7 @@ export default function FieldForm({
   handleChangeRef,
   datasetId,
 }: FieldFormProps) {
-  const { FIELD_NAME_TEXT, DATA_TYPE_TEXT } = useLanguage({
+  const { FIELD_NAME_TEXT, DATA_TYPE_TEXT } = useTranslation({
     FIELD_NAME_TEXT: { en: "Field name", es: "Nombre del campo" },
     DATA_TYPE_TEXT: { en: "Data type", es: "Tipo" },
   })

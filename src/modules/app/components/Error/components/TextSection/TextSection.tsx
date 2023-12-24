@@ -1,7 +1,7 @@
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 
 export default function TextSection() {
-  const { HEADER_TEXT, ERROR_MESSAGE } = useLanguage({
+  const { HEADER_TEXT, ERROR_MESSAGE } = useTranslation({
     HEADER_TEXT: { en: "Something went wrong", es: "Algo salió mal" },
     ERROR_MESSAGE: {
       en: "It seems that there was an error during some process of the application. We recommend that you refresh the page and repeat the process.",

@@ -1,8 +1,8 @@
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { Fragment } from "react"
 
 export default function Text() {
-  const { SECOND_TEXT, THANKS_TEXT } = useLanguage({
+  const { SECOND_TEXT, THANKS_TEXT } = useTranslation({
     THANKS_TEXT: { en: "Thanks for your message!!!", es: "Gracias por su mensaje!!!" },
     SECOND_TEXT: {
       en: "We will answer you soon as possible",

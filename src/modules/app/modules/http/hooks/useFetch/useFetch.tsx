@@ -1,12 +1,12 @@
 import { useEnv } from "@modules/app/modules/env/hooks"
-import { useLanguageContext } from "@modules/app/modules/language/hooks"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useUser } from "@modules/user/hooks"
 import axios from "axios"
 import { useEffect, useMemo } from "react"
 import { GetProps, PostProps } from "../../interfaces/fetch"
 
 export default function useFetch() {
-  const { language } = useLanguageContext()
+  const { language } = useLanguage()
   const { getToken } = useUser()
   const { API_ROUTE } = useEnv()
 

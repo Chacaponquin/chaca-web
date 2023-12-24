@@ -1,5 +1,5 @@
+import useTranslation from "./useTranslation"
 import useLanguage from "./useLanguage"
-import useLanguageContext from "./useLanguageContext"
-import useLanguageFunc from "./useLanguageFunc"
+import useTranslationFunc from "./useTranslationFunc"
 
-export { useLanguage, useLanguageContext, useLanguageFunc }
+export { useTranslation, useLanguage, useTranslationFunc }

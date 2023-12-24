@@ -1,14 +1,13 @@
 import { createContext, useState, useEffect } from "react"
 import { Languages } from "../interfaces"
-import { ReactElement } from "react-markdown/lib/react-markdown"
 
-type LanguageContextProps = {
+interface Props {
   language: Languages
 }
 
-const LanguageContext = createContext<LanguageContextProps>({ language: "en" })
+const LanguageContext = createContext<Props>({ language: "en" })
 
-function LanguageProvider({ children }: { children: ReactElement }) {
+function LanguageProvider({ children }: { children: React.ReactElement }) {
   const [language, setLanguage] = useState<Languages>("en")
 
   useEffect(() => {

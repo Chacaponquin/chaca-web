@@ -1,9 +1,9 @@
 import { APP_ROUTES } from "@modules/app/constants"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { Link } from "react-router-dom"
 
 export default function Button() {
-  const { BACK_TEXT } = useLanguage({
+  const { BACK_TEXT } = useTranslation({
     BACK_TEXT: { en: "Go Back", es: "Volver" },
   })
 
