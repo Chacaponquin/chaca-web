@@ -1,6 +1,6 @@
 export type Languages = "en" | "es"
 
-export type LanguageStringConfig = { [language in Languages]: string }
+export type TranslationConfig = { [language in Languages]: string }
 
 export type LanguageFunction<T> = (props: T) => string
 
@@ -23,6 +23,6 @@ export type Translation<T> = {
   [key in keyof T]: string
 }
 
-export type LanguageObject<T> = {
-  [key in keyof T]: LanguageStringConfig
+export type TranslationInput<T> = {
+  [key in keyof T]: TranslationConfig
 }

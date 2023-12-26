@@ -3,9 +3,10 @@ import { Languages } from "../interfaces"
 
 interface Props {
   language: Languages
+  handleChangeLanguage(lan: Languages): void
 }
 
-const LanguageContext = createContext<Props>({ language: "en" })
+const LanguageContext = createContext<Props>({ language: "en" } as Props)
 
 function LanguageProvider({ children }: { children: React.ReactElement }) {
   const [language, setLanguage] = useState<Languages>("en")
@@ -21,7 +22,15 @@ function LanguageProvider({ children }: { children: React.ReactElement }) {
     }
   }, [window.navigator.language])
 
-  return <LanguageContext.Provider value={{ language }}>{children}</LanguageContext.Provider>
+  function handleChangeLanguage(lan: Languages): void {
+    setLanguage(lan)
+  }
+
+  return (
+    <LanguageContext.Provider value={{ language, handleChangeLanguage }}>
+      {children}
+    </LanguageContext.Provider>
+  )
 }
 
 export { LanguageContext, LanguageProvider }
