@@ -78,7 +78,7 @@ export default function useHome() {
   })
 
   useEffect(() => {
-    socket.on(SOCKET_EVENTS.GET_FILE_URL, (fileName) => {
+    socket.on(SOCKET_EVENTS.GET_FILE_URL, (fileName: string) => {
       window.open(API_ROUTES.DOWNLOAD_FILE(API_ROUTE, fileName), "_blank")
       setCreateDataLoading(false)
       handleResetConfig()

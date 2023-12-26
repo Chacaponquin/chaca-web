@@ -7,14 +7,14 @@ import { ToastProvider } from "@modules/app/modules/toast/context"
 import { UserProvider } from "@modules/user/context/UserContext"
 import { ErrorBoundary } from "react-error-boundary"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { ContactUs, Error404, Home, Landing, Login, SignUp } from "./containers"
+import { ContactUs, Error404, Home, Landing } from "./containers"
 import { SchemasProvider } from "@modules/schemas/context"
 import { DatasetsProvider } from "@modules/datasets/context"
 import { ConfigProvider } from "@modules/config/context"
 import { ModalProvider } from "@modules/modal/context"
 import { HomeProvider } from "@containers/Home/context"
 
-function App() {
+export default function App() {
   return (
     <LanguageProvider>
       <ThemeProvider>
@@ -24,8 +24,8 @@ function App() {
               <UserProvider>
                 <SocketProvider>
                   <Routes>
-                    <Route path={APP_ROUTES.AUTH_ROUTES.LOGIN} element={<Login />} />
-                    <Route path={APP_ROUTES.AUTH_ROUTES.SIGN_UP} element={<SignUp />} />
+                    {/* <Route path={APP_ROUTES.AUTH_ROUTES.LOGIN} element={<Login />} /> */}
+                    {/* <Route path={APP_ROUTES.AUTH_ROUTES.SIGN_UP} element={<SignUp />} /> */}
                     <Route path={APP_ROUTES.CONTACT_US} element={<ContactUs />} />
                     <Route path={APP_ROUTES.ROOT} element={<Landing />} />
 
@@ -59,5 +59,3 @@ function App() {
     </LanguageProvider>
   )
 }
-
-export default App

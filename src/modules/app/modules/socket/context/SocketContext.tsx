@@ -9,19 +9,17 @@ interface Props {
 
 const SocketContext = createContext<Props>({} as Props)
 
-const SocketProvider = ({ children }: { children: ReactElement }) => {
+function SocketProvider({ children }: { children: ReactElement }) {
   const { getToken } = useUser()
-  const { API_ROUTE } = useEnv()
+  const { SOCKET_URL } = useEnv()
 
-  const socket = useMemo(
-    () =>
-      io(API_ROUTE, {
-        auth: {
-          token: `Bearer ${getToken()}`,
-        },
-      }),
-    [],
-  )
+  const socket = useMemo(() => {
+    return io(SOCKET_URL, {
+      auth: {
+        token: `Bearer ${getToken()}`,
+      },
+    })
+  }, [])
 
   const data = { socket }
 
