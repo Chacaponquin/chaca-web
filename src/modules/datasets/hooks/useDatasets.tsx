@@ -3,15 +3,12 @@ import { useContext } from "react"
 import { DATASETS_ACTIONS } from "../constants"
 import { FieldProps } from "../dto/field"
 import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
-import { useValidations } from "."
+import { usePlayground, useValidations } from "."
 import { DATA_TYPES } from "@modules/schemas/constants"
-import { DatasetConnection } from "../interfaces/dataset-connect"
 import { DatasetName } from "../value-object"
 import { PossibleFieldToRef } from "../interfaces/ref"
 import { ExportDatatype, FieldDataType } from "../interfaces/dataset-field"
 import { FieldForm } from "@modules/modal/interfaces"
-import { v4 as uuid } from "uuid"
-import { MarkerType } from "reactflow"
 
 interface AddFieldProps {
   field: FieldProps
@@ -55,11 +52,10 @@ export default function useDatasets() {
     showFieldsMenu,
     handleCloseFieldsMenu,
     handleOpenFieldsMenu,
-    handleCleanEdges,
-    handleAddEdge,
   } = useContext(DatasetsContext)
 
   const { validateDatasetName, validateFieldName } = useValidations()
+  const { updateConnections } = usePlayground()
 
   function handleAddDataset(props: AddDatasetProps) {
     datasetDispatch({
@@ -158,66 +154,6 @@ export default function useDatasets() {
   function fieldCanBeNull(field: FieldForm): boolean {
     const type = field.dataType.type
     return type !== DATA_TYPES.SEQUENCE && !field.isKey
-  }
-
-  function updateConnections(datasets: Array<Dataset>): void {
-    const connections: Array<DatasetConnection> = getDatasetsConnections(datasets)
-
-    handleCleanEdges()
-    for (const con of connections) {
-      for (const target of con.to) {
-        handleAddEdge({
-          id: uuid(),
-          source: con.fromDataset,
-          target: con.targetDataset,
-          sourceHandle: con.from,
-          targetHandle: target,
-          markerEnd: {
-            type: MarkerType.ArrowClosed,
-          },
-          type: "smoothstep",
-        })
-      }
-    }
-  }
-
-  function getDatasetsConnections(datasets: Array<Dataset>): Array<DatasetConnection> {
-    let allConnections = [] as Array<DatasetConnection>
-
-    for (const dataset of datasets) {
-      const connections: Array<DatasetConnection> = []
-      const refFields = dataset.refFields()
-
-      for (const dat of datasets) {
-        if (dat !== dataset) {
-          refFields.forEach((f) => {
-            const fieldToRef = f.dataType.ref.at(-1)
-            const datasetRef = f.dataType.ref[0]
-
-            const saveConnection: DatasetConnection = {
-              from: f.id,
-              to: [],
-              fromDataset: dataset.id,
-              targetDataset: datasetRef,
-            }
-
-            if (fieldToRef) {
-              const found = dat.findFieldById(fieldToRef)
-
-              if (found) {
-                saveConnection.to.push(fieldToRef)
-              }
-            }
-
-            connections.push(saveConnection)
-          })
-        }
-      }
-
-      allConnections = [...allConnections, ...connections]
-    }
-
-    return allConnections
   }
 
   function get(index: number): Dataset {

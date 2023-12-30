@@ -30,31 +30,12 @@ export default function DatasetPlayground({ handleAddDataset, handleCreateAllDat
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         nodeTypes={nodeTypes}
+        nodesConnectable={false}
       >
         <MiniMap />
         <Controls />
         <Background />
       </ReactFlow>
-
-      {/* 
-      <Playground>
-        {showDatasets.map((d, index) => (
-          <DatasetCard
-            handleCreateSelectDataset={handleCreateSelectDataset}
-            index={index}
-            key={d.dataset.id}
-            positionX={d.positionX}
-            positionY={d.positionY}
-            handleClickPoint={handleClickPoint}
-            dataset={d.dataset}
-            selectFieldPoint={selectFieldPoint}
-            handleUpdateLines={handleUpdateLines}
-            handleChangeDatasetCardPosition={handleChangeDatasetCardPosition}
-          />
-        ))}
-
-        <ArrowSvg points={points} />
-      </Playground>*/}
     </section>
   )
 }

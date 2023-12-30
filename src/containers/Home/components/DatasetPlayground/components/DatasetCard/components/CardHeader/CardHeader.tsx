@@ -1,7 +1,7 @@
 import { ChacaDropdown } from "@form/components"
 import { Config, DatasetInfo, DatasetMenu } from "./components"
 
-interface CardHeaderProps {
+interface Props {
   handleEditDataset: () => void
   handleDeleteDataset: () => void
   handleExportDataset: () => void
@@ -15,7 +15,7 @@ export default function CardHeader({
   handleExportDataset,
   limit,
   name,
-}: CardHeaderProps) {
+}: Props) {
   const nameId = name.replace(" ", "-")
 
   return (
