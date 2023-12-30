@@ -153,7 +153,7 @@ export default function useHome() {
       } else if (error instanceof ConnectSockerError) {
         toastError({ message: NETWORK_ERROR })
       }
-    } finally {
+
       setCreateDataLoading(false)
     }
   }
