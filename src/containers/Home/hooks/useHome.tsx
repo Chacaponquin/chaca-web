@@ -78,8 +78,8 @@ export default function useHome() {
   })
 
   useEffect(() => {
-    socket.on(SOCKET_EVENTS.GET_FILE_URL, (fileName: string) => {
-      window.open(API_ROUTES.DOWNLOAD_FILE(API_ROUTE, fileName), "_blank")
+    socket.on(SOCKET_EVENTS.GET_FILE_URL, (filename: string) => {
+      downloadFile(filename)
       setCreateDataLoading(false)
       handleResetConfig()
     })
@@ -96,6 +96,29 @@ export default function useHome() {
       socket.off(SOCKET_EVENTS.CREATE_DATASETS)
     }
   }, [socket, language, handleResetConfig])
+
+  function downloadFile(filename: string) {
+    fetch(API_ROUTES.DOWNLOAD_FILE(API_ROUTE, filename), {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/zip",
+      },
+    })
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(new Blob([blob]))
+
+        const link = document.createElement("a")
+        link.href = url
+        link.download = filename
+
+        document.body.appendChild(link)
+
+        link.click()
+
+        link.parentNode?.removeChild(link)
+      })
+  }
 
   async function exportDatasets(inputDatasets: Array<Dataset>, config: Config): Promise<void> {
     try {
