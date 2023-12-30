@@ -10,6 +10,8 @@ import { DatasetName } from "../value-object"
 import { PossibleFieldToRef } from "../interfaces/ref"
 import { ExportDatatype, FieldDataType } from "../interfaces/dataset-field"
 import { FieldForm } from "@modules/modal/interfaces"
+import { v4 as uuid } from "uuid"
+import { MarkerType } from "reactflow"
 
 interface AddFieldProps {
   field: FieldProps
@@ -40,6 +42,10 @@ interface SearchRefFieldsProps {
   fieldId: string
 }
 
+interface AddDatasetProps {
+  next(dataset: Dataset): void
+}
+
 export default function useDatasets() {
   const {
     datasetDispatch,
@@ -49,13 +55,16 @@ export default function useDatasets() {
     showFieldsMenu,
     handleCloseFieldsMenu,
     handleOpenFieldsMenu,
+    handleCleanEdges,
+    handleAddEdge,
   } = useContext(DatasetsContext)
 
   const { validateDatasetName, validateFieldName } = useValidations()
 
-  function handleAddDataset() {
+  function handleAddDataset(props: AddDatasetProps) {
     datasetDispatch({
       type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
+      payload: { next: props.next },
     })
   }
 
@@ -83,6 +92,7 @@ export default function useDatasets() {
       payload: {
         field: field,
         datasetId: datasetId,
+        next: updateConnections,
       },
     })
   }
@@ -102,6 +112,7 @@ export default function useDatasets() {
         },
         parentfieldId,
         datasetId: datasetId,
+        next: updateConnections,
       },
     })
   }
@@ -109,7 +120,7 @@ export default function useDatasets() {
   function hanldeDeleteDataset(datasetId: string) {
     datasetDispatch({
       type: DATASETS_ACTIONS.DELETE_DATASET,
-      payload: { datasetId },
+      payload: { datasetId, next: updateConnections },
     })
 
     if (datasets.length) {
@@ -130,7 +141,7 @@ export default function useDatasets() {
   function handleDeleteField({ datasetId, fieldId }: DeleteFieldProps) {
     datasetDispatch({
       type: DATASETS_ACTIONS.DELETE_FIELD,
-      payload: { fieldId: fieldId, datasetId: datasetId },
+      payload: { fieldId: fieldId, datasetId: datasetId, next: updateConnections },
     })
   }
 
@@ -149,30 +160,64 @@ export default function useDatasets() {
     return type !== DATA_TYPES.SEQUENCE && !field.isKey
   }
 
-  function getDatasetConnections({ dataset }: { dataset: Dataset }): Array<DatasetConnection> {
-    const connections: Array<DatasetConnection> = []
-    const refFields = dataset.refFields()
+  function updateConnections(datasets: Array<Dataset>): void {
+    const connections: Array<DatasetConnection> = getDatasetsConnections(datasets)
 
-    for (const dat of datasets) {
-      if (dat !== dataset) {
-        refFields.forEach((f) => {
-          const saveConnection: DatasetConnection = { from: f.id, to: [] }
-          const fieldToRef = f.dataType.ref.at(-1)
-
-          if (fieldToRef) {
-            const found = dat.findFieldById(fieldToRef)
-
-            if (found) {
-              saveConnection.to.push(fieldToRef)
-            }
-          }
-
-          connections.push(saveConnection)
+    handleCleanEdges()
+    for (const con of connections) {
+      for (const target of con.to) {
+        handleAddEdge({
+          id: uuid(),
+          source: con.fromDataset,
+          target: con.targetDataset,
+          sourceHandle: con.from,
+          targetHandle: target,
+          markerEnd: {
+            type: MarkerType.ArrowClosed,
+          },
+          type: "smoothstep",
         })
       }
     }
+  }
 
-    return connections
+  function getDatasetsConnections(datasets: Array<Dataset>): Array<DatasetConnection> {
+    let allConnections = [] as Array<DatasetConnection>
+
+    for (const dataset of datasets) {
+      const connections: Array<DatasetConnection> = []
+      const refFields = dataset.refFields()
+
+      for (const dat of datasets) {
+        if (dat !== dataset) {
+          refFields.forEach((f) => {
+            const fieldToRef = f.dataType.ref.at(-1)
+            const datasetRef = f.dataType.ref[0]
+
+            const saveConnection: DatasetConnection = {
+              from: f.id,
+              to: [],
+              fromDataset: dataset.id,
+              targetDataset: datasetRef,
+            }
+
+            if (fieldToRef) {
+              const found = dat.findFieldById(fieldToRef)
+
+              if (found) {
+                saveConnection.to.push(fieldToRef)
+              }
+            }
+
+            connections.push(saveConnection)
+          })
+        }
+      }
+
+      allConnections = [...allConnections, ...connections]
+    }
+
+    return allConnections
   }
 
   function get(index: number): Dataset {
@@ -266,7 +311,6 @@ export default function useDatasets() {
     fieldCanBeArray,
     selectedDataset,
     datasets,
-    getDatasetConnections,
     showFieldsMenu,
     handleCloseFieldsMenu,
     handleDeleteField,

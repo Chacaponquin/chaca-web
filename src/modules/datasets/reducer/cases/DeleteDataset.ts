@@ -1,10 +1,17 @@
 import { Dataset } from "@modules/datasets/domain/tree"
 import { DatasetUseCase } from "./DatasetUseCase"
 
-export class DeleteDataset extends DatasetUseCase<string> {
-  public execute(deletedatasetId: string): Array<Dataset> {
-    const newDatasets = this.datasets.filter((d) => d.id !== deletedatasetId)
-    this.deleteRefFields(newDatasets, deletedatasetId)
+interface Props {
+  datasetId: string
+  next(datasets: Array<Dataset>): void
+}
+
+export class DeleteDataset extends DatasetUseCase<Props> {
+  public execute({ datasetId, next }: Props): Array<Dataset> {
+    const newDatasets = this.datasets.filter((d) => d.id !== datasetId)
+    this.deleteRefFields(newDatasets, datasetId)
+
+    next(newDatasets)
 
     return newDatasets
   }

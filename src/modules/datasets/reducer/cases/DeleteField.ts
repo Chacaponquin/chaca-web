@@ -4,10 +4,11 @@ import { DatasetUseCase } from "./DatasetUseCase"
 interface ExecuteProps {
   datasetId: string
   fieldId: string
+  next(datasets: Array<Dataset>): void
 }
 
 export class DeleteField extends DatasetUseCase<ExecuteProps> {
-  public execute({ datasetId, fieldId }: ExecuteProps): Dataset[] {
+  public execute({ datasetId, fieldId, next }: ExecuteProps): Dataset[] {
     const newDatasets = this.datasets.map((dat) => {
       if (dat.id === datasetId) {
         dat.deleteField(fieldId)
@@ -15,6 +16,8 @@ export class DeleteField extends DatasetUseCase<ExecuteProps> {
 
       return dat
     })
+
+    next(newDatasets)
 
     return newDatasets
   }

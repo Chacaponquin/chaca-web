@@ -1,25 +1,20 @@
-import { ArrowSvg, DatasetCard, DatasetsButtons, Playground } from "./components"
-import { useDatasetPlayground } from "./hooks"
+import ReactFlow, { MiniMap, Controls, Background } from "reactflow"
+import { DatasetCard, DatasetsButtons } from "./components"
+
+import "reactflow/dist/style.css"
+import { usePlayground } from "@modules/datasets/hooks"
 
 interface Props {
-  handleCreateSelectDataset: (index: number) => void
   handleCreateAllDatasets: () => void
   handleAddDataset: () => void
 }
 
-export default function DatasetPlayground({
-  handleCreateSelectDataset,
-  handleCreateAllDatasets,
-  handleAddDataset,
-}: Props) {
-  const {
-    points,
-    handleClickPoint,
-    showDatasets,
-    selectFieldPoint,
-    handleUpdateLines,
-    handleChangeDatasetCardPosition,
-  } = useDatasetPlayground()
+const nodeTypes = {
+  custom: DatasetCard,
+}
+
+export default function DatasetPlayground({ handleAddDataset, handleCreateAllDatasets }: Props) {
+  const { edges, nodes, onEdgesChange, onNodesChange, onConnect } = usePlayground()
 
   return (
     <section className="w-full h-full flex flex-col dark:bg-scale-2 bg-scale-12">
@@ -28,6 +23,20 @@ export default function DatasetPlayground({
         handleCreateAllDatasets={handleCreateAllDatasets}
       />
 
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        onConnect={onConnect}
+        nodeTypes={nodeTypes}
+      >
+        <MiniMap />
+        <Controls />
+        <Background />
+      </ReactFlow>
+
+      {/* 
       <Playground>
         {showDatasets.map((d, index) => (
           <DatasetCard
@@ -45,7 +54,7 @@ export default function DatasetPlayground({
         ))}
 
         <ArrowSvg points={points} />
-      </Playground>
+      </Playground>*/}
     </section>
   )
 }

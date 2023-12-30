@@ -1,61 +1,44 @@
+import { Dataset } from "@modules/datasets/domain/tree"
 import { useDatasets } from "@modules/datasets/hooks"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { useModal } from "@modules/modal/hooks"
-import { PanInfo } from "framer-motion"
-import { ChangeDatasetCardProps } from "../../../interfaces/card.interface"
 
 interface Props {
-  index: number
-  handleCreateSelectDataset: (i: number) => void
-  handleUpdateLines: () => void
-  handleChangeDatasetCardPosition: (props: ChangeDatasetCardProps) => void
+  dataset: Dataset
+  handleCreateDataset(dataset: Dataset): void
 }
 
 export default function useDatasetCard({
-  handleCreateSelectDataset,
-  index,
-  handleUpdateLines,
-  handleChangeDatasetCardPosition,
+  dataset,
+  handleCreateDataset: handleCreateDatasetProp,
 }: Props) {
   const { handleOpenModal } = useModal()
   const { handleSelectDataset } = useDatasets()
-  const { get } = useDatasets()
 
   function handleDeleteDataset() {
-    const dat = get(index)
-
     handleOpenModal({
       type: MODAL_ACTIONS.DELETE_DATASET,
-      datasetName: dat.name,
-      datasetId: dat.id,
+      datasetName: dataset.name,
+      datasetId: dataset.id,
     })
   }
 
   function handleEditDataset() {
-    const dat = get(index)
-
-    handleOpenModal({ type: MODAL_ACTIONS.EDIT_DATASET, dataset: dat })
+    handleOpenModal({ type: MODAL_ACTIONS.EDIT_DATASET, dataset: dataset })
   }
 
-  const handleExportDataset = () => {
-    handleCreateSelectDataset(index)
+  function handleCreateDataset() {
+    handleCreateDatasetProp(dataset)
   }
 
   function handleClickCard() {
-    const dat = get(index)
-    handleSelectDataset(dat.id)
-  }
-
-  function onDrangEnd(datasetId: string, info: PanInfo) {
-    handleChangeDatasetCardPosition({ datasetId: datasetId, x: info.point.x, y: info.point.y })
-    handleUpdateLines()
+    handleSelectDataset(dataset.id)
   }
 
   return {
     handleDeleteDataset,
     handleEditDataset,
-    handleExportDataset,
+    handleCreateDataset,
     handleClickCard,
-    onDrangEnd,
   }
 }

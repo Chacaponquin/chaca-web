@@ -10,7 +10,7 @@ import {
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { useEnv } from "@modules/app/modules/env/hooks"
 import { useSocket } from "@modules/app/modules/socket/hooks"
-import { useDatasets } from "@modules/datasets/hooks"
+import { useDatasets, usePlayground } from "@modules/datasets/hooks"
 import { useModal } from "@modules/modal/hooks"
 import { Dataset, ExportDataset } from "@modules/datasets/domain/tree"
 import { useSchemas } from "@modules/schemas/hooks"
@@ -31,6 +31,8 @@ interface MessageFieldProps {
 }
 
 export default function useHome() {
+  const { handleAddDatasetNode } = usePlayground()
+
   const [createDataLoading, setCreateDataLoading] = useState(false)
 
   const {
@@ -97,7 +99,7 @@ export default function useHome() {
     }
   }, [socket, language, handleResetConfig])
 
-  function exportDatasets(inputDatasets: Array<Dataset>, config: Config): void {
+  async function exportDatasets(inputDatasets: Array<Dataset>, config: Config): Promise<void> {
     try {
       setCreateDataLoading(true)
 
@@ -116,47 +118,58 @@ export default function useHome() {
         fields: d.fields,
       }))
 
-      exportDatasetsService({
+      await exportDatasetsService({
         datasets: datasetsDTO,
         config: { fileType: config.file.fileType, arguments: {} },
-      }).catch((error) => {
-        if (error instanceof ConnectSockerError) {
-          toastError({ message: NETWORK_ERROR })
-        }
       })
     } catch (error) {
-      setCreateDataLoading(false)
-
       if (error instanceof EmptyRefFieldError) {
         toastError({ message: EMPTY_REF_FIELD_ERROR })
       } else if (error instanceof EmptyEnumFieldError) {
         toastError(EMPTY_ENUM_FIELD({ field: error.field }))
       } else if (error instanceof EmptySequentialFieldError) {
         toastError(EMPTY_SEQUENTIAL_FIELD({ field: error.field }))
+      } else if (error instanceof ConnectSockerError) {
+        toastError({ message: NETWORK_ERROR })
       }
+    } finally {
+      setCreateDataLoading(false)
     }
   }
 
-  function handleExportAllDatasets(config: Config) {
-    exportDatasets(datasets, config)
+  async function handleExportAllDatasets(config: Config) {
+    await exportDatasets(datasets, config)
   }
 
   function handleCreateAllDatasets() {
     handleOpenModal({
       type: MODAL_ACTIONS.EXPORT_ALL_DATASETS,
-      handleCreateAllDatasets: ({ config }) => handleExportAllDatasets(config),
+      handleCreateAllDatasets: ({ config }) => {
+        handleExportAllDatasets(config)
+      },
     })
   }
 
-  function handleExportDataset(dataset: Dataset, config: Config) {
-    exportDatasets([dataset], config)
+  function handleCreateDataset(dataset: Dataset): void {
+    handleOpenModal({
+      type: MODAL_ACTIONS.EXPORT_SELECT_DATASET,
+      handleCreateSelectDataset: ({ config }) => {
+        handleExportDataset(dataset, config)
+      },
+    })
+  }
+
+  async function handleExportDataset(dataset: Dataset, config: Config) {
+    await exportDatasets([dataset], config)
   }
 
   function handleExportSelectedDataset() {
     if (selectedDataset) {
       handleOpenModal({
         type: MODAL_ACTIONS.EXPORT_SELECT_DATASET,
-        handleCreateSelectDataset: ({ config }) => handleExportDataset(selectedDataset, config),
+        handleCreateSelectDataset: ({ config }) => {
+          handleExportDataset(selectedDataset, config)
+        },
       })
     }
   }
@@ -172,7 +185,14 @@ export default function useHome() {
   }
 
   function handleAddDataset() {
-    handleAddDatasetService()
+    handleAddDatasetService({
+      next: (dataset) => {
+        handleAddDatasetNode({
+          dataset: dataset,
+          handleCreateDataset: handleCreateDataset,
+        })
+      },
+    })
   }
 
   return {
@@ -183,5 +203,6 @@ export default function useHome() {
     handleAddDataset,
     datasets,
     showFieldsMenu,
+    handleCreateDataset,
   }
 }

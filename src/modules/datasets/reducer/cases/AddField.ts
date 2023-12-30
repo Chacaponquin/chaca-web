@@ -8,10 +8,11 @@ interface ExecuteProps {
   datasetId: string
   parentId: string
   field: NodeProps<FieldDataType>
+  next(datasets: Array<Dataset>): void
 }
 
 export class AddField extends DatasetUseCase<ExecuteProps> {
-  public execute({ datasetId, field, parentId }: ExecuteProps): Array<Dataset> {
+  public execute({ datasetId, field, parentId, next }: ExecuteProps): Array<Dataset> {
     const newNode = FieldNode.create(field)
 
     const newDatasets = this.datasets.map((d) => {
@@ -29,6 +30,8 @@ export class AddField extends DatasetUseCase<ExecuteProps> {
 
       return d
     })
+
+    next(newDatasets)
 
     return newDatasets
   }

@@ -2,9 +2,16 @@ import { Dataset } from "@modules/datasets/domain/tree"
 import { DatasetUseCase } from "./DatasetUseCase"
 import { DatasetName } from "@modules/datasets/value-object"
 
-export class AddDataset extends DatasetUseCase {
-  public execute(): Dataset[] {
+interface Props {
+  next(dataset: Dataset): void
+}
+
+export class AddDataset extends DatasetUseCase<Props> {
+  public execute({ next }: Props): Dataset[] {
     const dataset = new Dataset({ name: this.genName() })
+
+    next(dataset)
+
     return [...this.datasets, dataset]
   }
 

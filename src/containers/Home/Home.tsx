@@ -8,6 +8,7 @@ import {
 import { useHome } from "./hooks"
 import { useContext } from "react"
 import { HomeContext } from "./context"
+import { ReactFlowProvider } from "reactflow"
 
 export default function Home() {
   const { smallWindow } = useContext(HomeContext)
@@ -26,26 +27,27 @@ export default function Home() {
 
   return (
     <HomeLayout>
-      {datasets.length === 0 && <NoDatasetsMessage handleCreateDataset={handleAddDataset} />}
+      <ReactFlowProvider>
+        {datasets.length === 0 && <NoDatasetsMessage handleCreateDataset={handleAddDataset} />}
 
-      {datasets.length > 0 && (
-        <section className="flex flex-grow">
-          {createDataLoading && <CreationLoadingModal />}
+        {datasets.length > 0 && (
+          <section className="flex flex-grow">
+            {createDataLoading && <CreationLoadingModal />}
 
-          {showMenu && (
-            <FieldsMenu
-              handleExportSelectedDataset={handleExportSelectedDataset}
-              handleAddNewField={handleAddNewField}
+            {showMenu && (
+              <FieldsMenu
+                handleExportSelectedDataset={handleExportSelectedDataset}
+                handleAddNewField={handleAddNewField}
+              />
+            )}
+
+            <DatasetPlayground
+              handleAddDataset={handleAddDataset}
+              handleCreateAllDatasets={handleCreateAllDatasets}
             />
-          )}
-
-          <DatasetPlayground
-            handleCreateSelectDataset={handleExportSelectedDataset}
-            handleAddDataset={handleAddDataset}
-            handleCreateAllDatasets={handleCreateAllDatasets}
-          />
-        </section>
-      )}
+          </section>
+        )}
+      </ReactFlowProvider>
     </HomeLayout>
   )
 }

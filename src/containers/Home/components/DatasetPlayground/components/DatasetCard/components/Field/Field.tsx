@@ -3,10 +3,10 @@ import { FieldKeyIcon, FieldName, FieldType } from "./components"
 import { useSchemas } from "@modules/schemas/hooks"
 import { ExportDatatype, FieldDataType } from "@modules/datasets/interfaces/dataset-field"
 import { useDatasets } from "@modules/datasets/hooks"
+import { Handle, Position } from "reactflow"
 
 interface Props {
   field: FieldNode<FieldDataType, ExportDatatype>
-  selectFieldPoint: null | string
   datasetHasKeys: boolean
 }
 
@@ -31,6 +31,8 @@ export default function Field({ field, datasetHasKeys }: Props) {
           searchRefField: searchRefField,
         })}
       />
+
+      <Handle type="source" position={Position.Right} id={field.id} isConnectable={true} />
     </div>
   )
 }
