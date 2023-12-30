@@ -2,8 +2,8 @@ import { ChacaSimpleButton } from "@form/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 
 interface Props {
-  handleCreateAllDatasets: () => void
-  handleAddDataset: () => void
+  handleCreateAllDatasets(): void
+  handleAddDataset(): void
 }
 
 export default function DatasetsButtons({ handleCreateAllDatasets, handleAddDataset }: Props) {
@@ -13,7 +13,7 @@ export default function DatasetsButtons({ handleCreateAllDatasets, handleAddData
   })
 
   return (
-    <div className="w-full flex justify-end py-3 gap-x-4 px-6 esm:px-4 ">
+    <div className="w-max flex justify-end py-3 gap-x-4 px-6 esm:px-4 z-10 absolute top-0 right-0">
       <ChacaSimpleButton
         color="primary"
         id="create-dataset-button"

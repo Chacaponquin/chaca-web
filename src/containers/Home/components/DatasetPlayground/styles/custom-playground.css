@@ -1,0 +1,21 @@
+.react-flow__controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.react-flow__controls-button:hover {
+  background-color: #7d5fff !important;
+}
+
+.react-flow__controls-button {
+  background-color: #282828 !important;
+  transition: all 0.2s ease-in;
+  padding: 0.6rem;
+  border-radius: 5px;
+  border-bottom: 0px solid #ffffff !important;
+}
+
+.react-flow__controls-button > svg {
+  fill: white;
+}

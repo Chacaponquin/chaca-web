@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { DatasetsContext } from "../context"
 import { Dataset } from "../domain/tree"
 import { DatasetConnection } from "../interfaces/dataset-connect"
@@ -11,6 +11,13 @@ interface AddNodeProps {
 }
 
 export default function usePlayground() {
+  useEffect(() => {
+    const el = document.querySelector("[href='https://reactflow.dev']")
+    if (el) {
+      el.classList.add("hidden")
+    }
+  }, [])
+
   const {
     handleAddNode,
     handleAddEdge,
