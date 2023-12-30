@@ -1,8 +1,8 @@
-import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
+import { Dataset, Field } from "@modules/datasets/domain/tree"
 import { FieldDataType } from "@modules/datasets/interfaces/dataset-field"
 import { NodeProps } from "@modules/datasets/interfaces/tree"
 import { DatasetUseCase } from "./DatasetUseCase"
-import { MixedNode } from "@modules/datasets/domain/tree/FieldNode"
+import { MixedNode } from "@modules/datasets/domain/tree/Field"
 
 interface ExecuteProps {
   datasetId: string
@@ -13,7 +13,7 @@ interface ExecuteProps {
 
 export class AddField extends DatasetUseCase<ExecuteProps> {
   public execute({ datasetId, field, parentId, next }: ExecuteProps): Array<Dataset> {
-    const newNode = FieldNode.create(field)
+    const newNode = Field.create(field)
 
     const newDatasets = this.datasets.map((d) => {
       if (d.id === datasetId) {

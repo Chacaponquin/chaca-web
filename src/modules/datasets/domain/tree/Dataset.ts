@@ -4,7 +4,7 @@ import {
   FieldDataType,
   RefDataType,
 } from "@modules/datasets/interfaces/datasets"
-import { FieldNode } from "./FieldNode"
+import { Field } from "./Field"
 import { RootNode } from "./RootNode"
 import { DatasetName } from "@modules/datasets/value-object"
 import { SearchProps } from "@modules/datasets/interfaces/tree"
@@ -66,7 +66,7 @@ export class Dataset {
     this.root.setName(name)
   }
 
-  public insertField(node: FieldNode<FieldDataType, ExportDatatype>) {
+  public insertField(node: Field<FieldDataType, ExportDatatype>) {
     this.root.nodesUtils.insertNode(node)
   }
 
@@ -74,26 +74,26 @@ export class Dataset {
     return this.root.nodesUtils.hasKeyField()
   }
 
-  public allPossibleFieldsToRef(): Array<FieldNode<FieldDataType, ExportDatatype>> {
+  public allPossibleFieldsToRef(): Array<Field<FieldDataType, ExportDatatype>> {
     return this.root.nodesUtils.allPossibleFieldsToRef()
   }
 
   public findFieldParentNode(
     nodeID: string,
-  ): FieldNode<MixedDataType, ExportMixedDataType> | RootNode | null {
+  ): Field<MixedDataType, ExportMixedDataType> | RootNode | null {
     return this.root.nodesUtils.findFieldParentNode(nodeID)
   }
 
-  public findNodeById(nodeID: string): FieldNode<FieldDataType, ExportDatatype> | RootNode | null {
+  public findNodeById(nodeID: string): Field<FieldDataType, ExportDatatype> | RootNode | null {
     if (this.id === nodeID) return this.root
     else return this.root.nodesUtils.findNodeById(nodeID)
   }
 
-  public findFieldById(fieldId: string): FieldNode<FieldDataType, ExportDatatype> | null {
+  public findFieldById(fieldId: string): Field<FieldDataType, ExportDatatype> | null {
     return this.root.nodesUtils.findNodeById(fieldId)
   }
 
-  public findSameLevelFields(fieldId: string): Array<FieldNode<FieldDataType, ExportDatatype>> {
+  public findSameLevelFields(fieldId: string): Array<Field<FieldDataType, ExportDatatype>> {
     return this.root.nodesUtils.getSameLevelNodes(fieldId)
   }
 
@@ -118,7 +118,7 @@ export class Dataset {
     this.root.nodesUtils.deleteField(fieldId)
   }
 
-  public refFields(): Array<FieldNode<RefDataType, ExportRefDataType>> {
+  public refFields(): Array<Field<RefDataType, ExportRefDataType>> {
     return this.root.nodesUtils.refFields()
   }
 

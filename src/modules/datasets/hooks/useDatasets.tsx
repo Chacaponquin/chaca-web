@@ -2,13 +2,11 @@ import { DatasetsContext } from "../context"
 import { useContext } from "react"
 import { DATASETS_ACTIONS } from "../constants"
 import { FieldProps } from "../dto/field"
-import { Dataset, FieldNode } from "@modules/datasets/domain/tree"
+import { Dataset, Field } from "@modules/datasets/domain/tree"
 import { usePlayground, useValidations } from "."
-import { DATA_TYPES } from "@modules/schemas/constants"
 import { DatasetName } from "../value-object"
 import { PossibleFieldToRef } from "../interfaces/ref"
 import { ExportDatatype, FieldDataType } from "../interfaces/dataset-field"
-import { FieldForm } from "@modules/modal/interfaces"
 
 interface AddFieldProps {
   field: FieldProps
@@ -40,7 +38,7 @@ interface SearchRefFieldsProps {
 }
 
 interface AddDatasetProps {
-  next(dataset: Dataset): void
+  handleCreateDataset(dataset: Dataset): void
 }
 
 export default function useDatasets() {
@@ -55,12 +53,19 @@ export default function useDatasets() {
   } = useContext(DatasetsContext)
 
   const { validateDatasetName, validateFieldName } = useValidations()
-  const { updateConnections } = usePlayground()
+  const { updateConnections, handleDeleteDatasetNode, handleAddDatasetNode } = usePlayground()
 
-  function handleAddDataset(props: AddDatasetProps) {
+  function handleAddDataset({ handleCreateDataset }: AddDatasetProps) {
     datasetDispatch({
       type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
-      payload: { next: props.next },
+      payload: {
+        next: (dataset) => {
+          handleAddDatasetNode({
+            dataset: dataset,
+            handleCreateDataset: handleCreateDataset,
+          })
+        },
+      },
     })
   }
 
@@ -116,12 +121,14 @@ export default function useDatasets() {
   function hanldeDeleteDataset(datasetId: string) {
     datasetDispatch({
       type: DATASETS_ACTIONS.DELETE_DATASET,
-      payload: { datasetId, next: updateConnections },
+      payload: { datasetId: datasetId, next: updateConnections },
     })
 
     if (datasets.length) {
       handleSelectDataset(datasets[0].id)
     }
+
+    handleDeleteDatasetNode(datasetId)
   }
 
   function handleChangeDocumentsLimit(datasetId: string, limit: number) {
@@ -139,21 +146,6 @@ export default function useDatasets() {
       type: DATASETS_ACTIONS.DELETE_FIELD,
       payload: { fieldId: fieldId, datasetId: datasetId, next: updateConnections },
     })
-  }
-
-  function fieldCanBeKey(field: FieldForm): boolean {
-    const type = field.dataType.type
-    return type !== DATA_TYPES.SEQUENTIAL && type !== DATA_TYPES.MIXED && type !== DATA_TYPES.ENUM
-  }
-
-  function fieldCanBeArray(field: FieldForm): boolean {
-    const type = field.dataType.type
-    return type !== DATA_TYPES.SEQUENTIAL && type !== DATA_TYPES.SEQUENCE && !field.isKey
-  }
-
-  function fieldCanBeNull(field: FieldForm): boolean {
-    const type = field.dataType.type
-    return type !== DATA_TYPES.SEQUENCE && !field.isKey
   }
 
   function get(index: number): Dataset {
@@ -184,12 +176,12 @@ export default function useDatasets() {
     return returnFields
   }
 
-  function findField(fieldId?: string): FieldNode<FieldDataType, ExportDatatype> | null {
+  function findField(fieldId?: string): Field<FieldDataType, ExportDatatype> | null {
     if (!fieldId) {
       return null
     }
 
-    let found: FieldNode<FieldDataType, ExportDatatype> | null = null
+    let found: Field<FieldDataType, ExportDatatype> | null = null
 
     for (let i = 0; i < datasets.length && found === null; i++) {
       found = datasets[i].findFieldById(fieldId)
@@ -200,7 +192,7 @@ export default function useDatasets() {
 
   function findFieldByLocation(
     fieldLocation: Array<string>,
-  ): FieldNode<FieldDataType, ExportDatatype> | null {
+  ): Field<FieldDataType, ExportDatatype> | null {
     const id = fieldLocation.at(-1)
     const found = findField(id)
 
@@ -242,9 +234,6 @@ export default function useDatasets() {
     handleChangeDocumentsLimit,
     handleEditDataset,
     handleUpdateField,
-    fieldCanBeKey,
-    fieldCanBeNull,
-    fieldCanBeArray,
     selectedDataset,
     datasets,
     showFieldsMenu,

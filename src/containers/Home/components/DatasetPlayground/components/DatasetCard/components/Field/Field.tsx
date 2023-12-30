@@ -1,4 +1,4 @@
-import { FieldNode } from "@modules/datasets/domain/tree"
+import { Field as FieldNode } from "@modules/datasets/domain/tree"
 import { Connect, FieldKeyIcon, FieldName, FieldType } from "./components"
 import { useSchemas } from "@modules/schemas/hooks"
 import { ExportDatatype, FieldDataType } from "@modules/datasets/interfaces/dataset-field"

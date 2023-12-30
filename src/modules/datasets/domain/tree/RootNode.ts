@@ -1,5 +1,5 @@
 import { DatasetField } from "@modules/datasets/interfaces/datasets"
-import { FieldNode } from "./FieldNode"
+import { Field } from "./Field"
 import { NodesUtils } from "./NodesUtils"
 import { DatasetName } from "@modules/datasets/value-object"
 import { v4 as uuid } from "uuid"
@@ -40,7 +40,7 @@ export class RootNode {
     this._name = name
   }
 
-  public setField(field: FieldNode<FieldDataType, ExportDatatype>) {
+  public setField(field: Field<FieldDataType, ExportDatatype>) {
     this.nodesUtils.nodes.push(field)
   }
 

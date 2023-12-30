@@ -8,7 +8,7 @@ import {
   KeyConfig,
 } from "./components"
 import { FieldActions } from "../../interfaces"
-import { useDatasets } from "@modules/datasets/hooks"
+import { Field } from "@modules/datasets/domain/tree"
 
 type FieldFormProps = FieldActions & { datasetId: string }
 
@@ -38,10 +38,10 @@ export default function FieldForm({
     DATA_TYPE_TEXT: { en: "Data type", es: "Tipo" },
   })
 
-  const { fieldCanBeKey, fieldCanBeArray, fieldCanBeNull } = useDatasets()
-  const canBeArray = fieldCanBeArray(field)
-  const canBeKey = fieldCanBeKey(field)
-  const canBeNull = fieldCanBeNull(field)
+  const { canBeArray, canBeKey, canBeNull } = Field.possibleConfig({
+    type: field.dataType.type,
+    isKey: field.isKey,
+  })
 
   return (
     <div className="flex flex-col gap-y-3">

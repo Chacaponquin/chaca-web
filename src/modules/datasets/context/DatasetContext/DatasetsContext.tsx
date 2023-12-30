@@ -39,6 +39,7 @@ interface Props {
   handleAddNode(node: Node<CardProps>): void
   handleAddEdge(edge: Edge): void
   handleCleanEdges(): void
+  handleDeleteNode(id: string): void
 }
 
 const DatasetsContext = createContext<Props>({ datasets: [] as Dataset[] } as Props)
@@ -93,10 +94,13 @@ function DatasetsProvider({ children }: { children: ReactElement }) {
     })
   }
 
+  function handleDeleteNode(id: string) {
+    setNodes((prev) => prev.filter((n) => n.id !== id))
+  }
+
   function handleAddEdge(edge: Edge) {
     setEdges((prev) => {
       const result = [...prev, edge]
-      console.log(result)
       return result
     })
   }
@@ -122,6 +126,7 @@ function DatasetsProvider({ children }: { children: ReactElement }) {
     handleAddEdge: handleAddEdge,
     handleAddNode: handleAddNode,
     handleCleanEdges: handleCleanEdges,
+    handleDeleteNode: handleDeleteNode,
   }
 
   return <DatasetsContext.Provider value={data}>{children}</DatasetsContext.Provider>

@@ -28,7 +28,12 @@ import {
   EmptySequentialFieldError,
 } from "@modules/datasets/errors"
 
-export abstract class FieldNode<T, E extends ExportDatatype> {
+interface PossibleConfigProps {
+  type: DATA_TYPES
+  isKey: boolean
+}
+
+export abstract class Field<T, E extends ExportDatatype> {
   private _dataType: T
   private _isArray: IsArrayConfig
   private _possibleNull: PossibleNullConfig
@@ -51,7 +56,16 @@ export abstract class FieldNode<T, E extends ExportDatatype> {
     return [...route, this.name].join(".")
   }
 
-  public static create(props: NodeProps<FieldDataType>): FieldNode<FieldDataType, ExportDatatype> {
+  public static possibleConfig({ isKey, type }: PossibleConfigProps) {
+    const canBeKey =
+      type !== DATA_TYPES.SEQUENTIAL && type !== DATA_TYPES.MIXED && type !== DATA_TYPES.ENUM
+    const canBeArray = type !== DATA_TYPES.SEQUENTIAL && type !== DATA_TYPES.SEQUENCE && !isKey
+    const canBeNull = type !== DATA_TYPES.SEQUENCE && !isKey
+
+    return { canBeArray, canBeKey, canBeNull }
+  }
+
+  public static create(props: NodeProps<FieldDataType>): Field<FieldDataType, ExportDatatype> {
     if (props.dataType.type === DATA_TYPES.SINGLE_VALUE) {
       return new SchemaValueNode(props as NodeProps<SingleValueDataType>)
     } else if (props.dataType.type === DATA_TYPES.CUSTOM) {
@@ -136,7 +150,7 @@ export abstract class FieldNode<T, E extends ExportDatatype> {
   }
 }
 
-export class SchemaValueNode extends FieldNode<SingleValueDataType, SingleValueDataType> {
+export class SchemaValueNode extends Field<SingleValueDataType, SingleValueDataType> {
   public stringInf({ findOption, findParent }: SearchProps): string {
     const schema = this.dataType.fieldType.schema
     const option = this.dataType.fieldType.option
@@ -174,7 +188,7 @@ export class SchemaValueNode extends FieldNode<SingleValueDataType, SingleValueD
   }
 }
 
-export class SequenceNode extends FieldNode<SequenceDataType, SequenceDataType> {
+export class SequenceNode extends Field<SequenceDataType, SequenceDataType> {
   public stringInf(): string {
     return `sequence`
   }
@@ -190,7 +204,7 @@ export class SequenceNode extends FieldNode<SequenceDataType, SequenceDataType> 
   }
 }
 
-export class SequentialNode extends FieldNode<SequentialDataType, SequentialDataType> {
+export class SequentialNode extends Field<SequentialDataType, SequentialDataType> {
   public stringInf(): string {
     return `sequential`
   }
@@ -210,7 +224,7 @@ export class SequentialNode extends FieldNode<SequentialDataType, SequentialData
   }
 }
 
-export class MixedNode extends FieldNode<MixedDataType, ExportMixedDataType> {
+export class MixedNode extends Field<MixedDataType, ExportMixedDataType> {
   public nodesUtils = new NodesUtils(this)
 
   public stringInf(): string {
@@ -231,7 +245,7 @@ export class MixedNode extends FieldNode<MixedDataType, ExportMixedDataType> {
   }
 }
 
-export class RefNode extends FieldNode<RefDataType, ExportRefDataType> {
+export class RefNode extends Field<RefDataType, ExportRefDataType> {
   public stringInf(): string {
     return `ref`
   }
@@ -256,7 +270,7 @@ export class RefNode extends FieldNode<RefDataType, ExportRefDataType> {
   }
 }
 
-export class CustomNode extends FieldNode<CustomDataType, CustomDataType> {
+export class CustomNode extends Field<CustomDataType, CustomDataType> {
   public stringInf(): string {
     return `custom`
   }
@@ -272,7 +286,7 @@ export class CustomNode extends FieldNode<CustomDataType, CustomDataType> {
   }
 }
 
-export class EnumNode extends FieldNode<EnumDataType, EnumDataType> {
+export class EnumNode extends Field<EnumDataType, EnumDataType> {
   public stringInf(): string {
     return `enum`
   }

@@ -1,7 +1,7 @@
 import { RepeatDatasetNameError, RepeatSameLevelFieldNameError } from "../errors"
 import { DatasetsContext } from "../context"
 import { useContext } from "react"
-import { MixedNode } from "../domain/tree/FieldNode"
+import { MixedNode } from "../domain/tree/Field"
 import { DatasetName, FieldName } from "../value-object"
 import { RootNode } from "../domain/tree"
 

@@ -1,6 +1,6 @@
 import { Dataset } from "./Dataset"
 import { ExportDataset } from "./ExportDataset"
-import { FieldNode } from "./FieldNode"
+import { Field } from "./Field"
 import { RootNode } from "./RootNode"
 
-export { Dataset, RootNode, FieldNode, ExportDataset }
+export { Dataset, RootNode, Field, ExportDataset }

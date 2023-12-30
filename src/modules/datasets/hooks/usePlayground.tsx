@@ -20,6 +20,7 @@ export default function usePlayground() {
     onNodesChange,
     onConnect,
     handleCleanEdges,
+    handleDeleteNode,
   } = useContext(DatasetsContext)
 
   function handleAddDatasetNode(props: AddNodeProps) {
@@ -29,6 +30,10 @@ export default function usePlayground() {
       position: { x: 100, y: 200 },
       data: props,
     })
+  }
+
+  function handleDeleteDatasetNode(id: string): void {
+    handleDeleteNode(id)
   }
 
   function updateConnections(datasets: Array<Dataset>): void {
@@ -101,5 +106,6 @@ export default function usePlayground() {
     onNodesChange,
     onConnect,
     updateConnections,
+    handleDeleteDatasetNode,
   }
 }

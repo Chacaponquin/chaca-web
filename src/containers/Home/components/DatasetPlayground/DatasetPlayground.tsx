@@ -1,8 +1,8 @@
 import ReactFlow, { MiniMap, Controls, Background } from "reactflow"
 import { DatasetCard, DatasetsButtons } from "./components"
+import { usePlayground } from "@modules/datasets/hooks"
 
 import "reactflow/dist/style.css"
-import { usePlayground } from "@modules/datasets/hooks"
 
 interface Props {
   handleCreateAllDatasets: () => void
@@ -33,7 +33,9 @@ export default function DatasetPlayground({ handleAddDataset, handleCreateAllDat
         nodesConnectable={false}
       >
         <MiniMap />
-        <Controls />
+
+        <Controls position="top-left" />
+
         <Background />
       </ReactFlow>
     </section>

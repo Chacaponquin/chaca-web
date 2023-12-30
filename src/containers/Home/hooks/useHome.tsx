@@ -10,7 +10,7 @@ import {
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { useEnv } from "@modules/app/modules/env/hooks"
 import { useSocket } from "@modules/app/modules/socket/hooks"
-import { useDatasets, usePlayground } from "@modules/datasets/hooks"
+import { useDatasets } from "@modules/datasets/hooks"
 import { useModal } from "@modules/modal/hooks"
 import { Dataset, ExportDataset } from "@modules/datasets/domain/tree"
 import { useSchemas } from "@modules/schemas/hooks"
@@ -31,8 +31,6 @@ interface MessageFieldProps {
 }
 
 export default function useHome() {
-  const { handleAddDatasetNode } = usePlayground()
-
   const [createDataLoading, setCreateDataLoading] = useState(false)
 
   const {
@@ -185,14 +183,7 @@ export default function useHome() {
   }
 
   function handleAddDataset() {
-    handleAddDatasetService({
-      next: (dataset) => {
-        handleAddDatasetNode({
-          dataset: dataset,
-          handleCreateDataset: handleCreateDataset,
-        })
-      },
-    })
+    handleAddDatasetService({ handleCreateDataset: handleCreateDataset })
   }
 
   return {
