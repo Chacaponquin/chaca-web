@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react"
-import { SOCKET_EVENTS } from "@modules/app/modules/socket/constants"
+import { DATASETS_ERROR_HTTP_STATUS, SOCKET_EVENTS } from "@modules/app/modules/socket/constants"
 import { useConfig } from "@modules/config/hooks"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
-import {
-  useTranslation,
-  useLanguage,
-  useTranslationFunc,
-} from "@modules/app/modules/language/hooks"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
-import { useEnv } from "@modules/app/modules/env/hooks"
 import { useSocket } from "@modules/app/modules/socket/hooks"
 import { useDatasets } from "@modules/datasets/hooks"
 import { useModal } from "@modules/modal/hooks"
@@ -22,13 +17,9 @@ import {
 import { useDatasetServices } from "@modules/datasets/services"
 import { ExportDatasetDTO } from "@modules/datasets/dto/dataset"
 import { ConnectSockerError } from "@modules/app/modules/socket/errors"
-import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { Config } from "@modules/config/interfaces"
 import { DatasetCreationError } from "@modules/app/modules/socket/domain/error"
-
-interface MessageFieldProps {
-  field: string
-}
+import { useHomeTranslations } from "."
 
 export default function useHome() {
   const [createDataLoading, setCreateDataLoading] = useState(false)
@@ -43,50 +34,55 @@ export default function useHome() {
   const { handleResetConfig } = useConfig()
   const { handleOpenModal } = useModal()
   const { toastError } = useToast()
-  const { API_ROUTE } = useEnv()
   const { language } = useLanguage()
   const { socket } = useSocket()
   const { findParent, findType } = useSchemas()
-  const { exportDatasets: exportDatasetsService } = useDatasetServices()
-
-  const { NETWORK_ERROR, CREATION_ERROR, EMPTY_REF_FIELD_ERROR } = useTranslation({
-    NETWORK_ERROR: { en: "Network connect error", es: "Error en la conexión" },
-    CREATION_ERROR: { en: "Creation error", es: "Hubo un error en la creación de los datasets" },
-    EMPTY_REF_FIELD_ERROR: {
-      en: "Can't export a ref field that doesn't point to another field",
-      es: "No se puede exportar un campo ref que no apunte a otro campo",
+  const { exportDatasets: exportDatasetsService, downloadDatasetFile } = useDatasetServices()
+  const {
+    ERROR_MESSAGES: { CREATION_ERROR, EMPTY_REF_FIELD_ERROR, NETWORK_ERROR },
+    FUNCTION_ERROR_MESSAGES: {
+      EMPTY_ENUM_FIELD,
+      EMPTY_SEQUENTIAL_FIELD,
+      CYCLIC_DATA,
+      NOT_ENOUGH_VALUES_FOR_REF,
+      NOT_EXIST_FIELD,
+      TRY_REF_A_NOT_KEY_FIELD,
     },
-  })
-
-  const { EMPTY_ENUM_FIELD, EMPTY_SEQUENTIAL_FIELD } = useTranslationFunc({
-    EMPTY_ENUM_FIELD: {
-      en: (p: MessageFieldProps) => {
-        return `The ${p.field} field is an enum and has no values to select from`
-      },
-      es: (p: MessageFieldProps) => {
-        return `El campo ${p.field} es enum y no tiene valores para seleccionar`
-      },
-    },
-    EMPTY_SEQUENTIAL_FIELD: {
-      en: (p: MessageFieldProps) => {
-        return `The field ${p.field} is sequential and has no values to generate`
-      },
-      es: (p: MessageFieldProps) => {
-        return `El campo ${p.field} es sequencial y no tiene valores para generar`
-      },
-    },
-  })
+  } = useHomeTranslations()
 
   useEffect(() => {
     socket.on(SOCKET_EVENTS.GET_FILE_URL, (filename: string) => {
-      downloadFile(filename)
+      downloadDatasetFile(filename)
       setCreateDataLoading(false)
       handleResetConfig()
     })
 
     socket.on(SOCKET_EVENTS.CREATION_ERROR, (error: DatasetCreationError) => {
-      console.log(error)
-      toastError({ message: CREATION_ERROR })
+      if (error.code === DATASETS_ERROR_HTTP_STATUS.CYCLIC) {
+        toastError({ message: CYCLIC_DATA(), id: "cyclic-data-error" })
+      } else if (error.code === DATASETS_ERROR_HTTP_STATUS.EMPTY_SEQUENTIAL) {
+        toastError({
+          message: EMPTY_SEQUENTIAL_FIELD({ field: error.content.field }),
+          id: "empty-sequential-field-error",
+        })
+      } else if (error.code === DATASETS_ERROR_HTTP_STATUS.NOT_ENOUGH_VALUES_REF) {
+        toastError({
+          message: NOT_ENOUGH_VALUES_FOR_REF(error.content),
+          id: "not-enought-values-for-ref-error",
+        })
+      } else if (error.code === DATASETS_ERROR_HTTP_STATUS.DEFAULT) {
+        toastError({ message: CREATION_ERROR, id: "dataset-creation-error" })
+      } else if (error.code === DATASETS_ERROR_HTTP_STATUS.NOT_EXIST_FIELD) {
+        toastError({ message: NOT_EXIST_FIELD(error.content), id: "not-exist-field-error" })
+      } else if (error.code === DATASETS_ERROR_HTTP_STATUS.REF_NOT_KEY) {
+        toastError({
+          message: TRY_REF_A_NOT_KEY_FIELD(error.content),
+          id: "try-ref-a-not-key-field-error",
+        })
+      } else {
+        toastError({ message: CREATION_ERROR, id: "dataset-creation-error" })
+      }
+
       setCreateDataLoading(false)
     })
 
@@ -96,29 +92,6 @@ export default function useHome() {
       socket.off(SOCKET_EVENTS.CREATE_DATASETS)
     }
   }, [socket, language, handleResetConfig])
-
-  function downloadFile(filename: string) {
-    fetch(API_ROUTES.DOWNLOAD_FILE(API_ROUTE, filename), {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/zip",
-      },
-    })
-      .then((response) => response.blob())
-      .then((blob) => {
-        const url = window.URL.createObjectURL(new Blob([blob]))
-
-        const link = document.createElement("a")
-        link.href = url
-        link.download = filename
-
-        document.body.appendChild(link)
-
-        link.click()
-
-        link.parentNode?.removeChild(link)
-      })
-  }
 
   async function exportDatasets(inputDatasets: Array<Dataset>, config: Config): Promise<void> {
     try {

@@ -1,3 +1,4 @@
 import useHome from "./useHome"
+import useHomeTranslations from "./useHomeTranslations"
 
-export { useHome }
+export { useHome, useHomeTranslations }
