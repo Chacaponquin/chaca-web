@@ -13,14 +13,14 @@ export const APP_IMAGES = {
     RELATIONAL_DATASETS: { image: "/images/Relational Datasets.png", alt: "Relational Datasets" },
 
     EXTENSIONS: {
-      CSV: { image: "/images/extensions/csv.webp", alt: "csv" },
-      JAVA: { image: "/images/extensions/java.webp", alt: "java" },
+      CSV: { image: "/images/extensions/csv.png", alt: "csv" },
+      JAVA: { image: "/images/extensions/java.png", alt: "java" },
       JS: { image: "/images/extensions/js.png", alt: "js" },
       JSON: { image: "/images/extensions/json.webp", alt: "json" },
       TS: { image: "/images/extensions/ts.webp", alt: "ts" },
       PYTHON: { image: "/images/extensions/python.webp", alt: "python" },
       POSTGRESQL: { image: "/images/extensions/postgresql.webp", alt: "postgresql" },
-      YAML: { image: "/images/extensions/yaml.webp", alt: "yaml" },
+      YAML: { image: "/images/extensions/yaml.svg", alt: "yaml" },
     },
   },
 } as const

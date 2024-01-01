@@ -13,10 +13,10 @@ export default function LinksSection() {
 
   return (
     <SectionContent className="pb-20">
-      <div className="items-center flex flex-col w-full bg-scale-2 px-10 py-8 rounded-md border-[1px] border-scale-9">
+      <div className="items-center flex flex-col w-full bg-scale-2 px-5 py-8 rounded-md border-[1px] border-scale-9">
         <div className="flex flex-col text-white max-w-[800px] w-full mb-5">
-          <h1 className="font-fontMedium text-3xl text-center mb-3 px-10">{HEADER}</h1>
-          <p className="text-lg text-center text-scale-11">{TEXT}</p>
+          <h1 className="font-fontMedium text-3xl text-center mb-3 esm:px-8 px-10">{HEADER}</h1>
+          <p className="text-lg text-center text-scale-11 esm:text-base">{TEXT}</p>
         </div>
 
         <Links />

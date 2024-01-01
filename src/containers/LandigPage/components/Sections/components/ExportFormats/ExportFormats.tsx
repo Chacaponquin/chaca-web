@@ -5,7 +5,7 @@ export default function ExportFormats() {
   const { FORMATS } = useExportFormats()
 
   return (
-    <div className="flex items-center">
+    <div className="xl:flex hidden items-center">
       <div className="flex w-full gap-x-8 gap-y-4 flex-wrap justify-center">
         {FORMATS.map((f, index) => (
           <div

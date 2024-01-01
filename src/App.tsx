@@ -22,16 +22,16 @@ export default function App() {
           <BrowserRouter>
             <ToastProvider>
               <UserProvider>
-                <SocketProvider>
-                  <Routes>
-                    {/* <Route path={APP_ROUTES.AUTH_ROUTES.LOGIN} element={<Login />} /> */}
-                    {/* <Route path={APP_ROUTES.AUTH_ROUTES.SIGN_UP} element={<SignUp />} /> */}
-                    <Route path={APP_ROUTES.CONTACT_US} element={<ContactUs />} />
-                    <Route path={APP_ROUTES.ROOT} element={<Landing />} />
+                <Routes>
+                  {/* <Route path={APP_ROUTES.AUTH_ROUTES.LOGIN} element={<Login />} /> */}
+                  {/* <Route path={APP_ROUTES.AUTH_ROUTES.SIGN_UP} element={<SignUp />} /> */}
+                  <Route path={APP_ROUTES.CONTACT_US} element={<ContactUs />} />
+                  <Route path={APP_ROUTES.ROOT} element={<Landing />} />
 
-                    <Route
-                      path={APP_ROUTES.HOME}
-                      element={
+                  <Route
+                    path={APP_ROUTES.HOME}
+                    element={
+                      <SocketProvider>
                         <SchemasProvider>
                           <ConfigProvider>
                             <DatasetsProvider>
@@ -43,14 +43,14 @@ export default function App() {
                             </DatasetsProvider>
                           </ConfigProvider>
                         </SchemasProvider>
-                      }
-                    />
+                      </SocketProvider>
+                    }
+                  />
 
-                    <Route path={APP_ROUTES.NOT_FOUND} element={<Error404 />} />
+                  <Route path={APP_ROUTES.NOT_FOUND} element={<Error404 />} />
 
-                    <Route path="*" element={<Error404 />} />
-                  </Routes>
-                </SocketProvider>
+                  <Route path="*" element={<Error404 />} />
+                </Routes>
               </UserProvider>
             </ToastProvider>
           </BrowserRouter>

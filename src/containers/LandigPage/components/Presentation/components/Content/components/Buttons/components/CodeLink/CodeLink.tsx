@@ -4,7 +4,7 @@ import { useToast } from "@modules/app/modules/toast/hooks"
 export default function CodeLink() {
   const { toastSuccess } = useToast()
 
-  const CODE = "npm install chaca -dev"
+  const CODE = "npm install chaca -D"
 
   function handleCopy() {
     toastSuccess({ message: "Copied to clipoard" })
