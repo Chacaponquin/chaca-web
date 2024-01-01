@@ -8,4 +8,19 @@ export const APP_IMAGES = {
   SUCCESS: { image: "/images/modal.png", alt: "success-image" },
   SIGN_UP_IMAGE: { image: "/images/signUp-image.png", alt: "sign-up-image" },
   WELCOME: { image: "/images/welcome.png", alt: "chaca-welcome-image" },
-}
+  PRESENTATION: {
+    SIMPLE_DATASET: { image: "/images/Simple Dataset.png", alt: "Simple Dataset" },
+    RELATIONAL_DATASETS: { image: "/images/Relational Datasets.png", alt: "Relational Datasets" },
+
+    EXTENSIONS: {
+      CSV: { image: "/images/extensions/csv.webp", alt: "csv" },
+      JAVA: { image: "/images/extensions/java.webp", alt: "java" },
+      JS: { image: "/images/extensions/js.png", alt: "js" },
+      JSON: { image: "/images/extensions/json.webp", alt: "json" },
+      TS: { image: "/images/extensions/ts.webp", alt: "ts" },
+      PYTHON: { image: "/images/extensions/python.webp", alt: "python" },
+      POSTGRESQL: { image: "/images/extensions/postgresql.webp", alt: "postgresql" },
+      YAML: { image: "/images/extensions/yaml.webp", alt: "yaml" },
+    },
+  },
+} as const

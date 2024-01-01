@@ -1,6 +1,7 @@
 import Adventages from "./Adventages/Adventages"
 import Footer from "./Footer/Footer"
-import LinksSection from "./LinksSection/LinksSection"
+import Sections from "./Sections/Sections"
 import Presentation from "./Presentation/Presentation"
+import LinksSection from "./LinksSection/LinksSection"
 
-export { LinksSection, Presentation, Footer, Adventages }
+export { Sections, Presentation, Footer, Adventages, LinksSection }

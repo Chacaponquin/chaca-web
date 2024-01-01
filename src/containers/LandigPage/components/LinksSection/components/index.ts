@@ -1,4 +1,3 @@
-import ImageSection from "./ImageSection/ImageSection"
-import TextSection from "./TextSection/TextSection"
+import Links from "./Links/Links"
 
-export { ImageSection, TextSection }
+export { Links }
