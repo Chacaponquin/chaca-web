@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom"
+interface Props {
+  text: string
+}
 
-export default function BarLink({ route, text }: { route: string; text: string }) {
+export default function BarLink({ text }: Props) {
   return (
-    <Link to={route}>
-      <div className="text-xl py-1 text-white mx-5 transition-all duration-300 hover:text-purple-6">
-        {text}
-      </div>
-    </Link>
+    <div className="text-xl py-1 text-white mx-5 transition-all duration-300 hover:text-purple-6">
+      {text}
+    </div>
   )
 }

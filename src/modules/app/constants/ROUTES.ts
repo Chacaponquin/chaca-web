@@ -2,12 +2,14 @@ export const APP_ROUTES = {
   ROOT: "/",
   AUTH_ROUTES: {
     LOGIN: "/login",
-    SIGN_UP: "/signUp",
-    FORGOT_PASSWORD: "/forgotPassword",
+    SIGN_UP: "/sign-up",
+    FORGOT_PASSWORD: "/forgot-password",
   },
   HOME: "/home",
-  CONTACT_US: "/contactUs",
-  NOT_FOUND: "/notFound",
+  CONTACT_US: "/contact-us",
+  NOT_FOUND: "/not-found",
+
+  DOCS: "https://chaca-doc.vercel.app/",
 } as const
 
 export const API_ROUTES = {

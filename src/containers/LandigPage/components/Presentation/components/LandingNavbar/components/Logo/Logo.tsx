@@ -1,10 +1,20 @@
 import { Logo as AppLogo } from "@modules/app/components"
+import { Menu } from "./components"
 
-export default function Logo() {
+interface Props {
+  handleChange(): void
+  open: boolean
+}
+
+export default function Logo({ handleChange, open }: Props) {
   return (
-    <div className="flex items-center gap-x-5">
-      <AppLogo size={60} />
-      <h1 className="font-fontBold text-white text-2xl uppercase esm:hidden">CHACA</h1>
+    <div className="flex gap-x-4 items-center">
+      <Menu handleChange={handleChange} open={open} />
+
+      <div className="flex items-center gap-x-5">
+        <AppLogo size={60} />
+        <h1 className="font-fontBold text-white text-2xl uppercase md:block hidden">CHACA</h1>
+      </div>
     </div>
   )
 }
