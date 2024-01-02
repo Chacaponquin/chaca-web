@@ -4,17 +4,19 @@ import { useUser } from "@modules/user/hooks"
 import { FormInputSection } from "../../shared/components"
 import { useId } from "react"
 
+interface Props {
+  datasetName: string
+  handleDatasetName(value: string): void
+  limit: number
+  handleChangeLimit(v: number): void
+}
+
 export default function DatasetForm({
   datasetName,
   handleDatasetName,
   limit,
   handleChangeLimit,
-}: {
-  datasetName: string
-  handleDatasetName: (value: string) => void
-  limit: number
-  handleChangeLimit: (v: number) => void
-}) {
+}: Props) {
   const { USER_DOCUMENTS_LIMIT } = useUser()
 
   const { DATASET_NAME_LABEL, FIELD_NAME_TEXT, COUNT_DOCUMENTS } = useTranslation({

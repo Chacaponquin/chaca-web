@@ -1,12 +1,10 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-
 import { useMemo, useState, useRef, useId } from "react"
 import { ChacaFormProps } from "../../interfaces/form"
 import { Size } from "../../interfaces/dimension"
 import { ArrowDown, ArrowUp } from "@modules/app/modules/icon/components"
 import clsx from "clsx"
 
-interface ChacaNumberInputProps extends ChacaFormProps<number> {
+interface Props extends ChacaFormProps<number> {
   min?: number
   max?: number
   step?: number
@@ -22,7 +20,7 @@ export default function ChacaNumberInput({
   value,
   onChange,
   id,
-}: ChacaNumberInputProps) {
+}: Props) {
   const inputId = id ? id : useId()
 
   const [isFocus, setIsFocus] = useState(false)
@@ -34,11 +32,11 @@ export default function ChacaNumberInput({
   const height = useMemo(() => {
     switch (dimension) {
       case "small":
-        return 30
+        return 33
       case "normal":
-        return 32
+        return 38
       case "large":
-        return 35
+        return 43
       default:
         return 30
     }
@@ -84,50 +82,56 @@ export default function ChacaNumberInput({
   function wichIsCloser(nextValue: number): number {
     if (!nextValue) return value
 
-    if (max && min) {
-      const diferenceMin = min - nextValue
-      const diferenceMax = min - nextValue
+    if (exists(max) && exists(min)) {
+      const diferenceMin = (min as number) - nextValue
+      const diferenceMax = (min as number) - nextValue
 
       if (diferenceMax !== diferenceMin) {
         if (diferenceMax < diferenceMin) {
-          return max
+          return max as number
         } else {
-          return min
+          return min as number
         }
       } else {
-        return min
+        return min as number
       }
-    } else if (!min && !max) {
+    } else if (!exists(min) && !exists(max)) {
       return nextValue
-    } else if (!min && max) {
-      return max
-    } else if (min && !max) {
-      return min
+    } else if (!exists(min) && exists(max)) {
+      return max as number
+    } else if (exists(min) && !exists(max)) {
+      return min as number
     } else {
       return nextValue
     }
   }
 
   function validateValue(value: number, returnDefaultValue: number | undefined = 0): number {
-    if (!min && !max) {
+    if (!exists(min) && !exists(max)) {
       return value
-    } else if (min && !max) {
-      if (value >= min) {
+    } else if (exists(min) && !exists(max)) {
+      if (value >= (min as number)) {
         return value
       } else {
         return returnDefaultValue
       }
-    } else if (!min && max) {
-      if (value <= max) {
+    } else if (!exists(min) && exists(max)) {
+      if (value <= (max as number)) {
         return value
       } else return returnDefaultValue
-    } else if (min && max) {
-      if (value >= min && value <= max) {
+    } else if (exists(min) && exists(max)) {
+      if (value >= (min as number) && value <= (max as number)) {
         return value
-      } else return returnDefaultValue
+      } else {
+        return returnDefaultValue
+      }
     } else {
       return returnDefaultValue
     }
+  }
+
+  function exists(value: number | undefined): boolean {
+    return !(value === undefined)
   }
 
   function handleInteractKey(key: KeyboardEvent) {
@@ -152,8 +156,8 @@ export default function ChacaNumberInput({
     document.removeEventListener("keydown", handleInteractKey)
   }
 
-  const containerClass = clsx(
-    "flex items-center rounded-sm pl-1 transition-all duration-300",
+  const CONTAINER_CLASS = clsx(
+    "flex items-center rounded-sm transition-all duration-300",
     "border-2",
     "bg-white dark:bg-scale-5",
     {
@@ -162,13 +166,28 @@ export default function ChacaNumberInput({
     },
   )
 
+  const INPUT_CLASS = clsx(
+    "h-full w-full outline-none text-sm bg-transparent",
+    "py-1.5 px-2",
+    {
+      "text-base": dimension === "small",
+      "text-lg": dimension === "normal",
+      "text-xl": dimension === "large",
+    },
+    {
+      "px-3": dimension === "small",
+      "px-4": dimension === "normal",
+      "px-5": dimension === "large",
+    },
+  )
+
   return (
     <div
-      className={containerClass}
+      className={CONTAINER_CLASS}
       style={{ height: height, width: size === "full" ? `100%` : `${size}px` }}
     >
       <input
-        className="h-full w-full outline-none px-2 text-sm bg-transparent py-1.5"
+        className={INPUT_CLASS}
         type="text"
         onChange={(e) => handleChangeInputValue(e.target.value)}
         onFocus={handleFocus}
@@ -180,6 +199,7 @@ export default function ChacaNumberInput({
         min={min}
         max={max}
       />
+
       <div className="grid grid-rows-2 h-full w-[25px] justify-center justify-items-center">
         <button
           className="flex stroke-black dark:stroke-white justify-center text-center items-center w-full cursor-auto"
