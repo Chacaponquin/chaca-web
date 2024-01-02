@@ -8,7 +8,7 @@ import { ChacaTextInput, ChacaSelect, ChacaNumberInput } from "@form/components"
 interface Props {
   arg: Argument
   value: unknown
-  handleChangeArgumentValue: (v: unknown) => void
+  handleChangeArgumentValue(v: unknown): void
 }
 
 export default function ArgumentFilter({ arg, value, handleChangeArgumentValue }: Props) {

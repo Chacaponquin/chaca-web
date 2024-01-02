@@ -1,4 +1,4 @@
-import { Dimension } from "./dimension.interface"
+import { Dimension } from "./dimension"
 
 export interface ChacaFormProps<T> {
   className?: string

@@ -13,6 +13,7 @@ import {
   UpdateArgumentsProps,
   UpdateCustomProps,
 } from "@modules/modal/shared/interfaces"
+import { Argument } from "@modules/schemas/interfaces/argument"
 
 interface Props {
   datasetId: string
@@ -26,6 +27,8 @@ interface Props {
   handleChangeSequenceStartsWith: (v: number) => void
   handleChangeSequenceStep: (v: number) => void
   handleChangeRefField: (r: string) => void
+  handleAddFieldSchemaArgument(argument: Argument): void
+  handleDeleteFieldSchemaArgument(argument: string): void
   id: string
 }
 
@@ -41,6 +44,8 @@ export default function DataTypeConfig({
   handleChangeSequenceStartsWith,
   handleChangeSequenceStep,
   handleChangeRefField,
+  handleAddFieldSchemaArgument,
+  handleDeleteFieldSchemaArgument,
   id,
 }: Props) {
   return (
@@ -48,9 +53,11 @@ export default function DataTypeConfig({
       {dataType.type === DATA_TYPES.ENUM && (
         <EnumConfig values={dataType.values} handleChangeEnumValues={handleChangeEnumValues} />
       )}
+
       {dataType.type === DATA_TYPES.CUSTOM && (
         <CustomConfig code={dataType.code} handleUpdateCustomField={handleUpdateCustomField} />
       )}
+
       {dataType.type === DATA_TYPES.REF && (
         <RefConfig
           refField={dataType.ref}
@@ -59,6 +66,7 @@ export default function DataTypeConfig({
           id={id}
         />
       )}
+
       {dataType.type === DATA_TYPES.SEQUENCE && (
         <SequenceConfig
           startsWith={dataType.startsWith}
@@ -67,18 +75,22 @@ export default function DataTypeConfig({
           handleChangeSequenceStep={handleChangeSequenceStep}
         />
       )}
+
       {dataType.type === DATA_TYPES.SEQUENTIAL && (
         <SequentialConfig
           handleChangeSequentialValues={handleChangeSequentialValues}
           values={dataType.values}
         />
       )}
+
       {dataType.type === DATA_TYPES.SINGLE_VALUE && (
         <SchemaValueConfig
           fieldType={dataType.fieldType}
           handleSelectFieldSchema={handleSelectFieldSchema}
           handleSelectFieldSchemaOption={handleSelectFieldSchemaOption}
           handleUpdateFieldSchemaArguments={handleUpdateFieldSchemaArguments}
+          handleAddFieldSchemaArgument={handleAddFieldSchemaArgument}
+          handleDeleteFieldSchemaArgument={handleDeleteFieldSchemaArgument}
         />
       )}
     </section>

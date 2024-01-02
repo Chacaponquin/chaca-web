@@ -1,4 +1,5 @@
 import { FieldForm } from "@modules/modal/interfaces"
+import { Argument } from "@modules/schemas/interfaces/argument"
 
 export interface SelectFieldSchemaOptionProps {
   optionName: string
@@ -38,5 +39,7 @@ export interface FieldActions {
   handleChangeEnumValues(v: string): void
   handleChangeSequenceStep(v: number): void
   handleChangeSequenceStartsWith(v: number): void
-  handleChangeRef: (ref: string) => void
+  handleChangeRef(ref: string): void
+  handleAddFieldSchemaArgument(argument: Argument): void
+  handleDeleteFieldSchemaArgument(argument: string): void
 }

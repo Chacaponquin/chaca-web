@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import { useFilters } from "../../../../modules/form/hooks"
-import { ChacaFormProps } from "../../interfaces/chacaForm.interface"
+import { ChacaFormProps } from "../../interfaces/form"
 import { useId } from "react"
 
 interface ChacaTextInputProps extends ChacaFormProps<string> {

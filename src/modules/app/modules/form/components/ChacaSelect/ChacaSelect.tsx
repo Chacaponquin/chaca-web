@@ -1,22 +1,21 @@
 import { useState, useEffect, Fragment } from "react"
 import clsx from "clsx"
 import { useFilters } from "@form/hooks"
-import { ChacaFormProps } from "../../interfaces/chacaForm.interface"
-import { Size } from "../../interfaces/dimension.interface"
+import { ChacaFormProps } from "../../interfaces/form"
+import { Size } from "../../interfaces/dimension"
 import { Option, Select } from "./components"
 import { ChacaDropdown } from ".."
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-interface ChacaObjectSelectProps<T> extends ChacaFormProps<any> {
+interface Props<T> extends ChacaFormProps<any> {
   size?: Size
   placeholder: string
   options: Array<T>
   labelKey: keyof T
   valueKey: keyof T
   height?: number
+  selectedClass?: string
 }
-
-type Props<T> = ChacaObjectSelectProps<T>
 
 interface SelectOptions {
   label: string
@@ -32,6 +31,7 @@ export default function ChacaSelect<T>({
   value,
   dimension = "normal",
   height = 300,
+  selectedClass = "",
 }: Props<T>) {
   const { paddingClass, textClass } = useFilters({ dimension })
 
@@ -67,31 +67,39 @@ export default function ChacaSelect<T>({
     }
   }
 
-  const parentClass = clsx(
-    "w-full flex items-center border-solid transition-all duration-300 justify-between cursor-pointer rounded-sm gap-5 whitespace-nowrap",
-    { "border-purple-6": openOptions, "hover:border-purple-6": !openOptions },
+  const PARENT_CLASS = clsx(
+    "w-full cursor-pointer rounded-sm gap-5 whitespace-nowrap",
+    "transition-all duration-300",
+    "flex items-center justify-between",
     "text-black dark:text-white",
     "border-2 border-scale-11",
     "dark:border-scale-3 dark:focus:border-scale-9 dark:hover:border-scale-9",
     "bg-white dark:bg-scale-5",
+
+    { "border-purple-6": openOptions, "hover:border-purple-6": !openOptions },
+
     textClass,
     paddingClass,
+
+    selectedClass,
   )
 
   function handleChangeOpenOptions() {
     setOpenOptions((prev) => !prev)
   }
 
+  const SELECTED_CLASS = clsx("bg-white dark:bg-scale-5 shadow-lg")
+
   return (
     <ChacaDropdown
       header={
         <Select
           text={selectIndex !== null ? selectOptions[selectIndex].label : placeholder}
-          className={parentClass}
+          className={PARENT_CLASS}
           onClick={handleChangeOpenOptions}
         />
       }
-      className="bg-white dark:bg-scale-5 shadow-lg"
+      className={SELECTED_CLASS}
       height={height}
     >
       <Fragment>

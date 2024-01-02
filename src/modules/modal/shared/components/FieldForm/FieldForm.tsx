@@ -31,6 +31,8 @@ export default function FieldForm({
   handleChangeSequenceStartsWith,
   handleChangeSequenceStep,
   handleChangeRef,
+  handleAddFieldSchemaArgument,
+  handleDeleteFieldSchemaArgument,
   datasetId,
 }: FieldFormProps) {
   const { FIELD_NAME_TEXT, DATA_TYPE_TEXT } = useTranslation({
@@ -68,6 +70,8 @@ export default function FieldForm({
         handleChangeSequenceStartsWith={handleChangeSequenceStartsWith}
         handleChangeSequenceStep={handleChangeSequenceStep}
         handleChangeRefField={handleChangeRef}
+        handleAddFieldSchemaArgument={handleAddFieldSchemaArgument}
+        handleDeleteFieldSchemaArgument={handleDeleteFieldSchemaArgument}
       />
 
       <section className="flex flex-col gap-3 mt-1">

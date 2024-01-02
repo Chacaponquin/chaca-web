@@ -2,7 +2,7 @@ import { useDatatypes } from "@modules/datasets/hooks"
 import { useReducer, Reducer } from "react"
 import { FieldFormPayload, fieldFormReducer } from "../reducer"
 import { FORM_ACTIONS } from "../constants/FORM_ACTIONS"
-import { DATA_TYPES } from "@modules/schemas/constants"
+import { ARGUMENT_TYPE, DATA_TYPES } from "@modules/schemas/constants"
 import { useSchemas } from "@modules/schemas/hooks"
 import { SequenceDataType, SingleValueDataType } from "@modules/datasets/interfaces/dataset-field"
 import {
@@ -13,13 +13,14 @@ import {
 } from "../interfaces"
 import { EnumField, SequentialField } from "@modules/datasets/domain/fields"
 import { FieldForm } from "@modules/modal/interfaces"
+import { Argument } from "@modules/schemas/interfaces/argument"
 
 interface Props {
   field: FieldForm
   datasetId: string
 }
 
-export const useFieldForm = ({ field: inputField, datasetId }: Props): FieldActions => {
+export default function useFieldForm({ field: inputField, datasetId }: Props): FieldActions {
   const { DATA_TYPES_ARRAY } = useDatatypes({ fieldId: inputField.id, datasetId: datasetId })
   const [field, formDispatch] = useReducer<Reducer<FieldForm, FieldFormPayload>>(
     fieldFormReducer,
@@ -107,6 +108,61 @@ export const useFieldForm = ({ field: inputField, datasetId }: Props): FieldActi
             args: {},
             schema: parent,
             option: optionName,
+          },
+        },
+      },
+    })
+  }
+
+  function handleAddFieldSchemaArgument(argument: Argument): void {
+    let value: unknown
+    switch (argument.inputType) {
+      case ARGUMENT_TYPE.BOOLEAN:
+        value = true
+        break
+      case ARGUMENT_TYPE.DATE:
+        value = new Date()
+        break
+      case ARGUMENT_TYPE.FLOAT:
+        value = 1.0
+        break
+      case ARGUMENT_TYPE.NUMBER:
+        value = 1
+        break
+      case ARGUMENT_TYPE.SELECT: {
+        const options = argument.selectValues as Array<string>
+        value = options[0]
+        break
+      }
+      case ARGUMENT_TYPE.TEXT:
+        value = ""
+        break
+      default:
+        value = ""
+        break
+    }
+
+    handleUpdateFieldSchemaArguments({ argumentName: argument.argument, value: value })
+  }
+
+  function handleDeleteFieldSchemaArgument(argument: string) {
+    const dataType = field.dataType as SingleValueDataType
+
+    let newArguments = {}
+    Object.entries(dataType.fieldType.args).forEach(([key, value]) => {
+      if (key !== argument) {
+        newArguments = { ...newArguments, [key]: value }
+      }
+    })
+
+    formDispatch({
+      type: FORM_ACTIONS.CHANGE_FIELD_DATATYPE,
+      payload: {
+        dataType: {
+          type: DATA_TYPES.SINGLE_VALUE,
+          fieldType: {
+            ...dataType.fieldType,
+            args: newArguments,
           },
         },
       },
@@ -213,5 +269,7 @@ export const useFieldForm = ({ field: inputField, datasetId }: Props): FieldActi
     handleChangeSequenceStartsWith,
     handleChangeSequenceStep,
     handleChangeRef,
+    handleAddFieldSchemaArgument,
+    handleDeleteFieldSchemaArgument,
   }
 }

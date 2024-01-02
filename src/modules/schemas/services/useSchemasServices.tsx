@@ -20,7 +20,9 @@ export default function useSchemasServices() {
           options: d.options.map((o) => ({
             id: uuid(),
             name: o.name,
-            arguments: o.arguments,
+            arguments: o.arguments.map((a) => {
+              return { ...a, id: uuid() }
+            }),
             showName: o.showName,
           })),
           showName: d.showName,

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 
 import { useMemo, useState, useRef, useId } from "react"
-import { ChacaFormProps } from "../../interfaces/chacaForm.interface"
-import { Size } from "../../interfaces/dimension.interface"
+import { ChacaFormProps } from "../../interfaces/form"
+import { Size } from "../../interfaces/dimension"
 import { ArrowDown, ArrowUp } from "@modules/app/modules/icon/components"
 import clsx from "clsx"
 

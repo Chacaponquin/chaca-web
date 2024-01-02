@@ -1,3 +1,3 @@
-import { useFieldForm } from "./useFieldForm"
+import useFieldForm from "./useFieldForm"
 
 export { useFieldForm }

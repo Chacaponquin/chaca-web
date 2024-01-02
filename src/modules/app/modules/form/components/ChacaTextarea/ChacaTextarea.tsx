@@ -1,5 +1,5 @@
 import { useFilters } from "../../../../modules/form/hooks"
-import { ChacaFormProps } from "../../interfaces/chacaForm.interface"
+import { ChacaFormProps } from "../../interfaces/form"
 import { useMemo } from "react"
 import clsx from "clsx"
 

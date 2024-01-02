@@ -1,4 +1,4 @@
-import { Argument } from "../interfaces/argument"
+import { ARGUMENT_TYPE } from "../constants"
 
 export interface ApiSchemaResponse {
   name: string
@@ -8,6 +8,13 @@ export interface ApiSchemaResponse {
 
 export interface ApiSchemaOptionResponse {
   name: string
-  arguments: Argument[]
+  arguments: ApiArgument[]
   showName: string
+}
+
+export interface ApiArgument {
+  argument: string
+  inputType: ARGUMENT_TYPE
+  selectValues?: string[]
+  description: string
 }

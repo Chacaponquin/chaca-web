@@ -8,12 +8,15 @@ import {
 import { useSchemas } from "@modules/schemas/hooks"
 import { OptionArguments } from "./components"
 import { useMemo } from "react"
+import { Argument } from "@modules/schemas/interfaces/argument"
 
 interface Props {
   fieldType: SchemaValueTypeObject
-  handleSelectFieldSchema: (v: string) => void
-  handleSelectFieldSchemaOption: (p: SelectFieldSchemaOptionProps) => void
-  handleUpdateFieldSchemaArguments: (p: UpdateArgumentsProps) => void
+  handleSelectFieldSchema(v: string): void
+  handleSelectFieldSchemaOption(p: SelectFieldSchemaOptionProps): void
+  handleUpdateFieldSchemaArguments(p: UpdateArgumentsProps): void
+  handleAddFieldSchemaArgument(argument: Argument): void
+  handleDeleteFieldSchemaArgument(argument: string): void
 }
 
 export default function SchemaValueConfig({
@@ -21,6 +24,8 @@ export default function SchemaValueConfig({
   handleSelectFieldSchema,
   handleSelectFieldSchemaOption,
   handleUpdateFieldSchemaArguments,
+  handleAddFieldSchemaArgument,
+  handleDeleteFieldSchemaArgument,
 }: Props) {
   const { schemas, findParentOptions } = useSchemas()
   const { MODULE_TEXT, OPTION_TEXT } = useTranslation({
@@ -42,7 +47,7 @@ export default function SchemaValueConfig({
   }
 
   return (
-    <div className="grid grid-cols-2 gap-x-4 gap-y-3">
+    <div className="grid grid-cols-2 esm:grid-cols-1 gap-x-4 gap-y-3 bg-scale-12 dark:bg-scale-5 px-5 py-3 rounded">
       <ChacaSelect
         options={schemas}
         labelKey="name"
@@ -50,6 +55,7 @@ export default function SchemaValueConfig({
         placeholder={MODULE_TEXT}
         value={fieldType.schema}
         onChange={handleSelectModule}
+        selectedClass="dark:!bg-scale-3"
       />
 
       <ChacaSelect
@@ -59,6 +65,7 @@ export default function SchemaValueConfig({
         valueKey="id"
         placeholder={OPTION_TEXT}
         onChange={handleSelectModuleOption}
+        selectedClass="dark:!bg-scale-3"
       />
 
       <OptionArguments
@@ -66,6 +73,8 @@ export default function SchemaValueConfig({
         option={fieldType.option}
         args={fieldType.args}
         handleUpdateFieldSchemaArguments={handleUpdateFieldSchemaArguments}
+        handleAddFieldSchemaArgument={handleAddFieldSchemaArgument}
+        handleDeleteFieldSchemaArgument={handleDeleteFieldSchemaArgument}
       />
     </div>
   )

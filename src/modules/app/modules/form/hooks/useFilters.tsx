@@ -1,4 +1,4 @@
-import { Dimension } from "../interfaces/dimension.interface"
+import { Dimension } from "../interfaces/dimension"
 import clsx from "clsx"
 
 export function useFilters({ dimension }: { dimension: Dimension }) {
