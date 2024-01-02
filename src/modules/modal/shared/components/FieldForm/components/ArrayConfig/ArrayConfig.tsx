@@ -36,7 +36,7 @@ export default function ArrayConfig({
               max={isArray.max}
               step={1}
               onChange={(v) => handleChangeMinIsArray(v)}
-              dimension="large"
+              dimension="small"
               id={minId}
             />
           </div>
@@ -53,7 +53,7 @@ export default function ArrayConfig({
               step={1}
               size={90}
               onChange={(v) => handleChangeMaxIsArray(v)}
-              dimension="large"
+              dimension="small"
             />
           </div>
         </div>
