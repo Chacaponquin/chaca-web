@@ -48,7 +48,7 @@ export default function Tooltip({ position = "top", children, text }: Props) {
       default:
         return { translateX: 0, translateY: -height - OFFSET }
     }
-  }, [position, elementRef.current, textRef.current])
+  }, [position, elementRef.current, textRef.current, show, children])
 
   return (
     <div
@@ -56,17 +56,16 @@ export default function Tooltip({ position = "top", children, text }: Props) {
       onMouseEnter={handleShow}
       onMouseLeave={handleHide}
     >
-      {show && (
-        <div
-          className="shadow-lg bg-scale-3 dark:bg-scale-3 text-white px-3 py-1 rounded absolute"
-          style={{
-            transform: `translateX(${posStyle.translateX}px) translateY(${posStyle.translateY}px)`,
-          }}
-          ref={textRef}
-        >
-          {text}
-        </div>
-      )}
+      <div
+        className="shadow-lg bg-scale-3 dark:bg-scale-3 text-white px-3 py-1 rounded absolute"
+        style={{
+          transform: `translateX(${posStyle.translateX}px) translateY(${posStyle.translateY}px)`,
+          visibility: show ? "visible" : "hidden",
+        }}
+        ref={textRef}
+      >
+        {text}
+      </div>
 
       <div ref={elementRef}>{children}</div>
     </div>

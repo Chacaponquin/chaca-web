@@ -4,9 +4,9 @@ import { Fragment } from "react"
 import { Item } from "./components"
 
 interface Props {
-  handleEditDataset: () => void
-  handleDeleteDataset: () => void
-  handleExportDataset: () => void
+  handleEditDataset(): void
+  handleDeleteDataset(): void
+  handleExportDataset(): void
   name: string
 }
 
