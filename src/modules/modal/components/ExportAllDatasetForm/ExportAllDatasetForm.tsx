@@ -2,8 +2,11 @@ import { ModalExportAllDatasets } from "@modules/modal/interfaces"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { ExportForm, ModalContainer } from "../../shared/components"
 import { useConfig } from "@modules/config/hooks"
+import { useModal } from "@modules/modal/hooks"
 
 export default function ExportAllDatasetForm({ handleCreateAllDatasets }: ModalExportAllDatasets) {
+  const { handleCloseModal } = useModal()
+
   const { EXPORT_ALL_DATASETS_TEXT, SUBMIT_TEXT } = useTranslation({
     SUBMIT_TEXT: { en: "Export Datasets", es: "Exportar Datasets" },
     EXPORT_ALL_DATASETS_TEXT: { en: "Export All Datasets", es: "Exportar todos los datasets" },
@@ -13,6 +16,7 @@ export default function ExportAllDatasetForm({ handleCreateAllDatasets }: ModalE
 
   function handleExport() {
     handleCreateAllDatasets({ config: config })
+    handleCloseModal()
   }
 
   return (

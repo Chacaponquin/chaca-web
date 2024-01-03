@@ -4,7 +4,7 @@ import { useEnv } from "@modules/app/modules/env/hooks"
 import { SchemasContext } from "../context"
 
 export function useSchemas() {
-  const { schemas } = useContext(SchemasContext)
+  const { schemas, loading } = useContext(SchemasContext)
   const { API_ROUTE } = useEnv()
 
   const optionApiRoute = (route: string): string => {
@@ -34,5 +34,5 @@ export function useSchemas() {
     [findParent],
   )
 
-  return { findParent, findType, findParentOptions, optionApiRoute, schemas }
+  return { findParent, findType, findParentOptions, optionApiRoute, schemas, loading }
 }

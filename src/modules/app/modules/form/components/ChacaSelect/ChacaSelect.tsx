@@ -14,7 +14,7 @@ interface Props<T> extends ChacaFormProps<any> {
   labelKey: keyof T
   valueKey: keyof T
   height?: number
-  selectedClass?: string
+  color?: "dark" | "light"
 }
 
 interface SelectOptions {
@@ -31,7 +31,7 @@ export default function ChacaSelect<T>({
   value,
   dimension = "normal",
   height = 300,
-  selectedClass = "",
+  color = "light",
 }: Props<T>) {
   const { paddingClass, textClass } = useFilters({ dimension })
 
@@ -74,14 +74,13 @@ export default function ChacaSelect<T>({
     "text-black dark:text-white",
     "border-2 border-scale-11",
     "dark:border-scale-3 dark:focus:border-scale-9 dark:hover:border-scale-9",
-    "bg-white dark:bg-scale-5",
+
+    { "bg-white dark:bg-scale-3": color === "dark", "bg-white dark:bg-scale-5": color === "light" },
 
     { "border-purple-6": openOptions, "hover:border-purple-6": !openOptions },
 
     textClass,
     paddingClass,
-
-    selectedClass,
   )
 
   function handleChangeOpenOptions() {

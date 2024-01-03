@@ -3,7 +3,7 @@ import { CONFIG_ACTIONS } from "../constants"
 import { ConfigContext } from "../context"
 
 export default function useConfig() {
-  const { fileOptions, config, configDispatch } = useContext(ConfigContext)
+  const { fileOptions, config, configDispatch, loading } = useContext(ConfigContext)
 
   function handleResetConfig() {
     configDispatch({
@@ -42,5 +42,6 @@ export default function useConfig() {
     handleChangeFileType,
     config,
     fileOptions,
+    loading,
   }
 }

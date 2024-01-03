@@ -15,7 +15,7 @@ interface Props {
 
 const ConfigContext = createContext<Props>({} as Props)
 
-const ConfigProvider = ({ children }: { children: React.ReactElement }) => {
+function ConfigProvider({ children }: { children: React.ReactElement }) {
   const [fileOptions, setFileOptions] = useState<Array<FileConfigOption>>([])
   const [loading, setLoading] = useState(false)
 
