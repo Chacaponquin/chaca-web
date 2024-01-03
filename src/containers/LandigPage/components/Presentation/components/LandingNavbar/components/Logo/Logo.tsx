@@ -12,8 +12,8 @@ export default function Logo({ handleChange, open }: Props) {
       <Menu handleChange={handleChange} open={open} />
 
       <div className="flex items-center gap-x-5">
-        <AppLogo size={60} />
-        <h1 className="font-fontBold text-white text-2xl uppercase md:block hidden">CHACA</h1>
+        <AppLogo size={50} />
+        <h1 className="font-fontMedium text-white text-2xl uppercase md:block hidden">CHACA</h1>
       </div>
     </div>
   )

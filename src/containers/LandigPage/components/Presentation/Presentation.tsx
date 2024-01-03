@@ -2,7 +2,7 @@ import { Content, LandingNavbar } from "./components"
 
 export default function Presentation() {
   return (
-    <section className="md:min-h-screen w-full h-max md:mb-0 mb-20">
+    <section className="h-screen w-full md:mb-0 mb-20 flex flex-col justify-center min-h-[700px]">
       <LandingNavbar />
       <Content />
     </section>
