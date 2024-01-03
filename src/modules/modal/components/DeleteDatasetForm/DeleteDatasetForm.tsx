@@ -2,13 +2,12 @@ import { useTranslation } from "@modules/app/modules/language/hooks"
 import { DeleteForm, ModalContainer } from "../../shared/components"
 import { useDeleteDatasetForm } from "./hooks"
 
-const DeleteDatasetForm = ({
-  datasetName,
-  datasetId,
-}: {
+interface Props {
   datasetName: string
   datasetId: string
-}) => {
+}
+
+export default function DeleteDatasetForm({ datasetName, datasetId }: Props) {
   const { handleDeleteDataset } = useDeleteDatasetForm({ datasetId })
 
   const { DELETE_DATASET_TEXT, DELETE_DATASET_MESSAGE } = useTranslation({
@@ -31,5 +30,3 @@ const DeleteDatasetForm = ({
     </ModalContainer>
   )
 }
-
-export default DeleteDatasetForm

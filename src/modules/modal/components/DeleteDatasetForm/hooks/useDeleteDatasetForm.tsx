@@ -5,7 +5,7 @@ export default function useDeleteDatasetForm({ datasetId }: { datasetId: string 
   const { handleCloseModal } = useModal()
   const { hanldeDeleteDataset: handleDeleteDatasetService } = useDatasets()
 
-  const handleDeleteDataset = () => {
+  function handleDeleteDataset() {
     handleDeleteDatasetService(datasetId)
 
     handleCloseModal()
