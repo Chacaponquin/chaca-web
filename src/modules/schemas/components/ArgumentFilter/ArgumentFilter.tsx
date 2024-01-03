@@ -1,9 +1,8 @@
 import { useMemo, Fragment } from "react"
 import { Calendar } from "primereact/calendar"
-import { InputSwitch } from "primereact/inputswitch"
 import { Argument } from "@modules/schemas/interfaces/argument"
 import { ARGUMENT_TYPE } from "@modules/schemas/constants"
-import { ChacaTextInput, ChacaSelect, ChacaNumberInput } from "@form/components"
+import { ChacaTextInput, ChacaSelect, ChacaNumberInput, ChacaSwitchButton } from "@form/components"
 
 interface Props {
   arg: Argument
@@ -30,6 +29,8 @@ export default function ArgumentFilter({ arg, value, handleChangeArgumentValue }
             value={value}
             dimension="small"
             valueKey="value"
+            size={"full"}
+            color="dark"
           />
         )
       }
@@ -61,7 +62,13 @@ export default function ArgumentFilter({ arg, value, handleChangeArgumentValue }
       }
 
       case ARGUMENT_TYPE.BOOLEAN: {
-        return <InputSwitch onChange={(e) => handleChangeArgumentValue(e.value)} checked={value} />
+        return (
+          <ChacaSwitchButton
+            value={value as boolean}
+            dimension="small"
+            onChange={handleChangeArgumentValue}
+          />
+        )
       }
 
       case ARGUMENT_TYPE.DATE: {
@@ -92,5 +99,5 @@ export default function ArgumentFilter({ arg, value, handleChangeArgumentValue }
     }
   }, [arg, handleChangeArgumentValue, value])
 
-  return <Fragment>{filterArgument}</Fragment>
+  return filterArgument
 }

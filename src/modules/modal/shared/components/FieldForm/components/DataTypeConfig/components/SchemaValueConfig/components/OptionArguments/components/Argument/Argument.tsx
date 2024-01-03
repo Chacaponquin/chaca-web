@@ -33,7 +33,7 @@ export default function Argument({
   }
 
   return (
-    <div className="flex gap-x-2 items-center max-w-[300px] esm:max-w-full">
+    <div className="flex gap-x-2 items-center max-w-[400px] min-w-[300px] esm:max-w-full">
       <Enable enabled={enabled} handleChange={handleChangeEnabled} />
 
       {argument.argument in args ? (

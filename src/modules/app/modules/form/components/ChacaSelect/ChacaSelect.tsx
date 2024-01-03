@@ -32,6 +32,7 @@ export default function ChacaSelect<T>({
   dimension = "normal",
   height = 300,
   color = "light",
+  size,
 }: Props<T>) {
   const { paddingClass, textClass } = useFilters({ dimension })
 
@@ -100,6 +101,7 @@ export default function ChacaSelect<T>({
       }
       className={SELECTED_CLASS}
       height={height}
+      size={size === "full" ? "full" : "auto"}
     >
       <Fragment>
         {options.map((_, index) => (
