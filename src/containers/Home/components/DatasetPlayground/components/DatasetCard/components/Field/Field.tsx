@@ -15,7 +15,7 @@ export default function Field({ field, datasetHasKeys }: Props) {
   const { searchRefField } = useDatasets()
 
   return (
-    <div className="flex items-center relative min-w-[380px] justify-between">
+    <div className="flex items-center relative justify-between">
       <Connect id={field.id} position={Position.Left} type="target" />
 
       <div

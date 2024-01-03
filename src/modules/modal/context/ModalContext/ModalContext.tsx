@@ -10,13 +10,13 @@ import {
   ExportSelectDatasetForm,
 } from "@modules/modal/components"
 
-interface ModalContextProps {
+interface Props {
   openModal: null | ModalProps
-  handleOpenModal: (props: ModalProps) => void
-  handleCloseModal: () => void
+  handleOpenModal(props: ModalProps): void
+  handleCloseModal(): void
 }
 
-const ModalContext = createContext<ModalContextProps>({} as ModalContextProps)
+const ModalContext = createContext<Props>({ openModal: null } as Props)
 
 function ModalProvider({ children }: { children: ReactElement }) {
   const [openModal, setOpenModal] = useState<ModalProps | null>(null)

@@ -148,6 +148,10 @@ export abstract class Field<T, E extends ExportDatatype> {
   public setIsKey(v: boolean): void {
     this._isKey = v
   }
+
+  public setDatatype(datatype: T): void {
+    this._dataType = datatype
+  }
 }
 
 export class SchemaValueNode extends Field<SingleValueDataType, SingleValueDataType> {
@@ -216,7 +220,10 @@ export class SequentialNode extends Field<SequentialDataType, SequentialDataType
 
     return {
       name: this.name,
-      dataType: this.dataType,
+      dataType: {
+        ...this.dataType,
+        values: this.dataType.values.map((v) => v.trim()).filter((v) => v !== ""),
+      },
       isArray: this.isArray,
       isKey: this.isKey,
       isPossibleNull: this.isPossibleNull,
@@ -298,7 +305,10 @@ export class EnumNode extends Field<EnumDataType, EnumDataType> {
 
     return {
       name: this.name,
-      dataType: this.dataType,
+      dataType: {
+        ...this.dataType,
+        values: this.dataType.values.map((v) => v.trim()).filter((v) => v !== ""),
+      },
       isArray: this.isArray,
       isKey: this.isKey,
       isPossibleNull: this.isPossibleNull,

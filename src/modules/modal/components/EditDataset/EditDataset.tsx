@@ -3,7 +3,11 @@ import { DatasetForm, ModalContainer } from "../../shared/components"
 import { useEditDataset } from "./hooks"
 import { Dataset } from "@modules/datasets/domain/tree"
 
-export default function EditDataset({ dataset }: { dataset: Dataset }) {
+interface Props {
+  dataset: Dataset
+}
+
+export default function EditDataset({ dataset }: Props) {
   const { TITLE, EDIT_TEXT } = useTranslation({
     TITLE: { en: "Edit Dataset", es: "Editar Dataset" },
     EDIT_TEXT: { en: "Edit Dataset", es: "Editar Dataset" },

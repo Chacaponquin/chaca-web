@@ -42,7 +42,7 @@ export default function DatasetCard({ data: { dataset, handleCreateDataset } }: 
         limit={dataset.limit}
       />
 
-      <div className="flex flex-col py-2 max-h-[350px] overflow-y-auto">
+      <div className="flex flex-col py-2 min-w-[380px]">
         {dataset.nodes.map((field, i) => (
           <Field key={i} field={field} datasetHasKeys={dataset.hasKeyField()} />
         ))}

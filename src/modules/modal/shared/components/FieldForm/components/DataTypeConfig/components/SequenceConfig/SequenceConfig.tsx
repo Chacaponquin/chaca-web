@@ -19,12 +19,12 @@ export default function SequenceConfig({
   const stepId = useId()
 
   return (
-    <div className="flex items-center justify-between gap-3 w-full">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
       <FormInputSection labelText={"Starts with"} id={startId}>
         <ChacaNumberInput
           value={startsWith}
           size={"full"}
-          dimension="large"
+          dimension="small"
           onChange={handleChangeSequenceStartsWith}
           min={0.1}
           id={stepId}
@@ -35,7 +35,7 @@ export default function SequenceConfig({
         <ChacaNumberInput
           value={step}
           size={"full"}
-          dimension="large"
+          dimension="small"
           onChange={handleChangeSequenceStep}
           min={0.1}
           id={stepId}

@@ -4,6 +4,6 @@ export class EnumField {
   }
 
   public static transformString(values: string): Array<string> {
-    return values.split("\n").map((s) => s.trim())
+    return values.split("\n")
   }
 }
