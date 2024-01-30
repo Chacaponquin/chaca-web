@@ -52,7 +52,7 @@ export default function useHome() {
 
   useEffect(() => {
     socket.on(SOCKET_EVENTS.GET_FILE_URL, (filename: string) => {
-      downloadDatasetFile(filename)
+      downloadDatasetFile({ filename: filename })
       setCreateDataLoading(false)
       handleResetConfig()
     })

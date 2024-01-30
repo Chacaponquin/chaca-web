@@ -33,7 +33,7 @@ export default function useDatasetServices() {
       }
     }
   }
-  function downloadDatasetFile(filename: string) {
+  function downloadDatasetFile({ filename }: { filename: string }) {
     fetch(API_ROUTES.DOWNLOAD_FILE(API_ROUTE, filename), {
       method: "GET",
       headers: {
@@ -46,7 +46,7 @@ export default function useDatasetServices() {
 
         const link = document.createElement("a")
         link.href = url
-        link.download = filename
+        link.download = "Dataset.zip"
 
         document.body.appendChild(link)
 

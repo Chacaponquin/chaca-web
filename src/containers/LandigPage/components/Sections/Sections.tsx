@@ -22,7 +22,7 @@ export default function Sections() {
       es: "Usa las funciones mock predefinidas en los campos de tus datasets para definir el tipo de valores que se generarán en cada documento",
     },
 
-    SECOND_SECTION_HEADER_1: { en: "Create relations in", es: "Crea realciones entre" },
+    SECOND_SECTION_HEADER_1: { en: "Create relations in", es: "Crea relaciones entre" },
     SECOND_SECTION_HEADER_2: { en: "your datasets", es: "tus datasets" },
     SECOND_SECTION_TEXT: {
       en: "Relate the fields between your datasets to be able to take values from documents generated from another dataset from one field",
