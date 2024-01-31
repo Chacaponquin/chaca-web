@@ -50,48 +50,55 @@ export default function useHome() {
     },
   } = useHomeTranslations()
 
-  useEffect(() => {
-    socket.on(SOCKET_EVENTS.GET_FILE_URL, (filename: string) => {
-      downloadDatasetFile({ filename: filename })
+  async function handleFinishCreation(filename: string) {
+    try {
+      await downloadDatasetFile({ filename: filename })
       setCreateDataLoading(false)
       handleResetConfig()
-    })
+    } catch (error) {
+      toastError({ message: CREATION_ERROR, id: "dataset-creation-error" })
+    }
+  }
 
-    socket.on(SOCKET_EVENTS.CREATION_ERROR, (error: DatasetCreationError) => {
-      if (error.code === DATASETS_ERROR_HTTP_STATUS.CYCLIC) {
-        toastError({ message: CYCLIC_DATA(), id: "cyclic-data-error" })
-      } else if (error.code === DATASETS_ERROR_HTTP_STATUS.EMPTY_SEQUENTIAL) {
-        toastError({
-          message: EMPTY_SEQUENTIAL_FIELD({ field: error.content.field }),
-          id: "empty-sequential-field-error",
-        })
-      } else if (error.code === DATASETS_ERROR_HTTP_STATUS.NOT_ENOUGH_VALUES_REF) {
-        toastError({
-          message: NOT_ENOUGH_VALUES_FOR_REF(error.content),
-          id: "not-enought-values-for-ref-error",
-        })
-      } else if (error.code === DATASETS_ERROR_HTTP_STATUS.DEFAULT) {
-        toastError({ message: CREATION_ERROR, id: "dataset-creation-error" })
-      } else if (error.code === DATASETS_ERROR_HTTP_STATUS.NOT_EXIST_FIELD) {
-        toastError({ message: NOT_EXIST_FIELD(error.content), id: "not-exist-field-error" })
-      } else if (error.code === DATASETS_ERROR_HTTP_STATUS.REF_NOT_KEY) {
-        toastError({
-          message: TRY_REF_A_NOT_KEY_FIELD(error.content),
-          id: "try-ref-a-not-key-field-error",
-        })
-      } else {
-        toastError({ message: CREATION_ERROR, id: "dataset-creation-error" })
-      }
+  function handleErrorCreation(error: DatasetCreationError) {
+    if (error.code === DATASETS_ERROR_HTTP_STATUS.CYCLIC) {
+      toastError({ message: CYCLIC_DATA(), id: "cyclic-data-error" })
+    } else if (error.code === DATASETS_ERROR_HTTP_STATUS.EMPTY_SEQUENTIAL) {
+      toastError({
+        message: EMPTY_SEQUENTIAL_FIELD({ field: error.content.field }),
+        id: "empty-sequential-field-error",
+      })
+    } else if (error.code === DATASETS_ERROR_HTTP_STATUS.NOT_ENOUGH_VALUES_REF) {
+      toastError({
+        message: NOT_ENOUGH_VALUES_FOR_REF(error.content),
+        id: "not-enought-values-for-ref-error",
+      })
+    } else if (error.code === DATASETS_ERROR_HTTP_STATUS.DEFAULT) {
+      toastError({ message: CREATION_ERROR, id: "dataset-creation-error" })
+    } else if (error.code === DATASETS_ERROR_HTTP_STATUS.NOT_EXIST_FIELD) {
+      toastError({ message: NOT_EXIST_FIELD(error.content), id: "not-exist-field-error" })
+    } else if (error.code === DATASETS_ERROR_HTTP_STATUS.REF_NOT_KEY) {
+      toastError({
+        message: TRY_REF_A_NOT_KEY_FIELD(error.content),
+        id: "try-ref-a-not-key-field-error",
+      })
+    } else {
+      toastError({ message: CREATION_ERROR, id: "dataset-creation-error" })
+    }
 
-      setCreateDataLoading(false)
-    })
+    setCreateDataLoading(false)
+  }
+
+  useEffect(() => {
+    socket.on(SOCKET_EVENTS.GET_FILE_URL, handleFinishCreation)
+    socket.on(SOCKET_EVENTS.CREATION_ERROR, handleErrorCreation)
 
     return () => {
       socket.off(SOCKET_EVENTS.GET_FILE_URL)
       socket.off(SOCKET_EVENTS.CREATION_ERROR)
       socket.off(SOCKET_EVENTS.CREATE_DATASETS)
     }
-  }, [socket, language, handleResetConfig])
+  }, [socket, language, handleFinishCreation, handleErrorCreation])
 
   async function exportDatasets(inputDatasets: Array<Dataset>, config: Config): Promise<void> {
     try {

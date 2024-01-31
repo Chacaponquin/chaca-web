@@ -14,3 +14,5 @@ export class EmptySequentialFieldError extends Error {
     super()
   }
 }
+
+export class DownloadDatasetError extends Error {}

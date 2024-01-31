@@ -6,6 +6,7 @@ import { ExportFileConfigDTO } from "@modules/config/dto/file"
 import { useConfig } from "@modules/config/hooks"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { useEnv } from "@modules/app/modules/env/hooks"
+import { DownloadDatasetError } from "../errors"
 
 interface ExportDatasetsProps {
   datasets: Array<ExportDatasetDTO>
@@ -33,15 +34,19 @@ export default function useDatasetServices() {
       }
     }
   }
-  function downloadDatasetFile({ filename }: { filename: string }) {
-    fetch(API_ROUTES.DOWNLOAD_FILE(API_ROUTE, filename), {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/zip",
-      },
-    })
-      .then((response) => response.blob())
-      .then((blob) => {
+
+  async function downloadDatasetFile({ filename }: { filename: string }) {
+    try {
+      const response = await fetch(API_ROUTES.DOWNLOAD_FILE(API_ROUTE, filename), {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/zip",
+        },
+      })
+
+      if (response.ok) {
+        const blob = await response.blob()
+
         const url = window.URL.createObjectURL(new Blob([blob]))
 
         const link = document.createElement("a")
@@ -53,7 +58,10 @@ export default function useDatasetServices() {
         link.click()
 
         link.parentNode?.removeChild(link)
-      })
+      }
+    } catch (error) {
+      throw new DownloadDatasetError()
+    }
   }
 
   return { exportDatasets, downloadDatasetFile }
