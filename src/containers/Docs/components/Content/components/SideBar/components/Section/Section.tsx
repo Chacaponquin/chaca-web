@@ -1,28 +1,45 @@
 import { DocSubSection } from "@modules/docs/interfaces"
 import { SubSection, Title } from "./components"
+import { useSection } from "./hooks"
+import { SelectedDoc } from "@containers/Docs/interfaces"
 
 interface Props {
   title: string
   subs: Array<DocSubSection>
-  handleChangeSelectedDoc(section: DocSubSection): void
-  selectedDoc: DocSubSection | null
+  handleChangeSelectedDoc(section: SelectedDoc): void
+  selectedDoc: SelectedDoc | null
+  index: number
 }
 
-export default function Section({ title, subs, handleChangeSelectedDoc, selectedDoc }: Props) {
+export default function Section({
+  title,
+  subs,
+  handleChangeSelectedDoc,
+  selectedDoc,
+  index,
+}: Props) {
+  const { open, handleChangeOpen } = useSection()
+
   return (
     <li className="flex flex-col">
-      <Title title={title} />
+      <Title title={title} handleChangeOpen={handleChangeOpen} />
 
-      <ul className="flex flex-col">
-        {subs.map((subSection, i) => (
-          <SubSection
-            key={i}
-            title={subSection.title}
-            selected={subSection.title === selectedDoc?.title}
-            handleChangeSelectedDoc={() => handleChangeSelectedDoc(subSection)}
-          />
-        ))}
-      </ul>
+      {open && (
+        <ul className="flex flex-col">
+          {subs.map((subSection, subIndex) => (
+            <SubSection
+              key={subIndex}
+              title={subSection.title}
+              selected={
+                index === selectedDoc?.sectionIndex && subIndex === selectedDoc?.subSectionIndex
+              }
+              handleChangeSelectedDoc={() =>
+                handleChangeSelectedDoc({ sectionIndex: index, subSectionIndex: subIndex })
+              }
+            />
+          ))}
+        </ul>
+      )}
     </li>
   )
 }

@@ -2,7 +2,7 @@ import { DocSection } from "../interfaces"
 
 export default function useDocs() {
   const DOCS: Array<DocSection> = [
-    { subSections: [], folder: "guides", title: "Guides" },
+    { subSections: [{ file: "test", title: "Test" }], folder: "guides", title: "Guides" },
     { folder: "api", subSections: [], title: "REST API" },
     { folder: "export", subSections: [], title: "Export" },
     { folder: "field-types", subSections: [], title: "Field types" },

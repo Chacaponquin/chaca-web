@@ -1,10 +1,10 @@
-import { DocSubSection } from "@modules/docs/interfaces"
 import { Doc, SideBar } from "./components"
 import { Fragment } from "react"
+import { SelectedDoc } from "@containers/Docs/interfaces"
 
 interface Props {
-  handleChangeSelectedDoc(section: DocSubSection): void
-  selectedDoc: DocSubSection | null
+  handleChangeSelectedDoc(section: SelectedDoc): void
+  selectedDoc: SelectedDoc | null
 }
 
 export default function Content({ handleChangeSelectedDoc, selectedDoc }: Props) {

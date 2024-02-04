@@ -1,10 +1,10 @@
 import { useDocs } from "@modules/docs/hooks"
 import { Section } from "./components"
-import { DocSubSection } from "@modules/docs/interfaces"
+import { SelectedDoc } from "@containers/Docs/interfaces"
 
 interface Props {
-  handleChangeSelectedDoc(section: DocSubSection): void
-  selectedDoc: DocSubSection | null
+  handleChangeSelectedDoc(section: SelectedDoc): void
+  selectedDoc: SelectedDoc | null
 }
 
 export default function SideBar({ handleChangeSelectedDoc, selectedDoc }: Props) {
@@ -20,6 +20,7 @@ export default function SideBar({ handleChangeSelectedDoc, selectedDoc }: Props)
             subs={doc.subSections}
             selectedDoc={selectedDoc}
             handleChangeSelectedDoc={handleChangeSelectedDoc}
+            index={index}
           />
         ))}
       </ul>
