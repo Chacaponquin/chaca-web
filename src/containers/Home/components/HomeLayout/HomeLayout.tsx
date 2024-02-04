@@ -16,10 +16,10 @@ export default function HomeLayout({ children }: Props) {
 
   return (
     <Layout description={HOME_DESCRIPTION} title="Chaca | Home">
-      <main className="flex flex-col w-full h-screen fixed top-0 left-0">
+      <div className="flex flex-col w-full h-screen fixed top-0 left-0">
         <HomeNavbar />
         {children}
-      </main>
+      </div>
     </Layout>
   )
 }
