@@ -9,7 +9,7 @@ export const APP_ROUTES = {
   CONTACT_US: "/contact-us",
   NOT_FOUND: "/not-found",
 
-  DOCS: "https://chaca-doc.vercel.app/",
+  DOCS: "/docs",
 } as const
 
 export const API_ROUTES = {

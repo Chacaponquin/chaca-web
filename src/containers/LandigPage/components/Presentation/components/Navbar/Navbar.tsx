@@ -1,11 +1,9 @@
-import { Fragment } from "react"
 import { BarLink, Dropdown, Logo, RightSide } from "./components"
 import { useNavbar } from "./hooks"
 import { Link } from "react-router-dom"
-import { ExternalLink } from "@modules/app/components"
 import clsx from "clsx"
 
-export default function LandingNavbar() {
+export default function Navbar() {
   const { LINKS, handleChange, open } = useNavbar()
 
   const BAR_CLASS = clsx(
@@ -23,17 +21,9 @@ export default function LandingNavbar() {
 
         <div className="xl:flex hidden items-center gap-1">
           {LINKS.map((link, i) => (
-            <Fragment key={i}>
-              {link.external ? (
-                <ExternalLink route={link.route}>
-                  <BarLink text={link.title} />
-                </ExternalLink>
-              ) : (
-                <Link to={link.route}>
-                  <BarLink text={link.title} />
-                </Link>
-              )}
-            </Fragment>
+            <Link to={link.route} key={i}>
+              <BarLink text={link.title} />
+            </Link>
           ))}
         </div>
 

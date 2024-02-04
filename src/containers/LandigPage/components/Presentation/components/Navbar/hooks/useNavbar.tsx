@@ -17,9 +17,9 @@ export default function useNavbar() {
   })
 
   const LINKS: Array<NavbarLink> = [
-    { route: APP_ROUTES.HOME, title: HOME_TEXT, external: false },
-    { route: APP_ROUTES.DOCS, external: true, title: DOCS_TEXT },
-    { route: APP_ROUTES.CONTACT_US, title: CONTACT_US_TEXT, external: false },
+    { route: APP_ROUTES.HOME, title: HOME_TEXT },
+    { route: APP_ROUTES.DOCS, title: DOCS_TEXT },
+    { route: APP_ROUTES.CONTACT_US, title: CONTACT_US_TEXT },
   ]
 
   return { LINKS, open, handleChange }

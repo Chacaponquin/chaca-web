@@ -7,7 +7,7 @@ import { ToastProvider } from "@modules/app/modules/toast/context"
 import { UserProvider } from "@modules/user/context/UserContext"
 import { ErrorBoundary } from "react-error-boundary"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { ContactUs, Error404, Home, Landing } from "./containers"
+import { ContactUs, Docs, Error404, Home, Landing } from "./containers"
 import { SchemasProvider } from "@modules/schemas/context"
 import { DatasetsProvider } from "@modules/datasets/context"
 import { ConfigProvider } from "@modules/config/context"
@@ -48,6 +48,8 @@ export default function App() {
                   />
 
                   <Route path={APP_ROUTES.NOT_FOUND} element={<Error404 />} />
+
+                  <Route path={APP_ROUTES.DOCS} element={<Docs />} />
 
                   <Route path="*" element={<Error404 />} />
                 </Routes>
