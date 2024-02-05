@@ -1,17 +1,29 @@
 import { ArrowDown } from "@modules/app/modules/icon/components"
+import clsx from "clsx"
 
 interface Props {
   title: string
   handleChangeOpen(): void
+  open: boolean
 }
 
-export default function Title({ title, handleChangeOpen }: Props) {
+export default function Title({ title, handleChangeOpen, open }: Props) {
+  const CLASS = clsx(
+    "flex justify-between",
+    "rounded w-full cursor-pointer",
+    "py-1.5 px-4",
+    "stroke-black",
+    "mb-1",
+    {
+      "duration-300 hover:bg-scale-11/30 transition-all": !open,
+      "bg-scale-11/30": open,
+    },
+    { "text-purple-6": open, "text-scale-8": !open },
+  )
+
   return (
-    <div
-      onClick={handleChangeOpen}
-      className="flex rounded py-2 px-4 w-full justify-between stroke-black cursor-pointer duration-300 hover:bg-scale-11/30"
-    >
-      <p className="text-lg">{title}</p>
+    <div onClick={handleChangeOpen} className={CLASS}>
+      <p className="text-base">{title}</p>
 
       <button>
         <ArrowDown size={24} />

@@ -5,6 +5,7 @@ import { SelectedDoc } from "../interfaces"
 
 export default function useDocs() {
   const [selectedDoc, setSelectedDoc] = useState<SelectedDoc | null>(null)
+  const [content, setContent] = useState<string | null>(null)
   const { getDoc } = useDocsServices()
   const { DOCS } = useDocsModule()
 
@@ -14,7 +15,7 @@ export default function useDocs() {
         folder: DOCS[selectedDoc.sectionIndex].folder,
         file: DOCS[selectedDoc.sectionIndex].subSections[selectedDoc.subSectionIndex].file,
       }).then((data) => {
-        console.log(data)
+        return setContent(data)
       })
     }
   }, [selectedDoc])
@@ -23,5 +24,5 @@ export default function useDocs() {
     setSelectedDoc(section)
   }
 
-  return { selectedDoc, handleChangeSelectedDoc }
+  return { selectedDoc, handleChangeSelectedDoc, content }
 }

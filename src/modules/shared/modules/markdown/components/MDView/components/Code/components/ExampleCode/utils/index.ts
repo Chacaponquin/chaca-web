@@ -1,6 +1,6 @@
 import { Language } from "prism-react-renderer"
 
-export function validateCodeLanguage(lan: string): Language {
+export function validateCodeLanguage(lan: string | undefined): Language {
   if (lan === "javascript" || lan === "js") {
     return "javascript"
   }

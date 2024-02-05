@@ -11,11 +11,11 @@ export default function SideBar({ handleChangeSelectedDoc, selectedDoc }: Props)
   const { DOCS } = useDocs()
 
   return (
-    <nav className="h-full flex flex-col min-w-[400px] px-7 py-2">
-      <ul className="flex flex-col w-full gap-y-1">
+    <nav className="h-full flex flex-col min-w-[400px] px-4 py-2">
+      <ul className="flex flex-col w-full gap-y-0.5">
         {DOCS.map((doc, index) => (
           <Section
-            key={index}
+            key={doc.id}
             title={doc.title}
             subs={doc.subSections}
             selectedDoc={selectedDoc}

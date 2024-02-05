@@ -1,42 +1,40 @@
 import Markdown from "markdown-to-jsx"
-import ListItem from "../ListItem/ListItem"
-import Code from "../Code/Code"
+import clsx from "clsx"
+import { Code, H1, H2, H3, Img, List, ListItem, P, Pre, Strong } from "./components"
 
-export default function MDView({
-  content,
-  className = "",
-}: {
+interface Props {
   content: string
   className?: string
-}) {
+}
+
+export default function MDView({ content, className = "" }: Props) {
+  const CLASS = clsx("flex w-full text-base font-fontDoc", className)
+
   return (
-    <div className={`flex w-full text-base font-fontDoc'` + className}>
+    <div className={CLASS}>
       <Markdown
         className="w-full flex flex-col"
         options={{
           overrides: {
-            img: { props: { className: "mb-2 w-full" } },
-            ul: { props: { className: "ml-3 list-disc flex flex-col mb-4" } },
+            img: { component: Img },
+            ul: { component: List },
             li: {
               component: ListItem,
             },
-            h1: { props: { className: "text-3xl font-fontBold mb-2 text-black" } },
-            h3: { props: { className: "text-xl font-fontBold mt-3 text-black" } },
-            h2: { props: { className: "text-xl mb-1 font-fontBold text-black" } },
+            h1: { component: H1 },
+            h3: { component: H3 },
+            h2: { component: H2 },
             code: {
               component: Code,
-              props: {
-                className: "bg-slate-100 border-2 rounded-sm px-1 mt-3 py-2 font-fontCodeRegular",
-              },
             },
             pre: {
-              props: { className: "mt-2 mb-4" },
+              component: Pre,
             },
             p: {
-              props: { className: "text-scale-7 font-fontDoc" },
+              component: P,
             },
             strong: {
-              props: { className: "text-black font-bold font-fontDoc" },
+              component: Strong,
             },
           },
         }}
