@@ -13,10 +13,10 @@ export default function SubSection({ title, handleChangeSelectedDoc, selected }:
     "text-base",
     "rounded",
     {
-      "duration-300 hover:bg-scale-11/30 transition-all": !selected,
-      "bg-scale-11/30": selected,
+      "duration-300 hover:bg-scale-11/30 dark:hover:bg-scale-11/10 transition-all": !selected,
+      "bg-scale-11/30 dark:bg-scale-11/10": selected,
     },
-    { "text-purple-6": selected, "text-scale-8": !selected },
+    { "text-purple-6": selected, "text-scale-8 dark:text-white": !selected },
   )
 
   return (

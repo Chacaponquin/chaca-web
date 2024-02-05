@@ -12,13 +12,13 @@ export default function Title({ title, handleChangeOpen, selected }: Props) {
     "flex justify-between",
     "rounded w-full cursor-pointer",
     "py-1.5 px-4",
-    "stroke-black",
+    "stroke-black dark:stroke-white",
     "mb-1",
     {
-      "duration-300 hover:bg-scale-11/30 transition-all": !selected,
-      "bg-scale-11/30": selected,
+      "duration-300 hover:bg-scale-11/30 dark:hover:bg-scale-11/10 transition-all": !selected,
+      "bg-scale-11/30 dark:bg-scale-11/10": selected,
     },
-    { "text-purple-6": selected, "text-scale-8": !selected },
+    { "text-purple-6 dark:text-purple-6": selected, "text-scale-8 dark:text-white": !selected },
   )
 
   return (

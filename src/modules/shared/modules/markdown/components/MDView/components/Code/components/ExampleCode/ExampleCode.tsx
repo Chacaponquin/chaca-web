@@ -5,12 +5,12 @@ import { validateCodeLanguage } from "./utils"
 
 interface Props {
   code: string
-  language: string | undefined
+  language?: string
 }
 
 export default function ExampleCode({ code, language }: Props) {
   return (
-    <div className="code-view bg-code-dark px-4 py-3 overflow-x-auto rounded">
+    <div className="code-view bg-code-dark px-4 py-3 overflow-x-auto rounded w-full flex">
       <pre>
         <Highlight
           {...defaultProps}

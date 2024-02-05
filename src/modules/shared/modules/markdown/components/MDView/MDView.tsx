@@ -1,6 +1,7 @@
 import Markdown from "markdown-to-jsx"
 import clsx from "clsx"
 import {
+  A,
   Code,
   H1,
   H2,
@@ -15,6 +16,11 @@ import {
   Table,
   Td,
   Th,
+  ApiRoute,
+  ApiRouteExample,
+  PostSchemaArrayOne,
+  PostSchemaExampleOne,
+  PostSchemaExampleSecond,
 } from "./components"
 
 interface Props {
@@ -27,7 +33,7 @@ export default function MDView({ content }: Props) {
   return (
     <div className={CLASS}>
       <Markdown
-        className="w-full flex flex-col"
+        className="w-full flex flex-col dark:text-white text-black"
         options={{
           overrides: {
             img: { component: Img },
@@ -56,6 +62,12 @@ export default function MDView({ content }: Props) {
             table: { component: Table },
             th: { component: Th },
             td: { component: Td },
+            a: { component: A },
+            ApiRoute: { component: ApiRoute },
+            ApiRouteExample: { component: ApiRouteExample },
+            PostSchemaArrayOne: { component: PostSchemaArrayOne },
+            PostSchemaExampleOne: { component: PostSchemaExampleOne },
+            PostSchemaExampleSecond: { component: PostSchemaExampleSecond },
           },
         }}
       >

@@ -12,5 +12,32 @@ import H4 from "./H4/H4"
 import Table from "./Table/Table"
 import Th from "./Th/Th"
 import Td from "./Td/Td"
+import A from "./A/A"
+import ApiRouteExample from "./ApiRouteExample/ApiRouteExample"
+import ApiRoute from "./ApiRoute/ApiRoute"
+import PostSchemaArrayOne from "./PostSchemaArrayOne/PostSchemaArrayOne"
+import PostSchemaExampleOne from "./PostSchemaExampleOne/PostSchemaExampleOne"
+import PostSchemaExampleSecond from "./PostSchemaExampleSecond/PostSchemaExampleSecond"
 
-export { ListItem, Code, H1, H2, H3, Img, List, P, Pre, Strong, H4, Table, Th, Td }
+export {
+  ListItem,
+  Code,
+  H1,
+  H2,
+  H3,
+  Img,
+  List,
+  P,
+  Pre,
+  Strong,
+  H4,
+  Table,
+  Th,
+  Td,
+  A,
+  ApiRouteExample,
+  ApiRoute,
+  PostSchemaArrayOne,
+  PostSchemaExampleOne,
+  PostSchemaExampleSecond,
+}

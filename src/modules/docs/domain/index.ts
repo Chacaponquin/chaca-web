@@ -9,7 +9,6 @@ interface DocSectionProps {
 interface SubSectionProps {
   file: string
   title: string
-  subSections?: Array<SubSectionProps>
 }
 
 export interface SubSectionInf {
@@ -61,12 +60,10 @@ export class DocSubSection {
   private _id = uuid()
   private _file: string
   private _title: string
-  private _subSections: Array<DocSubSection>
 
-  constructor({ file, title, subSections = [] }: SubSectionProps) {
+  constructor({ file, title }: SubSectionProps) {
     this._file = file
     this._title = title
-    this._subSections = subSections.map((s) => new DocSubSection(s))
   }
 
   get id() {
@@ -79,9 +76,5 @@ export class DocSubSection {
 
   get title() {
     return this._title
-  }
-
-  get subSections() {
-    return this._subSections
   }
 }
