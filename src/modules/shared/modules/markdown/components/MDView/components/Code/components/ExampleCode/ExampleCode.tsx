@@ -10,7 +10,7 @@ interface Props {
 
 export default function ExampleCode({ code, language }: Props) {
   return (
-    <div className="code-view bg-code-dark px-4 py-3 overflow-x-auto w-full flex">
+    <div className="code-view bg-code-dark dark:bg-[#282A36] px-4 py-3 overflow-x-auto w-full flex">
       <pre>
         <Highlight
           {...defaultProps}

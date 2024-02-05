@@ -4,7 +4,7 @@ import { LanguageProvider } from "@modules/app/modules/language/context"
 import { SocketProvider } from "@modules/app/modules/socket/context"
 import { ThemeProvider } from "@modules/app/modules/theme/context"
 import { ToastProvider } from "@modules/app/modules/toast/context"
-import { UserProvider } from "@modules/user/context/UserContext"
+import { UserProvider } from "@modules/user/context"
 import { ErrorBoundary } from "react-error-boundary"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { ContactUs, Docs, Error404, Home, Landing } from "./containers"
@@ -49,7 +49,8 @@ export default function App() {
 
                   <Route path={APP_ROUTES.NOT_FOUND} element={<Error404 />} />
 
-                  <Route path={APP_ROUTES.DOCS} element={<Docs />} />
+                  <Route path={APP_ROUTES.DOCS.COMPLETE} element={<Docs />} />
+                  <Route path={APP_ROUTES.DOCS.ROOT} element={<Docs />} />
 
                   <Route path="*" element={<Error404 />} />
                 </Routes>

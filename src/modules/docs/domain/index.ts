@@ -42,6 +42,10 @@ export class DocSection {
     return this._title
   }
 
+  get url() {
+    return this.title.toLowerCase().replace(" ", "-")
+  }
+
   get subSections() {
     return this._subSections
   }

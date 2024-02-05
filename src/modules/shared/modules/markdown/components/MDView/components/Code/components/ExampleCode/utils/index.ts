@@ -4,14 +4,30 @@ export function validateCodeLanguage(lan: string | undefined): Language {
   if (lan === "javascript" || lan === "js") {
     return "javascript"
   }
+
   if (lan === "typescript" || lan === "ts") {
     return "typescript"
   }
-  if (lan === "bash") {
+
+  if (lan === "bash" || lan === "shell") {
     return "bash"
-  } else if (lan === "json") {
-    return "json"
-  } else {
-    return "javascript"
   }
+
+  if (lan === "json") {
+    return "json"
+  }
+
+  if (lan === "sql") {
+    return "sql"
+  }
+
+  if (lan === "yaml") {
+    return "yaml"
+  }
+
+  if (lan === "python") {
+    return "python"
+  }
+
+  return "javascript"
 }

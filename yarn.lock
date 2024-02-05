@@ -646,10 +646,10 @@
     classcat "^5.0.3"
     zustand "^4.4.1"
 
-"@remix-run/router@1.8.0":
-  version "1.8.0"
-  resolved "https://registry.npmjs.org/@remix-run/router/-/router-1.8.0.tgz"
-  integrity sha512-mrfKqIHnSZRyIzBcanNJmVQELTnX+qagEDlcKO90RgRBVOZGSGvZKeDihTRfWcqoDn5N/NkUcwWTccnpN18Tfg==
+"@remix-run/router@1.15.0":
+  version "1.15.0"
+  resolved "https://registry.npmjs.org/@remix-run/router/-/router-1.15.0.tgz"
+  integrity sha512-HOil5aFtme37dVQTB6M34G95kPM3MMuqSmIRVCC52eKV+Y/tGSqw9P3rWhlAx6A+mz+MoX+XxsGsNJbaI5qCgQ==
 
 "@socket.io/component-emitter@~3.1.0":
   version "3.1.0"
@@ -1089,10 +1089,10 @@
   resolved "https://registry.npmjs.org/@uiball/loaders/-/loaders-1.3.0.tgz"
   integrity sha512-w372e7PMt/s6LZ321HoghgDDU8fomamAzJfrVAdBUhsWERJEpxJMqG37NFztUq/T4J7nzzjkvZI4UX7Z2F/O6A==
 
-"@uiw/codemirror-extensions-basic-setup@4.21.12":
-  version "4.21.12"
-  resolved "https://registry.npmjs.org/@uiw/codemirror-extensions-basic-setup/-/codemirror-extensions-basic-setup-4.21.12.tgz"
-  integrity sha512-LNAr5ZmKjo9KpnoVhnAiXkRsI+l9JrIrUPc3+GjpbTi8k9QjEcs8y3MFvhA2le7bbf6q1gHh2UbLmn6le0cGjQ==
+"@uiw/codemirror-extensions-basic-setup@4.21.21":
+  version "4.21.21"
+  resolved "https://registry.npmjs.org/@uiw/codemirror-extensions-basic-setup/-/codemirror-extensions-basic-setup-4.21.21.tgz"
+  integrity sha512-+0i9dPrRSa8Mf0CvyrMvnAhajnqwsP3IMRRlaHDRgsSGL8igc4z7MhvUPn+7cWFAAqWzQRhMdMSWzo6/TEa3EA==
   dependencies:
     "@codemirror/autocomplete" "^6.0.0"
     "@codemirror/commands" "^6.0.0"
@@ -1390,16 +1390,16 @@
     "@codemirror/state" "^6.0.0"
     "@codemirror/view" "^6.0.0"
 
-"@uiw/react-codemirror@^4.19.16":
-  version "4.21.12"
-  resolved "https://registry.npmjs.org/@uiw/react-codemirror/-/react-codemirror-4.21.12.tgz"
-  integrity sha512-dgPhw2QLcXMe004UU8b8P0Y6Zu+AKoGXbioLF2dY2/wLeMWSXCCbKo/BKJGj/skoO/lBJ4X+b+14OGuZ5Uyeaw==
+"@uiw/react-codemirror@^4.21.21":
+  version "4.21.21"
+  resolved "https://registry.npmjs.org/@uiw/react-codemirror/-/react-codemirror-4.21.21.tgz"
+  integrity sha512-PaxBMarufMWoR0qc5zuvBSt76rJ9POm9qoOaJbqRmnNL2viaF+d+Paf2blPSlm1JSnqn7hlRjio+40nZJ9TKzw==
   dependencies:
     "@babel/runtime" "^7.18.6"
     "@codemirror/commands" "^6.1.0"
     "@codemirror/state" "^6.1.1"
     "@codemirror/theme-one-dark" "^6.0.0"
-    "@uiw/codemirror-extensions-basic-setup" "4.21.12"
+    "@uiw/codemirror-extensions-basic-setup" "4.21.21"
     codemirror "^6.0.0"
 
 "@vitejs/plugin-react@^4.0.3":
@@ -4327,20 +4327,20 @@ react-refresh@^0.14.0:
   resolved "https://registry.npmjs.org/react-refresh/-/react-refresh-0.14.0.tgz"
   integrity sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==
 
-react-router-dom@^6.3.0:
-  version "6.15.0"
-  resolved "https://registry.npmjs.org/react-router-dom/-/react-router-dom-6.15.0.tgz"
-  integrity sha512-aR42t0fs7brintwBGAv2+mGlCtgtFQeOzK0BM1/OiqEzRejOZtpMZepvgkscpMUnKb8YO84G7s3LsHnnDNonbQ==
+react-router-dom@^6.22.0:
+  version "6.22.0"
+  resolved "https://registry.npmjs.org/react-router-dom/-/react-router-dom-6.22.0.tgz"
+  integrity sha512-z2w+M4tH5wlcLmH3BMMOMdrtrJ9T3oJJNsAlBJbwk+8Syxd5WFJ7J5dxMEW0/GEXD1BBis4uXRrNIz3mORr0ag==
   dependencies:
-    "@remix-run/router" "1.8.0"
-    react-router "6.15.0"
+    "@remix-run/router" "1.15.0"
+    react-router "6.22.0"
 
-react-router@6.15.0:
-  version "6.15.0"
-  resolved "https://registry.npmjs.org/react-router/-/react-router-6.15.0.tgz"
-  integrity sha512-NIytlzvzLwJkCQj2HLefmeakxxWHWAP+02EGqWEZy+DgfHHKQMUoBBjUQLOtFInBMhWtb3hiUy6MfFgwLjXhqg==
+react-router@6.22.0:
+  version "6.22.0"
+  resolved "https://registry.npmjs.org/react-router/-/react-router-6.22.0.tgz"
+  integrity sha512-q2yemJeg6gw/YixRlRnVx6IRJWZD6fonnfZhN1JIOhV2iJCPeRNSH3V1ISwHf+JWcESzLC3BOLD1T07tmO5dmg==
   dependencies:
-    "@remix-run/router" "1.8.0"
+    "@remix-run/router" "1.15.0"
 
 react-side-effect@^2.1.0:
   version "2.1.2"
