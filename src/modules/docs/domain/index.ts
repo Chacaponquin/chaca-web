@@ -15,6 +15,7 @@ export interface SubSectionInf {
   id: string
   file: string
   folder: string
+  title: string
 }
 
 export class DocSection {
@@ -49,7 +50,7 @@ export class DocSection {
     const all: Array<SubSectionInf> = []
 
     for (const sub of this.subSections) {
-      all.push({ folder: this.folder, file: sub.file, id: sub.id })
+      all.push({ folder: this.folder, file: sub.file, id: sub.id, title: sub.title })
     }
 
     return all

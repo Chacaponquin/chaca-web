@@ -17,7 +17,6 @@ export default function ApiRoute({ method, url }: Props) {
   return (
     <div className="flex items-center w-full gap-x-3 overflow-x-auto mb-2">
       <HttpMethod method={method} />
-
       <ExampleCode code={showUrl} />
     </div>
   )

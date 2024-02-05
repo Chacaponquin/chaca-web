@@ -12,6 +12,7 @@ export default function SubSection({ title, handleChangeSelectedDoc, selected }:
     "px-3 py-1",
     "text-base",
     "rounded",
+    "font-fontMedium",
     {
       "duration-300 hover:bg-scale-11/30 dark:hover:bg-scale-11/10 transition-all": !selected,
       "bg-scale-11/30 dark:bg-scale-11/10": selected,

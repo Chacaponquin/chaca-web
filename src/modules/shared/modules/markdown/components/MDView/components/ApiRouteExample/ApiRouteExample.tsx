@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react"
 import beautify from "js-beautify"
-import clsx from "clsx"
-import { HttpMethod } from "../../shared/components"
-
-import "./api_route_example.css"
 import { useEnv } from "@modules/app/modules/env/hooks"
 import { ExampleCode } from "../Code/components"
-
-type Options = "response" | "body"
+import { Header, Options } from "./components"
+import { Options as IOptions } from "./interfaces"
 
 interface Props {
   url: string
@@ -20,7 +16,7 @@ export default function ApiRouteExample({ url, method, code = "", body }: Props)
   const { API_ROUTE } = useEnv()
 
   const [showCode, setShowCode] = useState(typeof code === "string" ? code : JSON.stringify(code))
-  const [selectedOption, setSelectedOption] = useState<Options>("response")
+  const [selectedOption, setSelectedOption] = useState<IOptions>("response")
 
   useEffect(() => {
     if (selectedOption === "response") {
@@ -34,43 +30,21 @@ export default function ApiRouteExample({ url, method, code = "", body }: Props)
 
   const showUrl = `${API_ROUTE}/${url}`
 
-  function BUTTON_CLASS(o: Options): string {
-    return clsx({ selected: o === selectedOption })
-  }
-
-  function handleChangeOption(o: Options) {
+  function handleChangeOption(o: IOptions) {
     setSelectedOption(o)
   }
 
   return (
-    <div className="md_api_route_example">
-      <div className="request">
-        <HttpMethod method={method} />
-        <div className="url">
-          <ExampleCode code={showUrl} />
-        </div>
-      </div>
-
+    <div className="flex flex-col mb-5">
+      <Header method={method} url={showUrl} />
       {body && (
-        <div className="view-options">
-          <button
-            className={BUTTON_CLASS("response")}
-            onClick={() => handleChangeOption("response")}
-          >
-            Response
-          </button>
-
-          {body && (
-            <button className={BUTTON_CLASS("body")} onClick={() => handleChangeOption("body")}>
-              Body
-            </button>
-          )}
-        </div>
+        <Options
+          handleChangeOption={handleChangeOption}
+          selectedOption={selectedOption}
+          body={body}
+        />
       )}
-
-      <div className="code">
-        <ExampleCode code={showCode} />
-      </div>
+      <ExampleCode code={showCode} />
     </div>
   )
 }

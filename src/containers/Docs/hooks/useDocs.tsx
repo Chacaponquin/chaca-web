@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useDocsServices } from "@modules/docs/services"
 import { useDocs as useDocsModule } from "@modules/docs/hooks"
 import { SelectedDoc } from "../interfaces"
+import { DocSection, SubSectionInf } from "@modules/docs/domain"
 
 export default function useDocs() {
   const [selectedDoc, setSelectedDoc] = useState<SelectedDoc | null>(null)
@@ -35,5 +36,16 @@ export default function useDocs() {
     setSelectedDoc(section)
   }
 
-  return { selectedDoc, handleChangeSelectedDoc, content, loading, docs: DOCS }
+  const docLocation: Array<string> = useMemo(() => {
+    if (selectedDoc) {
+      const foundSection = DOCS.find((d) => d.id === selectedDoc.sectionsId[0]) as DocSection
+      const foundDoc = getAllDocs().find((d) => d.id === selectedDoc.docId) as SubSectionInf
+
+      return [foundSection.title, foundDoc.title]
+    } else {
+      return []
+    }
+  }, [selectedDoc, getAllDocs])
+
+  return { selectedDoc, handleChangeSelectedDoc, content, loading, docs: DOCS, docLocation }
 }

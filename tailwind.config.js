@@ -40,6 +40,7 @@ module.exports = {
       },
       fontFamily: {
         fontBold: "Poppins Bold",
+        fontSemiBold: "Poppins Semi Bold",
         fontTitle: "Poppins Extra Bold",
         fontLight: "Poppins Light",
         fontMedium: "Poppins Medium",

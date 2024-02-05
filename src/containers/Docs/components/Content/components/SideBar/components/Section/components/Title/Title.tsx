@@ -23,7 +23,7 @@ export default function Title({ title, handleChangeOpen, selected }: Props) {
 
   return (
     <div onClick={handleChangeOpen} className={CLASS}>
-      <p className="text-base">{title}</p>
+      <p className="text-base font-fontMedium">{title}</p>
 
       <button>
         <ArrowDown size={20} />

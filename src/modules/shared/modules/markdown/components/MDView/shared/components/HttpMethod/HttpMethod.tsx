@@ -1,21 +1,21 @@
 import clsx from "clsx"
 
 export default function HttpMethod({ method }: { method: string }) {
-  const methodClass = clsx(
+  const CLASS = clsx(
     "uppercase",
     "text-white",
     "px-5 py-2",
-    "rounded",
+    "rounded-sm",
     "http_method",
     "w-max",
-    "font-normal",
+    "font-fontSemiBold",
     {
       "bg-[#2ecc71]": method === "GET",
-      post: method === "POST",
-      put: method === "PUT",
-      delete: method === "DELETE",
+      "bg-[#3498db]": method === "POST",
+      "bg-[#f39c12]": method === "PUT",
+      "bg-red-2": method === "DELETE",
     },
   )
 
-  return <div className={methodClass}>{method}</div>
+  return <div className={CLASS}>{method}</div>
 }

@@ -1,7 +1,7 @@
 import { DEFAULT_ICON_SIZE } from "../constants/icons.enum"
 import { IconProps } from "../interfaces"
 
-const Home = ({ size = DEFAULT_ICON_SIZE }: IconProps) => {
+export default function Home({ size = DEFAULT_ICON_SIZE }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,5 +18,3 @@ const Home = ({ size = DEFAULT_ICON_SIZE }: IconProps) => {
     </svg>
   )
 }
-
-export default Home

@@ -9,6 +9,7 @@ interface Props {
   content: string | null
   loading: boolean
   docs: Array<DocSection>
+  docLocation: Array<string>
 }
 
 export default function Content({
@@ -17,6 +18,7 @@ export default function Content({
   content,
   loading,
   docs,
+  docLocation,
 }: Props) {
   return (
     <main className="w-full flex-grow flex">
@@ -30,7 +32,9 @@ export default function Content({
         {loading ? (
           <Loading loading={loading} />
         ) : (
-          <Fragment>{content ? <Doc content={content} /> : <NotFound />}</Fragment>
+          <Fragment>
+            {content ? <Doc content={content} location={docLocation} /> : <NotFound />}
+          </Fragment>
         )}
       </div>
     </main>
