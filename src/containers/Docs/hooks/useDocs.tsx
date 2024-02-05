@@ -8,28 +8,32 @@ export default function useDocs() {
   const [loading, setLoading] = useState(false)
   const [content, setContent] = useState<string | null>(null)
   const { getDoc } = useDocsServices()
-  const { DOCS } = useDocsModule()
+  const { getAllDocs, DOCS } = useDocsModule()
 
   useEffect(() => {
     if (selectedDoc) {
-      setLoading(true)
+      const found = getAllDocs().find((d) => d.id === selectedDoc.docId)
 
-      getDoc({
-        folder: DOCS[selectedDoc.sectionIndex].folder,
-        file: DOCS[selectedDoc.sectionIndex].subSections[selectedDoc.subSectionIndex].file,
-      })
-        .then((data) => {
-          return setContent(data)
+      if (found) {
+        setLoading(true)
+
+        getDoc({
+          folder: found.folder,
+          file: found.file,
         })
-        .finally(() => {
-          setLoading(false)
-        })
+          .then((data) => {
+            return setContent(data)
+          })
+          .finally(() => {
+            setLoading(false)
+          })
+      }
     }
-  }, [selectedDoc])
+  }, [selectedDoc, getAllDocs])
 
   function handleChangeSelectedDoc(section: SelectedDoc) {
     setSelectedDoc(section)
   }
 
-  return { selectedDoc, handleChangeSelectedDoc, content, loading }
+  return { selectedDoc, handleChangeSelectedDoc, content, loading, docs: DOCS }
 }

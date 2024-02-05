@@ -1,5 +1,5 @@
-import { useMemo } from "react"
-import { DocSection } from "../domain"
+import { useCallback, useMemo } from "react"
+import { DocSection, SubSectionInf } from "../domain"
 
 export default function useDocs() {
   const DOCS: Array<DocSection> = useMemo(() => {
@@ -85,5 +85,15 @@ export default function useDocs() {
     ]
   }, [])
 
-  return { DOCS }
+  const getAllDocs = useCallback(() => {
+    let all: Array<SubSectionInf> = []
+
+    for (const doc of DOCS) {
+      all = [...all, ...doc.allSubSections]
+    }
+
+    return all
+  }, [DOCS])
+
+  return { DOCS, getAllDocs }
 }

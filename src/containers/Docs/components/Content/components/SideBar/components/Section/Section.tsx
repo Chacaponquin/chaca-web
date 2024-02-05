@@ -8,16 +8,10 @@ interface Props {
   subs: Array<DocSubSection>
   handleChangeSelectedDoc(section: SelectedDoc): void
   selectedDoc: SelectedDoc | null
-  index: number
+  id: string
 }
 
-export default function Section({
-  title,
-  subs,
-  handleChangeSelectedDoc,
-  selectedDoc,
-  index,
-}: Props) {
+export default function Section({ title, subs, handleChangeSelectedDoc, selectedDoc, id }: Props) {
   const { open, handleChangeOpen } = useSection()
 
   return (
@@ -25,20 +19,22 @@ export default function Section({
       <Title
         title={title}
         handleChangeOpen={handleChangeOpen}
-        selected={selectedDoc?.sectionIndex === index}
+        selected={selectedDoc ? selectedDoc.sectionsId.includes(id) : false}
       />
 
       {open && (
         <ul className="flex flex-col pl-4 gap-y-1">
-          {subs.map((subSection, subIndex) => (
+          {subs.map((subSection) => (
             <SubSection
               key={subSection.id}
               title={subSection.title}
               selected={
-                index === selectedDoc?.sectionIndex && subIndex === selectedDoc?.subSectionIndex
+                selectedDoc
+                  ? selectedDoc.sectionsId.includes(id) && selectedDoc.docId === subSection.id
+                  : false
               }
               handleChangeSelectedDoc={() => {
-                handleChangeSelectedDoc({ sectionIndex: index, subSectionIndex: subIndex })
+                handleChangeSelectedDoc({ docId: subSection.id, sectionsId: [id] })
               }}
             />
           ))}
