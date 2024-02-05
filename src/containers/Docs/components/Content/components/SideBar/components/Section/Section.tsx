@@ -22,7 +22,11 @@ export default function Section({
 
   return (
     <li className="flex flex-col">
-      <Title title={title} handleChangeOpen={handleChangeOpen} open={open} />
+      <Title
+        title={title}
+        handleChangeOpen={handleChangeOpen}
+        selected={selectedDoc?.sectionIndex === index}
+      />
 
       {open && (
         <ul className="flex flex-col pl-4 gap-y-1">

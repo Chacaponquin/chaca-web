@@ -4,10 +4,10 @@ import clsx from "clsx"
 interface Props {
   title: string
   handleChangeOpen(): void
-  open: boolean
+  selected: boolean
 }
 
-export default function Title({ title, handleChangeOpen, open }: Props) {
+export default function Title({ title, handleChangeOpen, selected }: Props) {
   const CLASS = clsx(
     "flex justify-between",
     "rounded w-full cursor-pointer",
@@ -15,10 +15,10 @@ export default function Title({ title, handleChangeOpen, open }: Props) {
     "stroke-black",
     "mb-1",
     {
-      "duration-300 hover:bg-scale-11/30 transition-all": !open,
-      "bg-scale-11/30": open,
+      "duration-300 hover:bg-scale-11/30 transition-all": !selected,
+      "bg-scale-11/30": selected,
     },
-    { "text-purple-6": open, "text-scale-8": !open },
+    { "text-purple-6": selected, "text-scale-8": !selected },
   )
 
   return (
@@ -26,7 +26,7 @@ export default function Title({ title, handleChangeOpen, open }: Props) {
       <p className="text-base">{title}</p>
 
       <button>
-        <ArrowDown size={24} />
+        <ArrowDown size={20} />
       </button>
     </div>
   )

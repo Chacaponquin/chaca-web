@@ -1,6 +1,6 @@
 import { Layout } from "@containers/Layout/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
-import { HomeNavbar } from "./components"
+import { Navbar } from "./components"
 
 interface Props {
   children: React.ReactNode
@@ -17,7 +17,7 @@ export default function HomeLayout({ children }: Props) {
   return (
     <Layout description={HOME_DESCRIPTION} title="Chaca | Home">
       <div className="flex flex-col w-full h-screen fixed top-0 left-0">
-        <HomeNavbar />
+        <Navbar />
         {children}
       </div>
     </Layout>

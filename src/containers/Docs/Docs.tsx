@@ -4,7 +4,7 @@ import { Content, Navbar } from "./components"
 import { useDocs } from "./hooks"
 
 export default function Docs() {
-  const { handleChangeSelectedDoc, selectedDoc, content } = useDocs()
+  const { handleChangeSelectedDoc, selectedDoc, content, loading } = useDocs()
 
   const { DESCRIPTION, TITLE } = useTranslation({
     TITLE: { en: "Chaca Docs", es: "Chaca Docs" },
@@ -19,6 +19,7 @@ export default function Docs() {
           handleChangeSelectedDoc={handleChangeSelectedDoc}
           selectedDoc={selectedDoc}
           content={content}
+          loading={loading}
         />
       </div>
     </Layout>

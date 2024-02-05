@@ -1,3 +1,3 @@
-import HomeNavbar from "./HomeNavbar/HomeNavbar"
+import Navbar from "./Navbar/Navbar"
 
-export { HomeNavbar }
+export { Navbar }

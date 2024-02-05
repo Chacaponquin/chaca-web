@@ -1,14 +1,28 @@
 import Markdown from "markdown-to-jsx"
 import clsx from "clsx"
-import { Code, H1, H2, H3, Img, List, ListItem, P, Pre, Strong } from "./components"
+import {
+  Code,
+  H1,
+  H2,
+  H3,
+  H4,
+  Img,
+  List,
+  ListItem,
+  P,
+  Pre,
+  Strong,
+  Table,
+  Td,
+  Th,
+} from "./components"
 
 interface Props {
   content: string
-  className?: string
 }
 
-export default function MDView({ content, className = "" }: Props) {
-  const CLASS = clsx("flex w-full text-base font-fontDoc", className)
+export default function MDView({ content }: Props) {
+  const CLASS = clsx("flex w-full")
 
   return (
     <div className={CLASS}>
@@ -24,6 +38,9 @@ export default function MDView({ content, className = "" }: Props) {
             h1: { component: H1 },
             h3: { component: H3 },
             h2: { component: H2 },
+            h4: { component: H4 },
+            h5: { component: H4 },
+            h6: { component: H4 },
             code: {
               component: Code,
             },
@@ -36,6 +53,9 @@ export default function MDView({ content, className = "" }: Props) {
             strong: {
               component: Strong,
             },
+            table: { component: Table },
+            th: { component: Th },
+            td: { component: Td },
           },
         }}
       >
