@@ -13,6 +13,8 @@ export default function useDocs() {
   const [selectedDoc, setSelectedDoc] = useState<SelectedDoc | null>(null)
   const [loading, setLoading] = useState(false)
   const [content, setContent] = useState<string | null>(null)
+  const [openAside, setOpenAside] = useState(false)
+
   const { getDoc } = useDocsServices()
   const { getAllDocs, DOCS } = useDocsModule()
 
@@ -22,7 +24,6 @@ export default function useDocs() {
       const foundDoc = getAllDocs().find((d) => d.url === doc)
 
       if (foundDoc && foundSection) {
-        setLoading(true)
         setSelectedDoc({ docId: foundDoc.id, sectionsId: [foundSection.id] })
       }
     } else {
@@ -63,6 +64,10 @@ export default function useDocs() {
     }
   }
 
+  function handleChangeOpenAside() {
+    setOpenAside((prev) => !prev)
+  }
+
   const docLocation: Array<string> = useMemo(() => {
     if (selectedDoc) {
       const foundSection = DOCS.find((d) => d.id === selectedDoc.sectionsId[0]) as DocSection
@@ -74,5 +79,14 @@ export default function useDocs() {
     }
   }, [selectedDoc, getAllDocs])
 
-  return { selectedDoc, handleChangeSelectedDoc, content, loading, docs: DOCS, docLocation }
+  return {
+    selectedDoc,
+    handleChangeSelectedDoc,
+    content,
+    loading,
+    docs: DOCS,
+    docLocation,
+    handleChangeOpenAside,
+    openAside,
+  }
 }

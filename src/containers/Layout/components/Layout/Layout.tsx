@@ -2,7 +2,7 @@ import { Fragment } from "react"
 import { Helmet } from "react-helmet"
 
 interface Props {
-  children: React.ReactElement
+  children: React.ReactNode
   description: string
   title: string
 }

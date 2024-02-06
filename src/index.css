@@ -56,10 +56,6 @@
   font-family: "Poppins Regular";
 }
 
-.no-scroll::-webkit-scrollbar {
-  display: none;
-}
-
 .code-playground * {
   font-family: "JetBrains Mono Regular";
   font-size: 15px;
@@ -68,7 +64,6 @@
 
 .code-view * {
   font-family: "JetBrains Mono Medium";
-  font-size: 15px;
 }
 
 .ͼ1 .cm-gutters {

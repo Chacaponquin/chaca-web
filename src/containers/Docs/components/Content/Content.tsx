@@ -21,14 +21,14 @@ export default function Content({
   docLocation,
 }: Props) {
   return (
-    <main className="w-full flex-grow flex">
+    <div className="w-full flex dark:bg-scale-2">
       <SideBar
         handleChangeSelectedDoc={handleChangeSelectedDoc}
         selectedDoc={selectedDoc}
         docs={docs}
       />
 
-      <div className="w-full flex h-full px-7 overflow-y-auto">
+      <main className="w-full flex overflow-y-auto z-40">
         {loading ? (
           <Loading loading={loading} />
         ) : (
@@ -36,7 +36,7 @@ export default function Content({
             {content ? <Doc content={content} location={docLocation} /> : <NotFound />}
           </Fragment>
         )}
-      </div>
-    </main>
+      </main>
+    </div>
   )
 }

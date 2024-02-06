@@ -1,13 +1,14 @@
-import { ArrowDown } from "@modules/app/modules/icon/components"
+import { ArrowDown, ArrowRight } from "@modules/app/modules/icon/components"
 import clsx from "clsx"
 
 interface Props {
   title: string
   handleChangeOpen(): void
   selected: boolean
+  open: boolean
 }
 
-export default function Title({ title, handleChangeOpen, selected }: Props) {
+export default function Title({ title, handleChangeOpen, selected, open }: Props) {
   const CLASS = clsx(
     "flex justify-between",
     "rounded w-full cursor-pointer",
@@ -25,9 +26,7 @@ export default function Title({ title, handleChangeOpen, selected }: Props) {
     <div onClick={handleChangeOpen} className={CLASS}>
       <p className="text-base font-fontMedium">{title}</p>
 
-      <button>
-        <ArrowDown size={20} />
-      </button>
+      <button>{open ? <ArrowDown size={20} /> : <ArrowRight size={20} />}</button>
     </div>
   )
 }

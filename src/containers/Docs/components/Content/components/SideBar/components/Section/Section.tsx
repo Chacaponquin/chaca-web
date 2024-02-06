@@ -16,7 +16,7 @@ export default function Section({ title, subs, handleChangeSelectedDoc, selected
 
   return (
     <li className="flex flex-col">
-      <Title title={title} handleChangeOpen={handleChangeOpen} selected={selected} />
+      <Title title={title} handleChangeOpen={handleChangeOpen} selected={selected} open={open} />
 
       {open && (
         <ul className="flex flex-col pl-4 gap-y-1">

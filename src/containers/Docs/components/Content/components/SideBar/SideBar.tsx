@@ -12,8 +12,9 @@ interface Props {
 export default function SideBar({ handleChangeSelectedDoc, selectedDoc, docs }: Props) {
   const CLASS = clsx(
     "xl:flex flex-col hidden",
-    "h-full min-w-[320px]",
-    "px-4 py-2",
+    "h-screen max-h-screen min-w-[320px] max-w-[320px]",
+    "px-4 pb-2 pt-[75px]",
+    "overflow-auto",
     "dark:border-r-[1px] dark:border-r-scale-7 border-r-2",
   )
 
