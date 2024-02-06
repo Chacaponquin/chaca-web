@@ -16,6 +16,7 @@ export interface SubSectionInf {
   file: string
   folder: string
   title: string
+  url: string
 }
 
 export class DocSection {
@@ -54,7 +55,7 @@ export class DocSection {
     const all: Array<SubSectionInf> = []
 
     for (const sub of this.subSections) {
-      all.push({ folder: this.folder, file: sub.file, id: sub.id, title: sub.title })
+      all.push({ folder: this.folder, file: sub.file, id: sub.id, title: sub.title, url: sub.url })
     }
 
     return all
@@ -77,6 +78,10 @@ export class DocSubSection {
 
   get file() {
     return this._file
+  }
+
+  get url() {
+    return this.title.toLowerCase().replace(" ", "-")
   }
 
   get title() {

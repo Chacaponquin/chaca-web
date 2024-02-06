@@ -12,15 +12,11 @@ interface Props {
 }
 
 export default function Section({ title, subs, handleChangeSelectedDoc, selectedDoc, id }: Props) {
-  const { open, handleChangeOpen } = useSection()
+  const { open, handleChangeOpen, selected } = useSection({ selectedDoc: selectedDoc, id: id })
 
   return (
     <li className="flex flex-col">
-      <Title
-        title={title}
-        handleChangeOpen={handleChangeOpen}
-        selected={selectedDoc ? selectedDoc.sectionsId.includes(id) : false}
-      />
+      <Title title={title} handleChangeOpen={handleChangeOpen} selected={selected} />
 
       {open && (
         <ul className="flex flex-col pl-4 gap-y-1">

@@ -9,7 +9,13 @@ export const APP_ROUTES = {
   CONTACT_US: "/contact-us",
   NOT_FOUND: "/not-found",
 
-  DOCS: { COMPLETE: "/docs/:section/:doc", ROOT: "/docs" },
+  DOCS: {
+    COMPLETE: "/docs/:section/:doc",
+    ROOT: "/docs",
+    BUILD_DOC_ROUTE(section: string, doc: string) {
+      return `/docs/${section}/${doc}`
+    },
+  },
 } as const
 
 export const API_ROUTES = {
@@ -25,7 +31,7 @@ export const API_ROUTES = {
   GET_FILE_OPTIONS: "/web-api/file-config",
   GET_FAQ: "/web-api/faq",
   CREATE_USER_MESSAGE: "/user-message/new-message",
-  DOWNLOAD_FILE: (apiRoute: string, fileName: string) => {
+  DOWNLOAD_FILE(apiRoute: string, fileName: string) {
     return `${apiRoute}/web-api/download-file/${fileName}`
   },
 } as const

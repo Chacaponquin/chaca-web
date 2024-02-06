@@ -2,12 +2,8 @@ import { Layout } from "@containers/Layout/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { Content, Navbar } from "./components"
 import { useDocs } from "./hooks"
-import { useParams } from "react-router-dom"
 
 export default function Docs() {
-  const params = useParams()
-  console.log(params)
-
   const { handleChangeSelectedDoc, selectedDoc, content, loading, docs, docLocation } = useDocs()
 
   const { DESCRIPTION, TITLE } = useTranslation({

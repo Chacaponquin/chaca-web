@@ -7,8 +7,8 @@ export default function useDocs() {
       new DocSection({
         folder: "guides",
         subSections: [
-          { file: "command-line", title: "Command Line" },
           { file: "getting-started", title: "Getting started" },
+          { file: "command-line", title: "Command Line" },
           { file: "usage", title: "Usage" },
         ],
         title: "Guides",

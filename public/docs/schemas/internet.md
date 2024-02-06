@@ -5,9 +5,9 @@
 ```js
 schemas.internet.email().getValue() // 'juan527120@gmail.com'
 schemas.internet.email.getValue({
-   firstName: 'pedro',
-   lastName: 'Scott',
-   provider: 'yahoo.com',
+  firstName: "pedro",
+  lastName: "Scott",
+  provider: "yahoo.com",
 }) // "pedro_scott@yahoo.com"
 ```
 
@@ -23,14 +23,12 @@ schemas.internet.email.getValue({
 schemas.internet.password().getValue() // '89G1wJuBLbGziIs'
 schemas.internet.password().getValue({ length: 20 }) // 'aF55c_8O9kZaPOrysFB_'
 schemas.internet.password().getValue({ length: 20, memorable: true }) // 'lawetimufozujosodedi'
-schemas.internet
-   .password()
-   .getValue({ length: 20, memorable: true, pattern: /[A-Z]/ }) // 'HMAQDFFYLDDUTBKVNFVS'
+schemas.internet.password().getValue({ length: 20, memorable: true, pattern: /[A-Z]/ }) // 'HMAQDFFYLDDUTBKVNFVS'
 schemas.internet.password().getValue({
-   length: 20,
-   memorable: true,
-   pattern: /[A-Z]/,
-   prefix: 'Hello ',
+  length: 20,
+  memorable: true,
+  pattern: /[A-Z]/,
+  prefix: "Hello ",
 }) // 'Hello IREOXTDWPERQSB'
 ```
 
@@ -51,11 +49,11 @@ schemas.internet.url().getValue() // 'http://words.info.net'
 | :------: | :------------------------------------------------------------- |
 |  secure  | Boolean that indicates if the url has a secure protocol or not |
 
-## `userName`
+## `username`
 
 ```js
-schemas.internet.userName().getValue() // 'juan527134'
-schemas.internet.userName().getValue({ firstName: 'pedro', lastName: 'Scott' }) // 'pedro_scott'
+schemas.internet.username().getValue() // 'juan527134'
+schemas.internet.username().getValue({ firstName: "pedro", lastName: "Scott" }) // 'pedro_scott'
 ```
 
 | Argument  | Description      |

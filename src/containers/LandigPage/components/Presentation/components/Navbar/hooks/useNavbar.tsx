@@ -18,7 +18,7 @@ export default function useNavbar() {
 
   const LINKS: Array<NavbarLink> = [
     { route: APP_ROUTES.HOME, title: HOME_TEXT },
-    { route: APP_ROUTES.DOCS, title: DOCS_TEXT },
+    { route: APP_ROUTES.DOCS.ROOT, title: DOCS_TEXT },
     { route: APP_ROUTES.CONTACT_US, title: CONTACT_US_TEXT },
   ]
 
