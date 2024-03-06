@@ -1,17 +1,19 @@
 import { ChacaSlider } from "@form/components"
-import { CheckField } from "@modules/modal/shared/shared/components"
+import { CheckField, ConfigContainer } from "@modules/modal/shared/shared/components"
+
+interface Props {
+  handleChangePossibleNull(v: boolean): void
+  valueNull: number
+  handleChangePossibleNullValue(v: number): void
+}
 
 export default function PossibleNullConfig({
   handleChangePossibleNull,
   valueNull,
   handleChangePossibleNullValue,
-}: {
-  handleChangePossibleNull: (v: boolean) => void
-  valueNull: number
-  handleChangePossibleNullValue: (v: number) => void
-}) {
+}: Props) {
   return (
-    <section className="flex justify-between items-center">
+    <ConfigContainer>
       <CheckField check={valueNull > 0} onChange={handleChangePossibleNull} text="Possible null" />
 
       {valueNull > 0 && (
@@ -26,6 +28,6 @@ export default function PossibleNullConfig({
           <p className="mb-0">{valueNull}%</p>
         </div>
       )}
-    </section>
+    </ConfigContainer>
   )
 }

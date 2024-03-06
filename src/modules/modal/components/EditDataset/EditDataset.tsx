@@ -22,7 +22,6 @@ export default function EditDataset({ dataset }: Props) {
     <ModalContainer
       title={TITLE}
       handleNext={handleEditDataset}
-      nextButtonId="modal-edit-dataset-button"
       nextText={EDIT_TEXT}
       type="edit"
       name="edit-dataset"

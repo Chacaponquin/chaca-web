@@ -25,7 +25,6 @@ export default function AddFieldForm({ modalProps }: Props) {
       nextText={SUBMIT_TEXT}
       handleNext={handleAddField}
       name="add-field"
-      nextButtonId="modal-add-field-button"
     >
       <FieldForm {...fieldActions} datasetId={datasetId} />
     </ModalContainer>

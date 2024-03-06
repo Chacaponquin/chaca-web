@@ -30,7 +30,7 @@ export default function useAdventages() {
       en: "Create your data only with a simple HTTP request to our API without having to download the library",
       es: "Crea tus datos solamente con una simple petición HTTP a nuestra API sin necesidad de descargar la librería",
     },
-    FOURTH_TITLE: { en: "", es: "Una herramienta online" },
+    FOURTH_TITLE: { en: "An online tool", es: "Una herramienta online" },
     FOURTH_DESCRIPTION: {
       en: "If you do not want to create your data with Javascript you can use our online tool to have a more realistic visualization of the process",
       es: "Si no deseas crear tus datos con Javascript puedes utilizar nuestra herramienta online para tener una visualización másreal del proceso",

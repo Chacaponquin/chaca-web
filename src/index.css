@@ -62,6 +62,10 @@
   background-color: #232323;
 }
 
+.cm-editor {
+  width: 100%;
+}
+
 .code-view * {
   font-family: "JetBrains Mono Medium";
 }

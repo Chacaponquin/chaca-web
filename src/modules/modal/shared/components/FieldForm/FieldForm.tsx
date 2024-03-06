@@ -10,7 +10,7 @@ import {
 import { FieldActions } from "../../interfaces"
 import { Field } from "@modules/datasets/domain/tree"
 
-type FieldFormProps = FieldActions & { datasetId: string }
+type Props = FieldActions & { datasetId: string }
 
 export default function FieldForm({
   field,
@@ -34,7 +34,7 @@ export default function FieldForm({
   handleAddFieldSchemaArgument,
   handleDeleteFieldSchemaArgument,
   datasetId,
-}: FieldFormProps) {
+}: Props) {
   const { FIELD_NAME_TEXT, DATA_TYPE_TEXT } = useTranslation({
     FIELD_NAME_TEXT: { en: "Field name", es: "Nombre del campo" },
     DATA_TYPE_TEXT: { en: "Data type", es: "Tipo" },
