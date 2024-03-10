@@ -2,13 +2,14 @@ import { ThemeSwitch } from "@modules/app/modules/theme/components"
 import { ChacaLogo, Menu } from "./components"
 import clsx from "clsx"
 import { useScreen } from "@modules/shared/hooks"
+import { SCREEN_SIZES } from "@modules/app/constants"
 
 interface Props {
   handleChangeOpenAside(): void
 }
 
 export default function Navbar({ handleChangeOpenAside }: Props) {
-  const { bigScreen } = useScreen(1280)
+  const { bigScreen } = useScreen(SCREEN_SIZES.XL)
 
   const CLASS = clsx(
     "fixed top-0",

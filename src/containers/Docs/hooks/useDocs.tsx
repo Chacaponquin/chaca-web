@@ -16,18 +16,18 @@ export default function useDocs() {
   const [openAside, setOpenAside] = useState(false)
 
   const { getDoc } = useDocsServices()
-  const { getAllDocs, DOCS } = useDocsModule()
+  const { getAllDocs, docs } = useDocsModule()
 
   useEffect(() => {
     if (section && doc) {
-      const foundSection = DOCS.find((d) => d.url === section)
+      const foundSection = docs.find((d) => d.url === section)
       const foundDoc = getAllDocs().find((d) => d.url === doc)
 
       if (foundDoc && foundSection) {
         setSelectedDoc({ docId: foundDoc.id, sectionsId: [foundSection.id] })
       }
     } else {
-      const firstSection = DOCS[0]
+      const firstSection = docs[0]
       const firstDoc = firstSection.allSubSections[0]
 
       navigate(APP_ROUTES.DOCS.BUILD_DOC_ROUTE(firstSection.url, firstDoc.url), { replace: true })
@@ -51,12 +51,14 @@ export default function useDocs() {
           .finally(() => {
             setLoading(false)
           })
+      } else {
+        setLoading(false)
       }
     }
   }, [selectedDoc, getAllDocs])
 
   function handleChangeSelectedDoc(section: SelectedDoc) {
-    const foundSection = DOCS.find((d) => d.id === section.sectionsId[0])
+    const foundSection = docs.find((d) => d.id === section.sectionsId[0])
     const foundDoc = getAllDocs().find((d) => d.id === section.docId)
 
     if (foundDoc && foundSection) {
@@ -70,7 +72,7 @@ export default function useDocs() {
 
   const docLocation: Array<string> = useMemo(() => {
     if (selectedDoc) {
-      const foundSection = DOCS.find((d) => d.id === selectedDoc.sectionsId[0]) as DocSection
+      const foundSection = docs.find((d) => d.id === selectedDoc.sectionsId[0]) as DocSection
       const foundDoc = getAllDocs().find((d) => d.id === selectedDoc.docId) as SubSectionInf
 
       return [foundSection.title, foundDoc.title]
@@ -84,7 +86,6 @@ export default function useDocs() {
     handleChangeSelectedDoc,
     content,
     loading,
-    docs: DOCS,
     docLocation,
     handleChangeOpenAside,
     openAside,

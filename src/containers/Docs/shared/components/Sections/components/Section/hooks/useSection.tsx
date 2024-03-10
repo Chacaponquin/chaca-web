@@ -15,7 +15,9 @@ export default function useSection({ id, selectedDoc }: Props) {
   )
 
   useEffect(() => {
-    setOpen(selected)
+    if (selected) {
+      setOpen(selected)
+    }
   }, [selected])
 
   function handleChangeOpen() {

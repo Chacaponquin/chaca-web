@@ -13,7 +13,6 @@ const data = schema.generate(3)
 // [{ category: "Horror" }, { category: "Sport" }, { category: "Action" }];
 ```
 
-:::danger Not pass an empty array
+<Danger title="Not pass an empty array">
 If an empty array is passed, an exception will be thrown.
-
-:::
+</Danger>

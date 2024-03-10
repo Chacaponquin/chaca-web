@@ -13,6 +13,7 @@ export default function MiniCode({ content }: Props) {
     "border-[.1rem] border-scale-[#0000001a] dark:border-none",
     "rounded",
     "font-fontCodeMedium",
+    "w-max",
   )
 
   return <pre className={CLASS}>{content}</pre>

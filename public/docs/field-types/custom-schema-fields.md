@@ -1,6 +1,6 @@
 # Custom schema fields
 
-If none of the [defined options](/docs/category/schemas) are useful you can create your own schemas with the schemaField method.
+If none of the [defined options](/schemas/address) are useful you can create your own schemas with the schemaField method.
 
 ```js
 chaca.schemaField(fieldFunction)
@@ -21,10 +21,10 @@ With the predefined schemas in Chaca there is no way to achieve this result for 
 ### Declaration
 
 ```js
-import { chaca } from 'chaca'
+import { chaca } from "chaca"
 
 const customId = chaca.schemaField(() => {
-   return chaca.utils.replaceSymbols('T######')
+  return chaca.utils.replaceSymbols("T######")
 })
 
 customId().getValue() // 'T498152'
@@ -35,15 +35,15 @@ In the above code, a schema field is created that uses the `replaceSymbols` util
 ### Usage in schema declaration
 
 ```js
-import { chaca } from 'chaca'
+import { chaca } from "chaca"
 
 const customId = chaca.schemaField(() => {
-   return chaca.utils.replaceSymbols('T######')
+  return chaca.utils.replaceSymbols("T######")
 })
 
 const mySchema = chaca.schema({
-   id: customId(),
-   // rest fiedls
+  id: customId(),
+  // rest fiedls
 })
 ```
 
@@ -53,11 +53,11 @@ As explained before, the function receives an object with the arguments. For thi
 
 ```js
 const customId = chaca.schemaField(({ firstLetter }) => {
-   return chaca.utils.replaceSymbols(`${firstLetter}######`)
+  return chaca.utils.replaceSymbols(`${firstLetter}######`)
 })
 
 const mySchema = chaca.schema({
-   id: customId({ firstLetter: 'F' }),
-   // rest fiedls
+  id: customId({ firstLetter: "F" }),
+  // rest fiedls
 })
 ```

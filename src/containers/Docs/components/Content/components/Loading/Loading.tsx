@@ -1,16 +1,13 @@
-import { LoaderContainer } from "@modules/app/components/Loader"
+import { Loader } from "@modules/app/components"
+import { SCREEN_SIZES } from "@modules/app/constants"
 import { useScreen } from "@modules/shared/hooks"
 
-interface Props {
-  loading: boolean
-}
-
-export default function Loading({ loading }: Props) {
-  const { bigScreen } = useScreen(1000)
+export default function Loading() {
+  const { bigScreen } = useScreen(SCREEN_SIZES.LG)
 
   return (
-    <div className="flex justify-center items-center w-full h-full">
-      <LoaderContainer size={bigScreen ? 180 : 120} loading={loading} />
+    <div className="flex justify-center items-center w-full h-screen">
+      <Loader size={bigScreen ? 180 : 120} />
     </div>
   )
 }

@@ -10,8 +10,8 @@ chaca.sequential(values, config)
 
 ```js
 const postSchema = chaca.schema({
-   category: chaca.sequential(['Horror', 'Action', 'Comedy', 'Sport']),
-   // rest fields
+  category: chaca.sequential(["Horror", "Action", "Comedy", "Sport"]),
+  // rest fields
 })
 
 const data = postSchema.generate(4)
@@ -26,20 +26,20 @@ const data = postSchema.generate(4)
 */
 ```
 
-:::danger Be careful
+<Danger title="Be careful">
 If you pass an array of values with a length less than the number of documents to generate, an exception will be thrown
 
 ```js
 const postSchema = chaca.schema({
-   category: chaca.sequential(['Horror', 'Action', 'Comedy', 'Sport']),
-   // rest fields
+  category: chaca.sequential(["Horror", "Action", "Comedy", "Sport"]),
+  // rest fields
 })
 
 // This will throw an exception because there are only 4 sequential values for 10 documents to generate.
 const data = postSchema.generate(10)
 ```
 
-:::
+</Danger>
 
 ## Params
 
@@ -59,14 +59,14 @@ Boolean indicating whether the values should be generated cyclically. **Default 
 ```js
 // With loop = false
 const schema = chaca.schema({
-   favoriteNumber: chaca.sequential([1, 2, 3], { loop: false }),
+  favoriteNumber: chaca.sequential([1, 2, 3], { loop: false }),
 })
 
 schema.generate(5) // Throws an error because there are only 3 values for 5 documents to create
 
 // With lopp = true
 const schema = chaca.schema({
-   favoriteNumbers: chaca.sequential([1, 2, 3], { loop: true }),
+  favoriteNumbers: chaca.sequential([1, 2, 3], { loop: true }),
 })
 
 schema.generate(5)

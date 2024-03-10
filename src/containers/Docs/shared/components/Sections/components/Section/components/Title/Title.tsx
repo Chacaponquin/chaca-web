@@ -13,7 +13,6 @@ export default function Title({ title, handleChangeOpen, selected, open }: Props
     "flex justify-between",
     "rounded w-full cursor-pointer",
     "py-1.5 px-4",
-    "stroke-black dark:stroke-white",
     "mb-1",
     {
       "duration-300 hover:bg-scale-11/30 dark:hover:bg-scale-11/10 transition-all": !selected,
@@ -26,7 +25,9 @@ export default function Title({ title, handleChangeOpen, selected, open }: Props
     <div onClick={handleChangeOpen} className={CLASS}>
       <p className="text-base font-fontMedium">{title}</p>
 
-      <button>{open ? <ArrowDown size={20} /> : <ArrowRight size={20} />}</button>
+      <i className="stroke-black dark:stroke-white fill-black dark:fill-white">
+        {open ? <ArrowDown size={20} /> : <ArrowRight size={20} />}
+      </i>
     </div>
   )
 }

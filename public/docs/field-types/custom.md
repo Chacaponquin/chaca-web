@@ -5,7 +5,7 @@ Function that allows customizing a value based on the current state of the datas
 ```js
 const userSchema = chaca.schema({
     id: chaca.sequence(),
-    age: schemas.dataType.int({min: 15, max: 90})
+    age: schemas.dataType.int({ min: 15, max: 90 })
     isOlder: ({currentFields}) => {
         return currentFields.age >= 60
     }
@@ -24,7 +24,7 @@ const data = userSchema.generate(3);
 
 This function receives as a parameter an object with 2 properties:
 
--  `currentFields`
-   An object with the fields already created up to that moment
--  `store`
-   Dataset store to interact with all the data in the dataset. [Learn about Dataset Store](../relational-schemas/dataset-store)
+- `currentFields`
+  An object with the fields already created up to that moment
+- `store`
+  Dataset store to interact with all the data in the dataset. [Learn about Dataset Store](/relational-schemas/dataset-store)

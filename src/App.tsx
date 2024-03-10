@@ -13,6 +13,7 @@ import { DatasetsProvider } from "@modules/datasets/context"
 import { ConfigProvider } from "@modules/config/context"
 import { ModalProvider } from "@modules/modal/context"
 import { HomeProvider } from "@containers/Home/context"
+import { DocsProvider } from "@modules/docs/context"
 
 export default function App() {
   return (
@@ -49,8 +50,22 @@ export default function App() {
 
                   <Route path={APP_ROUTES.NOT_FOUND} element={<Error404 />} />
 
-                  <Route path={APP_ROUTES.DOCS.COMPLETE} element={<Docs />} />
-                  <Route path={APP_ROUTES.DOCS.ROOT} element={<Docs />} />
+                  <Route
+                    path={APP_ROUTES.DOCS.COMPLETE}
+                    element={
+                      <DocsProvider>
+                        <Docs />
+                      </DocsProvider>
+                    }
+                  />
+                  <Route
+                    path={APP_ROUTES.DOCS.ROOT}
+                    element={
+                      <DocsProvider>
+                        <Docs />
+                      </DocsProvider>
+                    }
+                  />
 
                   <Route path="*" element={<Error404 />} />
                 </Routes>

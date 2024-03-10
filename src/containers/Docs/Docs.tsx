@@ -9,7 +9,6 @@ export default function Docs() {
     selectedDoc,
     content,
     loading,
-    docs,
     docLocation,
     handleChangeOpenAside,
     openAside,
@@ -25,7 +24,12 @@ export default function Docs() {
 
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
-      <Aside handleClose={handleChangeOpenAside} open={openAside} />
+      <Aside
+        handleClose={handleChangeOpenAside}
+        open={openAside}
+        handleChangeSelectedDoc={handleChangeSelectedDoc}
+        selectedDoc={selectedDoc}
+      />
 
       <div className="w-full flex flex-col">
         <Navbar handleChangeOpenAside={handleChangeOpenAside} />
@@ -34,7 +38,6 @@ export default function Docs() {
           selectedDoc={selectedDoc}
           content={content}
           loading={loading}
-          docs={docs}
           docLocation={docLocation}
         />
       </div>

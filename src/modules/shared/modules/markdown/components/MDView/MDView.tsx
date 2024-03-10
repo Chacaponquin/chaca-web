@@ -21,6 +21,9 @@ import {
   PostSchemaArrayOne,
   PostSchemaExampleOne,
   PostSchemaExampleSecond,
+  Info,
+  Danger,
+  Tip,
 } from "./components"
 
 interface Props {
@@ -68,6 +71,9 @@ export default function MDView({ content }: Props) {
             PostSchemaArrayOne: { component: PostSchemaArrayOne },
             PostSchemaExampleOne: { component: PostSchemaExampleOne },
             PostSchemaExampleSecond: { component: PostSchemaExampleSecond },
+            Info: { component: Info },
+            Danger: { component: Danger },
+            Tip: { component: Tip },
           },
         }}
       >

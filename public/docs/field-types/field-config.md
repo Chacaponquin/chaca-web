@@ -3,29 +3,28 @@
 You can define the configuration of the schema fields in two ways:
 
 ```js
-import { chaca, schemas } from 'chaca'
+import { chaca, schemas } from "chaca"
 
 const mySchema = chaca.schema({
-   id: schemas.id.uuid(),
+  id: schemas.id.uuid(),
 })
 
 // or
 
 const mySchema = chaca.schema({
-   users: {
-      type: schemas.id.uuid(),
-      isArray: { min: 1, max: 100 },
-      possibleNull: 20,
-   },
+  users: {
+    type: schemas.id.uuid(),
+    isArray: { min: 1, max: 100 },
+    possibleNull: 20,
+  },
 })
 ```
 
 ## Config
 
-:::danger All field types cannot be configured
-All field types can be configured except: **[key field](./key)**, **[sequence field](./sequence)** and **[sequential field](./sequential)**
-
-:::
+<Danger title="All field types cannot be configured">
+All field types can be configured except: **[key field](./key)**, **[sequence field](/field-types/sequence)** and **[sequential field](/field-types/sequential)**
+</Danger>
 
 ### `type`
 
@@ -33,7 +32,7 @@ Indicates the field type
 
 ```js
 type: schemas.id.uuid()
-type: chaca.ref('User.id')
+type: chaca.ref("User.id")
 type: chaca.enum([...values])
 ```
 

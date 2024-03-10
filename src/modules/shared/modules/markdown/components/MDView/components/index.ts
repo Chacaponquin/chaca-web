@@ -18,6 +18,9 @@ import ApiRoute from "./ApiRoute/ApiRoute"
 import PostSchemaArrayOne from "./PostSchemaArrayOne/PostSchemaArrayOne"
 import PostSchemaExampleOne from "./PostSchemaExampleOne/PostSchemaExampleOne"
 import PostSchemaExampleSecond from "./PostSchemaExampleSecond/PostSchemaExampleSecond"
+import Info from "./Info/Info"
+import Danger from "./Danger/Danger"
+import Tip from "./Tip/Tip"
 
 export {
   ListItem,
@@ -40,4 +43,7 @@ export {
   PostSchemaArrayOne,
   PostSchemaExampleOne,
   PostSchemaExampleSecond,
+  Info,
+  Danger,
+  Tip,
 }

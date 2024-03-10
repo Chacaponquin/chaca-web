@@ -9,9 +9,7 @@ export default function ListItem({ children }: Props) {
         <div className="translate-y-[10px] min-w-[6px] min-h-[6px] rounded-full bg-black dark:bg-white"></div>
       </div>
 
-      <div className="text-scale-7 dark:text-scale-11 leading-7 flex flex-col w-full">
-        {children}
-      </div>
+      <div className="text-scale-7 dark:text-scale-12 leading-7 w-full">{children}</div>
     </div>
   )
 }

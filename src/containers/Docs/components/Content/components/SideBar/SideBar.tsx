@@ -1,15 +1,13 @@
-import { Section } from "./components"
 import { SelectedDoc } from "@containers/Docs/interfaces"
-import { DocSection } from "@modules/docs/domain"
+import { Sections } from "@containers/Docs/shared/components"
 import clsx from "clsx"
 
 interface Props {
   handleChangeSelectedDoc(section: SelectedDoc): void
   selectedDoc: SelectedDoc | null
-  docs: Array<DocSection>
 }
 
-export default function SideBar({ handleChangeSelectedDoc, selectedDoc, docs }: Props) {
+export default function SideBar({ handleChangeSelectedDoc, selectedDoc }: Props) {
   const CLASS = clsx(
     "xl:flex flex-col hidden",
     "h-screen max-h-screen min-w-[320px] max-w-[320px]",
@@ -19,19 +17,8 @@ export default function SideBar({ handleChangeSelectedDoc, selectedDoc, docs }: 
   )
 
   return (
-    <nav className={CLASS}>
-      <ul className="flex flex-col w-full gap-y-0.5">
-        {docs.map((doc) => (
-          <Section
-            key={doc.id}
-            title={doc.title}
-            subs={doc.subSections}
-            selectedDoc={selectedDoc}
-            id={doc.id}
-            handleChangeSelectedDoc={handleChangeSelectedDoc}
-          />
-        ))}
-      </ul>
-    </nav>
+    <aside className={CLASS}>
+      <Sections handleChangeSelectedDoc={handleChangeSelectedDoc} selectedDoc={selectedDoc} />
+    </aside>
   )
 }

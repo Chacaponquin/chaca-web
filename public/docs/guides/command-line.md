@@ -26,7 +26,7 @@ This command allows you to generate data and export it from the configuration of
 |  --config  |  -c   |                                                            Schema or schemas config file location. **This option is required**                                                            | -            |
 | --filename |  -n   |                                                                                     Output file name                                                                                      | "data"       |
 |  --output  |  -o   |                                                                                Output file folder location                                                                                | project root |
-|  --count   |  -c   | Count of documents to generate. **In case of generating data with [relational schemas](../relational-schemas/multi-generate), this option will not have any relevance in the generation** | 50           |
+|  --count   |  -c   | Count of documents to generate. **In case of generating data with [relational schemas](/relational-schemas/multi-generate), this option will not have any relevance in the generation** | 50           |
 
 #### Example
 
