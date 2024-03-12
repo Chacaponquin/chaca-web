@@ -18,8 +18,13 @@
 }
 
 @font-face {
-  font-family: "Poppins Medium";
+  font-family: "Poppins Semi Bold";
   src: url("./assets//font/Poppins/Poppins-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Poppins Medium";
+  src: url("./assets//font/Poppins/Poppins-Medium.ttf");
 }
 
 @font-face {
@@ -51,19 +56,18 @@
   font-family: "Poppins Regular";
 }
 
-.no-scroll::-webkit-scrollbar {
-  display: none;
-}
-
 .code-playground * {
   font-family: "JetBrains Mono Regular";
   font-size: 15px;
   background-color: #232323;
 }
 
+.cm-editor {
+  width: 100%;
+}
+
 .code-view * {
-  font-family: "JetBrains Mono Regular";
-  font-size: 13px;
+  font-family: "JetBrains Mono Medium";
 }
 
 .ͼ1 .cm-gutters {

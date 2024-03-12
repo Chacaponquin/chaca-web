@@ -1,7 +1,7 @@
-import { DEFAULT_ICON_SIZE } from "../constants/icons.enum"
+import { DEFAULT_ICON_SIZE } from "../constants"
 import { IconProps } from "../interfaces"
 
-const Bars = ({ size = DEFAULT_ICON_SIZE }: IconProps) => {
+export default function Bars({ size = DEFAULT_ICON_SIZE }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,5 +15,3 @@ const Bars = ({ size = DEFAULT_ICON_SIZE }: IconProps) => {
     </svg>
   )
 }
-
-export default Bars

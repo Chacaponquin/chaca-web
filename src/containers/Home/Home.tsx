@@ -32,7 +32,7 @@ export default function Home() {
       {datasets.length === 0 && <NoDatasetsMessage handleCreateDataset={handleAddDataset} />}
 
       {datasets.length > 0 && (
-        <section className="flex flex-grow">
+        <main className="flex flex-grow">
           {createDataLoading && <CreationLoadingModal />}
 
           {showMenu && (
@@ -46,7 +46,7 @@ export default function Home() {
             handleAddDataset={handleAddDataset}
             handleCreateAllDatasets={handleCreateAllDatasets}
           />
-        </section>
+        </main>
       )}
     </HomeLayout>
   )

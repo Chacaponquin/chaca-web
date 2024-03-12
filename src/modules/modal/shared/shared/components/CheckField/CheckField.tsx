@@ -1,15 +1,13 @@
 import { ChacaCheckbox } from "@form/components"
 import { useId } from "react"
 
-export default function CheckField({
-  text,
-  check,
-  onChange,
-}: {
+interface Props {
   text: string
   check: boolean
-  onChange: (v: boolean) => void
-}) {
+  onChange(v: boolean): void
+}
+
+export default function CheckField({ text, check, onChange }: Props) {
   const inputId = useId()
 
   return (

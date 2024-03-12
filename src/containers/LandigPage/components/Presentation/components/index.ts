@@ -1,4 +1,4 @@
 import Content from "./Content/Content"
-import LandingNavbar from "./LandingNavbar/LandingNavbar"
+import Navbar from "./Navbar/Navbar"
 
-export { LandingNavbar, Content }
+export { Navbar, Content }

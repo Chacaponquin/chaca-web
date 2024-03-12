@@ -1,69 +1,52 @@
-import { useEffect } from "react"
 import { ModalButtons, ModalTitle } from "./components"
-import { useModal } from "@modules/modal/hooks"
+import clsx from "clsx"
+import { useModalContainer } from "./hooks"
 
 interface Props {
   children: React.ReactNode
-  width?: number
   title: string
-  handleNext: () => void
+  handleNext(): void
   nextText: string
   type: "delete" | "edit"
-  nextButtonId?: string
   name: string
 }
 
 export default function ModalContainer({
   children,
-  width = 500,
   handleNext,
   nextText,
   title,
   type,
-  nextButtonId,
   name,
 }: Props) {
-  const { handleCloseModal } = useModal()
+  const { handleClose, handleSubmit } = useModalContainer({ handleNext: handleNext })
 
-  function handleCloseWithClick(key: KeyboardEvent) {
-    if (key.key === "Enter" && !key.shiftKey) {
-      handleNext()
-    }
-  }
+  const CLASS = clsx(
+    "flex justify-center items-center",
+    "w-full min-h-screen",
+    "px-3 py-4",
+    "absolute top-0 left-0",
+    "z-[999]",
+    "bg-scale-5/50",
+    "overflow-y-auto",
+  )
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
-    e.preventDefault()
-    handleNext()
-  }
-
-  function handleClose() {
-    document.removeEventListener("keypress", handleCloseWithClick)
-    handleCloseModal()
-  }
-
-  useEffect(() => {
-    document.addEventListener("keypress", handleCloseWithClick)
-
-    return () => {
-      document.removeEventListener("keypress", handleCloseWithClick)
-    }
-  }, [handleNext])
+  const FORM_CLASS = clsx(
+    "flex flex-col",
+    "w-full max-w-[650px]",
+    "bg-white dark:bg-scale-3",
+    "px-10 py-5 esm:px-8",
+    "text-black dark:text-scale-11",
+    "shadow-lg",
+    "rounded-md",
+  )
 
   return (
-    <div
-      onClick={handleClose}
-      id={`${name}-modal`}
-      className="w-full absolute top-0 left-0 overflow-y-auto min-h-screen bg-scale-5/50 z-[999] flex justify-center items-center px-5 py-4"
-    >
-      <form
-        className="bg-white dark:bg-scale-3 flex flex-col rounded-md px-10 py-5 shadow-lg text-black dark:text-scale-11"
-        style={{ minWidth: `${width}px` }}
-        onSubmit={handleSubmit}
-        onClick={(e) => e.stopPropagation()}
-      >
+    <div onClick={handleClose} id={`${name}-modal`} className={CLASS}>
+      <form className={FORM_CLASS} onSubmit={handleSubmit} onClick={(e) => e.stopPropagation()}>
         <ModalTitle titleText={title} />
         {children}
-        <ModalButtons type={type} nextText={nextText} nextButtonId={nextButtonId} />
+        <ModalButtons type={type} nextText={nextText} />
       </form>
     </div>
   )

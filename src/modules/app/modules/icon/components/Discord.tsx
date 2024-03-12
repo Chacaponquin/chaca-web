@@ -1,5 +1,5 @@
 import { IconProps } from "../interfaces"
-import { DEFAULT_ICON_SIZE } from "../constants/icons.enum"
+import { DEFAULT_ICON_SIZE } from "../constants"
 
 export default function Discord({ size = DEFAULT_ICON_SIZE }: IconProps) {
   return (

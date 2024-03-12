@@ -1,3 +1,3 @@
-import { UserContext } from "./UserContext"
+import { UserContext, UserProvider } from "./UserContext"
 
-export { UserContext }
+export { UserContext, UserProvider }

@@ -1,7 +1,7 @@
 import { useDatatypes } from "@modules/datasets/hooks"
 import { useReducer, Reducer } from "react"
 import { FieldFormPayload, fieldFormReducer } from "../reducer"
-import { FORM_ACTIONS } from "../constants/FORM_ACTIONS"
+import { FORM_ACTIONS } from "../constants"
 import { ARGUMENT_TYPE, DATA_TYPES } from "@modules/schemas/constants"
 import { useSchemas } from "@modules/schemas/hooks"
 import { SequenceDataType, SingleValueDataType } from "@modules/datasets/interfaces/dataset-field"

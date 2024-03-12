@@ -8,8 +8,6 @@ interface Props {
   className?: string
 }
 
-const LoaderContainer = ({ loading, size, children = <></> }: Props) => {
+export default function LoaderContainer({ loading, size, children = <></> }: Props) {
   return <Fragment>{loading ? <Loader size={size} /> : children}</Fragment>
 }
-
-export default LoaderContainer

@@ -8,6 +8,7 @@ import Check from "./Check"
 import Code from "./Code"
 import Config from "./Config"
 import Copy from "./Copy"
+import Danger from "./Danger"
 import Dark from "./Dark"
 import Delete from "./Delete"
 import Discord from "./Discord"
@@ -18,6 +19,7 @@ import GitHub from "./GitHub"
 import Google from "./Google"
 import Home from "./Home"
 import Image from "./Image"
+import Info from "./Info"
 import Key from "./Key"
 import Light from "./Light"
 import Like from "./Like"
@@ -33,6 +35,7 @@ import Send from "./Send"
 import Share from "./Share"
 import SignOut from "./SignOut"
 import Smile from "./Smile"
+import Tip from "./Tip"
 import Twitter from "./Twitter"
 import User from "./User"
 import X from "./X"
@@ -76,4 +79,7 @@ export {
   Check,
   Discord,
   Twitter,
+  Info,
+  Danger,
+  Tip,
 }

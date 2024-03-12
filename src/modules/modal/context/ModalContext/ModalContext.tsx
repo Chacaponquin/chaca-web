@@ -16,9 +16,9 @@ interface Props {
   handleCloseModal(): void
 }
 
-const ModalContext = createContext<Props>({ openModal: null } as Props)
+export const ModalContext = createContext<Props>({ openModal: null } as Props)
 
-function ModalProvider({ children }: { children: ReactElement }) {
+export function ModalProvider({ children }: { children: ReactElement }) {
   const [openModal, setOpenModal] = useState<ModalProps | null>(null)
 
   function handleOpenModal(props: ModalProps) {
@@ -59,5 +59,3 @@ function ModalProvider({ children }: { children: ReactElement }) {
     </ModalContext.Provider>
   )
 }
-
-export { ModalProvider, ModalContext }

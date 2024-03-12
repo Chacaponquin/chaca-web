@@ -1,5 +1,5 @@
 import { FieldDataType } from "@modules/datasets/interfaces/dataset-field"
-import { FORM_ACTIONS } from "../constants/FORM_ACTIONS"
+import { FORM_ACTIONS } from "../constants"
 import { Reducer } from "react"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { FieldForm } from "@modules/modal/interfaces"
