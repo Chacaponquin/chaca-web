@@ -63,6 +63,8 @@ export default function useDocs() {
 
     if (foundDoc && foundSection) {
       navigate(APP_ROUTES.DOCS.BUILD_DOC_ROUTE(foundSection.url, foundDoc.url), {})
+
+      setOpenAside(false)
     }
   }
 
