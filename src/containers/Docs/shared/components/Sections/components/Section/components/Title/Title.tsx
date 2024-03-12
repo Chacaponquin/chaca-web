@@ -10,7 +10,7 @@ interface Props {
 
 export default function Title({ title, handleChangeOpen, selected, open }: Props) {
   const CLASS = clsx(
-    "flex justify-between",
+    "flex justify-between items-center",
     "rounded w-full cursor-pointer",
     "py-1.5 px-4",
     "mb-1",
