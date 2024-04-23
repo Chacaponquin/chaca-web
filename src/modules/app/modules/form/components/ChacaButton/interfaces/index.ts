@@ -1,15 +1,16 @@
+import { Size } from "@form/interfaces"
+
 export interface ChacaButtonProps {
   text: string
-  onClick?: () => void
-  size: "small" | "medium" | "large" | "extra-large"
+  size: Size
   color: "primary" | "gradient" | "danger" | "secondary" | "cancel"
-  className?: string
   full?: boolean
   type?: "submit" | "button"
   id?: string
+  onClick?: () => void
   rounded?: boolean
 }
 
 export interface ChacaIconButtonInterface extends ChacaButtonProps {
-  icon: JSX.Element
+  icon: React.ReactNode
 }

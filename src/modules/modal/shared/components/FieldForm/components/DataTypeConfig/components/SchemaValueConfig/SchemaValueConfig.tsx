@@ -56,6 +56,7 @@ export default function SchemaValueConfig({
         value={fieldType.schema}
         onChange={handleSelectModule}
         color="dark"
+        size="base"
       />
 
       <ChacaSelect
@@ -66,6 +67,7 @@ export default function SchemaValueConfig({
         placeholder={OPTION_TEXT}
         onChange={handleSelectModuleOption}
         color="dark"
+        size="base"
       />
 
       <OptionArguments

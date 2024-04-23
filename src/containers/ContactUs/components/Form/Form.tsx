@@ -5,9 +5,9 @@ import { useTranslation } from "@modules/app/modules/language/hooks"
 import { MessageForm } from "../../interfaces"
 
 interface Props {
-  handleSubmit: (e: React.FormEvent) => void
+  handleSubmit(e: React.FormEvent): void
   form: MessageForm
-  handleChange: (k: keyof MessageForm, v: string) => void
+  handleChange(k: keyof MessageForm, v: string): void
   loading: boolean
 }
 
@@ -32,6 +32,8 @@ export default function Form({ handleSubmit, form, handleChange, loading }: Prop
           type="text"
           name="title"
           id={titleId}
+          disabled={false}
+          size="base"
         />
       </FormSection>
 
@@ -42,6 +44,8 @@ export default function Form({ handleSubmit, form, handleChange, loading }: Prop
           type="email"
           name="email"
           id={emailId}
+          size="base"
+          disabled={false}
         />
       </FormSection>
 
@@ -52,6 +56,7 @@ export default function Form({ handleSubmit, form, handleChange, loading }: Prop
           value={form.message}
           name="message"
           id={messageId}
+          size="base"
         />
       </FormSection>
 

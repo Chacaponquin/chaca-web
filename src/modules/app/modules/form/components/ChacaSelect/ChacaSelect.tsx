@@ -1,19 +1,15 @@
-import { useState, useEffect, Fragment } from "react"
+import { useState, useEffect } from "react"
 import clsx from "clsx"
-import { useFilters } from "@form/hooks"
-import { ChacaFormProps } from "../../interfaces/form"
-import { Size } from "../../interfaces/dimension"
+import { ChacaFormProps, Size } from "../../interfaces"
 import { Option, Select } from "./components"
 import { ChacaDropdown } from ".."
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-interface Props<T> extends ChacaFormProps<any> {
-  size?: Size
+interface Props<T> extends ChacaFormProps<unknown> {
+  size: Size
   placeholder: string
-  options: Array<T>
+  options: T[]
   labelKey: keyof T
   valueKey: keyof T
-  height?: number
   color?: "dark" | "light"
 }
 
@@ -29,17 +25,13 @@ export default function ChacaSelect<T>({
   options,
   placeholder,
   value,
-  dimension = "normal",
-  height = 300,
   color = "light",
   size,
 }: Props<T>) {
-  const { paddingClass, textClass } = useFilters({ dimension })
-
   const [openOptions, setOpenOptions] = useState(false)
 
-  const [selectIndex, setSelectIndex] = useState<null | number>(null)
-  const [selectOptions, setSelectOptions] = useState<Array<SelectOptions>>([])
+  const [selectIndex, setSelectIndex] = useState<number | null>(null)
+  const [selectOptions, setSelectOptions] = useState<SelectOptions[]>([])
 
   useEffect(() => {
     setSelectOptions([])
@@ -62,15 +54,16 @@ export default function ChacaSelect<T>({
 
   function handleSelectOption(index: number) {
     setSelectIndex(index)
-
-    if (onChange) {
-      onChange(selectOptions[index].value)
-    }
+    onChange(selectOptions[index].value)
   }
 
   const PARENT_CLASS = clsx(
-    "w-full cursor-pointer rounded-sm gap-5 whitespace-nowrap",
+    "cursor-pointer",
+    "w-full",
+    "gap-5",
     "transition-all duration-300",
+    "rounded-sm",
+    "whitespace-nowrap",
     "flex items-center justify-between",
     "text-black dark:text-white",
     "border-2 border-scale-11",
@@ -80,15 +73,24 @@ export default function ChacaSelect<T>({
 
     { "border-purple-6": openOptions, "hover:border-purple-6": !openOptions },
 
-    textClass,
-    paddingClass,
+    {
+      "text-sm": size === "sm",
+      "text-base": size === "base",
+      "text-lg": size === "lg",
+    },
+
+    {
+      "px-3 py-1": size === "sm",
+      "px-4 py-1.5": size === "base",
+      "px-5 py-1.5": size === "lg",
+    },
   )
+
+  const SELECTED_CLASS = clsx("bg-white dark:bg-scale-5", "shadow-lg")
 
   function handleChangeOpenOptions() {
     setOpenOptions((prev) => !prev)
   }
-
-  const SELECTED_CLASS = clsx("bg-white dark:bg-scale-5 shadow-lg")
 
   return (
     <ChacaDropdown
@@ -100,21 +102,17 @@ export default function ChacaSelect<T>({
         />
       }
       className={SELECTED_CLASS}
-      height={height}
-      size={size === "full" ? "full" : "auto"}
+      height={300}
     >
-      <Fragment>
-        {options.map((_, index) => (
-          <Option
-            key={index}
-            text={selectOptions[index]?.label}
-            onClick={() => handleSelectOption(index)}
-            selected={index === selectIndex}
-            textClass={textClass}
-            paddingClass={paddingClass}
-          />
-        ))}
-      </Fragment>
+      {options.map((_, index) => (
+        <Option
+          key={index}
+          text={selectOptions[index]?.label}
+          onClick={() => handleSelectOption(index)}
+          selected={index === selectIndex}
+          size={size}
+        />
+      ))}
     </ChacaDropdown>
   )
 }

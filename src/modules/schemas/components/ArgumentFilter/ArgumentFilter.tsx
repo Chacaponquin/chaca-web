@@ -12,8 +12,6 @@ interface Props {
 
 export default function ArgumentFilter({ arg, value, handleChangeArgumentValue }: Props) {
   const filterArgument = useMemo(() => {
-    const textClass = "text-sm"
-
     switch (arg.inputType) {
       case ARGUMENT_TYPE.SELECT: {
         const options = arg.selectValues as string[]
@@ -27,9 +25,8 @@ export default function ArgumentFilter({ arg, value, handleChangeArgumentValue }
               handleChangeArgumentValue(value)
             }}
             value={value}
-            dimension="small"
+            size="sm"
             valueKey="value"
-            size={"full"}
             color="dark"
           />
         )
@@ -43,7 +40,7 @@ export default function ArgumentFilter({ arg, value, handleChangeArgumentValue }
               handleChangeArgumentValue(v)
             }}
             value={value as number}
-            className={textClass}
+            size="sm"
           />
         )
       }
@@ -52,10 +49,8 @@ export default function ArgumentFilter({ arg, value, handleChangeArgumentValue }
         return (
           <ChacaNumberInput
             step={0.1}
-            onChange={(v) => {
-              handleChangeArgumentValue(v)
-            }}
-            className={textClass}
+            onChange={(v) => handleChangeArgumentValue(v)}
+            size="sm"
             value={value as number}
           />
         )
@@ -65,7 +60,7 @@ export default function ArgumentFilter({ arg, value, handleChangeArgumentValue }
         return (
           <ChacaSwitchButton
             value={value as boolean}
-            dimension="small"
+            size="sm"
             onChange={handleChangeArgumentValue}
           />
         )
@@ -77,7 +72,6 @@ export default function ArgumentFilter({ arg, value, handleChangeArgumentValue }
             dateFormat="dd/mm/yy"
             value={value as Date}
             onChange={(e) => handleChangeArgumentValue(e.value as Date)}
-            className={textClass}
           />
         )
       }
@@ -85,11 +79,13 @@ export default function ArgumentFilter({ arg, value, handleChangeArgumentValue }
       case ARGUMENT_TYPE.TEXT: {
         return (
           <ChacaTextInput
-            dimension="small"
             onChange={(value) => handleChangeArgumentValue(value)}
             placeholder={arg.argument}
             value={value as string}
-            size={"full"}
+            size="sm"
+            disabled={false}
+            name={arg.argument}
+            type="text"
           />
         )
       }

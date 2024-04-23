@@ -1,16 +1,18 @@
+import { Size } from "@form/interfaces"
 import clsx from "clsx"
 
 interface Props {
-  onClick: () => void
+  onClick(): void
   text: string
   selected: boolean
-  textClass: string
-  paddingClass: string
+  size: Size
 }
 
-export default function Option({ onClick, text, selected, paddingClass, textClass }: Props) {
+export default function Option({ onClick, text, selected, size }: Props) {
   const className = clsx(
-    "py-2 cursor-pointer duration-300 transition-all",
+    "duration-300 transition-all",
+    "cursor-pointer",
+    "py-2",
     {
       "bg-scale-12 dark:bg-scale-3": selected,
       "dark:text-white": selected,
@@ -19,8 +21,18 @@ export default function Option({ onClick, text, selected, paddingClass, textClas
       "text-black dark:text-white": !selected,
       "hover:bg-scale-12 dark:hover:bg-scale-3": !selected,
     },
-    textClass,
-    paddingClass,
+
+    {
+      "text-sm": size === "sm",
+      "text-base": size === "base",
+      "text-lg": size === "lg",
+    },
+
+    {
+      "px-3 py-1": size === "sm",
+      "px-4 py-1.5": size === "base",
+      "px-5 py-1.5": size === "lg",
+    },
   )
 
   return (

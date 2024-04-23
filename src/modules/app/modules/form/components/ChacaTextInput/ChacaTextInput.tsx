@@ -1,47 +1,48 @@
 import clsx from "clsx"
-import { useFilters } from "../../../../modules/form/hooks"
-import { ChacaFormProps } from "../../interfaces/form"
-import { useId } from "react"
+import { ChacaFormProps } from "../../interfaces"
 
-interface ChacaTextInputProps extends ChacaFormProps<string> {
+interface Props extends ChacaFormProps<string> {
   placeholder?: string
-  size?: number | "full"
-  type?: "email" | "password" | "text"
-  name?: string
-  disabled?: boolean
+  type: "email" | "password" | "text"
+  name: string
+  disabled: boolean
 }
 
 export default function ChacaTextInput({
   placeholder = "",
-  dimension = "normal",
   onChange,
-  className = "",
-  size = "full",
   value,
-  type = "text",
-  name = "",
+  type,
+  name,
   id,
-  disabled = false,
-}: ChacaTextInputProps) {
-  const inputId = id ? id : useId()
-
-  const { textClass, paddingClass } = useFilters({ dimension })
-
-  const inputClass = clsx(
-    "transition-all duration-300 rounded-sm px-3 outline-none transition-all duration-300 border-2",
+  disabled,
+  size,
+}: Props) {
+  const CLASS = clsx(
+    "transition-all duration-300",
+    "rounded-sm",
+    "border-2",
+    "outline-none",
     "bg-white dark:bg-scale-5",
     "hover:border-purple-6 border-scale-11 focus:border-purple-6",
     "dark:border-scale-3 dark:focus:border-scale-9 dark:hover:border-scale-9",
     "dark:text-scale-12",
-    className,
-    textClass,
-    paddingClass,
+
+    {
+      "text-sm": size === "sm",
+      "text-base": size === "base",
+      "text-lg": size === "lg",
+    },
+
+    {
+      "px-3 py-1": size === "sm",
+      "px-4 py-1.5": size === "base",
+      "px-5 py-1.5": size === "lg",
+    },
   )
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
-    if (onChange) {
-      onChange(e.target.value)
-    }
+    onChange(e.target.value)
   }
 
   return (
@@ -49,13 +50,11 @@ export default function ChacaTextInput({
       type={type}
       placeholder={placeholder}
       onChange={handleChange}
-      className={inputClass}
-      style={{
-        width: size === "full" ? `100%` : `${size}px`,
-      }}
-      value={value ? value : ""}
+      className={CLASS}
+      style={{}}
+      value={value}
       name={name}
-      id={inputId}
+      id={id}
       disabled={disabled}
     />
   )

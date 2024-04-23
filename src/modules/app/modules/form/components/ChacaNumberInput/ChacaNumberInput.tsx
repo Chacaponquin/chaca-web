@@ -1,6 +1,5 @@
 import { useMemo, useState, useRef, useId } from "react"
-import { ChacaFormProps } from "../../interfaces/form"
-import { Size } from "../../interfaces/dimension"
+import { ChacaFormProps, Size } from "../../interfaces"
 import { ArrowDown, ArrowUp } from "@modules/app/modules/icon/components"
 import clsx from "clsx"
 
@@ -8,19 +7,10 @@ interface Props extends ChacaFormProps<number> {
   min?: number
   max?: number
   step?: number
-  size?: Size
+  size: Size
 }
 
-export default function ChacaNumberInput({
-  min,
-  max,
-  step = 1,
-  size = "full",
-  dimension = "normal",
-  value,
-  onChange,
-  id,
-}: Props) {
+export default function ChacaNumberInput({ min, max, step = 1, value, size, onChange, id }: Props) {
   const inputId = id ? id : useId()
 
   const [isFocus, setIsFocus] = useState(false)
@@ -30,52 +20,44 @@ export default function ChacaNumberInput({
   const downButton = useRef<HTMLButtonElement | null>(null)
 
   const height = useMemo(() => {
-    switch (dimension) {
-      case "small":
+    switch (size) {
+      case "sm":
         return 33
-      case "normal":
+      case "base":
         return 38
-      case "large":
+      case "lg":
         return 43
       default:
         return 30
     }
-  }, [dimension])
+  }, [size])
 
   const iconSize = useMemo(() => {
-    switch (dimension) {
-      case "small":
+    switch (size) {
+      case "sm":
         return 11
-      case "normal":
+      case "base":
         return 13
-      case "large":
+      case "lg":
         return 15
       default:
         return 13
     }
-  }, [dimension])
+  }, [size])
 
   function handleIncrease() {
     const nextValue = value ? Number(Number(value + step).toFixed(2)) : 1
-
-    if (onChange) {
-      onChange(validateValue(nextValue, max))
-    }
+    onChange(validateValue(nextValue, max))
   }
 
   function handleDecrease() {
     const nextValue = value ? Number(Number(value - step).toFixed(2)) : -1
-
-    if (onChange) {
-      onChange(validateValue(nextValue, min))
-    }
+    onChange(validateValue(nextValue, min))
   }
 
   function handleChangeInputValue(value: string) {
     if (typeof Number(value) === "number") {
-      if (onChange) {
-        onChange(validateValue(Number(value), wichIsCloser(Number(value))))
-      }
+      onChange(validateValue(Number(value), wichIsCloser(Number(value))))
     }
   }
 
@@ -157,35 +139,38 @@ export default function ChacaNumberInput({
   }
 
   const CONTAINER_CLASS = clsx(
-    "flex items-center rounded-sm transition-all duration-300",
+    "w-full",
+    "flex items-center",
+    "transition-all duration-300",
+    "rounded-sm",
     "border-2",
     "bg-white dark:bg-scale-5",
+
     {
-      "border-purple-6": isFocus || isHover,
-      "border-scale-11": !isFocus && !isHover,
+      "border-purple-6 dark:border-scale-9": isFocus || isHover,
+      "border-scale-11 dark:border-transparent": !isFocus && !isHover,
     },
   )
 
   const INPUT_CLASS = clsx(
-    "h-full w-full outline-none text-sm bg-transparent",
-    "py-1.5 px-2",
+    "h-full w-full",
+    "bg-transparent",
+    "outline-none",
+    "py-1.5",
     {
-      "text-base": dimension === "small",
-      "text-lg": dimension === "normal",
-      "text-xl": dimension === "large",
+      "text-base": size === "sm",
+      "text-lg": size === "base",
+      "text-xl": size === "lg",
     },
     {
-      "px-3": dimension === "small",
-      "px-4": dimension === "normal",
-      "px-5": dimension === "large",
+      "px-3": size === "sm",
+      "px-4": size === "base",
+      "px-5": size === "lg",
     },
   )
 
   return (
-    <div
-      className={CONTAINER_CLASS}
-      style={{ height: height, width: size === "full" ? `100%` : `${size}px` }}
-    >
+    <div className={CONTAINER_CLASS} style={{ height: height }}>
       <input
         className={INPUT_CLASS}
         type="text"

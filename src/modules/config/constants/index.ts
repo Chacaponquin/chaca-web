@@ -1,3 +1,0 @@
-import { CONFIG_ACTIONS } from "./CONFIG_ACTIONS"
-
-export { CONFIG_ACTIONS }

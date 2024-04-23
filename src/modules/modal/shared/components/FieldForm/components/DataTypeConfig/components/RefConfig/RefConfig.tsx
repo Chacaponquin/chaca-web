@@ -7,7 +7,7 @@ import { useId } from "react"
 interface RefConfigProps {
   refField: Array<string>
   datasetId: string
-  handleChangeRefField: (r: string) => void
+  handleChangeRefField(r: string): void
   id: string
 }
 
@@ -32,7 +32,7 @@ export default function RefConfig({
     <div className="flex flex-col">
       <FormInputSection id={fieldRefId} labelText={REF_TEXT}>
         <ChacaSelect
-          dimension="large"
+          size="lg"
           options={possibleFields}
           labelKey="locationNames"
           valueKey="locationIds"

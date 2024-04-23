@@ -1,15 +1,14 @@
-export default function DeleteForm({
-  elementName,
-  message,
-}: {
+interface Props {
   elementName: string
   message: string
-}) {
+}
+
+export default function DeleteForm({ elementName, message }: Props) {
   return (
     <div className="flex w-full flex-col">
-      <div className="text-lg flex gap-1">
-        {message} <h1 className="font-fontBold">{elementName}</h1>?
-      </div>
+      <p className="text-lg">
+        {message} <b className="font-fontMedium font-normal dark:text-white">{elementName}</b>?
+      </p>
     </div>
   )
 }

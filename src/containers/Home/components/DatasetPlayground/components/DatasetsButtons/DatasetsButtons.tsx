@@ -18,14 +18,14 @@ export default function DatasetsButtons({ handleCreateAllDatasets, handleAddData
         color="primary"
         id="create-dataset-button"
         text={ADD_DATASET}
-        size="medium"
+        size="base"
         onClick={handleAddDataset}
       />
 
       <ChacaSimpleButton
         color="secondary"
         text={EXPORT_ALL}
-        size="medium"
+        size="base"
         onClick={handleCreateAllDatasets}
       />
     </div>

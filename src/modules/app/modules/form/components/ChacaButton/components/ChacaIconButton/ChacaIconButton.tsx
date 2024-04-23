@@ -1,7 +1,7 @@
-import { buttonClass } from "../../helpers/buttonClass"
+import { buttonClass } from "../../helpers"
 import { ChacaIconButtonInterface } from "../../interfaces"
 
-const ChacaIconButton = (props: ChacaIconButtonInterface) => {
+export default function ChacaIconButton(props: ChacaIconButtonInterface) {
   return (
     <button onClick={props.onClick} className={buttonClass(props)} type={props.type}>
       {props.icon}
@@ -9,5 +9,3 @@ const ChacaIconButton = (props: ChacaIconButtonInterface) => {
     </button>
   )
 }
-
-export default ChacaIconButton

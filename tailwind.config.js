@@ -84,7 +84,7 @@ module.exports = {
         "third-bg": 'url("./assets/images/third-bg.svg")',
       },
       screens: {
-        exsm: { max: "400px" },
+        exsm: { min: "400px" },
         esm: { max: "640px" },
         "2xl": { min: "1400px" },
       },

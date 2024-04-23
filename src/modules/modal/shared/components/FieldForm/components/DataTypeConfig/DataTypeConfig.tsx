@@ -18,15 +18,15 @@ import { Argument } from "@modules/schemas/interfaces/argument"
 interface Props {
   datasetId: string
   dataType: FieldDataType
-  handleSelectFieldSchema: (v: string) => void
-  handleSelectFieldSchemaOption: (p: SelectFieldSchemaOptionProps) => void
-  handleUpdateCustomField: (p: UpdateCustomProps) => void
-  handleUpdateFieldSchemaArguments: (p: UpdateArgumentsProps) => void
-  handleChangeSequentialValues: (v: string) => void
-  handleChangeEnumValues: (v: string) => void
-  handleChangeSequenceStartsWith: (v: number) => void
+  handleSelectFieldSchema(v: string): void
+  handleSelectFieldSchemaOption(p: SelectFieldSchemaOptionProps): void
+  handleUpdateCustomField(p: UpdateCustomProps): void
+  handleUpdateFieldSchemaArguments(p: UpdateArgumentsProps): void
+  handleChangeSequentialValues(v: string): void
+  handleChangeEnumValues(v: string): void
+  handleChangeSequenceStartsWith(v: number): void
   handleChangeSequenceStep: (v: number) => void
-  handleChangeRefField: (r: string) => void
+  handleChangeRefField(r: string): void
   handleAddFieldSchemaArgument(argument: Argument): void
   handleDeleteFieldSchemaArgument(argument: string): void
   id: string

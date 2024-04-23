@@ -1,18 +1,16 @@
-import { Dimension } from "@form/interfaces/dimension"
+import { Size } from "@form/interfaces"
 import { Check } from "@modules/app/modules/icon/components"
 import clsx from "clsx"
-import { useId, Fragment } from "react"
+import { Fragment } from "react"
 
 interface Props {
   check: boolean
   id?: string
   handleChange(v: boolean): void
-  dimension?: Dimension
+  size: Size
 }
 
-export default function ChacaCheckbox({ check, handleChange, id, dimension = "normal" }: Props) {
-  const inputId = id || useId()
-
+export default function ChacaCheckbox({ check, handleChange, size, id }: Props) {
   const checkClass = clsx(
     "flex items-center justify-center",
     "stroke-black",
@@ -27,9 +25,9 @@ export default function ChacaCheckbox({ check, handleChange, id, dimension = "no
     { "dark:border-scale-7": check },
 
     {
-      "min-w-[32px] min-h-[32px]": dimension === "large",
-      "min-w-[29px] min-h-[29px]": dimension === "normal",
-      "min-w-[25px] min-h-[25px]": dimension === "small",
+      "min-w-[32px] min-h-[32px]": size === "lg",
+      "min-w-[29px] min-h-[29px]": size === "base",
+      "min-w-[25px] min-h-[25px]": size === "sm",
     },
   )
 
@@ -41,7 +39,7 @@ export default function ChacaCheckbox({ check, handleChange, id, dimension = "no
 
       <input
         type="checkbox"
-        id={inputId}
+        id={id}
         checked={check}
         style={{
           display: "none",

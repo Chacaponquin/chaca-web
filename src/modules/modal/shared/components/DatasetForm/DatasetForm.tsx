@@ -36,15 +36,17 @@ export default function DatasetForm({
           value={datasetName}
           onChange={handleDatasetName}
           id={datasetNameId}
-          dimension="large"
+          size="lg"
           name="dataset-name"
+          disabled={false}
+          type="text"
         />
       </FormInputSection>
 
       <FormInputSection id={datasetDocumentsId} labelText={COUNT_DOCUMENTS}>
         <ChacaNumberInput
           value={limit}
-          dimension="large"
+          size="lg"
           min={0}
           max={USER_DOCUMENTS_LIMIT}
           id={datasetDocumentsId}

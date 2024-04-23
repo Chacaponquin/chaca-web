@@ -5,8 +5,8 @@ import { useId } from "react"
 interface Props {
   startsWith: number
   step: number
-  handleChangeSequenceStartsWith: (v: number) => void
-  handleChangeSequenceStep: (v: number) => void
+  handleChangeSequenceStartsWith(v: number): void
+  handleChangeSequenceStep(v: number): void
 }
 
 export default function SequenceConfig({
@@ -23,19 +23,17 @@ export default function SequenceConfig({
       <FormInputSection labelText={"Starts with"} id={startId}>
         <ChacaNumberInput
           value={startsWith}
-          size={"full"}
-          dimension="small"
           onChange={handleChangeSequenceStartsWith}
           min={0.1}
           id={stepId}
+          size="sm"
         />
       </FormInputSection>
 
       <FormInputSection id={stepId} labelText={"Step"}>
         <ChacaNumberInput
           value={step}
-          size={"full"}
-          dimension="small"
+          size="sm"
           onChange={handleChangeSequenceStep}
           min={0.1}
           id={stepId}

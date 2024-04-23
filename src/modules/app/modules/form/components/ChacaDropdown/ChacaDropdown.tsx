@@ -1,29 +1,21 @@
 import clsx from "clsx"
-import { ReactElement, useRef, useEffect, useState, useCallback, useMemo } from "react"
+import { useRef, useEffect, useState, useCallback } from "react"
 
 interface Props {
-  header: ReactElement
+  header: React.ReactNode
   children: React.ReactNode
   className?: string
   id?: string
-  height?: number
-  size?: "full" | "auto" | number
+  height: number
 }
 
-export default function ChacaDropdown({
-  children,
-  header,
-  className: inputClassName,
-  id,
-  height,
-  size = "auto",
-}: Props) {
+export default function ChacaDropdown({ children, header, className: iclass, id, height }: Props) {
   const [open, setOpen] = useState(false)
 
   const wrapperRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
 
-  const LIST_CLASS = clsx("absolute z-20 mt-2 overflow-auto", inputClassName)
+  const LIST_CLASS = clsx("absolute", "z-20", "overflow-auto", "mt-2", iclass)
 
   const onClickOutside = useCallback(() => {
     setOpen(false)
@@ -51,24 +43,9 @@ export default function ChacaDropdown({
     }
   }, [onClickOutside])
 
-  const SIZE = useMemo(() => {
-    if (size === "auto") {
-      return "auto"
-    } else if (size === "full") {
-      return "100%"
-    } else {
-      return `${size}px`
-    }
-  }, [size])
-
   return (
-    <div id={id} className="" ref={wrapperRef} style={{ width: SIZE }}>
-      <div
-        className="flex items-center"
-        onClick={handleOpen}
-        ref={headerRef}
-        style={{ width: SIZE }}
-      >
+    <div id={id} className="" ref={wrapperRef}>
+      <div className="flex items-center" onClick={handleOpen} ref={headerRef}>
         {header}
       </div>
 

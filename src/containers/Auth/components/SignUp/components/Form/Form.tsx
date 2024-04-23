@@ -6,8 +6,8 @@ import { FormSection, HeaderText, SignButton } from "./components"
 import { SignUpForm } from "../../interfaces"
 
 interface Props {
-  handleSubmit: (e: React.FormEvent) => void
-  handleChange: (K: keyof SignUpForm, v: string) => void
+  handleSubmit(e: React.FormEvent): void
+  handleChange(k: keyof SignUpForm, v: string): void
   form: SignUpForm
   loading: boolean
 }
@@ -36,7 +36,8 @@ export default function Form({ handleSubmit, handleChange, form, loading }: Prop
             value={form.username}
             name="username"
             onChange={(v) => handleChange("username", v)}
-            dimension="large"
+            size="lg"
+            type="text"
             id={usernameId}
             disabled={loading}
           />
@@ -48,7 +49,8 @@ export default function Form({ handleSubmit, handleChange, form, loading }: Prop
             value={form.email}
             name="email"
             onChange={(v) => handleChange("email", v)}
-            dimension="large"
+            type="email"
+            size="lg"
             id={emailId}
             disabled={loading}
           />
@@ -61,7 +63,7 @@ export default function Form({ handleSubmit, handleChange, form, loading }: Prop
             name="password"
             onChange={(v) => handleChange("password", v)}
             type="password"
-            dimension="large"
+            size="lg"
             id={passwordId}
             disabled={loading}
           />
@@ -74,7 +76,7 @@ export default function Form({ handleSubmit, handleChange, form, loading }: Prop
             name="confirm_password"
             onChange={(v) => handleChange("confirmPassword", v)}
             type="password"
-            dimension="large"
+            size="lg"
             id={confirmId}
             disabled={loading}
           />

@@ -4,7 +4,7 @@ import { FormInputSection } from "@modules/modal/shared/shared/components"
 import { useId } from "react"
 
 interface Props {
-  handleChangeName: (v: string) => void
+  handleChangeName(v: string): void
   text: string
   name: string
 }
@@ -22,7 +22,9 @@ export default function FieldName({ handleChangeName, text, name }: Props) {
         onChange={handleChangeName}
         placeholder={PLACEHOLDER}
         value={name}
-        dimension="large"
+        size="lg"
+        disabled={false}
+        type="text"
         name="field-name"
       />
     </FormInputSection>

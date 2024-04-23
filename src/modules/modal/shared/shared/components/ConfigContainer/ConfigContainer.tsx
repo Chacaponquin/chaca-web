@@ -5,9 +5,5 @@ interface Props {
 }
 
 export default function ConfigContainer({ children }: Props) {
-  return (
-    <div className="flex sm:flex-row flex-col justify-between sm:items-center gap-y-2">
-      {children}
-    </div>
-  )
+  return <div className="grid grid-cols-2 gap-y-2">{children}</div>
 }

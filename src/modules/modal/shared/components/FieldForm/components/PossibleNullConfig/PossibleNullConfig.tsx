@@ -22,7 +22,7 @@ export default function PossibleNullConfig({
             min={1}
             max={100}
             onChange={handleChangePossibleNullValue}
-            size={200}
+            step={1}
             value={valueNull}
           />
           <p className="mb-0">{valueNull}%</p>

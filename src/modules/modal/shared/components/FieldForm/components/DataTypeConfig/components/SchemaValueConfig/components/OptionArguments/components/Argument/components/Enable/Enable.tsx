@@ -6,5 +6,5 @@ interface Props {
 }
 
 export default function Enable({ enabled, handleChange }: Props) {
-  return <ChacaCheckbox check={enabled} handleChange={handleChange} dimension="small" />
+  return <ChacaCheckbox check={enabled} handleChange={handleChange} size="sm" />
 }

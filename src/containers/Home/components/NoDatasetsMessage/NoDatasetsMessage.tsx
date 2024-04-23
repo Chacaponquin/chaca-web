@@ -4,7 +4,7 @@ import { APP_IMAGES } from "@modules/app/constants"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 
 interface Props {
-  handleCreateDataset: () => void
+  handleCreateDataset(): void
 }
 
 export default function NoDatasetsMessage({ handleCreateDataset }: Props) {
@@ -18,17 +18,16 @@ export default function NoDatasetsMessage({ handleCreateDataset }: Props) {
 
   return (
     <section className="bg-white dark:bg-scale-4 w-full flex flex-grow flex-col pt-24 items-center px-20 esm:px-8">
-      <Image image={APP_IMAGES.WELCOME} className="object-contain w-[460px]" />
+      <Image image={APP_IMAGES.WELCOME} className="object-contain w-full max-w-[460px]" />
 
-      <p className="text-xl mt-8 text-black dark:text-white text-center">{WELCOME_MESSAGE}</p>
+      <p className="text-xl mt-8 text-black dark:text-white text-center mb-6">{WELCOME_MESSAGE}</p>
 
       <ChacaSimpleButton
         color="secondary"
-        size="extra-large"
+        size="xl"
         text={MESSAGE}
-        className="mt-6"
         onClick={handleCreateDataset}
-        rounded
+        rounded={true}
         id="create-first-dataset-button"
       />
     </section>

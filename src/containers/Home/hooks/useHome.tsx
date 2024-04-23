@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { DATASETS_ERROR_HTTP_STATUS, SOCKET_EVENTS } from "@modules/app/modules/socket/constants"
-import { useConfig } from "@modules/config/hooks"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
@@ -31,7 +30,6 @@ export default function useHome() {
     searchRefField,
     showFieldsMenu,
   } = useDatasets()
-  const { handleResetConfig } = useConfig()
   const { handleOpenModal } = useModal()
   const { toastError } = useToast()
   const { language } = useLanguage()
@@ -54,7 +52,6 @@ export default function useHome() {
     try {
       await downloadDatasetFile({ filename: filename })
       setCreateDataLoading(false)
-      handleResetConfig()
     } catch (error) {
       toastError({ message: CREATION_ERROR, id: "dataset-creation-error" })
     }
@@ -104,7 +101,7 @@ export default function useHome() {
     try {
       setCreateDataLoading(true)
 
-      const exportDatasets: Array<ExportDataset> = inputDatasets.map((dat) =>
+      const exportDatasets: ExportDataset[] = inputDatasets.map((dat) =>
         dat.exportObject({
           findOption: findType,
           findParent: findParent,

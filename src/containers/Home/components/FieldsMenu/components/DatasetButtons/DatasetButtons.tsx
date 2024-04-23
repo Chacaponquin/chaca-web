@@ -2,8 +2,8 @@ import { ChacaSimpleButton } from "@form/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 
 interface Props {
-  handleExportSelectedDataset: () => void
-  handleAddNewField: () => void
+  handleExportSelectedDataset(): void
+  handleAddNewField(): void
 }
 
 export default function DatasetButtons({ handleExportSelectedDataset, handleAddNewField }: Props) {
@@ -16,7 +16,7 @@ export default function DatasetButtons({ handleExportSelectedDataset, handleAddN
     <div className="flex justify-end mt-2 gap-4 px-3">
       <ChacaSimpleButton
         color="primary"
-        size="small"
+        size="sm"
         text={NEW_FIELD_TEXT}
         onClick={handleAddNewField}
         id="create-field-button"
@@ -25,7 +25,7 @@ export default function DatasetButtons({ handleExportSelectedDataset, handleAddN
       <ChacaSimpleButton
         text={EXPORT_TEXT}
         color="secondary"
-        size="small"
+        size="sm"
         onClick={handleExportSelectedDataset}
       />
     </div>

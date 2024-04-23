@@ -9,7 +9,7 @@ const OtherOptionsSection = ({ loading }: { loading: boolean }) => {
   return (
     <Fragment>
       {!loading && (
-        <section className="grid grid-cols-2 w-full gap-2 mb-3 exsm:grid-cols-1">
+        <section className="grid exsm:grid-cols-2 w-full gap-2 mb-3 :grid-cols-1">
           <SocialButton
             text="Google"
             color="purple"

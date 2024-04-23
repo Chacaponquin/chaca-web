@@ -1,29 +1,16 @@
 import { Slider } from "primereact/slider"
-import clsx from "clsx"
 
-interface ChacaSliderProps {
+interface Props {
   value: number
-  size: number
-  step?: number
+  step: number
   min: number
   max: number
-  onChange?: (v: number) => void
+  onChange(v: number): void
 }
 
-export default function ChacaSlider({
-  value,
-  size,
-  step = 1,
-  min,
-  max,
-  onChange,
-}: ChacaSliderProps) {
-  const className = clsx(`w-[${size}px]`)
-
+export default function ChacaSlider({ value, step, min, max, onChange }: Props) {
   function handleChange(v: number) {
-    if (onChange) {
-      onChange(v)
-    }
+    onChange(v)
   }
 
   return (
@@ -33,7 +20,7 @@ export default function ChacaSlider({
       min={min}
       max={max}
       step={step}
-      className={className}
+      style={{ width: `100%` }}
       onChange={(e) => handleChange(Number(e.value.toString()))}
     />
   )

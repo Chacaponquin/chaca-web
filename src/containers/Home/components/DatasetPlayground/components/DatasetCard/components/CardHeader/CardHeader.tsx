@@ -2,9 +2,9 @@ import { ChacaDropdown } from "@form/components"
 import { Config, DatasetInfo, DatasetMenu } from "./components"
 
 interface Props {
-  handleEditDataset: () => void
-  handleDeleteDataset: () => void
-  handleExportDataset: () => void
+  handleEditDataset(): void
+  handleDeleteDataset(): void
+  handleExportDataset(): void
   name: string
   limit: number
 }
@@ -26,6 +26,7 @@ export default function CardHeader({
         header={<Config name={nameId} />}
         className="bg-white dark:bg-scale-3 dark:fill-white dark:text-white dark:stroke-white shadow-lg mt-5 -translate-x-6 z-50 rounded text-black fill-black stroke-black"
         id={`${nameId}-dataset-config-menu`}
+        height={300}
       >
         <DatasetMenu
           handleDeleteDataset={handleDeleteDataset}

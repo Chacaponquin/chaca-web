@@ -16,6 +16,7 @@ export default function FieldOptions({ field }: Props) {
             <Config size={19} />
           </button>
         }
+        height={300}
         className="bg-white dark:bg-scale-7 -translate-x-16 text-black dark:text-white shadow-md rounded-sm"
       >
         <FieldConfigMenu field={field} />

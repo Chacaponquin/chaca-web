@@ -1,31 +1,21 @@
-import { Dispatch, createContext, useReducer, useState, useEffect } from "react"
-import { Config, FileConfigOption } from "../interfaces"
-import { configReducer } from "../reducer"
-import { ConfigPayload } from "../reducer/config-reducer"
+import { createContext, useState, useEffect } from "react"
+import { FileConfigOption } from "../interfaces"
 import { useErrorBoundary } from "react-error-boundary"
 import { useConfigServices } from "../services"
-import { CONFIG_ACTIONS } from "../constants"
 
 interface Props {
   fileOptions: Array<FileConfigOption>
-  config: Config
-  configDispatch: Dispatch<ConfigPayload>
   loading: boolean
 }
 
 const ConfigContext = createContext<Props>({} as Props)
 
-function ConfigProvider({ children }: { children: React.ReactElement }) {
+function ConfigProvider({ children }: { children: React.ReactNode }) {
   const [fileOptions, setFileOptions] = useState<Array<FileConfigOption>>([])
   const [loading, setLoading] = useState(false)
 
   const { getFileOptions } = useConfigServices()
   const { showBoundary } = useErrorBoundary()
-
-  const [config, configDispatch] = useReducer(configReducer, {
-    file: { fileType: "", arguments: {} },
-    saveSchema: null,
-  })
 
   useEffect(() => {
     setLoading(true)
@@ -33,11 +23,6 @@ function ConfigProvider({ children }: { children: React.ReactElement }) {
     getFileOptions({
       onSuccess: (data) => {
         setFileOptions(data)
-
-        configDispatch({
-          type: CONFIG_ACTIONS.SET_INITIAL_CONFIG,
-          payload: { options: data },
-        })
       },
       onError: (error) => {
         showBoundary(error)
@@ -48,7 +33,7 @@ function ConfigProvider({ children }: { children: React.ReactElement }) {
     })
   }, [])
 
-  const data: Props = { fileOptions, config, configDispatch, loading }
+  const data: Props = { fileOptions, loading }
 
   return <ConfigContext.Provider value={data}>{children}</ConfigContext.Provider>
 }

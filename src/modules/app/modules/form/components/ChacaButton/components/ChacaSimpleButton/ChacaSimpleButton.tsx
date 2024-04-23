@@ -1,4 +1,4 @@
-import { buttonClass } from "../../helpers/buttonClass"
+import { buttonClass } from "../../helpers"
 import { ChacaButtonProps } from "../../interfaces"
 
 export default function ChacaSimpleButton(props: ChacaButtonProps) {

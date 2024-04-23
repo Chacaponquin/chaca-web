@@ -2,13 +2,12 @@ import { ChacaTextarea } from "@form/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { EnumField } from "@modules/datasets/domain/fields"
 
-export default function EnumConfig({
-  handleChangeEnumValues,
-  values,
-}: {
-  handleChangeEnumValues: (v: string) => void
+interface Props {
+  handleChangeEnumValues(v: string): void
   values: Array<string>
-}) {
+}
+
+export default function EnumConfig({ handleChangeEnumValues, values }: Props) {
   const { PLACEHOLDER } = useTranslation({ PLACEHOLDER: { en: "Values", es: "Valores" } })
 
   return (
@@ -18,6 +17,8 @@ export default function EnumConfig({
         height={"large"}
         placeholder={PLACEHOLDER}
         onChange={handleChangeEnumValues}
+        size="base"
+        name="enum-config"
       />
     </div>
   )

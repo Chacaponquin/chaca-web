@@ -17,17 +17,16 @@ export default function ContactUs() {
     },
   })
 
-  const containerClass = clsx(
-    "flex justify-center items-center w-screen h-screen dark:bg-scale-2",
-    { "bg-third-bg bg-cover bg-no-repeat": theme === THEME.LIGHT },
-  )
+  const CLASS = clsx("flex justify-center items-center", "w-screen h-screen", "dark:bg-scale-2", {
+    "bg-third-bg bg-cover bg-no-repeat": theme === THEME.LIGHT,
+  })
 
   return (
     <Layout title="Chaca | Contact Us" description={DESCRIPTION}>
-      <main className={containerClass}>
+      <main className={CLASS}>
         {modalOpen && <SuccessModal />}
 
-        <div className="bg-white dark:bg-scale-6 rounded shadow-lg flex gap-10 px-5 py-10 esm:w-[95%] exsm:py-6">
+        <div className="bg-white dark:bg-scale-6 rounded shadow-lg flex gap-10 px-5 py-10 esm:w-[95%]">
           <section className="flex flex-col gap-6 pl-10 w-[550px] lg:pr-0 pr-10 esm:w-full esm:pl-4 esm:pr-4">
             <Header />
 

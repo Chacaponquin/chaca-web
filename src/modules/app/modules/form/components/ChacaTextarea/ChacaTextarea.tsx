@@ -1,27 +1,22 @@
-import { useFilters } from "../../../../modules/form/hooks"
-import { ChacaFormProps } from "../../interfaces/form"
+import { ChacaFormProps } from "../../interfaces"
 import { useMemo } from "react"
 import clsx from "clsx"
 
-interface ChacaTextareaProps extends ChacaFormProps<string> {
+interface Props extends ChacaFormProps<string> {
   placeholder?: string
-  size?: "full" | number
   height: "small" | "normal" | "large"
-  name?: string
+  name: string
 }
 
 export default function ChacaTextarea({
-  dimension = "normal",
   onChange,
   placeholder = "",
   value,
-  className = "",
-  size = "full",
   height,
-  name = "",
-}: ChacaTextareaProps) {
-  const { textClass, paddingClass } = useFilters({ dimension })
-
+  name,
+  size,
+  id,
+}: Props) {
   const h = useMemo(() => {
     let retHeight: number
 
@@ -43,29 +38,43 @@ export default function ChacaTextarea({
     return retHeight
   }, [height])
 
-  const textareaClass = clsx(
-    "rounded-sm outline-none resize-none transition-all duration-300",
+  const CLASS = clsx(
+    "w-full",
+    "transition-all duration-300",
+    "resize-none",
+    "outline-none",
+    "rounded-sm",
     "bg-white dark:bg-scale-5",
-    "border-2 dark:border-scale-3 dark:focus:border-scale-9 dark:hover:border-scale-9 hover:border-purple-6 focus:border-purple-6 border-scale-11",
+    "border-2 dark:border-scale-3 border-scale-11",
+    "dark:hover:border-scale-9 hover:border-purple-6",
+    "dark:focus:border-scale-9 focus:border-purple-6",
     "dark:text-scale-12",
-    textClass,
-    paddingClass,
-    className,
+
+    {
+      "text-sm": size === "sm",
+      "text-base": size === "base",
+      "text-lg": size === "lg",
+    },
+
+    {
+      "px-3 py-1": size === "sm",
+      "px-4 py-1.5": size === "base",
+      "px-5 py-1.5": size === "lg",
+    },
   )
 
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    if (onChange) {
-      onChange(e.target.value)
-    }
+    onChange(e.target.value)
   }
 
   return (
     <textarea
-      className={textareaClass}
+      className={CLASS}
       value={value}
       placeholder={placeholder}
       onChange={handleChange}
-      style={{ width: size === "full" ? `100%` : `${size}px`, height: `${h}px` }}
+      id={id}
+      style={{ height: `${h}px` }}
       name={name}
     ></textarea>
   )
