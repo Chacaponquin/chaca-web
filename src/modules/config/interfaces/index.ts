@@ -3,7 +3,7 @@ import { Argument } from "@modules/schemas/interfaces/argument"
 export type SaveSchemaValue = null | SaveSchemaForm
 
 export type SaveSchemaForm = {
-  tags: Array<string>
+  tags: string[]
   name: string
   description: string
 }
@@ -14,13 +14,14 @@ export interface Config {
 }
 
 export interface ConfigFile {
-  fileType: string
+  name: string
+  type: string
   arguments: Record<string, unknown>
 }
 
 export interface FileConfigOption {
   fileType: string
-  arguments: Array<Argument>
+  arguments: Argument[]
   title: string
   id: string
 }

@@ -30,7 +30,6 @@ interface Props {
   handleOpenFieldsMenu(): void
   handleCloseFieldsMenu(): void
   showFieldsMenu: boolean
-
   nodes: Array<Node<CardProps>>
   edges: Array<Edge>
   onNodesChange(changes: Array<NodeChange>): void
@@ -42,10 +41,13 @@ interface Props {
   handleDeleteNode(id: string): void
 }
 
-const DatasetsContext = createContext<Props>({ datasets: [] as Dataset[] } as Props)
+export const DatasetsContext = createContext<Props>({
+  datasets: [] as Dataset[],
+  showFieldsMenu: false,
+} as Props)
 
-function DatasetsProvider({ children }: { children: ReactElement }) {
-  const [showFieldsMenu, setShowFieldsMenu] = useState(true)
+export function DatasetsProvider({ children }: { children: ReactElement }) {
+  const [showFieldsMenu, setShowFieldsMenu] = useState(false)
 
   const [selectedDataset, setSelectedDataset] = useState<Dataset | null>(null)
   const [datasets, datasetDispatch] = useReducer<Reducer<Dataset[], DatasetPayload>>(
@@ -131,5 +133,3 @@ function DatasetsProvider({ children }: { children: ReactElement }) {
 
   return <DatasetsContext.Provider value={data}>{children}</DatasetsContext.Provider>
 }
-
-export { DatasetsContext, DatasetsProvider }

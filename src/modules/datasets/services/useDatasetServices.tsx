@@ -9,7 +9,7 @@ import { useEnv } from "@modules/app/modules/env/hooks"
 import { DownloadDatasetError } from "../errors"
 
 interface ExportDatasetsProps {
-  datasets: Array<ExportDatasetDTO>
+  datasets: ExportDatasetDTO[]
   config: ExportFileConfigDTO
 }
 
@@ -18,12 +18,16 @@ export default function useDatasetServices() {
   const { fileOptions } = useConfig()
   const { API_ROUTE } = useEnv()
 
-  async function exportDatasets({ config, datasets }: ExportDatasetsProps): Promise<void> {
-    const foundFile = fileOptions.find((f) => f.id === config.fileType)
+  function exportDatasets({ config, datasets }: ExportDatasetsProps): void {
+    const found = fileOptions.find((f) => f.id === config.type)
 
-    if (foundFile) {
+    if (found) {
       if (socket.connected) {
-        const newConfig: ExportFileConfigDTO = { arguments: {}, fileType: foundFile.fileType }
+        const newConfig: ExportFileConfigDTO = {
+          arguments: config.arguments,
+          type: found.fileType,
+          name: config.name,
+        }
 
         socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {
           datasets: datasets,
@@ -35,9 +39,9 @@ export default function useDatasetServices() {
     }
   }
 
-  async function downloadDatasetFile({ filename }: { filename: string }) {
+  async function downloadDatasetFile({ id, filename }: { id: string; filename: string }) {
     try {
-      const response = await fetch(API_ROUTES.DOWNLOAD_FILE(API_ROUTE, filename), {
+      const response = await fetch(API_ROUTES.DOWNLOAD_FILE(API_ROUTE, id), {
         method: "GET",
         headers: {
           "Content-Type": "application/zip",
@@ -51,7 +55,7 @@ export default function useDatasetServices() {
 
         const link = document.createElement("a")
         link.href = url
-        link.download = "Dataset.zip"
+        link.download = `${filename}.zip`
 
         document.body.appendChild(link)
 

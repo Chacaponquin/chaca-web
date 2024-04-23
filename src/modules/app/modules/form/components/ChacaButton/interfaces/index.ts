@@ -4,6 +4,7 @@ export interface ChacaButtonProps {
   text: string
   size: Size
   color: "primary" | "gradient" | "danger" | "secondary" | "cancel"
+  disabled?: boolean
   full?: boolean
   type?: "submit" | "button"
   id?: string

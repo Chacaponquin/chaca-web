@@ -48,7 +48,7 @@ export default function useValidations() {
 
       if (findParent) {
         if (findParent instanceof MixedNode || findParent instanceof RootNode) {
-          const parentNodes = findParent.nodesUtils.nodes
+          const parentNodes = findParent.utils.nodes
 
           for (const node of parentNodes) {
             if (node.name === fieldName.value()) {

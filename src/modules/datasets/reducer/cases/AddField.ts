@@ -8,7 +8,7 @@ interface ExecuteProps {
   datasetId: string
   parentId: string
   field: NodeProps<FieldDataType>
-  next(datasets: Array<Dataset>): void
+  next(datasets: Dataset[]): void
 }
 
 export class AddField extends DatasetUseCase<ExecuteProps> {
@@ -23,7 +23,7 @@ export class AddField extends DatasetUseCase<ExecuteProps> {
           const findParent = d.findFieldById(parentId)
 
           if (findParent && findParent instanceof MixedNode) {
-            findParent.nodesUtils.insertNode(newNode)
+            findParent.utils.insertNode(newNode)
           }
         }
       }

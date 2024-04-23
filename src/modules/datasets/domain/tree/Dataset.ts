@@ -43,7 +43,7 @@ export class Dataset {
   }
 
   get nodes() {
-    return this.root.nodesUtils.nodes
+    return this.root.utils.nodes
   }
 
   get limit() {
@@ -67,34 +67,34 @@ export class Dataset {
   }
 
   public insertField(node: Field<FieldDataType, ExportDatatype>) {
-    this.root.nodesUtils.insertNode(node)
+    this.root.utils.insertNode(node)
   }
 
   public hasKeyField(): boolean {
-    return this.root.nodesUtils.hasKeyField()
+    return this.root.utils.hasKeyField()
   }
 
   public allPossibleFieldsToRef(): Array<Field<FieldDataType, ExportDatatype>> {
-    return this.root.nodesUtils.allPossibleFieldsToRef()
+    return this.root.utils.allPossibleFieldsToRef()
   }
 
   public findFieldParentNode(
     nodeID: string,
   ): Field<MixedDataType, ExportMixedDataType> | RootNode | null {
-    return this.root.nodesUtils.findFieldParentNode(nodeID)
+    return this.root.utils.findFieldParentNode(nodeID)
   }
 
   public findNodeById(nodeID: string): Field<FieldDataType, ExportDatatype> | RootNode | null {
     if (this.id === nodeID) return this.root
-    else return this.root.nodesUtils.findNodeById(nodeID)
+    else return this.root.utils.findNodeById(nodeID)
   }
 
   public findFieldById(fieldId: string): Field<FieldDataType, ExportDatatype> | null {
-    return this.root.nodesUtils.findNodeById(fieldId)
+    return this.root.utils.findNodeById(fieldId)
   }
 
   public findSameLevelFields(fieldId: string): Array<Field<FieldDataType, ExportDatatype>> {
-    return this.root.nodesUtils.getSameLevelNodes(fieldId)
+    return this.root.utils.getSameLevelNodes(fieldId)
   }
 
   public exportObject(props: SearchProps): ExportDataset {
@@ -115,20 +115,20 @@ export class Dataset {
   }
 
   public deleteField(fieldId: string): void {
-    this.root.nodesUtils.deleteField(fieldId)
+    this.root.utils.deleteField(fieldId)
   }
 
   public refFields(): Array<Field<RefDataType, ExportRefDataType>> {
-    return this.root.nodesUtils.refFields()
+    return this.root.utils.refFields()
   }
 
   public getFieldLocationIds(fieldId: string): string[] {
-    const ret = this.root.nodesUtils.getFieldLocation({ fieldId, location: [], isIdLocation: true })
+    const ret = this.root.utils.getFieldLocation({ fieldId, location: [], isIdLocation: true })
     return ret ? ret : []
   }
 
   public getFieldLocation(fieldId: string): string[] {
-    const ret = this.root.nodesUtils.getFieldLocation({
+    const ret = this.root.utils.getFieldLocation({
       fieldId,
       location: [],
       isIdLocation: false,

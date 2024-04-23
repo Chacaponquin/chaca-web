@@ -9,7 +9,7 @@ interface Props {
 
 const HomeContext = createContext<Props>({ smallWindow: false } as Props)
 
-function HomeProvider({ children }: { children: React.ReactElement }) {
+function HomeProvider({ children }: { children: React.ReactNode }) {
   const fieldsMenuRef = createRef<HTMLElement>()
   const playgroundRef = createRef<HTMLDivElement>()
   const exportLink = createRef<HTMLAnchorElement>()

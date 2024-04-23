@@ -16,7 +16,7 @@ interface GetLocationProps {
 }
 
 export class NodesUtils {
-  private _nodes: Array<Field<FieldDataType, ExportDatatype>> = []
+  private _nodes: Field<FieldDataType, ExportDatatype>[] = []
   private _instance: Field<MixedDataType, ExportMixedDataType> | RootNode
 
   constructor(instance: Field<MixedDataType, ExportMixedDataType> | RootNode) {
@@ -45,7 +45,7 @@ export class NodesUtils {
       const node = this.nodes[i]
 
       if (node instanceof MixedNode) {
-        returnArray = node.nodesUtils.getSameLevelNodes(fieldId)
+        returnArray = node.utils.getSameLevelNodes(fieldId)
       }
     }
 
@@ -72,7 +72,7 @@ export class NodesUtils {
         const node = this.nodes[i]
 
         if (node instanceof MixedNode) {
-          returnValue = node.nodesUtils.findFieldParentNode(nodeId)
+          returnValue = node.utils.findFieldParentNode(nodeId)
         }
       }
 
@@ -93,7 +93,7 @@ export class NodesUtils {
           const node = this.nodes[i]
 
           if (node instanceof MixedNode) {
-            find = node.nodesUtils.findNodeById(nodeID)
+            find = node.utils.findNodeById(nodeID)
           }
         }
       }
@@ -119,7 +119,7 @@ export class NodesUtils {
         const node = this.nodes[i]
 
         if (node instanceof MixedNode) {
-          if (node.nodesUtils.deleteField(fieldId)) {
+          if (node.utils.deleteField(fieldId)) {
             stop = true
           }
         }
@@ -154,7 +154,7 @@ export class NodesUtils {
 
       if (node instanceof MixedNode) {
         const newLocation = isIdLocation ? [...location, node.id] : [...location, node.name]
-        ret = node.nodesUtils.getFieldLocation({ fieldId, location: newLocation })
+        ret = node.utils.getFieldLocation({ fieldId, location: newLocation })
       }
     }
 
@@ -168,7 +168,7 @@ export class NodesUtils {
       if (f instanceof RefNode) {
         ref.push(f)
       } else if (f instanceof MixedNode) {
-        ref = [...ref, ...f.nodesUtils.refFields()]
+        ref = [...ref, ...f.utils.refFields()]
       }
     })
 
@@ -180,7 +180,7 @@ export class NodesUtils {
 
     for (const node of this.nodes) {
       if (node instanceof MixedNode) {
-        const fields = node.nodesUtils.allPossibleFieldsToRef()
+        const fields = node.utils.allPossibleFieldsToRef()
         returnFields = [...returnFields, ...fields]
       } else {
         if (node.isKey) {

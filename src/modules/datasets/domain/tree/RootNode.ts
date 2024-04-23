@@ -17,7 +17,7 @@ export class RootNode {
   private _name: DatasetName
   private _id = uuid()
 
-  public nodesUtils = new NodesUtils(this)
+  public utils = new NodesUtils(this)
 
   constructor({ limit, name }: RootProps) {
     this._limit = limit
@@ -33,7 +33,7 @@ export class RootNode {
   }
 
   public fields(): DatasetField[] {
-    return this.nodesUtils.nodes.map((el) => el.object())
+    return this.utils.nodes.map((el) => el.object())
   }
 
   public setName(name: DatasetName) {
@@ -41,7 +41,7 @@ export class RootNode {
   }
 
   public setField(field: Field<FieldDataType, ExportDatatype>) {
-    this.nodesUtils.nodes.push(field)
+    this.utils.nodes.push(field)
   }
 
   public limit() {
@@ -53,6 +53,6 @@ export class RootNode {
   }
 
   public exportFields(props: SearchProps): Array<ExportDatasetField<ExportDatatype>> {
-    return this.nodesUtils.exportFields(props)
+    return this.utils.exportFields(props)
   }
 }

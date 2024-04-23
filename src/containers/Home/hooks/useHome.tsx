@@ -14,7 +14,7 @@ import {
   EmptySequentialFieldError,
 } from "@modules/datasets/errors"
 import { useDatasetServices } from "@modules/datasets/services"
-import { ExportDatasetDTO } from "@modules/datasets/dto/dataset"
+import { ExportDatasetDTO, RespExportDatasetDTO } from "@modules/datasets/dto/dataset"
 import { ConnectSockerError } from "@modules/app/modules/socket/errors"
 import { Config } from "@modules/config/interfaces"
 import { DatasetCreationError } from "@modules/app/modules/socket/domain/error"
@@ -48,12 +48,24 @@ export default function useHome() {
     },
   } = useHomeTranslations()
 
-  async function handleFinishCreation(filename: string) {
+  useEffect(() => {
+    socket.on(SOCKET_EVENTS.GET_FILE_URL, handleFinishCreation)
+    socket.on(SOCKET_EVENTS.CREATION_ERROR, handleErrorCreation)
+
+    return () => {
+      socket.off(SOCKET_EVENTS.GET_FILE_URL)
+      socket.off(SOCKET_EVENTS.CREATION_ERROR)
+      socket.off(SOCKET_EVENTS.CREATE_DATASETS)
+    }
+  }, [socket, language, handleFinishCreation, handleErrorCreation])
+
+  async function handleFinishCreation(props: RespExportDatasetDTO) {
     try {
-      await downloadDatasetFile({ filename: filename })
-      setCreateDataLoading(false)
+      await downloadDatasetFile({ id: props.id, filename: props.filename })
     } catch (error) {
       toastError({ message: CREATION_ERROR, id: "dataset-creation-error" })
+    } finally {
+      setCreateDataLoading(false)
     }
   }
 
@@ -86,18 +98,7 @@ export default function useHome() {
     setCreateDataLoading(false)
   }
 
-  useEffect(() => {
-    socket.on(SOCKET_EVENTS.GET_FILE_URL, handleFinishCreation)
-    socket.on(SOCKET_EVENTS.CREATION_ERROR, handleErrorCreation)
-
-    return () => {
-      socket.off(SOCKET_EVENTS.GET_FILE_URL)
-      socket.off(SOCKET_EVENTS.CREATION_ERROR)
-      socket.off(SOCKET_EVENTS.CREATE_DATASETS)
-    }
-  }, [socket, language, handleFinishCreation, handleErrorCreation])
-
-  async function exportDatasets(inputDatasets: Array<Dataset>, config: Config): Promise<void> {
+  function exportDatasets(inputDatasets: Dataset[], config: Config): void {
     try {
       setCreateDataLoading(true)
 
@@ -110,15 +111,19 @@ export default function useHome() {
         }),
       )
 
-      const datasetsDTO: Array<ExportDatasetDTO> = exportDatasets.map((d) => ({
+      const datasetsDTO: ExportDatasetDTO[] = exportDatasets.map((d) => ({
         name: d.name,
         limit: d.limit,
         fields: d.fields,
       }))
 
-      await exportDatasetsService({
+      exportDatasetsService({
         datasets: datasetsDTO,
-        config: { fileType: config.file.fileType, arguments: {} },
+        config: {
+          type: config.file.type,
+          arguments: config.file.arguments,
+          name: config.file.name,
+        },
       })
     } catch (error) {
       if (error instanceof EmptyRefFieldError) {
@@ -135,15 +140,11 @@ export default function useHome() {
     }
   }
 
-  async function handleExportAllDatasets(config: Config) {
-    await exportDatasets(datasets, config)
-  }
-
   function handleCreateAllDatasets() {
     handleOpenModal({
       type: MODAL_ACTIONS.EXPORT_ALL_DATASETS,
-      handleCreateAllDatasets: ({ config }) => {
-        handleExportAllDatasets(config)
+      handleCreateAllDatasets({ config }) {
+        exportDatasets(datasets, config)
       },
     })
   }
@@ -151,22 +152,18 @@ export default function useHome() {
   function handleCreateDataset(dataset: Dataset): void {
     handleOpenModal({
       type: MODAL_ACTIONS.EXPORT_SELECT_DATASET,
-      handleCreateSelectDataset: ({ config }) => {
-        handleExportDataset(dataset, config)
+      handleCreateSelectDataset({ config }) {
+        exportDatasets([dataset], config)
       },
     })
-  }
-
-  async function handleExportDataset(dataset: Dataset, config: Config) {
-    await exportDatasets([dataset], config)
   }
 
   function handleExportSelectedDataset() {
     if (selectedDataset) {
       handleOpenModal({
         type: MODAL_ACTIONS.EXPORT_SELECT_DATASET,
-        handleCreateSelectDataset: ({ config }) => {
-          handleExportDataset(selectedDataset, config)
+        handleCreateSelectDataset({ config }) {
+          exportDatasets([selectedDataset], config)
         },
       })
     }

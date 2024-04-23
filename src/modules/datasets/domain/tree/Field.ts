@@ -34,12 +34,12 @@ interface PossibleConfigProps {
 }
 
 export abstract class Field<T, E extends ExportDatatype> {
+  readonly id = uuid()
   private _dataType: T
   private _isArray: IsArrayConfig
   private _possibleNull: PossibleNullConfig
   private _isKey: IsKeyConfig
   private _name: FieldName
-  private _id = uuid()
 
   constructor({ name, dataType, isArray = null, isKey = false, isPossibleNull = 0 }: NodeProps<T>) {
     this._name = name
@@ -91,7 +91,7 @@ export abstract class Field<T, E extends ExportDatatype> {
         id: this.id,
         name: this.name,
         dataType: {
-          object: this.nodesUtils.nodes.map((el) => el.object()),
+          object: this.utils.nodes.map((el) => el.object()),
           type: DATA_TYPES.MIXED,
         },
         isArray: this.isArray,
@@ -107,10 +107,6 @@ export abstract class Field<T, E extends ExportDatatype> {
         isPossibleNull: this.isPossibleNull,
       }
     }
-  }
-
-  get id() {
-    return this._id
   }
 
   public get name() {
@@ -232,7 +228,7 @@ export class SequentialNode extends Field<SequentialDataType, SequentialDataType
 }
 
 export class MixedNode extends Field<MixedDataType, ExportMixedDataType> {
-  public nodesUtils = new NodesUtils(this)
+  readonly utils = new NodesUtils(this)
 
   public stringInf(): string {
     return `mixed`
@@ -243,7 +239,7 @@ export class MixedNode extends Field<MixedDataType, ExportMixedDataType> {
       name: this.name,
       dataType: {
         type: DATA_TYPES.MIXED,
-        object: this.nodesUtils.exportFields(props),
+        object: this.utils.exportFields(props),
       },
       isArray: this.isArray,
       isKey: this.isKey,

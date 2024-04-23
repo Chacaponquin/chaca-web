@@ -13,7 +13,7 @@ export default function Config({ text, max, min, onChange, value }: Props) {
   const id = useId()
 
   return (
-    <div className="flex items-center gap-2 w-[130px]">
+    <div className="flex items-center gap-2 w-full">
       <label className="mb-0" htmlFor={id}>
         {text}:
       </label>

@@ -5,5 +5,5 @@ interface Props {
 }
 
 export default function ConfigContainer({ children }: Props) {
-  return <div className="grid grid-cols-2 gap-y-2">{children}</div>
+  return <div className="grid exsm:grid-cols-2 grid-cols-1 gap-y-2">{children}</div>
 }

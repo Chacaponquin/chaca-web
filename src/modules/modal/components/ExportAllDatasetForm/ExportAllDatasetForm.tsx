@@ -6,7 +6,7 @@ import { useExportForm } from "@modules/modal/shared/hooks"
 
 export default function ExportAllDatasetForm({ handleCreateAllDatasets }: ModalExportAllDatasets) {
   const { handleCloseModal } = useModal()
-  const { form, handleChangeFileType } = useExportForm()
+  const { form, handleChangeFileType, handleChangeName } = useExportForm()
 
   const { EXPORT_ALL_DATASETS_TEXT, SUBMIT_TEXT } = useTranslation({
     SUBMIT_TEXT: { en: "Export Datasets", es: "Exportar Datasets" },
@@ -26,7 +26,12 @@ export default function ExportAllDatasetForm({ handleCreateAllDatasets }: ModalE
       type="edit"
       name="export-all-datasets"
     >
-      <ExportForm saveModelOption={false} handleChangeFileType={handleChangeFileType} form={form} />
+      <ExportForm
+        saveModelOption={false}
+        handleChangeFileType={handleChangeFileType}
+        form={form}
+        handleChangeName={handleChangeName}
+      />
     </ModalContainer>
   )
 }

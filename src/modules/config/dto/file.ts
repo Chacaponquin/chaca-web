@@ -1,4 +1,5 @@
 export interface ExportFileConfigDTO {
-  fileType: string
+  type: string
   arguments: Record<string, unknown>
+  name: string
 }

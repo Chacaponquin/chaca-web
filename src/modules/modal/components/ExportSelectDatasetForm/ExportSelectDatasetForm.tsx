@@ -8,7 +8,7 @@ export default function ExportSelectDatasetForm({
   handleCreateSelectDataset,
 }: ModalExportSelectDataset) {
   const { handleCloseModal } = useModal()
-  const { form, handleChangeFileType } = useExportForm()
+  const { form, handleChangeFileType, handleChangeName } = useExportForm()
 
   const { EXPORT_DATASET_TEXT, SUBMIT_TEXT } = useTranslation({
     EXPORT_DATASET_TEXT: { en: "Export Single Dataset", es: "Exportar Dataset" },
@@ -28,7 +28,12 @@ export default function ExportSelectDatasetForm({
       type="edit"
       name="export-select-dataset"
     >
-      <ExportForm saveModelOption={true} form={form} handleChangeFileType={handleChangeFileType} />
+      <ExportForm
+        saveModelOption={true}
+        form={form}
+        handleChangeFileType={handleChangeFileType}
+        handleChangeName={handleChangeName}
+      />
     </ModalContainer>
   )
 }

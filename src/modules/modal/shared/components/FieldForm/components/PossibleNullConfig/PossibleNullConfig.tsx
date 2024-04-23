@@ -25,6 +25,7 @@ export default function PossibleNullConfig({
             step={1}
             value={valueNull}
           />
+
           <p className="mb-0">{valueNull}%</p>
         </div>
       )}

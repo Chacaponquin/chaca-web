@@ -22,3 +22,8 @@ export interface ExportFieldDTO {
   isArray: IsArrayConfig
   isKey: boolean
 }
+
+export interface RespExportDatasetDTO {
+  id: string
+  filename: string
+}

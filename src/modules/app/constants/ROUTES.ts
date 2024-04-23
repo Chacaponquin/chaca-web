@@ -22,7 +22,7 @@ export const API_ROUTES = {
   AUTH_ROUTES: {
     LOGIN: "/auth/signIn",
     SIGN_UP: "/auth/signUp",
-    GET_USER_BY_TOKEN: "/auth/userToken",
+    GET_USER_BY_TOKEN: "/auth/refresh",
     GOOGLE_AUTH: "/auth/google",
     GITHUB_AUTH: "/auth/github",
   },
@@ -31,7 +31,7 @@ export const API_ROUTES = {
   GET_FILE_OPTIONS: "/web-api/file-config",
   GET_FAQ: "/web-api/faq",
   CREATE_USER_MESSAGE: "/user-message/new-message",
-  DOWNLOAD_FILE(apiRoute: string, fileName: string) {
-    return `${apiRoute}/web-api/download-file/${fileName}`
+  DOWNLOAD_FILE(apiRoute: string, id: string) {
+    return `${apiRoute}/web-api/download-file/${id}`
   },
 } as const

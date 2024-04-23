@@ -11,7 +11,7 @@ export default function useExportForm() {
   const { fileOptions } = useConfig()
 
   const [form, setForm] = useState<Config>({
-    file: { fileType: fileOptions[0].fileType, arguments: {} },
+    file: { name: "", type: fileOptions[0].id, arguments: {} },
     saveSchema: null,
   })
 
@@ -19,10 +19,23 @@ export default function useExportForm() {
     setForm((prev) => ({
       ...prev,
       file: {
-        fileType: type,
+        ...prev.file,
+        type: type,
         arguments: {},
       },
     }))
+  }
+
+  function handleChangeName(n: string) {
+    setForm((prev) => {
+      return {
+        ...prev,
+        file: {
+          ...prev.file,
+          name: n,
+        },
+      }
+    })
   }
 
   function handleChangeFileArguments({ field, value }: ChangeFileArgumentsProps) {
@@ -30,12 +43,13 @@ export default function useExportForm() {
       return {
         ...prev,
         file: {
-          fileType: prev.file.fileType,
+          ...prev.file,
+          type: prev.file.type,
           arguments: { ...prev.file.arguments, [field]: value },
         },
       }
     })
   }
 
-  return { form, handleChangeFileType, handleChangeFileArguments }
+  return { form, handleChangeFileType, handleChangeFileArguments, handleChangeName }
 }
