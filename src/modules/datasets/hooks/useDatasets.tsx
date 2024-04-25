@@ -7,6 +7,7 @@ import { usePlayground, useValidations } from "."
 import { DatasetName } from "../value-object"
 import { PossibleFieldToRef } from "../interfaces/ref"
 import { ExportDatatype, FieldDataType } from "../interfaces/dataset-field"
+import { DATA_TYPES } from "@modules/schemas/constants"
 
 interface AddFieldProps {
   field: FieldProps
@@ -52,7 +53,7 @@ export default function useDatasets() {
     handleOpenFieldsMenu,
   } = useContext(DatasetsContext)
 
-  const { validateDatasetName, validateFieldName } = useValidations()
+  const { validateDatasetName, validateFieldName, validateArrayValues } = useValidations()
   const { updateConnections, handleDeleteDatasetNode, handleAddDatasetNode } = usePlayground()
 
   function handleAddDataset({ handleCreateDataset }: AddDatasetProps) {
@@ -88,6 +89,10 @@ export default function useDatasets() {
       validateFieldName({ parentId: parentfieldId, datasetId, fieldName: field.name })
     }
 
+    if (field.dataType.type === DATA_TYPES.ENUM || field.dataType.type === DATA_TYPES.SEQUENTIAL) {
+      validateArrayValues(field.dataType.values)
+    }
+
     datasetDispatch({
       type: DATASETS_ACTIONS.EDIT_FIELD,
       payload: {
@@ -100,6 +105,10 @@ export default function useDatasets() {
 
   function handleAddField({ datasetId, field, parentfieldId }: AddFieldProps) {
     validateFieldName({ parentId: parentfieldId, fieldName: field.name, datasetId })
+
+    if (field.dataType.type === DATA_TYPES.ENUM || field.dataType.type === DATA_TYPES.SEQUENTIAL) {
+      validateArrayValues(field.dataType.values)
+    }
 
     datasetDispatch({
       type: DATASETS_ACTIONS.ADD_NEW_FIELD,
@@ -191,7 +200,7 @@ export default function useDatasets() {
   }
 
   function findFieldByLocation(
-    fieldLocation: Array<string>,
+    fieldLocation: string[],
   ): Field<FieldDataType, ExportDatatype> | null {
     const id = fieldLocation.at(-1)
     const found = findField(id)
@@ -199,8 +208,8 @@ export default function useDatasets() {
     return found
   }
 
-  function searchRefField(ref: Array<string>): Array<string> {
-    const result = [] as Array<string>
+  function searchRefField(ref: string[]): string[] {
+    const result = [] as string[]
 
     const datasetId = ref[0]
     const refFields = ref.slice(1)

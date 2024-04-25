@@ -16,3 +16,7 @@ export class EmptySequentialFieldError extends Error {
 }
 
 export class DownloadDatasetError extends Error {}
+
+export class EmptyArrayValueError extends Error {}
+export class InvalidArrayNumberValue extends Error {}
+export class InvalidArrayJSONValue extends Error {}

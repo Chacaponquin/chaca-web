@@ -1,4 +1,4 @@
-import { useModal } from "@modules/modal/hooks"
+import { useCode, useModal } from "@modules/modal/hooks"
 import { useEffect } from "react"
 
 interface Props {
@@ -6,6 +6,7 @@ interface Props {
 }
 
 export default function useModalContainer({ handleNext }: Props) {
+  const { openCode, handleSubmit: handleSubmitCode } = useCode()
   const { handleCloseModal } = useModal()
 
   function handleCloseWithClick(key: KeyboardEvent) {
@@ -16,7 +17,12 @@ export default function useModalContainer({ handleNext }: Props) {
 
   function handleSubmit(e: React.FormEvent): void {
     e.preventDefault()
-    handleNext()
+
+    if (openCode) {
+      handleSubmitCode()
+    } else {
+      handleNext()
+    }
   }
 
   function handleClose() {

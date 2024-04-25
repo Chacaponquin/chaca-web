@@ -3,13 +3,15 @@ import { ChacaFormProps } from "../../interfaces"
 
 interface Props extends ChacaFormProps<string> {
   placeholder?: string
+  onClick?: () => void
   type: "email" | "password" | "text"
   name: string
   disabled: boolean
+  width?: number
 }
 
 export default function ChacaTextInput({
-  placeholder = "",
+  placeholder,
   onChange,
   value,
   type,
@@ -17,10 +19,13 @@ export default function ChacaTextInput({
   id,
   disabled,
   size,
+  onClick,
+  width,
 }: Props) {
   const CLASS = clsx(
     "transition-all duration-300",
     "rounded-sm",
+    "w-full",
     "border-2",
     "outline-none",
     "bg-white dark:bg-scale-5",
@@ -51,11 +56,14 @@ export default function ChacaTextInput({
       placeholder={placeholder}
       onChange={handleChange}
       className={CLASS}
-      style={{}}
+      style={{
+        maxWidth: width ? `${width}px` : undefined,
+      }}
       value={value}
       name={name}
       id={id}
       disabled={disabled}
+      onClick={onClick}
     />
   )
 }

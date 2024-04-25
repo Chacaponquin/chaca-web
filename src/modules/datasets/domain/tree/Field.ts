@@ -218,7 +218,7 @@ export class SequentialNode extends Field<SequentialDataType, SequentialDataType
       name: this.name,
       dataType: {
         ...this.dataType,
-        values: this.dataType.values.map((v) => v.trim()).filter((v) => v !== ""),
+        values: this.dataType.values,
       },
       isArray: this.isArray,
       isKey: this.isKey,
@@ -303,7 +303,7 @@ export class EnumNode extends Field<EnumDataType, EnumDataType> {
       name: this.name,
       dataType: {
         ...this.dataType,
-        values: this.dataType.values.map((v) => v.trim()).filter((v) => v !== ""),
+        values: this.dataType.values,
       },
       isArray: this.isArray,
       isKey: this.isKey,

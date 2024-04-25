@@ -1,3 +1,4 @@
+import { ArrayValue } from "@modules/datasets/interfaces/dataset-field"
 import { FieldForm } from "@modules/modal/interfaces"
 import { Argument } from "@modules/schemas/interfaces/argument"
 
@@ -20,6 +21,11 @@ export interface UpdateCustomProps {
   code: string
 }
 
+export interface ChangeSequentialFieldProps {
+  values: ArrayValue[]
+  loop: boolean
+}
+
 export interface FieldActions {
   field: FieldForm
   handleChangeName(name: string): void
@@ -35,11 +41,11 @@ export interface FieldActions {
   handleUpdateRefField(p: UpdateRefProps): void
   handleUpdateCustomField(p: UpdateCustomProps): void
   handleChangeIsKey(v: boolean): void
-  handleChangeSequentialValues(v: string): void
-  handleChangeEnumValues(v: string): void
   handleChangeSequenceStep(v: number): void
   handleChangeSequenceStartsWith(v: number): void
   handleChangeRef(ref: string): void
   handleAddFieldSchemaArgument(argument: Argument): void
   handleDeleteFieldSchemaArgument(argument: string): void
+  handleChangeSequentialValues(props: ChangeSequentialFieldProps): void
+  handleChangeEnumValues(v: ArrayValue[]): void
 }

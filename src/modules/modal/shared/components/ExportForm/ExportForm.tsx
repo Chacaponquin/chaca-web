@@ -31,7 +31,7 @@ export default function ExportForm({
 
   return (
     <div className="flex flex-col gap-y-3">
-      <FormInputSection labelText={NAME} id={nameId}>
+      <FormInputSection vertical={true} labelText={NAME} id={nameId}>
         <ChacaTextInput
           name="file-name"
           value={form.file.name}
@@ -43,7 +43,7 @@ export default function ExportForm({
         />
       </FormInputSection>
 
-      <FormInputSection labelText={FORMAT_TEXT} id={formatId}>
+      <FormInputSection vertical={true} labelText={FORMAT_TEXT} id={formatId}>
         <ChacaSelect
           options={fileOptions}
           labelKey="title"

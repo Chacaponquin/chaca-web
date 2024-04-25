@@ -1,23 +1,34 @@
 import CodeMirror from "@uiw/react-codemirror"
 import { javascript } from "@codemirror/lang-javascript"
+import { json } from "@codemirror/lang-json"
+import { LanguageSupport } from "@codemirror/language"
 import { vscodeDark } from "@uiw/codemirror-themes-all"
+import { Languages } from "../../interfaces"
 
 interface Props {
   onChange(value: string): void
   height: number
   code: string
-  language: string
+  language: Languages
 }
 
-export default function CodeEditor({ onChange, height, code }: Props) {
+export default function CodeEditor({ onChange, height, code, language }: Props) {
+  function filter(): LanguageSupport {
+    if (language === "javascript") {
+      return javascript()
+    } else {
+      return json()
+    }
+  }
+
   return (
     <CodeMirror
       value={code}
       onChange={onChange}
       height={`${height}px`}
-      extensions={[javascript()]}
+      extensions={[filter()]}
       theme={vscodeDark}
-      className="bg-scale-9 flex w-full"
+      className="flex w-full"
       width="100%"
     />
   )

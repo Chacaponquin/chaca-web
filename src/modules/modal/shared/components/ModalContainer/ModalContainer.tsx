@@ -1,6 +1,7 @@
-import { ModalButtons, ModalTitle } from "./components"
+import { Code, CodeButtons, FormButtons, ModalTitle } from "./components"
 import clsx from "clsx"
 import { useModalContainer } from "./hooks"
+import { useCode } from "@modules/modal/hooks"
 
 interface Props {
   children: React.ReactNode
@@ -19,14 +20,15 @@ export default function ModalContainer({
   type,
   name,
 }: Props) {
-  const { handleClose, handleSubmit } = useModalContainer({ handleNext: handleNext })
+  const { openCode } = useCode()
+  const { handleClose, handleSubmit } = useModalContainer({ handleNext })
 
   const CLASS = clsx(
     "flex justify-center items-center",
     "w-full min-h-screen",
     "px-3 py-4",
     "absolute top-0 left-0",
-    "z-[999]",
+    "z-30",
     "bg-scale-5/50",
     "overflow-y-auto",
   )
@@ -39,14 +41,17 @@ export default function ModalContainer({
     "text-black dark:text-scale-11",
     "shadow-lg",
     "rounded-md",
+    "animate-fade-down animate-once animate-duration-500 animate-ease-in-out",
   )
 
   return (
     <div onClick={handleClose} id={`${name}-modal`} className={CLASS}>
       <form className={FORM_CLASS} onSubmit={handleSubmit} onClick={(e) => e.stopPropagation()}>
         <ModalTitle titleText={title} />
-        {children}
-        <ModalButtons type={type} nextText={nextText} />
+
+        {openCode ? <Code language={openCode.language} /> : children}
+
+        {openCode ? <CodeButtons /> : <FormButtons nextText={nextText} type={type} />}
       </form>
     </div>
   )

@@ -4,14 +4,18 @@ import { FieldFormPayload, fieldFormReducer } from "../reducer"
 import { FORM_ACTIONS } from "../constants"
 import { ARGUMENT_TYPE, DATA_TYPES } from "@modules/schemas/constants"
 import { useSchemas } from "@modules/schemas/hooks"
-import { SequenceDataType, SingleValueDataType } from "@modules/datasets/interfaces/dataset-field"
 import {
+  ArrayValue,
+  SequenceDataType,
+  SingleValueDataType,
+} from "@modules/datasets/interfaces/dataset-field"
+import {
+  ChangeSequentialFieldProps,
   FieldActions,
   SelectFieldSchemaOptionProps,
   UpdateArgumentsProps,
   UpdateRefProps,
 } from "../interfaces"
-import { EnumField, SequentialField } from "@modules/datasets/domain/fields"
 import { FieldForm } from "@modules/modal/interfaces"
 import { Argument } from "@modules/schemas/interfaces/argument"
 
@@ -130,7 +134,7 @@ export default function useFieldForm({ field: inputField, datasetId }: Props): F
         value = 1
         break
       case ARGUMENT_TYPE.SELECT: {
-        const options = argument.selectValues as Array<string>
+        const options = argument.selectValues as string[]
         value = options[0]
         break
       }
@@ -193,6 +197,7 @@ export default function useFieldForm({ field: inputField, datasetId }: Props): F
         dataType: {
           type: DATA_TYPES.REF,
           ref: [...currentLocation, currentfieldId],
+          unique: false,
         },
       },
     })
@@ -214,17 +219,17 @@ export default function useFieldForm({ field: inputField, datasetId }: Props): F
     formDispatch({ type: FORM_ACTIONS.CHNAGE_IS_KEY, payload: { value: v } })
   }
 
-  function handleChangeSequentialValues(valuesString: string): void {
+  function handleChangeSequentialValues(props: ChangeSequentialFieldProps): void {
     formDispatch({
       type: FORM_ACTIONS.CHANGE_SEQUENTIAL_FIELD,
-      payload: { values: SequentialField.transformString(valuesString) },
+      payload: { values: props.values, loop: props.loop },
     })
   }
 
-  function handleChangeEnumValues(valueString: string): void {
+  function handleChangeEnumValues(values: ArrayValue[]): void {
     formDispatch({
       type: FORM_ACTIONS.CHNAGE_ENUM_FIELD,
-      payload: { values: EnumField.transformString(valueString) },
+      payload: { values: values },
     })
   }
 
@@ -245,7 +250,7 @@ export default function useFieldForm({ field: inputField, datasetId }: Props): F
   function handleChangeRef(ref: string): void {
     formDispatch({
       type: FORM_ACTIONS.CHANGE_REF_DATATYPE,
-      payload: { ref: ref.split(".") },
+      payload: { ref: ref.split("."), unique: false },
     })
   }
 

@@ -1,23 +1,26 @@
-import { ChacaTextarea } from "@form/components"
-import { useTranslation } from "@modules/app/modules/language/hooks"
-import { SequentialField } from "@modules/datasets/domain/fields"
+import { ArrayValue } from "@modules/datasets/interfaces/dataset-field"
+import { ChangeSequentialFieldProps } from "@modules/modal/shared/interfaces"
+import { CheckField, ValuesForm } from "@modules/modal/shared/shared/components"
 
 interface Props {
-  values: Array<string>
-  handleChangeSequentialValues(v: string): void
+  values: ArrayValue[]
+  loop: boolean
+  handleChangeSequentialValues(props: ChangeSequentialFieldProps): void
 }
 
-export default function SequentialConfig({ values, handleChangeSequentialValues }: Props) {
-  const { PLACEHOLDER } = useTranslation({ PLACEHOLDER: { en: "Values", es: "Valores" } })
-
+export default function SequentialConfig({ values, handleChangeSequentialValues, loop }: Props) {
   return (
-    <ChacaTextarea
-      value={SequentialField.transformArray(values)}
-      height="large"
-      placeholder={PLACEHOLDER}
-      onChange={handleChangeSequentialValues}
-      size="base"
-      name="sequential-config"
-    />
+    <div className="flex flex-col gap-4">
+      <ValuesForm
+        values={values}
+        handleChangeValues={(v) => handleChangeSequentialValues({ values: v, loop: loop })}
+      />
+
+      <CheckField
+        text="Loop"
+        check={loop}
+        onChange={(v) => handleChangeSequentialValues({ values: values, loop: v })}
+      />
+    </div>
   )
 }

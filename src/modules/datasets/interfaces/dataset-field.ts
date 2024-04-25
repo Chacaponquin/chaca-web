@@ -1,6 +1,7 @@
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { IsArrayConfig } from "./field-config"
 import { ExportDatasetField } from "../dto/dataset"
+import { ARRAY_VALUE_TYPE } from "../constants"
 
 export interface ExportDatatype {}
 
@@ -24,7 +25,7 @@ export type FieldDataType =
 
 export interface ExportMixedDataType extends ExportDatatype {
   type: DATA_TYPES.MIXED
-  object: Array<ExportDatasetField<ExportDatatype>>
+  object: ExportDatasetField<ExportDatatype>[]
 }
 
 export interface ExportRefDataType extends ExportDatatype {
@@ -49,7 +50,8 @@ export interface SingleValueDataType extends ExportDatatype {
 
 export interface RefDataType {
   type: DATA_TYPES.REF
-  ref: Array<string>
+  ref: string[]
+  unique: boolean
 }
 
 export interface SequenceDataType extends ExportDatatype {
@@ -60,12 +62,25 @@ export interface SequenceDataType extends ExportDatatype {
 
 export interface SequentialDataType extends ExportDatatype {
   type: DATA_TYPES.SEQUENTIAL
-  values: Array<string>
+  values: ArrayValue[]
+  loop: boolean
 }
 
 export interface EnumDataType extends ExportDatatype {
   type: DATA_TYPES.ENUM
-  values: Array<string>
+  values: ArrayValue[]
+}
+
+export interface ProbabilityDataType {
+  type: DATA_TYPES.PROBABILITY
+  values: unknown[]
+  chances: Array<number | string>
+}
+
+export interface PickDataType {
+  type: DATA_TYPES.PICK
+  count: number
+  values: unknown[]
 }
 
 export interface SchemaValueTypeObject {
@@ -75,3 +90,8 @@ export interface SchemaValueTypeObject {
 }
 
 export type ArgumentObject = Record<string, unknown>
+
+export type ArrayValue = {
+  type: ARRAY_VALUE_TYPE
+  value: unknown
+}

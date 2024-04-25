@@ -1,4 +1,4 @@
-import { FieldDataType } from "@modules/datasets/interfaces/dataset-field"
+import { ArrayValue, FieldDataType } from "@modules/datasets/interfaces/dataset-field"
 import { FORM_ACTIONS } from "../constants"
 import { Reducer } from "react"
 import { DATA_TYPES } from "@modules/schemas/constants"
@@ -15,7 +15,8 @@ export type FieldFormPayload =
   | {
       type: FORM_ACTIONS.CHANGE_REF_DATATYPE
       payload: {
-        ref: Array<string>
+        ref: string[]
+        unique: boolean
       }
     }
   | {
@@ -47,8 +48,8 @@ export type FieldFormPayload =
       }
     }
   | { type: FORM_ACTIONS.RESET_CONFIG }
-  | { type: FORM_ACTIONS.CHANGE_SEQUENTIAL_FIELD; payload: { values: Array<string> } }
-  | { type: FORM_ACTIONS.CHNAGE_ENUM_FIELD; payload: { values: Array<string> } }
+  | { type: FORM_ACTIONS.CHANGE_SEQUENTIAL_FIELD; payload: { values: ArrayValue[]; loop: boolean } }
+  | { type: FORM_ACTIONS.CHNAGE_ENUM_FIELD; payload: { values: ArrayValue[] } }
   | { type: FORM_ACTIONS.CHANGE_SEQUENCE_FIELD; payload: { startsWith: number; step: number } }
 
 export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
@@ -85,7 +86,14 @@ export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
     }
 
     case FORM_ACTIONS.CHANGE_SEQUENTIAL_FIELD: {
-      return { ...form, dataType: { type: DATA_TYPES.SEQUENTIAL, values: action.payload.values } }
+      return {
+        ...form,
+        dataType: {
+          type: DATA_TYPES.SEQUENTIAL,
+          values: action.payload.values,
+          loop: action.payload.loop,
+        },
+      }
     }
 
     case FORM_ACTIONS.CHNAGE_ENUM_FIELD: {
@@ -93,7 +101,10 @@ export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
     }
 
     case FORM_ACTIONS.CHANGE_REF_DATATYPE: {
-      return { ...form, dataType: { type: DATA_TYPES.REF, ref: action.payload.ref } }
+      return {
+        ...form,
+        dataType: { type: DATA_TYPES.REF, ref: action.payload.ref, unique: action.payload.unique },
+      }
     }
 
     case FORM_ACTIONS.CHANGE_SEQUENCE_FIELD: {

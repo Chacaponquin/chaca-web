@@ -7,8 +7,9 @@ import {
   SequenceConfig,
   SequentialConfig,
 } from "./components"
-import { FieldDataType } from "@modules/datasets/interfaces/dataset-field"
+import { ArrayValue, FieldDataType } from "@modules/datasets/interfaces/dataset-field"
 import {
+  ChangeSequentialFieldProps,
   SelectFieldSchemaOptionProps,
   UpdateArgumentsProps,
   UpdateCustomProps,
@@ -22,10 +23,10 @@ interface Props {
   handleSelectFieldSchemaOption(p: SelectFieldSchemaOptionProps): void
   handleUpdateCustomField(p: UpdateCustomProps): void
   handleUpdateFieldSchemaArguments(p: UpdateArgumentsProps): void
-  handleChangeSequentialValues(v: string): void
-  handleChangeEnumValues(v: string): void
+  handleChangeSequentialValues(props: ChangeSequentialFieldProps): void
+  handleChangeEnumValues(v: ArrayValue[]): void
   handleChangeSequenceStartsWith(v: number): void
-  handleChangeSequenceStep: (v: number) => void
+  handleChangeSequenceStep(v: number): void
   handleChangeRefField(r: string): void
   handleAddFieldSchemaArgument(argument: Argument): void
   handleDeleteFieldSchemaArgument(argument: string): void
@@ -80,6 +81,7 @@ export default function DataTypeConfig({
         <SequentialConfig
           handleChangeSequentialValues={handleChangeSequentialValues}
           values={dataType.values}
+          loop={dataType.loop}
         />
       )}
 

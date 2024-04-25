@@ -7,7 +7,7 @@ export default function ChacaSimpleButton(props: ChacaButtonProps) {
       onClick={props.onClick}
       className={buttonClass(props)}
       id={props.id}
-      type={props.type}
+      type={props.type ? props.type : "button"}
       disabled={props.disabled}
     >
       {props.text}

@@ -11,6 +11,7 @@ import {
 import { useSchemas } from "@modules/schemas/hooks"
 import { Datatype } from "../dto/field"
 import { useDatasets } from "./"
+import { ARRAY_VALUE_TYPE } from "../constants"
 
 interface Props {
   fieldId: string
@@ -23,7 +24,7 @@ export default function useDatatypes({ fieldId, datasetId }: Props) {
 
   const DEFAULT_CUSTOM_DATA_TYPE: CustomDataType = {
     type: DATA_TYPES.CUSTOM,
-    code: `function getValue(props){\n   // logic of your function\n}`,
+    code: `function getValue(props){\n   // logic\n}`,
   }
 
   const DEFAULT_MIXED_DATA_TYPE: MixedDataType = {
@@ -39,6 +40,7 @@ export default function useDatatypes({ fieldId, datasetId }: Props) {
   const DEFAULT_REF_DATA_TYPE: RefDataType = {
     type: DATA_TYPES.REF,
     ref: [],
+    unique: false,
   }
 
   const DEFAULT_SEQUENCE_DATA_TYPE: SequenceDataType = {
@@ -49,10 +51,14 @@ export default function useDatatypes({ fieldId, datasetId }: Props) {
 
   const DEFAULT_SEQUENTIAL_DATA_TYPE: SequentialDataType = {
     type: DATA_TYPES.SEQUENTIAL,
-    values: [],
+    values: [{ type: ARRAY_VALUE_TYPE.STRING, value: "" }],
+    loop: false,
   }
 
-  const DEFAULT_ENUM_DATA_TYPE: EnumDataType = { type: DATA_TYPES.ENUM, values: [] }
+  const DEFAULT_ENUM_DATA_TYPE: EnumDataType = {
+    type: DATA_TYPES.ENUM,
+    values: [{ type: ARRAY_VALUE_TYPE.STRING, value: "" }],
+  }
 
   const DATA_TYPES_ARRAY: Array<Datatype> = [
     {

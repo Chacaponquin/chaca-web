@@ -30,7 +30,7 @@ export default function DatasetForm({
 
   return (
     <div className="flex flex-col gap-3">
-      <FormInputSection labelText={DATASET_NAME_LABEL} id={datasetNameId}>
+      <FormInputSection vertical={true} labelText={DATASET_NAME_LABEL} id={datasetNameId}>
         <ChacaTextInput
           placeholder={FIELD_NAME_TEXT}
           value={datasetName}
@@ -43,7 +43,7 @@ export default function DatasetForm({
         />
       </FormInputSection>
 
-      <FormInputSection id={datasetDocumentsId} labelText={COUNT_DOCUMENTS}>
+      <FormInputSection vertical={true} id={datasetDocumentsId} labelText={COUNT_DOCUMENTS}>
         <ChacaNumberInput
           value={limit}
           size="lg"

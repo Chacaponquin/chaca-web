@@ -1,4 +1,5 @@
 import { ChacaNumberInput } from "@form/components"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { FormInputSection } from "@modules/modal/shared/shared/components"
 import { useId } from "react"
 
@@ -15,12 +16,17 @@ export default function SequenceConfig({
   handleChangeSequenceStartsWith,
   handleChangeSequenceStep,
 }: Props) {
+  const { START, STEP } = useTranslation({
+    START: { en: "Starts with", es: "Empieza" },
+    STEP: { en: "Step", es: "Salto" },
+  })
+
   const startId = useId()
   const stepId = useId()
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
-      <FormInputSection labelText={"Starts with"} id={startId}>
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+      <FormInputSection labelText={START} vertical={false} id={startId}>
         <ChacaNumberInput
           value={startsWith}
           onChange={handleChangeSequenceStartsWith}
@@ -30,7 +36,7 @@ export default function SequenceConfig({
         />
       </FormInputSection>
 
-      <FormInputSection id={stepId} labelText={"Step"}>
+      <FormInputSection vertical={false} id={stepId} labelText={STEP}>
         <ChacaNumberInput
           value={step}
           size="sm"

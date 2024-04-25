@@ -28,7 +28,14 @@ export default function DatasetCard({ data: { dataset, handleCreateDataset } }: 
   })
 
   const CARD_CLASS = clsx(
-    "relative bg-scale-4 flex flex-col rounded-lg text-white stroke-white cursor-grab",
+    "flex flex-col",
+    "rounded-lg",
+    "bg-scale-4",
+    "cursor-grab",
+    "stroke-white",
+    "text-white",
+    "relative",
+    "animate-jump-in animate-once animate-duration-400 animate-ease-in-out",
     { "outline outline-4 outline-purple-6": selectedDataset?.id === dataset.id },
   )
 

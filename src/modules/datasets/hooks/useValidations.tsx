@@ -1,9 +1,17 @@
-import { RepeatDatasetNameError, RepeatSameLevelFieldNameError } from "../errors"
+import {
+  EmptyArrayValueError,
+  InvalidArrayJSONValue,
+  InvalidArrayNumberValue,
+  RepeatDatasetNameError,
+  RepeatSameLevelFieldNameError,
+} from "../errors"
 import { DatasetsContext } from "../context"
 import { useContext } from "react"
 import { MixedNode } from "../domain/tree/Field"
 import { DatasetName, FieldName } from "../value-object"
 import { RootNode } from "../domain/tree"
+import { ArrayValue } from "../interfaces/dataset-field"
+import { ARRAY_VALUE_TYPE } from "../constants"
 
 interface ValidateFieldProps {
   datasetId: string
@@ -24,6 +32,28 @@ export default function useValidations() {
 
     if (found) {
       throw new RepeatDatasetNameError()
+    }
+  }
+
+  function validateArrayValues(values: ArrayValue[]) {
+    for (const value of values) {
+      if (typeof value.value === "string") {
+        if (value.value.trim().length === 0) {
+          throw new EmptyArrayValueError()
+        } else if (value.type === ARRAY_VALUE_TYPE.NUMBER) {
+          const number = Number(value.value)
+
+          if (Number.isNaN(number)) {
+            throw new InvalidArrayNumberValue()
+          }
+        } else if (value.type === ARRAY_VALUE_TYPE.JSON) {
+          try {
+            JSON.parse(value.value)
+          } catch (error) {
+            throw new InvalidArrayJSONValue()
+          }
+        }
+      }
     }
   }
 
@@ -64,5 +94,5 @@ export default function useValidations() {
     }
   }
 
-  return { validateDatasetName, validateFieldName }
+  return { validateDatasetName, validateFieldName, validateArrayValues }
 }

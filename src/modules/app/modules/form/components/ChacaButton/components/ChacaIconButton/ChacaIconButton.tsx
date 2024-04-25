@@ -6,7 +6,7 @@ export default function ChacaIconButton(props: ChacaIconButtonInterface) {
     <button
       onClick={props.onClick}
       className={buttonClass(props)}
-      type={props.type}
+      type={props.type ? props.type : "button"}
       disabled={props.disabled}
     >
       {props.icon}

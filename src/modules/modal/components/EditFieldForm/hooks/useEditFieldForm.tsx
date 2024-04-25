@@ -1,10 +1,7 @@
 import { DatasetField } from "@modules/datasets/interfaces/datasets"
 import { useDatasets } from "@modules/datasets/hooks"
 import { useFieldForm } from "../../../shared/hooks"
-import { EmptyFieldNameError, RepeatSameLevelFieldNameError } from "@modules/datasets/errors"
-import { useTranslation } from "@modules/app/modules/language/hooks"
-import { useToast } from "@modules/app/modules/toast/hooks"
-import { useModal } from "@modules/modal/hooks"
+import { useFormErrors, useModal } from "@modules/modal/hooks"
 import { FieldName } from "@modules/datasets/value-object"
 
 interface Props {
@@ -14,21 +11,9 @@ interface Props {
 }
 
 export default function useEditFieldForm({ field, parentfieldId, datasetId }: Props) {
-  const { REPEAT_NAME, EMPTY_NAME } = useTranslation({
-    REPEAT_NAME: {
-      en: `Aldready exists an field with that name`,
-      es: "Ya existe un campo con este nombre",
-    },
-    EMPTY_NAME: {
-      en: `The field name can not be an empty string`,
-      es: "El nombre del nuevo campo no puede estar vacío",
-    },
-  })
-
-  const { toastError } = useToast()
-
   const { handleCloseModal } = useModal()
   const { handleUpdateField } = useDatasets()
+  const { handleError } = useFormErrors()
 
   const fieldActions = useFieldForm({
     field: {
@@ -53,11 +38,7 @@ export default function useEditFieldForm({ field, parentfieldId, datasetId }: Pr
 
       handleCloseModal()
     } catch (error) {
-      if (error instanceof EmptyFieldNameError) {
-        toastError({ message: EMPTY_NAME })
-      } else if (error instanceof RepeatSameLevelFieldNameError) {
-        toastError({ message: REPEAT_NAME })
-      }
+      handleError(error as Error)
     }
   }
 

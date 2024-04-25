@@ -1,5 +1,5 @@
 import { ModalProps } from "@modules/modal/interfaces"
-import { createContext, ReactElement, useState, Fragment } from "react"
+import { createContext, ReactElement, useState } from "react"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import {
   AddFieldForm,
@@ -9,6 +9,7 @@ import {
   ExportAllDatasetForm,
   ExportSelectDatasetForm,
 } from "@modules/modal/components"
+import { CodeProvider } from "./CodeContext"
 
 interface Props {
   openModal: null | ModalProps
@@ -34,7 +35,7 @@ export function ModalProvider({ children }: { children: ReactElement }) {
   return (
     <ModalContext.Provider value={data}>
       {openModal && (
-        <Fragment>
+        <CodeProvider>
           {openModal.type === MODAL_ACTIONS.EDIT_DATASET && (
             <EditDataset dataset={openModal.dataset} />
           )}
@@ -52,7 +53,7 @@ export function ModalProvider({ children }: { children: ReactElement }) {
           {openModal.type === MODAL_ACTIONS.EXPORT_ALL_DATASETS && (
             <ExportAllDatasetForm {...openModal} />
           )}
-        </Fragment>
+        </CodeProvider>
       )}
 
       {children}

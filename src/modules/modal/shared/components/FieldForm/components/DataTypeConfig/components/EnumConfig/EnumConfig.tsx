@@ -1,25 +1,11 @@
-import { ChacaTextarea } from "@form/components"
-import { useTranslation } from "@modules/app/modules/language/hooks"
-import { EnumField } from "@modules/datasets/domain/fields"
+import { ArrayValue } from "@modules/datasets/interfaces/dataset-field"
+import { ValuesForm } from "@modules/modal/shared/shared/components"
 
 interface Props {
-  handleChangeEnumValues(v: string): void
-  values: Array<string>
+  handleChangeEnumValues(v: ArrayValue[]): void
+  values: ArrayValue[]
 }
 
-export default function EnumConfig({ handleChangeEnumValues, values }: Props) {
-  const { PLACEHOLDER } = useTranslation({ PLACEHOLDER: { en: "Values", es: "Valores" } })
-
-  return (
-    <div>
-      <ChacaTextarea
-        value={EnumField.transformArray(values)}
-        height={"large"}
-        placeholder={PLACEHOLDER}
-        onChange={handleChangeEnumValues}
-        size="base"
-        name="enum-config"
-      />
-    </div>
-  )
+export default function EnumConfig({ values, handleChangeEnumValues }: Props) {
+  return <ValuesForm handleChangeValues={handleChangeEnumValues} values={values} />
 }

@@ -59,11 +59,11 @@
 .code-playground * {
   font-family: "JetBrains Mono Regular";
   font-size: 15px;
-  background-color: #232323;
 }
 
 .cm-editor {
   width: 100%;
+  background-color: #232323;
 }
 
 .code-view * {

@@ -1,3 +1,4 @@
-import { ModalContext, ModalProvider } from "./ModalContext/ModalContext"
+import { CodeContext, CodeProvider } from "./CodeContext"
+import { ModalContext, ModalProvider } from "./ModalContext"
 
-export { ModalContext, ModalProvider }
+export { ModalContext, ModalProvider, CodeContext, CodeProvider }

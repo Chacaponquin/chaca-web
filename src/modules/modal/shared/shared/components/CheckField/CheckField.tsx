@@ -12,7 +12,7 @@ export default function CheckField({ text, check, onChange }: Props) {
 
   return (
     <div className="flex gap-3 items-center">
-      <ChacaCheckbox id={inputId} handleChange={onChange} check={check} size="base" />
+      <ChacaCheckbox id={inputId} handleChange={onChange} check={check} size="sm" />
 
       <label htmlFor={inputId} className="text-lg mb-0">
         {text}

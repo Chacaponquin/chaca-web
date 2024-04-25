@@ -25,7 +25,7 @@ export default function FieldDataType({
   const inputId = useId()
 
   return (
-    <FormInputSection id={inputId} labelText={label}>
+    <FormInputSection vertical={true} id={inputId} labelText={label}>
       <ChacaSelect
         id={inputId}
         placeholder="Tipo"

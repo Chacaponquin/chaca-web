@@ -1,6 +1,9 @@
+import { ChacaIconButton } from "@form/components"
+import { Edit } from "@modules/app/modules/icon/components"
+import { useTranslation } from "@modules/app/modules/language/hooks"
+import { useCode } from "@modules/modal/hooks"
 import { UpdateCustomProps } from "@modules/modal/shared/interfaces"
-import { CodeEditor } from "@modules/shared/modules/markdown/components"
-import clsx from "clsx"
+import { FormInputSection } from "@modules/modal/shared/shared/components"
 
 interface Props {
   code: string
@@ -8,23 +11,34 @@ interface Props {
 }
 
 export default function CustomConfig({ code, handleUpdateCustomField }: Props) {
-  function handleChangeCode(code: string) {
-    handleUpdateCustomField({ code: code })
+  const { BUTTON, FUNCTION } = useTranslation({
+    FUNCTION: { en: "Function", es: "Función" },
+    BUTTON: { en: "Edit code", es: "Editar código" },
+  })
+
+  const { handleOpen } = useCode()
+
+  function handleClick() {
+    handleOpen({
+      code: code,
+      handleChange: (c) => {
+        handleUpdateCustomField({ code: c })
+      },
+      language: "javascript",
+    })
   }
 
-  const CLASS = clsx(
-    "justify-center items-center flex",
-    "w-full max-w-[800px]",
-    "h-[350px]",
-    "bg-scale-12 dark:bg-scale-5",
-    "px-5",
-  )
-
   return (
-    <div className={CLASS}>
-      <div className="p-3 bg-scale-3 rounded code-playground flex w-full">
-        <CodeEditor height={300} onChange={handleChangeCode} code={code} language="javascript" />
-      </div>
-    </div>
+    <FormInputSection labelText={FUNCTION} vertical={false} id="custom-function">
+      <ChacaIconButton
+        icon={<Edit size={22} />}
+        type="button"
+        color="cancel"
+        size="base"
+        text={BUTTON}
+        disabled={false}
+        onClick={handleClick}
+      />
+    </FormInputSection>
   )
 }
