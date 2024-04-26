@@ -46,6 +46,7 @@ export default function useDatatypes({ fieldId, datasetId }: Props) {
     type: DATA_TYPES.REF,
     ref: [],
     unique: false,
+    where: null,
   }
 
   const DEFAULT_SEQUENCE_DATA_TYPE: SequenceDataType = {

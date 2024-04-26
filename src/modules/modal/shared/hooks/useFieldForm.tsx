@@ -8,6 +8,7 @@ import {
   ArrayValue,
   PickDataType,
   ProbabilityValue,
+  RefDataType,
   SequenceDataType,
   SingleValueDataType,
 } from "@modules/datasets/interfaces/dataset-field"
@@ -193,13 +194,16 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
   }
 
   function handleUpdateRefField({ currentfieldId, currentLocation }: UpdateRefProps) {
+    const f = field.dataType as RefDataType
+
     formDispatch({
       type: FORM_ACTIONS.CHANGE_FIELD_DATATYPE,
       payload: {
         dataType: {
           type: DATA_TYPES.REF,
           ref: [...currentLocation, currentfieldId],
-          unique: false,
+          unique: f.unique,
+          where: f.where,
         },
       },
     })
@@ -236,23 +240,29 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
   }
 
   function handleChangeSequenceStartsWith(value: number): void {
+    const f = field.dataType as SequenceDataType
+
     formDispatch({
       type: FORM_ACTIONS.CHANGE_SEQUENCE_FIELD,
-      payload: { startsWith: value, step: (field.dataType as SequenceDataType).step },
+      payload: { startsWith: value, step: f.step },
     })
   }
 
   function handleChangeSequenceStep(value: number): void {
+    const f = field.dataType as SequenceDataType
+
     formDispatch({
       type: FORM_ACTIONS.CHANGE_SEQUENCE_FIELD,
-      payload: { step: value, startsWith: (field.dataType as SequenceDataType).startsWith },
+      payload: { step: value, startsWith: f.startsWith },
     })
   }
 
   function handleChangeRef(ref: string): void {
+    const f = field.dataType as RefDataType
+
     formDispatch({
       type: FORM_ACTIONS.CHANGE_REF_DATATYPE,
-      payload: { ref: ref.split("."), unique: false },
+      payload: { ref: ref.split("."), unique: f.unique, where: f.where },
     })
   }
 

@@ -20,6 +20,8 @@ export class RefNode extends Field<RefDataType, ExportRefDataType> {
         dataType: {
           type: DATA_TYPES.REF,
           ref: locationNames.join("."),
+          unique: this.dataType.unique,
+          where: this.dataType.where,
         },
         isArray: this.isArray,
         isKey: this.isKey,

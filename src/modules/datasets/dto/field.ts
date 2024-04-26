@@ -22,6 +22,8 @@ export interface ExportMixedDataType extends ExportDatatypeDTO {
 export interface ExportRefDataType extends ExportDatatypeDTO {
   type: DATA_TYPES.REF
   ref: string
+  unique: boolean
+  where: string | null
 }
 
 export interface ExportCustomDataType extends ExportDatatypeDTO {

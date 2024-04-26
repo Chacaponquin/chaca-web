@@ -23,4 +23,5 @@ export class EmptyArrayValueError extends DatasetError {}
 export class InvalidArrayNumberValue extends DatasetError {}
 export class InvalidArrayJSONValue extends DatasetError {}
 export class EmptyValuesError extends DatasetError {}
-export class InvalidChanceValue extends DatasetError {}
+export class InvalidChanceValueError extends DatasetError {}
+export class InvalidPickCountError extends DatasetError {}

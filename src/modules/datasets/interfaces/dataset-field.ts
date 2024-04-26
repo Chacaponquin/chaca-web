@@ -41,7 +41,10 @@ export interface RefDataType {
   type: DATA_TYPES.REF
   ref: string[]
   unique: boolean
+  where: RefWhere
 }
+
+export type RefWhere = string | null
 
 export interface SequenceDataType {
   type: DATA_TYPES.SEQUENCE

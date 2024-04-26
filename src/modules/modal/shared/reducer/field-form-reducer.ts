@@ -2,6 +2,7 @@ import {
   ArrayValue,
   FieldDataType,
   ProbabilityValue,
+  RefWhere,
 } from "@modules/datasets/interfaces/dataset-field"
 import { FORM_ACTIONS } from "../constants"
 import { Reducer } from "react"
@@ -21,6 +22,7 @@ export type FieldFormPayload =
       payload: {
         ref: string[]
         unique: boolean
+        where: RefWhere
       }
     }
   | {
@@ -109,7 +111,12 @@ export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
     case FORM_ACTIONS.CHANGE_REF_DATATYPE: {
       return {
         ...form,
-        dataType: { type: DATA_TYPES.REF, ref: action.payload.ref, unique: action.payload.unique },
+        dataType: {
+          type: DATA_TYPES.REF,
+          ref: action.payload.ref,
+          unique: action.payload.unique,
+          where: action.payload.where,
+        },
       }
     }
 

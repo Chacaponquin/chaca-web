@@ -7,7 +7,7 @@ import {
   EmptyValuesError,
   InvalidArrayJSONValue,
   InvalidArrayNumberValue,
-  InvalidChanceValue,
+  InvalidChanceValueError,
   RepeatDatasetNameError,
   RepeatSameLevelFieldNameError,
 } from "@modules/datasets/errors"
@@ -82,7 +82,7 @@ export default function useFormErrors() {
       toastError({ message: EMPTY_DATASET_NAME, id: "empty-dataset-name" })
     } else if (error instanceof RepeatDatasetNameError) {
       toastError({ message: REPEAT_DATASET_NAME, id: "repeat-dataset-name" })
-    } else if (error instanceof InvalidChanceValue) {
+    } else if (error instanceof InvalidChanceValueError) {
       toastError({ message: INVALID_CHANGE_VALUE, id: "invalid-change-value" })
     }
   }

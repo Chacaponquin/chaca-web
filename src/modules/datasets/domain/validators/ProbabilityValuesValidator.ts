@@ -1,4 +1,4 @@
-import { DatasetError, EmptyValuesError, InvalidChanceValue } from "@modules/datasets/errors"
+import { DatasetError, EmptyValuesError, InvalidChanceValueError } from "@modules/datasets/errors"
 import { IValidator } from "./Validator"
 import { ArrayValuesValidator } from "./ArrayValuesValidator"
 import { ArrayValue, FieldDataType } from "@modules/datasets/interfaces/dataset-field"
@@ -37,7 +37,7 @@ export class ProbabilityValuesValidator implements IValidator {
           const number = Number(chance.value)
 
           if (!(number >= 0 && number <= 1)) {
-            throw new InvalidChanceValue()
+            throw new InvalidChanceValueError()
           }
         }
       }
