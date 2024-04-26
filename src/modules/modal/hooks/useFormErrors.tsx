@@ -7,6 +7,7 @@ import {
   EmptyValuesError,
   InvalidArrayJSONValue,
   InvalidArrayNumberValue,
+  InvalidChanceValue,
   RepeatDatasetNameError,
   RepeatSameLevelFieldNameError,
 } from "@modules/datasets/errors"
@@ -14,33 +15,44 @@ import {
 export default function useFormErrors() {
   const { toastError } = useToast()
 
-  const { REPEAT_NAME, EMPTY_NAME, EMPTY_ARRAY_VALUE, INVALID_NUMBER, INVALID_JSON, EMPTY_ARRAY } =
-    useTranslation({
-      REPEAT_NAME: {
-        en: `Aldready exists an field with that name`,
-        es: "Ya existe un campo con este nombre",
-      },
-      EMPTY_NAME: {
-        en: `The field name can not be an empty string`,
-        es: "El nombre del nuevo campo no puede estar vacío",
-      },
-      INVALID_NUMBER: {
-        en: "Values that are numbers cannot include characters other than digits",
-        es: "Los valores que son números no pueden incluir caracteres que no seas dígitos",
-      },
-      EMPTY_ARRAY_VALUE: {
-        en: "None of the possible values can be empty",
-        es: "Ninguno de los posibles valores puede estar vacío",
-      },
-      INVALID_JSON: {
-        en: "Values that are of type JSON must have valid syntax",
-        es: "Los valores que son de tipo JSON deben tener una sintáxis válida",
-      },
-      EMPTY_ARRAY: {
-        en: "You must insert at least one value that can be chosen",
-        es: "Debes insertar al menos un valor que puede ser escogido",
-      },
-    })
+  const {
+    REPEAT_NAME,
+    EMPTY_NAME,
+    EMPTY_ARRAY_VALUE,
+    INVALID_NUMBER,
+    INVALID_JSON,
+    EMPTY_ARRAY,
+    INVALID_CHANGE_VALUE,
+  } = useTranslation({
+    REPEAT_NAME: {
+      en: `Aldready exists an field with that name`,
+      es: "Ya existe un campo con este nombre",
+    },
+    EMPTY_NAME: {
+      en: `The field name can not be an empty string`,
+      es: "El nombre del nuevo campo no puede estar vacío",
+    },
+    INVALID_NUMBER: {
+      en: "Values that are numbers cannot include characters other than digits",
+      es: "Los valores que son números no pueden incluir caracteres que no seas dígitos",
+    },
+    EMPTY_ARRAY_VALUE: {
+      en: "None of the possible values can be empty",
+      es: "Ninguno de los posibles valores puede estar vacío",
+    },
+    INVALID_JSON: {
+      en: "Values that are of type JSON must have valid syntax",
+      es: "Los valores que son de tipo JSON deben tener una sintáxis válida",
+    },
+    EMPTY_ARRAY: {
+      en: "You must insert at least one value that can be chosen",
+      es: "Debes insertar al menos un valor que puede ser escogido",
+    },
+    INVALID_CHANGE_VALUE: {
+      en: "The probabilities values must be between 0 and 1",
+      es: "Los valores para las probabilidades deben encontrarse entre 0 y 1",
+    },
+  })
 
   const { EMPTY_DATASET_NAME, REPEAT_DATASET_NAME } = useTranslation({
     EMPTY_DATASET_NAME: {
@@ -70,6 +82,8 @@ export default function useFormErrors() {
       toastError({ message: EMPTY_DATASET_NAME, id: "empty-dataset-name" })
     } else if (error instanceof RepeatDatasetNameError) {
       toastError({ message: REPEAT_DATASET_NAME, id: "repeat-dataset-name" })
+    } else if (error instanceof InvalidChanceValue) {
+      toastError({ message: INVALID_CHANGE_VALUE, id: "invalid-change-value" })
     }
   }
 
