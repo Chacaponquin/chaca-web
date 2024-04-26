@@ -2,12 +2,18 @@ import { DATA_TYPES } from "@modules/schemas/constants"
 import {
   CustomConfig,
   EnumConfig,
+  PickConfig,
+  ProbabilityConfig,
   RefConfig,
   SchemaValueConfig,
   SequenceConfig,
   SequentialConfig,
 } from "./components"
-import { ArrayValue, FieldDataType } from "@modules/datasets/interfaces/dataset-field"
+import {
+  ArrayValue,
+  FieldDataType,
+  ProbabilityValue,
+} from "@modules/datasets/interfaces/dataset-field"
 import {
   ChangeSequentialFieldProps,
   SelectFieldSchemaOptionProps,
@@ -17,6 +23,7 @@ import {
 import { Argument } from "@modules/schemas/interfaces/argument"
 
 interface Props {
+  id: string
   datasetId: string
   dataType: FieldDataType
   handleSelectFieldSchema(v: string): void
@@ -30,10 +37,13 @@ interface Props {
   handleChangeRefField(r: string): void
   handleAddFieldSchemaArgument(argument: Argument): void
   handleDeleteFieldSchemaArgument(argument: string): void
-  id: string
+  handleChangePickValues(values: ArrayValue[]): void
+  handleChangePickCount(c: number): void
+  handleChangeProbabilityValues(values: ProbabilityValue[]): void
 }
 
 export default function DataTypeConfig({
+  id,
   datasetId,
   dataType,
   handleSelectFieldSchema,
@@ -47,7 +57,9 @@ export default function DataTypeConfig({
   handleChangeRefField,
   handleAddFieldSchemaArgument,
   handleDeleteFieldSchemaArgument,
-  id,
+  handleChangePickValues,
+  handleChangePickCount,
+  handleChangeProbabilityValues,
 }: Props) {
   return (
     <section>
@@ -93,6 +105,21 @@ export default function DataTypeConfig({
           handleUpdateFieldSchemaArguments={handleUpdateFieldSchemaArguments}
           handleAddFieldSchemaArgument={handleAddFieldSchemaArgument}
           handleDeleteFieldSchemaArgument={handleDeleteFieldSchemaArgument}
+        />
+      )}
+
+      {dataType.type === DATA_TYPES.PROBABILITY && (
+        <ProbabilityConfig
+          values={dataType.values}
+          handleChangeProbabilityValues={handleChangeProbabilityValues}
+        />
+      )}
+
+      {dataType.type === DATA_TYPES.PICK && (
+        <PickConfig
+          handleChangePickValues={handleChangePickValues}
+          values={dataType.values}
+          handleChangePickCount={handleChangePickCount}
         />
       )}
     </section>

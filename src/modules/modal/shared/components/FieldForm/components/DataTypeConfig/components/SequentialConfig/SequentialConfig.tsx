@@ -1,6 +1,7 @@
 import { ArrayValue } from "@modules/datasets/interfaces/dataset-field"
 import { ChangeSequentialFieldProps } from "@modules/modal/shared/interfaces"
-import { CheckField, ValuesForm } from "@modules/modal/shared/shared/components"
+import { CheckField } from "@modules/modal/shared/shared/components"
+import { ValuesForm } from "../../shared/components"
 
 interface Props {
   values: ArrayValue[]

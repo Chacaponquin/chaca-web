@@ -2,7 +2,6 @@ import { DatasetField } from "@modules/datasets/interfaces/datasets"
 import { useDatasets } from "@modules/datasets/hooks"
 import { useFieldForm } from "../../../shared/hooks"
 import { useFormErrors, useModal } from "@modules/modal/hooks"
-import { FieldName } from "@modules/datasets/value-object"
 
 interface Props {
   field: DatasetField
@@ -28,18 +27,13 @@ export default function useEditFieldForm({ field, parentfieldId, datasetId }: Pr
   })
 
   function handleEditField() {
-    try {
-      handleUpdateField({
-        field: { ...fieldActions.field, name: new FieldName(fieldActions.field.name) },
-        parentfieldId: parentfieldId,
-        datasetId: datasetId,
-        oldName: field.name,
-      })
-
-      handleCloseModal()
-    } catch (error) {
-      handleError(error as Error)
-    }
+    handleUpdateField({
+      field: { ...fieldActions.field, name: fieldActions.field.name.trim() },
+      parentfieldId: parentfieldId,
+      datasetId: datasetId,
+      error: handleError,
+      success: handleCloseModal,
+    })
   }
 
   return { handleEditField, fieldActions, datasetId }

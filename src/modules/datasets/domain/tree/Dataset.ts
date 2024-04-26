@@ -6,18 +6,17 @@ import {
 } from "@modules/datasets/interfaces/datasets"
 import { Field } from "./Field"
 import { RootNode } from "./RootNode"
-import { DatasetName } from "@modules/datasets/value-object"
 import { SearchProps } from "@modules/datasets/interfaces/tree"
+import { MixedDataType } from "@modules/datasets/interfaces/dataset-field"
+import { ExportDataset } from "./ExportDataset"
 import {
-  ExportDatatype,
+  ExportDatatypeDTO,
   ExportMixedDataType,
   ExportRefDataType,
-  MixedDataType,
-} from "@modules/datasets/interfaces/dataset-field"
-import { ExportDataset } from "./ExportDataset"
+} from "@modules/datasets/dto/field"
 
 interface DatasetProps {
-  name: DatasetName
+  name: string
   limit?: number
 }
 
@@ -62,11 +61,11 @@ export class Dataset {
     this.root.setLimit(limit)
   }
 
-  public setName(name: DatasetName) {
+  public setName(name: string) {
     this.root.setName(name)
   }
 
-  public insertField(node: Field<FieldDataType, ExportDatatype>) {
+  public insertField(node: Field<FieldDataType, ExportDatatypeDTO>) {
     this.root.utils.insertNode(node)
   }
 
@@ -74,7 +73,7 @@ export class Dataset {
     return this.root.utils.hasKeyField()
   }
 
-  public allPossibleFieldsToRef(): Array<Field<FieldDataType, ExportDatatype>> {
+  public allPossibleFieldsToRef(): Array<Field<FieldDataType, ExportDatatypeDTO>> {
     return this.root.utils.allPossibleFieldsToRef()
   }
 
@@ -84,16 +83,16 @@ export class Dataset {
     return this.root.utils.findFieldParentNode(nodeID)
   }
 
-  public findNodeById(nodeID: string): Field<FieldDataType, ExportDatatype> | RootNode | null {
+  public findNodeById(nodeID: string): Field<FieldDataType, ExportDatatypeDTO> | RootNode | null {
     if (this.id === nodeID) return this.root
     else return this.root.utils.findNodeById(nodeID)
   }
 
-  public findFieldById(fieldId: string): Field<FieldDataType, ExportDatatype> | null {
+  public findFieldById(fieldId: string): Field<FieldDataType, ExportDatatypeDTO> | null {
     return this.root.utils.findNodeById(fieldId)
   }
 
-  public findSameLevelFields(fieldId: string): Array<Field<FieldDataType, ExportDatatype>> {
+  public findSameLevelFields(fieldId: string): Array<Field<FieldDataType, ExportDatatypeDTO>> {
     return this.root.utils.getSameLevelNodes(fieldId)
   }
 

@@ -1,5 +1,5 @@
 import { ArrayValue } from "@modules/datasets/interfaces/dataset-field"
-import { ValuesForm } from "@modules/modal/shared/shared/components"
+import { ValuesForm } from "../../shared/components"
 
 interface Props {
   handleChangeEnumValues(v: ArrayValue[]): void

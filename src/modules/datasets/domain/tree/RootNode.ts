@@ -1,20 +1,19 @@
-import { DatasetField } from "@modules/datasets/interfaces/datasets"
+import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets"
 import { Field } from "./Field"
 import { NodesUtils } from "./NodesUtils"
-import { DatasetName } from "@modules/datasets/value-object"
 import { v4 as uuid } from "uuid"
-import { ExportDatasetField } from "@modules/datasets/dto/dataset"
 import { SearchProps } from "@modules/datasets/interfaces/tree"
-import { ExportDatatype, FieldDataType } from "@modules/datasets/interfaces/dataset-field"
+import { ExportDatatypeDTO } from "@modules/datasets/dto/field"
+import { ExportDatasetFieldDTO } from "@modules/datasets/dto/dataset"
 
 interface RootProps {
   limit: number
-  name: DatasetName
+  name: string
 }
 
 export class RootNode {
   private _limit: number
-  private _name: DatasetName
+  private _name: string
   private _id = uuid()
 
   public utils = new NodesUtils(this)
@@ -29,18 +28,18 @@ export class RootNode {
   }
 
   get name() {
-    return this._name.value()
+    return this._name
   }
 
   public fields(): DatasetField[] {
     return this.utils.nodes.map((el) => el.object())
   }
 
-  public setName(name: DatasetName) {
+  public setName(name: string) {
     this._name = name
   }
 
-  public setField(field: Field<FieldDataType, ExportDatatype>) {
+  public setField(field: Field<FieldDataType, ExportDatatypeDTO>) {
     this.utils.nodes.push(field)
   }
 
@@ -52,7 +51,7 @@ export class RootNode {
     this._limit = l
   }
 
-  public exportFields(props: SearchProps): Array<ExportDatasetField<ExportDatatype>> {
+  public exportFields(props: SearchProps): ExportDatasetFieldDTO<ExportDatatypeDTO>[] {
     return this.utils.exportFields(props)
   }
 }

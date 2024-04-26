@@ -3,15 +3,19 @@ import {
   CustomDataType,
   EnumDataType,
   MixedDataType,
+  PickDataType,
+  ProbabilityDataType,
   RefDataType,
   SequenceDataType,
   SequentialDataType,
   SingleValueDataType,
 } from "../interfaces/dataset-field"
 import { useSchemas } from "@modules/schemas/hooks"
-import { Datatype } from "../dto/field"
 import { useDatasets } from "./"
 import { ARRAY_VALUE_TYPE } from "../constants"
+import { Datatype } from "../domain/types"
+import { useMemo } from "react"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 
 interface Props {
   fieldId: string
@@ -20,6 +24,7 @@ interface Props {
 
 export default function useDatatypes({ fieldId, datasetId }: Props) {
   const { schemas } = useSchemas()
+  const { language } = useLanguage()
   const { searchPossibleFieldsToRef } = useDatasets()
 
   const DEFAULT_CUSTOM_DATA_TYPE: CustomDataType = {
@@ -60,60 +65,67 @@ export default function useDatatypes({ fieldId, datasetId }: Props) {
     values: [{ type: ARRAY_VALUE_TYPE.STRING, value: "" }],
   }
 
-  const DATA_TYPES_ARRAY: Array<Datatype> = [
-    {
-      dataType: DATA_TYPES.SINGLE_VALUE,
-      title: "Schema Value",
-      id: 7,
-      default: DEFAULT_SCHEMA_VALUE_DATA_TYPE,
-      condition: schemas.length > 0,
-    },
-    {
-      dataType: DATA_TYPES.CUSTOM,
-      title: "Custom",
-      id: 1,
-      default: DEFAULT_CUSTOM_DATA_TYPE,
-      condition: true,
-    },
-    {
-      dataType: DATA_TYPES.ENUM,
-      title: "Enum",
-      id: 2,
-      default: DEFAULT_ENUM_DATA_TYPE,
-      condition: true,
-    },
-    {
-      dataType: DATA_TYPES.MIXED,
-      title: "Object",
-      id: 3,
-      default: DEFAULT_MIXED_DATA_TYPE,
-      condition: true,
-    },
-    {
-      dataType: DATA_TYPES.REF,
-      title: "Reference",
-      id: 4,
-      default: DEFAULT_REF_DATA_TYPE,
-      condition: searchPossibleFieldsToRef({ datasetId: datasetId, fieldId: fieldId }).length !== 0,
-    },
-    {
-      dataType: DATA_TYPES.SEQUENCE,
-      title: "Sequence",
-      id: 5,
-      default: DEFAULT_SEQUENCE_DATA_TYPE,
-      condition: true,
-    },
-    {
-      dataType: DATA_TYPES.SEQUENTIAL,
-      title: "Sequential",
-      id: 6,
-      default: DEFAULT_SEQUENTIAL_DATA_TYPE,
-      condition: true,
-    },
-  ]
+  const DEFAULT_PICK_DATA_TYPE: PickDataType = {
+    type: DATA_TYPES.PICK,
+    count: 1,
+    values: [{ type: ARRAY_VALUE_TYPE.STRING, value: "" }],
+  }
+
+  const DEFAULT_PROBABILITY_DATA_TYPE: ProbabilityDataType = {
+    type: DATA_TYPES.PROBABILITY,
+    values: [
+      {
+        chance: { type: ARRAY_VALUE_TYPE.NUMBER, value: "" },
+        value: { type: ARRAY_VALUE_TYPE.STRING, value: "" },
+      },
+    ],
+  }
+
+  const DATA_TYPES_ARRAY: Datatype[] = useMemo(() => {
+    return [
+      {
+        default: DEFAULT_SCHEMA_VALUE_DATA_TYPE,
+        title: "Schema Value",
+        condition: schemas.length > 0,
+      },
+      {
+        title: "Custom",
+        default: DEFAULT_CUSTOM_DATA_TYPE,
+        condition: true,
+      },
+      {
+        title: "Enum",
+        default: DEFAULT_ENUM_DATA_TYPE,
+        condition: true,
+      },
+      {
+        title: "Object",
+        default: DEFAULT_MIXED_DATA_TYPE,
+        condition: true,
+      },
+      {
+        title: "Reference",
+        default: DEFAULT_REF_DATA_TYPE,
+        condition:
+          searchPossibleFieldsToRef({ datasetId: datasetId, fieldId: fieldId }).length !== 0,
+      },
+      { title: "Sequence", default: DEFAULT_SEQUENCE_DATA_TYPE, condition: true },
+      { title: "Sequential", default: DEFAULT_SEQUENTIAL_DATA_TYPE, condition: true },
+      {
+        condition: true,
+        default: DEFAULT_PROBABILITY_DATA_TYPE,
+        title: "Probability",
+      },
+      {
+        condition: true,
+        default: DEFAULT_PICK_DATA_TYPE,
+        title: "Pick",
+      },
+    ].map((c, index) => ({ ...c, id: String(index) }))
+  }, [schemas, searchPossibleFieldsToRef, language])
 
   function foundDataTypeByName(dataType: DATA_TYPES): Datatype {
-    const found = DATA_TYPES_ARRAY.find((d) => d.dataType === dataType) as Datatype
+    const found = DATA_TYPES_ARRAY.find((d) => d.default.type === dataType) as Datatype
     return found
   }
 

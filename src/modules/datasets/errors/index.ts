@@ -1,22 +1,26 @@
-export class RepeatDatasetNameError extends Error {}
-export class EmptyFieldNameError extends Error {}
-export class EmptyDatasetNameError extends Error {}
-export class RepeatSameLevelFieldNameError extends Error {}
+export class DatasetError extends Error {}
 
-export class EmptyRefFieldError extends Error {}
-export class EmptyEnumFieldError extends Error {
+export class RepeatDatasetNameError extends DatasetError {}
+export class EmptyFieldNameError extends DatasetError {}
+export class EmptyDatasetNameError extends DatasetError {}
+export class RepeatSameLevelFieldNameError extends DatasetError {}
+
+export class EmptyRefFieldError extends DatasetError {}
+export class EmptyEnumFieldError extends DatasetError {
   constructor(public readonly field: string) {
     super()
   }
 }
-export class EmptySequentialFieldError extends Error {
+export class EmptySequentialFieldError extends DatasetError {
   constructor(public readonly field: string) {
     super()
   }
 }
 
-export class DownloadDatasetError extends Error {}
+export class DownloadDatasetError extends DatasetError {}
 
-export class EmptyArrayValueError extends Error {}
-export class InvalidArrayNumberValue extends Error {}
-export class InvalidArrayJSONValue extends Error {}
+export class EmptyArrayValueError extends DatasetError {}
+export class InvalidArrayNumberValue extends DatasetError {}
+export class InvalidArrayJSONValue extends DatasetError {}
+export class EmptyValuesError extends DatasetError {}
+export class InvalidChanceValue extends DatasetError {}

@@ -2,7 +2,6 @@ import { useDatasets, useDatatypes } from "@modules/datasets/hooks"
 import { useFieldForm } from "../../../shared/hooks"
 import { v4 as uuid } from "uuid"
 import { useFormErrors, useModal } from "@modules/modal/hooks"
-import { FieldName } from "@modules/datasets/value-object"
 
 interface Props {
   parentfieldId: string
@@ -35,17 +34,17 @@ export default function useAddFieldForm({ datasetId, parentfieldId }: Props) {
   })
 
   function handleAddField() {
-    try {
-      handleAddFieldService({
-        datasetId: datasetId,
-        field: { ...fieldActions.field, name: new FieldName(fieldActions.field.name) },
-        parentfieldId: parentfieldId,
-      })
-
-      handleCloseModal()
-    } catch (error) {
-      handleError(error as Error)
-    }
+    handleAddFieldService({
+      datasetId: datasetId,
+      field: { ...fieldActions.field, name: fieldActions.field.name.trim() },
+      parentfieldId: parentfieldId,
+      success() {
+        handleCloseModal()
+      },
+      error(error) {
+        handleError(error)
+      },
+    })
   }
 
   return { handleAddField, fieldActions, datasetId }

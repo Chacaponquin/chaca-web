@@ -1,31 +1,46 @@
 import { DatasetsContext } from "../context"
-import { useContext } from "react"
+import { useCallback, useContext } from "react"
 import { DATASETS_ACTIONS } from "../constants"
-import { FieldProps } from "../dto/field"
+import { ExportDatatypeDTO, FieldProps } from "../dto/field"
 import { Dataset, Field } from "@modules/datasets/domain/tree"
-import { usePlayground, useValidations } from "."
-import { DatasetName } from "../value-object"
+import { usePlayground } from "."
 import { PossibleFieldToRef } from "../interfaces/ref"
-import { ExportDatatype, FieldDataType } from "../interfaces/dataset-field"
-import { DATA_TYPES } from "@modules/schemas/constants"
+import { FieldDataType } from "../interfaces/dataset-field"
+import {
+  DatasetNameValidator,
+  EnumValuesValidator,
+  FieldNameValidator,
+  NoDuplicateDataset,
+  NoDuplicateLevelField,
+  PickValuesValidator,
+  ProbabilityValuesValidator,
+  SequentialValuesValidator,
+  Validator,
+} from "../domain/validators"
+import { DatasetError } from "../errors"
 
 interface AddFieldProps {
   field: FieldProps
   parentfieldId: string
   datasetId: string
+  success(): void
+  error(error: DatasetError): void
 }
 
 interface UpdateFieldProps {
   field: FieldProps
   parentfieldId: string
   datasetId: string
-  oldName: string
+  success(): void
+  error(error: DatasetError): void
 }
 
 interface EditDatasetProps {
-  name: DatasetName
+  name: string
   datasetId: string
   limit: number
+  success(): void
+  error(error: DatasetError): void
 }
 
 interface DeleteFieldProps {
@@ -53,14 +68,13 @@ export default function useDatasets() {
     handleOpenFieldsMenu,
   } = useContext(DatasetsContext)
 
-  const { validateDatasetName, validateFieldName, validateArrayValues } = useValidations()
   const { updateConnections, handleDeleteDatasetNode, handleAddDatasetNode } = usePlayground()
 
   function handleAddDataset({ handleCreateDataset }: AddDatasetProps) {
     datasetDispatch({
       type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
       payload: {
-        next: (dataset) => {
+        next(dataset) {
           handleAddDatasetNode({
             dataset: dataset,
             handleCreateDataset: handleCreateDataset,
@@ -70,60 +84,106 @@ export default function useDatasets() {
     })
   }
 
-  function handleEditDataset({ datasetId, name, limit }: EditDatasetProps) {
-    validateDatasetName({ name, id: datasetId })
+  function handleEditDataset({ datasetId, name, limit, error, success }: EditDatasetProps) {
+    const validator = new Validator([
+      new DatasetNameValidator({ name: name }),
+      new NoDuplicateDataset({ datasets: datasets, name: name, id: datasetId }),
+    ])
 
-    datasetDispatch({
-      type: DATASETS_ACTIONS.CHANGE_DATASET_NAME,
-      payload: { datasetId: datasetId, newName: name },
-    })
+    validator.execute({
+      success() {
+        datasetDispatch({
+          type: DATASETS_ACTIONS.CHANGE_DATASET_NAME,
+          payload: { datasetId: datasetId, newName: name },
+        })
 
-    datasetDispatch({
-      type: DATASETS_ACTIONS.CHANGE_DATASET_LIMIT,
-      payload: { datasetId: datasetId, newLimit: limit },
+        datasetDispatch({
+          type: DATASETS_ACTIONS.CHANGE_DATASET_LIMIT,
+          payload: { datasetId: datasetId, newLimit: limit },
+        })
+
+        success()
+      },
+      error: error,
     })
   }
 
-  function handleUpdateField({ datasetId, field, parentfieldId, oldName }: UpdateFieldProps) {
-    if (field.name.value() !== oldName) {
-      validateFieldName({ parentId: parentfieldId, datasetId, fieldName: field.name })
-    }
-
-    if (field.dataType.type === DATA_TYPES.ENUM || field.dataType.type === DATA_TYPES.SEQUENTIAL) {
-      validateArrayValues(field.dataType.values)
-    }
-
-    datasetDispatch({
-      type: DATASETS_ACTIONS.EDIT_FIELD,
-      payload: {
-        field: field,
+  function handleUpdateField({
+    datasetId,
+    field,
+    parentfieldId,
+    success,
+    error,
+  }: UpdateFieldProps) {
+    const validator = new Validator([
+      new FieldNameValidator({ name: field.name }),
+      new NoDuplicateLevelField({
+        fieldId: field.id,
         datasetId: datasetId,
-        next: updateConnections,
+        datasets: datasets,
+        name: field.name,
+        parentId: parentfieldId,
+      }),
+      new SequentialValuesValidator({ type: field.dataType }),
+      new EnumValuesValidator({ type: field.dataType }),
+      new PickValuesValidator({ type: field.dataType }),
+      new ProbabilityValuesValidator({ type: field.dataType }),
+    ])
+
+    validator.execute({
+      success() {
+        datasetDispatch({
+          type: DATASETS_ACTIONS.EDIT_FIELD,
+          payload: {
+            field: field,
+            datasetId: datasetId,
+            next: updateConnections,
+          },
+        })
+
+        success()
       },
+      error: error,
     })
   }
 
-  function handleAddField({ datasetId, field, parentfieldId }: AddFieldProps) {
-    validateFieldName({ parentId: parentfieldId, fieldName: field.name, datasetId })
-
-    if (field.dataType.type === DATA_TYPES.ENUM || field.dataType.type === DATA_TYPES.SEQUENTIAL) {
-      validateArrayValues(field.dataType.values)
-    }
-
-    datasetDispatch({
-      type: DATASETS_ACTIONS.ADD_NEW_FIELD,
-      payload: {
-        fieldInfo: {
-          name: field.name,
-          isArray: field.isArray,
-          isPossibleNull: field.isPossibleNull,
-          dataType: field.dataType,
-          isKey: field.isKey,
-        },
-        parentfieldId,
+  function handleAddField({ datasetId, field, parentfieldId, error, success }: AddFieldProps) {
+    const validator = new Validator([
+      new FieldNameValidator({ name: field.name }),
+      new NoDuplicateLevelField({
         datasetId: datasetId,
-        next: updateConnections,
+        datasets: datasets,
+        parentId: parentfieldId,
+        name: field.name,
+        fieldId: null,
+      }),
+      new SequentialValuesValidator({ type: field.dataType }),
+      new EnumValuesValidator({ type: field.dataType }),
+      new PickValuesValidator({ type: field.dataType }),
+      new ProbabilityValuesValidator({ type: field.dataType }),
+    ])
+
+    validator.execute({
+      success() {
+        datasetDispatch({
+          type: DATASETS_ACTIONS.ADD_NEW_FIELD,
+          payload: {
+            fieldInfo: {
+              name: field.name,
+              isArray: field.isArray,
+              isPossibleNull: field.isPossibleNull,
+              dataType: field.dataType,
+              isKey: field.isKey,
+            },
+            parentfieldId,
+            datasetId: datasetId,
+            next: updateConnections,
+          },
+        })
+
+        success()
       },
+      error: error,
     })
   }
 
@@ -133,7 +193,7 @@ export default function useDatasets() {
       payload: { datasetId: datasetId, next: updateConnections },
     })
 
-    if (datasets.length) {
+    if (datasets.length > 0) {
       handleSelectDataset(datasets[0].id)
     }
 
@@ -164,8 +224,8 @@ export default function useDatasets() {
   function searchPossibleFieldsToRef({
     datasetId,
     fieldId,
-  }: SearchRefFieldsProps): Array<PossibleFieldToRef> {
-    const returnFields = [] as Array<PossibleFieldToRef>
+  }: SearchRefFieldsProps): PossibleFieldToRef[] {
+    const returnFields = [] as PossibleFieldToRef[]
 
     for (const dat of datasets) {
       if (dat.id !== datasetId) {
@@ -185,12 +245,12 @@ export default function useDatasets() {
     return returnFields
   }
 
-  function findField(fieldId?: string): Field<FieldDataType, ExportDatatype> | null {
+  function findField(fieldId?: string): Field<FieldDataType, ExportDatatypeDTO> | null {
     if (!fieldId) {
       return null
     }
 
-    let found: Field<FieldDataType, ExportDatatype> | null = null
+    let found: Field<FieldDataType, ExportDatatypeDTO> | null = null
 
     for (let i = 0; i < datasets.length && found === null; i++) {
       found = datasets[i].findFieldById(fieldId)
@@ -201,40 +261,43 @@ export default function useDatasets() {
 
   function findFieldByLocation(
     fieldLocation: string[],
-  ): Field<FieldDataType, ExportDatatype> | null {
+  ): Field<FieldDataType, ExportDatatypeDTO> | null {
     const id = fieldLocation.at(-1)
     const found = findField(id)
 
     return found
   }
 
-  function searchRefField(ref: string[]): string[] {
-    const result = [] as string[]
+  const searchRefField = useCallback(
+    (ref: string[]): string[] => {
+      const result = [] as string[]
 
-    const datasetId = ref[0]
-    const refFields = ref.slice(1)
+      const datasetId = ref[0]
+      const refFields = ref.slice(1)
 
-    const foundDataset = datasets.find((d) => d.id === datasetId)
+      const foundDataset = datasets.find((d) => d.id === datasetId)
 
-    if (foundDataset) {
-      result.push(foundDataset.name)
+      if (foundDataset) {
+        result.push(foundDataset.name)
 
-      for (const refId of refFields) {
-        for (const dataset of datasets) {
-          if (dataset.id === datasetId) {
-            const found = dataset.findFieldById(refId)
+        for (const refId of refFields) {
+          for (const dataset of datasets) {
+            if (dataset.id === datasetId) {
+              const found = dataset.findFieldById(refId)
 
-            if (found) {
-              result.push(found.name)
-              break
+              if (found) {
+                result.push(found.name)
+                break
+              }
             }
           }
         }
       }
-    }
 
-    return result
-  }
+      return result
+    },
+    [datasets],
+  )
 
   return {
     handleAddDataset,

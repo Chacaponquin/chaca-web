@@ -1,6 +1,5 @@
 import { Dataset } from "@modules/datasets/domain/tree"
 import { DatasetUseCase } from "./DatasetUseCase"
-import { DatasetName } from "@modules/datasets/value-object"
 
 interface Props {
   next(dataset: Dataset): void
@@ -15,7 +14,7 @@ export class AddDataset extends DatasetUseCase<Props> {
     return [...this.datasets, dataset]
   }
 
-  private genName(): DatasetName {
+  private genName(): string {
     let name = "New Dataset"
 
     let valid = false
@@ -29,6 +28,6 @@ export class AddDataset extends DatasetUseCase<Props> {
       }
     }
 
-    return new DatasetName(name)
+    return name
   }
 }

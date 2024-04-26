@@ -7,4 +7,5 @@ export enum ARRAY_VALUE_TYPE {
   NUMBER,
   STRING,
   JSON,
+  FUNCTION,
 }

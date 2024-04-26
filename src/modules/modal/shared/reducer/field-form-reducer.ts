@@ -1,4 +1,8 @@
-import { ArrayValue, FieldDataType } from "@modules/datasets/interfaces/dataset-field"
+import {
+  ArrayValue,
+  FieldDataType,
+  ProbabilityValue,
+} from "@modules/datasets/interfaces/dataset-field"
 import { FORM_ACTIONS } from "../constants"
 import { Reducer } from "react"
 import { DATA_TYPES } from "@modules/schemas/constants"
@@ -51,6 +55,8 @@ export type FieldFormPayload =
   | { type: FORM_ACTIONS.CHANGE_SEQUENTIAL_FIELD; payload: { values: ArrayValue[]; loop: boolean } }
   | { type: FORM_ACTIONS.CHNAGE_ENUM_FIELD; payload: { values: ArrayValue[] } }
   | { type: FORM_ACTIONS.CHANGE_SEQUENCE_FIELD; payload: { startsWith: number; step: number } }
+  | { type: FORM_ACTIONS.CHANGE_PICK_DATATYPE; payload: { count: number; values: ArrayValue[] } }
+  | { type: FORM_ACTIONS.CHANGE_PROBABILITY_DATATYPE; payload: { values: ProbabilityValue[] } }
 
 export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
   form: FieldForm,
@@ -116,6 +122,21 @@ export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
           step: action.payload.step,
         },
       }
+    }
+
+    case FORM_ACTIONS.CHANGE_PICK_DATATYPE: {
+      return {
+        ...form,
+        dataType: {
+          type: DATA_TYPES.PICK,
+          count: action.payload.count,
+          values: action.payload.values,
+        },
+      }
+    }
+
+    case FORM_ACTIONS.CHANGE_PROBABILITY_DATATYPE: {
+      return { ...form, dataType: { type: DATA_TYPES.PROBABILITY, values: action.payload.values } }
     }
 
     default:

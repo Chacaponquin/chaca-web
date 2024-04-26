@@ -1,10 +1,10 @@
-import { ExportDatatype } from "../interfaces/dataset-field"
 import { IsArrayConfig, PossibleNullConfig } from "../interfaces/field-config"
+import { ExportDatatypeDTO } from "./field"
 
-export type ExportDatasetField<T extends ExportDatatype> = {
+export type ExportDatasetFieldDTO<T extends ExportDatatypeDTO> = {
   name: string
   dataType: T
-  isPossibleNull: number
+  isPossibleNull: PossibleNullConfig
   isArray: IsArrayConfig
   isKey: boolean
 }
@@ -12,15 +12,7 @@ export type ExportDatasetField<T extends ExportDatatype> = {
 export interface ExportDatasetDTO {
   name: string
   limit: number
-  fields: Array<ExportFieldDTO>
-}
-
-export interface ExportFieldDTO {
-  name: string
-  dataType: ExportDatatype
-  isPossibleNull: PossibleNullConfig
-  isArray: IsArrayConfig
-  isKey: boolean
+  fields: ExportDatasetFieldDTO<ExportDatatypeDTO>[]
 }
 
 export interface RespExportDatasetDTO {

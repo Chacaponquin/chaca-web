@@ -6,6 +6,8 @@ import { ARGUMENT_TYPE, DATA_TYPES } from "@modules/schemas/constants"
 import { useSchemas } from "@modules/schemas/hooks"
 import {
   ArrayValue,
+  PickDataType,
+  ProbabilityValue,
   SequenceDataType,
   SingleValueDataType,
 } from "@modules/datasets/interfaces/dataset-field"
@@ -24,11 +26,11 @@ interface Props {
   datasetId: string
 }
 
-export default function useFieldForm({ field: inputField, datasetId }: Props): FieldActions {
-  const { DATA_TYPES_ARRAY } = useDatatypes({ fieldId: inputField.id, datasetId: datasetId })
+export default function useFieldForm({ field: ifield, datasetId }: Props): FieldActions {
+  const { DATA_TYPES_ARRAY } = useDatatypes({ fieldId: ifield.id, datasetId: datasetId })
   const [field, formDispatch] = useReducer<Reducer<FieldForm, FieldFormPayload>>(
     fieldFormReducer,
-    inputField,
+    ifield,
   )
   const { findParent } = useSchemas()
 
@@ -73,8 +75,8 @@ export default function useFieldForm({ field: inputField, datasetId }: Props): F
     })
   }
 
-  function handleChangeDataType(dataTypeId: number) {
-    const foundDataType = DATA_TYPES_ARRAY.find((d) => d.id === dataTypeId)
+  function handleChangeDataType(id: string) {
+    const foundDataType = DATA_TYPES_ARRAY.find((d) => d.id === id)
 
     if (foundDataType) {
       formDispatch({
@@ -254,8 +256,33 @@ export default function useFieldForm({ field: inputField, datasetId }: Props): F
     })
   }
 
+  function handleChangePickValues(values: ArrayValue[]) {
+    const f = field.dataType as PickDataType
+
+    formDispatch({
+      type: FORM_ACTIONS.CHANGE_PICK_DATATYPE,
+      payload: { values: values, count: f.count },
+    })
+  }
+
+  function handleChangePickCount(count: number) {
+    const f = field.dataType as PickDataType
+
+    formDispatch({
+      type: FORM_ACTIONS.CHANGE_PICK_DATATYPE,
+      payload: { values: f.values, count: count },
+    })
+  }
+
+  function handleChangeProbabilityValues(values: ProbabilityValue[]) {
+    formDispatch({ type: FORM_ACTIONS.CHANGE_PROBABILITY_DATATYPE, payload: { values: values } })
+  }
+
   return {
     field,
+    handleChangeProbabilityValues,
+    handleChangePickValues,
+    handleChangePickCount,
     handleChangeIsArray,
     handleChangeName,
     handleChangeMaxIsArray,

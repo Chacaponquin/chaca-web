@@ -14,6 +14,7 @@ type Props = FieldActions & { datasetId: string }
 
 export default function FieldForm({
   field,
+  datasetId,
   handleChangeIsArray,
   handleChangeMaxIsArray,
   handleChangeMinIsArray,
@@ -33,7 +34,9 @@ export default function FieldForm({
   handleChangeRef,
   handleAddFieldSchemaArgument,
   handleDeleteFieldSchemaArgument,
-  datasetId,
+  handleChangePickValues,
+  handleChangePickCount,
+  handleChangeProbabilityValues,
 }: Props) {
   const { FIELD_NAME_TEXT, DATA_TYPE_TEXT } = useTranslation({
     FIELD_NAME_TEXT: { en: "Field name", es: "Nombre del campo" },
@@ -72,6 +75,9 @@ export default function FieldForm({
         handleChangeRefField={handleChangeRef}
         handleAddFieldSchemaArgument={handleAddFieldSchemaArgument}
         handleDeleteFieldSchemaArgument={handleDeleteFieldSchemaArgument}
+        handleChangePickValues={handleChangePickValues}
+        handleChangePickCount={handleChangePickCount}
+        handleChangeProbabilityValues={handleChangeProbabilityValues}
       />
 
       <section className="flex flex-col gap-3 mt-1">

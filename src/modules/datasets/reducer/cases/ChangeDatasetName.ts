@@ -1,10 +1,9 @@
 import { Dataset } from "@modules/datasets/domain/tree"
 import { DatasetUseCase } from "./DatasetUseCase"
-import { DatasetName } from "@modules/datasets/value-object"
 
 interface ExecuteProps {
   datasetId: string
-  newName: DatasetName
+  newName: string
 }
 
 export class ChangeDatasetName extends DatasetUseCase<ExecuteProps> {

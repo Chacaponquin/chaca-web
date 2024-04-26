@@ -36,12 +36,11 @@ export default function ChacaSelect<T>({
   useEffect(() => {
     setSelectOptions([])
 
-    options.forEach((o) => {
-      setSelectOptions((prev) => [
-        ...prev,
-        { label: o[labelKey] as string, value: o[valueKey] as string },
-      ])
-    })
+    setSelectOptions(
+      options.map((o) => {
+        return { label: o[labelKey] as string, value: o[valueKey] as string }
+      }),
+    )
   }, [options])
 
   useEffect(() => {

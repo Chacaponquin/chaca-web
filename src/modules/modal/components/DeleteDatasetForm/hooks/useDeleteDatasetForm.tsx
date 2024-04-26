@@ -1,13 +1,16 @@
 import { useDatasets } from "@modules/datasets/hooks"
 import { useModal } from "@modules/modal/hooks"
 
-export default function useDeleteDatasetForm({ datasetId }: { datasetId: string }) {
+interface Props {
+  datasetId: string
+}
+
+export default function useDeleteDatasetForm({ datasetId }: Props) {
   const { handleCloseModal } = useModal()
-  const { hanldeDeleteDataset: handleDeleteDatasetService } = useDatasets()
+  const { hanldeDeleteDataset: handleDeleteDatasetHook } = useDatasets()
 
   function handleDeleteDataset() {
-    handleDeleteDatasetService(datasetId)
-
+    handleDeleteDatasetHook(datasetId)
     handleCloseModal()
   }
 

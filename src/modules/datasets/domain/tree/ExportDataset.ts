@@ -1,16 +1,16 @@
-import { ExportDatasetField } from "@modules/datasets/dto/dataset"
-import { ExportDatatype } from "@modules/datasets/interfaces/dataset-field"
+import { ExportDatasetFieldDTO } from "@modules/datasets/dto/dataset"
+import { ExportDatatypeDTO } from "@modules/datasets/dto/field"
 
 export interface ExportDatasetProps {
   name: string
   limit: number
-  fields: Array<ExportDatasetField<ExportDatatype>>
+  fields: ExportDatasetFieldDTO<ExportDatatypeDTO>[]
 }
 
 export class ExportDataset {
   private _name: string
   private _limit: number
-  private _fields: Array<ExportDatasetField<ExportDatatype>>
+  private _fields: ExportDatasetFieldDTO<ExportDatatypeDTO>[]
 
   constructor({ name, limit, fields }: ExportDatasetProps) {
     this._name = name

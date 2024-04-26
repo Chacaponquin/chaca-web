@@ -1,9 +1,8 @@
-import { FieldName } from "../value-object"
 import { IsArrayConfig, IsKeyConfig } from "./field-config"
 import { SubOption, Schema } from "@modules/schemas/interfaces/schema"
 
 export interface NodeProps<T> {
-  name: FieldName
+  name: string
   dataType: T
   isPossibleNull?: number
   isArray?: IsArrayConfig

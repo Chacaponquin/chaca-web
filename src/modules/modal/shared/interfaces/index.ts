@@ -1,4 +1,4 @@
-import { ArrayValue } from "@modules/datasets/interfaces/dataset-field"
+import { ArrayValue, ProbabilityValue } from "@modules/datasets/interfaces/dataset-field"
 import { FieldForm } from "@modules/modal/interfaces"
 import { Argument } from "@modules/schemas/interfaces/argument"
 
@@ -34,7 +34,7 @@ export interface FieldActions {
   handleChangeMinIsArray(v: number | null): void
   handleChangePossibleNull(v: boolean): void
   handleChangePossibleNullValue(v: number): void
-  handleChangeDataType(v: number): void
+  handleChangeDataType(v: string): void
   handleSelectFieldSchema(v: string): void
   handleSelectFieldSchemaOption(p: SelectFieldSchemaOptionProps): void
   handleUpdateFieldSchemaArguments(p: UpdateArgumentsProps): void
@@ -48,4 +48,7 @@ export interface FieldActions {
   handleDeleteFieldSchemaArgument(argument: string): void
   handleChangeSequentialValues(props: ChangeSequentialFieldProps): void
   handleChangeEnumValues(v: ArrayValue[]): void
+  handleChangePickValues(values: ArrayValue[]): void
+  handleChangePickCount(count: number): void
+  handleChangeProbabilityValues(values: ProbabilityValue[]): void
 }

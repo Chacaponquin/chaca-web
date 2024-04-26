@@ -6,7 +6,7 @@ import { useId } from "react"
 
 interface Props {
   label: string
-  handleChangeDataType(i: number): void
+  handleChangeDataType(i: string): void
   dataType: DATA_TYPES
   fieldId: string
   datasetId: string
@@ -34,7 +34,7 @@ export default function FieldDataType({
         valueKey="id"
         value={foundDataType.id}
         size="lg"
-        onChange={(v) => handleChangeDataType(v as number)}
+        onChange={(v) => handleChangeDataType(v as string)}
       />
     </FormInputSection>
   )

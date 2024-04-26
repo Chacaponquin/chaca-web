@@ -3,7 +3,6 @@ import { DATASETS_ACTIONS } from "../constants"
 import { Reducer } from "react"
 import { Dataset } from "@modules/datasets/domain/tree"
 import { NodeProps } from "@modules/datasets/interfaces/tree"
-import { DatasetName } from "../value-object"
 import {
   AddDataset,
   AddField,
@@ -18,7 +17,7 @@ import { FieldProps } from "../dto/field"
 export type DatasetPayload =
   | {
       type: DATASETS_ACTIONS.DELETE_DATASET
-      payload: { datasetId: string; next(datasets: Array<Dataset>): void }
+      payload: { datasetId: string; next(datasets: Dataset[]): void }
     }
   | {
       type: DATASETS_ACTIONS.SET_INIT_DATASETS
@@ -59,14 +58,14 @@ export type DatasetPayload =
       type: DATASETS_ACTIONS.CHANGE_DATASET_NAME
       payload: {
         datasetId: string
-        newName: DatasetName
+        newName: string
       }
     }
 
 export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
-  datasets: Array<Dataset>,
+  datasets: Dataset[],
   action: DatasetPayload,
-): Array<Dataset> => {
+): Dataset[] => {
   switch (action.type) {
     case DATASETS_ACTIONS.EDIT_FIELD: {
       const useCase = new EditField(datasets)
