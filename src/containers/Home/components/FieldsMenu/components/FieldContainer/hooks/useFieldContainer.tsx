@@ -1,10 +1,10 @@
 import { useState } from "react"
 
-export function useFieldContainer() {
+export default function useFieldContainer() {
   const [subFieldsOpen, setSubFieldsOpen] = useState(true)
 
   const handleInteractSubFields = () => {
-    setSubFieldsOpen(!subFieldsOpen)
+    setSubFieldsOpen((prev) => !prev)
   }
 
   return {

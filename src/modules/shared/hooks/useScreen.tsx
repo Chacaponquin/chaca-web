@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react"
 
 export default function useScreen(size: number) {
-  const [bigScreen, setBigScreen] = useState(true)
+  const [condition, setcondition] = useState(true)
 
   useEffect(() => {
     function handleResize() {
       const width = window.innerWidth
 
       if (width > size) {
-        setBigScreen(true)
+        setcondition(true)
       } else {
-        setBigScreen(false)
+        setcondition(false)
       }
     }
 
@@ -23,5 +23,5 @@ export default function useScreen(size: number) {
     }
   }, [])
 
-  return { bigScreen }
+  return { condition }
 }

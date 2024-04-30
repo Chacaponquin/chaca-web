@@ -1,4 +1,6 @@
-export class DatasetError extends Error {}
+import { ChacaError } from "@modules/app/exceptions"
+
+export class DatasetError extends ChacaError {}
 
 export class RepeatDatasetNameError extends DatasetError {}
 export class EmptyFieldNameError extends DatasetError {}

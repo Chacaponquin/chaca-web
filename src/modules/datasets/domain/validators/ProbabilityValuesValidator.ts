@@ -1,5 +1,5 @@
 import { DatasetError, EmptyValuesError, InvalidChanceValueError } from "@modules/datasets/errors"
-import { IValidator } from "./Validator"
+import { IValidator } from "../../../app/domain/Validator"
 import { ArrayValuesValidator } from "./ArrayValuesValidator"
 import { ArrayValue, FieldDataType } from "@modules/datasets/interfaces/dataset-field"
 import { DATA_TYPES } from "@modules/schemas/constants"

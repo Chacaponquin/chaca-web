@@ -1,3 +1,3 @@
-import { useFieldContainer } from "./useFieldContainer"
+import useFieldContainer from "./useFieldContainer"
 
 export { useFieldContainer }

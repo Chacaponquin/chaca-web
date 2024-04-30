@@ -37,6 +37,7 @@ export default function ExportForm({
           value={form.file.name}
           onChange={handleChangeName}
           size="lg"
+          id={nameId}
           disabled={false}
           type="text"
           placeholder="Nombre"

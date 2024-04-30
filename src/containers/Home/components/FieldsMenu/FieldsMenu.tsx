@@ -5,32 +5,37 @@ import { useDatasets } from "@modules/datasets/hooks"
 import { HomeContext } from "@containers/Home/context"
 
 interface Props {
-  handleExportSelectedDataset: () => void
-  handleAddNewField: () => void
+  handleExportSelectedDataset(): void
+  handleAddNewField(): void
 }
 
 export default function FieldsMenu({ handleExportSelectedDataset, handleAddNewField }: Props) {
   const { selectedDataset, handleCloseFieldsMenu, showFieldsMenu } = useDatasets()
   const { fieldsMenuRef, smallWindow } = useContext(HomeContext)
 
-  const containerClass = clsx(
-    "bg-white dark:bg-scale-3 min-w-[300px] max-w-[300px]  flex flex-col h-full justify-between",
+  const CLASS = clsx(
+    "flex flex-col justify-between",
+    "w-full max-w-[300px]",
+    "h-full",
+    "bg-white dark:bg-scale-3",
+
     { "top-0 left-0 h-screen absolute z-40 shadow-lg": smallWindow },
+
     {
       "shadow-lg": !smallWindow,
     },
   )
 
   return (
-    <section className={containerClass} ref={fieldsMenuRef}>
+    <section className={CLASS} ref={fieldsMenuRef}>
       {smallWindow && showFieldsMenu && (
         <CloseSection handleCloseFieldsMenu={handleCloseFieldsMenu} />
       )}
 
       <div className="h-full w-full flex flex-col text-black dark:text-white pt-1">
-        {selectedDataset && selectedDataset.fields.length > 0 ? (
+        {selectedDataset && selectedDataset.nodes.length > 0 ? (
           <Fragment>
-            {selectedDataset.fields.map((field) => (
+            {selectedDataset.nodes.map((field) => (
               <FieldContainer key={field.id} margin={0} field={field} />
             ))}
 

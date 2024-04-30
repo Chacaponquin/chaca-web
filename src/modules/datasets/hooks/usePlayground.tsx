@@ -30,12 +30,12 @@ export default function usePlayground() {
     handleDeleteNode,
   } = useContext(DatasetsContext)
 
-  function handleAddDatasetNode(props: AddNodeProps) {
+  function handleAddDatasetNode({ dataset, handleCreateDataset }: AddNodeProps) {
     handleAddNode({
-      id: props.dataset.id,
+      id: dataset.id,
       type: "custom",
       position: { x: 100, y: 200 },
-      data: props,
+      data: { dataset: dataset, handleCreateDataset: handleCreateDataset },
     })
   }
 
@@ -43,8 +43,8 @@ export default function usePlayground() {
     handleDeleteNode(id)
   }
 
-  function updateConnections(datasets: Array<Dataset>): void {
-    const connections: Array<DatasetConnection> = getDatasetsConnections(datasets)
+  function updateConnections(datasets: Dataset[]): void {
+    const connections: DatasetConnection[] = getDatasetsConnections(datasets)
 
     handleCleanEdges()
     for (const con of connections) {
@@ -66,18 +66,18 @@ export default function usePlayground() {
     }
   }
 
-  function getDatasetsConnections(datasets: Array<Dataset>): Array<DatasetConnection> {
-    let allConnections = [] as Array<DatasetConnection>
+  function getDatasetsConnections(datasets: Dataset[]): DatasetConnection[] {
+    let allConnections = [] as DatasetConnection[]
 
     for (const dataset of datasets) {
-      const connections: Array<DatasetConnection> = []
+      const connections: DatasetConnection[] = []
       const refFields = dataset.refFields()
 
       for (const dat of datasets) {
         if (dat !== dataset) {
           refFields.forEach((f) => {
-            const fieldToRef = f.dataType.ref.at(-1)
-            const datasetRef = f.dataType.ref[0]
+            const fieldToRef = f.ref.at(-1)
+            const datasetRef = f.ref[0]
 
             const saveConnection: DatasetConnection = {
               from: f.id,

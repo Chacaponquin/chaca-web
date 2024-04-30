@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function Navbar({ handleChangeOpenAside }: Props) {
-  const { bigScreen } = useScreen(SCREEN_SIZES.XL)
+  const { condition } = useScreen(SCREEN_SIZES.XL)
 
   const CLASS = clsx(
     "fixed top-0",
@@ -26,7 +26,7 @@ export default function Navbar({ handleChangeOpenAside }: Props) {
   return (
     <nav className={CLASS}>
       <section className="flex items-center gap-x-3">
-        {!bigScreen && <Menu handleChange={handleChangeOpenAside} />}
+        {!condition && <Menu handleChange={handleChangeOpenAside} />}
         <ChacaLogo />
       </section>
 

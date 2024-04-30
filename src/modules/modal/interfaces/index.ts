@@ -1,8 +1,9 @@
 import { IsArrayConfig } from "@modules/datasets/interfaces/field-config"
-import { DatasetField, FieldDataType } from "../../datasets/interfaces/datasets"
+import { FieldDataType } from "../../datasets/interfaces/datasets"
 import { MODAL_ACTIONS } from "../constants/MODAL_ACTIONS"
-import { Dataset } from "@modules/datasets/domain/tree"
+import { Dataset, Field } from "@modules/datasets/domain/tree"
 import { Config } from "@modules/config/interfaces"
+import { ExportDatatypeDTO } from "@modules/datasets/dto/field"
 
 export interface FieldForm {
   id: string
@@ -32,19 +33,19 @@ export type ModalDeleteDataset = {
 
 export type ModalEditField = {
   type: MODAL_ACTIONS.EDIT_FIELD
-  field: DatasetField<FieldDataType>
+  field: Field<ExportDatatypeDTO>
   parentfieldId: string
   datasetId: string
 }
 
 export type ModalExportSelectDataset = {
   type: MODAL_ACTIONS.EXPORT_SELECT_DATASET
-  handleCreateSelectDataset: (props: { config: Config }) => void
+  handleCreateSelectDataset(props: { config: Config }): void
 }
 
 export type ModalExportAllDatasets = {
   type: MODAL_ACTIONS.EXPORT_ALL_DATASETS
-  handleCreateAllDatasets: (props: { config: Config }) => void
+  handleCreateAllDatasets(props: { config: Config; datasets: Dataset[] }): void
 }
 
 export type ModalProps =

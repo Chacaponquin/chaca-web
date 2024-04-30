@@ -6,10 +6,8 @@ import { NoDuplicateLevelField } from "./NoDuplicateLevelField"
 import { PickValuesValidator } from "./PickValuesValidator"
 import { ProbabilityValuesValidator } from "./ProbabilityValuesValidator"
 import { SequentialValuesValidator } from "./SequentialValuesValidator"
-import { Validator } from "./Validator"
 
 export {
-  Validator,
   NoDuplicateDataset,
   NoDuplicateLevelField,
   DatasetNameValidator,

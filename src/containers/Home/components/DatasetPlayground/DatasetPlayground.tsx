@@ -7,16 +7,11 @@ import { THEME } from "@modules/app/modules/theme/constants"
 import "reactflow/dist/style.css"
 import "./styles/custom-playground.css"
 
-interface Props {
-  handleCreateAllDatasets(): void
-  handleAddDataset(): void
-}
-
 const nodeTypes = {
   custom: DatasetCard,
 }
 
-export default function DatasetPlayground({ handleAddDataset, handleCreateAllDatasets }: Props) {
+export default function DatasetPlayground() {
   const { edges, nodes, onEdgesChange, onNodesChange, onConnect } = usePlayground()
   const { theme } = useTheme()
 
@@ -33,10 +28,7 @@ export default function DatasetPlayground({ handleAddDataset, handleCreateAllDat
         nodeTypes={nodeTypes}
         nodesConnectable={false}
       >
-        <DatasetsButtons
-          handleAddDataset={handleAddDataset}
-          handleCreateAllDatasets={handleCreateAllDatasets}
-        />
+        <DatasetsButtons />
 
         <Controls position="top-left" />
 

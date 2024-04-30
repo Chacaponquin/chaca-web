@@ -1,15 +1,7 @@
 import { DATA_TYPES } from "@modules/schemas/constants"
-import { IsArrayConfig } from "./field-config"
 import { ARRAY_VALUE_TYPE } from "../constants"
-
-export interface DatasetField<T = FieldDataType> {
-  name: string
-  id: string
-  dataType: T
-  isPossibleNull: number
-  isArray: IsArrayConfig
-  isKey: boolean
-}
+import { Field } from "../domain/tree"
+import { ExportDatatypeDTO } from "../dto/field"
 
 export type FieldDataType =
   | CustomDataType
@@ -29,7 +21,7 @@ export interface CustomDataType {
 
 export interface MixedDataType {
   type: DATA_TYPES.MIXED
-  object: DatasetField[]
+  object: Field<ExportDatatypeDTO>[]
 }
 
 export interface SingleValueDataType {

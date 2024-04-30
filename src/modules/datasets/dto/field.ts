@@ -1,15 +1,15 @@
 import { DATA_TYPES } from "@modules/schemas/constants"
-import { FieldDataType, SchemaValueTypeObject } from "../interfaces/dataset-field"
-import { IsArrayConfig } from "../interfaces/field-config"
+import { FieldDataType, RefWhere, SchemaValueTypeObject } from "../interfaces/dataset-field"
+import { IsArrayConfig, IsKeyConfig, PossibleNullConfig } from "../interfaces/field-config"
 import { ExportDatasetFieldDTO } from "./dataset"
 
 export interface FieldProps {
   id: string
   name: string
-  isPossibleNull: number
+  isPossibleNull: PossibleNullConfig
   isArray: IsArrayConfig
   dataType: FieldDataType
-  isKey: boolean
+  isKey: IsKeyConfig
 }
 
 export interface ExportDatatypeDTO {}
@@ -23,7 +23,7 @@ export interface ExportRefDataType extends ExportDatatypeDTO {
   type: DATA_TYPES.REF
   ref: string
   unique: boolean
-  where: string | null
+  where: RefWhere
 }
 
 export interface ExportCustomDataType extends ExportDatatypeDTO {

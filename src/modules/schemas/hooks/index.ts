@@ -1,3 +1,3 @@
-import { useSchemas } from "./useSchemas"
+import useSchemas from "./useSchemas"
 
 export { useSchemas }

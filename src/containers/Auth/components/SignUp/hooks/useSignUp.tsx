@@ -62,29 +62,29 @@ export default function useSignUp() {
       setLoading(true)
       signUpUser({
         body: { email: saveUser.email, password: saveUser.password, username: saveUser.password },
-        onSuccess: (userToken) => {
+        onSuccess(userToken) {
           handleSignIn(userToken)
         },
-        onError: (error) => {
+        onError(error) {
           if (error.status === 409) {
-            toastError({ message: ALREADY_EXIST_USER_TEXT })
+            toastError({ message: ALREADY_EXIST_USER_TEXT, id: "repeat-user" })
           } else {
-            toastError({ message: CREATING_USER_TEXT })
+            toastError({ message: CREATING_USER_TEXT, id: "sign-up-user" })
           }
         },
-        onFinally: () => {
+        onFinally() {
           setLoading(true)
         },
       })
     } catch (error) {
       if (error instanceof UsernameShortError) {
-        toastError({ message: LENGTH_USERNAME })
+        toastError({ message: LENGTH_USERNAME, id: "short-username" })
       } else if (error instanceof NotEqualUserPasswords) {
-        toastError({ message: NOT_EQUAL_PASSWORDS })
+        toastError({ message: NOT_EQUAL_PASSWORDS, id: "different-passwords" })
       } else if (error instanceof EmailEmptyError) {
-        toastError({ message: EMPTY_EMAIL })
+        toastError({ message: EMPTY_EMAIL, id: "empty-email" })
       } else if (error instanceof PasswordEmptyError) {
-        toastError({ message: EMPTY_PASSWORD })
+        toastError({ message: EMPTY_PASSWORD, id: "empty-password" })
       }
     }
   }

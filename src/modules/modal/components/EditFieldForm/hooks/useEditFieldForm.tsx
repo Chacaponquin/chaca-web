@@ -1,10 +1,11 @@
-import { DatasetField } from "@modules/datasets/interfaces/datasets"
 import { useDatasets } from "@modules/datasets/hooks"
 import { useFieldForm } from "../../../shared/hooks"
 import { useFormErrors, useModal } from "@modules/modal/hooks"
+import { ExportDatatypeDTO } from "@modules/datasets/dto/field"
+import { Field } from "@modules/datasets/domain/tree"
 
 interface Props {
-  field: DatasetField
+  field: Field<ExportDatatypeDTO>
   parentfieldId: string
   datasetId: string
 }
@@ -20,7 +21,7 @@ export default function useEditFieldForm({ field, parentfieldId, datasetId }: Pr
       name: field.name,
       isArray: field.isArray,
       isPossibleNull: field.isPossibleNull,
-      dataType: field.dataType,
+      dataType: field.dataType(),
       isKey: field.isKey,
     },
     datasetId: datasetId,

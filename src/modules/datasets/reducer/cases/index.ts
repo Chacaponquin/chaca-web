@@ -5,6 +5,7 @@ import { ChangeDatasetName } from "./ChangeDatasetName"
 import { DeleteDataset } from "./DeleteDataset"
 import { DeleteField } from "./DeleteField"
 import { EditField } from "./EditField"
+import { InsertDataset } from "./InsertDataset"
 
 export {
   DeleteDataset,
@@ -14,4 +15,5 @@ export {
   ChangeDatasetLimit,
   DeleteField,
   ChangeDatasetName,
+  InsertDataset,
 }

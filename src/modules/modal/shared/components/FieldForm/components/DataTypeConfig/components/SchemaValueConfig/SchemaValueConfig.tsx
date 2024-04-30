@@ -42,8 +42,8 @@ export default function SchemaValueConfig({
     handleSelectFieldSchema(m)
   }
 
-  function handleSelectModuleOption(o: string) {
-    handleSelectFieldSchemaOption({ optionName: o, parent: fieldType.schema })
+  function handleSelectModuleOption(option: string) {
+    handleSelectFieldSchemaOption({ option: option, parent: fieldType.schema })
   }
 
   return (

@@ -127,13 +127,13 @@ export default function useHome() {
       })
     } catch (error) {
       if (error instanceof EmptyRefFieldError) {
-        toastError({ message: EMPTY_REF_FIELD_ERROR })
+        toastError({ message: EMPTY_REF_FIELD_ERROR, id: "empty-ref-field" })
       } else if (error instanceof EmptyEnumFieldError) {
         toastError(EMPTY_ENUM_FIELD({ field: error.field }))
       } else if (error instanceof EmptySequentialFieldError) {
         toastError(EMPTY_SEQUENTIAL_FIELD({ field: error.field }))
       } else if (error instanceof ConnectSockerError) {
-        toastError({ message: NETWORK_ERROR })
+        toastError({ message: NETWORK_ERROR, id: "network" })
       }
 
       setCreateDataLoading(false)
@@ -143,7 +143,7 @@ export default function useHome() {
   function handleCreateAllDatasets() {
     handleOpenModal({
       type: MODAL_ACTIONS.EXPORT_ALL_DATASETS,
-      handleCreateAllDatasets({ config }) {
+      handleCreateAllDatasets({ config, datasets }) {
         exportDatasets(datasets, config)
       },
     })
@@ -183,6 +183,10 @@ export default function useHome() {
     handleAddDatasetService({ handleCreateDataset: handleCreateDataset })
   }
 
+  function handleExportImage() {}
+
+  function handleDeleteAll() {}
+
   return {
     handleExportSelectedDataset,
     handleCreateAllDatasets,
@@ -191,6 +195,8 @@ export default function useHome() {
     handleAddDataset,
     datasets,
     showFieldsMenu,
+    handleExportImage,
     handleCreateDataset,
+    handleDeleteAll,
   }
 }

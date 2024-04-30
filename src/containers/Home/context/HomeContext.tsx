@@ -1,4 +1,6 @@
-import { createContext, createRef, RefObject, useState, useEffect } from "react"
+import { SCREEN_SIZES } from "@modules/app/constants"
+import { useScreen } from "@modules/shared/hooks"
+import { createContext, createRef, RefObject } from "react"
 
 interface Props {
   fieldsMenuRef: RefObject<HTMLElement>
@@ -7,41 +9,21 @@ interface Props {
   smallWindow: boolean
 }
 
-const HomeContext = createContext<Props>({ smallWindow: false } as Props)
+export const HomeContext = createContext<Props>({ smallWindow: false } as Props)
 
-function HomeProvider({ children }: { children: React.ReactNode }) {
+export function HomeProvider({ children }: { children: React.ReactNode }) {
   const fieldsMenuRef = createRef<HTMLElement>()
   const playgroundRef = createRef<HTMLDivElement>()
   const exportLink = createRef<HTMLAnchorElement>()
 
-  const [smallWindow, setSmallWindow] = useState(false)
-
-  function handleWindowResize() {
-    const width = window.innerWidth
-    if (width >= 1000) {
-      setSmallWindow(false)
-    } else {
-      setSmallWindow(true)
-    }
-  }
-
-  useEffect(() => {
-    window.addEventListener("resize", handleWindowResize)
-    handleWindowResize()
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize)
-    }
-  }, [window])
+  const { condition } = useScreen(SCREEN_SIZES.LG)
 
   const data: Props = {
     fieldsMenuRef,
     playgroundRef,
-    smallWindow,
+    smallWindow: !condition,
     exportLink,
   }
 
   return <HomeContext.Provider value={data}>{children}</HomeContext.Provider>
 }
-
-export { HomeContext, HomeProvider }

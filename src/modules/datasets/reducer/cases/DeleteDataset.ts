@@ -3,11 +3,11 @@ import { DatasetUseCase } from "./DatasetUseCase"
 
 interface Props {
   datasetId: string
-  next(datasets: Array<Dataset>): void
+  next(datasets: Dataset[]): void
 }
 
 export class DeleteDataset extends DatasetUseCase<Props> {
-  public execute({ datasetId, next }: Props): Array<Dataset> {
+  public execute({ datasetId, next }: Props): Dataset[] {
     const newDatasets = this.datasets.filter((d) => d.id !== datasetId)
     this.deleteRefFields(newDatasets, datasetId)
 
@@ -16,13 +16,13 @@ export class DeleteDataset extends DatasetUseCase<Props> {
     return newDatasets
   }
 
-  private deleteRefFields(datasets: Array<Dataset>, datasetId: string): void {
+  private deleteRefFields(datasets: Dataset[], datasetId: string): void {
     for (const dat of datasets) {
       const refFields = dat.refFields()
 
       for (const ref of refFields) {
-        if (ref.dataType.ref.includes(datasetId)) {
-          ref.dataType.ref = []
+        if (ref.ref.includes(datasetId)) {
+          ref.ref = []
         }
       }
     }

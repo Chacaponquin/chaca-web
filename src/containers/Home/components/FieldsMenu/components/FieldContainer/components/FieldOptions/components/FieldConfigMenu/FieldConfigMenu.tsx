@@ -1,12 +1,16 @@
 import { useTranslation } from "@modules/app/modules/language/hooks"
-import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets"
 import { useFieldConfigMenu } from "./hooks"
-import { DATA_TYPES } from "@modules/schemas/constants"
 import { Fragment } from "react"
 import { Item } from "./components"
+import { ExportDatatypeDTO } from "@modules/datasets/dto/field"
+import { Field, MixedNode } from "@modules/datasets/domain/tree"
 
-const FieldConfigMenu = ({ field }: { field: DatasetField<FieldDataType> }) => {
-  const isMixed = field.dataType.type === DATA_TYPES.MIXED
+interface Props {
+  field: Field<ExportDatatypeDTO>
+}
+
+export default function FieldConfigMenu({ field }: Props) {
+  const isMixed = field instanceof MixedNode
 
   const { DELETE_OPTION_TEXT, EDIT_OPTION_TEXT, ADD_FIELD_OPTION_TEXT } = useTranslation({
     EDIT_OPTION_TEXT: { en: "Edit", es: "Editar" },
@@ -24,5 +28,3 @@ const FieldConfigMenu = ({ field }: { field: DatasetField<FieldDataType> }) => {
     </Fragment>
   )
 }
-
-export default FieldConfigMenu

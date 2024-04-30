@@ -26,13 +26,13 @@ export default function useExportForm() {
     }))
   }
 
-  function handleChangeName(n: string) {
+  function handleChangeName(name: string) {
     setForm((prev) => {
       return {
         ...prev,
         file: {
           ...prev.file,
-          name: n,
+          name: name,
         },
       }
     })
@@ -51,5 +51,10 @@ export default function useExportForm() {
     })
   }
 
-  return { form, handleChangeFileType, handleChangeFileArguments, handleChangeName }
+  return {
+    form,
+    handleChangeFileType,
+    handleChangeFileArguments,
+    handleChangeName,
+  }
 }

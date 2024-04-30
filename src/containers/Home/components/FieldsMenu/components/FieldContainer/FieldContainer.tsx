@@ -1,26 +1,25 @@
 import { Fragment } from "react"
-import { DATA_TYPES } from "@modules/schemas/constants"
-import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets"
 import { FieldName, FieldOptions, OpenFieldsButton, Point } from "./components"
 import { useFieldContainer } from "./hooks"
+import { Field, MixedNode } from "@modules/datasets/domain/tree"
+import { ExportDatatypeDTO } from "@modules/datasets/dto/field"
 
-const FieldContainer = ({
-  margin,
-  field,
-}: {
-  field: DatasetField<FieldDataType>
+interface Props {
+  field: Field<ExportDatatypeDTO>
   margin: number
-}) => {
+}
+
+export default function FieldContainer({ margin, field }: Props) {
   const { subFieldsOpen, handleInteractSubFields } = useFieldContainer()
 
   return (
     <section className="flex flex-col w-full">
-      <div className="flex items-center justify-between" style={{ paddingLeft: `${margin}px` }}>
-        <div className="w-full flex items-center justify-between py-2.5 transition-all duration-300 px-2">
+      <div style={{ paddingLeft: `${margin}px` }}>
+        <div className="w-full flex items-center gap-x-4 justify-between py-2.5 transition-all duration-300 px-2">
           <div className="flex items-center">
-            {field.dataType.type === DATA_TYPES.MIXED ? (
+            {field instanceof MixedNode ? (
               <Fragment>
-                {field.dataType.object.length === 0 ? (
+                {field.nodes.length === 0 ? (
                   <Point />
                 ) : (
                   <OpenFieldsButton onClick={handleInteractSubFields} open={subFieldsOpen} />
@@ -37,15 +36,9 @@ const FieldContainer = ({
         </div>
       </div>
 
-      {field.dataType.type === DATA_TYPES.MIXED && subFieldsOpen && (
-        <Fragment>
-          {field.dataType.object.map((s) => (
-            <FieldContainer field={s} margin={margin + 12} key={s.id} />
-          ))}
-        </Fragment>
-      )}
+      {field instanceof MixedNode &&
+        subFieldsOpen &&
+        field.nodes.map((s) => <FieldContainer field={s} margin={margin + 12} key={s.id} />)}
     </section>
   )
 }
-
-export default FieldContainer

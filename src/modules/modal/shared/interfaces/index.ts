@@ -3,7 +3,7 @@ import { FieldForm } from "@modules/modal/interfaces"
 import { Argument } from "@modules/schemas/interfaces/argument"
 
 export interface SelectFieldSchemaOptionProps {
-  optionName: string
+  option: string
   parent: string
 }
 

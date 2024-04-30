@@ -33,10 +33,10 @@ export default function useLogin() {
     setLoading(true)
     loginUser({
       body: loginData,
-      onError: () => {
-        toastError({ message: LOGIN_ERROR })
+      onError() {
+        toastError({ message: LOGIN_ERROR, id: "login" })
       },
-      onSuccess: (token) => {
+      onSuccess(token) {
         handleSignIn(token)
       },
       onFinally: () => {

@@ -1,12 +1,11 @@
 import { Dataset, Field, MixedNode } from "@modules/datasets/domain/tree"
-import { FieldDataType } from "@modules/datasets/interfaces/dataset-field"
 import { NodeProps } from "@modules/datasets/interfaces/tree"
 import { DatasetUseCase } from "./DatasetUseCase"
 
 interface ExecuteProps {
   datasetId: string
   parentId: string
-  field: NodeProps<FieldDataType>
+  field: NodeProps
   next(datasets: Dataset[]): void
 }
 

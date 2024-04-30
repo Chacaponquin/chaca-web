@@ -38,5 +38,19 @@ export default function useModalContainer({ handleNext }: Props) {
     }
   }, [handleNext])
 
+  useEffect(() => {
+    function action(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        handleCloseModal()
+      }
+    }
+
+    document.addEventListener("keydown", action)
+
+    return () => {
+      document.removeEventListener("keydown", action)
+    }
+  }, [handleCloseModal])
+
   return { handleClose, handleSubmit }
 }

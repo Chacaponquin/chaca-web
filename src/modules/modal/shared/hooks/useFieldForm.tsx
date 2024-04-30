@@ -105,7 +105,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
     })
   }
 
-  function handleSelectFieldSchemaOption({ optionName, parent }: SelectFieldSchemaOptionProps) {
+  function handleSelectFieldSchemaOption({ option, parent }: SelectFieldSchemaOptionProps) {
     formDispatch({
       type: FORM_ACTIONS.CHANGE_FIELD_DATATYPE,
       payload: {
@@ -114,7 +114,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
           fieldType: {
             args: {},
             schema: parent,
-            option: optionName,
+            option: option,
           },
         },
       },

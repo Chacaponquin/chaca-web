@@ -1,40 +1,21 @@
-import {
-  DatasetField,
-  DatasetObject,
-  FieldDataType,
-  RefDataType,
-} from "@modules/datasets/interfaces/datasets"
-import { Field } from "./Field"
+import { Field, RefNode } from "./Field"
 import { RootNode } from "./RootNode"
 import { SearchProps } from "@modules/datasets/interfaces/tree"
-import { MixedDataType } from "@modules/datasets/interfaces/dataset-field"
 import { ExportDataset } from "./ExportDataset"
-import {
-  ExportDatatypeDTO,
-  ExportMixedDataType,
-  ExportRefDataType,
-} from "@modules/datasets/dto/field"
+import { ExportDatatypeDTO, ExportMixedDataType, FieldProps } from "@modules/datasets/dto/field"
 
 interface DatasetProps {
   name: string
-  limit?: number
+  limit: number
 }
 
 export class Dataset {
-  public static DEFAULT_LIMIT = 50
+  static DEFAULT_LIMIT = 50
 
   private root: RootNode
 
-  constructor({ limit = Dataset.DEFAULT_LIMIT, name }: DatasetProps) {
+  constructor({ limit, name }: DatasetProps) {
     this.root = new RootNode({ limit, name })
-  }
-
-  public equalName(name: string): boolean {
-    return this.name.trim() === name.trim()
-  }
-
-  public exportFields(props: SearchProps) {
-    return this.root.exportFields(props)
   }
 
   get name() {
@@ -53,50 +34,60 @@ export class Dataset {
     return this.root.id
   }
 
-  get fields(): Array<DatasetField> {
-    return this.root.fields()
+  clone(): Dataset {
+    return this.root.clone()
   }
 
-  public setLimit(limit: number) {
+  equalName(name: string): boolean {
+    return this.name.trim() === name.trim()
+  }
+
+  exportFields(props: SearchProps) {
+    return this.root.exportFields(props)
+  }
+
+  setLimit(limit: number) {
     this.root.setLimit(limit)
   }
 
-  public setName(name: string) {
+  setName(name: string) {
     this.root.setName(name)
   }
 
-  public insertField(node: Field<FieldDataType, ExportDatatypeDTO>) {
+  insertField(node: Field<ExportDatatypeDTO>) {
     this.root.utils.insertNode(node)
   }
 
-  public hasKeyField(): boolean {
+  hasKeyField(): boolean {
     return this.root.utils.hasKeyField()
   }
 
-  public allPossibleFieldsToRef(): Array<Field<FieldDataType, ExportDatatypeDTO>> {
+  allPossibleFieldsToRef(): Field<ExportDatatypeDTO>[] {
     return this.root.utils.allPossibleFieldsToRef()
   }
 
-  public findFieldParentNode(
-    nodeID: string,
-  ): Field<MixedDataType, ExportMixedDataType> | RootNode | null {
+  findFieldParentNode(nodeID: string): Field<ExportMixedDataType> | RootNode | null {
     return this.root.utils.findFieldParentNode(nodeID)
   }
 
-  public findNodeById(nodeID: string): Field<FieldDataType, ExportDatatypeDTO> | RootNode | null {
-    if (this.id === nodeID) return this.root
-    else return this.root.utils.findNodeById(nodeID)
+  findNodeById(id: string): Field<ExportDatatypeDTO> | RootNode | null {
+    if (this.id === id) return this.root
+    else return this.root.utils.findNodeById(id)
   }
 
-  public findFieldById(fieldId: string): Field<FieldDataType, ExportDatatypeDTO> | null {
+  findNodeByIdAndEdit(props: FieldProps) {
+    this.root.utils.findNodeByIdAndEdit(props)
+  }
+
+  findFieldById(fieldId: string): Field<ExportDatatypeDTO> | null {
     return this.root.utils.findNodeById(fieldId)
   }
 
-  public findSameLevelFields(fieldId: string): Array<Field<FieldDataType, ExportDatatypeDTO>> {
+  findSameLevelFields(fieldId: string): Field<ExportDatatypeDTO>[] {
     return this.root.utils.getSameLevelNodes(fieldId)
   }
 
-  public exportObject(props: SearchProps): ExportDataset {
+  exportObject(props: SearchProps): ExportDataset {
     return new ExportDataset({
       fields: this.exportFields(props),
       limit: this.limit,
@@ -104,29 +95,20 @@ export class Dataset {
     })
   }
 
-  public object(): DatasetObject {
-    return {
-      id: this.id,
-      name: this.name,
-      fields: this.fields,
-      limit: this.limit,
-    }
-  }
-
-  public deleteField(fieldId: string): void {
+  deleteField(fieldId: string): void {
     this.root.utils.deleteField(fieldId)
   }
 
-  public refFields(): Array<Field<RefDataType, ExportRefDataType>> {
+  refFields(): RefNode[] {
     return this.root.utils.refFields()
   }
 
-  public getFieldLocationIds(fieldId: string): string[] {
+  getFieldLocationIds(fieldId: string): string[] {
     const ret = this.root.utils.getFieldLocation({ fieldId, location: [], isIdLocation: true })
     return ret ? ret : []
   }
 
-  public getFieldLocation(fieldId: string): string[] {
+  getFieldLocation(fieldId: string): string[] {
     const ret = this.root.utils.getFieldLocation({
       fieldId,
       location: [],

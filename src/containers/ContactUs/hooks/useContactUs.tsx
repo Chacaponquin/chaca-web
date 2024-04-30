@@ -45,11 +45,11 @@ export default function useContactUs() {
       setLoading(true)
       sendMessage({
         body: { email: saveMessage.email, message: saveMessage.message, title: saveMessage.title },
-        onSuccess: () => {
+        onSuccess() {
           setModalOpen(true)
         },
-        onError: () => {
-          toastError({ message: POST_ERROR })
+        onError() {
+          toastError({ message: POST_ERROR, id: "send-message" })
         },
         onFinally: () => {
           setLoading(false)
@@ -57,11 +57,11 @@ export default function useContactUs() {
       })
     } catch (error) {
       if (error instanceof EmptyMessageTitleError) {
-        toastError({ message: EMPTY_TITLE })
+        toastError({ message: EMPTY_TITLE, id: "empty-title" })
       } else if (error instanceof EmptyUserMessageError) {
-        toastError({ message: EMPTY_MESSAGE })
+        toastError({ message: EMPTY_MESSAGE, id: "empty-message" })
       } else if (error instanceof EmptyUserEmailError) {
-        toastError({ message: EMPTY_EMAIL })
+        toastError({ message: EMPTY_EMAIL, id: "empty-email" })
       }
     }
   }

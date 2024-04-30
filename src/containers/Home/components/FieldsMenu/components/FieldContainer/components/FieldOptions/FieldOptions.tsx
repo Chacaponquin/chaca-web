@@ -1,10 +1,11 @@
-import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets"
 import { Config } from "@modules/app/modules/icon/components"
 import { FieldConfigMenu } from "./components"
 import { ChacaDropdown } from "@form/components"
+import { Field } from "@modules/datasets/domain/tree"
+import { ExportDatatypeDTO } from "@modules/datasets/dto/field"
 
 interface Props {
-  field: DatasetField<FieldDataType>
+  field: Field<ExportDatatypeDTO>
 }
 
 export default function FieldOptions({ field }: Props) {

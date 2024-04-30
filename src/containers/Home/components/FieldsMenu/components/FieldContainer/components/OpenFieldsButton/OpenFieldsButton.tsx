@@ -1,12 +1,11 @@
 import { ArrowRight } from "@modules/app/modules/icon/components"
 
-export default function OpenFieldsButton({
-  onClick,
-  open,
-}: {
-  onClick: () => void
+interface Props {
+  onClick(): void
   open: boolean
-}) {
+}
+
+export default function OpenFieldsButton({ onClick, open }: Props) {
   return (
     <button
       style={{

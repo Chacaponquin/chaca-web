@@ -1,21 +1,21 @@
-import { DatasetError } from "@modules/datasets/errors"
+import { ChacaError } from "../exceptions"
 
 export interface IValidator {
-  validate(): DatasetError | null
+  validate(): ChacaError | null
 }
 
 interface Props {
-  error(error: DatasetError): void
+  error(error: ChacaError): void
   success(): void
 }
 
 export class Validator {
-  constructor(private readonly v: IValidator[]) {}
+  constructor(private readonly validators: IValidator[]) {}
 
   execute({ error, success }: Props): void {
-    const all = [] as DatasetError[]
+    const all = [] as ChacaError[]
 
-    for (const val of this.v) {
+    for (const val of this.validators) {
       const error = val.validate()
 
       if (error) {

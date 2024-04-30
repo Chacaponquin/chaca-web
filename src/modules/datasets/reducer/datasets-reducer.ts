@@ -1,4 +1,3 @@
-import { FieldDataType } from "../interfaces/datasets"
 import { DATASETS_ACTIONS } from "../constants"
 import { Reducer } from "react"
 import { Dataset } from "@modules/datasets/domain/tree"
@@ -11,6 +10,7 @@ import {
   DeleteDataset,
   DeleteField,
   EditField,
+  InsertDataset,
 } from "./cases"
 import { FieldProps } from "../dto/field"
 
@@ -20,16 +20,20 @@ export type DatasetPayload =
       payload: { datasetId: string; next(datasets: Dataset[]): void }
     }
   | {
+      type: DATASETS_ACTIONS.INSERT_DATASET
+      payload: { dataset: Dataset; next(dataset: Dataset): void }
+    }
+  | {
       type: DATASETS_ACTIONS.SET_INIT_DATASETS
-      payload: { datasets: Array<Dataset> }
+      payload: { datasets: Dataset[] }
     }
   | {
       type: DATASETS_ACTIONS.ADD_NEW_FIELD
       payload: {
         parentfieldId: string
-        fieldInfo: NodeProps<FieldDataType>
+        fieldInfo: NodeProps
         datasetId: string
-        next(datasets: Array<Dataset>): void
+        next(datasets: Dataset[]): void
       }
     }
   | {
@@ -43,7 +47,7 @@ export type DatasetPayload =
       payload: {
         field: FieldProps
         datasetId: string
-        next(datasets: Array<Dataset>): void
+        next(datasets: Dataset[]): void
       }
     }
   | {
@@ -52,7 +56,7 @@ export type DatasetPayload =
     }
   | {
       type: DATASETS_ACTIONS.DELETE_FIELD
-      payload: { datasetId: string; fieldId: string; next(datasets: Array<Dataset>): void }
+      payload: { datasetId: string; fieldId: string; next(datasets: Dataset[]): void }
     }
   | {
       type: DATASETS_ACTIONS.CHANGE_DATASET_NAME
@@ -74,6 +78,11 @@ export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
         form: action.payload.field,
         next: action.payload.next,
       })
+    }
+
+    case DATASETS_ACTIONS.INSERT_DATASET: {
+      const useCase = new InsertDataset(datasets)
+      return useCase.execute({ dataset: action.payload.dataset, next: action.payload.next })
     }
 
     case DATASETS_ACTIONS.DELETE_DATASET: {

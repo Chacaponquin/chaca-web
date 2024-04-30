@@ -20,7 +20,7 @@ export default function DatasetForm({
   const { USER_DOCUMENTS_LIMIT } = useUser()
 
   const { DATASET_NAME_LABEL, FIELD_NAME_TEXT, COUNT_DOCUMENTS } = useTranslation({
-    DATASET_NAME_LABEL: { en: "Dataset name", es: "Nombre de dataset" },
+    DATASET_NAME_LABEL: { en: "Dataset name", es: "Nombre" },
     FIELD_NAME_TEXT: { en: "Field name", es: "Nombre del campo" },
     COUNT_DOCUMENTS: { en: "Count Document", es: "Documentos" },
   })

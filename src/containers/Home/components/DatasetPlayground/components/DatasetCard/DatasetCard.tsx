@@ -2,7 +2,6 @@ import { Dataset } from "@modules/datasets/domain/tree"
 import { CardHeader, Field } from "./components"
 import { useDatasetCard } from "./hooks"
 import clsx from "clsx"
-import { useDatasets } from "@modules/datasets/hooks"
 
 export interface CardProps {
   handleCreateDataset(dataset: Dataset): void
@@ -15,13 +14,13 @@ interface Props {
 }
 
 export default function DatasetCard({ data: { dataset, handleCreateDataset } }: Props) {
-  const { selectedDataset } = useDatasets()
-
   const {
     handleEditDataset,
     handleDeleteDataset,
     handleCreateDataset: handleCreateDatasetHook,
     handleClickCard,
+    handleCloneDataset,
+    selected,
   } = useDatasetCard({
     dataset: dataset,
     handleCreateDataset: handleCreateDataset,
@@ -36,7 +35,8 @@ export default function DatasetCard({ data: { dataset, handleCreateDataset } }: 
     "text-white",
     "relative",
     "animate-jump-in animate-once animate-duration-400 animate-ease-in-out",
-    { "outline outline-4 outline-purple-6": selectedDataset?.id === dataset.id },
+
+    { "outline outline-4 outline-purple-6": selected },
   )
 
   return (
@@ -47,6 +47,7 @@ export default function DatasetCard({ data: { dataset, handleCreateDataset } }: 
         handleExportDataset={handleCreateDatasetHook}
         name={dataset.name}
         limit={dataset.limit}
+        handleCloneDataset={handleCloneDataset}
       />
 
       <div className="flex flex-col py-2 min-w-[380px]">

@@ -1,24 +1,19 @@
 import { ExportForm, ModalContainer } from "../../shared/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
-import { useModal } from "@modules/modal/hooks"
 import { ModalExportSelectDataset } from "@modules/modal/interfaces"
-import { useExportForm } from "@modules/modal/shared/hooks"
+import { useExport } from "./hooks"
 
 export default function ExportSelectDatasetForm({
   handleCreateSelectDataset,
 }: ModalExportSelectDataset) {
-  const { handleCloseModal } = useModal()
-  const { form, handleChangeFileType, handleChangeName } = useExportForm()
-
-  const { EXPORT_DATASET_TEXT, SUBMIT_TEXT } = useTranslation({
-    EXPORT_DATASET_TEXT: { en: "Export Single Dataset", es: "Exportar Dataset" },
-    SUBMIT_TEXT: { en: "Export", es: "Exportar" },
+  const { form, handleChangeFileType, handleChangeName, handleExport } = useExport({
+    handleCreateSelectDataset,
   })
 
-  function handleExport() {
-    handleCreateSelectDataset({ config: form })
-    handleCloseModal()
-  }
+  const { EXPORT_DATASET_TEXT, SUBMIT_TEXT } = useTranslation({
+    EXPORT_DATASET_TEXT: { en: "Export Dataset", es: "Exportar Dataset" },
+    SUBMIT_TEXT: { en: "Export", es: "Exportar" },
+  })
 
   return (
     <ModalContainer

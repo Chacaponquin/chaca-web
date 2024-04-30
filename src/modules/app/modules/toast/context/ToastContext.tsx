@@ -1,4 +1,4 @@
-import { createContext, Fragment } from "react"
+import { createContext } from "react"
 import { toast, ToastContainer } from "react-toastify"
 
 interface Props {
@@ -6,11 +6,11 @@ interface Props {
   toastError(m: ShowToastProps): void
 }
 
-type ShowToastProps = { message: string; id?: string }
+type ShowToastProps = { message: string; id: string }
 
-const ToastContext = createContext<Props>({} as Props)
+export const ToastContext = createContext<Props>({} as Props)
 
-const ToastProvider = ({ children }: { children: React.ReactElement }) => {
+export function ToastProvider({ children }: { children: React.ReactNode }) {
   function toastSuccess({ message, id = "success" }: ShowToastProps) {
     toast.success(message, { toastId: `toast-${id}` })
   }
@@ -21,12 +21,8 @@ const ToastProvider = ({ children }: { children: React.ReactElement }) => {
 
   return (
     <ToastContext.Provider value={{ toastError, toastSuccess }}>
-      <Fragment>
-        <ToastContainer autoClose={5000} hideProgressBar={true} />
-        {children}
-      </Fragment>
+      <ToastContainer autoClose={5000} hideProgressBar={true} />
+      {children}
     </ToastContext.Provider>
   )
 }
-
-export { ToastContext, ToastProvider }

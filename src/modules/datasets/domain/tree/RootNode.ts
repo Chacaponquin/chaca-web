@@ -1,10 +1,10 @@
-import { DatasetField, FieldDataType } from "@modules/datasets/interfaces/datasets"
 import { Field } from "./Field"
 import { NodesUtils } from "./NodesUtils"
 import { v4 as uuid } from "uuid"
 import { SearchProps } from "@modules/datasets/interfaces/tree"
 import { ExportDatatypeDTO } from "@modules/datasets/dto/field"
 import { ExportDatasetFieldDTO } from "@modules/datasets/dto/dataset"
+import { Dataset } from "./Dataset"
 
 interface RootProps {
   limit: number
@@ -12,46 +12,47 @@ interface RootProps {
 }
 
 export class RootNode {
+  readonly id = uuid()
   private _limit: number
   private _name: string
-  private _id = uuid()
 
-  public utils = new NodesUtils(this)
+  readonly utils = new NodesUtils(this)
 
   constructor({ limit, name }: RootProps) {
     this._limit = limit
     this._name = name
   }
 
-  get id() {
-    return this._id
+  clone(): Dataset {
+    const dataset = new Dataset({ name: this.name, limit: this._limit })
+
+    const newNodes = this.utils.nodes.map((n) => n.clone())
+    newNodes.forEach((n) => dataset.insertField(n))
+
+    return dataset
   }
 
   get name() {
     return this._name
   }
 
-  public fields(): DatasetField[] {
-    return this.utils.nodes.map((el) => el.object())
-  }
-
-  public setName(name: string) {
+  setName(name: string) {
     this._name = name
   }
 
-  public setField(field: Field<FieldDataType, ExportDatatypeDTO>) {
+  setField(field: Field<ExportDatatypeDTO>) {
     this.utils.nodes.push(field)
   }
 
-  public limit() {
+  limit() {
     return this._limit
   }
 
-  public setLimit(l: number) {
-    this._limit = l
+  public setLimit(lim: number) {
+    this._limit = lim
   }
 
-  public exportFields(props: SearchProps): ExportDatasetFieldDTO<ExportDatatypeDTO>[] {
+  exportFields(props: SearchProps): ExportDatasetFieldDTO<ExportDatatypeDTO>[] {
     return this.utils.exportFields(props)
   }
 }

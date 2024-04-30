@@ -1,13 +1,12 @@
 import { Field as FieldNode } from "@modules/datasets/domain/tree"
 import { Connect, FieldKeyIcon, FieldName, FieldType } from "./components"
 import { useSchemas } from "@modules/schemas/hooks"
-import { FieldDataType } from "@modules/datasets/interfaces/dataset-field"
 import { useDatasets } from "@modules/datasets/hooks"
 import { Position } from "reactflow"
 import { ExportDatatypeDTO } from "@modules/datasets/dto/field"
 
 interface Props {
-  field: FieldNode<FieldDataType, ExportDatatypeDTO>
+  field: FieldNode<ExportDatatypeDTO>
   datasetHasKeys: boolean
 }
 

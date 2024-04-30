@@ -1,9 +1,14 @@
-import { DatasetField } from "@modules/datasets/interfaces/datasets"
+import { Field } from "@modules/datasets/domain/tree"
+import { ExportDatatypeDTO } from "@modules/datasets/dto/field"
 import { useDatasets } from "@modules/datasets/hooks"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { useModal } from "@modules/modal/hooks"
 
-export function useFieldConfigMenu({ field }: { field: DatasetField }) {
+interface Props {
+  field: Field<ExportDatatypeDTO>
+}
+
+export function useFieldConfigMenu({ field }: Props) {
   const { selectedDataset, handleDeleteField: handleDeleteFieldService } = useDatasets()
   const { handleOpenModal } = useModal()
 

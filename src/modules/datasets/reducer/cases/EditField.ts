@@ -5,22 +5,14 @@ import { FieldProps } from "@modules/datasets/dto/field"
 interface ExecuteProps {
   datasetId: string
   form: FieldProps
-  next(datasets: Array<Dataset>): void
+  next(datasets: Dataset[]): void
 }
 
 export class EditField extends DatasetUseCase<ExecuteProps> {
-  execute({ datasetId, form, next }: ExecuteProps): Array<Dataset> {
+  execute({ datasetId, form, next }: ExecuteProps): Dataset[] {
     const newDatasets = this.datasets.map((d) => {
       if (d.id === datasetId) {
-        const findField = d.findFieldById(form.id)
-
-        if (findField) {
-          findField.setName(form.name)
-          findField.setIsArray(form.isArray)
-          findField.setIsPossibleNull(form.isPossibleNull)
-          findField.setIsKey(form.isKey)
-          findField.setDatatype(form.dataType)
-        }
+        d.findNodeByIdAndEdit(form)
       }
 
       return d
