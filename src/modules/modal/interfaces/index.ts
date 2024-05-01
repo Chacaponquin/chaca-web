@@ -1,17 +1,21 @@
-import { IsArrayConfig } from "@modules/datasets/interfaces/field-config"
+import {
+  IsArrayConfig,
+  IsKeyConfig,
+  PossibleNullConfig,
+} from "@modules/datasets/interfaces/field-config"
 import { FieldDataType } from "../../datasets/interfaces/datasets"
 import { MODAL_ACTIONS } from "../constants/MODAL_ACTIONS"
 import { Dataset, Field } from "@modules/datasets/domain/tree"
-import { Config } from "@modules/config/interfaces"
+import { Config, ImageFormats } from "@modules/config/interfaces"
 import { ExportDatatypeDTO } from "@modules/datasets/dto/field"
 
 export interface FieldForm {
   id: string
   name: string
-  isPossibleNull: number
+  isPossibleNull: PossibleNullConfig
   isArray: IsArrayConfig
   dataType: FieldDataType
-  isKey: boolean
+  isKey: IsKeyConfig
 }
 
 export type ModalEditDataset = {
@@ -48,6 +52,13 @@ export type ModalExportAllDatasets = {
   handleCreateAllDatasets(props: { config: Config; datasets: Dataset[] }): void
 }
 
+export type ModalExportImage = {
+  type: MODAL_ACTIONS.EXPORT_IMAGE
+  next: ExportImageFunc
+}
+
+export type ExportImageFunc = (props: { filename: string; format: ImageFormats }) => void
+
 export type ModalProps =
   | ModalAddFieldProps
   | ModalEditField
@@ -55,3 +66,4 @@ export type ModalProps =
   | ModalExportSelectDataset
   | ModalExportAllDatasets
   | ModalEditDataset
+  | ModalExportImage

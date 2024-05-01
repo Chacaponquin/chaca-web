@@ -1,15 +1,24 @@
+import { useClickOutside } from "@modules/shared/hooks"
 import clsx from "clsx"
-import { useRef, useEffect, useState, useCallback } from "react"
+import { useRef, useState, useCallback } from "react"
 
 interface Props {
   header: React.ReactNode
   children: React.ReactNode
   className?: string
   id?: string
+  full?: boolean
   height: number
 }
 
-export default function ChacaDropdown({ children, header, className: iclass, id, height }: Props) {
+export default function ChacaDropdown({
+  children,
+  header,
+  className: iclass,
+  id,
+  height,
+  full,
+}: Props) {
   const [open, setOpen] = useState(false)
 
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -29,22 +38,10 @@ export default function ChacaDropdown({ children, header, className: iclass, id,
     setOpen(false)
   }
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
-        onClickOutside()
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside)
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [onClickOutside])
+  useClickOutside({ element: wrapperRef, onClickOutside: onClickOutside })
 
   return (
-    <div id={id} className="" ref={wrapperRef}>
+    <div id={id} className={clsx(full ? "w-full" : "")} ref={wrapperRef}>
       <div className="flex items-center" onClick={handleOpen} ref={headerRef}>
         {header}
       </div>

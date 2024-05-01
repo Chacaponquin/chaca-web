@@ -1,9 +1,7 @@
 import { Field } from "./Field"
 import { NodesUtils } from "./NodesUtils"
 import { v4 as uuid } from "uuid"
-import { SearchProps } from "@modules/datasets/interfaces/tree"
 import { ExportDatatypeDTO } from "@modules/datasets/dto/field"
-import { ExportDatasetFieldDTO } from "@modules/datasets/dto/dataset"
 import { Dataset } from "./Dataset"
 
 interface RootProps {
@@ -50,9 +48,5 @@ export class RootNode {
 
   public setLimit(lim: number) {
     this._limit = lim
-  }
-
-  exportFields(props: SearchProps): ExportDatasetFieldDTO<ExportDatatypeDTO>[] {
-    return this.utils.exportFields(props)
   }
 }

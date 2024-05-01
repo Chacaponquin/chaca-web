@@ -6,11 +6,25 @@ import { ExportFileConfigDTO } from "@modules/config/dto/file"
 import { useConfig } from "@modules/config/hooks"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { useEnv } from "@modules/app/modules/env/hooks"
-import { DownloadDatasetError } from "../errors"
+import { DatasetError, DownloadDatasetError } from "../errors"
+import { ImageFormats } from "@modules/config/interfaces"
 
 interface ExportDatasetsProps {
   datasets: ExportDatasetDTO[]
   config: ExportFileConfigDTO
+}
+
+interface DownloadDatasetProps {
+  id: string
+  filename: string
+  onError(error: DatasetError): void
+  onFinally(): void
+}
+
+interface DownloadDatasetsImageProps {
+  filename: string
+  image: string
+  format: ImageFormats
 }
 
 export default function useDatasetServices() {
@@ -39,34 +53,50 @@ export default function useDatasetServices() {
     }
   }
 
-  async function downloadDatasetFile({ id, filename }: { id: string; filename: string }) {
-    try {
-      const response = await fetch(API_ROUTES.DOWNLOAD_FILE(API_ROUTE, id), {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/zip",
-        },
+  function downloadDatasetFile({ id, filename, onError, onFinally }: DownloadDatasetProps) {
+    fetch(API_ROUTES.DOWNLOAD_FILE(API_ROUTE, id), {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/zip",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          response
+            .blob()
+            .then((blob) => {
+              const url = window.URL.createObjectURL(new Blob([blob]))
+
+              const link = document.createElement("a")
+              link.href = url
+              link.download = `${filename}.zip`
+
+              document.body.appendChild(link)
+              link.click()
+              link.parentNode?.removeChild(link)
+            })
+            .catch(() => {
+              onError(new DownloadDatasetError())
+            })
+            .finally(() => {
+              onFinally()
+            })
+        } else {
+          onError(new DownloadDatasetError())
+        }
       })
-
-      if (response.ok) {
-        const blob = await response.blob()
-
-        const url = window.URL.createObjectURL(new Blob([blob]))
-
-        const link = document.createElement("a")
-        link.href = url
-        link.download = `${filename}.zip`
-
-        document.body.appendChild(link)
-
-        link.click()
-
-        link.parentNode?.removeChild(link)
-      }
-    } catch (error) {
-      throw new DownloadDatasetError()
-    }
+      .catch(() => {
+        onError(new DownloadDatasetError())
+      })
   }
 
-  return { exportDatasets, downloadDatasetFile }
+  function downloadDatasetsImage({ filename, image, format }: DownloadDatasetsImageProps) {
+    const a = document.createElement("a")
+
+    a.setAttribute("download", `${filename}.${format}`)
+    a.setAttribute("href", image)
+    a.click()
+  }
+
+  return { exportDatasets, downloadDatasetFile, downloadDatasetsImage }
 }

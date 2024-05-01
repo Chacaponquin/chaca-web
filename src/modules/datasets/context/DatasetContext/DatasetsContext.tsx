@@ -30,15 +30,16 @@ interface Props {
   handleOpenFieldsMenu(): void
   handleCloseFieldsMenu(): void
   showFieldsMenu: boolean
-  nodes: Array<Node<CardProps>>
-  edges: Array<Edge>
-  onNodesChange(changes: Array<NodeChange>): void
+  nodes: Node<CardProps>[]
+  edges: Edge[]
+  onNodesChange(changes: NodeChange[]): void
   onEdgesChange(changes: Array<EdgeChange>): void
   onConnect(param: Connection): void
-  handleAddNode(node: Node<CardProps>): void
   handleAddEdge(edge: Edge): void
-  handleCleanEdges(): void
   handleDeleteNode(id: string): void
+  handleChangeNodes(fun: (prev: Node<CardProps>[]) => Node<CardProps>[]): void
+  handleChangeEdges(func: (edges: Edge[]) => Edge[]): void
+  handleCleanEdges(): void
 }
 
 export const DatasetsContext = createContext<Props>({
@@ -74,6 +75,10 @@ export function DatasetsProvider({ children }: { children: ReactElement }) {
     }
   }
 
+  function handleChangeEdges(func: (edges: Edge[]) => Edge[]) {
+    setEdges(func)
+  }
+
   function handleOpenFieldsMenu() {
     setShowFieldsMenu(true)
   }
@@ -89,11 +94,12 @@ export function DatasetsProvider({ children }: { children: ReactElement }) {
     [setEdges],
   )
 
-  function handleAddNode(node: Node<CardProps>) {
-    setNodes((prev) => {
-      const result = [...prev, node]
-      return result
-    })
+  function handleChangeNodes(fun: (prev: Node<CardProps>[]) => Node<CardProps>[]) {
+    setNodes(fun)
+  }
+
+  function handleCleanEdges() {
+    setEdges([])
   }
 
   function handleDeleteNode(id: string) {
@@ -107,10 +113,6 @@ export function DatasetsProvider({ children }: { children: ReactElement }) {
     })
   }
 
-  function handleCleanEdges(): void {
-    setEdges([])
-  }
-
   const data = {
     datasets,
     datasetDispatch,
@@ -119,16 +121,16 @@ export function DatasetsProvider({ children }: { children: ReactElement }) {
     showFieldsMenu,
     handleCloseFieldsMenu,
     handleOpenFieldsMenu,
-
+    handleChangeNodes,
     nodes: nodes,
     edges: edges,
     onEdgesChange: onEdgesChange,
     onNodesChange: onNodesChange,
     onConnect: onConnect,
     handleAddEdge: handleAddEdge,
-    handleAddNode: handleAddNode,
-    handleCleanEdges: handleCleanEdges,
     handleDeleteNode: handleDeleteNode,
+    handleChangeEdges,
+    handleCleanEdges,
   }
 
   return <DatasetsContext.Provider value={data}>{children}</DatasetsContext.Provider>

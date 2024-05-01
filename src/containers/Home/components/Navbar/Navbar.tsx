@@ -1,6 +1,5 @@
 import { ChacaLogo, Menu, OpenFields } from "./components"
 import { useContext } from "react"
-import { ThemeSwitch } from "@modules/app/modules/theme/components"
 import { HomeContext } from "@containers/Home/context"
 import { useDatasets } from "@modules/datasets/hooks"
 import clsx from "clsx"
@@ -37,17 +36,17 @@ export default function Navbar({
         {smallWindow && datasets.length > 0 && <OpenFields />}
         <ChacaLogo />
 
-        <Menu
-          handleAddDataset={handleAddDataset}
-          handleExportAllDatasets={handleExportAllDatasets}
-          handleExportImage={handleExportImage}
-          handleDeleteAll={handleDeleteAll}
-        />
+        {datasets.length > 0 && (
+          <Menu
+            handleAddDataset={handleAddDataset}
+            handleExportAllDatasets={handleExportAllDatasets}
+            handleExportImage={handleExportImage}
+            handleDeleteAll={handleDeleteAll}
+          />
+        )}
       </section>
 
-      <section className="flex items-center gap-x-6 h-full">
-        <ThemeSwitch />
-      </section>
+      <section className="flex items-center gap-x-6 h-full"></section>
     </nav>
   )
 }

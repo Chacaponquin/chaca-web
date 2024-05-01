@@ -48,9 +48,9 @@ export class NodesUtils {
   }
 
   exportFields(props: SearchProps): ExportDatasetFieldDTO<ExportDatatypeDTO>[] {
-    return this.nodes.map((n) =>
-      n.exportObject({ ...props, fieldRoute: [...props.fieldRoute, this._instance.name] }),
-    )
+    return this.nodes.map((n) => {
+      return n.exportObject({ ...props, fieldRoute: [...props.fieldRoute, this._instance.name] })
+    })
   }
 
   findFieldParentNode(nodeId: string): Field<ExportMixedDataType> | RootNode | null {

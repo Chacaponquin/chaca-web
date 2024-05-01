@@ -1,8 +1,9 @@
-import ReactFlow, { Controls, Background } from "reactflow"
+import ReactFlow, { Background } from "reactflow"
 import { DatasetCard, DatasetsButtons } from "./components"
 import { usePlayground } from "@modules/datasets/hooks"
 import { useTheme } from "@modules/app/modules/theme/hooks"
 import { THEME } from "@modules/app/modules/theme/constants"
+import { PlaygroundZoom } from "@containers/Home/domain"
 
 import "reactflow/dist/style.css"
 import "./styles/custom-playground.css"
@@ -27,11 +28,10 @@ export default function DatasetPlayground() {
         onConnect={onConnect}
         nodeTypes={nodeTypes}
         nodesConnectable={false}
+        maxZoom={PlaygroundZoom.MAX_ZOOM}
+        minZoom={PlaygroundZoom.MIN_ZOOM}
       >
         <DatasetsButtons />
-
-        <Controls position="top-left" />
-
         <Background color={color} />
       </ReactFlow>
     </section>

@@ -43,7 +43,7 @@ export class Dataset {
   }
 
   exportFields(props: SearchProps) {
-    return this.root.exportFields(props)
+    return this.root.utils.exportFields(props)
   }
 
   setLimit(limit: number) {

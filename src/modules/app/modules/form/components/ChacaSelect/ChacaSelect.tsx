@@ -34,8 +34,6 @@ export default function ChacaSelect<T>({
   const [selectOptions, setSelectOptions] = useState<SelectOptions[]>([])
 
   useEffect(() => {
-    setSelectOptions([])
-
     setSelectOptions(
       options.map((o) => {
         return { label: o[labelKey] as string, value: o[valueKey] as string }
@@ -93,6 +91,7 @@ export default function ChacaSelect<T>({
 
   return (
     <ChacaDropdown
+      full={true}
       header={
         <Select
           text={selectIndex !== null ? selectOptions[selectIndex].label : placeholder}

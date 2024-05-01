@@ -4,13 +4,13 @@ import { useErrorBoundary } from "react-error-boundary"
 import { useConfigServices } from "../services"
 
 interface Props {
-  fileOptions: Array<FileConfigOption>
+  fileOptions: FileConfigOption[]
   loading: boolean
 }
 
-const ConfigContext = createContext<Props>({} as Props)
+export const ConfigContext = createContext<Props>({} as Props)
 
-function ConfigProvider({ children }: { children: React.ReactNode }) {
+export function ConfigProvider({ children }: { children: React.ReactNode }) {
   const [fileOptions, setFileOptions] = useState<FileConfigOption[]>([])
   const [loading, setLoading] = useState(false)
 
@@ -37,5 +37,3 @@ function ConfigProvider({ children }: { children: React.ReactNode }) {
 
   return <ConfigContext.Provider value={data}>{children}</ConfigContext.Provider>
 }
-
-export { ConfigContext, ConfigProvider }

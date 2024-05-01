@@ -4,7 +4,7 @@ import { DatasetUseCase } from "./DatasetUseCase"
 interface ExecuteProps {
   datasetId: string
   fieldId: string
-  next(datasets: Array<Dataset>): void
+  next(datasets: Dataset[]): void
 }
 
 export class DeleteField extends DatasetUseCase<ExecuteProps> {
@@ -17,8 +17,22 @@ export class DeleteField extends DatasetUseCase<ExecuteProps> {
       return dat
     })
 
+    this.deleteRefFields(this.datasets, fieldId)
+
     next(newDatasets)
 
     return newDatasets
+  }
+
+  private deleteRefFields(datasets: Dataset[], id: string): void {
+    for (const dat of datasets) {
+      const refFields = dat.refFields()
+
+      for (const ref of refFields) {
+        if (ref.ref.includes(id)) {
+          ref.ref = []
+        }
+      }
+    }
   }
 }

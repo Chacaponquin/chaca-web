@@ -18,7 +18,7 @@ export default function RefConfig({
   id,
 }: RefConfigProps) {
   const fieldRefId = useId()
-  const { searchPossibleFieldsToRef, findFieldByLocation } = useDatasets()
+  const { searchPossibleFieldsToRef } = useDatasets()
 
   const { REF_TEXT, PLACEHOLDER } = useTranslation({
     REF_TEXT: { en: "Reference field", es: "Referencia" },
@@ -26,21 +26,18 @@ export default function RefConfig({
   })
 
   const possibleFields = searchPossibleFieldsToRef({ datasetId, fieldId: id })
-  const foundField = findFieldByLocation(refField)
 
   return (
-    <div className="flex flex-col">
-      <FormInputSection vertical={false} id={fieldRefId} labelText={REF_TEXT}>
-        <ChacaSelect
-          size="lg"
-          options={possibleFields}
-          labelKey="locationNames"
-          valueKey="locationIds"
-          placeholder={PLACEHOLDER}
-          value={foundField?.id}
-          onChange={handleChangeRefField}
-        />
-      </FormInputSection>
-    </div>
+    <FormInputSection vertical={false} id={fieldRefId} labelText={REF_TEXT}>
+      <ChacaSelect
+        size="lg"
+        options={possibleFields}
+        labelKey="locationNames"
+        valueKey="locationIds"
+        placeholder={PLACEHOLDER}
+        value={refField.join(".")}
+        onChange={handleChangeRefField}
+      />
+    </FormInputSection>
   )
 }

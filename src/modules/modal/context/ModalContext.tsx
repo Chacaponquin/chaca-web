@@ -1,5 +1,5 @@
 import { ModalProps } from "@modules/modal/interfaces"
-import { createContext, ReactElement, useState } from "react"
+import { createContext, useState } from "react"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import {
   AddFieldForm,
@@ -7,6 +7,7 @@ import {
   EditDataset,
   EditFieldForm,
   ExportAllDatasetForm,
+  ExportImage,
   ExportSelectDatasetForm,
 } from "@modules/modal/components"
 import { CodeProvider } from "./CodeContext"
@@ -19,7 +20,7 @@ interface Props {
 
 export const ModalContext = createContext<Props>({ openModal: null } as Props)
 
-export function ModalProvider({ children }: { children: ReactElement }) {
+export function ModalProvider({ children }: { children: React.ReactNode }) {
   const [openModal, setOpenModal] = useState<ModalProps | null>(null)
 
   function handleOpenModal(props: ModalProps) {
@@ -53,6 +54,7 @@ export function ModalProvider({ children }: { children: ReactElement }) {
           {openModal.type === MODAL_ACTIONS.EXPORT_ALL_DATASETS && (
             <ExportAllDatasetForm {...openModal} />
           )}
+          {openModal.type === MODAL_ACTIONS.EXPORT_IMAGE && <ExportImage {...openModal} />}
         </CodeProvider>
       )}
 

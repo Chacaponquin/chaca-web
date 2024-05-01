@@ -23,13 +23,16 @@ import Info from "./Info"
 import Key from "./Key"
 import Light from "./Light"
 import Like from "./Like"
+import Lock from "./Lock"
 import Menu from "./Menu"
+import Minus from "./Minus"
 import Npm from "./Npm"
 import PlayIcon from "./PlayIcon"
 import Plus from "./Plus"
 import Private from "./Private"
 import Save from "./Save"
 import Schema from "./Schema"
+import ScreenFit from "./ScreenFit"
 import Search from "./Search"
 import Send from "./Send"
 import Share from "./Share"
@@ -37,6 +40,7 @@ import SignOut from "./SignOut"
 import Smile from "./Smile"
 import Tip from "./Tip"
 import Twitter from "./Twitter"
+import Unlock from "./Unlock"
 import User from "./User"
 import X from "./X"
 
@@ -82,4 +86,8 @@ export {
   Info,
   Danger,
   Tip,
+  Minus,
+  Unlock,
+  Lock,
+  ScreenFit,
 }

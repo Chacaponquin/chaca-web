@@ -4,4 +4,5 @@ export interface MenuItem {
   title: string
   icon: React.FC<IconProps>
   onClick(): void
+  command: string
 }

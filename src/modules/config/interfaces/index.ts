@@ -30,3 +30,5 @@ export interface NoUserLimits {
   LIMIT_DATASETS: number
   LIMIT_DOCUMENTS: number
 }
+
+export type ImageFormats = "svg" | "png"

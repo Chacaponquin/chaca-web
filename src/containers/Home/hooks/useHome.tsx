@@ -4,7 +4,7 @@ import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { useSocket } from "@modules/app/modules/socket/hooks"
-import { useDatasets } from "@modules/datasets/hooks"
+import { useDatasets, usePlayground } from "@modules/datasets/hooks"
 import { useModal } from "@modules/modal/hooks"
 import { Dataset, ExportDataset } from "@modules/datasets/domain/tree"
 import { useSchemas } from "@modules/schemas/hooks"
@@ -35,7 +35,12 @@ export default function useHome() {
   const { language } = useLanguage()
   const { socket } = useSocket()
   const { findParent, findType } = useSchemas()
-  const { exportDatasets: exportDatasetsService, downloadDatasetFile } = useDatasetServices()
+  const { handleGenerateImage } = usePlayground()
+  const {
+    exportDatasets: exportDatasetsService,
+    downloadDatasetFile,
+    downloadDatasetsImage,
+  } = useDatasetServices()
   const {
     ERROR_MESSAGES: { CREATION_ERROR, EMPTY_REF_FIELD_ERROR, NETWORK_ERROR },
     FUNCTION_ERROR_MESSAGES: {
@@ -59,14 +64,17 @@ export default function useHome() {
     }
   }, [socket, language, handleFinishCreation, handleErrorCreation])
 
-  async function handleFinishCreation(props: RespExportDatasetDTO) {
-    try {
-      await downloadDatasetFile({ id: props.id, filename: props.filename })
-    } catch (error) {
-      toastError({ message: CREATION_ERROR, id: "dataset-creation-error" })
-    } finally {
-      setCreateDataLoading(false)
-    }
+  function handleFinishCreation(props: RespExportDatasetDTO) {
+    downloadDatasetFile({
+      id: props.id,
+      filename: props.filename,
+      onError() {
+        toastError({ message: CREATION_ERROR, id: "dataset-creation" })
+      },
+      onFinally() {
+        setCreateDataLoading(false)
+      },
+    })
   }
 
   function handleErrorCreation(error: DatasetCreationError) {
@@ -143,7 +151,7 @@ export default function useHome() {
   function handleCreateAllDatasets() {
     handleOpenModal({
       type: MODAL_ACTIONS.EXPORT_ALL_DATASETS,
-      handleCreateAllDatasets({ config, datasets }) {
+      handleCreateAllDatasets({ config }) {
         exportDatasets(datasets, config)
       },
     })
@@ -183,7 +191,19 @@ export default function useHome() {
     handleAddDatasetService({ handleCreateDataset: handleCreateDataset })
   }
 
-  function handleExportImage() {}
+  function handleExportImage() {
+    handleOpenModal({
+      type: MODAL_ACTIONS.EXPORT_IMAGE,
+      next({ filename, format }) {
+        handleGenerateImage({
+          format: format,
+          success(image) {
+            downloadDatasetsImage({ filename: filename, format: format, image: image })
+          },
+        })
+      },
+    })
+  }
 
   function handleDeleteAll() {}
 

@@ -6,40 +6,40 @@ import { Dark, Light } from "@modules/app/modules/icon/components"
 import { useMemo } from "react"
 
 export default function ThemeSwitch() {
-  const { theme, handleChangeTheme } = useTheme()
+  const { theme } = useTheme()
   const isLight = useMemo(() => theme === THEME.LIGHT, [theme])
 
-  function handleToggleSwitch() {
-    if (isLight) {
-      handleChangeTheme(THEME.DARK)
-    } else {
-      handleChangeTheme(THEME.LIGHT)
-    }
-  }
-
-  const containerClass = clsx(
-    "esm:w-[90px] w-[90px] h-[35px] items-center flex px-4 rounded-sm cursor-pointer",
+  const CONTAINER = clsx(
+    "w-[75px] h-[32px]",
+    "cursor-pointer",
+    "px-2",
+    "items-center flex",
+    "rounded-sm",
     "bg-scale-12 dark:bg-scale-6",
+
     {
       "justify-start": isLight,
       "justify-end": !isLight,
     },
   )
 
-  const cubicClass = clsx(
-    "rounded-sm esm:w-[30px] w-[35px] h-[25px] flex justify-center items-center",
+  const CUBIC = clsx(
+    "flex justify-center items-center",
+    "rounded-sm",
+    "w-[30px] h-[22px]",
+
     {
       "bg-purple-6 stroke-white": isLight,
       "bg-scale-3 stroke-white": !isLight,
     },
   )
 
-  const ICON_SIZE = 15
+  const ICON_SIZE = 14
 
   return (
-    <div className={containerClass} onClick={handleToggleSwitch}>
+    <div className={CONTAINER}>
       <motion.div
-        className={cubicClass}
+        className={CUBIC}
         layout
         transition={{
           type: "spring",
