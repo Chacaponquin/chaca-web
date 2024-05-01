@@ -1,8 +1,15 @@
+import {
+  CloneDatasetCommand,
+  CommandsExecutor,
+  DeleteDatasetCommand,
+  EditDatasetCommand,
+  ExportDatasetCommand,
+} from "@modules/datasets/domain/commands"
 import { Dataset } from "@modules/datasets/domain/tree"
 import { useDatasets } from "@modules/datasets/hooks"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { useModal } from "@modules/modal/hooks"
-import { useCallback, useEffect } from "react"
+import { useEffect } from "react"
 
 interface Props {
   dataset: Dataset
@@ -22,20 +29,18 @@ export default function useDatasetCard({
 
   const selected = selectedDataset?.id === dataset.id
 
-  const handleKeyboardAction = useCallback(
-    (event: globalThis.KeyboardEvent) => {
-      if (selected && openModal === null) {
-        if (event.key === "Delete") {
-          handleDeleteDataset()
-        }
+  const commands = new CommandsExecutor([
+    new DeleteDatasetCommand(handleDeleteDataset),
+    new EditDatasetCommand(handleEditDataset),
+    new CloneDatasetCommand(handleCloneDataset),
+    new ExportDatasetCommand(handleCreateDataset),
+  ])
 
-        if (event.key === "Enter") {
-          handleEditDataset()
-        }
-      }
-    },
-    [openModal, handleDeleteDataset, handleEditDataset],
-  )
+  const handleKeyboardAction = (event: globalThis.KeyboardEvent) => {
+    if (selected && openModal === null) {
+      commands.execute(event)
+    }
+  }
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyboardAction)

@@ -57,6 +57,10 @@ export type ModalExportImage = {
   next: ExportImageFunc
 }
 
+export type ModalDeleteAllDatasets = {
+  type: MODAL_ACTIONS.DELETE_ALL_DATASETS
+}
+
 export type ExportImageFunc = (props: { filename: string; format: ImageFormats }) => void
 
 export type ModalProps =
@@ -67,3 +71,4 @@ export type ModalProps =
   | ModalExportAllDatasets
   | ModalEditDataset
   | ModalExportImage
+  | ModalDeleteAllDatasets

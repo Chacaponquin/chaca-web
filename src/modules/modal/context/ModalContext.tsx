@@ -3,6 +3,7 @@ import { createContext, useState } from "react"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import {
   AddFieldForm,
+  DeleteAllDatasets,
   DeleteDatasetForm,
   EditDataset,
   EditFieldForm,
@@ -55,6 +56,7 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
             <ExportAllDatasetForm {...openModal} />
           )}
           {openModal.type === MODAL_ACTIONS.EXPORT_IMAGE && <ExportImage {...openModal} />}
+          {openModal.type === MODAL_ACTIONS.DELETE_ALL_DATASETS && <DeleteAllDatasets />}
         </CodeProvider>
       )}
 

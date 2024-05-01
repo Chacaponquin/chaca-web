@@ -2,6 +2,13 @@ import { Copy, Delete, Edit, Share } from "@modules/app/modules/icon/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { Fragment } from "react"
 import { Item } from "./components"
+import { MenuItem } from "./interfaces"
+import {
+  CloneDatasetCommand,
+  DeleteDatasetCommand,
+  EditDatasetCommand,
+  ExportDatasetCommand,
+} from "@modules/datasets/domain/commands"
 
 interface Props {
   handleEditDataset(): void
@@ -25,35 +32,42 @@ export default function DatasetMenu({
     CLONE_OPTION: { en: "Clone", es: "Clonar" },
   })
 
+  const items: MenuItem[] = [
+    {
+      id: `${name}-dataset-edit-button`,
+      icon: Edit,
+      command: EditDatasetCommand.value,
+      onClick: handleEditDataset,
+      text: EDIT_OPTION,
+    },
+    {
+      id: `${name}-dataset-export-button`,
+      command: ExportDatasetCommand.value,
+      icon: Share,
+      onClick: handleExportDataset,
+      text: EXPORT_OPTION,
+    },
+    {
+      icon: Copy,
+      command: CloneDatasetCommand.value,
+      id: `${name}-dataset-clone-button`,
+      onClick: handleCloneDataset,
+      text: CLONE_OPTION,
+    },
+    {
+      id: `${name}-dataset-delete-button`,
+      icon: Delete,
+      command: DeleteDatasetCommand.value,
+      onClick: handleDeleteDataset,
+      text: DELETE_OPTION,
+    },
+  ]
+
   return (
     <Fragment>
-      <Item
-        onClick={handleEditDataset}
-        text={EDIT_OPTION}
-        icon={Edit}
-        id={`${name}-dataset-edit-button`}
-      />
-
-      <Item
-        onClick={handleExportDataset}
-        icon={Share}
-        id={`${name}-dataset-export-button`}
-        text={EXPORT_OPTION}
-      />
-
-      <Item
-        onClick={handleCloneDataset}
-        icon={Copy}
-        id={`${name}-dataset-clone-button`}
-        text={CLONE_OPTION}
-      />
-
-      <Item
-        text={DELETE_OPTION}
-        onClick={handleDeleteDataset}
-        icon={Delete}
-        id={`${name}-dataset-delete-button`}
-      />
+      {items.map(({ command, icon, id, onClick, text }, index) => (
+        <Item onClick={onClick} text={text} key={index} icon={icon} id={id} command={command} />
+      ))}
     </Fragment>
   )
 }

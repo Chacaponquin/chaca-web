@@ -1,7 +1,7 @@
 import clsx from "clsx"
 
 interface Props {
-  onClick(): void
+  onClick?: () => void
   children: React.ReactNode
   handleCloseList(): void
   clickEffect: boolean
@@ -18,7 +18,7 @@ export default function Item({ onClick, children, clickEffect, handleCloseList }
   )
 
   function handleClick() {
-    onClick()
+    if (onClick) onClick()
     if (clickEffect) handleCloseList()
   }
 

@@ -6,13 +6,14 @@ interface Props {
   handleChangeLanguage(lan: Languages): void
 }
 
-const LanguageContext = createContext<Props>({ language: "en" } as Props)
+export const LanguageContext = createContext<Props>({ language: "en" } as Props)
 
-function LanguageProvider({ children }: { children: React.ReactElement }) {
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Languages>("en")
 
   useEffect(() => {
     const navigatorLanguage = window.navigator.language
+
     if (navigatorLanguage.includes("en")) {
       setLanguage("en")
     } else if (navigatorLanguage.includes("es")) {
@@ -32,5 +33,3 @@ function LanguageProvider({ children }: { children: React.ReactElement }) {
     </LanguageContext.Provider>
   )
 }
-
-export { LanguageContext, LanguageProvider }

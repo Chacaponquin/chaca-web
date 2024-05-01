@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { LanguageContext } from "../context"
 
 export default function useLanguage() {
-  const { language } = useContext(LanguageContext)
+  const { language, handleChangeLanguage } = useContext(LanguageContext)
 
-  return { language }
+  return { language, handleChangeLanguage }
 }

@@ -1,5 +1,6 @@
 import { ChacaDropdown } from "@form/components"
 import { Config, DatasetInfo, DatasetMenu } from "./components"
+import clsx from "clsx"
 
 interface Props {
   handleEditDataset(): void
@@ -8,6 +9,7 @@ interface Props {
   handleCloneDataset(): void
   name: string
   limit: number
+  nameId: string
 }
 
 export default function CardHeader({
@@ -17,11 +19,17 @@ export default function CardHeader({
   handleCloneDataset,
   limit,
   name,
+  nameId,
 }: Props) {
-  const nameId = name.replace(" ", "-")
+  const CLASS = clsx(
+    "relative",
+    "flex justify-center items-center",
+    "border-b-[1px] border-white",
+    "py-3.5 px-12",
+  )
 
   return (
-    <header className="flex relative justify-center py-3.5 px-12 border-b-[1px] border-white items-center">
+    <header className={CLASS}>
       <DatasetInfo limit={limit} name={name} />
 
       <ChacaDropdown

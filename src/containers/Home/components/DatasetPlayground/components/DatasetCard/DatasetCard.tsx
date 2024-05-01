@@ -47,6 +47,7 @@ export default function DatasetCard({ data: { dataset, handleCreateDataset } }: 
         handleExportDataset={handleCreateDatasetHook}
         name={dataset.name}
         limit={dataset.limit}
+        nameId={dataset.nameId}
         handleCloneDataset={handleCloneDataset}
       />
 

@@ -1,4 +1,5 @@
 import AddFieldForm from "./AddFieldForm/AddFieldForm"
+import DeleteAllDatasets from "./DeleteAllDatasets/DeleteAllDatasets"
 import DeleteDatasetForm from "./DeleteDatasetForm/DeleteDatasetForm"
 import EditDataset from "./EditDataset/EditDataset"
 import EditFieldForm from "./EditFieldForm/EditFieldForm"
@@ -14,4 +15,5 @@ export {
   ExportSelectDatasetForm,
   EditDataset,
   ExportImage,
+  DeleteAllDatasets,
 }

@@ -18,6 +18,10 @@ export class Dataset {
     this.root = new RootNode({ limit, name })
   }
 
+  get nameId() {
+    return this.name.replace(" ", "-")
+  }
+
   get name() {
     return this.root.name
   }

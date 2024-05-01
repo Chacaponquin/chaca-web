@@ -205,7 +205,9 @@ export default function useHome() {
     })
   }
 
-  function handleDeleteAll() {}
+  function handleDeleteAll() {
+    handleOpenModal({ type: MODAL_ACTIONS.DELETE_ALL_DATASETS })
+  }
 
   return {
     handleExportSelectedDataset,

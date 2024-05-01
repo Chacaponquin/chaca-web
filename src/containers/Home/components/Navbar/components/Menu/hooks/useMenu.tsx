@@ -1,9 +1,15 @@
 import { Delete, Image, Plus, Share } from "@modules/app/modules/icon/components"
-import { MenuItem } from "../interfaces"
+import { LanguageOption, MenuItem } from "../interfaces"
 import { useTheme } from "@modules/app/modules/theme/hooks"
 import { THEME } from "@modules/app/modules/theme/constants"
 import { createRef, useState } from "react"
 import { useClickOutside } from "@modules/shared/hooks"
+import {
+  AddDatasetCommand,
+  ExportAllDatasetsCommand,
+  ExportDatasetsImageCommand,
+} from "@modules/datasets/domain/commands"
+import { useLanguage, useTranslation } from "@modules/app/modules/language/hooks"
 
 interface Props {
   handleExportAllDatasets(): void
@@ -18,17 +24,42 @@ export default function useMenu({
   handleExportImage,
   handleDeleteAll,
 }: Props) {
-  const listRef = createRef<HTMLDivElement>()
-
   const [open, setOpen] = useState(false)
 
+  const listRef = createRef<HTMLDivElement>()
+
   const { handleChangeTheme: handleChangeThemeHook, theme } = useTheme()
+  const { handleChangeLanguage: handleChangeLanguageHook, language } = useLanguage()
+
+  useClickOutside({ element: listRef, onClickOutside: () => setOpen(false) })
+
+  const { ADD_DATASET, DELETE_ALL, EXPORT_ALL, EXPORT_IMAGE } = useTranslation({
+    ADD_DATASET: { en: "Add Dataset", es: "Añadir Dataset" },
+    EXPORT_ALL: { en: "Export all", es: "Exportar todo" },
+    EXPORT_IMAGE: { en: "Export image", es: "Exportar imagen" },
+    DELETE_ALL: { en: "Delete all", es: "Eliminar todo" },
+  })
 
   const items: MenuItem[] = [
-    { icon: Plus, title: "Añadir Dataset", onClick: handleAddDataset, command: "Ctrl+A" },
-    { icon: Share, title: "Exportar todo", onClick: handleExportAllDatasets, command: "Ctrl+R" },
-    { icon: Image, title: "Exportar imagen", onClick: handleExportImage, command: "Ctrl+I" },
-    { icon: Delete, title: "Eliminar todo", onClick: handleDeleteAll, command: "Ctrl+D" },
+    {
+      icon: Plus,
+      title: ADD_DATASET,
+      onClick: handleAddDataset,
+      command: AddDatasetCommand.value,
+    },
+    {
+      icon: Share,
+      title: EXPORT_ALL,
+      onClick: handleExportAllDatasets,
+      command: ExportAllDatasetsCommand.value,
+    },
+    {
+      icon: Image,
+      title: EXPORT_IMAGE,
+      onClick: handleExportImage,
+      command: ExportDatasetsImageCommand.value,
+    },
+    { icon: Delete, title: DELETE_ALL, onClick: handleDeleteAll, command: "" },
   ]
 
   function handleChangeOpen() {
@@ -43,7 +74,29 @@ export default function useMenu({
     }
   }
 
-  useClickOutside({ element: listRef, onClickOutside: () => setOpen(false) })
+  const languageOptions: LanguageOption[] = [
+    { title: "Español", type: "es" },
+    { title: "English", type: "en" },
+  ]
 
-  return { items, handleChangeTheme, open, handleChangeOpen, listRef }
+  function handleChangeLanguage(name: string) {
+    const found = languageOptions.find((l) => l.title === name)
+
+    if (found) {
+      handleChangeLanguageHook(found.type)
+    }
+  }
+
+  const foundLanguage = languageOptions.find((l) => l.type === language)
+
+  return {
+    items,
+    handleChangeTheme,
+    foundLanguage,
+    open,
+    handleChangeOpen,
+    listRef,
+    handleChangeLanguage,
+    languageOptions,
+  }
 }
