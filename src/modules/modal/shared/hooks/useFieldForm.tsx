@@ -9,6 +9,7 @@ import {
   PickDataType,
   ProbabilityValue,
   RefDataType,
+  RefWhere,
   SequenceDataType,
   SingleValueDataType,
 } from "@modules/datasets/interfaces/dataset-field"
@@ -288,6 +289,18 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
     formDispatch({ type: FORM_ACTIONS.CHANGE_PROBABILITY_DATATYPE, payload: { values: values } })
   }
 
+  function handleChangeRefUnique(value: boolean) {
+    const f = field.dataType as RefDataType
+
+    formDispatch({ type: FORM_ACTIONS.CHANGE_REF_DATATYPE, payload: { ...f, unique: value } })
+  }
+
+  function handleChangeRefWhere(value: RefWhere): void {
+    const f = field.dataType as RefDataType
+
+    formDispatch({ type: FORM_ACTIONS.CHANGE_REF_DATATYPE, payload: { ...f, where: value } })
+  }
+
   return {
     field,
     handleChangeProbabilityValues,
@@ -313,5 +326,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
     handleChangeRef,
     handleAddFieldSchemaArgument,
     handleDeleteFieldSchemaArgument,
+    handleChangeRefUnique,
+    handleChangeRefWhere,
   }
 }

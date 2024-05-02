@@ -13,6 +13,7 @@ import {
   ArrayValue,
   FieldDataType,
   ProbabilityValue,
+  RefWhere,
 } from "@modules/datasets/interfaces/dataset-field"
 import {
   ChangeSequentialFieldProps,
@@ -40,6 +41,8 @@ interface Props {
   handleChangePickValues(values: ArrayValue[]): void
   handleChangePickCount(c: number): void
   handleChangeProbabilityValues(values: ProbabilityValue[]): void
+  handleChangeRefUnique(value: boolean): void
+  handleChangeRefWhere(value: RefWhere): void
 }
 
 export default function DataTypeConfig({
@@ -60,6 +63,8 @@ export default function DataTypeConfig({
   handleChangePickValues,
   handleChangePickCount,
   handleChangeProbabilityValues,
+  handleChangeRefUnique,
+  handleChangeRefWhere,
 }: Props) {
   return (
     <section>
@@ -75,8 +80,12 @@ export default function DataTypeConfig({
         <RefConfig
           refField={dataType.ref}
           datasetId={datasetId}
+          unique={dataType.unique}
+          where={dataType.where}
           handleChangeRefField={handleChangeRefField}
           id={id}
+          handleChangeRefUnique={handleChangeRefUnique}
+          handleChangeRefWhere={handleChangeRefWhere}
         />
       )}
 

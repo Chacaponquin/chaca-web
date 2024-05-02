@@ -27,7 +27,6 @@ export default function ArgumentFilter({ arg, value, handleChangeArgumentValue }
             value={value}
             size="sm"
             valueKey="value"
-            color="dark"
           />
         )
       }

@@ -22,7 +22,7 @@ export default function FieldName({ handleChangeName, text, name }: Props) {
         onChange={handleChangeName}
         placeholder={PLACEHOLDER}
         value={name}
-        size="lg"
+        size="base"
         disabled={false}
         type="text"
         name="field-name"

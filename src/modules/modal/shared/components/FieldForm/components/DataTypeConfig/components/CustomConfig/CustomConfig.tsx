@@ -31,10 +31,10 @@ export default function CustomConfig({ code, handleUpdateCustomField }: Props) {
   return (
     <FormInputSection labelText={FUNCTION} vertical={false} id="custom-function">
       <ChacaIconButton
-        icon={<Edit size={22} />}
+        icon={<Edit size={20} />}
         type="button"
         color="cancel"
-        size="base"
+        size="sm"
         text={BUTTON}
         disabled={false}
         onClick={handleClick}

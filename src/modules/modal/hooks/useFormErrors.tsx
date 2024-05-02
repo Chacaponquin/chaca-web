@@ -4,6 +4,7 @@ import {
   EmptyArrayValueError,
   EmptyDatasetNameError,
   EmptyFieldNameError,
+  EmptyRefFieldError,
   EmptyValuesError,
   InvalidArrayJSONValue,
   InvalidArrayNumberValue,
@@ -23,6 +24,7 @@ export default function useFormErrors() {
     INVALID_JSON,
     EMPTY_ARRAY,
     INVALID_CHANGE_VALUE,
+    EMPTY_REF_FIELD,
   } = useTranslation({
     REPEAT_NAME: {
       en: `Aldready exists an field with that name`,
@@ -51,6 +53,10 @@ export default function useFormErrors() {
     INVALID_CHANGE_VALUE: {
       en: "The probabilities values must be between 0 and 1",
       es: "Los valores para las probabilidades deben encontrarse entre 0 y 1",
+    },
+    EMPTY_REF_FIELD: {
+      en: "If the field is going to be a reference field you must reference a field from another dataset",
+      es: "Si el campo va a ser un campo referencia debes referenciar algún campo de otro dataset",
     },
   })
 
@@ -84,6 +90,8 @@ export default function useFormErrors() {
       toastError({ message: REPEAT_DATASET_NAME, id: "repeat-dataset-name" })
     } else if (error instanceof InvalidChanceValueError) {
       toastError({ message: INVALID_CHANGE_VALUE, id: "invalid-change-value" })
+    } else if (error instanceof EmptyRefFieldError) {
+      toastError({ id: "empty-ref-field", message: EMPTY_REF_FIELD })
     }
   }
 

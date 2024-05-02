@@ -37,6 +37,8 @@ export default function FieldForm({
   handleChangePickValues,
   handleChangePickCount,
   handleChangeProbabilityValues,
+  handleChangeRefUnique,
+  handleChangeRefWhere,
 }: Props) {
   const { FIELD_NAME_TEXT, DATA_TYPE_TEXT } = useTranslation({
     FIELD_NAME_TEXT: { en: "Field name", es: "Nombre del campo" },
@@ -78,9 +80,11 @@ export default function FieldForm({
         handleChangePickValues={handleChangePickValues}
         handleChangePickCount={handleChangePickCount}
         handleChangeProbabilityValues={handleChangeProbabilityValues}
+        handleChangeRefUnique={handleChangeRefUnique}
+        handleChangeRefWhere={handleChangeRefWhere}
       />
 
-      <section className="flex flex-col gap-3 mt-1">
+      <section className="flex flex-col gap-3">
         {canBeArray && (
           <ArrayConfig
             isArray={field.isArray}

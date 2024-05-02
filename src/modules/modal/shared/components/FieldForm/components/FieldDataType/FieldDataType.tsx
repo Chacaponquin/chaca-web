@@ -33,7 +33,7 @@ export default function FieldDataType({
         labelKey="title"
         valueKey="id"
         value={foundDataType.id}
-        size="lg"
+        size="base"
         onChange={(v) => handleChangeDataType(v as string)}
       />
     </FormInputSection>

@@ -13,6 +13,7 @@ import {
   NoDuplicateLevelField,
   PickValuesValidator,
   ProbabilityValuesValidator,
+  RefFieldValidator,
   SequentialValuesValidator,
 } from "../domain/validators"
 import { DatasetError } from "../errors"
@@ -129,6 +130,7 @@ export default function useDatasets() {
         parentId: parentfieldId,
       }),
       new SequentialValuesValidator({ type: field.dataType }),
+      new RefFieldValidator({ type: field.dataType }),
       new EnumValuesValidator({ type: field.dataType }),
       new PickValuesValidator({ type: field.dataType }),
       new ProbabilityValuesValidator({ type: field.dataType }),
@@ -161,6 +163,7 @@ export default function useDatasets() {
         name: field.name,
         fieldId: null,
       }),
+      new RefFieldValidator({ type: field.dataType }),
       new SequentialValuesValidator({ type: field.dataType }),
       new EnumValuesValidator({ type: field.dataType }),
       new PickValuesValidator({ type: field.dataType }),

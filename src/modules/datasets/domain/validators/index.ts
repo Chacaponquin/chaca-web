@@ -5,6 +5,7 @@ import { NoDuplicateDataset } from "./NoDuplicateDataset"
 import { NoDuplicateLevelField } from "./NoDuplicateLevelField"
 import { PickValuesValidator } from "./PickValuesValidator"
 import { ProbabilityValuesValidator } from "./ProbabilityValuesValidator"
+import { RefFieldValidator } from "./RefFieldValidator"
 import { SequentialValuesValidator } from "./SequentialValuesValidator"
 
 export {
@@ -16,4 +17,5 @@ export {
   ProbabilityValuesValidator,
   SequentialValuesValidator,
   EnumValuesValidator,
+  RefFieldValidator,
 }

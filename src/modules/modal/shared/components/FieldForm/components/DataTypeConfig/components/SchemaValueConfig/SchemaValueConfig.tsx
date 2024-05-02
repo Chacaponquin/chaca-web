@@ -7,8 +7,10 @@ import {
 } from "@modules/modal/shared/interfaces"
 import { useSchemas } from "@modules/schemas/hooks"
 import { OptionArguments } from "./components"
-import { useMemo } from "react"
+import { useId, useMemo } from "react"
 import { Argument } from "@modules/schemas/interfaces/argument"
+import clsx from "clsx"
+import { FormInputSection } from "@modules/modal/shared/shared/components"
 
 interface Props {
   fieldType: SchemaValueTypeObject
@@ -27,6 +29,9 @@ export default function SchemaValueConfig({
   handleAddFieldSchemaArgument,
   handleDeleteFieldSchemaArgument,
 }: Props) {
+  const moduleId = useId()
+  const optionId = useId()
+
   const { schemas, findParentOptions } = useSchemas()
   const { MODULE_TEXT, OPTION_TEXT } = useTranslation({
     MODULE_TEXT: { en: "Module", es: "Módulo" },
@@ -46,29 +51,35 @@ export default function SchemaValueConfig({
     handleSelectFieldSchemaOption({ option: option, parent: fieldType.schema })
   }
 
-  return (
-    <div className="grid grid-cols-2 esm:grid-cols-1 gap-x-4 gap-y-3 bg-scale-12 dark:bg-scale-5 px-5 py-3 rounded">
-      <ChacaSelect
-        options={schemas}
-        labelKey="name"
-        valueKey="id"
-        placeholder={MODULE_TEXT}
-        value={fieldType.schema}
-        onChange={handleSelectModule}
-        color="dark"
-        size="base"
-      />
+  const CLASS = clsx("grid grid-cols-2 esm:grid-cols-1", "rounded", "gap-x-4 gap-y-3")
 
-      <ChacaSelect
-        value={fieldType.option}
-        options={foundOptions}
-        labelKey="name"
-        valueKey="id"
-        placeholder={OPTION_TEXT}
-        onChange={handleSelectModuleOption}
-        color="dark"
-        size="base"
-      />
+  return (
+    <div className={CLASS}>
+      <FormInputSection vertical={true} id={moduleId} labelText={MODULE_TEXT}>
+        <ChacaSelect
+          options={schemas}
+          labelKey="name"
+          valueKey="id"
+          placeholder={MODULE_TEXT}
+          value={fieldType.schema}
+          onChange={handleSelectModule}
+          size="base"
+          id={moduleId}
+        />
+      </FormInputSection>
+
+      <FormInputSection vertical={true} id={optionId} labelText={OPTION_TEXT}>
+        <ChacaSelect
+          value={fieldType.option}
+          options={foundOptions}
+          labelKey="name"
+          valueKey="id"
+          placeholder={OPTION_TEXT}
+          onChange={handleSelectModuleOption}
+          size="base"
+          id={optionId}
+        />
+      </FormInputSection>
 
       <OptionArguments
         module={fieldType.schema}

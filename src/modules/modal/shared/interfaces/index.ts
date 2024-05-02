@@ -1,4 +1,4 @@
-import { ArrayValue, ProbabilityValue } from "@modules/datasets/interfaces/dataset-field"
+import { ArrayValue, ProbabilityValue, RefWhere } from "@modules/datasets/interfaces/dataset-field"
 import { FieldForm } from "@modules/modal/interfaces"
 import { Argument } from "@modules/schemas/interfaces/argument"
 
@@ -51,4 +51,6 @@ export interface FieldActions {
   handleChangePickValues(values: ArrayValue[]): void
   handleChangePickCount(count: number): void
   handleChangeProbabilityValues(values: ProbabilityValue[]): void
+  handleChangeRefUnique(value: boolean): void
+  handleChangeRefWhere(value: RefWhere): void
 }
