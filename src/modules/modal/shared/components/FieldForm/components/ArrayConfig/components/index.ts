@@ -1,3 +1,4 @@
 import Config from "./Config/Config"
+import Information from "./Information/Information"
 
-export { Config }
+export { Config, Information }

@@ -1,6 +1,7 @@
 import { IsArrayConfig } from "@modules/datasets/interfaces/field-config"
 import { CheckField, ConfigContainer } from "@modules/modal/shared/shared/components"
-import { Config } from "./components"
+import { Config, Information } from "./components"
+import { USER_LIMITS } from "@modules/user/constants"
 
 interface Props {
   isArray: IsArrayConfig
@@ -17,7 +18,12 @@ export default function ArrayConfig({
 }: Props) {
   return (
     <ConfigContainer>
-      <CheckField onChange={handleChangeIsArray} check={isArray !== null} text="Is Array" />
+      <CheckField
+        onChange={handleChangeIsArray}
+        check={isArray !== null}
+        text="Is Array"
+        info={<Information />}
+      />
 
       {isArray !== null && (
         <div className="flex items-center gap-6">
@@ -34,7 +40,7 @@ export default function ArrayConfig({
             value={isArray.max}
             min={isArray.min}
             onChange={(v) => handleChangeMaxIsArray(v)}
-            max={1000}
+            max={USER_LIMITS.LIMIT_ARRAY_VALUES}
           />
         </div>
       )}

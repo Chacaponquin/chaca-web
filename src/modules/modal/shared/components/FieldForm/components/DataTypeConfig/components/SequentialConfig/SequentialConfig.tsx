@@ -2,6 +2,7 @@ import { ArrayValue } from "@modules/datasets/interfaces/dataset-field"
 import { ChangeSequentialFieldProps } from "@modules/modal/shared/interfaces"
 import { CheckField } from "@modules/modal/shared/shared/components"
 import { ValuesForm } from "../../shared/components"
+import { LoopInfo } from "./components"
 
 interface Props {
   values: ArrayValue[]
@@ -21,6 +22,7 @@ export default function SequentialConfig({ values, handleChangeSequentialValues,
         text="Loop"
         check={loop}
         onChange={(v) => handleChangeSequentialValues({ values: values, loop: v })}
+        info={<LoopInfo />}
       />
     </div>
   )

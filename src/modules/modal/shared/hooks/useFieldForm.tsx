@@ -49,7 +49,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
   }
 
   function handleChangeMaxIsArray(max: number | null) {
-    if (max && field.isArray) {
+    if (max !== null && field.isArray) {
       formDispatch({
         type: FORM_ACTIONS.CHANGE_ARRAY_LIMITS,
         payload: { max: max, min: field.isArray.min },
@@ -58,7 +58,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
   }
 
   function handleChangeMinIsArray(min: number | null) {
-    if (min && field.isArray) {
+    if (min !== null && field.isArray) {
       formDispatch({
         type: FORM_ACTIONS.CHANGE_ARRAY_LIMITS,
         payload: { max: field.isArray.max, min: min },

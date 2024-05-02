@@ -25,7 +25,6 @@ export default function ChacaSelect<T>({
   options,
   placeholder,
   value,
-  color = "light",
   size,
 }: Props<T>) {
   const [openOptions, setOpenOptions] = useState(false)
@@ -65,8 +64,7 @@ export default function ChacaSelect<T>({
     "text-black dark:text-white",
     "border-2 border-scale-11",
     "dark:border-scale-3 dark:focus:border-scale-9 dark:hover:border-scale-9",
-
-    { "bg-white dark:bg-scale-3": color === "dark", "bg-white dark:bg-scale-5": color === "light" },
+    "bg-white dark:bg-scale-5",
 
     { "border-purple-6": openOptions, "hover:border-purple-6": !openOptions },
 

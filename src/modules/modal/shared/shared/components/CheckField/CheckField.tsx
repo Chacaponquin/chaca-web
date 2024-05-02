@@ -6,9 +6,10 @@ interface Props {
   check: boolean
   onChange(v: boolean): void
   children?: React.ReactNode
+  info?: React.ReactNode
 }
 
-export default function CheckField({ text, check, onChange, children }: Props) {
+export default function CheckField({ text, check, onChange, children, info }: Props) {
   const inputId = useId()
 
   return (
@@ -18,6 +19,8 @@ export default function CheckField({ text, check, onChange, children }: Props) {
       <label htmlFor={inputId} className="text-base mb-0">
         {text}
       </label>
+
+      {info}
 
       {check && children}
     </div>

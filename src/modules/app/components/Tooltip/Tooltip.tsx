@@ -48,7 +48,7 @@ export default function Tooltip({ position = "top", children, text }: Props) {
       default:
         return { translateX: 0, translateY: -height - OFFSET }
     }
-  }, [position, elementRef.current, textRef.current, show, children])
+  }, [position, elementRef, textRef, show, children])
 
   return (
     <div

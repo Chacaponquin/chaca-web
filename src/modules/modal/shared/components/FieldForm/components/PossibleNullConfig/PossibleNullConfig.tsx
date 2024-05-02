@@ -1,5 +1,6 @@
 import { ChacaSlider } from "@form/components"
 import { CheckField, ConfigContainer } from "@modules/modal/shared/shared/components"
+import { Information } from "./components"
 
 interface Props {
   handleChangePossibleNull(v: boolean): void
@@ -14,10 +15,15 @@ export default function PossibleNullConfig({
 }: Props) {
   return (
     <ConfigContainer>
-      <CheckField check={valueNull > 0} onChange={handleChangePossibleNull} text="Possible null" />
+      <CheckField
+        check={valueNull > 0}
+        onChange={handleChangePossibleNull}
+        text="Possible null"
+        info={<Information />}
+      />
 
       {valueNull > 0 && (
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-3 items-center">
           <ChacaSlider
             min={1}
             max={100}
@@ -26,7 +32,7 @@ export default function PossibleNullConfig({
             value={valueNull}
           />
 
-          <p className="mb-0">{valueNull}%</p>
+          <p className="mb-0 text-sm">{valueNull}%</p>
         </div>
       )}
     </ConfigContainer>

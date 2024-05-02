@@ -5,19 +5,8 @@ import { ExportDatatypeDTO, FieldProps } from "../dto/field"
 import { Dataset, Field } from "@modules/datasets/domain/tree"
 import { usePlayground } from "."
 import { PossibleFieldToRef } from "../interfaces/ref"
-import {
-  DatasetNameValidator,
-  EnumValuesValidator,
-  FieldNameValidator,
-  NoDuplicateDataset,
-  NoDuplicateLevelField,
-  PickValuesValidator,
-  ProbabilityValuesValidator,
-  RefFieldValidator,
-  SequentialValuesValidator,
-} from "../domain/validators"
+import { DatasetValidator, FieldValidator } from "../domain/validators"
 import { DatasetError } from "../errors"
-import { Validator } from "@modules/app/domain"
 
 interface AddFieldProps {
   field: FieldProps
@@ -90,10 +79,7 @@ export default function useDatasets() {
   }
 
   function handleEditDataset({ datasetId, name, limit, error, success }: EditDatasetProps) {
-    const validator = new Validator([
-      new DatasetNameValidator({ name: name }),
-      new NoDuplicateDataset({ datasets: datasets, name: name, id: datasetId }),
-    ])
+    const validator = new DatasetValidator({ datasetId, datasets, name })
 
     validator.execute({
       success() {
@@ -120,21 +106,14 @@ export default function useDatasets() {
     success,
     error,
   }: UpdateFieldProps) {
-    const validator = new Validator([
-      new FieldNameValidator({ name: field.name }),
-      new NoDuplicateLevelField({
-        fieldId: field.id,
-        datasetId: datasetId,
-        datasets: datasets,
-        name: field.name,
-        parentId: parentfieldId,
-      }),
-      new SequentialValuesValidator({ type: field.dataType }),
-      new RefFieldValidator({ type: field.dataType }),
-      new EnumValuesValidator({ type: field.dataType }),
-      new PickValuesValidator({ type: field.dataType }),
-      new ProbabilityValuesValidator({ type: field.dataType }),
-    ])
+    const validator = new FieldValidator({
+      datasets: datasets,
+      datasetId: datasetId,
+      parentfieldId: parentfieldId,
+      name: field.name,
+      dataType: field.dataType,
+      id: field.id,
+    })
 
     validator.execute({
       success() {
@@ -154,21 +133,14 @@ export default function useDatasets() {
   }
 
   function handleAddField({ datasetId, field, parentfieldId, error, success }: AddFieldProps) {
-    const validator = new Validator([
-      new FieldNameValidator({ name: field.name }),
-      new NoDuplicateLevelField({
-        datasetId: datasetId,
-        datasets: datasets,
-        parentId: parentfieldId,
-        name: field.name,
-        fieldId: null,
-      }),
-      new RefFieldValidator({ type: field.dataType }),
-      new SequentialValuesValidator({ type: field.dataType }),
-      new EnumValuesValidator({ type: field.dataType }),
-      new PickValuesValidator({ type: field.dataType }),
-      new ProbabilityValuesValidator({ type: field.dataType }),
-    ])
+    const validator = new FieldValidator({
+      name: field.name,
+      dataType: field.dataType,
+      id: null,
+      datasetId: datasetId,
+      parentfieldId: parentfieldId,
+      datasets: datasets,
+    })
 
     validator.execute({
       success() {

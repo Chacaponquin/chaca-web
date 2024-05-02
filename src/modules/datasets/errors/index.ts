@@ -27,3 +27,4 @@ export class InvalidArrayJSONValue extends DatasetError {}
 export class EmptyValuesError extends DatasetError {}
 export class InvalidChanceValueError extends DatasetError {}
 export class InvalidPickCountError extends DatasetError {}
+export class EmptyCustomFunctionError extends DatasetError {}

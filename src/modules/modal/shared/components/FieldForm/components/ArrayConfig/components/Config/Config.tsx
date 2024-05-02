@@ -14,7 +14,7 @@ export default function Config({ text, max, min, onChange, value }: Props) {
 
   return (
     <div className="flex items-center gap-2 w-full">
-      <label className="mb-0" htmlFor={id}>
+      <label className="mb-0 text-base" htmlFor={id}>
         {text}:
       </label>
 

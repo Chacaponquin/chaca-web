@@ -14,8 +14,17 @@ import { useSchemas } from "@modules/schemas/hooks"
 import { useDatasets } from "./"
 import { ARRAY_VALUE_TYPE } from "../constants"
 import { Datatype } from "../domain/types"
-import { useMemo } from "react"
-import { useLanguage } from "@modules/app/modules/language/hooks"
+import {
+  CustomInfo,
+  EnumInfo,
+  MixedInfo,
+  PickInfo,
+  ProbabilityInfo,
+  RefInfo,
+  SchemaValueInfo,
+  SequenceInfo,
+  SequentialInfo,
+} from "../components"
 
 interface Props {
   fieldId: string
@@ -24,7 +33,6 @@ interface Props {
 
 export default function useDatatypes({ fieldId, datasetId }: Props) {
   const { schemas } = useSchemas()
-  const { language } = useLanguage()
   const { searchPossibleFieldsToRef } = useDatasets()
 
   const DEFAULT_CUSTOM_DATA_TYPE: CustomDataType = {
@@ -82,53 +90,71 @@ export default function useDatatypes({ fieldId, datasetId }: Props) {
     ],
   }
 
-  const DATA_TYPES_ARRAY: Datatype[] = useMemo(() => {
-    return [
-      {
-        default: DEFAULT_SCHEMA_VALUE_DATA_TYPE,
-        title: "Schema Value",
-        condition: schemas.length > 0,
-      },
-      {
-        title: "Custom",
-        default: DEFAULT_CUSTOM_DATA_TYPE,
-        condition: true,
-      },
-      {
-        title: "Enum",
-        default: DEFAULT_ENUM_DATA_TYPE,
-        condition: true,
-      },
-      {
-        title: "Object",
-        default: DEFAULT_MIXED_DATA_TYPE,
-        condition: true,
-      },
-      {
-        title: "Reference",
-        default: DEFAULT_REF_DATA_TYPE,
-        condition:
-          searchPossibleFieldsToRef({ datasetId: datasetId, fieldId: fieldId }).length !== 0,
-      },
-      { title: "Sequence", default: DEFAULT_SEQUENCE_DATA_TYPE, condition: true },
-      { title: "Sequential", default: DEFAULT_SEQUENTIAL_DATA_TYPE, condition: true },
-      {
-        condition: true,
-        default: DEFAULT_PROBABILITY_DATA_TYPE,
-        title: "Probability",
-      },
-      {
-        condition: true,
-        default: DEFAULT_PICK_DATA_TYPE,
-        title: "Pick",
-      },
-    ].map((c, index) => ({ ...c, id: String(index) }))
-  }, [schemas, searchPossibleFieldsToRef, language])
-
-  function foundDataTypeByName(dataType: DATA_TYPES): Datatype {
-    const found = DATA_TYPES_ARRAY.find((d) => d.default.type === dataType) as Datatype
-    return found
-  }
+  const DATA_TYPES_ARRAY: Datatype[] = [
+    {
+      default: DEFAULT_SCHEMA_VALUE_DATA_TYPE,
+      title: "Schema Value",
+      condition: schemas.length > 0,
+      info: SchemaValueInfo,
+      id: "schema-value-field",
+    },
+    {
+      title: "Custom",
+      default: DEFAULT_CUSTOM_DATA_TYPE,
+      condition: true,
+      info: CustomInfo,
+      id: "custom-field",
+    },
+    {
+      title: "Enum",
+      default: DEFAULT_ENUM_DATA_TYPE,
+      condition: true,
+      info: EnumInfo,
+      id: "enum-field",
+    },
+    {
+      title: "Object",
+      default: DEFAULT_MIXED_DATA_TYPE,
+      condition: true,
+      info: MixedInfo,
+      id: "mixed-field",
+    },
+    {
+      title: "Reference",
+      default: DEFAULT_REF_DATA_TYPE,
+      condition: searchPossibleFieldsToRef({ datasetId: datasetId, fieldId: fieldId }).length !== 0,
+      info: RefInfo,
+      id: "ref-field",
+    },
+    {
+      title: "Sequence",
+      default: DEFAULT_SEQUENCE_DATA_TYPE,
+      condition: true,
+      info: SequenceInfo,
+      id: "sequence-field",
+    },
+    {
+      title: "Sequential",
+      default: DEFAULT_SEQUENTIAL_DATA_TYPE,
+      condition: true,
+      info: SequentialInfo,
+      id: "sequential-field",
+    },
+    {
+      condition: true,
+      default: DEFAULT_PROBABILITY_DATA_TYPE,
+      title: "Probability",
+      info: ProbabilityInfo,
+      id: "probability-field",
+    },
+    {
+      condition: true,
+      default: DEFAULT_PICK_DATA_TYPE,
+      title: "Pick",
+      info: PickInfo,
+      id: "pick-field",
+    },
+  ]
 
   return {
     DEFAULT_CUSTOM_DATA_TYPE,
@@ -139,6 +165,5 @@ export default function useDatatypes({ fieldId, datasetId }: Props) {
     DEFAULT_SEQUENCE_DATA_TYPE,
     DEFAULT_SEQUENTIAL_DATA_TYPE,
     DATA_TYPES_ARRAY,
-    foundDataTypeByName,
   }
 }

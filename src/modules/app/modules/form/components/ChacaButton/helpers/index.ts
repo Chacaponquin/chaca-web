@@ -8,7 +8,7 @@ export const buttonClass = ({ size, color, full = false, rounded = false }: Chac
 
     {
       "py-[3px] px-3 text-sm": size === "sm",
-      "py-1 px-5 text-base": size === "base",
+      "py-1 px-4 text-base": size === "base",
       "py-1.5 px-5 text-lg": size === "lg",
       "py-2.5 px-8 text-xl": size === "xl",
     },
