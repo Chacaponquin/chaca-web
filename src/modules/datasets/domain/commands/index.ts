@@ -104,6 +104,18 @@ export class AddDatasetCommand extends KeyboardCommand {
   }
 }
 
+export class AddFieldCommand extends KeyboardCommand {
+  static value = "A"
+
+  constructor(click: () => void) {
+    super({ click, command: AddFieldCommand.value })
+  }
+
+  protected action(event: globalThis.KeyboardEvent): boolean {
+    return event.key === "a"
+  }
+}
+
 export class CommandsExecutor {
   constructor(private readonly array: KeyboardCommand[]) {}
 

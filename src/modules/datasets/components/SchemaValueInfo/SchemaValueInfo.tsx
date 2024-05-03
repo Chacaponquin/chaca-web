@@ -3,7 +3,7 @@ import TypeInfo from "../TypeInfo/TypeInfo"
 
 export default function SchemaValueInfo() {
   return (
-    <TypeInfo header="Schema value field">
+    <TypeInfo type="default" header="Schema value field">
       <P>
         Retorna el valor de una de las funciones predefinidas en <MiniCode>Chaca</MiniCode>
       </P>

@@ -1,4 +1,5 @@
 import {
+  AddFieldCommand,
   CloneDatasetCommand,
   CommandsExecutor,
   DeleteDatasetCommand,
@@ -34,6 +35,7 @@ export default function useDatasetCard({
     new EditDatasetCommand(handleEditDataset),
     new CloneDatasetCommand(handleCloneDataset),
     new ExportDatasetCommand(handleCreateDataset),
+    new AddFieldCommand(handleAddField),
   ])
 
   const handleKeyboardAction = (event: globalThis.KeyboardEvent) => {
@@ -74,12 +76,21 @@ export default function useDatasetCard({
     handleCloneDatasetHook({ id: dataset.id, handleCreateDataset: handleCreateDatasetProp })
   }
 
+  function handleAddField() {
+    handleOpenModal({
+      type: MODAL_ACTIONS.ADD_FIELD,
+      datasetId: dataset.id,
+      parentfieldId: dataset.id,
+    })
+  }
+
   return {
     handleDeleteDataset,
     handleEditDataset,
     handleCreateDataset,
     handleClickCard,
     handleCloneDataset,
+    handleAddField,
     selected,
   }
 }

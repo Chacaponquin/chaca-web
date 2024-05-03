@@ -3,13 +3,12 @@ import { Label } from ".."
 
 interface Props {
   labelText: string
-  id: string
   children: React.ReactNode
   vertical: boolean
   info?: React.ReactNode
 }
 
-export default function FormInputSection({ labelText, id, children, vertical, info }: Props) {
+export default function FormInputSection({ labelText, children, vertical, info }: Props) {
   const CLASS = clsx("flex", "w-full", {
     "flex-col": vertical,
     "flex-row items-center gap-x-4": !vertical,
@@ -18,7 +17,7 @@ export default function FormInputSection({ labelText, id, children, vertical, in
   return (
     <section className={CLASS}>
       <div className="flex items-center gap-x-1.5">
-        <Label htmlFor={id} text={labelText} />
+        <Label text={labelText} />
         {info}
       </div>
 

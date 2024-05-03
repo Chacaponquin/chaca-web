@@ -7,7 +7,7 @@ import {
 } from "@modules/modal/shared/interfaces"
 import { useSchemas } from "@modules/schemas/hooks"
 import { OptionArguments } from "./components"
-import { useId, useMemo } from "react"
+import { useMemo } from "react"
 import { Argument } from "@modules/schemas/interfaces/argument"
 import clsx from "clsx"
 import { FormInputSection } from "@modules/modal/shared/shared/components"
@@ -29,9 +29,6 @@ export default function SchemaValueConfig({
   handleAddFieldSchemaArgument,
   handleDeleteFieldSchemaArgument,
 }: Props) {
-  const moduleId = useId()
-  const optionId = useId()
-
   const { schemas, findParentOptions } = useSchemas()
   const { MODULE_TEXT, OPTION_TEXT } = useTranslation({
     MODULE_TEXT: { en: "Module", es: "Módulo" },
@@ -55,7 +52,7 @@ export default function SchemaValueConfig({
 
   return (
     <div className={CLASS}>
-      <FormInputSection vertical={true} id={moduleId} labelText={MODULE_TEXT}>
+      <FormInputSection vertical={true} labelText={MODULE_TEXT}>
         <ChacaSelect
           options={schemas}
           labelKey="name"
@@ -64,11 +61,10 @@ export default function SchemaValueConfig({
           value={fieldType.schema}
           onChange={handleSelectModule}
           size="base"
-          id={moduleId}
         />
       </FormInputSection>
 
-      <FormInputSection vertical={true} id={optionId} labelText={OPTION_TEXT}>
+      <FormInputSection vertical={true} labelText={OPTION_TEXT}>
         <ChacaSelect
           value={fieldType.option}
           options={foundOptions}
@@ -77,7 +73,6 @@ export default function SchemaValueConfig({
           placeholder={OPTION_TEXT}
           onChange={handleSelectModuleOption}
           size="base"
-          id={optionId}
         />
       </FormInputSection>
 

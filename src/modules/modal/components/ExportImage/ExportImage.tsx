@@ -3,7 +3,6 @@ import { useExportImage } from "./hooks"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { FormInputSection } from "@modules/modal/shared/shared/components"
 import { ChacaSelect, ChacaTextInput } from "@form/components"
-import { useId } from "react"
 import { Image } from "./components"
 import { ExportImageFunc } from "@modules/modal/interfaces"
 
@@ -22,15 +21,14 @@ export default function ExportImage({ next }: Props) {
     foundFormat,
   } = useExportImage({ next: next })
 
-  const { TEXT, TITLE, NAME_PLACEHOLDER, FORMAT_PLACEHOLDER } = useTranslation({
+  const { TEXT, TITLE, NAME_PLACEHOLDER, FORMAT_PLACEHOLDER, NAME, FORMAT } = useTranslation({
     TEXT: { en: "Export", es: "Exportar" },
     TITLE: { en: "Export image", es: "Exportar imagen" },
     NAME_PLACEHOLDER: { en: "Name", es: "Nombre" },
     FORMAT_PLACEHOLDER: { en: "Format", es: "Formato" },
+    NAME: { en: "Filename", es: "Nombre de archivo" },
+    FORMAT: { en: "Format", es: "Formato" },
   })
-
-  const nameId = useId()
-  const formatId = useId()
 
   return (
     <ModalContainer
@@ -43,7 +41,7 @@ export default function ExportImage({ next }: Props) {
       <Image src={showImage} />
 
       <div className="flex flex-col gap-y-3 w-full">
-        <FormInputSection vertical={false} labelText="Nombre de archivo" id={nameId}>
+        <FormInputSection vertical={false} labelText={NAME}>
           <ChacaTextInput
             disabled={false}
             name="export-image"
@@ -56,7 +54,7 @@ export default function ExportImage({ next }: Props) {
         </FormInputSection>
 
         {foundFormat && (
-          <FormInputSection id={formatId} labelText="Formato" vertical={false}>
+          <FormInputSection labelText={FORMAT} vertical={false}>
             <ChacaSelect
               options={formats}
               onChange={handleChangeFormat}

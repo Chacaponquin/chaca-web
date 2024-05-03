@@ -27,12 +27,11 @@ export default function ValuesForm({ values, handleChangeValues }: Props) {
 
   return (
     <div className="flex flex-col w-full gap-y-1">
-      {values.map((value, index) => (
-        <div className="grid grid-cols-2 gap-x-1 w-full" key={index}>
-          <Label htmlFor="" text="Valor" />
-          <Label htmlFor="" text="Tipo de dato" />
-
-          <Fragment>
+      <div className="grid grid-cols-2 gap-x-1 w-full">
+        <Label text="Valor" />
+        <Label text="Tipo de dato" />
+        {values.map((value, index) => (
+          <Fragment key={index}>
             <ValueInput
               type={value.type}
               valuesLength={values.length}
@@ -51,8 +50,8 @@ export default function ValuesForm({ values, handleChangeValues }: Props) {
               <DeleteButton handleClick={() => handleDeleteValue(index)} />
             </div>
           </Fragment>
-        </div>
-      ))}
+        ))}
+      </div>
 
       <AddButton handleClick={handleAdd} />
     </div>

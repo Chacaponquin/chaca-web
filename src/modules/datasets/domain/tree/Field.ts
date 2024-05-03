@@ -98,7 +98,10 @@ export abstract class Field<E extends ExportDatatypeDTO> {
 
   static possibleConfig({ isKey, type }: PossibleConfigProps) {
     const canBeKey =
-      type !== DATA_TYPES.SEQUENTIAL && type !== DATA_TYPES.MIXED && type !== DATA_TYPES.ENUM
+      type === DATA_TYPES.CUSTOM ||
+      type === DATA_TYPES.REF ||
+      type === DATA_TYPES.SINGLE_VALUE ||
+      type === DATA_TYPES.SEQUENCE
     const canBeArray = type !== DATA_TYPES.SEQUENTIAL && type !== DATA_TYPES.SEQUENCE && !isKey
     const canBeNull = type !== DATA_TYPES.SEQUENCE && !isKey
 
@@ -493,6 +496,8 @@ export class CustomNode extends Field<ExportCustomDataType> {
 }
 
 export class PickNode extends Field<ExportPickDataType> {
+  static MIN_COUNT_VALUE = 0
+
   values: ArrayValue[]
   count: number
 

@@ -2,7 +2,6 @@ import { ChacaNumberInput, ChacaTextInput } from "@form/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useUser } from "@modules/user/hooks"
 import { FormInputSection } from "../../shared/components"
-import { useId } from "react"
 
 interface Props {
   datasetName: string
@@ -25,31 +24,26 @@ export default function DatasetForm({
     COUNT_DOCUMENTS: { en: "Count Document", es: "Documentos" },
   })
 
-  const datasetNameId = useId()
-  const datasetDocumentsId = useId()
-
   return (
     <div className="flex flex-col gap-3">
-      <FormInputSection vertical={true} labelText={DATASET_NAME_LABEL} id={datasetNameId}>
+      <FormInputSection vertical={true} labelText={DATASET_NAME_LABEL}>
         <ChacaTextInput
           placeholder={FIELD_NAME_TEXT}
           value={datasetName}
           onChange={handleDatasetName}
-          id={datasetNameId}
-          size="lg"
+          size="base"
           name="dataset-name"
           disabled={false}
           type="text"
         />
       </FormInputSection>
 
-      <FormInputSection vertical={true} id={datasetDocumentsId} labelText={COUNT_DOCUMENTS}>
+      <FormInputSection vertical={true} labelText={COUNT_DOCUMENTS}>
         <ChacaNumberInput
           value={limit}
-          size="lg"
+          size="base"
           min={0}
           max={USER_DOCUMENTS_LIMIT}
-          id={datasetDocumentsId}
           onChange={handleChangeLimit}
         />
       </FormInputSection>

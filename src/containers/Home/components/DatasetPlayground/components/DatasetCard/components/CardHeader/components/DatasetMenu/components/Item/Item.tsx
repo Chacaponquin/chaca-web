@@ -13,8 +13,8 @@ interface Props {
 export default function Item({ icon, id, onClick, text, command }: Props) {
   const CLASS = clsx(
     "transition-all duration-300",
-    "flex items-center",
-    "py-2 pl-5 pr-4",
+    "flex items-center justify-between",
+    "py-2 pl-5 pr-5",
     "cursor-pointer",
     "hover:bg-scale-12 dark:hover:bg-scale-5",
     "gap-x-5",
@@ -22,9 +22,10 @@ export default function Item({ icon, id, onClick, text, command }: Props) {
 
   return (
     <li onClick={onClick} id={id} className={CLASS}>
-      {icon({ size: 16 })}
-
-      <p className="text-base">{text}</p>
+      <div className="flex items-center gap-x-5">
+        {icon({ size: 16 })}
+        <p className="text-base whitespace-nowrap">{text}</p>
+      </div>
 
       <span className="font-fontCodeMedium text-sm text-gray-500">{command}</span>
     </li>

@@ -1,4 +1,4 @@
-import { useId, Fragment } from "react"
+import { Fragment } from "react"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { ChacaSelect, ChacaTextInput } from "@form/components"
 import { FormInputSection } from "../../shared/components"
@@ -26,25 +26,21 @@ export default function ExportForm({
     NAME: { en: "File name", es: "Nombre del archivo" },
   })
 
-  const formatId = useId()
-  const nameId = useId()
-
   return (
     <div className="flex flex-col gap-y-3">
-      <FormInputSection vertical={true} labelText={NAME} id={nameId}>
+      <FormInputSection vertical={true} labelText={NAME}>
         <ChacaTextInput
           name="file-name"
           value={form.file.name}
           onChange={handleChangeName}
-          size="lg"
-          id={nameId}
+          size="base"
           disabled={false}
           type="text"
           placeholder="Nombre"
         />
       </FormInputSection>
 
-      <FormInputSection vertical={true} labelText={FORMAT_TEXT} id={formatId}>
+      <FormInputSection vertical={true} labelText={FORMAT_TEXT}>
         <ChacaSelect
           options={fileOptions}
           labelKey="title"
@@ -52,8 +48,7 @@ export default function ExportForm({
           placeholder={SELECT_FORMAT}
           onChange={handleChangeFileType}
           value={form.file.type}
-          size="lg"
-          id={formatId}
+          size="base"
         />
       </FormInputSection>
 

@@ -3,7 +3,7 @@ import TypeInfo from "../TypeInfo/TypeInfo"
 
 export default function SequenceInfo() {
   return (
-    <TypeInfo header="Sequence field">
+    <TypeInfo type="default" header="Sequence field">
       <P>
         Genera un número que sigue una secuencia con respecto a los documentos previos del{" "}
         <MiniCode>Dataset</MiniCode>

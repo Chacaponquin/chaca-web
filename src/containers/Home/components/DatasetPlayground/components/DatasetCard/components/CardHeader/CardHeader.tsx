@@ -7,6 +7,7 @@ interface Props {
   handleDeleteDataset(): void
   handleExportDataset(): void
   handleCloneDataset(): void
+  handleAddField(): void
   name: string
   limit: number
   nameId: string
@@ -17,6 +18,7 @@ export default function CardHeader({
   handleEditDataset,
   handleExportDataset,
   handleCloneDataset,
+  handleAddField,
   limit,
   name,
   nameId,
@@ -43,6 +45,7 @@ export default function CardHeader({
           handleEditDataset={handleEditDataset}
           handleExportDataset={handleExportDataset}
           handleCloneDataset={handleCloneDataset}
+          handleAddField={handleAddField}
           name={nameId}
         />
       </ChacaDropdown>

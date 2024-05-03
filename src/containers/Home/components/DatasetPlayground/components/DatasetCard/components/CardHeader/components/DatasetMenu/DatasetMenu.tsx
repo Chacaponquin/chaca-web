@@ -1,9 +1,10 @@
-import { Copy, Delete, Edit, Share } from "@modules/app/modules/icon/components"
+import { Copy, Delete, Edit, Plus, Share } from "@modules/app/modules/icon/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { Fragment } from "react"
 import { Item } from "./components"
 import { MenuItem } from "./interfaces"
 import {
+  AddFieldCommand,
   CloneDatasetCommand,
   DeleteDatasetCommand,
   EditDatasetCommand,
@@ -15,6 +16,7 @@ interface Props {
   handleDeleteDataset(): void
   handleExportDataset(): void
   handleCloneDataset(): void
+  handleAddField(): void
   name: string
 }
 
@@ -23,13 +25,15 @@ export default function DatasetMenu({
   handleEditDataset,
   handleExportDataset,
   handleCloneDataset,
+  handleAddField,
   name,
 }: Props) {
-  const { DELETE_OPTION, EDIT_OPTION, EXPORT_OPTION, CLONE_OPTION } = useTranslation({
+  const { DELETE_OPTION, EDIT_OPTION, EXPORT_OPTION, CLONE_OPTION, ADD_OPTION } = useTranslation({
     DELETE_OPTION: { en: "Delete", es: "Borrar" },
     EXPORT_OPTION: { en: "Export", es: "Exportar" },
     EDIT_OPTION: { en: "Edit", es: "Editar" },
     CLONE_OPTION: { en: "Clone", es: "Clonar" },
+    ADD_OPTION: { en: "Add field", es: "Añadir campo" },
   })
 
   const items: MenuItem[] = [
@@ -39,6 +43,13 @@ export default function DatasetMenu({
       command: EditDatasetCommand.value,
       onClick: handleEditDataset,
       text: EDIT_OPTION,
+    },
+    {
+      id: `${name}-dataset-add-field`,
+      icon: Plus,
+      command: AddFieldCommand.value,
+      onClick: handleAddField,
+      text: ADD_OPTION,
     },
     {
       id: `${name}-dataset-export-button`,

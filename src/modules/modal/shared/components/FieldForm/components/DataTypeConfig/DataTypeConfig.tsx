@@ -126,6 +126,7 @@ export default function DataTypeConfig({
 
       {dataType.type === DATA_TYPES.PICK && (
         <PickConfig
+          count={dataType.count}
           handleChangePickValues={handleChangePickValues}
           values={dataType.values}
           handleChangePickCount={handleChangePickCount}

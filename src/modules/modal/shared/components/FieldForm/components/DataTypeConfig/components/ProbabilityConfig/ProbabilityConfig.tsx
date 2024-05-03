@@ -1,7 +1,10 @@
 import { ProbabilityValue } from "@modules/datasets/interfaces/dataset-field"
 import { useConfig } from "./hooks"
 import { AddButton, DeleteButton } from "../../shared/components"
-import { Section } from "./components"
+import { ProbInfo, Section } from "./components"
+import { Fragment } from "react"
+import { Label } from "@modules/modal/shared/shared/components"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 
 interface Props {
   handleChangeProbabilityValues(values: ProbabilityValue[]): void
@@ -25,11 +28,19 @@ export default function ProbabilityConfig({ handleChangeProbabilityValues, value
     handleChangeProbabilityValues,
   })
 
+  const { PROBABILITY, VALUE } = useTranslation({
+    VALUE: { en: "Value", es: "Valor" },
+    PROBABILITY: { en: "Probability", es: "Probabilidad" },
+  })
+
   return (
     <div className="flex flex-col w-full gap-y-1">
-      {values.map((v, index) => (
-        <div className="flex items-center" key={index}>
-          <div className="flex items-center gap-x-2">
+      <div className="grid grid-cols-2 gap-x-2">
+        <Label text={VALUE} />
+        <Label text={PROBABILITY} info={<ProbInfo />} />
+
+        {values.map((v, index) => (
+          <Fragment key={index}>
             <Section
               handleChange={handleChangeValue}
               type={v.value.type}
@@ -41,21 +52,22 @@ export default function ProbabilityConfig({ handleChangeProbabilityValues, value
               types={valueTypes}
             />
 
-            <Section
-              index={index}
-              types={chanceTypes}
-              handleChange={handleChangeChance}
-              type={v.chance.type}
-              value={v.chance.value}
-              length={values.length}
-              handleOpenCode={handleOpenChanceCode}
-              handleChangeType={handleChangeChanceType}
-            />
-          </div>
-
-          <DeleteButton handleClick={() => handleDelete(index)} />
-        </div>
-      ))}
+            <div className="flex items-center">
+              <Section
+                index={index}
+                types={chanceTypes}
+                handleChange={handleChangeChance}
+                type={v.chance.type}
+                value={v.chance.value}
+                length={values.length}
+                handleOpenCode={handleOpenChanceCode}
+                handleChangeType={handleChangeChanceType}
+              />
+              <DeleteButton handleClick={() => handleDelete(index)} />
+            </div>
+          </Fragment>
+        ))}
+      </div>
 
       <AddButton handleClick={handleAdd} />
     </div>

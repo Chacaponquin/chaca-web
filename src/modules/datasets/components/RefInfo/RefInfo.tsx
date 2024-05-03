@@ -3,7 +3,7 @@ import TypeInfo from "../TypeInfo/TypeInfo"
 
 export default function RefInfo() {
   return (
-    <TypeInfo header="Reference field">
+    <TypeInfo type="default" header="Reference field">
       <P>
         Referencia a un campo <MiniCode>key</MiniCode> de otro <MiniCode>Dataset</MiniCode> y
         obtiene el valor de ese campo en cualquiera de los documentos generados

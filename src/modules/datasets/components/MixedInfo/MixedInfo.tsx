@@ -3,7 +3,7 @@ import TypeInfo from "../TypeInfo/TypeInfo"
 
 export default function MixedInfo() {
   return (
-    <TypeInfo header="Object field">
+    <TypeInfo type="default" header="Object field">
       <P>
         Retorna un objeto con campos que pueden configurarse de la misma forma que un{" "}
         <MiniCode>Dataset</MiniCode>

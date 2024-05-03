@@ -5,7 +5,7 @@ import { useDatasets } from "@modules/datasets/hooks"
 import { RefWhere } from "@modules/datasets/interfaces/dataset-field"
 import { useCode } from "@modules/modal/hooks"
 import { CheckField, FormInputSection } from "@modules/modal/shared/shared/components"
-import { useId } from "react"
+import { UniqueInfo } from "./components"
 
 interface RefConfigProps {
   refField: string[]
@@ -28,8 +28,6 @@ export default function RefConfig({
   unique,
   where,
 }: RefConfigProps) {
-  const fieldRefId = useId()
-
   const { searchPossibleFieldsToRef } = useDatasets()
   const { handleOpen } = useCode()
 
@@ -63,10 +61,9 @@ export default function RefConfig({
 
   return (
     <div className="flex flex-col gap-y-3">
-      <FormInputSection vertical={false} id={fieldRefId} labelText={REF_TEXT}>
+      <FormInputSection vertical={false} labelText={REF_TEXT}>
         <ChacaSelect
           size="base"
-          id={fieldRefId}
           options={possibleFields}
           labelKey="locationNames"
           valueKey="locationIds"
@@ -76,7 +73,12 @@ export default function RefConfig({
         />
       </FormInputSection>
 
-      <CheckField check={unique} text="Unique" onChange={handleChangeRefUnique} />
+      <CheckField
+        check={unique}
+        text="Unique"
+        onChange={handleChangeRefUnique}
+        info={<UniqueInfo />}
+      />
 
       <CheckField check={where !== null} onChange={handleChangeWhere} text="Where">
         <ChacaIconButton

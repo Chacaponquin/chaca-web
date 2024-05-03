@@ -11,7 +11,7 @@ export default function AddButton({ handleClick }: Props) {
   })
 
   return (
-    <div className="flex justify-start mt-1">
+    <div className="flex justify-end mt-0.5">
       <ChacaSimpleButton
         text={ADD}
         color="cancel"

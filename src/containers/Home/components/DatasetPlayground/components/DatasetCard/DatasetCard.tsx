@@ -21,6 +21,7 @@ export default function DatasetCard({ data: { dataset, handleCreateDataset } }: 
     handleClickCard,
     handleCloneDataset,
     selected,
+    handleAddField,
   } = useDatasetCard({
     dataset: dataset,
     handleCreateDataset: handleCreateDataset,
@@ -49,6 +50,7 @@ export default function DatasetCard({ data: { dataset, handleCreateDataset } }: 
         limit={dataset.limit}
         nameId={dataset.nameId}
         handleCloneDataset={handleCloneDataset}
+        handleAddField={handleAddField}
       />
 
       <div className="flex flex-col py-2 min-w-[380px]">

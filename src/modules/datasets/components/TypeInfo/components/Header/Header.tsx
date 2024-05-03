@@ -1,16 +1,18 @@
-import { Info, X } from "@modules/app/modules/icon/components"
+import { Danger, Info, X } from "@modules/app/modules/icon/components"
 
 interface Props {
   handleClose(): void
   header: string
+  type: "danger" | "default"
 }
 
-export default function Header({ handleClose, header }: Props) {
+export default function Header({ handleClose, header, type }: Props) {
   return (
     <div className="flex items-center gap-x-5 justify-between">
       <div className="flex items-center gap-x-3">
         <i className="stroke-white">
-          <Info size={20} />
+          {type === "default" && <Info size={20} />}
+          {type === "danger" && <Danger size={20} />}
         </i>
 
         <h2 className="font-fontMedium text-base text-white">{header}</h2>

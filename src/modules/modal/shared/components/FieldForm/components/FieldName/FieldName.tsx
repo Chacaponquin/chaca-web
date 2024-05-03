@@ -1,7 +1,6 @@
 import { ChacaTextInput } from "@form/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { FormInputSection } from "@modules/modal/shared/shared/components"
-import { useId } from "react"
 
 interface Props {
   handleChangeName(v: string): void
@@ -10,14 +9,12 @@ interface Props {
 }
 
 export default function FieldName({ handleChangeName, text, name }: Props) {
-  const inputId = useId()
-
   const { PLACEHOLDER } = useTranslation({
     PLACEHOLDER: { en: "Field name...", es: "Nombre del campo..." },
   })
 
   return (
-    <FormInputSection vertical={true} labelText={text} id={inputId}>
+    <FormInputSection vertical={true} labelText={text}>
       <ChacaTextInput
         onChange={handleChangeName}
         placeholder={PLACEHOLDER}
