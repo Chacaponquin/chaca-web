@@ -14,17 +14,6 @@ import { useSchemas } from "@modules/schemas/hooks"
 import { useDatasets } from "./"
 import { ARRAY_VALUE_TYPE } from "../constants"
 import { Datatype } from "../domain/types"
-import {
-  CustomInfo,
-  EnumInfo,
-  MixedInfo,
-  PickInfo,
-  ProbabilityInfo,
-  RefInfo,
-  SchemaValueInfo,
-  SequenceInfo,
-  SequentialInfo,
-} from "../components"
 
 interface Props {
   fieldId: string
@@ -95,63 +84,54 @@ export default function useDatatypes({ fieldId, datasetId }: Props) {
       default: DEFAULT_SCHEMA_VALUE_DATA_TYPE,
       title: "Schema Value",
       condition: schemas.length > 0,
-      info: SchemaValueInfo,
       id: "schema-value-field",
     },
     {
       title: "Custom",
       default: DEFAULT_CUSTOM_DATA_TYPE,
       condition: true,
-      info: CustomInfo,
       id: "custom-field",
     },
     {
       title: "Enum",
       default: DEFAULT_ENUM_DATA_TYPE,
       condition: true,
-      info: EnumInfo,
       id: "enum-field",
     },
     {
       title: "Object",
       default: DEFAULT_MIXED_DATA_TYPE,
       condition: true,
-      info: MixedInfo,
       id: "mixed-field",
     },
     {
       title: "Reference",
       default: DEFAULT_REF_DATA_TYPE,
       condition: searchPossibleFieldsToRef({ datasetId: datasetId, fieldId: fieldId }).length !== 0,
-      info: RefInfo,
       id: "ref-field",
     },
     {
       title: "Sequence",
       default: DEFAULT_SEQUENCE_DATA_TYPE,
       condition: true,
-      info: SequenceInfo,
       id: "sequence-field",
     },
     {
       title: "Sequential",
       default: DEFAULT_SEQUENTIAL_DATA_TYPE,
       condition: true,
-      info: SequentialInfo,
       id: "sequential-field",
     },
     {
       condition: true,
       default: DEFAULT_PROBABILITY_DATA_TYPE,
       title: "Probability",
-      info: ProbabilityInfo,
       id: "probability-field",
     },
     {
       condition: true,
       default: DEFAULT_PICK_DATA_TYPE,
       title: "Pick",
-      info: PickInfo,
       id: "pick-field",
     },
   ]

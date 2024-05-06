@@ -80,6 +80,9 @@ export abstract class Field<E extends ExportDatatypeDTO> {
   private _isKey: IsKeyConfig
   private _name: string
 
+  static MIN_POSSIBLE_NULL = 0
+  static MAX_POSSIBLE_NULL = 100
+
   constructor({ name, isArray = null, isKey = false, isPossibleNull = 0 }: Props) {
     this._name = name
     this._isArray = isArray
@@ -257,8 +260,11 @@ export class SchemaValueNode extends Field<ExportSingleValueDataType> {
 }
 
 export class SequenceNode extends Field<ExportSequenceDataType> {
-  startsWith: number
-  step: number
+  static MIN_STARTS_WITH = 0.1
+  static MIN_STEP = 0.1
+
+  readonly startsWith: number
+  readonly step: number
 
   constructor(props: SequenceValueProps) {
     super(props)
@@ -297,8 +303,8 @@ export class SequenceNode extends Field<ExportSequenceDataType> {
 }
 
 export class SequentialNode extends Field<ExportSequentialDataType> {
-  values: ArrayValue[]
-  loop: boolean
+  readonly values: ArrayValue[]
+  readonly loop: boolean
 
   constructor(props: SequentialValueProps) {
     super(props)

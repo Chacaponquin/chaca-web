@@ -3,6 +3,18 @@ import { useDatatypes } from "@modules/datasets/hooks"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { FormInputSection } from "../../../../shared/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
+import {
+  CustomInfo,
+  EnumInfo,
+  MixedInfo,
+  PickInfo,
+  ProbabilityInfo,
+  RefInfo,
+  SchemaValueInfo,
+  SequenceInfo,
+  SequentialInfo,
+} from "@modules/datasets/components"
+import { Fragment } from "react"
 
 interface Props {
   label: string
@@ -38,7 +50,19 @@ export default function FieldDataType({
         />
       )}
 
-      {found && found.info({})}
+      {found && (
+        <Fragment>
+          {found.default.type === DATA_TYPES.CUSTOM && <CustomInfo />}
+          {found.default.type === DATA_TYPES.ENUM && <EnumInfo />}
+          {found.default.type === DATA_TYPES.MIXED && <MixedInfo />}
+          {found.default.type === DATA_TYPES.PICK && <PickInfo />}
+          {found.default.type === DATA_TYPES.PROBABILITY && <ProbabilityInfo />}
+          {found.default.type === DATA_TYPES.REF && <RefInfo />}
+          {found.default.type === DATA_TYPES.SEQUENCE && <SequenceInfo />}
+          {found.default.type === DATA_TYPES.SEQUENTIAL && <SequentialInfo />}
+          {found.default.type === DATA_TYPES.SINGLE_VALUE && <SchemaValueInfo />}
+        </Fragment>
+      )}
     </FormInputSection>
   )
 }

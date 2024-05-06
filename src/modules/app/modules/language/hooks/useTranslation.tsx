@@ -2,13 +2,13 @@ import { useContext, useMemo } from "react"
 import { TranslationConfig, TranslationInput, Translation } from "../interfaces"
 import { LanguageContext } from "../context"
 
-export default function useTranslation<T>(input: TranslationInput<T>) {
+export default function useTranslation<T>(input: TranslationInput<T, string>) {
   const { language } = useContext(LanguageContext)
 
-  const object: Translation<T> = useMemo(() => {
-    let translation: Translation<T> = {} as Translation<T>
+  const object: Translation<T, string> = useMemo(() => {
+    let translation: Translation<T, string> = {} as Translation<T, string>
 
-    for (const [key, object] of Object.entries<TranslationConfig>(input)) {
+    for (const [key, object] of Object.entries<TranslationConfig<string>>(input)) {
       translation = { ...translation, [key]: object[language] }
     }
 

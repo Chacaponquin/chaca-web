@@ -1,9 +1,9 @@
-import { Danger, Info, X } from "@modules/app/modules/icon/components"
+import { Danger, Info, Tip, X } from "@modules/app/modules/icon/components"
 
 interface Props {
   handleClose(): void
   header: string
-  type: "danger" | "default"
+  type: "danger" | "default" | "warning"
 }
 
 export default function Header({ handleClose, header, type }: Props) {
@@ -13,6 +13,7 @@ export default function Header({ handleClose, header, type }: Props) {
         <i className="stroke-white">
           {type === "default" && <Info size={20} />}
           {type === "danger" && <Danger size={20} />}
+          {type === "warning" && <Tip size={20} />}
         </i>
 
         <h2 className="font-fontMedium text-base text-white">{header}</h2>

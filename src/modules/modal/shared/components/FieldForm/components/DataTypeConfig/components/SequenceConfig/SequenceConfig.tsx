@@ -2,6 +2,7 @@ import { ChacaNumberInput } from "@form/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { FormInputSection } from "@modules/modal/shared/shared/components"
 import { StartsWithInfo, StepInfo } from "./components"
+import { SequenceNode } from "@modules/datasets/domain/tree/Field"
 
 interface Props {
   startsWith: number
@@ -27,13 +28,18 @@ export default function SequenceConfig({
         <ChacaNumberInput
           value={startsWith}
           onChange={handleChangeSequenceStartsWith}
-          min={0.1}
+          min={SequenceNode.MIN_STARTS_WITH}
           size="sm"
         />
       </FormInputSection>
 
       <FormInputSection vertical={false} labelText={STEP} info={<StepInfo />}>
-        <ChacaNumberInput value={step} size="sm" onChange={handleChangeSequenceStep} min={0.1} />
+        <ChacaNumberInput
+          value={step}
+          size="sm"
+          onChange={handleChangeSequenceStep}
+          min={SequenceNode.MIN_STEP}
+        />
       </FormInputSection>
     </div>
   )

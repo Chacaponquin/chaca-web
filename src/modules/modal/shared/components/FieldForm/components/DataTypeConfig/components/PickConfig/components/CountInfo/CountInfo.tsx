@@ -1,10 +1,15 @@
+import { useTranslation } from "@modules/app/modules/language/hooks"
 import { Info } from "@modules/modal/shared/shared/components"
 import { P } from "@modules/modal/shared/shared/components/Info/components"
 
 export default function CountInfo() {
+  const { INFO } = useTranslation({
+    INFO: { en: "Number of values to choose", es: "Cantidad de values a elegir" },
+  })
+
   return (
     <Info position="right">
-      <P>Cantidad de elementos a elegir</P>
+      <P>{INFO}</P>
     </Info>
   )
 }
