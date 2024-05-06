@@ -148,7 +148,7 @@ export default function ChacaNumberInput({ min, max, step = 1, value, size, onCh
 
     {
       "border-purple-6 dark:border-scale-9": isFocus || isHover,
-      "border-scale-11 dark:border-transparent": !isFocus && !isHover,
+      "border-gray-300 dark:border-transparent": !isFocus && !isHover,
     },
   )
 

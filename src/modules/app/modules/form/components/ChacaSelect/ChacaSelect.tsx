@@ -62,7 +62,7 @@ export default function ChacaSelect<T>({
     "whitespace-nowrap",
     "flex items-center justify-between",
     "text-black dark:text-white",
-    "border-2 border-scale-11",
+    "border-2 border-gray-300",
     "dark:border-scale-3 dark:focus:border-scale-9 dark:hover:border-scale-9",
     "bg-white dark:bg-scale-5",
 

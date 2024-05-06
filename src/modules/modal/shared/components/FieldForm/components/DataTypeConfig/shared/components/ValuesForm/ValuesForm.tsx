@@ -27,9 +27,10 @@ export default function ValuesForm({ values, handleChangeValues }: Props) {
 
   return (
     <div className="flex flex-col w-full gap-y-1">
-      <div className="grid grid-cols-2 gap-x-1 w-full">
+      <div className="grid grid-cols-2 gap-x-1 gap-y-1 w-full">
         <Label text="Valor" />
         <Label text="Tipo de dato" />
+
         {values.map((value, index) => (
           <Fragment key={index}>
             <ValueInput

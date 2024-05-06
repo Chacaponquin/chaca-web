@@ -13,7 +13,7 @@ export const buttonClass = ({ size, color, full = false, rounded = false }: Chac
       "py-2.5 px-8 text-xl": size === "xl",
     },
 
-    { "gap-1": size === "sm", "gap-1.5": size === "base", "gap-2": size === "lg" },
+    { "gap-2.5": size === "sm", "gap-3.5": size === "base", "gap-4": size === "lg" },
 
     {
       "bg-purple-6": color === "primary",
@@ -23,7 +23,7 @@ export const buttonClass = ({ size, color, full = false, rounded = false }: Chac
       "bg-white dark:bg-scale-5": color === "cancel",
     },
 
-    { "dark:border-[1px] dark:border-scale-7 border-[2px] border-scale-11": color === "cancel" },
+    { "dark:border-[1px] dark:border-scale-7 border-[2px] border-gray-300": color === "cancel" },
 
     {
       "text-white":

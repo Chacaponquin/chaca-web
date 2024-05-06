@@ -28,7 +28,7 @@ export class EditDatasetCommand extends KeyboardCommand {
   }
 
   protected action(event: globalThis.KeyboardEvent): boolean {
-    return event.key === "q"
+    return event.key === "q" && !event.ctrlKey
   }
 }
 
@@ -40,7 +40,7 @@ export class ExportDatasetCommand extends KeyboardCommand {
   }
 
   protected action(event: globalThis.KeyboardEvent): boolean {
-    return event.key === "e"
+    return event.key === "e" && !event.ctrlKey
   }
 }
 
@@ -69,38 +69,38 @@ export class DeleteDatasetCommand extends KeyboardCommand {
 }
 
 export class ExportAllDatasetsCommand extends KeyboardCommand {
-  static value = "Ctrl+E"
+  static value = "Ctrl+Alt+E"
 
   constructor(click: () => void) {
     super({ click, command: ExportAllDatasetsCommand.value })
   }
 
   protected action(event: globalThis.KeyboardEvent): boolean {
-    return event.ctrlKey && event.key === "e"
+    return event.ctrlKey && event.altKey && event.key === "e"
   }
 }
 
 export class ExportDatasetsImageCommand extends KeyboardCommand {
-  static value = "Ctrl+I"
+  static value = "Ctrl+Alt+I"
 
   constructor(click: () => void) {
     super({ click, command: ExportDatasetsImageCommand.value })
   }
 
   protected action(event: globalThis.KeyboardEvent): boolean {
-    return event.ctrlKey && event.key === "i"
+    return event.ctrlKey && event.altKey && event.key === "i"
   }
 }
 
 export class AddDatasetCommand extends KeyboardCommand {
-  static value = "Ctrl+A"
+  static value = "Ctrl+Alt+A"
 
   constructor(click: () => void) {
     super({ click, command: AddDatasetCommand.value })
   }
 
   protected action(event: globalThis.KeyboardEvent): boolean {
-    return event.ctrlKey + event.key === "a"
+    return event.ctrlKey && event.altKey && event.key === "a"
   }
 }
 
@@ -112,7 +112,7 @@ export class AddFieldCommand extends KeyboardCommand {
   }
 
   protected action(event: globalThis.KeyboardEvent): boolean {
-    return event.key === "a"
+    return event.key === "a" && !event.ctrlKey
   }
 }
 

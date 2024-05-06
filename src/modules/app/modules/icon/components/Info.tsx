@@ -1,7 +1,11 @@
+import { THEME } from "../../theme/constants"
+import { useTheme } from "../../theme/hooks"
 import { DEFAULT_ICON_SIZE } from "../constants"
 import { IconProps } from "../interfaces"
 
 export default function Info({ size = DEFAULT_ICON_SIZE }: IconProps) {
+  const { theme } = useTheme()
+
   return (
     <svg
       width={size}
@@ -21,7 +25,7 @@ export default function Info({ size = DEFAULT_ICON_SIZE }: IconProps) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M24 11C25.3807 11 26.5 12.1193 26.5 13.5C26.5 14.8807 25.3807 16 24 16C22.6193 16 21.5 14.8807 21.5 13.5C21.5 12.1193 22.6193 11 24 11Z"
-        fill="white"
+        fill={theme === THEME.DARK ? "white" : "black"}
       />
       <path
         d="M24.5 34V20H23.5H22.5"

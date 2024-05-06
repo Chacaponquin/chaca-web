@@ -5,7 +5,7 @@ import { useDatasets } from "@modules/datasets/hooks"
 import { RefWhere } from "@modules/datasets/interfaces/dataset-field"
 import { useCode } from "@modules/modal/hooks"
 import { CheckField, FormInputSection } from "@modules/modal/shared/shared/components"
-import { UniqueInfo } from "./components"
+import { UniqueInfo, WhereInfo } from "./components"
 
 interface RefConfigProps {
   refField: string[]
@@ -31,7 +31,7 @@ export default function RefConfig({
   const { searchPossibleFieldsToRef } = useDatasets()
   const { handleOpen } = useCode()
 
-  const { REF_TEXT, PLACEHOLDER } = useTranslation({
+  const { REF_TEXT, PLACEHOLDER, EDIT_WHERE } = useTranslation({
     REF_TEXT: { en: "Reference field", es: "Referencia" },
     PLACEHOLDER: { en: "Select a field", es: "Selecciona un campo" },
     EDIT_WHERE: { en: "Edit code", es: "Editar código" },
@@ -80,13 +80,22 @@ export default function RefConfig({
         info={<UniqueInfo />}
       />
 
-      <CheckField check={where !== null} onChange={handleChangeWhere} text="Where">
+      <CheckField
+        check={where !== null}
+        onChange={handleChangeWhere}
+        text="Where"
+        info={<WhereInfo />}
+      >
         <ChacaIconButton
           size="sm"
           color="cancel"
-          text="Edit Playground"
+          text={EDIT_WHERE}
           onClick={handleClick}
-          icon={<Edit size={20} />}
+          icon={
+            <i className="dark:fill-white fill-black">
+              <Edit size={20} />
+            </i>
+          }
         />
       </CheckField>
     </div>

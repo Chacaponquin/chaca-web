@@ -10,7 +10,7 @@ interface Props {
 export default function Code({ language }: Props) {
   const { code, handleChange } = useCode()
 
-  const CLASS = clsx("justify-center items-center flex", "w-full", "mb-3")
+  const CLASS = clsx("flex justify-center items-center", "w-full", "mb-3")
 
   return (
     <div className={CLASS}>

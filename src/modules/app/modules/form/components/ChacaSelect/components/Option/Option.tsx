@@ -14,12 +14,12 @@ export default function Option({ onClick, text, selected, size }: Props) {
     "cursor-pointer",
     "py-2",
     {
-      "bg-scale-12 dark:bg-scale-3": selected,
+      "bg-gray-100 dark:bg-scale-3": selected,
       "dark:text-white": selected,
     },
     {
       "text-black dark:text-white": !selected,
-      "hover:bg-scale-12 dark:hover:bg-scale-3": !selected,
+      "hover:bg-gray-100 dark:hover:bg-scale-3": !selected,
     },
 
     {

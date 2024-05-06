@@ -23,6 +23,7 @@ export default function FieldName({ handleChangeName, text, name }: Props) {
         disabled={false}
         type="text"
         name="field-name"
+        autoFocus={true}
       />
     </FormInputSection>
   )

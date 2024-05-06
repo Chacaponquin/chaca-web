@@ -8,6 +8,7 @@ interface Props extends ChacaFormProps<string> {
   name: string
   disabled: boolean
   width?: number
+  autoFocus?: boolean
 }
 
 export default function ChacaTextInput({
@@ -21,6 +22,7 @@ export default function ChacaTextInput({
   size,
   onClick,
   width,
+  autoFocus,
 }: Props) {
   const CLASS = clsx(
     "transition-all duration-300",
@@ -29,7 +31,7 @@ export default function ChacaTextInput({
     "border-2",
     "outline-none",
     "bg-white dark:bg-scale-5",
-    "hover:border-purple-6 border-scale-11 focus:border-purple-6",
+    "hover:border-purple-6 border-gray-300 focus:border-purple-6",
     "dark:border-scale-3 dark:focus:border-scale-9 dark:hover:border-scale-9",
     "dark:text-scale-12",
 
@@ -64,6 +66,7 @@ export default function ChacaTextInput({
       id={id}
       disabled={disabled}
       onClick={onClick}
+      autoFocus={autoFocus}
     />
   )
 }

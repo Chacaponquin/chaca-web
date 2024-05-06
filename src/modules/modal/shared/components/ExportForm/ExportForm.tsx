@@ -20,10 +20,11 @@ export default function ExportForm({
 }: Props) {
   const { fileOptions } = useConfig()
 
-  const { FORMAT_TEXT, SELECT_FORMAT, NAME } = useTranslation({
+  const { FORMAT_TEXT, SELECT_FORMAT, NAME, NAME_PLACEHOLDER } = useTranslation({
     FORMAT_TEXT: { en: "Format", es: "Formato" },
     SELECT_FORMAT: { en: "Select a file format", es: "Selecciona el formato" },
     NAME: { en: "File name", es: "Nombre del archivo" },
+    NAME_PLACEHOLDER: { en: "Name", es: "Nombre" },
   })
 
   return (
@@ -36,7 +37,8 @@ export default function ExportForm({
           size="base"
           disabled={false}
           type="text"
-          placeholder="Nombre"
+          placeholder={NAME_PLACEHOLDER}
+          autoFocus={true}
         />
       </FormInputSection>
 

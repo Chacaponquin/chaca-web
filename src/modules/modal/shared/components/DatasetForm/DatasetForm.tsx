@@ -35,6 +35,7 @@ export default function DatasetForm({
           name="dataset-name"
           disabled={false}
           type="text"
+          autoFocus={true}
         />
       </FormInputSection>
 

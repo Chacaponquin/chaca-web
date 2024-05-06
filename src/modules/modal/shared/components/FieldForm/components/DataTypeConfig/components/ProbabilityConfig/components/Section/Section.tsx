@@ -24,7 +24,7 @@ export default function Section({
   value,
 }: Props) {
   return (
-    <div className="flex items-center">
+    <div className="flex items-center gap-x-0.5">
       <ValueInput
         handleChange={(v) => handleChange(v, index)}
         type={type}

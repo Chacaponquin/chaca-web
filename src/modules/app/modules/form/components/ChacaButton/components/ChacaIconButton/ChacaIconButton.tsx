@@ -10,7 +10,7 @@ export default function ChacaIconButton(props: ChacaIconButtonInterface) {
       disabled={props.disabled}
     >
       {props.icon}
-      <p className="mb-0 ml-2"> {props.text}</p>
+      <p className="mb-0"> {props.text}</p>
     </button>
   )
 }

@@ -2,10 +2,11 @@ import { Delete, Image, Plus, Share } from "@modules/app/modules/icon/components
 import { LanguageOption, MenuItem } from "../interfaces"
 import { useTheme } from "@modules/app/modules/theme/hooks"
 import { THEME } from "@modules/app/modules/theme/constants"
-import { createRef, useState } from "react"
+import { createRef, useEffect, useState } from "react"
 import { useClickOutside } from "@modules/shared/hooks"
 import {
   AddDatasetCommand,
+  CommandsExecutor,
   ExportAllDatasetsCommand,
   ExportDatasetsImageCommand,
 } from "@modules/datasets/domain/commands"
@@ -39,6 +40,24 @@ export default function useMenu({
     EXPORT_IMAGE: { en: "Export image", es: "Exportar imagen" },
     DELETE_ALL: { en: "Delete all", es: "Eliminar todo" },
   })
+
+  const commands = new CommandsExecutor([
+    new AddDatasetCommand(handleAddDataset),
+    new ExportAllDatasetsCommand(handleExportAllDatasets),
+    new ExportDatasetsImageCommand(handleExportImage),
+  ])
+
+  const handleKeyboardAction = (event: globalThis.KeyboardEvent) => {
+    commands.execute(event)
+  }
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyboardAction)
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyboardAction)
+    }
+  }, [handleKeyboardAction])
 
   const items: MenuItem[] = [
     {

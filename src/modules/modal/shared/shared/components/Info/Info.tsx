@@ -1,4 +1,5 @@
 import { Info as InfoIcon } from "@modules/app/modules/icon/components"
+import clsx from "clsx"
 import { createRef, useMemo, useState } from "react"
 
 interface Props {
@@ -42,19 +43,29 @@ export default function Info({ children, position }: Props) {
     }
   }, [ref, modalRef, show, children])
 
+  const CLASS = clsx(
+    "absolute",
+    "shadow-md",
+    "border-[2px] border-black-haze-300 dark:border-none",
+    "dark:bg-scale-5 bg-black-haze-50",
+    "z-20",
+    "rounded",
+    "px-2.5 py-1.5",
+  )
+
   return (
     <div
       className="flex items-center cursor-pointer"
       onMouseEnter={() => setShow(true)}
       onMouseLeave={() => setShow(false)}
     >
-      <i ref={ref} className="stroke-gray-300">
+      <i ref={ref} className="dark:stroke-gray-300 stroke-gray-500">
         <InfoIcon size={18} />
       </i>
 
       {show && (
         <div
-          className="absolute z-20 shadow-md rounded px-2.5 py-1.5 bg-scale-5"
+          className={CLASS}
           style={{
             transform: `translateX(${posStyle.translateX}px) translateY(${posStyle.translateY}px)`,
             visibility: show ? "visible" : "hidden",

@@ -11,7 +11,6 @@ export default function Button({ open, onClick }: Props) {
     "text-lg",
     "dark:text-white text-black",
     "font-fontMedium",
-    "bg-transparent",
     "rounded",
 
     { "dark:hover:bg-scale-5 hover:bg-gray-100": !open, "dark:bg-scale-5 bg-gray-100": open },
