@@ -1,12 +1,16 @@
-import { DatasetError, EmptyValuesError, InvalidChanceValueError } from "@modules/datasets/errors"
-import { IValidator } from "../../../app/domain/Validator"
+import {
+  DatasetError,
+  EmptyValuesError,
+  InvalidChanceValueError,
+} from "@modules/datasets/errors/dataset"
+import { IValidator } from "../../../../app/domain/Validator"
 import { ArrayValuesValidator } from "./ArrayValuesValidator"
-import { ArrayValue, FieldDataType } from "@modules/datasets/interfaces/dataset-field"
+import { ArrayValue, FieldDatatype } from "@modules/datasets/interfaces/dataset-field"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { ARRAY_VALUE_TYPE } from "@modules/datasets/constants"
 
 interface Props {
-  type: FieldDataType
+  type: FieldDatatype
 }
 
 export class ProbabilityValuesValidator implements IValidator {

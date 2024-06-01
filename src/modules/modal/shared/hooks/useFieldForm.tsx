@@ -99,7 +99,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
           fieldType: {
             args: {},
             schema: parent,
-            option: findParent(parent).options[0].id,
+            option: findParent(parent).options[0].name,
           },
         },
       },

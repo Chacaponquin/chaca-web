@@ -12,14 +12,12 @@ import { useContext } from "react"
 import { HomeContext } from "./context"
 
 export default function Home() {
-  const { smallWindow } = useContext(HomeContext)
+  const { smallWindow, createDataLoading } = useContext(HomeContext)
 
   const {
     handleExportSelectedDataset,
-    createDataLoading,
     handleAddNewField,
     handleCreateAllDatasets,
-    handleAddDataset,
     datasets,
     showFieldsMenu,
     handleExportImage,
@@ -31,7 +29,6 @@ export default function Home() {
   return (
     <HomeLayout>
       <Navbar
-        handleAddDataset={handleAddDataset}
         handleExportAllDatasets={handleCreateAllDatasets}
         handleExportImage={handleExportImage}
         handleDeleteAll={handleDeleteAll}
@@ -39,7 +36,7 @@ export default function Home() {
 
       <ContentLoader />
 
-      {datasets.length === 0 && <NoDatasetsMessage handleCreateDataset={handleAddDataset} />}
+      {datasets.length === 0 && <NoDatasetsMessage />}
 
       {datasets.length > 0 && (
         <main className="flex flex-grow">

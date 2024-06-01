@@ -5,31 +5,36 @@ import { Schema } from "../interfaces/schema"
 import { ApiSchemaResponse } from "../dto"
 import { v4 as uuid } from "uuid"
 
+interface GetSchemasResponse {
+  schemas: Schema[]
+  version: string
+}
+
 export default function useSchemasServices() {
   const { get } = useFetch()
 
-  async function getSchemas(props: FetchFunctionsProps<Array<Schema>>): Promise<void> {
-    get<Array<ApiSchemaResponse>>({
-      url: API_ROUTES.GET_SCHEMAS,
+  async function getSchemas(
+    props: FetchFunctionsProps<GetSchemasResponse> & { version: string },
+  ): Promise<void> {
+    get<ApiSchemaResponse>({
+      url: API_ROUTES.GET_SCHEMAS(props.version),
       onError: props.onError,
       onFinally: props.onFinally,
-      onSuccess: (data) => {
-        const result: Array<Schema> = data.map((d) => ({
-          id: uuid(),
+      onSuccess(data) {
+        const result: Schema[] = data.schemas.map((d) => ({
           name: d.name,
           options: d.options.map((o) => ({
-            id: uuid(),
+            showName: o.showName,
             name: o.name,
             arguments: o.arguments.map((a) => {
               return { ...a, id: uuid() }
             }),
-            showName: o.showName,
           })),
           showName: d.showName,
         }))
 
         if (props.onSuccess) {
-          props.onSuccess(result)
+          props.onSuccess({ schemas: result, version: data.version })
         }
       },
     })

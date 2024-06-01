@@ -3,16 +3,30 @@ import { Connect, FieldKeyIcon, FieldName, FieldType } from "./components"
 import { useSchemas } from "@modules/schemas/hooks"
 import { useDatasets } from "@modules/datasets/hooks"
 import { Position } from "reactflow"
-import { ExportDatatypeDTO } from "@modules/datasets/dto/field"
+import { useMemo } from "react"
 
 interface Props {
-  field: FieldNode<ExportDatatypeDTO>
+  field: FieldNode
   datasetHasKeys: boolean
 }
 
 export default function Field({ field, datasetHasKeys }: Props) {
-  const { findParent, findType } = useSchemas()
+  const { findParent, findType, schemas } = useSchemas()
   const { searchRefField } = useDatasets()
+
+  const type = useMemo(() => {
+    if (schemas.length) {
+      const value = field.stringInf({
+        findOption: findType,
+        findParent: findParent,
+        searchRefField: searchRefField,
+      })
+
+      return value
+    } else {
+      return ""
+    }
+  }, [findType, findParent])
 
   return (
     <div className="flex items-center relative justify-between">
@@ -27,13 +41,7 @@ export default function Field({ field, datasetHasKeys }: Props) {
           <FieldName name={field.name} />
         </section>
 
-        <FieldType
-          type={field.stringInf({
-            findOption: findType,
-            findParent: findParent,
-            searchRefField: searchRefField,
-          })}
-        />
+        <FieldType type={type} />
       </div>
 
       <Connect id={field.id} position={Position.Right} type="source" />

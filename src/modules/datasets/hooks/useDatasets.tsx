@@ -1,12 +1,12 @@
 import { DatasetsContext } from "../context"
 import { useCallback, useContext } from "react"
 import { DATASETS_ACTIONS } from "../constants"
-import { ExportDatatypeDTO, FieldProps } from "../dto/field"
+import { FieldProps } from "../dto/field"
 import { Dataset, Field } from "@modules/datasets/domain/tree"
 import { usePlayground } from "."
 import { PossibleFieldToRef } from "../interfaces/ref"
 import { DatasetValidator, FieldValidator } from "../domain/validators"
-import { DatasetError } from "../errors"
+import { DatasetError } from "../errors/dataset"
 
 interface AddFieldProps {
   field: FieldProps
@@ -18,7 +18,6 @@ interface AddFieldProps {
 
 interface CloneDatasetProps {
   id: string
-  handleCreateDataset(dataset: Dataset): void
 }
 
 interface UpdateFieldProps {
@@ -47,10 +46,6 @@ interface SearchRefFieldsProps {
   fieldId: string
 }
 
-interface AddDatasetProps {
-  handleCreateDataset(dataset: Dataset): void
-}
-
 export default function useDatasets() {
   const {
     datasetDispatch,
@@ -64,15 +59,12 @@ export default function useDatasets() {
 
   const { updateConnections, handleDeleteDatasetNode, handleAddDatasetNode } = usePlayground()
 
-  function handleAddDataset({ handleCreateDataset }: AddDatasetProps) {
+  function handleAddDataset() {
     datasetDispatch({
       type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
       payload: {
         next(dataset) {
-          handleAddDatasetNode({
-            dataset: dataset,
-            handleCreateDataset: handleCreateDataset,
-          })
+          handleAddDatasetNode(dataset)
         },
       },
     })
@@ -153,6 +145,7 @@ export default function useDatasets() {
               isPossibleNull: field.isPossibleNull,
               dataType: field.dataType,
               isKey: field.isKey,
+              id: field.id,
             },
             parentfieldId,
             datasetId: datasetId,
@@ -224,12 +217,12 @@ export default function useDatasets() {
     return returnFields
   }
 
-  function findField(fieldId?: string): Field<ExportDatatypeDTO> | null {
+  function findField(fieldId?: string): Field | null {
     if (!fieldId) {
       return null
     }
 
-    let found: Field<ExportDatatypeDTO> | null = null
+    let found: Field | null = null
 
     for (let i = 0; i < datasets.length && found === null; i++) {
       found = datasets[i].findFieldById(fieldId)
@@ -238,7 +231,7 @@ export default function useDatasets() {
     return found
   }
 
-  function findFieldByLocation(fieldLocation: string[]): Field<ExportDatatypeDTO> | null {
+  function findFieldByLocation(fieldLocation: string[]): Field | null {
     const id = fieldLocation.at(-1)
     const found = findField(id)
 
@@ -276,7 +269,7 @@ export default function useDatasets() {
     [datasets],
   )
 
-  function handleCloneDataset({ id, handleCreateDataset }: CloneDatasetProps) {
+  function handleCloneDataset({ id }: CloneDatasetProps) {
     const found = datasets.find((d) => d.id === id)
 
     if (found) {
@@ -285,10 +278,7 @@ export default function useDatasets() {
         payload: {
           dataset: found.clone(),
           next(dataset) {
-            handleAddDatasetNode({
-              dataset: dataset,
-              handleCreateDataset: handleCreateDataset,
-            })
+            handleAddDatasetNode(dataset)
           },
         },
       })

@@ -1,10 +1,11 @@
-import { FieldDataType } from "./dataset-field"
+import { FieldDatatype } from "./dataset-field"
 import { IsArrayConfig, IsKeyConfig } from "./field-config"
 import { SubOption, Schema } from "@modules/schemas/interfaces/schema"
 
 export interface NodeProps {
   name: string
-  dataType: FieldDataType
+  id: string
+  dataType: FieldDatatype
   isPossibleNull?: number
   isArray?: IsArrayConfig
   isKey?: IsKeyConfig
@@ -20,5 +21,10 @@ export interface SearchProps {
 export interface StringInfProps {
   findOption(p: string, o: string): SubOption
   findParent(p: string): Schema
-  searchRefField(ref: Array<string>): string[]
+  searchRefField(ref: string[]): string[]
+}
+
+export interface SaveProps {
+  findOption(p: string, o: string): SubOption
+  findParent(p: string): Schema
 }

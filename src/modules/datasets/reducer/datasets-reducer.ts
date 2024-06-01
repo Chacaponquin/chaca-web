@@ -65,6 +65,7 @@ export type DatasetPayload =
         newName: string
       }
     }
+  | { type: DATASETS_ACTIONS.CLEAR }
 
 export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
   datasets: Dataset[],
@@ -132,6 +133,10 @@ export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
         datasetId: action.payload.datasetId,
         newName: action.payload.newName,
       })
+    }
+
+    case DATASETS_ACTIONS.CLEAR: {
+      return []
     }
 
     default:

@@ -3,15 +3,9 @@ import { DatasetsContext } from "../context"
 import { Dataset } from "../domain/tree"
 import { DatasetConnection } from "../interfaces/dataset-connect"
 import { v4 as uuid } from "uuid"
-import { getRectOfNodes, getViewportForBounds, MarkerType, Node } from "reactflow"
-import { CardProps } from "@containers/Home/components/DatasetPlayground/components"
+import { getRectOfNodes, getViewportForBounds, MarkerType } from "reactflow"
 import { toPng, toSvg } from "html-to-image"
 import { ImageFormats } from "@modules/config/interfaces"
-
-interface AddNodeProps {
-  handleCreateDataset(dataset: Dataset): void
-  dataset: Dataset
-}
 
 interface GenerateImageProps {
   success(img: string): void
@@ -21,6 +15,7 @@ interface GenerateImageProps {
 export default function usePlayground() {
   useEffect(() => {
     const el = document.querySelector("[href='https://reactflow.dev']")
+
     if (el) {
       el.classList.add("hidden")
     }
@@ -34,19 +29,10 @@ export default function usePlayground() {
     onNodesChange,
     onConnect,
     handleDeleteNode,
-    handleChangeNodes,
+    handleAddDatasetNode,
     handleCleanEdges,
+    handleChangeNodes,
   } = useContext(DatasetsContext)
-
-  function handleAddDatasetNode({ dataset, handleCreateDataset }: AddNodeProps) {
-    handleAddNode({
-      id: dataset.id,
-      type: "custom",
-      draggable: true,
-      position: { x: 100, y: 200 },
-      data: { dataset: dataset, handleCreateDataset: handleCreateDataset },
-    })
-  }
 
   function handleDisableAllNodes() {
     handleChangeNodes((prev) => {
@@ -90,13 +76,6 @@ export default function usePlayground() {
         })
       }
     }
-  }
-
-  function handleAddNode(node: Node<CardProps>) {
-    handleChangeNodes((prev) => {
-      const result = [...prev, node]
-      return result
-    })
   }
 
   function getDatasetsConnections(datasets: Dataset[]): DatasetConnection[] {

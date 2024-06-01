@@ -1,11 +1,10 @@
 import { Field } from "@modules/datasets/domain/tree"
-import { ExportDatatypeDTO } from "@modules/datasets/dto/field"
 import { useDatasets } from "@modules/datasets/hooks"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { useModal } from "@modules/modal/hooks"
 
 interface Props {
-  field: Field<ExportDatatypeDTO>
+  field: Field
 }
 
 export function useFieldConfigMenu({ field }: Props) {

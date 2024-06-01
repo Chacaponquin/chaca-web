@@ -1,11 +1,11 @@
 import { IValidator } from "@modules/app/domain"
 import { ChacaError } from "@modules/app/exceptions"
-import { EmptyRefFieldError } from "@modules/datasets/errors"
-import { FieldDataType } from "@modules/datasets/interfaces/dataset-field"
+import { EmptyRefFieldError } from "@modules/datasets/errors/dataset"
+import { FieldDatatype } from "@modules/datasets/interfaces/dataset-field"
 import { DATA_TYPES } from "@modules/schemas/constants"
 
 interface Props {
-  type: FieldDataType
+  type: FieldDatatype
 }
 
 export class RefFieldValidator implements IValidator {

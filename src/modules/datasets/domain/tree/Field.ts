@@ -1,5 +1,10 @@
 import { DATA_TYPES } from "@modules/schemas/constants"
-import { NodeProps, SearchProps, StringInfProps } from "@modules/datasets/interfaces/tree"
+import {
+  NodeProps,
+  SaveProps,
+  SearchProps,
+  StringInfProps,
+} from "@modules/datasets/interfaces/tree"
 import {
   IsArrayConfig,
   IsKeyConfig,
@@ -10,7 +15,7 @@ import {
   ArrayValue,
   CustomDataType,
   EnumDataType,
-  FieldDataType,
+  FieldDatatype,
   MixedDataType,
   PickDataType,
   ProbabilityDataType,
@@ -21,25 +26,12 @@ import {
   SequentialDataType,
   SingleValueDataType,
 } from "@modules/datasets/interfaces/dataset-field"
-import { v4 as uuid } from "uuid"
-import {
-  ExportCustomDataType,
-  ExportDatatypeDTO,
-  ExportEnumDataType,
-  ExportMixedDataType,
-  ExportPickDataType,
-  ExportProbabilityDataType,
-  ExportRefDataType,
-  ExportSequenceDataType,
-  ExportSequentialDataType,
-  ExportSingleValueDataType,
-} from "@modules/datasets/dto/field"
-import { ExportDatasetFieldDTO } from "@modules/datasets/dto/dataset"
+import { ExportDatasetFieldDTO, SaveFieldDTO } from "@modules/datasets/dto/dataset"
 import {
   EmptyEnumFieldError,
   EmptyRefFieldError,
   EmptySequentialFieldError,
-} from "@modules/datasets/errors"
+} from "@modules/datasets/errors/dataset"
 import { ValueMapper } from "./ValueMapper"
 import { NodesUtils } from "./NodesUtils"
 
@@ -49,6 +41,7 @@ interface PossibleConfigProps {
 }
 
 type Props = {
+  id: string
   name: string
   isPossibleNull?: number
   isArray?: IsArrayConfig
@@ -69,12 +62,12 @@ type PickValueProps = Props & { count: number; values: ArrayValue[] }
 
 type CustomValueProps = Props & { code: string }
 
-type MixedValueProps = Props & { object: Field<ExportDatatypeDTO>[] }
+type MixedValueProps = Props & { object: Field[] }
 
 type RefValueProps = Props & { ref: string[]; unique: boolean; where: RefWhere }
 
-export abstract class Field<E extends ExportDatatypeDTO> {
-  private _id = uuid()
+export abstract class Field {
+  private _id: string
   private _isArray: IsArrayConfig
   private _possibleNull: PossibleNullConfig
   private _isKey: IsKeyConfig
@@ -83,17 +76,19 @@ export abstract class Field<E extends ExportDatatypeDTO> {
   static MIN_POSSIBLE_NULL = 0
   static MAX_POSSIBLE_NULL = 100
 
-  constructor({ name, isArray = null, isKey = false, isPossibleNull = 0 }: Props) {
+  constructor({ name, isArray = null, isKey = false, isPossibleNull = 0, id }: Props) {
     this._name = name
     this._isArray = isArray
     this._possibleNull = isPossibleNull
     this._isKey = isKey
+    this._id = id
   }
 
-  abstract exportObject(props: SearchProps): ExportDatasetFieldDTO<E>
+  abstract export(props: SearchProps): ExportDatasetFieldDTO
   abstract stringInf(props: StringInfProps): string
-  abstract clone(): Field<E>
-  abstract dataType(): FieldDataType
+  abstract clone(): Field
+  abstract get dataType(): FieldDatatype
+  abstract save(props: SaveProps): SaveFieldDTO
 
   protected getRouteString(route: string[]): string {
     return [...route, this.name].join(".")
@@ -111,7 +106,7 @@ export abstract class Field<E extends ExportDatatypeDTO> {
     return { canBeArray, canBeKey, canBeNull }
   }
 
-  static create(props: NodeProps): Field<ExportDatatypeDTO> {
+  static create(props: NodeProps): Field {
     if (props.dataType.type === DATA_TYPES.SINGLE_VALUE) {
       return new SchemaValueNode({
         ...props,
@@ -194,10 +189,10 @@ export abstract class Field<E extends ExportDatatypeDTO> {
   }
 }
 
-export class SchemaValueNode extends Field<ExportSingleValueDataType> {
-  schema: string
-  option: string
-  args: ArgumentObject
+export class SchemaValueNode extends Field {
+  readonly schema: string
+  readonly option: string
+  readonly args: ArgumentObject
 
   constructor(props: SchemaValueProps) {
     super(props)
@@ -213,7 +208,27 @@ export class SchemaValueNode extends Field<ExportSingleValueDataType> {
     return `${module.showName}.${moduleOption.showName}`
   }
 
-  clone(): Field<ExportSingleValueDataType> {
+  save({ findOption, findParent }: SaveProps): SaveFieldDTO {
+    const schemaId = this.schema
+    const optionId = this.option
+
+    const module = findParent(schemaId)
+    const option = findOption(schemaId, optionId)
+
+    return {
+      dataType: {
+        type: DATA_TYPES.SINGLE_VALUE,
+        fieldType: { args: this.args, option: option.name, schema: module.name },
+      },
+      isArray: this.isArray,
+      isKey: this.isKey,
+      isPossibleNull: this.isPossibleNull,
+      name: this.name,
+      id: this.id,
+    }
+  }
+
+  clone(): Field {
     return new SchemaValueNode({
       name: this.name,
       isArray: this.isArray,
@@ -222,10 +237,11 @@ export class SchemaValueNode extends Field<ExportSingleValueDataType> {
       option: this.option,
       schema: this.schema,
       args: this.args,
+      id: this.id,
     })
   }
 
-  dataType(): SingleValueDataType {
+  get dataType(): SingleValueDataType {
     return {
       type: DATA_TYPES.SINGLE_VALUE,
       fieldType: {
@@ -236,10 +252,7 @@ export class SchemaValueNode extends Field<ExportSingleValueDataType> {
     }
   }
 
-  exportObject({
-    findParent,
-    findOption,
-  }: SearchProps): ExportDatasetFieldDTO<ExportSingleValueDataType> {
+  export({ findParent, findOption }: SearchProps): ExportDatasetFieldDTO {
     const schemaId = this.schema
     const optionId = this.option
 
@@ -259,7 +272,7 @@ export class SchemaValueNode extends Field<ExportSingleValueDataType> {
   }
 }
 
-export class SequenceNode extends Field<ExportSequenceDataType> {
+export class SequenceNode extends Field {
   static MIN_STARTS_WITH = 0.1
   static MIN_STEP = 0.1
 
@@ -276,11 +289,22 @@ export class SequenceNode extends Field<ExportSequenceDataType> {
     return `sequence`
   }
 
-  dataType(): SequenceDataType {
+  save(): SaveFieldDTO {
+    return {
+      dataType: { type: DATA_TYPES.SEQUENCE, startsWith: this.startsWith, step: this.step },
+      id: this.id,
+      name: this.name,
+      isArray: this.isArray,
+      isKey: this.isKey,
+      isPossibleNull: this.isPossibleNull,
+    }
+  }
+
+  get dataType(): SequenceDataType {
     return { type: DATA_TYPES.SEQUENCE, startsWith: this.startsWith, step: this.step }
   }
 
-  clone(): Field<ExportSequenceDataType> {
+  clone(): Field {
     return new SequenceNode({
       name: this.name,
       isArray: this.isArray,
@@ -288,21 +312,22 @@ export class SequenceNode extends Field<ExportSequenceDataType> {
       isPossibleNull: this.isPossibleNull,
       startsWith: this.startsWith,
       step: this.step,
+      id: this.id,
     })
   }
 
-  exportObject(): ExportDatasetFieldDTO<ExportSequenceDataType> {
+  export(): ExportDatasetFieldDTO {
     return {
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
       isPossibleNull: this.isPossibleNull,
-      dataType: this.dataType(),
+      dataType: this.dataType,
     }
   }
 }
 
-export class SequentialNode extends Field<ExportSequentialDataType> {
+export class SequentialNode extends Field {
   readonly values: ArrayValue[]
   readonly loop: boolean
 
@@ -316,7 +341,18 @@ export class SequentialNode extends Field<ExportSequentialDataType> {
     return `sequential`
   }
 
-  clone(): Field<ExportSequentialDataType> {
+  save(): SaveFieldDTO {
+    return {
+      id: this.id,
+      name: this.name,
+      isArray: this.isArray,
+      isKey: this.isKey,
+      isPossibleNull: this.isPossibleNull,
+      dataType: this.dataType,
+    }
+  }
+
+  clone(): Field {
     return new SequentialNode({
       name: this.name,
       isArray: this.isArray,
@@ -324,10 +360,11 @@ export class SequentialNode extends Field<ExportSequentialDataType> {
       isPossibleNull: this.isPossibleNull,
       values: this.values,
       loop: this.loop,
+      id: this.id,
     })
   }
 
-  dataType(): SequentialDataType {
+  get dataType(): SequentialDataType {
     return {
       type: DATA_TYPES.SEQUENTIAL,
       values: this.values,
@@ -335,7 +372,7 @@ export class SequentialNode extends Field<ExportSequentialDataType> {
     }
   }
 
-  exportObject(props: SearchProps): ExportDatasetFieldDTO<ExportSequentialDataType> {
+  export(props: SearchProps): ExportDatasetFieldDTO {
     if (this.values.length === 0) {
       throw new EmptySequentialFieldError(this.getRouteString(props.fieldRoute))
     }
@@ -356,10 +393,10 @@ export class SequentialNode extends Field<ExportSequentialDataType> {
   }
 }
 
-export class RefNode extends Field<ExportRefDataType> {
+export class RefNode extends Field {
   ref: string[]
-  unique: boolean
-  where: RefWhere
+  readonly unique: boolean
+  readonly where: RefWhere
 
   constructor(props: RefValueProps) {
     super(props)
@@ -368,7 +405,7 @@ export class RefNode extends Field<ExportRefDataType> {
     this.where = props.where
   }
 
-  dataType(): RefDataType {
+  get dataType(): RefDataType {
     return {
       type: DATA_TYPES.REF,
       ref: this.ref,
@@ -381,7 +418,18 @@ export class RefNode extends Field<ExportRefDataType> {
     return `ref`
   }
 
-  clone(): Field<ExportRefDataType> {
+  save(): SaveFieldDTO {
+    return {
+      id: this.id,
+      name: this.name,
+      isArray: this.isArray,
+      isKey: this.isKey,
+      isPossibleNull: this.isPossibleNull,
+      dataType: this.dataType,
+    }
+  }
+
+  clone(): Field {
     return new RefNode({
       name: this.name,
       isArray: this.isArray,
@@ -390,10 +438,11 @@ export class RefNode extends Field<ExportRefDataType> {
       ref: this.ref,
       unique: this.unique,
       where: this.where,
+      id: this.id,
     })
   }
 
-  exportObject({ searchRefField }: SearchProps): ExportDatasetFieldDTO<ExportRefDataType> {
+  export({ searchRefField }: SearchProps): ExportDatasetFieldDTO {
     const locationNames = searchRefField(this.ref)
 
     if (this.ref.length > 1) {
@@ -415,8 +464,8 @@ export class RefNode extends Field<ExportRefDataType> {
   }
 }
 
-export class EnumNode extends Field<ExportEnumDataType> {
-  values: ArrayValue[]
+export class EnumNode extends Field {
+  readonly values: ArrayValue[]
 
   constructor(props: EnumValueProps) {
     super(props)
@@ -427,24 +476,36 @@ export class EnumNode extends Field<ExportEnumDataType> {
     return `enum`
   }
 
-  dataType(): EnumDataType {
+  get dataType(): EnumDataType {
     return {
       type: DATA_TYPES.ENUM,
       values: this.values,
     }
   }
 
-  clone(): Field<ExportEnumDataType> {
+  save(): SaveFieldDTO {
+    return {
+      id: this.id,
+      name: this.name,
+      isArray: this.isArray,
+      isKey: this.isKey,
+      isPossibleNull: this.isPossibleNull,
+      dataType: this.dataType,
+    }
+  }
+
+  clone(): Field {
     return new EnumNode({
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
       isPossibleNull: this.isPossibleNull,
       values: this.values,
+      id: this.id,
     })
   }
 
-  exportObject(props: SearchProps): ExportDatasetFieldDTO<ExportEnumDataType> {
+  export(props: SearchProps): ExportDatasetFieldDTO {
     if (this.values.length === 0) {
       throw new EmptyEnumFieldError(this.getRouteString(props.fieldRoute))
     }
@@ -464,8 +525,8 @@ export class EnumNode extends Field<ExportEnumDataType> {
   }
 }
 
-export class CustomNode extends Field<ExportCustomDataType> {
-  code: string
+export class CustomNode extends Field {
+  readonly code: string
 
   constructor(props: CustomValueProps) {
     super(props)
@@ -476,21 +537,33 @@ export class CustomNode extends Field<ExportCustomDataType> {
     return `custom`
   }
 
-  dataType(): CustomDataType {
+  get dataType(): CustomDataType {
     return { type: DATA_TYPES.CUSTOM, code: this.code }
   }
 
-  clone(): Field<ExportCustomDataType> {
+  save(): SaveFieldDTO {
+    return {
+      id: this.id,
+      name: this.name,
+      isArray: this.isArray,
+      isKey: this.isKey,
+      isPossibleNull: this.isPossibleNull,
+      dataType: this.dataType,
+    }
+  }
+
+  clone(): Field {
     return new CustomNode({
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
       isPossibleNull: this.isPossibleNull,
       code: this.code,
+      id: this.id,
     })
   }
 
-  exportObject(): ExportDatasetFieldDTO<ExportCustomDataType> {
+  export(): ExportDatasetFieldDTO {
     return {
       name: this.name,
       dataType: { type: DATA_TYPES.CUSTOM, code: this.code },
@@ -501,11 +574,11 @@ export class CustomNode extends Field<ExportCustomDataType> {
   }
 }
 
-export class PickNode extends Field<ExportPickDataType> {
+export class PickNode extends Field {
   static MIN_COUNT_VALUE = 0
 
-  values: ArrayValue[]
-  count: number
+  readonly values: ArrayValue[]
+  readonly count: number
 
   constructor(props: PickValueProps) {
     super(props)
@@ -513,11 +586,22 @@ export class PickNode extends Field<ExportPickDataType> {
     this.count = props.count
   }
 
+  save(): SaveFieldDTO {
+    return {
+      id: this.id,
+      name: this.name,
+      isArray: this.isArray,
+      isKey: this.isKey,
+      isPossibleNull: this.isPossibleNull,
+      dataType: this.dataType,
+    }
+  }
+
   stringInf(): string {
     return `pick`
   }
 
-  dataType(): PickDataType {
+  get dataType(): PickDataType {
     return {
       count: this.count,
       type: DATA_TYPES.PICK,
@@ -525,7 +609,7 @@ export class PickNode extends Field<ExportPickDataType> {
     }
   }
 
-  clone(): Field<ExportPickDataType> {
+  clone(): Field {
     return new PickNode({
       name: this.name,
       isArray: this.isArray,
@@ -533,10 +617,11 @@ export class PickNode extends Field<ExportPickDataType> {
       isPossibleNull: this.isPossibleNull,
       values: this.values,
       count: this.count,
+      id: this.id,
     })
   }
 
-  public exportObject(): ExportDatasetFieldDTO<ExportPickDataType> {
+  public export(): ExportDatasetFieldDTO {
     const mapper = new ValueMapper()
 
     return {
@@ -553,7 +638,7 @@ export class PickNode extends Field<ExportPickDataType> {
   }
 }
 
-export class MixedNode extends Field<ExportMixedDataType> {
+export class MixedNode extends Field {
   readonly utils = new NodesUtils(this)
 
   constructor(props: MixedValueProps) {
@@ -565,7 +650,18 @@ export class MixedNode extends Field<ExportMixedDataType> {
     return this.utils.nodes
   }
 
-  dataType(): MixedDataType {
+  save(): SaveFieldDTO {
+    return {
+      id: this.id,
+      name: this.name,
+      isArray: this.isArray,
+      isKey: this.isKey,
+      isPossibleNull: this.isPossibleNull,
+      dataType: this.dataType,
+    }
+  }
+
+  get dataType(): MixedDataType {
     return {
       type: DATA_TYPES.MIXED,
       object: this.utils.nodes,
@@ -576,13 +672,14 @@ export class MixedNode extends Field<ExportMixedDataType> {
     return `mixed`
   }
 
-  clone(): Field<ExportMixedDataType> {
+  clone(): Field {
     const node = new MixedNode({
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
       isPossibleNull: this.isPossibleNull,
       object: this.utils.nodes,
+      id: this.id,
     })
 
     const newNodes = this.utils.nodes.map((n) => n.clone())
@@ -592,7 +689,7 @@ export class MixedNode extends Field<ExportMixedDataType> {
     return node
   }
 
-  exportObject(props: SearchProps): ExportDatasetFieldDTO<ExportMixedDataType> {
+  export(props: SearchProps): ExportDatasetFieldDTO {
     return {
       name: this.name,
       dataType: {
@@ -606,8 +703,8 @@ export class MixedNode extends Field<ExportMixedDataType> {
   }
 }
 
-export class ProbabilityNode extends Field<ExportProbabilityDataType> {
-  values: ProbabilityValue[]
+export class ProbabilityNode extends Field {
+  readonly values: ProbabilityValue[]
 
   constructor(props: ProbabilityValueProps) {
     super(props)
@@ -618,24 +715,36 @@ export class ProbabilityNode extends Field<ExportProbabilityDataType> {
     return `probability`
   }
 
-  dataType(): ProbabilityDataType {
+  save(): SaveFieldDTO {
+    return {
+      id: this.id,
+      name: this.name,
+      isArray: this.isArray,
+      isKey: this.isKey,
+      isPossibleNull: this.isPossibleNull,
+      dataType: this.dataType,
+    }
+  }
+
+  get dataType(): ProbabilityDataType {
     return {
       type: DATA_TYPES.PROBABILITY,
       values: this.values,
     }
   }
 
-  clone(): Field<ExportProbabilityDataType> {
+  clone(): Field {
     return new ProbabilityNode({
       name: this.name,
       values: this.values,
       isArray: this.isArray,
       isKey: this.isKey,
+      id: this.id,
       isPossibleNull: this.isPossibleNull,
     })
   }
 
-  exportObject(): ExportDatasetFieldDTO<ExportProbabilityDataType> {
+  export(): ExportDatasetFieldDTO {
     const mapper = new ValueMapper()
 
     return {

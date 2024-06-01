@@ -1,7 +1,7 @@
 import { Validator } from "@modules/app/domain"
-import { NoDuplicateDataset } from "./NoDuplicateDataset"
+import { Dataset } from "../../tree"
 import { DatasetNameValidator } from "./DatasetNameValidator"
-import { Dataset } from "../tree"
+import { NoDuplicateDataset } from "./NoDuplicateDataset"
 
 interface Props {
   datasets: Dataset[]

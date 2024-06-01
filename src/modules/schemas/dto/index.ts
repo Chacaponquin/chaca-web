@@ -1,9 +1,12 @@
 import { ARGUMENT_TYPE } from "../constants"
 
 export interface ApiSchemaResponse {
-  name: string
-  options: ApiSchemaOptionResponse[]
-  showName: string
+  schemas: Array<{
+    name: string
+    options: ApiSchemaOptionResponse[]
+    showName: string
+  }>
+  version: string
 }
 
 export interface ApiSchemaOptionResponse {

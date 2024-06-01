@@ -2,12 +2,9 @@ import { ChacaSimpleButton } from "@form/components"
 import { Image } from "@modules/app/components"
 import { APP_IMAGES } from "@modules/app/constants"
 import { useTranslation } from "@modules/app/modules/language/hooks"
+import { useDatasets } from "@modules/datasets/hooks"
 
-interface Props {
-  handleCreateDataset(): void
-}
-
-export default function NoDatasetsMessage({ handleCreateDataset }: Props) {
+export default function NoDatasetsMessage() {
   const { MESSAGE, WELCOME_MESSAGE } = useTranslation({
     MESSAGE: { en: "Create Dataset", es: "Crear Dataset" },
     WELCOME_MESSAGE: {
@@ -15,6 +12,7 @@ export default function NoDatasetsMessage({ handleCreateDataset }: Props) {
       es: "Crea tu primer dataset y mira todas las acciones que puedes realizar con sus campos",
     },
   })
+  const { handleAddDataset } = useDatasets()
 
   return (
     <section className="bg-white dark:bg-scale-4 w-full flex flex-grow flex-col pt-24 items-center px-20 esm:px-8">
@@ -26,7 +24,7 @@ export default function NoDatasetsMessage({ handleCreateDataset }: Props) {
         color="secondary"
         size="xl"
         text={MESSAGE}
-        onClick={handleCreateDataset}
+        onClick={handleAddDataset}
         rounded={true}
         id="create-first-dataset-button"
       />

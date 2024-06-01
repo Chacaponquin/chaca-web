@@ -11,7 +11,7 @@ import {
   InvalidChanceValueError,
   RepeatDatasetNameError,
   RepeatSameLevelFieldNameError,
-} from "@modules/datasets/errors"
+} from "@modules/datasets/errors/dataset"
 
 export default function useFormErrors() {
   const { toastError } = useToast()

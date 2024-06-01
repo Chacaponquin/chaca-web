@@ -1,21 +1,21 @@
 import { Validator } from "@modules/app/domain"
-import { FieldNameValidator } from "./FieldNameValidator"
-import { NoDuplicateLevelField } from "./NoDuplicateLevelField"
 import { SequentialValuesValidator } from "./SequentialValuesValidator"
 import { RefFieldValidator } from "./RefFieldValidator"
 import { EnumValuesValidator } from "./EnumValuesValidator"
 import { PickValuesValidator } from "./PickValuesValidator"
 import { ProbabilityValuesValidator } from "./ProbabilityValuesValidator"
-import { Dataset } from "../tree"
-import { FieldDataType } from "@modules/datasets/interfaces/dataset-field"
+import { Dataset } from "../../tree"
+import { FieldDatatype } from "@modules/datasets/interfaces/dataset-field"
 import { CustomFieldValidator } from "./CustomFieldValidator"
+import { FieldNameValidator } from "./FieldNameValidator"
+import { NoDuplicateLevelField } from "./NoDuplicateLevelField"
 
 interface Props {
   name: string
   parentfieldId: string
   datasetId: string
   id: string | null
-  dataType: FieldDataType
+  dataType: FieldDatatype
   datasets: Dataset[]
 }
 

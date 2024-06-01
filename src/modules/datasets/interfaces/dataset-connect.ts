@@ -1,6 +1,6 @@
 export interface DatasetConnection {
   from: string
-  to: Array<string>
+  to: string[]
   fromDataset: string
   targetDataset: string
 }

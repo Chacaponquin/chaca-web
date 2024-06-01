@@ -1,9 +1,8 @@
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { ARRAY_VALUE_TYPE } from "../constants"
 import { Field } from "../domain/tree"
-import { ExportDatatypeDTO } from "../dto/field"
 
-export type FieldDataType =
+export type FieldDatatype =
   | CustomDataType
   | SingleValueDataType
   | RefDataType
@@ -21,7 +20,7 @@ export interface CustomDataType {
 
 export interface MixedDataType {
   type: DATA_TYPES.MIXED
-  object: Field<ExportDatatypeDTO>[]
+  object: Field[]
 }
 
 export interface SingleValueDataType {

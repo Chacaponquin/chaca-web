@@ -1,26 +1,37 @@
-import { createContext, useState, useEffect } from "react"
+import { createContext, useState } from "react"
 import { Schema } from "../interfaces/schema"
 import { useErrorBoundary } from "react-error-boundary"
 import { useSchemasServices } from "../services/"
+import { DEFAULT_VERSION } from "../constants"
 
 interface Props {
-  schemas: Array<Schema>
+  schemas: Schema[]
   loading: boolean
+  fetch(version: string): void
+  version: string
 }
 
-const SchemasContext = createContext<Props>({ schemas: [], loading: true })
+export const SchemasContext = createContext<Props>({
+  schemas: [] as Schema[],
+  loading: true,
+} as Props)
 
-const SchemasProvider = ({ children }: { children: React.ReactElement }) => {
+export function SchemasProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(false)
-  const [schemas, setSchemas] = useState<Array<Schema>>([])
+  const [schemas, setSchemas] = useState<Schema[]>([])
+  const [version, setVersion] = useState(DEFAULT_VERSION)
+
   const { getSchemas } = useSchemasServices()
   const { showBoundary } = useErrorBoundary()
 
-  useEffect(() => {
+  function fetch(version: string) {
     setLoading(true)
+
     getSchemas({
+      version: version,
       onSuccess: (data) => {
-        setSchemas(data)
+        setSchemas(data.schemas)
+        setVersion(data.version)
       },
       onError: (error) => {
         showBoundary(error)
@@ -29,11 +40,9 @@ const SchemasProvider = ({ children }: { children: React.ReactElement }) => {
         setLoading(false)
       },
     })
-  }, [])
+  }
 
-  const data: Props = { schemas, loading }
+  const data: Props = { schemas, loading, fetch, version }
 
   return <SchemasContext.Provider value={data}>{children}</SchemasContext.Provider>
 }
-
-export { SchemasContext, SchemasProvider }

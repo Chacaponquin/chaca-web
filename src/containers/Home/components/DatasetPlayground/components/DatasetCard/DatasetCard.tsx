@@ -4,7 +4,6 @@ import { useDatasetCard } from "./hooks"
 import clsx from "clsx"
 
 export interface CardProps {
-  handleCreateDataset(dataset: Dataset): void
   dataset: Dataset
 }
 
@@ -13,18 +12,17 @@ interface Props {
   data: CardProps
 }
 
-export default function DatasetCard({ data: { dataset, handleCreateDataset } }: Props) {
+export default function DatasetCard({ data: { dataset } }: Props) {
   const {
     handleEditDataset,
     handleDeleteDataset,
-    handleCreateDataset: handleCreateDatasetHook,
+    handleCreateDataset,
     handleClickCard,
     handleCloneDataset,
     selected,
     handleAddField,
   } = useDatasetCard({
     dataset: dataset,
-    handleCreateDataset: handleCreateDataset,
   })
 
   const CARD_CLASS = clsx(
@@ -45,10 +43,10 @@ export default function DatasetCard({ data: { dataset, handleCreateDataset } }: 
       <CardHeader
         handleDeleteDataset={handleDeleteDataset}
         handleEditDataset={handleEditDataset}
-        handleExportDataset={handleCreateDatasetHook}
+        handleExportDataset={handleCreateDataset}
         name={dataset.name}
         limit={dataset.limit}
-        nameId={dataset.nameId}
+        nameId={dataset.slug}
         handleCloneDataset={handleCloneDataset}
         handleAddField={handleAddField}
       />

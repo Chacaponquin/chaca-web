@@ -1,6 +1,6 @@
 import ArrayConfig from "./ArrayConfig/ArrayConfig"
 import DataTypeConfig from "./DataTypeConfig/DataTypeConfig"
-import FieldDataType from "./FieldDataType/FieldDataType"
+import FieldDatatype from "./FieldDatatype/FieldDatatype"
 import FieldName from "./FieldName/FieldName"
 import KeyConfig from "./KeyConfig/KeyConfig"
 import PossibleNullConfig from "./PossibleNullConfig/PossibleNullConfig"
@@ -10,7 +10,7 @@ export {
   PossibleNullConfig,
   ArrayConfig,
   FieldName,
-  FieldDataType,
+  FieldDatatype,
   DataTypeConfig,
   KeyConfig,
   ProbabilityConfig,

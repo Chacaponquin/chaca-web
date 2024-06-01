@@ -3,18 +3,17 @@ import {
   IsKeyConfig,
   PossibleNullConfig,
 } from "@modules/datasets/interfaces/field-config"
-import { FieldDataType } from "../../datasets/interfaces/datasets"
+import { FieldDatatype } from "../../datasets/interfaces/datasets"
 import { MODAL_ACTIONS } from "../constants/MODAL_ACTIONS"
 import { Dataset, Field } from "@modules/datasets/domain/tree"
 import { Config, ImageFormats } from "@modules/config/interfaces"
-import { ExportDatatypeDTO } from "@modules/datasets/dto/field"
 
 export interface FieldForm {
   id: string
   name: string
   isPossibleNull: PossibleNullConfig
   isArray: IsArrayConfig
-  dataType: FieldDataType
+  dataType: FieldDatatype
   isKey: IsKeyConfig
 }
 
@@ -37,7 +36,7 @@ export type ModalDeleteDataset = {
 
 export type ModalEditField = {
   type: MODAL_ACTIONS.EDIT_FIELD
-  field: Field<ExportDatatypeDTO>
+  field: Field
   parentfieldId: string
   datasetId: string
 }

@@ -2,10 +2,9 @@ import { Fragment } from "react"
 import { FieldName, FieldOptions, OpenFieldsButton, Point } from "./components"
 import { useFieldContainer } from "./hooks"
 import { Field, MixedNode } from "@modules/datasets/domain/tree"
-import { ExportDatatypeDTO } from "@modules/datasets/dto/field"
 
 interface Props {
-  field: Field<ExportDatatypeDTO>
+  field: Field
   margin: number
 }
 

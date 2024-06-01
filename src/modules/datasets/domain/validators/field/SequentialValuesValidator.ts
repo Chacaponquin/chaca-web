@@ -1,18 +1,18 @@
-import { FieldDataType } from "@modules/datasets/interfaces/dataset-field"
-import { IValidator } from "../../../app/domain/Validator"
-import { DatasetError, EmptyValuesError } from "@modules/datasets/errors"
+import { FieldDatatype } from "@modules/datasets/interfaces/dataset-field"
+import { IValidator } from "../../../../app/domain/Validator"
+import { DatasetError, EmptyValuesError } from "@modules/datasets/errors/dataset"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { ArrayValuesValidator } from "./ArrayValuesValidator"
 
 interface Props {
-  type: FieldDataType
+  type: FieldDatatype
 }
 
-export class EnumValuesValidator implements IValidator {
+export class SequentialValuesValidator implements IValidator {
   constructor(private readonly props: Props) {}
 
   validate(): DatasetError | null {
-    if (this.props.type.type === DATA_TYPES.ENUM) {
+    if (this.props.type.type === DATA_TYPES.SEQUENTIAL) {
       if (this.props.type.values.length === 0) {
         return new EmptyValuesError()
       }

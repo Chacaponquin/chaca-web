@@ -13,7 +13,7 @@ import {
 import { useSchemas } from "@modules/schemas/hooks"
 import { useDatasets } from "./"
 import { ARRAY_VALUE_TYPE } from "../constants"
-import { Datatype } from "../domain/types"
+import { Datatype } from "../domain/data-types"
 
 interface Props {
   fieldId: string
@@ -36,7 +36,7 @@ export default function useDatatypes({ fieldId, datasetId }: Props) {
 
   const DEFAULT_SCHEMA_VALUE_DATA_TYPE: SingleValueDataType = {
     type: DATA_TYPES.SINGLE_VALUE,
-    fieldType: { args: {}, schema: schemas[0].id, option: schemas[0].options[0].id },
+    fieldType: { args: {}, schema: schemas[0].name, option: schemas[0].options[0].name },
   }
 
   const DEFAULT_REF_DATA_TYPE: RefDataType = {

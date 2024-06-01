@@ -7,18 +7,16 @@ import clsx from "clsx"
 interface Props {
   handleExportAllDatasets(): void
   handleExportImage(): void
-  handleAddDataset(): void
   handleDeleteAll(): void
 }
 
 export default function Navbar({
-  handleAddDataset,
   handleExportAllDatasets,
   handleExportImage,
   handleDeleteAll,
 }: Props) {
   const { smallWindow } = useContext(HomeContext)
-  const { datasets } = useDatasets()
+  const { datasets, handleAddDataset } = useDatasets()
 
   const CLASS = clsx(
     "text-black dark:text-white",

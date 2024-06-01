@@ -3,7 +3,7 @@ import {
   ArrayConfig,
   FieldName,
   PossibleNullConfig,
-  FieldDataType,
+  FieldDatatype,
   DataTypeConfig,
   KeyConfig,
 } from "./components"
@@ -54,7 +54,7 @@ export default function FieldForm({
     <div className="flex flex-col gap-y-3">
       <FieldName name={field.name} text={FIELD_NAME_TEXT} handleChangeName={handleChangeName} />
 
-      <FieldDataType
+      <FieldDatatype
         label={DATA_TYPE_TEXT}
         handleChangeDataType={handleChangeDataType}
         dataType={field.dataType.type}

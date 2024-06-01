@@ -1,8 +1,8 @@
-import { ExportDatatypeDTO, ExportMixedDataType, FieldProps } from "@modules/datasets/dto/field"
+import { FieldProps } from "@modules/datasets/dto/field"
 import { Field, MixedNode, RefNode } from "./Field"
 import { RootNode } from "./RootNode"
-import { SearchProps } from "@modules/datasets/interfaces/tree"
-import { ExportDatasetFieldDTO } from "@modules/datasets/dto/dataset"
+import { SaveProps, SearchProps } from "@modules/datasets/interfaces/tree"
+import { ExportDatasetFieldDTO, SaveFieldDTO } from "@modules/datasets/dto/dataset"
 
 interface GetLocationProps {
   fieldId: string
@@ -11,10 +11,10 @@ interface GetLocationProps {
 }
 
 export class NodesUtils {
-  private _nodes: Field<ExportDatatypeDTO>[] = []
-  private _instance: Field<ExportMixedDataType> | RootNode
+  private _nodes: Field[] = []
+  private _instance: MixedNode | RootNode
 
-  constructor(instance: Field<ExportMixedDataType> | RootNode) {
+  constructor(instance: MixedNode | RootNode) {
     this._instance = instance
   }
 
@@ -22,7 +22,7 @@ export class NodesUtils {
     return this._nodes
   }
 
-  insertNode(node: Field<ExportDatatypeDTO>): void {
+  insertNode(node: Field): void {
     this._nodes.push(node)
   }
 
@@ -30,11 +30,11 @@ export class NodesUtils {
     return this.nodes.some((n) => n.isKey)
   }
 
-  getSameLevelNodes(fieldId: string): Field<ExportDatatypeDTO>[] {
+  getSameLevelNodes(fieldId: string): Field[] {
     const findNode = this.nodes.some((n) => n.id === fieldId)
     if (findNode) return this.nodes
 
-    let returnArray = [] as Array<Field<ExportDatatypeDTO>>
+    let returnArray = [] as Field[]
 
     for (let i = 0; i < this.nodes.length && returnArray.length === 0; i++) {
       const node = this.nodes[i]
@@ -47,13 +47,17 @@ export class NodesUtils {
     return returnArray
   }
 
-  exportFields(props: SearchProps): ExportDatasetFieldDTO<ExportDatatypeDTO>[] {
+  exportFields(props: SearchProps): ExportDatasetFieldDTO[] {
     return this.nodes.map((n) => {
-      return n.exportObject({ ...props, fieldRoute: [...props.fieldRoute, this._instance.name] })
+      return n.export({ ...props, fieldRoute: [...props.fieldRoute, this._instance.name] })
     })
   }
 
-  findFieldParentNode(nodeId: string): Field<ExportMixedDataType> | RootNode | null {
+  saveFields(props: SaveProps): SaveFieldDTO[] {
+    return this.nodes.map((n) => n.save(props))
+  }
+
+  findFieldParentNode(nodeId: string): MixedNode | RootNode | null {
     const findNode = this.nodes.some((n) => n.id === nodeId)
 
     if (findNode) {
@@ -73,7 +77,7 @@ export class NodesUtils {
     }
   }
 
-  findNodeById(id: string): Field<ExportDatatypeDTO> | null {
+  findNodeById(id: string): Field | null {
     if (this.nodes.length === 0) {
       return null
     } else {
@@ -106,9 +110,8 @@ export class NodesUtils {
           isArray: props.isArray,
           isKey: props.isKey,
           isPossibleNull: props.isPossibleNull,
+          id: props.id,
         })
-
-        field.setId(props.id)
 
         this.nodes[i] = field
       }
@@ -197,8 +200,8 @@ export class NodesUtils {
     return ref
   }
 
-  allPossibleFieldsToRef(): Field<ExportDatatypeDTO>[] {
-    let returnFields = [] as Field<ExportDatatypeDTO>[]
+  allPossibleFieldsToRef(): Field[] {
+    let returnFields = [] as Field[]
 
     for (const node of this.nodes) {
       if (node instanceof MixedNode) {

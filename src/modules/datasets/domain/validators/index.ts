@@ -1,4 +1,4 @@
-import { DatasetValidator } from "./DatasetValidator"
-import { FieldValidator } from "./FieldValidator"
+import { DatasetValidator } from "./dataset/DatasetValidator"
+import { FieldValidator } from "./field/FieldValidator"
 
 export { FieldValidator, DatasetValidator }

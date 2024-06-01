@@ -1,12 +1,14 @@
-import { TOKEN_LOCATION } from "../constants"
 import Cookies from "universal-cookie"
 import { useCallback, useContext, useMemo } from "react"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { useEnv } from "@modules/app/modules/env/hooks"
 import { UserContext } from "../context"
+import { useLocalStorage } from "@modules/app/hooks"
+import { STORAGE_KEYS } from "@modules/app/constants"
 
 export default function useUser() {
   const { API_ROUTE } = useEnv()
+  const { set, remove, get } = useLocalStorage()
   const { actualUser, noUserLimits, loading } = useContext(UserContext)
 
   const USER_DATASETS_LIMIT = useMemo(() => {
@@ -18,12 +20,12 @@ export default function useUser() {
   }, [actualUser])
 
   function handleSignIn(token: string) {
-    localStorage.setItem(TOKEN_LOCATION, token)
+    set(STORAGE_KEYS.ACCESS_TOKEN, token)
     window.location.reload()
   }
 
   function handleSignOut() {
-    localStorage.removeItem(TOKEN_LOCATION)
+    remove(STORAGE_KEYS.ACCESS_TOKEN)
     window.location.reload()
   }
 
@@ -37,13 +39,13 @@ export default function useUser() {
 
   const getToken = useCallback((): string => {
     const cookies = new Cookies()
-    const tokenCookie = cookies.get(TOKEN_LOCATION)
+    const tokenCookie = cookies.get(STORAGE_KEYS.ACCESS_TOKEN)
 
     if (tokenCookie) {
-      localStorage.setItem(TOKEN_LOCATION, tokenCookie)
+      localStorage.setItem(STORAGE_KEYS.ACCESS_TOKEN, tokenCookie)
     }
 
-    const returnToken = localStorage.getItem(TOKEN_LOCATION) || ""
+    const returnToken = get(STORAGE_KEYS.ACCESS_TOKEN) || ""
 
     return returnToken
   }, [])

@@ -1,6 +1,6 @@
 import {
   ArrayValue,
-  FieldDataType,
+  FieldDatatype,
   ProbabilityValue,
   RefWhere,
 } from "@modules/datasets/interfaces/dataset-field"
@@ -28,7 +28,7 @@ export type FieldFormPayload =
   | {
       type: FORM_ACTIONS.CHANGE_FIELD_DATATYPE
       payload: {
-        dataType: FieldDataType
+        dataType: FieldDatatype
       }
     }
   | {

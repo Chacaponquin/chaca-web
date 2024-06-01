@@ -1,28 +1,28 @@
 import { Field } from "./Field"
 import { NodesUtils } from "./NodesUtils"
-import { v4 as uuid } from "uuid"
-import { ExportDatatypeDTO } from "@modules/datasets/dto/field"
 import { Dataset } from "./Dataset"
 
-interface RootProps {
+interface Props {
   limit: number
   name: string
+  id: string
 }
 
 export class RootNode {
-  readonly id = uuid()
+  readonly id: string
   private _limit: number
   private _name: string
 
   readonly utils = new NodesUtils(this)
 
-  constructor({ limit, name }: RootProps) {
+  constructor({ limit, name, id }: Props) {
     this._limit = limit
     this._name = name
+    this.id = id
   }
 
   clone(): Dataset {
-    const dataset = new Dataset({ name: this.name, limit: this._limit })
+    const dataset = new Dataset({ name: this.name, limit: this._limit, id: this.id })
 
     const newNodes = this.utils.nodes.map((n) => n.clone())
     newNodes.forEach((n) => dataset.insertField(n))
@@ -38,15 +38,15 @@ export class RootNode {
     this._name = name
   }
 
-  setField(field: Field<ExportDatatypeDTO>) {
+  setField(field: Field) {
     this.utils.nodes.push(field)
   }
 
-  limit() {
+  get limit() {
     return this._limit
   }
 
-  public setLimit(lim: number) {
+  setLimit(lim: number) {
     this._limit = lim
   }
 }

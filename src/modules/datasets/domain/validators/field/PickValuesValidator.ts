@@ -1,12 +1,12 @@
-import { FieldDataType } from "@modules/datasets/interfaces/dataset-field"
-import { IValidator } from "../../../app/domain/Validator"
-import { DatasetError } from "@modules/datasets/errors"
+import { FieldDatatype } from "@modules/datasets/interfaces/dataset-field"
+import { IValidator } from "../../../../app/domain/Validator"
+import { DatasetError } from "@modules/datasets/errors/dataset"
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { ArrayValuesValidator } from "./ArrayValuesValidator"
 import { PickCountValidator } from "./PickCountValidator"
 
 interface Props {
-  type: FieldDataType
+  type: FieldDatatype
 }
 
 export class PickValuesValidator implements IValidator {

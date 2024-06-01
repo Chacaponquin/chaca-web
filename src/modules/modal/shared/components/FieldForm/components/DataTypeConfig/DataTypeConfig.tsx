@@ -11,7 +11,7 @@ import {
 } from "./components"
 import {
   ArrayValue,
-  FieldDataType,
+  FieldDatatype,
   ProbabilityValue,
   RefWhere,
 } from "@modules/datasets/interfaces/dataset-field"
@@ -26,7 +26,7 @@ import { Argument } from "@modules/schemas/interfaces/argument"
 interface Props {
   id: string
   datasetId: string
-  dataType: FieldDataType
+  dataType: FieldDatatype
   handleSelectFieldSchema(v: string): void
   handleSelectFieldSchemaOption(p: SelectFieldSchemaOptionProps): void
   handleUpdateCustomField(p: UpdateCustomProps): void

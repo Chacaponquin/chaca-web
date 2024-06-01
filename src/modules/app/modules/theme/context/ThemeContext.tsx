@@ -1,20 +1,24 @@
-import { createContext, useState, ReactElement, useEffect } from "react"
+import { createContext, useState, useEffect } from "react"
 import { THEME } from "../constants"
+import { useLocalStorage } from "@modules/app/hooks"
+import { STORAGE_KEYS } from "@modules/app/constants"
 
-type ThemeContextProps = {
+type Props = {
   theme: THEME
-  handleChangeTheme: (t: THEME) => void
+  handleChangeTheme(t: THEME): void
 }
 
-const ThemeContext = createContext<ThemeContextProps>({
+export const ThemeContext = createContext<Props>({
   theme: THEME.LIGHT,
-} as ThemeContextProps)
+} as Props)
 
-const ThemeProvider = ({ children }: { children: ReactElement }) => {
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const { get, set } = useLocalStorage()
+
   const [theme, setTheme] = useState<THEME>(THEME.LIGHT)
 
   useEffect(() => {
-    const saveTheme = localStorage.getItem("theme")
+    const saveTheme = get(STORAGE_KEYS.THEME)
 
     if (saveTheme) {
       setTheme(saveTheme as THEME)
@@ -29,16 +33,14 @@ const ThemeProvider = ({ children }: { children: ReactElement }) => {
     root.classList.remove(THEME.DARK)
     root.classList.add(theme)
 
-    localStorage.setItem("theme", theme)
+    set(STORAGE_KEYS.THEME, theme)
   }, [theme])
 
-  const handleChangeTheme = (newTheme: THEME) => {
+  function handleChangeTheme(newTheme: THEME) {
     setTheme(newTheme)
   }
 
-  const data = { theme, handleChangeTheme }
+  const data: Props = { theme, handleChangeTheme }
 
   return <ThemeContext.Provider value={data}>{children}</ThemeContext.Provider>
 }
-
-export { ThemeContext, ThemeProvider }

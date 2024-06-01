@@ -1,3 +1,4 @@
+import { HomeContext } from "@containers/Home/context"
 import {
   AddFieldCommand,
   CloneDatasetCommand,
@@ -10,17 +11,14 @@ import { Dataset } from "@modules/datasets/domain/tree"
 import { useDatasets } from "@modules/datasets/hooks"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { useModal } from "@modules/modal/hooks"
-import { useEffect } from "react"
+import { useContext, useEffect } from "react"
 
 interface Props {
   dataset: Dataset
-  handleCreateDataset(dataset: Dataset): void
 }
 
-export default function useDatasetCard({
-  dataset,
-  handleCreateDataset: handleCreateDatasetProp,
-}: Props) {
+export default function useDatasetCard({ dataset }: Props) {
+  const { exportDatasets } = useContext(HomeContext)
   const { handleOpenModal, openModal } = useModal()
   const {
     handleSelectDataset,
@@ -38,7 +36,7 @@ export default function useDatasetCard({
     new AddFieldCommand(handleAddField),
   ])
 
-  const handleKeyboardAction = (event: globalThis.KeyboardEvent) => {
+  function handleKeyboardAction(event: globalThis.KeyboardEvent) {
     if (selected && openModal === null) {
       commands.execute(event)
     }
@@ -64,16 +62,12 @@ export default function useDatasetCard({
     handleOpenModal({ type: MODAL_ACTIONS.EDIT_DATASET, dataset: dataset })
   }
 
-  function handleCreateDataset() {
-    handleCreateDatasetProp(dataset)
-  }
-
   function handleClickCard() {
     handleSelectDataset(dataset.id)
   }
 
   function handleCloneDataset() {
-    handleCloneDatasetHook({ id: dataset.id, handleCreateDataset: handleCreateDatasetProp })
+    handleCloneDatasetHook({ id: dataset.id })
   }
 
   function handleAddField() {
@@ -84,13 +78,22 @@ export default function useDatasetCard({
     })
   }
 
+  function handleCreateDataset(): void {
+    handleOpenModal({
+      type: MODAL_ACTIONS.EXPORT_SELECT_DATASET,
+      handleCreateSelectDataset({ config }) {
+        exportDatasets([dataset], config)
+      },
+    })
+  }
+
   return {
     handleDeleteDataset,
     handleEditDataset,
-    handleCreateDataset,
     handleClickCard,
     handleCloneDataset,
     handleAddField,
+    handleCreateDataset,
     selected,
   }
 }

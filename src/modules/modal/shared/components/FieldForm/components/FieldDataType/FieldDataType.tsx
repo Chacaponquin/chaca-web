@@ -24,7 +24,7 @@ interface Props {
   datasetId: string
 }
 
-export default function FieldDataType({
+export default function FieldDatatype({
   label,
   handleChangeDataType,
   dataType,

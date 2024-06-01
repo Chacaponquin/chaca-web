@@ -2,18 +2,17 @@ import { Config } from "@modules/app/modules/icon/components"
 import { FieldConfigMenu } from "./components"
 import { ChacaDropdown } from "@form/components"
 import { Field } from "@modules/datasets/domain/tree"
-import { ExportDatatypeDTO } from "@modules/datasets/dto/field"
 
 interface Props {
-  field: Field<ExportDatatypeDTO>
+  field: Field
 }
 
 export default function FieldOptions({ field }: Props) {
   return (
-    <div className="flex flex-col relative dark:fill-white fill-black">
+    <div className="flex flex-col relative ">
       <ChacaDropdown
         header={
-          <button>
+          <button className="dark:fill-white fill-black">
             <Config size={19} />
           </button>
         }

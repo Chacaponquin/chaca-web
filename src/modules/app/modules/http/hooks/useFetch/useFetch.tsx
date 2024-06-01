@@ -10,27 +10,25 @@ export default function useFetch() {
   const { getToken } = useUser()
   const { API_ROUTE } = useEnv()
 
-  const axiosInstance = useMemo(
-    () =>
-      axios.create({
-        baseURL: API_ROUTE,
-        headers: {
-          language: language,
-          authorization: `Bearer ${getToken()}`,
-        },
-      }),
-    [language],
-  )
+  const instance = useMemo(() => {
+    return axios.create({
+      baseURL: API_ROUTE,
+      headers: {
+        language: language,
+        authorization: `Bearer ${getToken()}`,
+      },
+    })
+  }, [language])
 
   useEffect(() => {
-    axiosInstance.interceptors.request.use(undefined, (error) => {
+    instance.interceptors.request.use(undefined, (error) => {
       Promise.reject(error)
     })
   }, [])
 
   async function get<T>(props: GetProps<T>): Promise<void> {
-    return axiosInstance
-      .get<T>(props.url)
+    return instance
+      .get<T>(props.url, {})
       .then((data) => {
         if (props.onSuccess) {
           props.onSuccess(data.data)
@@ -49,7 +47,7 @@ export default function useFetch() {
   }
 
   async function post<T, B>(props: PostProps<T, B> & { url: string }): Promise<void> {
-    return axiosInstance
+    return instance
       .post<T>(props.url, props.body)
       .then((data) => {
         if (props.onSuccess) {

@@ -27,7 +27,7 @@ export const API_ROUTES = {
     GITHUB_AUTH: "/auth/github",
   },
   GET_NO_USER_LIMITS: "/web-api/no-user-limits",
-  GET_SCHEMAS: "/web-api/schemas",
+  GET_SCHEMAS: (version: string) => `/web-api/schemas/${version}`,
   GET_FILE_OPTIONS: "/web-api/file-config",
   GET_FAQ: "/web-api/faq",
   CREATE_USER_MESSAGE: "/user-message/new-message",

@@ -3,8 +3,8 @@ import {
   EmptyArrayValueError,
   InvalidArrayJSONValue,
   InvalidArrayNumberValue,
-} from "@modules/datasets/errors"
-import { IValidator } from "../../../app/domain/Validator"
+} from "@modules/datasets/errors/dataset"
+import { IValidator } from "@modules/app/domain"
 import { ArrayValue } from "@modules/datasets/interfaces/dataset-field"
 import { ARRAY_VALUE_TYPE } from "@modules/datasets/constants"
 

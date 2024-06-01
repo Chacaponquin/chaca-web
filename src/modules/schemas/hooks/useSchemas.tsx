@@ -3,11 +3,11 @@ import { Schema, SubOption } from "../interfaces/schema"
 import { SchemasContext } from "../context"
 
 export default function useSchemas() {
-  const { schemas, loading } = useContext(SchemasContext)
+  const { schemas, loading, fetch, version } = useContext(SchemasContext)
 
   const findParent = useCallback(
     (p: string): Schema => {
-      return schemas.find((el) => el.id === p) as Schema
+      return schemas.find((el) => el.name === p) as Schema
     },
     [schemas],
   )
@@ -15,7 +15,7 @@ export default function useSchemas() {
   const findType = useCallback(
     (p: string, t: string): SubOption => {
       const foundParent = findParent(p)
-      return foundParent.options.find((el) => el.id === t) as SubOption
+      return foundParent.options.find((el) => el.name === t) as SubOption
     },
     [findParent],
   )
@@ -28,5 +28,5 @@ export default function useSchemas() {
     [findParent],
   )
 
-  return { findParent, findType, findParentOptions, schemas, loading }
+  return { findParent, findType, findParentOptions, schemas, loading, fetch, version }
 }

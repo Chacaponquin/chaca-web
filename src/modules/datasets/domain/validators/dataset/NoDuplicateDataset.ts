@@ -1,6 +1,6 @@
-import { DatasetError, RepeatDatasetNameError } from "@modules/datasets/errors"
-import { IValidator } from "../../../app/domain/Validator"
-import { Dataset } from "../tree"
+import { DatasetError, RepeatDatasetNameError } from "@modules/datasets/errors/dataset"
+import { IValidator } from "@modules/app/domain/Validator"
+import { Dataset } from "@modules/datasets/domain/tree"
 
 interface Props {
   name: string

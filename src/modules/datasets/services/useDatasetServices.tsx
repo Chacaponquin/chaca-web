@@ -6,7 +6,7 @@ import { ExportFileConfigDTO } from "@modules/config/dto/file"
 import { useConfig } from "@modules/config/hooks"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { useEnv } from "@modules/app/modules/env/hooks"
-import { DatasetError, DownloadDatasetError } from "../errors"
+import { DatasetError, DownloadDatasetError } from "../errors/dataset"
 import { ImageFormats } from "@modules/config/interfaces"
 
 interface ExportDatasetsProps {

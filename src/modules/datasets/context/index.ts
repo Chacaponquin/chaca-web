@@ -1,3 +1,3 @@
-import { DatasetsContext, DatasetsProvider } from "./DatasetContext/DatasetsContext"
+import { DatasetsContext, DatasetsProvider } from "./DatasetsContext"
 
 export { DatasetsContext, DatasetsProvider }

@@ -2,11 +2,10 @@ import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useFieldConfigMenu } from "./hooks"
 import { Fragment } from "react"
 import { Item } from "./components"
-import { ExportDatatypeDTO } from "@modules/datasets/dto/field"
 import { Field, MixedNode } from "@modules/datasets/domain/tree"
 
 interface Props {
-  field: Field<ExportDatatypeDTO>
+  field: Field
 }
 
 export default function FieldConfigMenu({ field }: Props) {

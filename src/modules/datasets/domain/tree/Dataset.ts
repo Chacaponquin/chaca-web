@@ -1,12 +1,13 @@
-import { Field, RefNode } from "./Field"
+import { Field, MixedNode, RefNode } from "./Field"
 import { RootNode } from "./RootNode"
-import { SearchProps } from "@modules/datasets/interfaces/tree"
-import { ExportDataset } from "./ExportDataset"
-import { ExportDatatypeDTO, ExportMixedDataType, FieldProps } from "@modules/datasets/dto/field"
+import { SaveProps, SearchProps } from "@modules/datasets/interfaces/tree"
+import { FieldProps } from "@modules/datasets/dto/field"
+import { ExportDatasetFieldDTO, SaveFieldDTO } from "@modules/datasets/dto/dataset"
 
-interface DatasetProps {
+interface Props {
   name: string
   limit: number
+  id: string
 }
 
 export class Dataset {
@@ -14,11 +15,11 @@ export class Dataset {
 
   private root: RootNode
 
-  constructor({ limit, name }: DatasetProps) {
-    this.root = new RootNode({ limit, name })
+  constructor({ limit, name, id }: Props) {
+    this.root = new RootNode({ limit, name, id })
   }
 
-  get nameId() {
+  get slug() {
     return this.name.replace(" ", "-")
   }
 
@@ -31,7 +32,7 @@ export class Dataset {
   }
 
   get limit() {
-    return this.root.limit()
+    return this.root.limit
   }
 
   get id() {
@@ -46,8 +47,12 @@ export class Dataset {
     return this.name.trim() === name.trim()
   }
 
-  exportFields(props: SearchProps) {
+  exportFields(props: SearchProps): ExportDatasetFieldDTO[] {
     return this.root.utils.exportFields(props)
+  }
+
+  saveFields(props: SaveProps): SaveFieldDTO[] {
+    return this.root.utils.saveFields(props)
   }
 
   setLimit(limit: number) {
@@ -58,7 +63,7 @@ export class Dataset {
     this.root.setName(name)
   }
 
-  insertField(node: Field<ExportDatatypeDTO>) {
+  insertField(node: Field) {
     this.root.utils.insertNode(node)
   }
 
@@ -66,15 +71,15 @@ export class Dataset {
     return this.root.utils.hasKeyField()
   }
 
-  allPossibleFieldsToRef(): Field<ExportDatatypeDTO>[] {
+  allPossibleFieldsToRef(): Field[] {
     return this.root.utils.allPossibleFieldsToRef()
   }
 
-  findFieldParentNode(nodeID: string): Field<ExportMixedDataType> | RootNode | null {
+  findFieldParentNode(nodeID: string): MixedNode | RootNode | null {
     return this.root.utils.findFieldParentNode(nodeID)
   }
 
-  findNodeById(id: string): Field<ExportDatatypeDTO> | RootNode | null {
+  findNodeById(id: string): Field | RootNode | null {
     if (this.id === id) return this.root
     else return this.root.utils.findNodeById(id)
   }
@@ -83,20 +88,12 @@ export class Dataset {
     this.root.utils.findNodeByIdAndEdit(props)
   }
 
-  findFieldById(fieldId: string): Field<ExportDatatypeDTO> | null {
+  findFieldById(fieldId: string): Field | null {
     return this.root.utils.findNodeById(fieldId)
   }
 
-  findSameLevelFields(fieldId: string): Field<ExportDatatypeDTO>[] {
+  findSameLevelFields(fieldId: string): Field[] {
     return this.root.utils.getSameLevelNodes(fieldId)
-  }
-
-  exportObject(props: SearchProps): ExportDataset {
-    return new ExportDataset({
-      fields: this.exportFields(props),
-      limit: this.limit,
-      name: this.name,
-    })
   }
 
   deleteField(fieldId: string): void {

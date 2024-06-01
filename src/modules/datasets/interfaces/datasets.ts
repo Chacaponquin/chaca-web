@@ -1,5 +1,5 @@
 import {
-  FieldDataType,
+  FieldDatatype,
   CustomDataType,
   MixedDataType,
   RefDataType,
@@ -8,7 +8,7 @@ import {
 } from "./dataset-field"
 
 export type {
-  FieldDataType,
+  FieldDatatype,
   CustomDataType,
   MixedDataType,
   RefDataType,
