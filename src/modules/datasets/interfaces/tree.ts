@@ -1,14 +1,14 @@
 import { FieldDatatype } from "./dataset-field"
-import { IsArrayConfig, IsKeyConfig } from "./field-config"
+import { IsArrayConfig, IsKeyConfig, PossibleNullConfig } from "./field-config"
 import { SubOption, Schema } from "@modules/schemas/interfaces/schema"
 
 export interface NodeProps {
   name: string
   id: string
   dataType: FieldDatatype
-  isPossibleNull?: number
-  isArray?: IsArrayConfig
-  isKey?: IsKeyConfig
+  isPossibleNull: PossibleNullConfig
+  isArray: IsArrayConfig
+  isKey: IsKeyConfig
 }
 
 export interface SearchProps {

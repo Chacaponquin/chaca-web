@@ -14,7 +14,7 @@ export default function FieldName({ handleChangeName, text, name }: Props) {
   })
 
   return (
-    <FormInputSection vertical={true} labelText={text}>
+    <FormInputSection vertical={true} labelText={text} className="mb-3">
       <ChacaTextInput
         onChange={handleChangeName}
         placeholder={PLACEHOLDER}

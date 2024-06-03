@@ -48,7 +48,7 @@ export default function SchemaValueConfig({
     handleSelectFieldSchemaOption({ option: option, parent: fieldType.schema })
   }
 
-  const CLASS = clsx("grid grid-cols-2 esm:grid-cols-1", "rounded", "gap-x-4 gap-y-3")
+  const CLASS = clsx("grid grid-cols-2 esm:grid-cols-1", "rounded", "gap-x-4 gap-y-3", "mb-5")
 
   return (
     <div className={CLASS}>

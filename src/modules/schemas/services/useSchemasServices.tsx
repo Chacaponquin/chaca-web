@@ -2,7 +2,7 @@ import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { useFetch } from "@modules/app/modules/http/hooks"
 import { FetchFunctionsProps } from "@modules/app/modules/http/interfaces/fetch"
 import { Schema } from "../interfaces/schema"
-import { ApiSchemaResponse } from "../dto"
+import { SchemaResponse } from "../dto"
 import { v4 as uuid } from "uuid"
 
 interface GetSchemasResponse {
@@ -16,7 +16,7 @@ export default function useSchemasServices() {
   async function getSchemas(
     props: FetchFunctionsProps<GetSchemasResponse> & { version: string },
   ): Promise<void> {
-    get<ApiSchemaResponse>({
+    get<SchemaResponse>({
       url: API_ROUTES.GET_SCHEMAS(props.version),
       onError: props.onError,
       onFinally: props.onFinally,
@@ -27,7 +27,7 @@ export default function useSchemasServices() {
             showName: o.showName,
             name: o.name,
             arguments: o.arguments.map((a) => {
-              return { ...a, id: uuid() }
+              return { argument: a.argument, config: a.config, id: uuid() }
             }),
           })),
           showName: d.showName,

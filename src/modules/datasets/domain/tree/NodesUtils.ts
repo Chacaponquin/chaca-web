@@ -27,7 +27,22 @@ export class NodesUtils {
   }
 
   hasKeyField(): boolean {
-    return this.nodes.some((n) => n.isKey)
+    let has = this.nodes.some((n) => n.isKey)
+
+    if (!has) {
+      for (const node of this.nodes) {
+        if (node instanceof MixedNode) {
+          const childHas = node.utils.hasKeyField()
+
+          if (childHas) {
+            has = childHas
+            break
+          }
+        }
+      }
+    }
+
+    return has
   }
 
   getSameLevelNodes(fieldId: string): Field[] {
@@ -178,7 +193,9 @@ export class NodesUtils {
       const node = this.nodes[i]
 
       if (node instanceof MixedNode) {
-        const newLocation = isIdLocation ? [...location, node.id] : [...location, node.name]
+        const newLocation = isIdLocation
+          ? [...location, this._instance.id]
+          : [...location, this._instance.name]
         ret = node.utils.getFieldLocation({ fieldId, location: newLocation })
       }
     }

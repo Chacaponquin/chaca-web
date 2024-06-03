@@ -3,10 +3,11 @@ import { useCallback, useContext } from "react"
 import { DATASETS_ACTIONS } from "../constants"
 import { FieldProps } from "../dto/field"
 import { Dataset, Field } from "@modules/datasets/domain/tree"
-import { usePlayground } from "."
 import { PossibleFieldToRef } from "../interfaces/ref"
 import { DatasetValidator, FieldValidator } from "../domain/validators"
 import { DatasetError } from "../errors/dataset"
+import { usePlayground } from "@modules/playground/hooks"
+import { DatasetNodeBuilder } from "@modules/playground/domain"
 
 interface AddFieldProps {
   field: FieldProps
@@ -55,16 +56,19 @@ export default function useDatasets() {
     showFieldsMenu,
     handleCloseFieldsMenu,
     handleOpenFieldsMenu,
+    handleClearDatasets,
   } = useContext(DatasetsContext)
 
-  const { updateConnections, handleDeleteDatasetNode, handleAddDatasetNode } = usePlayground()
+  const { updateConnections, handleDeleteDatasetNode, handleChangeNodes } = usePlayground()
 
   function handleAddDataset() {
     datasetDispatch({
       type: DATASETS_ACTIONS.CREATE_NEW_DATASET,
       payload: {
         next(dataset) {
-          handleAddDatasetNode(dataset)
+          handleChangeNodes((prev) => {
+            return [...prev, DatasetNodeBuilder.default({ dataset: dataset })]
+          })
         },
       },
     })
@@ -147,7 +151,7 @@ export default function useDatasets() {
               isKey: field.isKey,
               id: field.id,
             },
-            parentfieldId,
+            parentfieldId: parentfieldId,
             datasetId: datasetId,
             next: updateConnections,
           },
@@ -278,7 +282,9 @@ export default function useDatasets() {
         payload: {
           dataset: found.clone(),
           next(dataset) {
-            handleAddDatasetNode(dataset)
+            handleChangeNodes((prev) => {
+              return [...prev, DatasetNodeBuilder.default({ dataset })]
+            })
           },
         },
       })
@@ -305,5 +311,6 @@ export default function useDatasets() {
     handleOpenFieldsMenu,
     searchRefField,
     handleCloneDataset,
+    handleClearDatasets,
   }
 }

@@ -43,9 +43,9 @@ interface PossibleConfigProps {
 type Props = {
   id: string
   name: string
-  isPossibleNull?: number
-  isArray?: IsArrayConfig
-  isKey?: IsKeyConfig
+  isPossibleNull: number
+  isArray: IsArrayConfig
+  isKey: IsKeyConfig
 }
 
 type SchemaValueProps = Props & { schema: string; option: string; args: ArgumentObject }
@@ -62,7 +62,7 @@ type PickValueProps = Props & { count: number; values: ArrayValue[] }
 
 type CustomValueProps = Props & { code: string }
 
-type MixedValueProps = Props & { object: Field[] }
+type MixedValueProps = Props & { object: NodeProps[] }
 
 type RefValueProps = Props & { ref: string[]; unique: boolean; where: RefWhere }
 
@@ -76,7 +76,7 @@ export abstract class Field {
   static MIN_POSSIBLE_NULL = 0
   static MAX_POSSIBLE_NULL = 100
 
-  constructor({ name, isArray = null, isKey = false, isPossibleNull = 0, id }: Props) {
+  constructor({ name, isArray, isKey, isPossibleNull, id }: Props) {
     this._name = name
     this._isArray = isArray
     this._possibleNull = isPossibleNull
@@ -87,8 +87,8 @@ export abstract class Field {
   abstract export(props: SearchProps): ExportDatasetFieldDTO
   abstract stringInf(props: StringInfProps): string
   abstract clone(): Field
-  abstract get dataType(): FieldDatatype
   abstract save(props: SaveProps): SaveFieldDTO
+  abstract get dataType(): FieldDatatype
 
   protected getRouteString(route: string[]): string {
     return [...route, this.name].join(".")
@@ -394,7 +394,7 @@ export class SequentialNode extends Field {
 }
 
 export class RefNode extends Field {
-  ref: string[]
+  readonly ref: string[]
   readonly unique: boolean
   readonly where: RefWhere
 
@@ -643,7 +643,10 @@ export class MixedNode extends Field {
 
   constructor(props: MixedValueProps) {
     super(props)
-    props.object.map((f) => this.utils.insertNode(f))
+    props.object.forEach((f) => {
+      const node = Field.create(f)
+      this.utils.insertNode(node)
+    })
   }
 
   get nodes() {
@@ -664,8 +667,19 @@ export class MixedNode extends Field {
   get dataType(): MixedDataType {
     return {
       type: DATA_TYPES.MIXED,
-      object: this.utils.nodes,
+      object: this.nodesToProps(),
     }
+  }
+
+  private nodesToProps(): NodeProps[] {
+    return this.nodes.map((n) => ({
+      dataType: n.dataType,
+      id: n.id,
+      isArray: n.isArray,
+      isKey: n.isKey,
+      isPossibleNull: n.isPossibleNull,
+      name: n.name,
+    }))
   }
 
   stringInf(): string {
@@ -678,7 +692,7 @@ export class MixedNode extends Field {
       isArray: this.isArray,
       isKey: this.isKey,
       isPossibleNull: this.isPossibleNull,
-      object: this.utils.nodes,
+      object: this.nodesToProps(),
       id: this.id,
     })
 

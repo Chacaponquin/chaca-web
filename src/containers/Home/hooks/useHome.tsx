@@ -1,9 +1,10 @@
 import { MODAL_ACTIONS } from "@modules/modal/constants"
-import { useDatasets, usePlayground } from "@modules/datasets/hooks"
+import { useDatasets } from "@modules/datasets/hooks"
 import { useModal } from "@modules/modal/hooks"
 import { useDatasetServices } from "@modules/datasets/services"
 import { useContext } from "react"
 import { HomeContext } from "../context"
+import { usePlayground } from "@modules/playground/hooks"
 
 export default function useHome() {
   const { exportDatasets } = useContext(HomeContext)

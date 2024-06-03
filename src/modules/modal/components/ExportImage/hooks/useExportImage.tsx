@@ -1,4 +1,3 @@
-import { usePlayground } from "@modules/datasets/hooks"
 import { useEffect, useState } from "react"
 import { Form, FormatOptions } from "../interfaces"
 import { ExportImageFunc } from "@modules/modal/interfaces"
@@ -7,6 +6,7 @@ import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { Validator } from "@modules/app/domain"
 import { ImageFilenameValidator } from "@modules/config/domain/validators"
+import { usePlayground } from "@modules/playground/hooks"
 
 interface Props {
   next: ExportImageFunc

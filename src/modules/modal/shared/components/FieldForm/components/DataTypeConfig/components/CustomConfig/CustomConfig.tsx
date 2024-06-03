@@ -29,7 +29,7 @@ export default function CustomConfig({ code, handleUpdateCustomField }: Props) {
   }
 
   return (
-    <FormInputSection labelText={FUNCTION} vertical={false}>
+    <FormInputSection labelText={FUNCTION} vertical={false} className="mb-5">
       <ChacaIconButton
         icon={
           <i className="dark:fill-white fill-black">

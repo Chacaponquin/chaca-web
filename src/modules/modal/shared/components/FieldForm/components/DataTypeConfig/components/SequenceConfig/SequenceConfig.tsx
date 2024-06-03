@@ -23,7 +23,7 @@ export default function SequenceConfig({
   })
 
   return (
-    <div className="grid grid-cols-1 exsm:grid-cols-2 gap-x-7 gap-y-2 w-full">
+    <div className="grid grid-cols-1 exsm:grid-cols-2 gap-x-7 gap-y-2 w-full mb-3">
       <FormInputSection labelText={START} vertical={false} info={<StartsWithInfo />}>
         <ChacaNumberInput
           value={startsWith}

@@ -1,6 +1,6 @@
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { ARRAY_VALUE_TYPE } from "../constants"
-import { Field } from "../domain/tree"
+import { NodeProps } from "./tree"
 
 export type FieldDatatype =
   | CustomDataType
@@ -20,7 +20,7 @@ export interface CustomDataType {
 
 export interface MixedDataType {
   type: DATA_TYPES.MIXED
-  object: Field[]
+  object: NodeProps[]
 }
 
 export interface SingleValueDataType {

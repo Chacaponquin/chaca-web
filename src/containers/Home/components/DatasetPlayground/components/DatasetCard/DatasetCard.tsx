@@ -53,7 +53,7 @@ export default function DatasetCard({ data: { dataset } }: Props) {
 
       <div className="flex flex-col py-2 min-w-[380px]">
         {dataset.nodes.map((field, i) => (
-          <Field key={i} field={field} datasetHasKeys={dataset.hasKeyField()} />
+          <Field key={i} field={field} datasetHasKeys={dataset.hasKeyField()} margin={0} />
         ))}
       </div>
     </div>

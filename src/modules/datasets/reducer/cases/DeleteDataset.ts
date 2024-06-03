@@ -7,7 +7,7 @@ interface Props {
 }
 
 export class DeleteDataset extends DatasetUseCase<Props> {
-  public execute({ datasetId, next }: Props): Dataset[] {
+  execute({ datasetId, next }: Props): Dataset[] {
     const newDatasets = this.datasets.filter((d) => d.id !== datasetId)
     this.deleteRefFields(newDatasets, datasetId)
 

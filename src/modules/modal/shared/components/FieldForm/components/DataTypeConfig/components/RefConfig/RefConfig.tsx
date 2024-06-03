@@ -60,7 +60,7 @@ export default function RefConfig({
   }
 
   return (
-    <div className="flex flex-col gap-y-3">
+    <div className="flex flex-col gap-y-3 mb-5">
       <FormInputSection vertical={false} labelText={REF_TEXT}>
         <ChacaSelect
           size="base"

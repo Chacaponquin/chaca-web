@@ -20,7 +20,7 @@ export default function Argument({
   handleAddFieldSchemaArgument,
   handleDeleteFieldSchemaArgument,
 }: Props) {
-  const [enabled, setEnabled] = useState(false)
+  const [enabled, setEnabled] = useState(argument.argument in args)
 
   function handleChangeEnabled(value: boolean): void {
     setEnabled(value)

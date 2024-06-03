@@ -51,7 +51,7 @@ export default function FieldForm({
   })
 
   return (
-    <div className="flex flex-col gap-y-3">
+    <div className="flex flex-col">
       <FieldName name={field.name} text={FIELD_NAME_TEXT} handleChangeName={handleChangeName} />
 
       <FieldDatatype

@@ -1,23 +1,21 @@
-import { ARGUMENT_TYPE } from "../constants"
+import { ArgumentConfig } from "../interfaces/argument"
 
-export interface ApiSchemaResponse {
+export interface SchemaResponse {
   schemas: Array<{
     name: string
-    options: ApiSchemaOptionResponse[]
+    options: SchemaOptionResponse[]
     showName: string
   }>
   version: string
 }
 
-export interface ApiSchemaOptionResponse {
+export interface SchemaOptionResponse {
   name: string
-  arguments: ApiArgument[]
+  arguments: ArgumentResponse[]
   showName: string
 }
 
-export interface ApiArgument {
+export interface ArgumentResponse {
   argument: string
-  inputType: ARGUMENT_TYPE
-  selectValues?: string[]
-  description: string
+  config: ArgumentConfig
 }

@@ -6,10 +6,17 @@ interface Props {
   children: React.ReactNode
   vertical: boolean
   info?: React.ReactNode
+  className?: string
 }
 
-export default function FormInputSection({ labelText, children, vertical, info }: Props) {
-  const CLASS = clsx("flex", "w-full", {
+export default function FormInputSection({
+  labelText,
+  children,
+  vertical,
+  info,
+  className: iclass,
+}: Props) {
+  const CLASS = clsx("flex", "w-full", iclass, {
     "flex-col": vertical,
     "flex-row items-center gap-x-4": !vertical,
   })

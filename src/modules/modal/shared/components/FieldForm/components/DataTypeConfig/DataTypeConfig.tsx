@@ -67,7 +67,7 @@ export default function DataTypeConfig({
   handleChangeRefWhere,
 }: Props) {
   return (
-    <section>
+    <section className="">
       {dataType.type === DATA_TYPES.ENUM && (
         <EnumConfig values={dataType.values} handleChangeEnumValues={handleChangeEnumValues} />
       )}

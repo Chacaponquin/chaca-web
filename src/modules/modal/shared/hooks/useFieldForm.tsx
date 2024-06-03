@@ -124,7 +124,8 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
 
   function handleAddFieldSchemaArgument(argument: Argument): void {
     let value: unknown
-    switch (argument.inputType) {
+
+    switch (argument.config.type) {
       case ARGUMENT_TYPE.BOOLEAN:
         value = true
         break
@@ -138,7 +139,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
         value = 1
         break
       case ARGUMENT_TYPE.SELECT: {
-        const options = argument.selectValues as string[]
+        const options = argument.config.values
         value = options[0]
         break
       }

@@ -12,7 +12,7 @@ interface Props {
 
 export default function SequentialConfig({ values, handleChangeSequentialValues, loop }: Props) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-1 mb-5">
       <ValuesForm
         values={values}
         handleChangeValues={(v) => handleChangeSequentialValues({ values: v, loop: loop })}

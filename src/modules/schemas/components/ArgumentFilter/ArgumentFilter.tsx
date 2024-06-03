@@ -12,9 +12,9 @@ interface Props {
 
 export default function ArgumentFilter({ arg, value, handleChangeArgumentValue }: Props) {
   const filterArgument = useMemo(() => {
-    switch (arg.inputType) {
+    switch (arg.config.type) {
       case ARGUMENT_TYPE.SELECT: {
-        const options = arg.selectValues as string[]
+        const options = arg.config.values
 
         return (
           <ChacaSelect

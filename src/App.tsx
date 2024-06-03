@@ -14,6 +14,7 @@ import { ConfigProvider } from "@modules/config/context"
 import { ModalProvider } from "@modules/modal/context"
 import { HomeProvider } from "@containers/Home/context"
 import { DocsProvider } from "@modules/docs/context"
+import { PlaygroundProvider } from "@modules/playground/context"
 
 export default function App() {
   return (
@@ -35,13 +36,15 @@ export default function App() {
                       <SocketProvider>
                         <SchemasProvider>
                           <ConfigProvider>
-                            <DatasetsProvider>
-                              <ModalProvider>
-                                <HomeProvider>
-                                  <Home />
-                                </HomeProvider>
-                              </ModalProvider>
-                            </DatasetsProvider>
+                            <PlaygroundProvider>
+                              <DatasetsProvider>
+                                <ModalProvider>
+                                  <HomeProvider>
+                                    <Home />
+                                  </HomeProvider>
+                                </ModalProvider>
+                              </DatasetsProvider>
+                            </PlaygroundProvider>
                           </ConfigProvider>
                         </SchemasProvider>
                       </SocketProvider>

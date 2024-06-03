@@ -1,25 +1,6 @@
-import {
-  useEffect,
-  Dispatch,
-  Reducer,
-  createContext,
-  useReducer,
-  useState,
-  useCallback,
-} from "react"
+import { useEffect, Dispatch, Reducer, createContext, useReducer, useState } from "react"
 import { DatasetPayload, datasetsReducer } from "../reducer/datasets-reducer"
 import { Dataset, Field, SaveDatasets } from "@modules/datasets/domain/tree"
-import {
-  Connection,
-  Edge,
-  EdgeChange,
-  Node,
-  NodeChange,
-  addEdge,
-  useEdgesState,
-  useNodesState,
-} from "reactflow"
-import { CardProps } from "@containers/Home/components/DatasetPlayground/components"
 import { useSchemas } from "@modules/schemas/hooks"
 import { useLocalStorage } from "@modules/app/hooks"
 import { STORAGE_KEYS } from "@modules/app/constants"
@@ -29,6 +10,8 @@ import { DATASETS_ACTIONS } from "../constants"
 import { DEFAULT_VERSION } from "@modules/schemas/constants"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { useTranslation } from "@modules/app/modules/language/hooks"
+import { usePlayground } from "@modules/playground/hooks"
+import { DatasetNodeBuilder } from "@modules/playground/domain"
 
 interface Props {
   datasets: Dataset[]
@@ -38,23 +21,7 @@ interface Props {
   handleOpenFieldsMenu(): void
   handleCloseFieldsMenu(): void
   showFieldsMenu: boolean
-  nodes: Node<CardProps>[]
-  edges: Edge[]
-  onNodesChange(changes: NodeChange[]): void
-  onEdgesChange(changes: Array<EdgeChange>): void
-  onConnect(param: Connection): void
-  handleAddEdge(edge: Edge): void
-  handleDeleteNode(id: string): void
-  handleChangeEdges(func: (edges: Edge[]) => Edge[]): void
-  handleCleanEdges(): void
-  handleAddDatasetNode(dataset: Dataset): void
-  handleChangeNodes(fun: (prev: Node<CardProps>[]) => Node<CardProps>[]): void
-}
-
-interface CreateNodeProps {
-  dataset: Dataset
-  posX: number
-  posY: number
+  handleClearDatasets(): void
 }
 
 export const DatasetsContext = createContext<Props>({
@@ -64,7 +31,7 @@ export const DatasetsContext = createContext<Props>({
 
 export function DatasetsProvider({ children }: { children: React.ReactNode }) {
   const { fetch: fetchSchemas, findParent, findType, schemas, version } = useSchemas()
-  const { set: setStorage, get: getStorage } = useLocalStorage()
+  const { set: setStorage, get: getStorage, remove: removeStorage } = useLocalStorage()
   const { toastError } = useToast()
   const { LOAD_DATASETS_ERROR } = useTranslation({
     LOAD_DATASETS_ERROR: {
@@ -72,6 +39,8 @@ export function DatasetsProvider({ children }: { children: React.ReactNode }) {
       es: "Hubo un error cargando los datasets",
     },
   })
+  const { nodes, handleSetNodes, updateConnections, handleCleanEdges, handleCleanNodes } =
+    usePlayground()
 
   const [showFieldsMenu, setShowFieldsMenu] = useState(false)
 
@@ -80,9 +49,6 @@ export function DatasetsProvider({ children }: { children: React.ReactNode }) {
     datasetsReducer,
     [],
   )
-
-  const [nodes, setNodes, onNodesChange] = useNodesState<CardProps>([])
-  const [edges, setEdges, onEdgesChange] = useEdgesState([])
 
   useEffect(() => {
     if (datasets.length === 1) {
@@ -149,13 +115,20 @@ export function DatasetsProvider({ children }: { children: React.ReactNode }) {
             result.push({ dataset: newDataset, posX: save.posX, posY: save.posY })
           })
 
+          const saveDatasets = result.map((r) => r.dataset)
+          const saveNodes = result.map((r) => {
+            return DatasetNodeBuilder.build({ dataset: r.dataset, posX: r.posX, posY: r.posY })
+          })
+
           fetchSchemas(content.version)
-          handleSetDatasets(result.map((r) => r.dataset))
-          handleSetNodes(
-            result.map((r) => {
-              return createNode({ dataset: r.dataset, posX: r.posX, posY: r.posY })
-            }),
-          )
+
+          handleSetDatasets(saveDatasets)
+          handleSetNodes(saveNodes)
+          updateConnections(saveDatasets)
+
+          if (saveDatasets.length > 0) {
+            setSelectedDataset(saveDatasets[0])
+          }
         },
         error() {
           fetchSchemas(DEFAULT_VERSION)
@@ -185,66 +158,21 @@ export function DatasetsProvider({ children }: { children: React.ReactNode }) {
     datasetDispatch({ type: DATASETS_ACTIONS.SET_INIT_DATASETS, payload: { datasets: array } })
   }
 
-  function handleSetNodes(array: Node<CardProps>[]): void {
-    setNodes(array)
-  }
-
-  function handleChangeEdges(func: (edges: Edge[]) => Edge[]) {
-    setEdges(func)
-  }
-
   function handleOpenFieldsMenu() {
     setShowFieldsMenu(true)
   }
 
   function handleClearDatasets() {
     datasetDispatch({ type: DATASETS_ACTIONS.CLEAR })
+
+    handleCleanEdges()
+    handleCleanNodes()
+
+    removeStorage(STORAGE_KEYS.PREVIEW_CONFIG)
   }
 
   function handleCloseFieldsMenu() {
     setShowFieldsMenu(false)
-  }
-
-  const onConnect = useCallback(
-    (params: Connection) => {
-      setEdges((eds) => addEdge(params, eds))
-    },
-    [setEdges],
-  )
-
-  function handleCleanEdges() {
-    setEdges([])
-  }
-
-  function handleDeleteNode(id: string) {
-    setNodes((prev) => prev.filter((n) => n.id !== id))
-  }
-
-  function handleAddEdge(edge: Edge) {
-    setEdges((prev) => {
-      const result = [...prev, edge]
-      return result
-    })
-  }
-
-  function handleAddDatasetNode(dataset: Dataset) {
-    setNodes((prev) => {
-      return [...prev, createNode({ dataset: dataset, posX: 100, posY: 200 })]
-    })
-  }
-
-  function handleChangeNodes(fun: (prev: Node<CardProps>[]) => Node<CardProps>[]) {
-    setNodes(fun)
-  }
-
-  function createNode({ dataset, posX, posY }: CreateNodeProps): Node<CardProps> {
-    return {
-      id: dataset.id,
-      type: "custom",
-      draggable: true,
-      position: { x: posX, y: posY },
-      data: { dataset: dataset },
-    }
   }
 
   const data: Props = {
@@ -255,17 +183,7 @@ export function DatasetsProvider({ children }: { children: React.ReactNode }) {
     showFieldsMenu,
     handleCloseFieldsMenu,
     handleOpenFieldsMenu,
-    nodes: nodes,
-    edges: edges,
-    onEdgesChange: onEdgesChange,
-    onNodesChange: onNodesChange,
-    onConnect: onConnect,
-    handleAddEdge: handleAddEdge,
-    handleDeleteNode: handleDeleteNode,
-    handleChangeEdges,
-    handleCleanEdges,
-    handleAddDatasetNode,
-    handleChangeNodes,
+    handleClearDatasets,
   }
 
   return <DatasetsContext.Provider value={data}>{children}</DatasetsContext.Provider>

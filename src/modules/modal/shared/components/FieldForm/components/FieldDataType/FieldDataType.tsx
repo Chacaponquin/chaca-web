@@ -37,7 +37,7 @@ export default function FieldDatatype({
   const found = DATA_TYPES_ARRAY.find((d) => d.default.type === dataType)
 
   return (
-    <FormInputSection vertical={true} labelText={label}>
+    <FormInputSection vertical={true} labelText={label} className="mb-4">
       {found && (
         <ChacaSelect
           placeholder={PLACEHOLDER}

@@ -1,11 +1,11 @@
 import { useContext, useEffect } from "react"
-import { DatasetsContext } from "../context"
-import { Dataset } from "../domain/tree"
-import { DatasetConnection } from "../interfaces/dataset-connect"
-import { v4 as uuid } from "uuid"
-import { getRectOfNodes, getViewportForBounds, MarkerType } from "reactflow"
+import { Dataset } from "../../datasets/domain/tree"
+import { DatasetConnection } from "../../datasets/interfaces/dataset-connect"
+import { getRectOfNodes, getViewportForBounds } from "reactflow"
 import { toPng, toSvg } from "html-to-image"
 import { ImageFormats } from "@modules/config/interfaces"
+import { PlaygroundContext } from "../context"
+import { DatasetEdgeBuilder } from "../domain"
 
 interface GenerateImageProps {
   success(img: string): void
@@ -22,17 +22,18 @@ export default function usePlayground() {
   }, [])
 
   const {
+    handleChangeNodes,
+    handleDeleteNode,
+    handleSetEdges,
     handleAddEdge,
-    edges,
+    handleSetNodes,
     nodes,
+    edges,
+    handleChangeEdges,
+    onConnect,
     onEdgesChange,
     onNodesChange,
-    onConnect,
-    handleDeleteNode,
-    handleAddDatasetNode,
-    handleCleanEdges,
-    handleChangeNodes,
-  } = useContext(DatasetsContext)
+  } = useContext(PlaygroundContext)
 
   function handleDisableAllNodes() {
     handleChangeNodes((prev) => {
@@ -50,6 +51,14 @@ export default function usePlayground() {
     })
   }
 
+  function handleCleanNodes() {
+    handleSetNodes([])
+  }
+
+  function handleCleanEdges() {
+    handleSetEdges([])
+  }
+
   function handleDeleteDatasetNode(id: string): void {
     handleDeleteNode(id)
   }
@@ -61,19 +70,14 @@ export default function usePlayground() {
 
     for (const con of connections) {
       for (const target of con.to) {
-        handleAddEdge({
-          id: uuid(),
-          source: con.fromDataset,
-          target: con.targetDataset,
-          sourceHandle: con.from,
-          targetHandle: target,
-          markerEnd: {
-            type: MarkerType.ArrowClosed,
-          },
-          type: "smoothstep",
-          hidden: false,
-          pathOptions: {},
-        })
+        handleAddEdge(
+          DatasetEdgeBuilder.build({
+            datasetFrom: con.fromDataset,
+            datasetTo: con.targetDataset,
+            fieldFrom: con.from,
+            fieldTo: target,
+          }),
+        )
       }
     }
   }
@@ -151,7 +155,6 @@ export default function usePlayground() {
   }
 
   return {
-    handleAddDatasetNode,
     edges,
     nodes,
     onEdgesChange,
@@ -162,5 +165,10 @@ export default function usePlayground() {
     handleDisableAllNodes,
     handleEnableAllNodes,
     handleGenerateImage,
+    handleChangeNodes,
+    handleSetNodes,
+    handleChangeEdges,
+    handleCleanEdges,
+    handleCleanNodes,
   }
 }
