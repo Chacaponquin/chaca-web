@@ -151,7 +151,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
         break
     }
 
-    handleUpdateFieldSchemaArguments({ argumentName: argument.argument, value: value })
+    handleUpdateFieldSchemaArguments({ name: argument.argument, value: value })
   }
 
   function handleDeleteFieldSchemaArgument(argument: string) {
@@ -178,7 +178,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
     })
   }
 
-  function handleUpdateFieldSchemaArguments({ argumentName, value }: UpdateArgumentsProps) {
+  function handleUpdateFieldSchemaArguments({ name, value }: UpdateArgumentsProps) {
     const dataType = field.dataType as SingleValueDataType
 
     formDispatch({
@@ -188,7 +188,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
           type: DATA_TYPES.SINGLE_VALUE,
           fieldType: {
             ...dataType.fieldType,
-            args: { ...dataType.fieldType.args, [argumentName]: value },
+            args: { ...dataType.fieldType.args, [name]: value },
           },
         },
       },

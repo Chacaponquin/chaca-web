@@ -44,7 +44,7 @@ export default function Argument({
             arg={argument}
             value={args[argument.argument]}
             handleChangeArgumentValue={(v) => {
-              handleUpdateFieldSchemaArguments({ argumentName: argument.argument, value: v })
+              handleUpdateFieldSchemaArguments({ name: argument.argument, value: v })
             }}
           />
         </Fragment>

@@ -30,7 +30,7 @@ export class DeleteField extends DatasetUseCase<ExecuteProps> {
 
       for (const ref of refFields) {
         if (ref.ref.includes(id)) {
-          ref.ref = []
+          ref.setRef([])
         }
       }
     }

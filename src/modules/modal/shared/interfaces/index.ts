@@ -8,7 +8,7 @@ export interface SelectFieldSchemaOptionProps {
 }
 
 export interface UpdateArgumentsProps {
-  argumentName: string
+  name: string
   value: unknown
 }
 

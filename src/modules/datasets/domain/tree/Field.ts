@@ -394,13 +394,13 @@ export class SequentialNode extends Field {
 }
 
 export class RefNode extends Field {
-  readonly ref: string[]
+  private _ref: string[]
   readonly unique: boolean
   readonly where: RefWhere
 
   constructor(props: RefValueProps) {
     super(props)
-    this.ref = props.ref
+    this._ref = props.ref
     this.unique = props.unique
     this.where = props.where
   }
@@ -416,6 +416,14 @@ export class RefNode extends Field {
 
   stringInf(): string {
     return `ref`
+  }
+
+  get ref() {
+    return this._ref
+  }
+
+  setRef(r: string[]) {
+    this._ref = r
   }
 
   save(): SaveFieldDTO {

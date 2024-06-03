@@ -2,12 +2,11 @@ import ReactFlow, { Background } from "reactflow"
 import { DatasetCard, DatasetsButtons } from "./components"
 import { useTheme } from "@modules/app/modules/theme/hooks"
 import { THEME } from "@modules/app/modules/theme/constants"
-import { PlaygroundZoom } from "@containers/Home/domain"
 import { useSchemas } from "@modules/schemas/hooks"
+import { usePlayground } from "@modules/playground/hooks"
+import { PlaygroundZoom } from "@modules/playground/domain"
 
 import "reactflow/dist/style.css"
-
-import { usePlayground } from "@modules/playground/hooks"
 
 const nodeTypes = {
   custom: DatasetCard,

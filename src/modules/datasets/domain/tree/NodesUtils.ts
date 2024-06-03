@@ -7,7 +7,7 @@ import { ExportDatasetFieldDTO, SaveFieldDTO } from "@modules/datasets/dto/datas
 interface GetLocationProps {
   fieldId: string
   location: string[]
-  isIdLocation?: boolean
+  isIdLocation: boolean
 }
 
 export class NodesUtils {
@@ -174,7 +174,7 @@ export class NodesUtils {
     }
   }
 
-  getFieldLocation({ fieldId, location, isIdLocation = false }: GetLocationProps): string[] | null {
+  getFieldLocation({ fieldId, location, isIdLocation }: GetLocationProps): string[] | null {
     if (this.nodes.length === 0) {
       return null
     }
@@ -196,7 +196,11 @@ export class NodesUtils {
         const newLocation = isIdLocation
           ? [...location, this._instance.id]
           : [...location, this._instance.name]
-        ret = node.utils.getFieldLocation({ fieldId, location: newLocation })
+        ret = node.utils.getFieldLocation({
+          fieldId,
+          location: newLocation,
+          isIdLocation: isIdLocation,
+        })
       }
     }
 

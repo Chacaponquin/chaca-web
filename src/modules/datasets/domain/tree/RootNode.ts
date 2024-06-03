@@ -1,6 +1,7 @@
 import { Field } from "./Field"
 import { NodesUtils } from "./NodesUtils"
 import { Dataset } from "./Dataset"
+import { v4 as uuid } from "uuid"
 
 interface Props {
   limit: number
@@ -22,7 +23,7 @@ export class RootNode {
   }
 
   clone(): Dataset {
-    const dataset = new Dataset({ name: this.name, limit: this._limit, id: this.id })
+    const dataset = new Dataset({ name: this.name, limit: this._limit, id: uuid() })
 
     const newNodes = this.utils.nodes.map((n) => n.clone())
     newNodes.forEach((n) => dataset.insertField(n))

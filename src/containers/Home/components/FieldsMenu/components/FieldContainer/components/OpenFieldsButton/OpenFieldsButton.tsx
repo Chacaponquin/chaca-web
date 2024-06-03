@@ -14,7 +14,7 @@ export default function OpenFieldsButton({ onClick, open }: Props) {
       className="dark:fill-white fill-black"
       onClick={onClick}
     >
-      <ArrowRight size={19} />
+      <ArrowRight size={17} />
     </button>
   )
 }

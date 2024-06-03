@@ -1,6 +1,6 @@
-import { PlaygroundZoom } from "@containers/Home/domain"
 import { Lock, Minus, Plus, ScreenFit, Unlock } from "@modules/app/modules/icon/components"
 import { IconProps } from "@modules/app/modules/icon/interfaces"
+import { PlaygroundZoom } from "@modules/playground/domain"
 import { usePlayground } from "@modules/playground/hooks"
 import { useState } from "react"
 import { useReactFlow, useViewport } from "reactflow"

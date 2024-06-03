@@ -22,7 +22,7 @@ export class DeleteDataset extends DatasetUseCase<Props> {
 
       for (const ref of refFields) {
         if (ref.ref.includes(datasetId)) {
-          ref.ref = []
+          ref.setRef([])
         }
       }
     }

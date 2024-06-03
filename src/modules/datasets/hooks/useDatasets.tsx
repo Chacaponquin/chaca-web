@@ -4,10 +4,11 @@ import { DATASETS_ACTIONS } from "../constants"
 import { FieldProps } from "../dto/field"
 import { Dataset, Field } from "@modules/datasets/domain/tree"
 import { PossibleFieldToRef } from "../interfaces/ref"
-import { DatasetValidator, FieldValidator } from "../domain/validators"
+import { DatasetValidator } from "../domain/validators/dataset"
 import { DatasetError } from "../errors/dataset"
 import { usePlayground } from "@modules/playground/hooks"
 import { DatasetNodeBuilder } from "@modules/playground/domain"
+import { FieldValidator } from "../domain/validators/field"
 
 interface AddFieldProps {
   field: FieldProps
