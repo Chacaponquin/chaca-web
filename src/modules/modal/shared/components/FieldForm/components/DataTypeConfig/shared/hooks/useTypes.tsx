@@ -1,5 +1,5 @@
 import { SelectTypes } from "../../interfaces"
-import { ARRAY_VALUE_TYPE } from "@modules/datasets/constants"
+import { ARRAY_VALUE_TYPE, DatasetFunctions } from "@modules/datasets/constants"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 
 export default function useTypes() {
@@ -10,14 +10,14 @@ export default function useTypes() {
   })
 
   const valueTypes: SelectTypes[] = [
-    { name: STRING, type: ARRAY_VALUE_TYPE.STRING },
-    { name: NUMBER, type: ARRAY_VALUE_TYPE.NUMBER },
-    { name: "JSON", type: ARRAY_VALUE_TYPE.JSON },
+    { name: STRING, type: ARRAY_VALUE_TYPE.STRING, defaultValue: "" },
+    { name: NUMBER, type: ARRAY_VALUE_TYPE.NUMBER, defaultValue: "0" },
+    { name: "JSON", type: ARRAY_VALUE_TYPE.JSON, defaultValue: "{}" },
   ]
 
   const chanceTypes: SelectTypes[] = [
-    { name: NUMBER, type: ARRAY_VALUE_TYPE.NUMBER },
-    { name: FUNCTION, type: ARRAY_VALUE_TYPE.FUNCTION },
+    { name: NUMBER, type: ARRAY_VALUE_TYPE.NUMBER, defaultValue: "0" },
+    { name: FUNCTION, type: ARRAY_VALUE_TYPE.FUNCTION, defaultValue: DatasetFunctions.chance() },
   ]
 
   return { valueTypes, chanceTypes }

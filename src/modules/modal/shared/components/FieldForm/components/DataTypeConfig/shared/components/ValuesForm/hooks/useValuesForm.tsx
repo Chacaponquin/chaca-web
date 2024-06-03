@@ -19,7 +19,7 @@ export default function useValuesForm({ values, handleChangeValues }: Props) {
       handleChangeValues(
         values.map((v, i) => {
           if (i === index) {
-            v.value = ""
+            v.value = found.defaultValue
             v.type = found.type
           }
 

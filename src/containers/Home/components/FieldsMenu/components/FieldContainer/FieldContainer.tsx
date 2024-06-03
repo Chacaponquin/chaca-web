@@ -14,7 +14,7 @@ export default function FieldContainer({ margin, field }: Props) {
   return (
     <section className="flex flex-col w-full">
       <div style={{ paddingLeft: `${margin}px` }}>
-        <div className="w-full flex items-center gap-x-4 justify-between py-2.5 transition-all duration-300 px-2">
+        <div className="w-full flex items-center gap-x-4 justify-between py-2 transition-all duration-300 px-2">
           <div className="flex items-center">
             {field instanceof MixedNode ? (
               <Fragment>

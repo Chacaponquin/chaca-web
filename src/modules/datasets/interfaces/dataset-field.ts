@@ -25,7 +25,9 @@ export interface MixedDataType {
 
 export interface SingleValueDataType {
   type: DATA_TYPES.SINGLE_VALUE
-  fieldType: SchemaValueTypeObject
+  schema: string
+  option: string
+  args: ArgumentObject
 }
 
 export interface RefDataType {
@@ -68,12 +70,6 @@ export interface PickDataType {
   type: DATA_TYPES.PICK
   count: number
   values: ArrayValue[]
-}
-
-export interface SchemaValueTypeObject {
-  schema: string
-  option: string
-  args: ArgumentObject
 }
 
 export type ArgumentObject = Record<string, unknown>

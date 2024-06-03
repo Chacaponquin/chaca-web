@@ -110,9 +110,9 @@ export abstract class Field {
     if (props.dataType.type === DATA_TYPES.SINGLE_VALUE) {
       return new SchemaValueNode({
         ...props,
-        option: props.dataType.fieldType.option,
-        schema: props.dataType.fieldType.schema,
-        args: props.dataType.fieldType.args,
+        option: props.dataType.option,
+        schema: props.dataType.schema,
+        args: props.dataType.args,
       })
     } else if (props.dataType.type === DATA_TYPES.CUSTOM) {
       return new CustomNode({ ...props, code: props.dataType.code })
@@ -218,7 +218,9 @@ export class SchemaValueNode extends Field {
     return {
       dataType: {
         type: DATA_TYPES.SINGLE_VALUE,
-        fieldType: { args: this.args, option: option.name, schema: module.name },
+        args: this.args,
+        option: option.name,
+        schema: module.name,
       },
       isArray: this.isArray,
       isKey: this.isKey,
@@ -244,11 +246,9 @@ export class SchemaValueNode extends Field {
   get dataType(): SingleValueDataType {
     return {
       type: DATA_TYPES.SINGLE_VALUE,
-      fieldType: {
-        args: this.args,
-        option: this.option,
-        schema: this.schema,
-      },
+      args: this.args,
+      option: this.option,
+      schema: this.schema,
     }
   }
 
@@ -263,7 +263,9 @@ export class SchemaValueNode extends Field {
       name: this.name,
       dataType: {
         type: DATA_TYPES.SINGLE_VALUE,
-        fieldType: { args: this.args, option: option.name, schema: module.name },
+        args: this.args,
+        option: option.name,
+        schema: module.name,
       },
       isArray: this.isArray,
       isKey: this.isKey,

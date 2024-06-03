@@ -108,7 +108,9 @@ export default function DataTypeConfig({
 
       {dataType.type === DATA_TYPES.SINGLE_VALUE && (
         <SchemaValueConfig
-          fieldType={dataType.fieldType}
+          args={dataType.args}
+          option={dataType.option}
+          schema={dataType.schema}
           handleSelectFieldSchema={handleSelectFieldSchema}
           handleSelectFieldSchemaOption={handleSelectFieldSchemaOption}
           handleUpdateFieldSchemaArguments={handleUpdateFieldSchemaArguments}

@@ -54,10 +54,13 @@ export default function useConfig({ values, handleChangeProbabilityValues }: Pro
     const found = valueTypes.find((t) => t.name === name)
 
     if (found) {
+      const { defaultValue, type } = found
+
       handleChangeProbabilityValues(
         values.map((v, i) => {
           if (i === index) {
-            v.value.type = found.type
+            v.value.type = type
+            v.value.value = defaultValue
           }
 
           return v
@@ -90,10 +93,13 @@ export default function useConfig({ values, handleChangeProbabilityValues }: Pro
     const found = chanceTypes.find((t) => t.name === name)
 
     if (found) {
+      const { defaultValue, type } = found
+
       handleChangeProbabilityValues(
         values.map((v, i) => {
           if (i === index) {
-            v.chance.type = found.type
+            v.chance.type = type
+            v.chance.value = defaultValue
           }
 
           return v

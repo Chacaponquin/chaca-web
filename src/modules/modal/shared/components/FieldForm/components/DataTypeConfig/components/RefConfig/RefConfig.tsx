@@ -1,11 +1,10 @@
 import { ChacaIconButton, ChacaSelect } from "@form/components"
 import { Edit } from "@modules/app/modules/icon/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
-import { useDatasets } from "@modules/datasets/hooks"
 import { RefWhere } from "@modules/datasets/interfaces/dataset-field"
-import { useCode } from "@modules/modal/hooks"
 import { CheckField, FormInputSection } from "@modules/modal/shared/shared/components"
 import { UniqueInfo, WhereInfo } from "./components"
+import { useRefConfig } from "./hooks"
 
 interface RefConfigProps {
   refField: string[]
@@ -28,36 +27,18 @@ export default function RefConfig({
   unique,
   where,
 }: RefConfigProps) {
-  const { searchPossibleFieldsToRef } = useDatasets()
-  const { handleOpen } = useCode()
+  const { handleChangeWhere, handleClick, possibleFields } = useRefConfig({
+    datasetId: datasetId,
+    fieldId: id,
+    handleChangeRefWhere: handleChangeRefWhere,
+    where: where,
+  })
 
   const { REF_TEXT, PLACEHOLDER, EDIT_WHERE } = useTranslation({
     REF_TEXT: { en: "Reference field", es: "Referencia" },
     PLACEHOLDER: { en: "Select a field", es: "Selecciona un campo" },
     EDIT_WHERE: { en: "Edit code", es: "Editar código" },
   })
-
-  const possibleFields = searchPossibleFieldsToRef({ datasetId, fieldId: id })
-
-  function handleChangeWhere(value: boolean) {
-    if (value) {
-      handleChangeRefWhere("")
-    } else {
-      handleChangeRefWhere(null)
-    }
-  }
-
-  function handleClick() {
-    if (where !== null) {
-      handleOpen({
-        code: where,
-        handleChange(v) {
-          handleChangeRefWhere(v)
-        },
-        language: "javascript",
-      })
-    }
-  }
 
   return (
     <div className="flex flex-col gap-y-3 mb-5">

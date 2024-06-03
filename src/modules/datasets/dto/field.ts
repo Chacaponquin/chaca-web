@@ -1,5 +1,5 @@
 import { DATA_TYPES } from "@modules/schemas/constants"
-import { FieldDatatype, RefWhere, SchemaValueTypeObject } from "../interfaces/dataset-field"
+import { ArgumentObject, FieldDatatype, RefWhere } from "../interfaces/dataset-field"
 import { IsArrayConfig, IsKeyConfig, PossibleNullConfig } from "../interfaces/field-config"
 import { ExportDatasetFieldDTO } from "./dataset"
 
@@ -42,7 +42,9 @@ export interface ExportCustomDataType {
 
 export interface ExportSingleValueDataType {
   type: DATA_TYPES.SINGLE_VALUE
-  fieldType: SchemaValueTypeObject
+  schema: string
+  option: string
+  args: ArgumentObject
 }
 
 export interface ExportSequenceDataType {

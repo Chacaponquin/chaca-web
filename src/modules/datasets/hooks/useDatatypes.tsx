@@ -12,7 +12,7 @@ import {
 } from "../interfaces/dataset-field"
 import { useSchemas } from "@modules/schemas/hooks"
 import { useDatasets } from "./"
-import { ARRAY_VALUE_TYPE } from "../constants"
+import { ARRAY_VALUE_TYPE, DatasetFunctions } from "../constants"
 import { Datatype } from "../domain/data-types"
 
 interface Props {
@@ -26,7 +26,7 @@ export default function useDatatypes({ fieldId, datasetId }: Props) {
 
   const DEFAULT_CUSTOM_DATA_TYPE: CustomDataType = {
     type: DATA_TYPES.CUSTOM,
-    code: `function getValue(props){\n   // logic\n}`,
+    code: DatasetFunctions.custom(),
   }
 
   const DEFAULT_MIXED_DATA_TYPE: MixedDataType = {
@@ -36,7 +36,9 @@ export default function useDatatypes({ fieldId, datasetId }: Props) {
 
   const DEFAULT_SCHEMA_VALUE_DATA_TYPE: SingleValueDataType = {
     type: DATA_TYPES.SINGLE_VALUE,
-    fieldType: { args: {}, schema: schemas[0].name, option: schemas[0].options[0].name },
+    args: {},
+    schema: schemas[0].name,
+    option: schemas[0].options[0].name,
   }
 
   const DEFAULT_REF_DATA_TYPE: RefDataType = {

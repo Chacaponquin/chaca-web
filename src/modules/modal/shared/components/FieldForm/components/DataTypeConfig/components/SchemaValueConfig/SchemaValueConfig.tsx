@@ -1,6 +1,5 @@
 import { ChacaSelect } from "@form/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
-import { SchemaValueTypeObject } from "@modules/datasets/interfaces/dataset-field"
 import {
   SelectFieldSchemaOptionProps,
   UpdateArgumentsProps,
@@ -11,9 +10,12 @@ import { useMemo } from "react"
 import { Argument } from "@modules/schemas/interfaces/argument"
 import clsx from "clsx"
 import { FormInputSection } from "@modules/modal/shared/shared/components"
+import { ArgumentObject } from "@modules/datasets/interfaces/dataset-field"
 
 interface Props {
-  fieldType: SchemaValueTypeObject
+  args: ArgumentObject
+  schema: string
+  option: string
   handleSelectFieldSchema(v: string): void
   handleSelectFieldSchemaOption(p: SelectFieldSchemaOptionProps): void
   handleUpdateFieldSchemaArguments(p: UpdateArgumentsProps): void
@@ -22,7 +24,9 @@ interface Props {
 }
 
 export default function SchemaValueConfig({
-  fieldType,
+  args,
+  option,
+  schema,
   handleSelectFieldSchema,
   handleSelectFieldSchemaOption,
   handleUpdateFieldSchemaArguments,
@@ -35,17 +39,14 @@ export default function SchemaValueConfig({
     OPTION_TEXT: { en: "Option", es: "Opción" },
   })
 
-  const foundOptions = useMemo(
-    () => findParentOptions(fieldType.schema),
-    [findParentOptions, fieldType],
-  )
+  const foundOptions = useMemo(() => findParentOptions(schema), [findParentOptions, schema])
 
   function handleSelectModule(m: string) {
     handleSelectFieldSchema(m)
   }
 
   function handleSelectModuleOption(option: string) {
-    handleSelectFieldSchemaOption({ option: option, parent: fieldType.schema })
+    handleSelectFieldSchemaOption({ option: option, parent: schema })
   }
 
   const CLASS = clsx("grid grid-cols-2 esm:grid-cols-1", "rounded", "gap-x-4 gap-y-3", "mb-5")
@@ -58,7 +59,7 @@ export default function SchemaValueConfig({
           labelKey="name"
           valueKey="name"
           placeholder={MODULE_TEXT}
-          value={fieldType.schema}
+          value={schema}
           onChange={handleSelectModule}
           size="base"
         />
@@ -66,7 +67,7 @@ export default function SchemaValueConfig({
 
       <FormInputSection vertical={true} labelText={OPTION_TEXT}>
         <ChacaSelect
-          value={fieldType.option}
+          value={option}
           options={foundOptions}
           labelKey="name"
           valueKey="name"
@@ -77,9 +78,9 @@ export default function SchemaValueConfig({
       </FormInputSection>
 
       <OptionArguments
-        module={fieldType.schema}
-        option={fieldType.option}
-        args={fieldType.args}
+        module={schema}
+        option={option}
+        args={args}
         handleUpdateFieldSchemaArguments={handleUpdateFieldSchemaArguments}
         handleAddFieldSchemaArgument={handleAddFieldSchemaArgument}
         handleDeleteFieldSchemaArgument={handleDeleteFieldSchemaArgument}

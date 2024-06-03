@@ -22,7 +22,7 @@ export default function PickConfig({
   const { COUNT } = useTranslation({ COUNT: { en: "Count", es: "Cantidad" } })
 
   return (
-    <div className="flex flex-col gap-y-3">
+    <div className="flex flex-col gap-y-3 mb-1.5">
       <div className="grid grid-cols-1 exsm:grid-cols-2">
         <FormInputSection vertical={false} labelText={COUNT} info={<CountInfo />}>
           <ChacaNumberInput

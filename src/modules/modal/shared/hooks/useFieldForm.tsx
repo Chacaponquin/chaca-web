@@ -96,11 +96,9 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
       payload: {
         dataType: {
           type: DATA_TYPES.SINGLE_VALUE,
-          fieldType: {
-            args: {},
-            schema: parent,
-            option: findParent(parent).options[0].name,
-          },
+          args: {},
+          schema: parent,
+          option: findParent(parent).options[0].name,
         },
       },
     })
@@ -112,11 +110,9 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
       payload: {
         dataType: {
           type: DATA_TYPES.SINGLE_VALUE,
-          fieldType: {
-            args: {},
-            schema: parent,
-            option: option,
-          },
+          args: {},
+          schema: parent,
+          option: option,
         },
       },
     })
@@ -158,7 +154,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
     const dataType = field.dataType as SingleValueDataType
 
     let newArguments = {}
-    Object.entries(dataType.fieldType.args).forEach(([key, value]) => {
+    Object.entries(dataType.args).forEach(([key, value]) => {
       if (key !== argument) {
         newArguments = { ...newArguments, [key]: value }
       }
@@ -169,10 +165,9 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
       payload: {
         dataType: {
           type: DATA_TYPES.SINGLE_VALUE,
-          fieldType: {
-            ...dataType.fieldType,
-            args: newArguments,
-          },
+          option: dataType.option,
+          schema: dataType.schema,
+          args: newArguments,
         },
       },
     })
@@ -186,10 +181,9 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
       payload: {
         dataType: {
           type: DATA_TYPES.SINGLE_VALUE,
-          fieldType: {
-            ...dataType.fieldType,
-            args: { ...dataType.fieldType.args, [name]: value },
-          },
+          args: { ...dataType.args, [name]: value },
+          option: dataType.option,
+          schema: dataType.schema,
         },
       },
     })
