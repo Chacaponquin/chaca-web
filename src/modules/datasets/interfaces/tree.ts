@@ -1,3 +1,4 @@
+import { DatasetError } from "../errors/dataset"
 import { FieldDatatype } from "./dataset-field"
 import { IsArrayConfig, IsKeyConfig, PossibleNullConfig } from "./field-config"
 import { SubOption, Schema } from "@modules/schemas/interfaces/schema"
@@ -17,6 +18,8 @@ export interface SearchProps {
   searchRefField(ref: string[]): string[]
   fieldRoute: string[]
 }
+
+export type ExportFieldsProps = SearchProps & { errors: DatasetError[] }
 
 export interface StringInfProps {
   findOption(p: string, o: string): SubOption

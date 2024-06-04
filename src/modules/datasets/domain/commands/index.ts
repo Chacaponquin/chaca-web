@@ -80,11 +80,11 @@ export class ExportAllDatasetsCommand extends KeyboardCommand {
   }
 }
 
-export class ExportDatasetsImageCommand extends KeyboardCommand {
+export class handleExportDatasetsImageCommand extends KeyboardCommand {
   static value = "Ctrl+Alt+I"
 
   constructor(click: () => void) {
-    super({ click, command: ExportDatasetsImageCommand.value })
+    super({ click, command: handleExportDatasetsImageCommand.value })
   }
 
   protected action(event: globalThis.KeyboardEvent): boolean {

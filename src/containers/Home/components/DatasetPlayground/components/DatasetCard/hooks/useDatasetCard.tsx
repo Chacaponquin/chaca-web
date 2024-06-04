@@ -18,7 +18,7 @@ interface Props {
 }
 
 export default function useDatasetCard({ dataset }: Props) {
-  const { exportDatasets } = useContext(HomeContext)
+  const { handleExportDatasets } = useContext(HomeContext)
   const { handleOpenModal, openModal } = useModal()
   const {
     handleSelectDataset,
@@ -82,7 +82,7 @@ export default function useDatasetCard({ dataset }: Props) {
     handleOpenModal({
       type: MODAL_ACTIONS.EXPORT_SELECT_DATASET,
       handleCreateSelectDataset({ config }) {
-        exportDatasets([dataset], config)
+        handleExportDatasets([dataset], config)
       },
     })
   }

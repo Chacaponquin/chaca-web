@@ -3,6 +3,7 @@ import { RootNode } from "./RootNode"
 import { SaveProps, SearchProps } from "@modules/datasets/interfaces/tree"
 import { FieldProps } from "@modules/datasets/dto/field"
 import { ExportDatasetFieldDTO, SaveFieldDTO } from "@modules/datasets/dto/dataset"
+import { DatasetError } from "@modules/datasets/errors/dataset"
 
 interface Props {
   name: string
@@ -47,8 +48,11 @@ export class Dataset {
     return this.name.trim() === name.trim()
   }
 
-  exportFields(props: SearchProps): ExportDatasetFieldDTO[] {
-    return this.root.utils.exportFields(props)
+  exportFields(props: SearchProps): [ExportDatasetFieldDTO[], DatasetError[]] {
+    const errors = [] as DatasetError[]
+    const fields = this.root.utils.exportFields({ ...props, errors: errors })
+
+    return [fields, errors]
   }
 
   saveFields(props: SaveProps): SaveFieldDTO[] {

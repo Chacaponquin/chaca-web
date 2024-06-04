@@ -1,7 +1,8 @@
 import { useDatasets } from "@modules/datasets/hooks"
 import { useFieldForm } from "../../../shared/hooks"
-import { useFormErrors, useModal } from "@modules/modal/hooks"
+import { useModal } from "@modules/modal/hooks"
 import { Field } from "@modules/datasets/domain/tree"
+import { useToast } from "@modules/app/modules/toast/hooks"
 
 interface Props {
   field: Field
@@ -12,7 +13,7 @@ interface Props {
 export default function useEditFieldForm({ field, parentfieldId, datasetId }: Props) {
   const { handleCloseModal } = useModal()
   const { handleUpdateField } = useDatasets()
-  const { handleError } = useFormErrors()
+  const { toastChacaError } = useToast()
 
   const fieldActions = useFieldForm({
     field: {
@@ -31,7 +32,7 @@ export default function useEditFieldForm({ field, parentfieldId, datasetId }: Pr
       field: { ...fieldActions.field, name: fieldActions.field.name.trim() },
       parentfieldId: parentfieldId,
       datasetId: datasetId,
-      error: handleError,
+      error: toastChacaError,
       success: handleCloseModal,
     })
   }

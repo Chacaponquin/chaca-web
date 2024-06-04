@@ -1,5 +1,6 @@
 import { DATA_TYPES } from "@modules/schemas/constants"
 import {
+  ExportFieldsProps,
   NodeProps,
   SaveProps,
   SearchProps,
@@ -28,6 +29,7 @@ import {
 } from "@modules/datasets/interfaces/dataset-field"
 import { ExportDatasetFieldDTO, SaveFieldDTO } from "@modules/datasets/dto/dataset"
 import {
+  DatasetError,
   EmptyEnumFieldError,
   EmptyRefFieldError,
   EmptySequentialFieldError,
@@ -67,14 +69,14 @@ type MixedValueProps = Props & { object: NodeProps[] }
 type RefValueProps = Props & { ref: string[]; unique: boolean; where: RefWhere }
 
 export abstract class Field {
+  static MIN_POSSIBLE_NULL = 0
+  static MAX_POSSIBLE_NULL = 100
+
   private _id: string
   private _isArray: IsArrayConfig
   private _possibleNull: PossibleNullConfig
   private _isKey: IsKeyConfig
   private _name: string
-
-  static MIN_POSSIBLE_NULL = 0
-  static MAX_POSSIBLE_NULL = 100
 
   constructor({ name, isArray, isKey, isPossibleNull, id }: Props) {
     this._name = name
@@ -84,7 +86,7 @@ export abstract class Field {
     this._id = id
   }
 
-  abstract export(props: SearchProps): ExportDatasetFieldDTO
+  abstract export(props: ExportFieldsProps): ExportDatasetFieldDTO | DatasetError
   abstract stringInf(props: StringInfProps): string
   abstract clone(): Field
   abstract save(props: SaveProps): SaveFieldDTO
@@ -452,7 +454,7 @@ export class RefNode extends Field {
     })
   }
 
-  export({ searchRefField }: SearchProps): ExportDatasetFieldDTO {
+  export({ searchRefField }: SearchProps): ExportDatasetFieldDTO | DatasetError {
     const locationNames = searchRefField(this.ref)
 
     if (this.ref.length > 1) {
@@ -469,7 +471,7 @@ export class RefNode extends Field {
         isPossibleNull: this.isPossibleNull,
       }
     } else {
-      throw new EmptyRefFieldError()
+      return new EmptyRefFieldError()
     }
   }
 }
@@ -515,9 +517,10 @@ export class EnumNode extends Field {
     })
   }
 
-  export(props: SearchProps): ExportDatasetFieldDTO {
+  export(props: SearchProps): ExportDatasetFieldDTO | DatasetError {
     if (this.values.length === 0) {
-      throw new EmptyEnumFieldError(this.getRouteString(props.fieldRoute))
+      const route = this.getRouteString(props.fieldRoute)
+      return new EmptyEnumFieldError(route)
     }
 
     const mapper = new ValueMapper()
@@ -713,7 +716,7 @@ export class MixedNode extends Field {
     return node
   }
 
-  export(props: SearchProps): ExportDatasetFieldDTO {
+  export(props: ExportFieldsProps): ExportDatasetFieldDTO {
     return {
       name: this.name,
       dataType: {

@@ -1,8 +1,9 @@
 import { FieldProps } from "@modules/datasets/dto/field"
 import { Field, MixedNode, RefNode } from "./Field"
 import { RootNode } from "./RootNode"
-import { SaveProps, SearchProps } from "@modules/datasets/interfaces/tree"
+import { ExportFieldsProps, SaveProps } from "@modules/datasets/interfaces/tree"
 import { ExportDatasetFieldDTO, SaveFieldDTO } from "@modules/datasets/dto/dataset"
+import { DatasetError } from "@modules/datasets/errors/dataset"
 
 interface GetLocationProps {
   fieldId: string
@@ -46,8 +47,11 @@ export class NodesUtils {
   }
 
   getSameLevelNodes(fieldId: string): Field[] {
-    const findNode = this.nodes.some((n) => n.id === fieldId)
-    if (findNode) return this.nodes
+    const exists = this.nodes.some((n) => n.id === fieldId)
+
+    if (exists) {
+      return this.nodes
+    }
 
     let returnArray = [] as Field[]
 
@@ -62,10 +66,20 @@ export class NodesUtils {
     return returnArray
   }
 
-  exportFields(props: SearchProps): ExportDatasetFieldDTO[] {
-    return this.nodes.map((n) => {
-      return n.export({ ...props, fieldRoute: [...props.fieldRoute, this._instance.name] })
-    })
+  exportFields(props: ExportFieldsProps): ExportDatasetFieldDTO[] {
+    const array = [] as ExportDatasetFieldDTO[]
+
+    for (const n of this.nodes) {
+      const result = n.export({ ...props, fieldRoute: [...props.fieldRoute, this._instance.name] })
+
+      if (result instanceof DatasetError) {
+        props.errors.push(result)
+      } else {
+        array.push(result)
+      }
+    }
+
+    return array
   }
 
   saveFields(props: SaveProps): SaveFieldDTO[] {

@@ -7,7 +7,7 @@ import { HomeContext } from "../context"
 import { usePlayground } from "@modules/playground/hooks"
 
 export default function useHome() {
-  const { exportDatasets } = useContext(HomeContext)
+  const { handleExportDatasets } = useContext(HomeContext)
   const { datasets, selectedDataset, showFieldsMenu } = useDatasets()
   const { handleOpenModal } = useModal()
   const { handleGenerateImage } = usePlayground()
@@ -17,7 +17,7 @@ export default function useHome() {
     handleOpenModal({
       type: MODAL_ACTIONS.EXPORT_ALL_DATASETS,
       handleCreateAllDatasets({ config }) {
-        exportDatasets(datasets, config)
+        handleExportDatasets(datasets, config)
       },
     })
   }
@@ -27,7 +27,7 @@ export default function useHome() {
       handleOpenModal({
         type: MODAL_ACTIONS.EXPORT_SELECT_DATASET,
         handleCreateSelectDataset({ config }) {
-          exportDatasets([selectedDataset], config)
+          handleExportDatasets([selectedDataset], config)
         },
       })
     }

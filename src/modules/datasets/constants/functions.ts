@@ -1,19 +1,19 @@
 export class DatasetFunctions {
   static custom() {
-    return `function getValue(props){
+    return `function getValue(currentFields, store, schemas){
     // logic
-  }`
+}`
   }
 
   static where() {
     return `function getValue(currentFields, refFields, store, schemas){
-        // logic
-    }`
+    // logic
+}`
   }
 
   static chance() {
     return `function getValue(currentFields, store, schemas){
-        // logic
-    }`
+    // logic
+}`
   }
 }

@@ -11,11 +11,11 @@ type ShowToastProps = { message: string; id: string }
 export const ToastContext = createContext<Props>({} as Props)
 
 export function ToastProvider({ children }: { children: React.ReactNode }) {
-  function toastSuccess({ message, id = "success" }: ShowToastProps) {
+  function toastSuccess({ message, id }: ShowToastProps) {
     toast.success(message, { toastId: `toast-${id}` })
   }
 
-  function toastError({ message, id = "error" }: ShowToastProps) {
+  function toastError({ message, id }: ShowToastProps) {
     toast.error(message, { toastId: `toast-${id}` })
   }
 

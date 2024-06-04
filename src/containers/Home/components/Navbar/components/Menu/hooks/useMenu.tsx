@@ -8,7 +8,7 @@ import {
   AddDatasetCommand,
   CommandsExecutor,
   ExportAllDatasetsCommand,
-  ExportDatasetsImageCommand,
+  handleExportDatasetsImageCommand,
 } from "@modules/datasets/domain/commands"
 import { useLanguage, useTranslation } from "@modules/app/modules/language/hooks"
 
@@ -44,7 +44,7 @@ export default function useMenu({
   const commands = new CommandsExecutor([
     new AddDatasetCommand(handleAddDataset),
     new ExportAllDatasetsCommand(handleExportAllDatasets),
-    new ExportDatasetsImageCommand(handleExportImage),
+    new handleExportDatasetsImageCommand(handleExportImage),
   ])
 
   const handleKeyboardAction = (event: globalThis.KeyboardEvent) => {
@@ -76,7 +76,7 @@ export default function useMenu({
       icon: Image,
       title: EXPORT_IMAGE,
       onClick: handleExportImage,
-      command: ExportDatasetsImageCommand.value,
+      command: handleExportDatasetsImageCommand.value,
     },
     { icon: Delete, title: DELETE_ALL, onClick: handleDeleteAll, command: "" },
   ]
