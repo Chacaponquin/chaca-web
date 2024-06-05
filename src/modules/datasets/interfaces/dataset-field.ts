@@ -1,6 +1,6 @@
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { ARRAY_VALUE_TYPE } from "../constants"
-import { NodeProps } from "./tree"
+import { NodeProps } from "./dataset"
 
 export type FieldDatatype =
   | CustomDataType

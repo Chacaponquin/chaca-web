@@ -1,4 +1,4 @@
-import { Dataset } from "@modules/datasets/domain/tree"
+import { Dataset } from "@modules/datasets/domain/dataset"
 import { DatasetUseCase } from "./DatasetUseCase"
 import { v4 as uuid } from "uuid"
 import { DatasetNameGenerator } from "./DatasetNameGenerator"

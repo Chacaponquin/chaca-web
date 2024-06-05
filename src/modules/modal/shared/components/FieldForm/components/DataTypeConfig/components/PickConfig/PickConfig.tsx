@@ -2,7 +2,7 @@ import { ArrayValue } from "@modules/datasets/interfaces/dataset-field"
 import { ValuesForm } from "../../shared/components"
 import { FormInputSection } from "@modules/modal/shared/shared/components"
 import { ChacaNumberInput } from "@form/components"
-import { PickNode } from "@modules/datasets/domain/tree/Field"
+import { PickNode } from "@modules/datasets/domain/dataset/Field"
 import { CountInfo } from "./components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 

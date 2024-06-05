@@ -5,7 +5,7 @@ import {
 } from "@modules/datasets/interfaces/field-config"
 import { FieldDatatype } from "../../datasets/interfaces/datasets"
 import { MODAL_ACTIONS } from "../constants/MODAL_ACTIONS"
-import { Dataset, Field } from "@modules/datasets/domain/tree"
+import { Dataset, Field } from "@modules/datasets/domain/dataset"
 import { Config, ImageFormats } from "@modules/config/interfaces"
 
 export interface FieldForm {

@@ -1,6 +1,6 @@
 import { Validator } from "@modules/app/domain"
 import { ContentTypeValidator } from "./ContentTypeValidator"
-import { ISaveDatasets } from "../../tree/SaveDataset"
+import { ISaveDatasets } from "../../dataset/SaveDataset"
 import { VersionValidator } from "./VersionValidator"
 import { DatasetsValidator } from "./DatasetsValidator"
 

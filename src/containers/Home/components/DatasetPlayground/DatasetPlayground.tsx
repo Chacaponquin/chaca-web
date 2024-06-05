@@ -4,7 +4,6 @@ import { useTheme } from "@modules/app/modules/theme/hooks"
 import { THEME } from "@modules/app/modules/theme/constants"
 import { useSchemas } from "@modules/schemas/hooks"
 import { usePlayground } from "@modules/playground/hooks"
-import { PlaygroundZoom } from "@modules/playground/domain"
 
 import "reactflow/dist/style.css"
 
@@ -30,8 +29,6 @@ export default function DatasetPlayground() {
           onConnect={onConnect}
           nodeTypes={nodeTypes}
           nodesConnectable={false}
-          maxZoom={PlaygroundZoom.MAX_ZOOM}
-          minZoom={PlaygroundZoom.MIN_ZOOM}
         >
           <DatasetsButtons />
           <Background color={color} />

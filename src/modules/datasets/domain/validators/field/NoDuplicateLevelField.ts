@@ -1,6 +1,6 @@
 import { DatasetError, RepeatSameLevelFieldNameError } from "@modules/datasets/errors/dataset"
 import { IValidator } from "@modules/app/domain"
-import { Dataset, MixedNode, RootNode } from "@modules/datasets/domain/tree"
+import { Dataset, MixedNode, RootNode } from "@modules/datasets/domain/dataset"
 
 interface Props {
   datasets: Dataset[]

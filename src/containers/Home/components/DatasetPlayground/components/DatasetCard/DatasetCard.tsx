@@ -1,4 +1,4 @@
-import { Dataset } from "@modules/datasets/domain/tree"
+import { Dataset } from "@modules/datasets/domain/dataset"
 import { CardHeader, Field } from "./components"
 import { useDatasetCard } from "./hooks"
 import clsx from "clsx"
@@ -33,7 +33,7 @@ export default function DatasetCard({ data: { dataset } }: Props) {
     "stroke-white",
     "text-white",
     "relative",
-    "animate-jump-in animate-once animate-duration-400 animate-ease-in-out",
+    // "animate-jump-in animate-once animate-duration-400 animate-ease-in-out",
 
     { "outline outline-4 outline-purple-6": selected },
   )

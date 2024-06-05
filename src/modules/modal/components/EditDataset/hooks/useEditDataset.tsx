@@ -1,5 +1,5 @@
 import { useToast } from "@modules/app/modules/toast/hooks"
-import { Dataset } from "@modules/datasets/domain/tree"
+import { Dataset } from "@modules/datasets/domain/dataset"
 import { useDatasets } from "@modules/datasets/hooks"
 import { useModal } from "@modules/modal/hooks"
 import { useState } from "react"

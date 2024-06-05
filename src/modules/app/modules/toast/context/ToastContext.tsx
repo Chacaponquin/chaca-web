@@ -21,7 +21,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <ToastContext.Provider value={{ toastError, toastSuccess }}>
-      <ToastContainer autoClose={5000} hideProgressBar={true} />
+      <ToastContainer autoClose={false} hideProgressBar={true} />
       {children}
     </ToastContext.Provider>
   )

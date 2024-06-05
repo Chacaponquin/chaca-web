@@ -3,7 +3,7 @@ import { SOCKET_EVENTS } from "@modules/app/modules/socket/constants"
 import { useSocket } from "@modules/app/modules/socket/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { Config } from "@modules/config/interfaces"
-import { Dataset } from "@modules/datasets/domain/tree"
+import { Dataset } from "@modules/datasets/domain/dataset"
 import { ExportDatasetDTO, RespExportDatasetDTO } from "@modules/datasets/dto/dataset"
 import { useSchemas } from "@modules/schemas/hooks"
 import { useScreen } from "@modules/shared/hooks"
@@ -11,6 +11,7 @@ import { createContext, createRef, RefObject, useEffect, useState } from "react"
 import { useDatasetServices } from "@modules/datasets/services"
 import { useDatasets } from "@modules/datasets/hooks"
 import { DatasetCreationError } from "@modules/app/modules/socket/domain/error"
+import { DatasetError } from "@modules/datasets/errors/dataset"
 
 interface Props {
   fieldsMenuRef: RefObject<HTMLElement>
@@ -75,6 +76,8 @@ export function HomeProvider({ children }: { children: React.ReactNode }) {
     setCreateDataLoading(true)
 
     const datasetsDTO: ExportDatasetDTO[] = []
+    const allErrors = [] as DatasetError[]
+
     for (const dataset of idatasets) {
       const [fields, errors] = dataset.exportFields({
         findOption: findType,
@@ -89,26 +92,30 @@ export function HomeProvider({ children }: { children: React.ReactNode }) {
           name: dataset.name,
           fields: fields,
         })
-
-        exportDatasets({
-          datasets: datasetsDTO,
-          config: {
-            type: config.file.type,
-            arguments: config.file.arguments,
-            name: config.file.name,
-          },
-          onError: toastChacaError,
-          onFinally() {
-            setCreateDataLoading(false)
-          },
-        })
       } else {
-        for (const error of errors) {
-          toastChacaError(error)
-        }
-
-        setCreateDataLoading(false)
+        errors.forEach((error) => allErrors.push(error))
       }
+    }
+
+    if (allErrors.length > 0) {
+      for (const error of allErrors) {
+        toastChacaError(error)
+      }
+
+      setCreateDataLoading(false)
+    } else {
+      exportDatasets({
+        datasets: datasetsDTO,
+        config: {
+          type: config.file.type,
+          arguments: config.file.arguments,
+          name: config.file.name,
+        },
+        onError: toastChacaError,
+        onFinally() {
+          setCreateDataLoading(false)
+        },
+      })
     }
   }
 

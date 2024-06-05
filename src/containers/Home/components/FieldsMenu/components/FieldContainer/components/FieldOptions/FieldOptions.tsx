@@ -1,7 +1,7 @@
 import { Config } from "@modules/app/modules/icon/components"
 import { FieldConfigMenu } from "./components"
 import { ChacaDropdown } from "@form/components"
-import { Field } from "@modules/datasets/domain/tree"
+import { Field } from "@modules/datasets/domain/dataset"
 
 interface Props {
   field: Field

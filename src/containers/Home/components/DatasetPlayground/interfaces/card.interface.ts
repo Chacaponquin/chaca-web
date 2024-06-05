@@ -1,4 +1,4 @@
-import { Dataset } from "@modules/datasets/domain/tree"
+import { Dataset } from "@modules/datasets/domain/dataset"
 
 export interface ShowDataset {
   dataset: Dataset

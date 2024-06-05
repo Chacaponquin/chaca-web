@@ -5,7 +5,7 @@ import {
   SaveProps,
   SearchProps,
   StringInfProps,
-} from "@modules/datasets/interfaces/tree"
+} from "@modules/datasets/interfaces/dataset"
 import {
   IsArrayConfig,
   IsKeyConfig,
@@ -45,7 +45,7 @@ interface PossibleConfigProps {
 type Props = {
   id: string
   name: string
-  isPossibleNull: number
+  isPossibleNull: PossibleNullConfig
   isArray: IsArrayConfig
   isKey: IsKeyConfig
 }

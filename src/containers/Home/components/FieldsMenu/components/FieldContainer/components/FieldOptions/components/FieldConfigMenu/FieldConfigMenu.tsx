@@ -2,7 +2,7 @@ import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useFieldConfigMenu } from "./hooks"
 import { Fragment } from "react"
 import { Item } from "./components"
-import { Field, MixedNode } from "@modules/datasets/domain/tree"
+import { Field, MixedNode } from "@modules/datasets/domain/dataset"
 
 interface Props {
   field: Field

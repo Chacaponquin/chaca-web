@@ -1,7 +1,7 @@
 import { DATASETS_ACTIONS } from "../constants"
 import { Reducer } from "react"
-import { Dataset } from "@modules/datasets/domain/tree"
-import { NodeProps } from "@modules/datasets/interfaces/tree"
+import { Dataset } from "@modules/datasets/domain/dataset"
+import { NodeProps } from "@modules/datasets/interfaces/dataset"
 import {
   AddDataset,
   AddField,

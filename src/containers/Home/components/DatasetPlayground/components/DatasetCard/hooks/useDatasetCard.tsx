@@ -7,7 +7,7 @@ import {
   EditDatasetCommand,
   ExportDatasetCommand,
 } from "@modules/datasets/domain/commands"
-import { Dataset } from "@modules/datasets/domain/tree"
+import { Dataset } from "@modules/datasets/domain/dataset"
 import { useDatasets } from "@modules/datasets/hooks"
 import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { useModal } from "@modules/modal/hooks"

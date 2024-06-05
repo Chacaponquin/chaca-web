@@ -1,7 +1,7 @@
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { DatasetForm, ModalContainer } from "../../shared/components"
 import { useEditDataset } from "./hooks"
-import { Dataset } from "@modules/datasets/domain/tree"
+import { Dataset } from "@modules/datasets/domain/dataset"
 
 interface Props {
   dataset: Dataset

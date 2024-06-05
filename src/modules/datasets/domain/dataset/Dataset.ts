@@ -1,6 +1,6 @@
 import { Field, MixedNode, RefNode } from "./Field"
 import { RootNode } from "./RootNode"
-import { SaveProps, SearchProps } from "@modules/datasets/interfaces/tree"
+import { SaveProps, SearchProps } from "@modules/datasets/interfaces/dataset"
 import { FieldProps } from "@modules/datasets/dto/field"
 import { ExportDatasetFieldDTO, SaveFieldDTO } from "@modules/datasets/dto/dataset"
 import { DatasetError } from "@modules/datasets/errors/dataset"

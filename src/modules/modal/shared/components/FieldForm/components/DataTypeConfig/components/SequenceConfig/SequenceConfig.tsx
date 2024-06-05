@@ -2,7 +2,7 @@ import { ChacaNumberInput } from "@form/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { FormInputSection } from "@modules/modal/shared/shared/components"
 import { StartsWithInfo, StepInfo } from "./components"
-import { SequenceNode } from "@modules/datasets/domain/tree/Field"
+import { SequenceNode } from "@modules/datasets/domain/dataset/Field"
 
 interface Props {
   startsWith: number

@@ -141,6 +141,7 @@ export class InvalidArrayJSONValue extends DatasetError {
     })
   }
 }
+
 export class EmptyValuesError extends DatasetError {
   constructor() {
     super({
@@ -200,8 +201,8 @@ export class NotExistFieldError extends DatasetError {
     super({
       id: "not-exist-field-error",
       msg: {
-        en: `You are trying to reference from field '${refField}' to field '${field}, which does not exist'`,
-        es: `Estás intentando referenciar desde el campo '${refField}' al campo '${field}, el cual no existe'`,
+        en: `You are trying to reference from field '${refField}' to field '${field}', which does not exist`,
+        es: `Estás intentando referenciar desde el campo '${refField}' al campo '${field}', el cual no existe`,
       },
     })
   }

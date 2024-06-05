@@ -1,7 +1,7 @@
 import { useDatasets } from "@modules/datasets/hooks"
 import { useFieldForm } from "../../../shared/hooks"
 import { useModal } from "@modules/modal/hooks"
-import { Field } from "@modules/datasets/domain/tree"
+import { Field } from "@modules/datasets/domain/dataset"
 import { useToast } from "@modules/app/modules/toast/hooks"
 
 interface Props {

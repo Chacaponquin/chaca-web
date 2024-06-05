@@ -8,7 +8,7 @@ import {
   KeyConfig,
 } from "./components"
 import { FieldActions } from "../../interfaces"
-import { Field } from "@modules/datasets/domain/tree"
+import { Field } from "@modules/datasets/domain/dataset"
 
 type Props = FieldActions & { datasetId: string }
 

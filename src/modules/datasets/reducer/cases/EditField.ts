@@ -1,4 +1,4 @@
-import { Dataset, RefNode } from "@modules/datasets/domain/tree"
+import { Dataset, RefNode } from "@modules/datasets/domain/dataset"
 import { DatasetUseCase } from "./DatasetUseCase"
 import { FieldProps } from "@modules/datasets/dto/field"
 import { DATA_TYPES } from "@modules/schemas/constants"

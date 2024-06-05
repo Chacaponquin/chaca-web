@@ -1,7 +1,7 @@
 import { ChacaSlider } from "@form/components"
 import { CheckField, ConfigContainer } from "@modules/modal/shared/shared/components"
 import { Information } from "./components"
-import { Field } from "@modules/datasets/domain/tree"
+import { Field } from "@modules/datasets/domain/dataset"
 
 interface Props {
   handleChangePossibleNull(v: boolean): void

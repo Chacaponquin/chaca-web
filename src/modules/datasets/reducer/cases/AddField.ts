@@ -1,5 +1,5 @@
-import { Dataset, Field, MixedNode } from "@modules/datasets/domain/tree"
-import { NodeProps } from "@modules/datasets/interfaces/tree"
+import { Dataset, Field, MixedNode } from "@modules/datasets/domain/dataset"
+import { NodeProps } from "@modules/datasets/interfaces/dataset"
 import { DatasetUseCase } from "./DatasetUseCase"
 
 interface ExecuteProps {

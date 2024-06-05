@@ -1,6 +1,6 @@
 import { IValidator } from "@modules/app/domain"
 import { ChacaError } from "@modules/app/exceptions"
-import { SaveDataset } from "../../tree/SaveDataset"
+import { SaveDataset } from "../../dataset/SaveDataset"
 import { InvalidDatasetsException } from "@modules/datasets/errors/init-load"
 
 interface Props {
