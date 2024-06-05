@@ -1,18 +1,20 @@
 import { Dataset } from "@modules/datasets/domain/tree"
 import { DatasetUseCase } from "./DatasetUseCase"
-import { DatasetNameGenerator } from "./DatasetNameGenerator"
 import { v4 as uuid } from "uuid"
+import { DatasetNameGenerator } from "./DatasetNameGenerator"
 
 interface Props {
   next(dataset: Dataset): void
 }
 
 export class AddDataset extends DatasetUseCase<Props> {
-  public execute({ next }: Props): Dataset[] {
-    const generator = new DatasetNameGenerator(this.datasets)
+  constructor(datasets: Dataset[], private readonly generator: DatasetNameGenerator) {
+    super(datasets)
+  }
 
+  execute({ next }: Props): Dataset[] {
     const dataset = new Dataset({
-      name: generator.execute({ name: "New Dataset" }),
+      name: this.generator.execute({ name: "New Dataset" }),
       limit: Dataset.DEFAULT_LIMIT,
       id: uuid(),
     })

@@ -20,7 +20,7 @@ export default function useAddFieldForm({ datasetId, parentfieldId }: Props) {
   })
 
   const { handleCloseModal } = useModal()
-  const { handleAddField: handleAddFieldService } = useDatasets()
+  const { handleAddField: handleAddFieldHook } = useDatasets()
 
   const fieldActions = useFieldForm({
     field: {
@@ -35,9 +35,18 @@ export default function useAddFieldForm({ datasetId, parentfieldId }: Props) {
   })
 
   function handleAddField() {
-    handleAddFieldService({
+    const field = fieldActions.field
+
+    handleAddFieldHook({
       datasetId: datasetId,
-      field: { ...fieldActions.field, name: fieldActions.field.name.trim() },
+      field: {
+        name: fieldActions.field.name.trim(),
+        dataType: field.dataType,
+        id: field.id,
+        isArray: field.isArray,
+        isKey: field.isKey,
+        isPossibleNull: field.isPossibleNull,
+      },
       parentfieldId: parentfieldId,
       success() {
         handleCloseModal()

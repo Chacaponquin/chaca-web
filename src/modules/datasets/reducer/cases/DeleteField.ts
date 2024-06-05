@@ -1,5 +1,6 @@
 import { Dataset } from "@modules/datasets/domain/tree"
 import { DatasetUseCase } from "./DatasetUseCase"
+import { DeleteReceiveRef } from "./DeleteReceiveRef"
 
 interface ExecuteProps {
   datasetId: string
@@ -8,7 +9,11 @@ interface ExecuteProps {
 }
 
 export class DeleteField extends DatasetUseCase<ExecuteProps> {
-  public execute({ datasetId, fieldId, next }: ExecuteProps): Dataset[] {
+  constructor(datasets: Dataset[], private readonly deleteRef: DeleteReceiveRef) {
+    super(datasets)
+  }
+
+  execute({ datasetId, fieldId, next }: ExecuteProps): Dataset[] {
     const newDatasets = this.datasets.map((dat) => {
       if (dat.id === datasetId) {
         dat.deleteField(fieldId)
@@ -17,22 +22,10 @@ export class DeleteField extends DatasetUseCase<ExecuteProps> {
       return dat
     })
 
-    this.deleteRefFields(this.datasets, fieldId)
+    this.deleteRef.execute({ datasets: this.datasets, id: fieldId })
 
     next(newDatasets)
 
     return newDatasets
-  }
-
-  private deleteRefFields(datasets: Dataset[], id: string): void {
-    for (const dat of datasets) {
-      const refFields = dat.refFields()
-
-      for (const ref of refFields) {
-        if (ref.ref.includes(id)) {
-          ref.setRef([])
-        }
-      }
-    }
   }
 }

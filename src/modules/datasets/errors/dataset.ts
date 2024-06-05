@@ -173,7 +173,13 @@ export class InvalidPickCountError extends DatasetError {
 
 export class EmptyCustomFunctionError extends DatasetError {
   constructor() {
-    super({ id: "empty-custom-field", msg: { en: "", es: "" } })
+    super({
+      id: "empty-custom-field",
+      msg: {
+        en: "The 'custom' field function cannot be empty",
+        es: `La función del campo 'custom' no puede estar vacía`,
+      },
+    })
   }
 }
 

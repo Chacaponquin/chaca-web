@@ -13,6 +13,8 @@ import {
   InsertDataset,
 } from "./cases"
 import { FieldProps } from "../dto/field"
+import { DeleteReceiveRef } from "./cases/DeleteReceiveRef"
+import { DatasetNameGenerator } from "./cases/DatasetNameGenerator"
 
 export type DatasetPayload =
   | {
@@ -73,7 +75,9 @@ export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
 ): Dataset[] => {
   switch (action.type) {
     case DATASETS_ACTIONS.EDIT_FIELD: {
-      const useCase = new EditField(datasets)
+      const deleteRefs = new DeleteReceiveRef()
+
+      const useCase = new EditField(datasets, deleteRefs)
       return useCase.execute({
         datasetId: action.payload.datasetId,
         form: action.payload.field,
@@ -87,7 +91,9 @@ export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
     }
 
     case DATASETS_ACTIONS.DELETE_DATASET: {
-      const useCase = new DeleteDataset(datasets)
+      const deleteRefs = new DeleteReceiveRef()
+
+      const useCase = new DeleteDataset(datasets, deleteRefs)
       return useCase.execute({ datasetId: action.payload.datasetId, next: action.payload.next })
     }
 
@@ -106,7 +112,9 @@ export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
     }
 
     case DATASETS_ACTIONS.CREATE_NEW_DATASET: {
-      const useCase = new AddDataset(datasets)
+      const generator = new DatasetNameGenerator(datasets)
+
+      const useCase = new AddDataset(datasets, generator)
       return useCase.execute({ next: action.payload.next })
     }
 
@@ -119,7 +127,9 @@ export const datasetsReducer: Reducer<Array<Dataset>, DatasetPayload> = (
     }
 
     case DATASETS_ACTIONS.DELETE_FIELD: {
-      const useCase = new DeleteField(datasets)
+      const deleteRefs = new DeleteReceiveRef()
+
+      const useCase = new DeleteField(datasets, deleteRefs)
       return useCase.execute({
         datasetId: action.payload.datasetId,
         fieldId: action.payload.fieldId,
