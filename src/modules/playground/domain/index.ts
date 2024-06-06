@@ -47,9 +47,8 @@ export class DatasetEdgeBuilder {
       markerEnd: {
         type: MarkerType.ArrowClosed,
       },
-      type: "smoothstep",
+      type: "smart",
       hidden: false,
-      pathOptions: {},
     }
   }
 }

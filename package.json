@@ -17,6 +17,7 @@
   "dependencies": {
     "@codemirror/lang-javascript": "^6.1.6",
     "@codemirror/lang-json": "^6.0.1",
+    "@tisoap/react-flow-smart-edge": "^3.0.0",
     "@uiball/loaders": "^1.2.6",
     "@uiw/codemirror-themes": "^4.19.16",
     "@uiw/codemirror-themes-all": "^4.19.16",

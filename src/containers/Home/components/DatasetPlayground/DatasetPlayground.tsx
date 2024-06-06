@@ -4,11 +4,16 @@ import { useTheme } from "@modules/app/modules/theme/hooks"
 import { THEME } from "@modules/app/modules/theme/constants"
 import { useSchemas } from "@modules/schemas/hooks"
 import { usePlayground } from "@modules/playground/hooks"
+import { SmartStepEdge } from "@tisoap/react-flow-smart-edge"
 
 import "reactflow/dist/style.css"
 
 const nodeTypes = {
   custom: DatasetCard,
+}
+
+const edgeTypes = {
+  smart: SmartStepEdge,
 }
 
 export default function DatasetPlayground() {
@@ -30,6 +35,7 @@ export default function DatasetPlayground() {
           nodeTypes={nodeTypes}
           nodesConnectable={false}
           fitView={true}
+          edgeTypes={edgeTypes}
         >
           <Playground />
           <DatasetsButtons />
