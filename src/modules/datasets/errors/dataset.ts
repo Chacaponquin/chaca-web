@@ -77,10 +77,22 @@ export class EmptySequentialFieldError extends DatasetError {
   constructor(field: string) {
     super({
       msg: {
-        en: `The field ${field} is sequential and has no values to generate`,
-        es: `El campo ${field} es sequencial y no tiene valores para generar`,
+        en: `The field ${field} is sequential and has no values to generate. You must create a number of documents in the dataset that is less than or equal to the number of values in the sequence`,
+        es: `El campo ${field} es sequencial y no tiene valores para generar. Debes crear una cantidad de documentos en el dataset que sea menor o igual a la cantidad de valores de la secuencia`,
       },
       id: "empty-sequential-field",
+    })
+  }
+}
+
+export class CreateDatasetError extends DatasetError {
+  constructor(message: string) {
+    super({
+      id: "create-dataset-error",
+      msg: {
+        en: message,
+        es: message,
+      },
     })
   }
 }
@@ -88,7 +100,10 @@ export class EmptySequentialFieldError extends DatasetError {
 export class DownloadDatasetError extends DatasetError {
   constructor() {
     super({
-      msg: { en: "Creation error", es: "Hubo un error en la creación de los datasets" },
+      msg: {
+        en: "There was an error creating the datasets",
+        es: "Hubo un error en la creación de los datasets",
+      },
       id: "creation-error",
     })
   }

@@ -11,12 +11,16 @@ export default function FormButtons({ type, nextText }: Props) {
   const { handleCloseModal } = useModal()
   const { CANCEL_TEXT } = useTranslation({ CANCEL_TEXT: { en: "Cancel", es: "Cancelar" } })
 
+  function handleClose() {
+    handleCloseModal()
+  }
+
   return (
     <ModalButtons
       type={type}
       nextText={nextText}
       cancelText={CANCEL_TEXT}
-      handleCancel={handleCloseModal}
+      handleCancel={handleClose}
     />
   )
 }

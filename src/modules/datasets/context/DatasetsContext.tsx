@@ -57,35 +57,6 @@ export function DatasetsProvider({ children }: { children: React.ReactNode }) {
   }, [datasets])
 
   useEffect(() => {
-    if (datasets.length > 0 && schemas.length > 0) {
-      const saveDatasets = [] as SaveDataset[]
-
-      for (const d of datasets) {
-        const foundNode = nodes.find((n) => n.id === d.id)
-
-        if (foundNode) {
-          saveDatasets.push({
-            posX: foundNode.position.x,
-            posY: foundNode.position.y,
-            limit: d.limit,
-            fields: d.saveFields({ findOption: findType, findParent: findParent }),
-            name: d.name,
-            id: d.id,
-          })
-        }
-      }
-
-      // save in localstorage
-      const save = new SaveDatasets({
-        version: version,
-        datasets: saveDatasets,
-      })
-
-      setStorage(STORAGE_KEYS.PREVIEW_CONFIG, save.json())
-    }
-  }, [datasets, findType, findParent, nodes])
-
-  useEffect(() => {
     const read = getStorage(STORAGE_KEYS.PREVIEW_CONFIG)
 
     if (read) {
@@ -124,6 +95,7 @@ export function DatasetsProvider({ children }: { children: React.ReactNode }) {
 
           handleSetDatasets(saveDatasets)
           handleSetNodes(saveNodes)
+
           updateConnections(saveDatasets)
 
           if (saveDatasets.length > 0) {
@@ -142,7 +114,34 @@ export function DatasetsProvider({ children }: { children: React.ReactNode }) {
     }
   }, [])
 
-  useEffect(() => {}, [schemas])
+  useEffect(() => {
+    if (datasets.length > 0 && schemas.length > 0) {
+      const saveDatasets = [] as SaveDataset[]
+
+      for (const d of datasets) {
+        const foundNode = nodes.find((n) => n.id === d.id)
+
+        if (foundNode) {
+          saveDatasets.push({
+            posX: foundNode.position.x,
+            posY: foundNode.position.y,
+            limit: d.limit,
+            fields: d.saveFields({ findOption: findType, findParent: findParent }),
+            name: d.name,
+            id: d.id,
+          })
+        }
+      }
+
+      // save in localstorage
+      const save = new SaveDatasets({
+        version: version,
+        datasets: saveDatasets,
+      })
+
+      setStorage(STORAGE_KEYS.PREVIEW_CONFIG, save.json())
+    }
+  }, [datasets, findType, findParent, nodes])
 
   function handleSelectDataset(id: string | null) {
     const findDataset = datasets.find((el) => el.id === id)

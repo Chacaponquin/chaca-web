@@ -1,5 +1,5 @@
 import { useCode, useModal } from "@modules/modal/hooks"
-import { useEffect } from "react"
+import { FormEvent, useEffect } from "react"
 
 interface Props {
   handleNext(): void
@@ -9,9 +9,8 @@ export default function useModalContainer({ handleNext }: Props) {
   const { openCode, handleSubmit: handleSubmitCode } = useCode()
   const { handleCloseModal } = useModal()
 
-  function handleSubmit(e: React.FormEvent): void {
+  function handleSubmit(e: FormEvent): void {
     e.preventDefault()
-    e.stopPropagation()
 
     if (openCode) {
       handleSubmitCode()
@@ -27,7 +26,7 @@ export default function useModalContainer({ handleNext }: Props) {
   useEffect(() => {
     function action(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        handleCloseModal()
+        handleClose()
       }
     }
 
@@ -36,7 +35,7 @@ export default function useModalContainer({ handleNext }: Props) {
     return () => {
       document.removeEventListener("keydown", action)
     }
-  }, [handleCloseModal])
+  }, [handleClose])
 
   return { handleClose, handleSubmit }
 }

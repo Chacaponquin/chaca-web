@@ -46,8 +46,8 @@ export default function ModalContainer({
 
   return (
     <div onClick={handleClose} id={`${name}-modal`} className={CLASS}>
-      <form className={FORM_CLASS} onSubmit={handleSubmit} onClick={(e) => e.stopPropagation()}>
-        <ModalTitle titleText={title} />
+      <form onSubmit={handleSubmit} className={FORM_CLASS} onClick={(e) => e.stopPropagation()}>
+        <ModalTitle title={title} />
 
         {openCode ? <Code language={openCode.language} /> : children}
 

@@ -1,6 +1,6 @@
 import { CardProps } from "@containers/Home/components/DatasetPlayground/components"
 import { Dataset } from "@modules/datasets/domain/dataset"
-import { Edge, MarkerType, Node } from "reactflow"
+import { Edge, MarkerType, Node, Viewport } from "reactflow"
 import { v4 as uuid } from "uuid"
 
 interface BuildDefaultProps {
@@ -67,3 +67,5 @@ export class PlaygroundZoom {
     return zoom
   }
 }
+
+export const INIT_VIEWPORT: Viewport = { x: 1, y: 1, zoom: 1 }

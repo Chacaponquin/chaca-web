@@ -1,5 +1,5 @@
 import { CardProps } from "@containers/Home/components/DatasetPlayground/components"
-import { createContext, useCallback } from "react"
+import { createContext, useCallback, useState } from "react"
 import {
   addEdge,
   Connection,
@@ -9,7 +9,9 @@ import {
   NodeChange,
   useEdgesState,
   useNodesState,
+  Viewport,
 } from "reactflow"
+import { INIT_VIEWPORT } from "../domain"
 
 interface Props {
   nodes: Node<CardProps>[]
@@ -23,6 +25,8 @@ interface Props {
   handleChangeNodes(fun: (prev: Node<CardProps>[]) => Node<CardProps>[]): void
   handleSetNodes(nodes: Node<CardProps>[]): void
   handleSetEdges(array: Edge[]): void
+  handleChangeViewport(v: Viewport): void
+  viewport: Viewport
 }
 
 export const PlaygroundContext = createContext<Props>({
@@ -33,6 +37,7 @@ export const PlaygroundContext = createContext<Props>({
 export function PlaygroundProvider({ children }: { children: React.ReactNode }) {
   const [nodes, setNodes, onNodesChange] = useNodesState<CardProps>([])
   const [edges, setEdges, onEdgesChange] = useEdgesState([])
+  const [viewport, setViewport] = useState<Viewport>(INIT_VIEWPORT)
 
   function handleSetNodes(array: Node<CardProps>[]): void {
     setNodes(array)
@@ -55,6 +60,10 @@ export function PlaygroundProvider({ children }: { children: React.ReactNode }) 
 
   function handleDeleteNode(id: string) {
     setNodes((prev) => prev.filter((n) => n.id !== id))
+  }
+
+  function handleChangeViewport(v: Viewport) {
+    setViewport(v)
   }
 
   function handleAddEdge(edge: Edge) {
@@ -80,6 +89,8 @@ export function PlaygroundProvider({ children }: { children: React.ReactNode }) 
     handleDeleteNode,
     handleSetNodes,
     handleSetEdges,
+    handleChangeViewport,
+    viewport,
   }
 
   return <PlaygroundContext.Provider value={value}>{children}</PlaygroundContext.Provider>

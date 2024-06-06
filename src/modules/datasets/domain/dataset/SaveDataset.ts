@@ -30,7 +30,10 @@ export class SaveDatasets {
   }
 
   json(): string {
-    return JSON.stringify({ version: this.version, datasets: this.datasets })
+    return JSON.stringify({
+      version: this.version,
+      datasets: this.datasets,
+    })
   }
 }
 

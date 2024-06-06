@@ -5,6 +5,7 @@ import { useToast } from "@modules/app/modules/toast/hooks"
 import { Validator } from "@modules/app/domain"
 import { ImageFilenameValidator } from "@modules/config/domain/validators"
 import { usePlayground } from "@modules/playground/hooks"
+import { useModal } from "@modules/modal/hooks"
 
 interface Props {
   next: ExportImageFunc
@@ -12,16 +13,17 @@ interface Props {
 
 export default function useExportImage({ next }: Props) {
   const { toastChacaError } = useToast()
+  const { handleCloseModal } = useModal()
 
   const { handleGenerateImage } = usePlayground()
 
   const [showImage, setShowImage] = useState("")
 
-  const [form, setForm] = useState<Form>({ name: "", format: "svg" })
+  const [form, setForm] = useState<Form>({ name: "", format: "png" })
 
   const formats: FormatOptions[] = [
-    { format: "svg", name: "SVG" },
     { format: "png", name: "PNG" },
+    { format: "svg", name: "SVG" },
   ]
 
   useEffect(() => {
@@ -56,6 +58,8 @@ export default function useExportImage({ next }: Props) {
           filename: form.name,
           format: form.format,
         })
+
+        handleCloseModal()
       },
       error: toastChacaError,
     })

@@ -7,6 +7,7 @@ import { useConfig } from "@modules/config/hooks"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { useEnv } from "@modules/app/modules/env/hooks"
 import {
+  CreateDatasetError,
   CyclicEventError,
   DatasetError,
   DownloadDatasetError,
@@ -117,7 +118,7 @@ export default function useDatasetServices() {
     } else if (ierror.code === DATASETS_ERROR_HTTP_STATUS.NOT_ENOUGH_VALUES_REF) {
       error = new NotEnoughValuesRefError(ierror.content.keyField, ierror.content.refField)
     } else if (ierror.code === DATASETS_ERROR_HTTP_STATUS.DEFAULT) {
-      error = new DownloadDatasetError()
+      error = new CreateDatasetError(ierror.content)
     } else if (ierror.code === DATASETS_ERROR_HTTP_STATUS.NOT_EXIST_FIELD) {
       error = new NotExistFieldError(ierror.content.field, ierror.content.refField)
     } else if (ierror.code === DATASETS_ERROR_HTTP_STATUS.REF_NOT_KEY) {

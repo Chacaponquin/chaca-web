@@ -1,5 +1,5 @@
 import ReactFlow, { Background } from "reactflow"
-import { DatasetCard, DatasetsButtons } from "./components"
+import { DatasetCard, DatasetsButtons, Playground } from "./components"
 import { useTheme } from "@modules/app/modules/theme/hooks"
 import { THEME } from "@modules/app/modules/theme/constants"
 import { useSchemas } from "@modules/schemas/hooks"
@@ -29,7 +29,9 @@ export default function DatasetPlayground() {
           onConnect={onConnect}
           nodeTypes={nodeTypes}
           nodesConnectable={false}
+          fitView={true}
         >
+          <Playground />
           <DatasetsButtons />
           <Background color={color} />
         </ReactFlow>

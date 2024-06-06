@@ -33,6 +33,8 @@ export default function usePlayground() {
     onConnect,
     onEdgesChange,
     onNodesChange,
+    handleChangeViewport,
+    viewport,
   } = useContext(PlaygroundContext)
 
   function handleDisableAllNodes() {
@@ -170,5 +172,7 @@ export default function usePlayground() {
     handleChangeEdges,
     handleCleanEdges,
     handleCleanNodes,
+    viewport,
+    handleChangeViewport,
   }
 }
