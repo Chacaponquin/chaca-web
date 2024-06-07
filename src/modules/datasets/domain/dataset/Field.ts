@@ -170,10 +170,6 @@ export abstract class Field {
     return this._isKey
   }
 
-  setId(id: string) {
-    this._id = id
-  }
-
   setIsArray(config: IsArrayConfig): void {
     this._isArray = config
   }
@@ -454,7 +450,7 @@ export class RefNode extends Field {
     })
   }
 
-  export({ searchRefField }: SearchProps): ExportDatasetFieldDTO | DatasetError {
+  export({ searchRefField, fieldRoute }: SearchProps): ExportDatasetFieldDTO | DatasetError {
     const locationNames = searchRefField(this.ref)
 
     if (this.ref.length > 1) {
@@ -471,7 +467,7 @@ export class RefNode extends Field {
         isPossibleNull: this.isPossibleNull,
       }
     } else {
-      return new EmptyRefFieldError()
+      return new EmptyRefFieldError(this.getRouteString(fieldRoute))
     }
   }
 }

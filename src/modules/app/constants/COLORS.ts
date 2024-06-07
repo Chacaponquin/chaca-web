@@ -1,3 +1,7 @@
 export const APP_COLORS = {
-  PRIMARY_COLOR: "#7d5fff",
+  PLAYGROUND: {
+    DARK: "#000000",
+    LIGHT: "#ffffff",
+  },
+  PRIMARY: "#7d5fff",
 } as const

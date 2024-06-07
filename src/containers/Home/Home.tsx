@@ -1,5 +1,4 @@
 import {
-  ContentLoader,
   CreationLoadingModal,
   DatasetPlayground,
   FieldsMenu,
@@ -22,6 +21,7 @@ export default function Home() {
     showFieldsMenu,
     handleExportImage,
     handleDeleteAll,
+    loading,
   } = useHome()
 
   const showMenu = !smallWindow || (smallWindow && showFieldsMenu)
@@ -32,11 +32,10 @@ export default function Home() {
         handleExportAllDatasets={handleCreateAllDatasets}
         handleExportImage={handleExportImage}
         handleDeleteAll={handleDeleteAll}
+        loading={loading}
       />
 
-      <ContentLoader />
-
-      {datasets.length === 0 && <NoDatasetsMessage />}
+      {!loading && datasets.length === 0 && <NoDatasetsMessage />}
 
       {datasets.length > 0 && (
         <main className="flex flex-grow">
@@ -44,12 +43,13 @@ export default function Home() {
 
           {showMenu && (
             <FieldsMenu
+              loading={loading}
               handleExportSelectedDataset={handleExportSelectedDataset}
               handleAddNewField={handleAddNewField}
             />
           )}
 
-          <DatasetPlayground />
+          <DatasetPlayground loading={loading} />
         </main>
       )}
     </HomeLayout>

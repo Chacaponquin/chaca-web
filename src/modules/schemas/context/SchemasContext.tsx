@@ -17,7 +17,7 @@ export const SchemasContext = createContext<Props>({
 } as Props)
 
 export function SchemasProvider({ children }: { children: React.ReactNode }) {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [schemas, setSchemas] = useState<Schema[]>([])
   const [version, setVersion] = useState(DEFAULT_VERSION)
 

@@ -1,4 +1,3 @@
-import ContentLoader from "./ContentLoader/ContentLoader"
 import CreationLoadingModal from "./CreationLoadingModal/CreationLoadingModal"
 import DatasetPlayground from "./DatasetPlayground/DatasetPlayground"
 import FieldsMenu from "./FieldsMenu/FieldsMenu"
@@ -12,6 +11,5 @@ export {
   DatasetPlayground,
   NoDatasetsMessage,
   HomeLayout,
-  ContentLoader,
   Navbar,
 }

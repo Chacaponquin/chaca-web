@@ -38,8 +38,10 @@ export class DatasetNodeBuilder {
 
 export class DatasetEdgeBuilder {
   static build({ datasetFrom, datasetTo, fieldFrom, fieldTo }: EdgeBuildProps): Edge {
+    const id = uuid()
+
     return {
-      id: uuid(),
+      id: id,
       source: datasetFrom,
       target: datasetTo,
       sourceHandle: fieldFrom,
@@ -49,7 +51,14 @@ export class DatasetEdgeBuilder {
       },
       type: "smart",
       hidden: false,
+      selected: false,
+      focusable: true,
+      zIndex: 1,
     }
+  }
+
+  static buildSelected(edge: Edge): Edge {
+    return { ...edge, zIndex: 20, selected: true }
   }
 }
 

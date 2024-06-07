@@ -8,12 +8,14 @@ interface Props {
   handleExportAllDatasets(): void
   handleExportImage(): void
   handleDeleteAll(): void
+  loading: boolean
 }
 
 export default function Navbar({
   handleExportAllDatasets,
   handleExportImage,
   handleDeleteAll,
+  loading,
 }: Props) {
   const { smallWindow } = useContext(HomeContext)
   const { datasets, handleAddDataset } = useDatasets()
@@ -32,10 +34,12 @@ export default function Navbar({
     <nav className={CLASS}>
       <section className="flex items-center">
         {smallWindow && datasets.length > 0 && <OpenFields />}
+
         <ChacaLogo />
 
         {datasets.length > 0 && (
           <Menu
+            loading={loading}
             handleAddDataset={handleAddDataset}
             handleExportAllDatasets={handleExportAllDatasets}
             handleExportImage={handleExportImage}

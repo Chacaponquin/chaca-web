@@ -5,6 +5,8 @@ import { useDatasetServices } from "@modules/datasets/services"
 import { useContext } from "react"
 import { HomeContext } from "../context"
 import { usePlayground } from "@modules/playground/hooks"
+import { useSchemas } from "@modules/schemas/hooks"
+import { useConfig } from "@modules/config/hooks"
 
 export default function useHome() {
   const { handleExportDatasets } = useContext(HomeContext)
@@ -12,6 +14,10 @@ export default function useHome() {
   const { handleOpenModal } = useModal()
   const { handleGenerateImage } = usePlayground()
   const { downloadDatasetsImage } = useDatasetServices()
+  const { loading: schemasLoading } = useSchemas()
+  const { loading: configLoading } = useConfig()
+
+  const loading = schemasLoading || configLoading
 
   function handleCreateAllDatasets() {
     handleOpenModal({
@@ -69,5 +75,6 @@ export default function useHome() {
     showFieldsMenu,
     handleExportImage,
     handleDeleteAll,
+    loading,
   }
 }

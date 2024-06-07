@@ -1,3 +1,4 @@
+import { APP_COLORS } from "@modules/app/constants"
 import { THEME } from "@modules/app/modules/theme/constants"
 import { useTheme } from "@modules/app/modules/theme/hooks"
 import { Waveform } from "@uiball/loaders"
@@ -11,7 +12,7 @@ export default function Loader({ size }: Props) {
 
   function filterColor(): string {
     if (theme === THEME.LIGHT) {
-      return "#7d5fff"
+      return APP_COLORS.PRIMARY
     } else {
       return "#ffffff"
     }

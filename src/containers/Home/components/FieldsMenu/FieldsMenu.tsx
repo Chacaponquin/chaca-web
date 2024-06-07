@@ -1,5 +1,5 @@
 import { Fragment, useContext } from "react"
-import { CloseSection, DatasetButtons, FieldContainer, NoFieldsMessage } from "./components"
+import { CloseSection, DatasetButtons, FieldContainer, Loader, NoFieldsMessage } from "./components"
 import clsx from "clsx"
 import { useDatasets } from "@modules/datasets/hooks"
 import { HomeContext } from "@containers/Home/context"
@@ -7,9 +7,14 @@ import { HomeContext } from "@containers/Home/context"
 interface Props {
   handleExportSelectedDataset(): void
   handleAddNewField(): void
+  loading: boolean
 }
 
-export default function FieldsMenu({ handleExportSelectedDataset, handleAddNewField }: Props) {
+export default function FieldsMenu({
+  handleExportSelectedDataset,
+  handleAddNewField,
+  loading,
+}: Props) {
   const { selectedDataset, handleCloseFieldsMenu, showFieldsMenu } = useDatasets()
   const { fieldsMenuRef, smallWindow } = useContext(HomeContext)
 
@@ -32,22 +37,26 @@ export default function FieldsMenu({ handleExportSelectedDataset, handleAddNewFi
         <CloseSection handleCloseFieldsMenu={handleCloseFieldsMenu} />
       )}
 
-      <div className="h-full w-full flex flex-col text-black dark:text-white pt-1">
-        {selectedDataset && selectedDataset.nodes.length > 0 ? (
-          <Fragment>
-            {selectedDataset.nodes.map((field) => (
-              <FieldContainer key={field.id} margin={0} field={field} />
-            ))}
+      {!loading && (
+        <div className="h-full w-full flex flex-col text-black dark:text-white pt-1">
+          {selectedDataset && selectedDataset.nodes.length > 0 ? (
+            <Fragment>
+              {selectedDataset.nodes.map((field) => (
+                <FieldContainer key={field.id} margin={0} field={field} />
+              ))}
 
-            <DatasetButtons
-              handleExportSelectedDataset={handleExportSelectedDataset}
-              handleAddNewField={handleAddNewField}
-            />
-          </Fragment>
-        ) : (
-          <NoFieldsMessage handleAddNewField={handleAddNewField} />
-        )}
-      </div>
+              <DatasetButtons
+                handleExportSelectedDataset={handleExportSelectedDataset}
+                handleAddNewField={handleAddNewField}
+              />
+            </Fragment>
+          ) : (
+            <NoFieldsMessage handleAddNewField={handleAddNewField} />
+          )}
+        </div>
+      )}
+
+      {loading && <Loader />}
     </section>
   )
 }

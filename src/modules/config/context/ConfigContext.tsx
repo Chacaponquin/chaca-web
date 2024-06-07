@@ -12,7 +12,7 @@ export const ConfigContext = createContext<Props>({} as Props)
 
 export function ConfigProvider({ children }: { children: React.ReactNode }) {
   const [fileOptions, setFileOptions] = useState<FileConfigOption[]>([])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   const { getFileOptions } = useConfigServices()
   const { showBoundary } = useErrorBoundary()

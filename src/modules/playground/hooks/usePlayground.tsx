@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react"
 import { Dataset } from "../../datasets/domain/dataset"
 import { DatasetConnection } from "../../datasets/interfaces/dataset-connect"
-import { getRectOfNodes, getViewportForBounds } from "reactflow"
+import { Edge, getRectOfNodes, getViewportForBounds } from "reactflow"
 import { toPng, toSvg } from "html-to-image"
 import { ImageFormats } from "@modules/config/interfaces"
 import { PlaygroundContext } from "../context"
@@ -49,6 +49,18 @@ export default function usePlayground() {
     handleChangeNodes((prev) => {
       return prev.map((n) => {
         return { ...n, draggable: true }
+      })
+    })
+  }
+
+  function handleClickEdge(edge: Edge) {
+    handleChangeEdges((prev) => {
+      return prev.map((e) => {
+        if (e.id === edge.id) {
+          return DatasetEdgeBuilder.buildSelected(e)
+        }
+
+        return e
       })
     })
   }
@@ -174,5 +186,6 @@ export default function usePlayground() {
     handleCleanNodes,
     viewport,
     handleChangeViewport,
+    handleClickEdge,
   }
 }

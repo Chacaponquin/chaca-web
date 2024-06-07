@@ -1,10 +1,9 @@
 import ReactFlow, { Background } from "reactflow"
-import { DatasetCard, DatasetsButtons, Playground } from "./components"
+import { DatasetCard, DatasetsButtons, Edge, Loader, Playground } from "./components"
 import { useTheme } from "@modules/app/modules/theme/hooks"
 import { THEME } from "@modules/app/modules/theme/constants"
-import { useSchemas } from "@modules/schemas/hooks"
 import { usePlayground } from "@modules/playground/hooks"
-import { SmartStepEdge } from "@tisoap/react-flow-smart-edge"
+import { APP_COLORS } from "@modules/app/constants"
 
 import "reactflow/dist/style.css"
 
@@ -13,19 +12,24 @@ const nodeTypes = {
 }
 
 const edgeTypes = {
-  smart: SmartStepEdge,
+  smart: Edge,
 }
 
-export default function DatasetPlayground() {
-  const { edges, nodes, onEdgesChange, onNodesChange, onConnect } = usePlayground()
-  const { theme } = useTheme()
-  const { schemas } = useSchemas()
+interface Props {
+  loading: boolean
+}
 
-  const color = theme === THEME.DARK ? "#ffffff" : "#000000"
+export default function DatasetPlayground({ loading }: Props) {
+  const { edges, nodes, onEdgesChange, onNodesChange, onConnect, handleClickEdge } = usePlayground()
+  const { theme } = useTheme()
+
+  const color = theme === THEME.DARK ? APP_COLORS.PLAYGROUND.DARK : APP_COLORS.PLAYGROUND.LIGHT
 
   return (
-    <section className="w-full h-full flex flex-col dark:bg-scale-2 bg-scale-12">
-      {schemas.length && (
+    <section className="w-full h-full flex flex-col dark:bg-scale-2 bg-gray-100">
+      {loading && <Loader />}
+
+      {!loading && (
         <ReactFlow
           nodes={nodes}
           edges={edges}
@@ -36,6 +40,7 @@ export default function DatasetPlayground() {
           nodesConnectable={false}
           fitView={true}
           edgeTypes={edgeTypes}
+          onEdgeClick={(_, edge) => handleClickEdge(edge)}
         >
           <Playground />
           <DatasetsButtons />
