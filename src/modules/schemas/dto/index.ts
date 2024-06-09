@@ -1,10 +1,10 @@
-import { ArgumentConfig } from "../interfaces/argument"
+import { ArgumentConfig } from "../domain/argument"
 
 export interface SchemaResponse {
   schemas: Array<{
     name: string
     options: SchemaOptionResponse[]
-    showName: string
+    id: string
   }>
   version: string
 }
@@ -12,10 +12,11 @@ export interface SchemaResponse {
 export interface SchemaOptionResponse {
   name: string
   arguments: ArgumentResponse[]
-  showName: string
+  id: string
 }
 
 export interface ArgumentResponse {
   argument: string
   config: ArgumentConfig
+  showName: string
 }

@@ -1,7 +1,7 @@
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { useFetch } from "@modules/app/modules/http/hooks"
 import { FetchFunctionsProps } from "@modules/app/modules/http/interfaces/fetch"
-import { Schema } from "../interfaces/schema"
+import { Schema } from "../domain/schema"
 import { SchemaResponse } from "../dto"
 import { v4 as uuid } from "uuid"
 
@@ -24,13 +24,13 @@ export default function useSchemasServices() {
         const result: Schema[] = data.schemas.map((d) => ({
           name: d.name,
           options: d.options.map((o) => ({
-            showName: o.showName,
+            id: o.id,
             name: o.name,
             arguments: o.arguments.map((a) => {
-              return { argument: a.argument, config: a.config, id: uuid() }
+              return { argument: a.argument, config: a.config, id: uuid(), showName: a.showName }
             }),
           })),
-          showName: d.showName,
+          id: d.id,
         }))
 
         if (props.onSuccess) {

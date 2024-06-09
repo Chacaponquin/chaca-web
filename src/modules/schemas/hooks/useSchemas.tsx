@@ -1,5 +1,5 @@
 import { useContext, useCallback } from "react"
-import { Schema, SubOption } from "../interfaces/schema"
+import { Schema, SubOption } from "../domain/schema"
 import { SchemasContext } from "../context"
 
 export default function useSchemas() {
@@ -7,7 +7,7 @@ export default function useSchemas() {
 
   const findParent = useCallback(
     (p: string): Schema => {
-      return schemas.find((el) => el.name === p) as Schema
+      return schemas.find((el) => el.id === p) as Schema
     },
     [schemas],
   )
@@ -15,7 +15,7 @@ export default function useSchemas() {
   const findType = useCallback(
     (p: string, t: string): SubOption => {
       const foundParent = findParent(p)
-      return foundParent.options.find((el) => el.name === t) as SubOption
+      return foundParent.options.find((el) => el.id === t) as SubOption
     },
     [findParent],
   )

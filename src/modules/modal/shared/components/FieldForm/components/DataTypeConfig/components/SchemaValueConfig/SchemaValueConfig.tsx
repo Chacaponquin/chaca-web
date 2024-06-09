@@ -7,7 +7,7 @@ import {
 import { useSchemas } from "@modules/schemas/hooks"
 import { OptionArguments } from "./components"
 import { useMemo } from "react"
-import { Argument } from "@modules/schemas/interfaces/argument"
+import { Argument } from "@modules/schemas/domain/argument"
 import clsx from "clsx"
 import { FormInputSection } from "@modules/modal/shared/shared/components"
 import { ArgumentObject } from "@modules/datasets/interfaces/dataset-field"
@@ -57,7 +57,7 @@ export default function SchemaValueConfig({
         <ChacaSelect
           options={schemas}
           labelKey="name"
-          valueKey="name"
+          valueKey="id"
           placeholder={MODULE_TEXT}
           value={schema}
           onChange={handleSelectModule}
@@ -70,7 +70,7 @@ export default function SchemaValueConfig({
           value={option}
           options={foundOptions}
           labelKey="name"
-          valueKey="name"
+          valueKey="id"
           placeholder={OPTION_TEXT}
           onChange={handleSelectModuleOption}
           size="base"

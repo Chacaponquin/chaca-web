@@ -21,7 +21,7 @@ import {
   UpdateArgumentsProps,
   UpdateCustomProps,
 } from "@modules/modal/shared/interfaces"
-import { Argument } from "@modules/schemas/interfaces/argument"
+import { Argument } from "@modules/schemas/domain/argument"
 
 interface Props {
   id: string

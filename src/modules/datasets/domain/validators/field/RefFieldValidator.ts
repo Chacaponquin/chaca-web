@@ -1,6 +1,6 @@
 import { IValidator } from "@modules/app/domain"
 import { ChacaError } from "@modules/app/exceptions"
-import { EmptyRefFieldError } from "@modules/datasets/errors/dataset"
+import { InputEmptyRefFieldError } from "@modules/datasets/errors/dataset"
 import { FieldDatatype } from "@modules/datasets/interfaces/dataset-field"
 import { DATA_TYPES } from "@modules/schemas/constants"
 
@@ -14,7 +14,7 @@ export class RefFieldValidator implements IValidator {
   validate(): ChacaError | null {
     if (this.props.type.type === DATA_TYPES.REF) {
       if (this.props.type.ref.length <= 1) {
-        return new EmptyRefFieldError()
+        return new InputEmptyRefFieldError()
       }
     }
 

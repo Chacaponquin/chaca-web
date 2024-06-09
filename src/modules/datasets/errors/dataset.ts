@@ -50,6 +50,18 @@ export class RepeatSameLevelFieldNameError extends DatasetError {
   }
 }
 
+export class InputEmptyRefFieldError extends DatasetError {
+  constructor() {
+    super({
+      msg: {
+        en: `If the field is going to be a reference field you must reference a field from another dataset`,
+        es: `Si el campo va a ser un campo referencia debes referenciar algún campo de otro dataset`,
+      },
+      id: "empty-ref-field",
+    })
+  }
+}
+
 export class EmptyRefFieldError extends DatasetError {
   constructor(field: string) {
     super({

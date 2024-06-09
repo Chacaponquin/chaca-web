@@ -2,7 +2,7 @@ import { ArgumentFilter } from "@modules/schemas/components"
 import { Fragment, useState } from "react"
 import { Enable, Name } from "./components"
 import { UpdateArgumentsProps } from "@modules/modal/shared/interfaces"
-import { Argument as IArgument } from "@modules/schemas/interfaces/argument"
+import { Argument as IArgument } from "@modules/schemas/domain/argument"
 import { ArgumentObject } from "@modules/datasets/interfaces/dataset-field"
 
 interface Props {
@@ -38,7 +38,7 @@ export default function Argument({
 
       {argument.argument in args ? (
         <Fragment>
-          <Name text={`${argument.argument}:`} />
+          <Name text={`${argument.showName}:`} />
 
           <ArgumentFilter
             arg={argument}
@@ -49,7 +49,7 @@ export default function Argument({
           />
         </Fragment>
       ) : (
-        <Name text={argument.argument} />
+        <Name text={argument.showName} />
       )}
     </div>
   )

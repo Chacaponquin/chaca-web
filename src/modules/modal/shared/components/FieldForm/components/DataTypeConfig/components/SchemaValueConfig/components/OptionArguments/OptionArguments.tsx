@@ -3,7 +3,7 @@ import { UpdateArgumentsProps } from "@modules/modal/shared/interfaces"
 import { useSchemas } from "@modules/schemas/hooks"
 import { Fragment } from "react"
 import { Argument } from "./components"
-import { Argument as IArgument } from "@modules/schemas/interfaces/argument"
+import { Argument as IArgument } from "@modules/schemas/domain/argument"
 
 interface Props {
   module: string

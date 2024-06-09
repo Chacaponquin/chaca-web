@@ -1,5 +1,5 @@
 import { createContext, useState } from "react"
-import { Schema } from "../interfaces/schema"
+import { Schema } from "../domain/schema"
 import { useErrorBoundary } from "react-error-boundary"
 import { useSchemasServices } from "../services/"
 import { DEFAULT_VERSION } from "../constants"

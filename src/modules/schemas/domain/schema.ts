@@ -3,11 +3,11 @@ import { Argument } from "./argument"
 export interface Schema {
   name: string
   options: SubOption[]
-  showName: string
+  id: string
 }
 
 export interface SubOption {
   name: string
   arguments: Argument[]
-  showName: string
+  id: string
 }

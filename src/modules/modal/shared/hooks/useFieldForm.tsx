@@ -21,7 +21,7 @@ import {
   UpdateRefProps,
 } from "../interfaces"
 import { FieldForm } from "@modules/modal/interfaces"
-import { Argument } from "@modules/schemas/interfaces/argument"
+import { Argument } from "@modules/schemas/domain/argument"
 
 interface Props {
   field: FieldForm
@@ -98,7 +98,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
           type: DATA_TYPES.SINGLE_VALUE,
           args: {},
           schema: parent,
-          option: findParent(parent).options[0].name,
+          option: findParent(parent).options[0].id,
         },
       },
     })

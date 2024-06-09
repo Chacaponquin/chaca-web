@@ -203,7 +203,7 @@ export class SchemaValueNode extends Field {
     const module = findParent(this.schema)
     const moduleOption = findOption(this.schema, this.option)
 
-    return `${module.showName}.${moduleOption.showName}`
+    return `${module.id}.${moduleOption.id}`
   }
 
   save({ findOption, findParent }: SaveProps): SaveFieldDTO {
@@ -217,8 +217,8 @@ export class SchemaValueNode extends Field {
       dataType: {
         type: DATA_TYPES.SINGLE_VALUE,
         args: this.args,
-        option: option.name,
-        schema: module.name,
+        option: option.id,
+        schema: module.id,
       },
       isArray: this.isArray,
       isKey: this.isKey,

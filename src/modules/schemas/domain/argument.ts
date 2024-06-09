@@ -4,6 +4,7 @@ export interface Argument {
   id: string
   argument: string
   config: ArgumentConfig
+  showName: string
 }
 
 export type ArgumentConfig =

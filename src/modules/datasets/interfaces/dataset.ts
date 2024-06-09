@@ -1,7 +1,7 @@
 import { DatasetError } from "../errors/dataset"
 import { FieldDatatype } from "./dataset-field"
 import { IsArrayConfig, IsKeyConfig, PossibleNullConfig } from "./field-config"
-import { SubOption, Schema } from "@modules/schemas/interfaces/schema"
+import { SubOption, Schema } from "@modules/schemas/domain/schema"
 
 export interface NodeProps {
   name: string

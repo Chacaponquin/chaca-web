@@ -1,4 +1,4 @@
-import { useMemo, useState, useRef, useId } from "react"
+import { useMemo, useState, useRef } from "react"
 import { ChacaFormProps, Size } from "../../interfaces"
 import { ArrowDown, ArrowUp } from "@modules/app/modules/icon/components"
 import clsx from "clsx"
@@ -11,8 +11,6 @@ interface Props extends ChacaFormProps<number> {
 }
 
 export default function ChacaNumberInput({ min, max, step = 1, value, size, onChange, id }: Props) {
-  const inputId = id ? id : useId()
-
   const [isFocus, setIsFocus] = useState(false)
   const [isHover, setIsHover] = useState(false)
 
@@ -180,7 +178,7 @@ export default function ChacaNumberInput({ min, max, step = 1, value, size, onCh
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
         value={value === undefined ? 0 : value}
-        id={inputId}
+        id={id}
         min={min}
         max={max}
       />

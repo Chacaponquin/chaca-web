@@ -1,6 +1,6 @@
 import { ArrayValue, ProbabilityValue, RefWhere } from "@modules/datasets/interfaces/dataset-field"
 import { FieldForm } from "@modules/modal/interfaces"
-import { Argument } from "@modules/schemas/interfaces/argument"
+import { Argument } from "@modules/schemas/domain/argument"
 
 export interface SelectFieldSchemaOptionProps {
   option: string
