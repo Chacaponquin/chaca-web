@@ -9,7 +9,7 @@ interface Props {
   success(): void
 }
 
-export class Validator {
+export abstract class Validator {
   constructor(private readonly validators: IValidator[]) {}
 
   execute({ error, success }: Props): void {

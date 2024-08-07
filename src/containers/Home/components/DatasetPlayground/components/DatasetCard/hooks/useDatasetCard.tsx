@@ -1,4 +1,9 @@
-import { HomeContext } from "@containers/Home/context"
+import {
+  AddFieldModalProps,
+  DeleteDatasetModalProps,
+  EditDatasetModalProps,
+  ExportDatasetModalProps,
+} from "@containers/Home/domain/modal"
 import {
   AddFieldCommand,
   CloneDatasetCommand,
@@ -9,16 +14,14 @@ import {
 } from "@modules/datasets/domain/commands"
 import { Dataset } from "@modules/datasets/domain/dataset"
 import { useDatasets } from "@modules/datasets/hooks"
-import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { useModal } from "@modules/modal/hooks"
-import { useContext, useEffect } from "react"
+import { useEffect } from "react"
 
 interface Props {
   dataset: Dataset
 }
 
 export default function useDatasetCard({ dataset }: Props) {
-  const { handleExportDatasets } = useContext(HomeContext)
   const { handleOpenModal, openModal } = useModal()
   const {
     handleSelectDataset,
@@ -51,15 +54,11 @@ export default function useDatasetCard({ dataset }: Props) {
   }, [selected, handleKeyboardAction])
 
   function handleDeleteDataset() {
-    handleOpenModal({
-      type: MODAL_ACTIONS.DELETE_DATASET,
-      datasetName: dataset.name,
-      datasetId: dataset.id,
-    })
+    handleOpenModal(new DeleteDatasetModalProps(dataset.name, dataset.id))
   }
 
   function handleEditDataset() {
-    handleOpenModal({ type: MODAL_ACTIONS.EDIT_DATASET, dataset: dataset })
+    handleOpenModal(new EditDatasetModalProps(dataset))
   }
 
   function handleClickCard() {
@@ -71,20 +70,11 @@ export default function useDatasetCard({ dataset }: Props) {
   }
 
   function handleAddField() {
-    handleOpenModal({
-      type: MODAL_ACTIONS.ADD_FIELD,
-      datasetId: dataset.id,
-      parentfieldId: dataset.id,
-    })
+    handleOpenModal(new AddFieldModalProps(dataset.id, dataset.id))
   }
 
   function handleCreateDataset(): void {
-    handleOpenModal({
-      type: MODAL_ACTIONS.EXPORT_SELECT_DATASET,
-      handleCreateSelectDataset({ config }) {
-        handleExportDatasets([dataset], config)
-      },
-    })
+    handleOpenModal(new ExportDatasetModalProps(dataset))
   }
 
   return {

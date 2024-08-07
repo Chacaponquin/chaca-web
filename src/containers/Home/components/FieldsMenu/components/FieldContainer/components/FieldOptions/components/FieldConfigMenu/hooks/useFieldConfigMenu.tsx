@@ -1,6 +1,6 @@
+import { AddFieldModalProps, EditFieldModalProps } from "@containers/Home/domain/modal"
 import { Field } from "@modules/datasets/domain/dataset"
 import { useDatasets } from "@modules/datasets/hooks"
-import { MODAL_ACTIONS } from "@modules/modal/constants"
 import { useModal } from "@modules/modal/hooks"
 
 interface Props {
@@ -16,23 +16,14 @@ export function useFieldConfigMenu({ field }: Props) {
       const findParent = selectedDataset.findFieldParentNode(field.id)
 
       if (findParent) {
-        handleOpenModal({
-          type: MODAL_ACTIONS.EDIT_FIELD,
-          field,
-          parentfieldId: findParent.id,
-          datasetId: selectedDataset.id,
-        })
+        handleOpenModal(new EditFieldModalProps(field, findParent.id, selectedDataset.id))
       }
     }
   }
 
   function handleAddSubField() {
     if (selectedDataset) {
-      handleOpenModal({
-        type: MODAL_ACTIONS.ADD_FIELD,
-        datasetId: selectedDataset.id,
-        parentfieldId: field.id,
-      })
+      handleOpenModal(new AddFieldModalProps(field.id, selectedDataset.id))
     }
   }
 

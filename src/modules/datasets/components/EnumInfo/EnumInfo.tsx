@@ -1,4 +1,4 @@
-import { P } from "@modules/modal/shared/shared/components/Info/components"
+import { P } from "@modules/modal/components/Info/components"
 import TypeInfo from "../TypeInfo/TypeInfo"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 

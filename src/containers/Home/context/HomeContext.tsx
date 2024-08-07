@@ -2,16 +2,11 @@ import { SCREEN_SIZES } from "@modules/app/constants"
 import { SOCKET_EVENTS } from "@modules/app/modules/socket/constants"
 import { useSocket } from "@modules/app/modules/socket/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
-import { Config } from "@modules/config/interfaces"
-import { Dataset } from "@modules/datasets/domain/dataset"
-import { ExportDatasetDTO, RespExportDatasetDTO } from "@modules/datasets/dto/dataset"
-import { useSchemas } from "@modules/schemas/hooks"
+import { RespExportDatasetDTO } from "@modules/datasets/dto/dataset"
 import { useScreen } from "@modules/shared/hooks"
 import { createContext, createRef, RefObject, useEffect, useState } from "react"
 import { useDatasetServices } from "@modules/datasets/services"
-import { useDatasets } from "@modules/datasets/hooks"
 import { DatasetCreationError } from "@modules/app/modules/socket/domain/error"
-import { DatasetError } from "@modules/datasets/errors/dataset"
 
 interface Props {
   fieldsMenuRef: RefObject<HTMLElement>
@@ -19,18 +14,19 @@ interface Props {
   exportLink: RefObject<HTMLAnchorElement>
   smallWindow: boolean
   createDataLoading: boolean
-  handleExportDatasets(inputDatasets: Dataset[], config: Config): void
+  handleChangeLoading(v: boolean): void
 }
 
-export const HomeContext = createContext<Props>({ smallWindow: false } as Props)
+export const HomeContext = createContext<Props>({
+  smallWindow: false,
+  createDataLoading: false,
+} as Props)
 
 export function HomeProvider({ children }: { children: React.ReactNode }) {
   const { condition } = useScreen(SCREEN_SIZES.LG)
   const { toastChacaError } = useToast()
   const { socket } = useSocket()
-  const { findParent, findType } = useSchemas()
-  const { exportDatasets, downloadDatasetFile, onCreationError } = useDatasetServices()
-  const { searchRefField } = useDatasets()
+  const { downloadDatasetFile, onCreationError } = useDatasetServices()
 
   const fieldsMenuRef = createRef<HTMLElement>()
   const playgroundRef = createRef<HTMLDivElement>()
@@ -72,60 +68,13 @@ export function HomeProvider({ children }: { children: React.ReactNode }) {
     })
   }
 
-  function handleExportDatasets(idatasets: Dataset[], config: Config): void {
-    setCreateDataLoading(true)
-
-    const datasetsDTO: ExportDatasetDTO[] = []
-    const allErrors = [] as DatasetError[]
-
-    for (const dataset of idatasets) {
-      const [fields, errors] = dataset.exportFields({
-        findOption: findType,
-        findParent: findParent,
-        searchRefField: searchRefField,
-        fieldRoute: [],
-      })
-
-      if (errors.length === 0) {
-        datasetsDTO.push({
-          limit: dataset.limit,
-          name: dataset.name,
-          fields: fields,
-        })
-      } else {
-        errors.forEach((error) => allErrors.push(error))
-      }
-    }
-
-    if (allErrors.length > 0) {
-      for (const error of allErrors) {
-        toastChacaError(error)
-      }
-
-      setCreateDataLoading(false)
-    } else {
-      exportDatasets({
-        datasets: datasetsDTO,
-        config: {
-          type: config.file.type,
-          arguments: config.file.arguments,
-          name: config.file.name,
-        },
-        onError: toastChacaError,
-        onFinally() {
-          setCreateDataLoading(false)
-        },
-      })
-    }
-  }
-
   const data: Props = {
     fieldsMenuRef,
     playgroundRef,
     smallWindow: !condition,
     exportLink,
     createDataLoading,
-    handleExportDatasets,
+    handleChangeLoading: setCreateDataLoading,
   }
 
   return <HomeContext.Provider value={data}>{children}</HomeContext.Provider>

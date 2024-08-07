@@ -1,4 +1,4 @@
-import { MiniCode, P } from "@modules/modal/shared/shared/components/Info/components"
+import { MiniCode, P } from "@modules/modal/components/Info/components"
 import TypeInfo from "../TypeInfo/TypeInfo"
 import { useTranslationComponent } from "@modules/app/modules/language/hooks"
 

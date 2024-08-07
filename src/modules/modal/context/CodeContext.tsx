@@ -1,5 +1,5 @@
 import { createContext, useState } from "react"
-import { ModalCodeProps } from "../interfaces/code"
+import { ModalCodeProps } from "../domain/code"
 
 interface Props {
   openCode: ModalCodeProps | null

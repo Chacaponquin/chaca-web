@@ -3,6 +3,7 @@ import {
   DatasetPlayground,
   FieldsMenu,
   HomeLayout,
+  Modals,
   Navbar,
   NoDatasetsMessage,
 } from "./components"
@@ -14,24 +15,28 @@ export default function Home() {
   const { smallWindow, createDataLoading } = useContext(HomeContext)
 
   const {
-    handleExportSelectedDataset,
     handleAddNewField,
-    handleCreateAllDatasets,
     datasets,
     showFieldsMenu,
     handleExportImage,
-    handleDeleteAll,
+    handleOpenDeleteAll,
     loading,
+    handleOpenExportImage,
+    handleOpenExportAllDatasets,
+    handleOpenExportSelectedDataset,
+    handleExportDatasets,
   } = useHome()
 
   const showMenu = !smallWindow || (smallWindow && showFieldsMenu)
 
   return (
     <HomeLayout>
+      <Modals handleExportImage={handleExportImage} handleExportDatasets={handleExportDatasets} />
+
       <Navbar
-        handleExportAllDatasets={handleCreateAllDatasets}
-        handleExportImage={handleExportImage}
-        handleDeleteAll={handleDeleteAll}
+        handleExportAllDatasets={handleOpenExportAllDatasets}
+        handleExportImage={handleOpenExportImage}
+        handleDeleteAll={handleOpenDeleteAll}
         loading={loading}
       />
 
@@ -44,7 +49,7 @@ export default function Home() {
           {showMenu && (
             <FieldsMenu
               loading={loading}
-              handleExportSelectedDataset={handleExportSelectedDataset}
+              handleExportSelectedDataset={handleOpenExportSelectedDataset}
               handleAddNewField={handleAddNewField}
             />
           )}
