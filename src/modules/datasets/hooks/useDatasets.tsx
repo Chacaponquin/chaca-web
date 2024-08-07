@@ -284,8 +284,12 @@ export default function useDatasets() {
           dataset: found.clone(),
           next(dataset) {
             handleChangeNodes((prev) => {
-              return [...prev, DatasetNodeBuilder.default({ dataset })]
+              const newNodes = [...prev, DatasetNodeBuilder.default({ dataset: dataset })]
+
+              return newNodes
             })
+
+            updateConnections([...datasets, dataset])
           },
         },
       })

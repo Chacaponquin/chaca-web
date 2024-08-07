@@ -14,7 +14,7 @@ export default function Item({ icon, id, onClick, text, command }: Props) {
   const CLASS = clsx(
     "transition-all duration-300",
     "flex items-center justify-between",
-    "py-2 pl-5 pr-5",
+    "py-2 pl-4 pr-4",
     "cursor-pointer",
     "hover:bg-scale-12 dark:hover:bg-scale-5",
     "gap-x-5",
@@ -24,10 +24,10 @@ export default function Item({ icon, id, onClick, text, command }: Props) {
     <li onClick={onClick} id={id} className={CLASS}>
       <div className="flex items-center gap-x-5">
         {icon({ size: 16 })}
-        <p className="text-base whitespace-nowrap">{text}</p>
+        <p className="text-sm whitespace-nowrap">{text}</p>
       </div>
 
-      <span className="font-fontCodeMedium text-sm text-gray-500">{command}</span>
+      <span className="font-fontCodeMedium text-xs text-gray-500">{command}</span>
     </li>
   )
 }

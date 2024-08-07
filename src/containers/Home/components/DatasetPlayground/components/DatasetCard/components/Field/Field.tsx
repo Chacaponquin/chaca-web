@@ -30,14 +30,14 @@ export default function Field({ field, datasetHasKeys, margin }: Props) {
       <div className="flex items-center relative w-full justify-between">
         <Connect id={field.id} position={Position.Left} type="target" />
 
-        <div className="flex text-base items-center w-full py-2 px-5 gap-x-3" id={field.id}>
+        <div className="flex items-center w-full py-1.5 px-4 gap-x-3" id={field.id}>
           {datasetHasKeys && <FieldKeyIcon isKey={field.isKey} />}
 
           <div
-            className="flex items-center w-full justify-between gap-x-12"
+            className="flex text-sm items-center w-full justify-between gap-x-8"
             style={{ paddingLeft: `${margin}px` }}
           >
-            <section className="flex items-center ">
+            <section className="flex items-center">
               <FieldName name={field.name} />
             </section>
 

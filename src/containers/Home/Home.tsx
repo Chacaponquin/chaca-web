@@ -23,7 +23,6 @@ export default function Home() {
     loading,
     handleOpenExportImage,
     handleOpenExportAllDatasets,
-    handleOpenExportSelectedDataset,
     handleExportDatasets,
   } = useHome()
 
@@ -46,13 +45,7 @@ export default function Home() {
         <main className="flex flex-grow">
           {createDataLoading && <CreationLoadingModal />}
 
-          {showMenu && (
-            <FieldsMenu
-              loading={loading}
-              handleExportSelectedDataset={handleOpenExportSelectedDataset}
-              handleAddNewField={handleAddNewField}
-            />
-          )}
+          {showMenu && <FieldsMenu loading={loading} handleAddNewField={handleAddNewField} />}
 
           <DatasetPlayground loading={loading} />
         </main>

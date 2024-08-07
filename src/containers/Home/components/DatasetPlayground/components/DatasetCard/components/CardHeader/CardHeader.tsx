@@ -27,7 +27,7 @@ export default function CardHeader({
     "relative",
     "flex justify-center items-center",
     "border-b-[1px] border-white",
-    "py-3.5 px-12",
+    "py-2.5 px-12",
   )
 
   return (

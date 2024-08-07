@@ -8,8 +8,8 @@ export default function DatasetInfo({ limit, name }: Props) {
 
   return (
     <div className="flex items-end justify-center gap-x-3 w-full">
-      <h1 className="text-2xl text-center font-fontMedium whitespace-nowrap">{name}</h1>
-      <p className="text-xl font-fontCodeMedium">{LIMIT}</p>
+      <h1 className="text-lg text-center font-fontMedium whitespace-nowrap">{name}</h1>
+      <p className="text-base font-fontCodeMedium">{LIMIT}</p>
     </div>
   )
 }

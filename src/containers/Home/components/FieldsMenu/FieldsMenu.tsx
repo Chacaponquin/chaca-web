@@ -5,16 +5,11 @@ import { useDatasets } from "@modules/datasets/hooks"
 import { HomeContext } from "@containers/Home/context"
 
 interface Props {
-  handleExportSelectedDataset(): void
   handleAddNewField(): void
   loading: boolean
 }
 
-export default function FieldsMenu({
-  handleExportSelectedDataset,
-  handleAddNewField,
-  loading,
-}: Props) {
+export default function FieldsMenu({ handleAddNewField, loading }: Props) {
   const { selectedDataset, handleCloseFieldsMenu, showFieldsMenu } = useDatasets()
   const { fieldsMenuRef, smallWindow } = useContext(HomeContext)
 
@@ -45,10 +40,7 @@ export default function FieldsMenu({
                 <FieldContainer key={field.id} margin={0} field={field} />
               ))}
 
-              <DatasetButtons
-                handleExportSelectedDataset={handleExportSelectedDataset}
-                handleAddNewField={handleAddNewField}
-              />
+              <DatasetButtons handleAddNewField={handleAddNewField} />
             </Fragment>
           ) : (
             <NoFieldsMessage handleAddNewField={handleAddNewField} />
