@@ -1,4 +1,4 @@
-import { SectionContent } from "@containers/LandigPage/shared/components"
+import { SectionContent } from "@containers/Landing/shared/components"
 import { ExportFormats, ImageSection, Section, TextSection } from "./components"
 import { APP_IMAGES } from "@modules/app/constants"
 import { useTranslation } from "@modules/app/modules/language/hooks"

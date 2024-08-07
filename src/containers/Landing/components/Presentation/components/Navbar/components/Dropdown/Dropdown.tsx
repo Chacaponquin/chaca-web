@@ -1,9 +1,9 @@
-import { NavbarLink } from "@containers/LandigPage/components/Presentation/components/Navbar/interfaces"
+import { NavbarLink } from "@containers/Landing/components/Presentation/components/Navbar/interfaces"
 import { Link } from "react-router-dom"
 import { Footer, Item } from "./components"
 
 interface Props {
-  links: Array<NavbarLink>
+  links: NavbarLink[]
 }
 
 export default function Dropdown({ links }: Props) {

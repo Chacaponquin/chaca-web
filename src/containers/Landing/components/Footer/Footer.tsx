@@ -1,4 +1,4 @@
-import { SectionContent } from "@containers/LandigPage/shared/components"
+import { SectionContent } from "@containers/Landing/shared/components"
 import { Left, Right } from "./components"
 import { useFooter } from "./hooks"
 

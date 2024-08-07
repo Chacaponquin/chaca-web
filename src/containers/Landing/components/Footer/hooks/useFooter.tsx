@@ -1,7 +1,7 @@
 import { useMemo } from "react"
 import { FooterLink } from "../interfaces"
 import { Discord, GitHub, Twitter } from "@modules/app/modules/icon/components"
-import { CHACA_LINKS } from "@containers/LandigPage/constants/Links"
+import { CHACA_LINKS } from "@containers/Landing/constants/links"
 
 export default function useFooter() {
   const LINKS: Array<FooterLink> = useMemo(() => {

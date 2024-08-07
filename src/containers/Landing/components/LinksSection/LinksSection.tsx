@@ -1,4 +1,4 @@
-import { SectionContent } from "@containers/LandigPage/shared/components"
+import { SectionContent } from "@containers/Landing/shared/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { Links } from "./components"
 

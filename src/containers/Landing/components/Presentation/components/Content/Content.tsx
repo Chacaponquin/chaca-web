@@ -1,4 +1,4 @@
-import { SectionContent } from "@containers/LandigPage/shared/components"
+import { SectionContent } from "@containers/Landing/shared/components"
 import { Buttons, Text } from "./components"
 
 export default function Content() {
