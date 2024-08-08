@@ -1,30 +1,23 @@
 import clsx from "clsx"
+import { Link } from "react-router-dom"
 
 interface Props {
   title: string
-  handleChangeSelectedDoc(): void
-  selected: boolean
+  active: boolean
+  url: string
 }
 
-export default function SubSection({ title, handleChangeSelectedDoc, selected }: Props) {
-  const BUTTON_CLASS = clsx(
-    "flex w-full",
-    "px-3 py-1",
-    "text-base",
-    "rounded",
-    "font-fontMedium",
-    {
-      "duration-300 hover:bg-scale-11/30 dark:hover:bg-scale-11/10 transition-all": !selected,
-      "bg-scale-11/30 dark:bg-scale-11/10": selected,
-    },
-    { "text-purple-6": selected, "text-scale-8 dark:text-white": !selected },
-  )
+export default function SubSection({ title, url, active }: Props) {
+  const BUTTON_CLASS = clsx("flex w-full", "py-1", "text-base", "font-fontMedium", {
+    "dark:text-purple-6": active,
+    "dark:text-scale-10": !active,
+  })
 
   return (
-    <li className="w-full">
-      <button className={BUTTON_CLASS} onClick={handleChangeSelectedDoc}>
-        {title}
-      </button>
-    </li>
+    <Link to={url}>
+      <li className="w-full">
+        <button className={BUTTON_CLASS}>{title}</button>
+      </li>
+    </Link>
   )
 }

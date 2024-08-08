@@ -1,15 +1,15 @@
 import { useCallback, useContext } from "react"
-import { SubSectionInf } from "../domain"
+import { DocSubSection } from "../domain/core/base"
 import { DocsContext } from "../context"
 
 export default function useDocs() {
   const { docs } = useContext(DocsContext)
 
   const getAllDocs = useCallback(() => {
-    let all: Array<SubSectionInf> = []
+    let all: DocSubSection[] = []
 
     for (const doc of docs) {
-      all = [...all, ...doc.allSubSections]
+      all = [...all, ...doc.sections]
     }
 
     return all

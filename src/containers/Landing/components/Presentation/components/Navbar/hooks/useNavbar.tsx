@@ -2,6 +2,7 @@ import { APP_ROUTES } from "@modules/app/constants"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { NavbarLink } from "../interfaces"
 import { useState } from "react"
+import { GETTING_STARTED } from "@modules/docs/domain/core/sections/guides"
 
 export default function useNavbar() {
   const [open, setOpen] = useState(false)
@@ -16,9 +17,9 @@ export default function useNavbar() {
     CONTACT_US_TEXT: { en: "Contact Us", es: "Contáctanos" },
   })
 
-  const LINKS: Array<NavbarLink> = [
+  const LINKS: NavbarLink[] = [
     { route: APP_ROUTES.HOME, title: HOME_TEXT },
-    { route: APP_ROUTES.DOCS.ROOT, title: DOCS_TEXT },
+    { route: GETTING_STARTED.url, title: DOCS_TEXT },
     { route: APP_ROUTES.CONTACT_US, title: CONTACT_US_TEXT },
   ]
 

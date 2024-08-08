@@ -10,10 +10,15 @@ export const APP_ROUTES = {
   NOT_FOUND: "/not-found",
 
   DOCS: {
-    COMPLETE: "/docs/:section/:doc",
-    ROOT: "/docs",
-    BUILD_DOC_ROUTE(section: string, doc: string) {
-      return `/docs/${section}/${doc}`
+    API: {
+      OVERVIEW: "/api/overviw",
+      SCHEMA_OPTION: "/api/schema-option",
+      SCHEMA: "/api/schema",
+    },
+    GUIDES: {
+      START: "/guides/getiing-started",
+      COMMAND: "/guides/command-line",
+      USAGE: "/guides/usage",
     },
   },
 } as const

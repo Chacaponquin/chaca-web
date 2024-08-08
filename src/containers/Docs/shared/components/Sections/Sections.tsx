@@ -1,26 +1,18 @@
 import { useDocs } from "@modules/docs/hooks"
 import { Section } from "./components"
-import { SelectedDoc } from "@containers/Docs/interfaces"
+import { DocSubSection } from "@modules/docs/domain/core/base"
 
 interface Props {
-  handleChangeSelectedDoc(section: SelectedDoc): void
-  selectedDoc: SelectedDoc | null
+  selected: DocSubSection
 }
 
-export default function Sections({ handleChangeSelectedDoc, selectedDoc }: Props) {
+export default function Sections({ selected }: Props) {
   const { docs } = useDocs()
 
   return (
-    <ul className="flex flex-col w-full gap-y-0.5">
+    <ul className="flex flex-col w-full gap-y-0.5 px-4">
       {docs.map((doc) => (
-        <Section
-          key={doc.id}
-          title={doc.title}
-          subs={doc.subSections}
-          selectedDoc={selectedDoc}
-          id={doc.id}
-          handleChangeSelectedDoc={handleChangeSelectedDoc}
-        />
+        <Section key={doc.url} selected={selected} title={doc.title} subs={doc.sections} />
       ))}
     </ul>
   )
