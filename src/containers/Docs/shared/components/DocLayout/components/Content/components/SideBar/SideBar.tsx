@@ -9,8 +9,8 @@ interface Props {
 export default function SideBar({ selected }: Props) {
   const CLASS = clsx(
     "xl:flex flex-col hidden",
-    "h-screen max-h-screen min-w-[320px] max-w-[320px]",
-    "px-4 pb-2 pt-[75px]",
+    "h-screen max-h-screen w-full max-w-[320px]",
+    "pl-16 pr-4 pb-2 pt-[75px]",
     "overflow-auto",
     "dark:border-r-[1px] dark:border-r-scale-7 border-r-2",
   )

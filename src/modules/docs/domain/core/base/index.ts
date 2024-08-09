@@ -33,7 +33,7 @@ export abstract class DocSection {
 
 export abstract class DocSubSection {
   readonly title: string
-  private _url: string
+  private readonly _url: string
   readonly parent: DocSection
 
   constructor({ title, parent, url }: SubSectionProps) {
@@ -44,5 +44,29 @@ export abstract class DocSubSection {
 
   get url() {
     return `/${this.parent.url}/${this._url}`
+  }
+
+  get next(): DocSubSection | null {
+    const index = this.parent.sections.indexOf(this)
+
+    if (index !== -1) {
+      if (index < this.parent.sections.length - 1) {
+        return this.parent.sections[index + 1]
+      }
+    }
+
+    return null
+  }
+
+  get back(): DocSubSection | null {
+    const index = this.parent.sections.indexOf(this)
+
+    if (index !== -1) {
+      if (index > 0) {
+        return this.parent.sections[index - 1]
+      }
+    }
+
+    return null
   }
 }

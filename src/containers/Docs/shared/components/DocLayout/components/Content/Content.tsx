@@ -1,5 +1,5 @@
 import { DocSubSection } from "@modules/docs/domain/core/base"
-import { Doc, SideBar } from "./components"
+import { Doc, Footer, Sections, SideBar } from "./components"
 
 interface Props {
   location: string[]
@@ -13,8 +13,13 @@ export default function Content({ location, selected, children }: Props) {
       <SideBar selected={selected} />
 
       <main className="w-full flex overflow-y-auto z-40">
-        <Doc location={location}>{children}</Doc>
+        <Doc location={location}>
+          {children}
+          <Footer back={selected.back} next={selected.next} />
+        </Doc>
       </main>
+
+      <Sections />
     </div>
   )
 }

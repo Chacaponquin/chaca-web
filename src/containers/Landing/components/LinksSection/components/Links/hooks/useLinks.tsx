@@ -1,7 +1,7 @@
 import { Discord, GitHub, Twitter } from "@modules/app/modules/icon/components"
 import { LinkButton } from "../interfaces"
 import { useMemo } from "react"
-import { CHACA_LINKS } from "@containers/Landing/constants/links"
+import { CHACA_LINKS } from "@modules/shared/domain/links"
 
 export default function useLinks() {
   const LINKS: LinkButton[] = useMemo(() => {

@@ -24,7 +24,7 @@ export default function SelectType({ types, handleChange, type }: Props) {
           valueKey="name"
           onChange={(v) => handleChange(v as string)}
           value={found.name}
-          size="base"
+          size="sm"
           placeholder={TYPE}
         />
       )}

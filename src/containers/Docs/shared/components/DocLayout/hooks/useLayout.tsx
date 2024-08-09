@@ -16,9 +16,14 @@ export default function useLayout({ selected }: Props) {
     return [selected.parent.title, selected.title]
   }, [])
 
+  function handleOpenSearch() {
+    // TODO
+  }
+
   return {
     handleChangeOpenAside,
     openAside,
     location,
+    handleOpenSearch,
   }
 }

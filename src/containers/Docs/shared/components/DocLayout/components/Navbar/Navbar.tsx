@@ -1,14 +1,16 @@
-import { ThemeSwitch } from "@modules/app/modules/theme/components"
-import { ChacaLogo, Menu } from "./components"
+import { ChacaLogo, Links, Menu, Theme } from "./components"
 import clsx from "clsx"
 import { useScreen } from "@modules/shared/hooks"
 import { SCREEN_SIZES } from "@modules/app/constants"
 
+import { Search } from "../../shared/components"
+
 interface Props {
   handleChangeOpenAside(): void
+  handleOpenSearch(): void
 }
 
-export default function Navbar({ handleChangeOpenAside }: Props) {
+export default function Navbar({ handleChangeOpenAside, handleOpenSearch }: Props) {
   const { condition } = useScreen(SCREEN_SIZES.XL)
 
   const CLASS = clsx(
@@ -17,7 +19,7 @@ export default function Navbar({ handleChangeOpenAside }: Props) {
     "z-50",
     "bg-white dark:bg-scale-3",
     "text-black dark:text-white",
-    "sm:px-6 px-4",
+    "xl:px-16 px-4",
     "flex items-center justify-between",
     "min-h-[65px] max-h-[65px]",
     "dark:border-b-[1px] dark:border-b-scale-7 border-b-2",
@@ -30,8 +32,10 @@ export default function Navbar({ handleChangeOpenAside }: Props) {
         <ChacaLogo />
       </section>
 
-      <section className="flex items-center gap-x-6 h-full">
-        <ThemeSwitch />
+      <section className="flex items-center gap-x-2 h-full">
+        {condition && <Search handleClick={handleOpenSearch} full={false} />}
+        <Theme />
+        <Links />
       </section>
     </nav>
   )

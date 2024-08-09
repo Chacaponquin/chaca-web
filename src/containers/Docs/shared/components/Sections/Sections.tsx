@@ -10,7 +10,7 @@ export default function Sections({ selected }: Props) {
   const { docs } = useDocs()
 
   return (
-    <ul className="flex flex-col w-full gap-y-0.5 px-4">
+    <ul className="flex flex-col w-full gap-y-0.5">
       {docs.map((doc) => (
         <Section key={doc.url} selected={selected} title={doc.title} subs={doc.sections} />
       ))}

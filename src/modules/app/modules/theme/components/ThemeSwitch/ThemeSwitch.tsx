@@ -5,8 +5,12 @@ import { THEME } from "../../constants"
 import { Dark, Light } from "@modules/app/modules/icon/components"
 import { useMemo } from "react"
 
-export default function ThemeSwitch() {
-  const { theme } = useTheme()
+interface Props {
+  click?: boolean
+}
+
+export default function ThemeSwitch({ click }: Props) {
+  const { theme, handleChangeTheme } = useTheme()
   const isLight = useMemo(() => theme === THEME.LIGHT, [theme])
 
   const CONTAINER = clsx(
@@ -34,10 +38,18 @@ export default function ThemeSwitch() {
     },
   )
 
+  function handleChange() {
+    if (isLight) {
+      handleChangeTheme(THEME.DARK)
+    } else {
+      handleChangeTheme(THEME.LIGHT)
+    }
+  }
+
   const ICON_SIZE = 14
 
   return (
-    <div className={CONTAINER}>
+    <div className={CONTAINER} onClick={click ? handleChange : undefined}>
       <motion.div
         className={CUBIC}
         layout

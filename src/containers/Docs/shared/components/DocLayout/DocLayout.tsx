@@ -10,7 +10,9 @@ interface Props {
 }
 
 export default function DocLayout({ selected, children }: Props) {
-  const { handleChangeOpenAside, openAside, location } = useLayout({ selected: selected })
+  const { handleChangeOpenAside, openAside, location, handleOpenSearch } = useLayout({
+    selected: selected,
+  })
 
   const { DESCRIPTION, TITLE } = useTranslation({
     TITLE: { en: "Chaca | Docs", es: "Chaca | Docs" },
@@ -22,10 +24,15 @@ export default function DocLayout({ selected, children }: Props) {
 
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
-      <Aside handleClose={handleChangeOpenAside} open={openAside} selected={selected} />
+      <Aside
+        handleOpenSearch={handleOpenSearch}
+        handleClose={handleChangeOpenAside}
+        open={openAside}
+        selected={selected}
+      />
 
       <div className="w-full flex flex-col">
-        <Navbar handleChangeOpenAside={handleChangeOpenAside} />
+        <Navbar handleChangeOpenAside={handleChangeOpenAside} handleOpenSearch={handleOpenSearch} />
 
         <Content selected={selected} location={location}>
           {children}

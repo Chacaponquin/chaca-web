@@ -35,7 +35,7 @@ export default function ProbabilityConfig({ handleChangeProbabilityValues, value
 
   return (
     <div className="flex flex-col w-full gap-y-1 mb-1.5">
-      <div className="grid grid-cols-2 gap-x-2">
+      <div className="grid grid-cols-2 gap-x-2 gap-y-1">
         <Label text={VALUE} />
         <Label text={PROBABILITY} info={<ProbInfo />} />
 

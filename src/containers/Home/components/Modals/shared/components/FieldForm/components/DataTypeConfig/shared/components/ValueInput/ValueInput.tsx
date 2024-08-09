@@ -31,7 +31,7 @@ export default function ValueInput({
         value={value}
         disabled={false}
         name={`new-value-${valuesLength}`}
-        size="base"
+        size="sm"
         type="text"
         onChange={handleChange}
         placeholder={NEW_VALUE}

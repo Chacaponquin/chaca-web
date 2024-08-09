@@ -1,6 +1,6 @@
 import { Discord, GitHub, Twitter } from "@modules/app/modules/icon/components"
 import { FooterLink } from "./interfaces"
-import { CHACA_LINKS } from "@containers/Landing/constants/links"
+import { CHACA_LINKS } from "@modules/shared/domain/links"
 import { Link } from "./components"
 
 export default function Footer() {

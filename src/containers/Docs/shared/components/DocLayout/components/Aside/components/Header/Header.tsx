@@ -9,7 +9,7 @@ interface Props {
 
 export default function Header({ handleClose }: Props) {
   return (
-    <header className="flex items-center justify-between px-4 py-3 text-black dark:text-white">
+    <header className="flex items-center justify-between py-3 text-black dark:text-white">
       <Link to={APP_ROUTES.ROOT}>
         <div className="flex gap-x-4 items-center">
           <Logo size={50} />

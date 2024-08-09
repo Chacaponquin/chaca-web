@@ -68,11 +68,11 @@ export class PlaygroundZoom {
   static STEP_ZOOM = 0.1
 
   static zoomIn(zoom: number): number {
-    return zoom
+    return zoom + this.STEP_ZOOM
   }
 
   static zoomOut(zoom: number): number {
-    return zoom
+    return zoom - this.STEP_ZOOM
   }
 }
 

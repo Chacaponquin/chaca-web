@@ -15,7 +15,7 @@ export default function AddButton({ handleClick }: Props) {
       <ChacaSimpleButton
         text={ADD}
         color="cancel"
-        size="base"
+        size="sm"
         onClick={handleClick}
         disabled={false}
         type="button"

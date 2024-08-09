@@ -6,7 +6,7 @@ export default function Footer() {
   const { LINKS } = useFooter()
 
   return (
-    <footer className="flex justify-center border-t-[1px] border-scale-11 w-full py-7">
+    <footer className="flex justify-center border-t-[1px] border-t-scale-7 w-full py-7">
       <SectionContent className="flex justify-between items-center md:flex-row flex-col gap-4">
         <Left />
         <Right links={LINKS} />

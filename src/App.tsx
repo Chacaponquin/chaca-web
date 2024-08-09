@@ -57,6 +57,30 @@ import {
   Video,
   Word,
 } from "@containers/Docs/components/Schemas/components"
+import {
+  Config as FieldConfig,
+  Custom,
+  CustomSchemaField,
+  Enum,
+  NestedSchema,
+  Pick,
+  Probability,
+  Ref,
+  Sequence,
+  Sequential,
+} from "@containers/Docs/components/Fields/components"
+import {
+  FIELD_CONFIG,
+  CUSTOM,
+  CUSTOM_SCHEMA_FIELD,
+  ENUM,
+  NESTED_SCHEMA,
+  PICK,
+  PROBABILITY,
+  REF,
+  SEQUENCE,
+  SEQUENTIAL,
+} from "@modules/docs/domain/core/sections/field-types"
 
 export default function App() {
   return (
@@ -117,6 +141,17 @@ export default function App() {
                       <Route element={<Vehicle />} path={VEHICLE.url} />
                       <Route element={<Word />} path={WORD.url} />
                       <Route element={<Video />} path={VIDEO.url} />
+
+                      <Route element={<FieldConfig />} path={FIELD_CONFIG.url} />
+                      <Route element={<Custom />} path={CUSTOM.url} />
+                      <Route element={<CustomSchemaField />} path={CUSTOM_SCHEMA_FIELD.url} />
+                      <Route element={<Enum />} path={ENUM.url} />
+                      <Route element={<NestedSchema />} path={NESTED_SCHEMA.url} />
+                      <Route element={<Sequence />} path={SEQUENCE.url} />
+                      <Route element={<Sequential />} path={SEQUENTIAL.url} />
+                      <Route element={<Pick />} path={PICK.url} />
+                      <Route element={<Probability />} path={PROBABILITY.url} />
+                      <Route element={<Ref />} path={REF.url} />
 
                       <Route path="*" element={<Error404 />} />
                     </Routes>
