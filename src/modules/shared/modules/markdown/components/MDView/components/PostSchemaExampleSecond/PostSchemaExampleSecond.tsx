@@ -21,7 +21,7 @@ export default function PostSchemaExampleSecond() {
 
   const body = {
     id: "id.uuid",
-    age: "dataType.integer<min=18;max=90>",
+    age: "datatype.integer<min=18;max=90>",
     password: {
       type: "internet.password",
       params: {

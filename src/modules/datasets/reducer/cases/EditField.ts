@@ -23,7 +23,7 @@ export class EditField extends DatasetUseCase<ExecuteProps> {
         const found = dataset.findFieldById(form.id)
 
         if (found) {
-          if (found instanceof RefNode && form.dataType.type !== DATA_TYPES.REF) {
+          if (found instanceof RefNode && form.datatype.type !== DATA_TYPES.REF) {
             this.deleteRefs.execute({ datasets: this.datasets, id: found.id })
           }
 

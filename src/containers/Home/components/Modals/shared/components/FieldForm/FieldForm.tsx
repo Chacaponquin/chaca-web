@@ -46,7 +46,7 @@ export default function FieldForm({
   })
 
   const { canBeArray, canBeKey, canBeNull } = Field.possibleConfig({
-    type: field.dataType.type,
+    type: field.datatype.type,
     isKey: field.isKey,
   })
 
@@ -57,7 +57,7 @@ export default function FieldForm({
       <FieldDatatype
         label={DATA_TYPE_TEXT}
         handleChangeDataType={handleChangeDataType}
-        dataType={field.dataType.type}
+        datatype={field.datatype.type}
         fieldId={field.id}
         datasetId={datasetId}
       />
@@ -67,7 +67,7 @@ export default function FieldForm({
         datasetId={datasetId}
         handleSelectFieldSchema={handleSelectFieldSchema}
         handleSelectFieldSchemaOption={handleSelectFieldSchemaOption}
-        dataType={field.dataType}
+        datatype={field.datatype}
         handleUpdateCustomField={handleUpdateCustomField}
         handleUpdateFieldSchemaArguments={handleUpdateFieldSchemaArguments}
         handleChangeSequentialValues={handleChangeSequentialValues}

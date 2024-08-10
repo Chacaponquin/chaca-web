@@ -108,7 +108,7 @@ export default function useDatasets() {
       datasetId: datasetId,
       parentfieldId: parentfieldId,
       name: field.name,
-      dataType: field.dataType,
+      datatype: field.datatype,
       id: field.id,
     })
 
@@ -132,7 +132,7 @@ export default function useDatasets() {
   function handleAddField({ datasetId, field, parentfieldId, error, success }: AddFieldProps) {
     const validator = new FieldValidator({
       name: field.name,
-      dataType: field.dataType,
+      datatype: field.datatype,
       id: null,
       datasetId: datasetId,
       parentfieldId: parentfieldId,
@@ -148,7 +148,7 @@ export default function useDatasets() {
               name: field.name,
               isArray: field.isArray,
               isPossibleNull: field.isPossibleNull,
-              dataType: field.dataType,
+              datatype: field.datatype,
               isKey: field.isKey,
               id: field.id,
             },

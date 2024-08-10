@@ -15,12 +15,12 @@ interface Props {
   parentfieldId: string
   datasetId: string
   id: string | null
-  dataType: FieldDatatype
+  datatype: FieldDatatype
   datasets: Dataset[]
 }
 
 export class FieldValidator extends Validator {
-  constructor({ datasetId, parentfieldId, datasets, dataType, id, name }: Props) {
+  constructor({ datasetId, parentfieldId, datasets, datatype, id, name }: Props) {
     super([
       new FieldNameValidator({ name: name }),
       new NoDuplicateLevelField({
@@ -30,12 +30,12 @@ export class FieldValidator extends Validator {
         name: name,
         parentId: parentfieldId,
       }),
-      new CustomFieldValidator({ type: dataType }),
-      new SequentialValuesValidator({ type: dataType }),
-      new RefFieldValidator({ type: dataType }),
-      new EnumValuesValidator({ type: dataType }),
-      new PickValuesValidator({ type: dataType }),
-      new ProbabilityValuesValidator({ type: dataType }),
+      new CustomFieldValidator({ type: datatype }),
+      new SequentialValuesValidator({ type: datatype }),
+      new RefFieldValidator({ type: datatype }),
+      new EnumValuesValidator({ type: datatype }),
+      new PickValuesValidator({ type: datatype }),
+      new ProbabilityValuesValidator({ type: datatype }),
     ])
   }
 }

@@ -26,7 +26,7 @@ import { Argument } from "@modules/schemas/domain/argument"
 interface Props {
   id: string
   datasetId: string
-  dataType: FieldDatatype
+  datatype: FieldDatatype
   handleSelectFieldSchema(v: string): void
   handleSelectFieldSchemaOption(p: SelectFieldSchemaOptionProps): void
   handleUpdateCustomField(p: UpdateCustomProps): void
@@ -48,7 +48,7 @@ interface Props {
 export default function DataTypeConfig({
   id,
   datasetId,
-  dataType,
+  datatype,
   handleSelectFieldSchema,
   handleSelectFieldSchemaOption,
   handleUpdateCustomField,
@@ -68,20 +68,20 @@ export default function DataTypeConfig({
 }: Props) {
   return (
     <section className="">
-      {dataType.type === DATA_TYPES.ENUM && (
-        <EnumConfig values={dataType.values} handleChangeEnumValues={handleChangeEnumValues} />
+      {datatype.type === DATA_TYPES.ENUM && (
+        <EnumConfig values={datatype.values} handleChangeEnumValues={handleChangeEnumValues} />
       )}
 
-      {dataType.type === DATA_TYPES.CUSTOM && (
-        <CustomConfig code={dataType.code} handleUpdateCustomField={handleUpdateCustomField} />
+      {datatype.type === DATA_TYPES.CUSTOM && (
+        <CustomConfig code={datatype.code} handleUpdateCustomField={handleUpdateCustomField} />
       )}
 
-      {dataType.type === DATA_TYPES.REF && (
+      {datatype.type === DATA_TYPES.REF && (
         <RefConfig
-          refField={dataType.ref}
+          refField={datatype.ref}
           datasetId={datasetId}
-          unique={dataType.unique}
-          where={dataType.where}
+          unique={datatype.unique}
+          where={datatype.where}
           handleChangeRefField={handleChangeRefField}
           id={id}
           handleChangeRefUnique={handleChangeRefUnique}
@@ -89,28 +89,28 @@ export default function DataTypeConfig({
         />
       )}
 
-      {dataType.type === DATA_TYPES.SEQUENCE && (
+      {datatype.type === DATA_TYPES.SEQUENCE && (
         <SequenceConfig
-          startsWith={dataType.startsWith}
-          step={dataType.step}
+          startsWith={datatype.startsWith}
+          step={datatype.step}
           handleChangeSequenceStartsWith={handleChangeSequenceStartsWith}
           handleChangeSequenceStep={handleChangeSequenceStep}
         />
       )}
 
-      {dataType.type === DATA_TYPES.SEQUENTIAL && (
+      {datatype.type === DATA_TYPES.SEQUENTIAL && (
         <SequentialConfig
           handleChangeSequentialValues={handleChangeSequentialValues}
-          values={dataType.values}
-          loop={dataType.loop}
+          values={datatype.values}
+          loop={datatype.loop}
         />
       )}
 
-      {dataType.type === DATA_TYPES.SINGLE_VALUE && (
+      {datatype.type === DATA_TYPES.SINGLE_VALUE && (
         <SchemaValueConfig
-          args={dataType.args}
-          option={dataType.option}
-          schema={dataType.schema}
+          args={datatype.args}
+          option={datatype.option}
+          schema={datatype.schema}
           handleSelectFieldSchema={handleSelectFieldSchema}
           handleSelectFieldSchemaOption={handleSelectFieldSchemaOption}
           handleUpdateFieldSchemaArguments={handleUpdateFieldSchemaArguments}
@@ -119,18 +119,18 @@ export default function DataTypeConfig({
         />
       )}
 
-      {dataType.type === DATA_TYPES.PROBABILITY && (
+      {datatype.type === DATA_TYPES.PROBABILITY && (
         <ProbabilityConfig
-          values={dataType.values}
+          values={datatype.values}
           handleChangeProbabilityValues={handleChangeProbabilityValues}
         />
       )}
 
-      {dataType.type === DATA_TYPES.PICK && (
+      {datatype.type === DATA_TYPES.PICK && (
         <PickConfig
-          count={dataType.count}
+          count={datatype.count}
           handleChangePickValues={handleChangePickValues}
-          values={dataType.values}
+          values={datatype.values}
           handleChangePickCount={handleChangePickCount}
         />
       )}

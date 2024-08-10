@@ -28,7 +28,7 @@ export type FieldFormPayload =
   | {
       type: FORM_ACTIONS.CHANGE_FIELD_DATATYPE
       payload: {
-        dataType: FieldDatatype
+        datatype: FieldDatatype
       }
     }
   | {
@@ -82,7 +82,7 @@ export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
     }
 
     case FORM_ACTIONS.CHANGE_FIELD_DATATYPE: {
-      return { ...form, dataType: action.payload.dataType }
+      return { ...form, datatype: action.payload.datatype }
     }
 
     case FORM_ACTIONS.CHNAGE_IS_KEY: {
@@ -96,7 +96,7 @@ export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
     case FORM_ACTIONS.CHANGE_SEQUENTIAL_FIELD: {
       return {
         ...form,
-        dataType: {
+        datatype: {
           type: DATA_TYPES.SEQUENTIAL,
           values: action.payload.values,
           loop: action.payload.loop,
@@ -105,13 +105,13 @@ export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
     }
 
     case FORM_ACTIONS.CHNAGE_ENUM_FIELD: {
-      return { ...form, dataType: { type: DATA_TYPES.ENUM, values: action.payload.values } }
+      return { ...form, datatype: { type: DATA_TYPES.ENUM, values: action.payload.values } }
     }
 
     case FORM_ACTIONS.CHANGE_REF_DATATYPE: {
       return {
         ...form,
-        dataType: {
+        datatype: {
           type: DATA_TYPES.REF,
           ref: action.payload.ref,
           unique: action.payload.unique,
@@ -123,7 +123,7 @@ export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
     case FORM_ACTIONS.CHANGE_SEQUENCE_FIELD: {
       return {
         ...form,
-        dataType: {
+        datatype: {
           type: DATA_TYPES.SEQUENCE,
           startsWith: action.payload.startsWith,
           step: action.payload.step,
@@ -134,7 +134,7 @@ export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
     case FORM_ACTIONS.CHANGE_PICK_DATATYPE: {
       return {
         ...form,
-        dataType: {
+        datatype: {
           type: DATA_TYPES.PICK,
           count: action.payload.count,
           values: action.payload.values,
@@ -143,7 +143,7 @@ export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
     }
 
     case FORM_ACTIONS.CHANGE_PROBABILITY_DATATYPE: {
-      return { ...form, dataType: { type: DATA_TYPES.PROBABILITY, values: action.payload.values } }
+      return { ...form, datatype: { type: DATA_TYPES.PROBABILITY, values: action.payload.values } }
     }
 
     default:

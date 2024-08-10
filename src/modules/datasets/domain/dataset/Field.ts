@@ -90,7 +90,7 @@ export abstract class Field {
   abstract stringInf(props: StringInfProps): string
   abstract clone(): Field
   abstract save(props: SaveProps): SaveFieldDTO
-  abstract get dataType(): FieldDatatype
+  abstract get datatype(): FieldDatatype
 
   protected getRouteString(route: string[]): string {
     return [...route, this.name].join(".")
@@ -109,42 +109,42 @@ export abstract class Field {
   }
 
   static create(props: NodeProps): Field {
-    if (props.dataType.type === DATA_TYPES.SINGLE_VALUE) {
+    if (props.datatype.type === DATA_TYPES.SINGLE_VALUE) {
       return new SchemaValueNode({
         ...props,
-        option: props.dataType.option,
-        schema: props.dataType.schema,
-        args: props.dataType.args,
+        option: props.datatype.option,
+        schema: props.datatype.schema,
+        args: props.datatype.args,
       })
-    } else if (props.dataType.type === DATA_TYPES.CUSTOM) {
-      return new CustomNode({ ...props, code: props.dataType.code })
-    } else if (props.dataType.type === DATA_TYPES.ENUM) {
-      return new EnumNode({ ...props, values: props.dataType.values })
-    } else if (props.dataType.type === DATA_TYPES.MIXED) {
-      return new MixedNode({ ...props, object: props.dataType.object })
-    } else if (props.dataType.type === DATA_TYPES.REF) {
+    } else if (props.datatype.type === DATA_TYPES.CUSTOM) {
+      return new CustomNode({ ...props, code: props.datatype.code })
+    } else if (props.datatype.type === DATA_TYPES.ENUM) {
+      return new EnumNode({ ...props, values: props.datatype.values })
+    } else if (props.datatype.type === DATA_TYPES.MIXED) {
+      return new MixedNode({ ...props, object: props.datatype.object })
+    } else if (props.datatype.type === DATA_TYPES.REF) {
       return new RefNode({
         ...props,
-        ref: props.dataType.ref,
-        unique: props.dataType.unique,
-        where: props.dataType.where,
+        ref: props.datatype.ref,
+        unique: props.datatype.unique,
+        where: props.datatype.where,
       })
-    } else if (props.dataType.type === DATA_TYPES.SEQUENCE) {
+    } else if (props.datatype.type === DATA_TYPES.SEQUENCE) {
       return new SequenceNode({
         ...props,
-        startsWith: props.dataType.startsWith,
-        step: props.dataType.step,
+        startsWith: props.datatype.startsWith,
+        step: props.datatype.step,
       })
-    } else if (props.dataType.type === DATA_TYPES.SEQUENTIAL) {
+    } else if (props.datatype.type === DATA_TYPES.SEQUENTIAL) {
       return new SequentialNode({
         ...props,
-        values: props.dataType.values,
-        loop: props.dataType.loop,
+        values: props.datatype.values,
+        loop: props.datatype.loop,
       })
-    } else if (props.dataType.type === DATA_TYPES.PICK) {
-      return new PickNode({ ...props, values: props.dataType.values, count: props.dataType.count })
-    } else if (props.dataType.type === DATA_TYPES.PROBABILITY) {
-      return new ProbabilityNode({ ...props, values: props.dataType.values })
+    } else if (props.datatype.type === DATA_TYPES.PICK) {
+      return new PickNode({ ...props, values: props.datatype.values, count: props.datatype.count })
+    } else if (props.datatype.type === DATA_TYPES.PROBABILITY) {
+      return new ProbabilityNode({ ...props, values: props.datatype.values })
     } else {
       throw Error("Incorrect data type for node")
     }
@@ -214,7 +214,7 @@ export class SchemaValueNode extends Field {
     const option = findOption(schemaId, optionId)
 
     return {
-      dataType: {
+      datatype: {
         type: DATA_TYPES.SINGLE_VALUE,
         args: this.args,
         option: option.id,
@@ -241,7 +241,7 @@ export class SchemaValueNode extends Field {
     })
   }
 
-  get dataType(): SingleValueDataType {
+  get datatype(): SingleValueDataType {
     return {
       type: DATA_TYPES.SINGLE_VALUE,
       args: this.args,
@@ -259,7 +259,7 @@ export class SchemaValueNode extends Field {
 
     return {
       name: this.name,
-      dataType: {
+      datatype: {
         type: DATA_TYPES.SINGLE_VALUE,
         args: this.args,
         option: option.id,
@@ -291,7 +291,7 @@ export class SequenceNode extends Field {
 
   save(): SaveFieldDTO {
     return {
-      dataType: { type: DATA_TYPES.SEQUENCE, startsWith: this.startsWith, step: this.step },
+      datatype: { type: DATA_TYPES.SEQUENCE, startsWith: this.startsWith, step: this.step },
       id: this.id,
       name: this.name,
       isArray: this.isArray,
@@ -300,7 +300,7 @@ export class SequenceNode extends Field {
     }
   }
 
-  get dataType(): SequenceDataType {
+  get datatype(): SequenceDataType {
     return { type: DATA_TYPES.SEQUENCE, startsWith: this.startsWith, step: this.step }
   }
 
@@ -322,7 +322,7 @@ export class SequenceNode extends Field {
       isArray: this.isArray,
       isKey: this.isKey,
       isPossibleNull: this.isPossibleNull,
-      dataType: this.dataType,
+      datatype: this.datatype,
     }
   }
 }
@@ -348,7 +348,7 @@ export class SequentialNode extends Field {
       isArray: this.isArray,
       isKey: this.isKey,
       isPossibleNull: this.isPossibleNull,
-      dataType: this.dataType,
+      datatype: this.datatype,
     }
   }
 
@@ -364,7 +364,7 @@ export class SequentialNode extends Field {
     })
   }
 
-  get dataType(): SequentialDataType {
+  get datatype(): SequentialDataType {
     return {
       type: DATA_TYPES.SEQUENTIAL,
       values: this.values,
@@ -381,7 +381,7 @@ export class SequentialNode extends Field {
 
     return {
       name: this.name,
-      dataType: {
+      datatype: {
         type: DATA_TYPES.SEQUENTIAL,
         values: this.values.map((v) => mapper.map(v)),
         loop: this.loop,
@@ -405,7 +405,7 @@ export class RefNode extends Field {
     this.where = props.where
   }
 
-  get dataType(): RefDataType {
+  get datatype(): RefDataType {
     return {
       type: DATA_TYPES.REF,
       ref: this.ref,
@@ -433,7 +433,7 @@ export class RefNode extends Field {
       isArray: this.isArray,
       isKey: this.isKey,
       isPossibleNull: this.isPossibleNull,
-      dataType: this.dataType,
+      datatype: this.datatype,
     }
   }
 
@@ -456,7 +456,7 @@ export class RefNode extends Field {
     if (this.ref.length > 1) {
       return {
         name: this.name,
-        dataType: {
+        datatype: {
           type: DATA_TYPES.REF,
           ref: locationNames.join("."),
           unique: this.unique,
@@ -484,7 +484,7 @@ export class EnumNode extends Field {
     return `enum`
   }
 
-  get dataType(): EnumDataType {
+  get datatype(): EnumDataType {
     return {
       type: DATA_TYPES.ENUM,
       values: this.values,
@@ -498,7 +498,7 @@ export class EnumNode extends Field {
       isArray: this.isArray,
       isKey: this.isKey,
       isPossibleNull: this.isPossibleNull,
-      dataType: this.dataType,
+      datatype: this.datatype,
     }
   }
 
@@ -523,7 +523,7 @@ export class EnumNode extends Field {
 
     return {
       name: this.name,
-      dataType: {
+      datatype: {
         type: DATA_TYPES.ENUM,
         values: this.values.map((v) => mapper.map(v)),
       },
@@ -546,7 +546,7 @@ export class CustomNode extends Field {
     return `custom`
   }
 
-  get dataType(): CustomDataType {
+  get datatype(): CustomDataType {
     return { type: DATA_TYPES.CUSTOM, code: this.code }
   }
 
@@ -557,7 +557,7 @@ export class CustomNode extends Field {
       isArray: this.isArray,
       isKey: this.isKey,
       isPossibleNull: this.isPossibleNull,
-      dataType: this.dataType,
+      datatype: this.datatype,
     }
   }
 
@@ -575,7 +575,7 @@ export class CustomNode extends Field {
   export(): ExportDatasetFieldDTO {
     return {
       name: this.name,
-      dataType: { type: DATA_TYPES.CUSTOM, code: this.code },
+      datatype: { type: DATA_TYPES.CUSTOM, code: this.code },
       isArray: this.isArray,
       isKey: this.isKey,
       isPossibleNull: this.isPossibleNull,
@@ -602,7 +602,7 @@ export class PickNode extends Field {
       isArray: this.isArray,
       isKey: this.isKey,
       isPossibleNull: this.isPossibleNull,
-      dataType: this.dataType,
+      datatype: this.datatype,
     }
   }
 
@@ -610,7 +610,7 @@ export class PickNode extends Field {
     return `pick`
   }
 
-  get dataType(): PickDataType {
+  get datatype(): PickDataType {
     return {
       count: this.count,
       type: DATA_TYPES.PICK,
@@ -635,7 +635,7 @@ export class PickNode extends Field {
 
     return {
       name: this.name,
-      dataType: {
+      datatype: {
         count: this.count,
         type: DATA_TYPES.PICK,
         values: this.values.map((v) => mapper.map(v)),
@@ -669,11 +669,11 @@ export class MixedNode extends Field {
       isArray: this.isArray,
       isKey: this.isKey,
       isPossibleNull: this.isPossibleNull,
-      dataType: this.dataType,
+      datatype: this.datatype,
     }
   }
 
-  get dataType(): MixedDataType {
+  get datatype(): MixedDataType {
     return {
       type: DATA_TYPES.MIXED,
       object: this.nodesToProps(),
@@ -682,7 +682,7 @@ export class MixedNode extends Field {
 
   private nodesToProps(): NodeProps[] {
     return this.nodes.map((n) => ({
-      dataType: n.dataType,
+      datatype: n.datatype,
       id: n.id,
       isArray: n.isArray,
       isKey: n.isKey,
@@ -715,7 +715,7 @@ export class MixedNode extends Field {
   export(props: ExportFieldsProps): ExportDatasetFieldDTO {
     return {
       name: this.name,
-      dataType: {
+      datatype: {
         type: DATA_TYPES.MIXED,
         object: this.utils.exportFields(props),
       },
@@ -745,11 +745,11 @@ export class ProbabilityNode extends Field {
       isArray: this.isArray,
       isKey: this.isKey,
       isPossibleNull: this.isPossibleNull,
-      dataType: this.dataType,
+      datatype: this.datatype,
     }
   }
 
-  get dataType(): ProbabilityDataType {
+  get datatype(): ProbabilityDataType {
     return {
       type: DATA_TYPES.PROBABILITY,
       values: this.values,
@@ -775,7 +775,7 @@ export class ProbabilityNode extends Field {
       isArray: this.isArray,
       isPossibleNull: this.isPossibleNull,
       isKey: this.isKey,
-      dataType: {
+      datatype: {
         type: DATA_TYPES.PROBABILITY,
         values: this.values.map((v) => {
           return { chance: mapper.map(v.chance), value: mapper.map(v.value) }

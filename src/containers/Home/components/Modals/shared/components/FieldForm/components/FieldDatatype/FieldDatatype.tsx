@@ -19,7 +19,7 @@ import { FormSection } from "@modules/modal/components"
 interface Props {
   label: string
   handleChangeDataType(i: string): void
-  dataType: DATA_TYPES
+  datatype: DATA_TYPES
   fieldId: string
   datasetId: string
 }
@@ -27,14 +27,14 @@ interface Props {
 export default function FieldDatatype({
   label,
   handleChangeDataType,
-  dataType,
+  datatype,
   datasetId,
   fieldId,
 }: Props) {
   const { PLACEHOLDER } = useTranslation({ PLACEHOLDER: { en: "Datatype", es: "Tipo de dato" } })
 
   const { DATA_TYPES_ARRAY } = useDatatypes({ fieldId, datasetId })
-  const found = DATA_TYPES_ARRAY.find((d) => d.default.type === dataType)
+  const found = DATA_TYPES_ARRAY.find((d) => d.default.type === datatype)
 
   return (
     <FormSection vertical={true} labelText={label} className="mb-4">

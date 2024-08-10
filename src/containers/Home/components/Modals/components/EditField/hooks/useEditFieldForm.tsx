@@ -21,7 +21,7 @@ export default function useEditFieldForm({ field, parentfieldId, datasetId }: Pr
       name: field.name,
       isArray: field.isArray,
       isPossibleNull: field.isPossibleNull,
-      dataType: field.dataType,
+      datatype: field.datatype,
       isKey: field.isKey,
     },
     datasetId: datasetId,

@@ -6,7 +6,7 @@ import { SubOption, Schema } from "@modules/schemas/domain/schema"
 export interface NodeProps {
   name: string
   id: string
-  dataType: FieldDatatype
+  datatype: FieldDatatype
   isPossibleNull: PossibleNullConfig
   isArray: IsArrayConfig
   isKey: IsKeyConfig

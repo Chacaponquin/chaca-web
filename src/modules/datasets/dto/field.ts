@@ -8,7 +8,7 @@ export interface FieldProps {
   name: string
   isPossibleNull: PossibleNullConfig
   isArray: IsArrayConfig
-  dataType: FieldDatatype
+  datatype: FieldDatatype
   isKey: IsKeyConfig
 }
 

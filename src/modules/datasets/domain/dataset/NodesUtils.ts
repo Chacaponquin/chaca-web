@@ -134,7 +134,7 @@ export class NodesUtils {
 
       if (node.id === props.id) {
         const field = Field.create({
-          dataType: props.dataType,
+          datatype: props.datatype,
           name: props.name,
           isArray: props.isArray,
           isKey: props.isKey,

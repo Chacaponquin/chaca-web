@@ -72,7 +72,7 @@ export function DatasetsProvider({ children }: { children: React.ReactNode }) {
 
             save.fields.forEach((saveField) => {
               const field = Field.create({
-                dataType: saveField.dataType,
+                datatype: saveField.datatype,
                 name: saveField.name,
                 isArray: saveField.isArray,
                 isKey: saveField.isKey,

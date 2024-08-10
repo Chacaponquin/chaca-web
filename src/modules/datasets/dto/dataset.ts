@@ -4,7 +4,7 @@ import { ExportDatatypeDTO } from "./field"
 
 export type ExportDatasetFieldDTO = {
   name: string
-  dataType: ExportDatatypeDTO
+  datatype: ExportDatatypeDTO
   isPossibleNull: PossibleNullConfig
   isArray: IsArrayConfig
   isKey: IsKeyConfig
@@ -12,7 +12,7 @@ export type ExportDatasetFieldDTO = {
 
 export type SaveFieldDTO = {
   name: string
-  dataType: FieldDatatype
+  datatype: FieldDatatype
   isPossibleNull: PossibleNullConfig
   isArray: IsArrayConfig
   isKey: IsKeyConfig

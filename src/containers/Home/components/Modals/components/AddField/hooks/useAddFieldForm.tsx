@@ -28,7 +28,7 @@ export default function useAddFieldForm({ datasetId, parentfieldId }: Props) {
       name: "",
       isArray: null,
       isPossibleNull: 0,
-      dataType: DEFAULT_SCHEMA_VALUE_DATA_TYPE,
+      datatype: DEFAULT_SCHEMA_VALUE_DATA_TYPE,
       isKey: false,
     },
     datasetId: datasetId,
@@ -41,7 +41,7 @@ export default function useAddFieldForm({ datasetId, parentfieldId }: Props) {
       datasetId: datasetId,
       field: {
         name: fieldActions.field.name.trim(),
-        dataType: field.dataType,
+        datatype: field.datatype,
         id: field.id,
         isArray: field.isArray,
         isKey: field.isKey,
