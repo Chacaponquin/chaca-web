@@ -1,7 +1,7 @@
 import { useMenu } from "./hooks"
 import { Button, Command, Icon, Item, Step, Title } from "./components"
 import { ThemeSwitch } from "@modules/app/modules/theme/components"
-import { useTranslation } from "@modules/app/modules/language/hooks"
+import { useLanguage, useTranslation } from "@modules/app/modules/language/hooks"
 import { ChacaSelect } from "@form/components"
 import { ContentLoader } from "@modules/shared/components"
 
@@ -20,6 +20,7 @@ export default function Menu({
   handleDeleteAll,
   loading,
 }: Props) {
+  const { language } = useLanguage()
   const {
     items,
     handleChangeTheme,
@@ -28,7 +29,6 @@ export default function Menu({
     listRef,
     handleChangeLanguage,
     languageOptions,
-    foundLanguage,
   } = useMenu({
     handleAddDataset,
     handleExportAllDatasets,
@@ -78,20 +78,17 @@ export default function Menu({
                 <ThemeSwitch />
               </Item>
 
-              {foundLanguage && (
-                <Item clickEffect={false} handleCloseList={handleChangeOpen}>
-                  <Title text={LANGUAGE} />
-                  <ChacaSelect
-                    options={languageOptions}
-                    labelKey="title"
-                    value={foundLanguage.title}
-                    valueKey="title"
-                    onChange={handleChangeLanguage}
-                    placeholder="Lenguaje"
-                    size="sm"
-                  />
-                </Item>
-              )}
+              <Item clickEffect={false} handleCloseList={handleChangeOpen}>
+                <Title text={LANGUAGE} />
+                <ChacaSelect
+                  options={languageOptions}
+                  label={(l) => l.title}
+                  value={(l) => l.type === language}
+                  onChange={handleChangeLanguage}
+                  placeholder="Lenguaje"
+                  size="sm"
+                />
+              </Item>
             </ul>
           )}
         </div>

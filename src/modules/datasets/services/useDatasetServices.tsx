@@ -16,7 +16,7 @@ import {
   NotExistFieldError,
   TryRefANotKeyField,
 } from "../errors/dataset"
-import { ImageFormats } from "@modules/config/interfaces"
+import { ImageFormats } from "@modules/config/domain/core"
 import { DatasetCreationError } from "@modules/app/modules/socket/domain/error"
 
 interface handleExportDatasetsProps {
@@ -72,7 +72,7 @@ export default function useDatasetServices() {
   }
 
   function downloadDatasetFile({ id, filename, onError, onFinally }: DownloadDatasetProps) {
-    fetch(API_ROUTES.DOWNLOAD_FILE(API_ROUTE, id), {
+    fetch(`${API_ROUTE}/${API_ROUTES.DOWNLOAD_FILE(id)}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/zip",

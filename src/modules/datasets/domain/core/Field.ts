@@ -36,6 +36,7 @@ import {
 } from "@modules/datasets/errors/dataset"
 import { ValueMapper } from "./ValueMapper"
 import { NodesUtils } from "./NodesUtils"
+import { Schema, SchemaOption } from "@modules/schemas/domain/schema"
 
 interface PossibleConfigProps {
   type: DATA_TYPES
@@ -50,7 +51,7 @@ type Props = {
   isKey: IsKeyConfig
 }
 
-type SchemaValueProps = Props & { schema: string; option: string; args: ArgumentObject }
+type SchemaValueProps = Props & { schema: Schema; option: SchemaOption; args: ArgumentObject }
 
 type SequenceValueProps = Props & { startsWith: number; step: number }
 
@@ -107,6 +108,8 @@ export abstract class Field {
 
     return { canBeArray, canBeKey, canBeNull }
   }
+
+  static createFromSave() {}
 
   static create(props: NodeProps): Field {
     if (props.datatype.type === DATA_TYPES.SINGLE_VALUE) {
@@ -188,8 +191,8 @@ export abstract class Field {
 }
 
 export class SchemaValueNode extends Field {
-  readonly schema: string
-  readonly option: string
+  readonly schema: Schema
+  readonly option: SchemaOption
   readonly args: ArgumentObject
 
   constructor(props: SchemaValueProps) {
@@ -199,26 +202,17 @@ export class SchemaValueNode extends Field {
     this.args = props.args
   }
 
-  stringInf({ findOption, findParent }: SearchProps): string {
-    const module = findParent(this.schema)
-    const moduleOption = findOption(this.schema, this.option)
-
-    return `${module.id}.${moduleOption.id}`
+  stringInf(): string {
+    return `${this.schema.name}.${this.option.name}`
   }
 
-  save({ findOption, findParent }: SaveProps): SaveFieldDTO {
-    const schemaId = this.schema
-    const optionId = this.option
-
-    const module = findParent(schemaId)
-    const option = findOption(schemaId, optionId)
-
+  save(): SaveFieldDTO {
     return {
       datatype: {
         type: DATA_TYPES.SINGLE_VALUE,
         args: this.args,
-        option: option.id,
-        schema: module.id,
+        option: this.option.name,
+        schema: this.schema.name,
       },
       isArray: this.isArray,
       isKey: this.isKey,
@@ -250,20 +244,14 @@ export class SchemaValueNode extends Field {
     }
   }
 
-  export({ findParent, findOption }: SearchProps): ExportDatasetFieldDTO {
-    const schemaId = this.schema
-    const optionId = this.option
-
-    const module = findParent(schemaId)
-    const option = findOption(schemaId, optionId)
-
+  export(): ExportDatasetFieldDTO {
     return {
       name: this.name,
       datatype: {
         type: DATA_TYPES.SINGLE_VALUE,
         args: this.args,
-        option: option.id,
-        schema: module.id,
+        option: this.option.id,
+        schema: this.schema.id,
       },
       isArray: this.isArray,
       isKey: this.isKey,

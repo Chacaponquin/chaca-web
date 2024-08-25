@@ -1,5 +1,5 @@
 import { ArrayValue } from "@modules/datasets/interfaces/dataset-field"
-import { ChangeSequentialFieldProps } from "@containers/Home/components/Modals/shared/interfaces"
+import { ChangeSequentialFieldProps } from "@containers/Home/components/Modals/shared/domain/field"
 import { ValuesForm } from "../../shared/components"
 import { LoopInfo } from "./components"
 import { CheckField } from "@modules/modal/components"

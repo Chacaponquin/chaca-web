@@ -2,11 +2,11 @@ import { Argument } from "./argument"
 
 export interface Schema {
   name: string
-  options: SubOption[]
+  options: SchemaOption[]
   id: string
 }
 
-export interface SubOption {
+export interface SchemaOption {
   name: string
   arguments: Argument[]
   id: string

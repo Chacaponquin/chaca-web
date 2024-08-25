@@ -1,6 +1,6 @@
 import { useDatasets } from "@modules/datasets/hooks"
 import { useModal } from "@modules/modal/hooks"
-import { Field } from "@modules/datasets/domain/dataset"
+import { Field } from "@modules/datasets/domain/core"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { useFieldForm } from "../../../shared/hooks"
 

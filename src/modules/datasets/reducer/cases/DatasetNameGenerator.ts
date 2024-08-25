@@ -1,4 +1,4 @@
-import { Dataset } from "@modules/datasets/domain/dataset"
+import { Dataset } from "@modules/datasets/domain/core"
 
 interface Props {
   name: string

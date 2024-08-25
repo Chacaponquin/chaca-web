@@ -11,10 +11,10 @@ interface RefConfigProps {
   datasetId: string
   unique: boolean
   where: RefWhere
-  handleChangeRefField(r: string): void
   id: string
   handleChangeRefUnique(value: boolean): void
   handleChangeRefWhere(value: RefWhere): void
+  handleChangeRefField(r: string): void
 }
 
 export default function RefConfig({
@@ -46,11 +46,10 @@ export default function RefConfig({
         <ChacaSelect
           size="base"
           options={possibleFields}
-          labelKey="locationNames"
-          valueKey="locationIds"
+          label={(f) => f.locationNames}
           placeholder={PLACEHOLDER}
-          value={refField.join(".")}
-          onChange={handleChangeRefField}
+          value={(o) => o.locationIds === refField.join(".")}
+          onChange={(v) => handleChangeRefField(v.locationIds)}
         />
       </FormSection>
 

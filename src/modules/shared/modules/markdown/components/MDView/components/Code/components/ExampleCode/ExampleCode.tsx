@@ -1,7 +1,7 @@
 import theme from "prism-react-renderer/themes/vsDark"
 import Highlight, { defaultProps } from "prism-react-renderer"
-import { v4 as uuid } from "uuid"
 import { validateCodeLanguage } from "./utils"
+import { Id } from "@modules/shared/domain/id"
 
 interface Props {
   code: string
@@ -21,7 +21,7 @@ export default function ExampleCode({ code, language }: Props) {
           {({ tokens, getLineProps, getTokenProps }) => {
             return tokens.map((line, index) => {
               return (
-                <div {...getLineProps({ line, key: index })} key={uuid()}>
+                <div {...getLineProps({ line, key: index })} key={Id.generate()}>
                   {line.map((token, key) => (
                     <span {...getTokenProps({ token, key })} key={key} />
                   ))}

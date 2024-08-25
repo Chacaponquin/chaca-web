@@ -20,13 +20,13 @@ import {
   ExportDatasetImageModalProps,
   ExportDatasetModalProps,
 } from "@containers/Home/domain/modal"
-import { Config } from "@modules/config/interfaces"
 import { ExportImageProps } from "@containers/Home/domain/props"
-import { Dataset } from "@modules/datasets/domain/dataset"
+import { Dataset } from "@modules/datasets/domain/core"
+import { ExportFileConfigDTO } from "@modules/config/dto/file"
 
 interface Props {
   handleExportImage(props: ExportImageProps): void
-  handleExportDatasets(datasets: Dataset[], config: Config): void
+  handleExportDatasets(datasets: Dataset[], config: ExportFileConfigDTO): void
 }
 
 export default function Modals({ handleExportImage, handleExportDatasets }: Props) {

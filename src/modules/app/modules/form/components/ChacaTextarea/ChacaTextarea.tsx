@@ -1,4 +1,4 @@
-import { ChacaFormProps } from "../../interfaces"
+import { ChacaFormProps } from "../../domain"
 import { useMemo } from "react"
 import clsx from "clsx"
 

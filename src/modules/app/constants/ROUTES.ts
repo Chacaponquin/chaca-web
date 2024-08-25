@@ -36,7 +36,7 @@ export const API_ROUTES = {
   GET_FILE_OPTIONS: "/web-api/file-config",
   GET_FAQ: "/web-api/faq",
   CREATE_USER_MESSAGE: "/user-message/new-message",
-  DOWNLOAD_FILE(apiRoute: string, id: string) {
-    return `${apiRoute}/web-api/download-file/${id}`
+  DOWNLOAD_FILE(id: string) {
+    return `web-api/download-file/${id}`
   },
 } as const

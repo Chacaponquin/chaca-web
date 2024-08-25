@@ -3,7 +3,7 @@ import { useFetch } from "@modules/app/modules/http/hooks"
 import { FetchFunctionsProps } from "@modules/app/modules/http/interfaces/fetch"
 import { Schema } from "../domain/schema"
 import { SchemaResponse } from "../dto"
-import { v4 as uuid } from "uuid"
+import { Id } from "@modules/shared/domain/id"
 
 interface GetSchemasResponse {
   schemas: Schema[]
@@ -27,7 +27,12 @@ export default function useSchemasServices() {
             id: o.id,
             name: o.name,
             arguments: o.arguments.map((a) => {
-              return { argument: a.argument, config: a.config, id: uuid(), showName: a.showName }
+              return {
+                argument: a.argument,
+                config: a.config,
+                id: Id.generate(),
+                showName: a.showName,
+              }
             }),
           })),
           id: d.id,

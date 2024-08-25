@@ -7,8 +7,8 @@ import {
   DataTypeConfig,
   KeyConfig,
 } from "./components"
-import { Field } from "@modules/datasets/domain/dataset"
-import { FieldActions } from "../../interfaces"
+import { Field } from "@modules/datasets/domain/core"
+import { FieldActions } from "../../domain/field"
 
 type Props = FieldActions & { datasetId: string }
 
@@ -41,8 +41,8 @@ export default function FieldForm({
   handleChangeRefWhere,
 }: Props) {
   const { FIELD_NAME_TEXT, DATA_TYPE_TEXT } = useTranslation({
-    FIELD_NAME_TEXT: { en: "Field name", es: "Nombre del campo" },
-    DATA_TYPE_TEXT: { en: "Data type", es: "Tipo" },
+    FIELD_NAME_TEXT: { en: "Fieldname", es: "Nombre del campo" },
+    DATA_TYPE_TEXT: { en: "Datatype", es: "Tipo" },
   })
 
   const { canBeArray, canBeKey, canBeNull } = Field.possibleConfig({
@@ -57,7 +57,7 @@ export default function FieldForm({
       <FieldDatatype
         label={DATA_TYPE_TEXT}
         handleChangeDataType={handleChangeDataType}
-        datatype={field.datatype.type}
+        datatype={field.datatype}
         fieldId={field.id}
         datasetId={datasetId}
       />

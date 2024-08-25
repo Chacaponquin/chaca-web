@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react"
-import { Dataset } from "../../datasets/domain/dataset"
+import { Dataset } from "../../datasets/domain/core"
 import { DatasetConnection } from "../../datasets/interfaces/dataset-connect"
 import { Edge, getRectOfNodes, getViewportForBounds } from "reactflow"
 import { toPng, toSvg } from "html-to-image"
-import { ImageFormats } from "@modules/config/interfaces"
+import { ImageFormats } from "@modules/config/domain/core"
 import { PlaygroundContext } from "../context"
 import { DatasetEdgeBuilder } from "../domain"
 

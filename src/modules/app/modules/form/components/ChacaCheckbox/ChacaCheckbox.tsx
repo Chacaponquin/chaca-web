@@ -1,4 +1,4 @@
-import { Size } from "@form/interfaces"
+import { Size } from "@form/domain"
 import { Check } from "@modules/app/modules/icon/components"
 import clsx from "clsx"
 import { Fragment } from "react"

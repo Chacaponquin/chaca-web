@@ -1,6 +1,7 @@
 import { DATA_TYPES } from "@modules/schemas/constants"
 import { ARRAY_VALUE_TYPE } from "../constants"
 import { NodeProps } from "./dataset"
+import { Schema, SchemaOption } from "@modules/schemas/domain/schema"
 
 export type FieldDatatype =
   | CustomDataType
@@ -25,8 +26,8 @@ export interface MixedDataType {
 
 export interface SingleValueDataType {
   type: DATA_TYPES.SINGLE_VALUE
-  schema: string
-  option: string
+  schema: Schema
+  option: SchemaOption
   args: ArgumentObject
 }
 

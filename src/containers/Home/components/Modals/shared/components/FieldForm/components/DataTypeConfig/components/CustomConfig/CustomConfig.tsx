@@ -2,7 +2,7 @@ import { ChacaIconButton } from "@form/components"
 import { Edit } from "@modules/app/modules/icon/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useCode } from "@modules/modal/hooks"
-import { UpdateCustomProps } from "@containers/Home/components/Modals/shared/interfaces"
+import { UpdateCustomProps } from "@containers/Home/components/Modals/shared/domain/field"
 import { FormSection } from "@modules/modal/components"
 
 interface Props {

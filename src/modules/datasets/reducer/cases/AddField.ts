@@ -1,4 +1,4 @@
-import { Dataset, Field, MixedNode } from "@modules/datasets/domain/dataset"
+import { Dataset, Field, MixedNode } from "@modules/datasets/domain/core"
 import { NodeProps } from "@modules/datasets/interfaces/dataset"
 import { DatasetUseCase } from "./DatasetUseCase"
 

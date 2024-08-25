@@ -1,8 +1,8 @@
-import { ImageFormats } from "@modules/config/interfaces"
+import { ImageFormats } from "@modules/config/domain/core"
 
 export interface Form {
   name: string
-  format: ImageFormats
+  format: FormatOptions
 }
 
 export interface FormatOptions {

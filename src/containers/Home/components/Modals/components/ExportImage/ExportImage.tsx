@@ -10,15 +10,8 @@ type Props = {
 }
 
 export default function ExportImage({ handleExportImage }: Props) {
-  const {
-    handleNext,
-    showImage,
-    form,
-    handleChangeFormat,
-    handleChangeName,
-    formats,
-    foundFormat,
-  } = useExportImage({ handleExportImage: handleExportImage })
+  const { handleNext, showImage, form, handleChangeFormat, handleChangeName, formats } =
+    useExportImage({ handleExportImage: handleExportImage })
 
   const { TEXT, TITLE, NAME_PLACEHOLDER, FORMAT_PLACEHOLDER, NAME, FORMAT } = useTranslation({
     TEXT: { en: "Export", es: "Exportar" },
@@ -46,19 +39,16 @@ export default function ExportImage({ handleExportImage }: Props) {
           />
         </FormSection>
 
-        {foundFormat && (
-          <FormSection labelText={FORMAT} vertical={false}>
-            <ChacaSelect
-              options={formats}
-              onChange={handleChangeFormat}
-              labelKey="name"
-              valueKey="name"
-              placeholder={FORMAT_PLACEHOLDER}
-              size="base"
-              value={foundFormat.name}
-            />
-          </FormSection>
-        )}
+        <FormSection labelText={FORMAT} vertical={false}>
+          <ChacaSelect
+            options={formats}
+            onChange={handleChangeFormat}
+            label={(f) => f.name}
+            placeholder={FORMAT_PLACEHOLDER}
+            size="base"
+            value={(f) => f === form.format}
+          />
+        </FormSection>
       </div>
     </Modal>
   )

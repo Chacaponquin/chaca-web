@@ -37,8 +37,8 @@ export default function useDatatypes({ fieldId, datasetId }: Props) {
   const DEFAULT_SCHEMA_VALUE_DATA_TYPE: SingleValueDataType = {
     type: DATA_TYPES.SINGLE_VALUE,
     args: {},
-    schema: schemas[0].id,
-    option: schemas[0].options[0].id,
+    schema: schemas[0],
+    option: schemas[0].options[0],
   }
 
   const DEFAULT_REF_DATA_TYPE: RefDataType = {

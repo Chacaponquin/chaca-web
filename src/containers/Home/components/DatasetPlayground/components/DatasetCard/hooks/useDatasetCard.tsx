@@ -12,7 +12,7 @@ import {
   EditDatasetCommand,
   ExportDatasetCommand,
 } from "@modules/datasets/domain/commands"
-import { Dataset } from "@modules/datasets/domain/dataset"
+import { Dataset } from "@modules/datasets/domain/core"
 import { useDatasets } from "@modules/datasets/hooks"
 import { useModal } from "@modules/modal/hooks"
 import { useEffect } from "react"

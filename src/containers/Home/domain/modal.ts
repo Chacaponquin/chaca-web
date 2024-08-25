@@ -1,4 +1,4 @@
-import { Dataset, Field } from "@modules/datasets/domain/dataset"
+import { Dataset, Field } from "@modules/datasets/domain/core"
 import { ModalProps } from "@modules/modal/domain"
 
 export class DeleteAllDatasetsModalProps extends ModalProps {}

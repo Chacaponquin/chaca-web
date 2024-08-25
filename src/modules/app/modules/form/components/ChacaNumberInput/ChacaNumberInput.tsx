@@ -1,5 +1,5 @@
 import { useMemo, useState, useRef } from "react"
-import { ChacaFormProps, Size } from "../../interfaces"
+import { ChacaFormProps, Size } from "../../domain"
 import { ArrowDown, ArrowUp } from "@modules/app/modules/icon/components"
 import clsx from "clsx"
 

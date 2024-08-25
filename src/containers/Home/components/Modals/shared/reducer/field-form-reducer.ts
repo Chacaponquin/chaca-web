@@ -7,7 +7,8 @@ import {
 import { FORM_ACTIONS } from "../constants"
 import { Reducer } from "react"
 import { DATA_TYPES } from "@modules/schemas/constants"
-import { FieldForm } from "@modules/modal/domain"
+import { FieldForm } from "@modules/datasets/domain/form"
+import { Schema, SchemaOption } from "@modules/schemas/domain/schema"
 
 export type FieldFormPayload =
   | {
@@ -59,6 +60,13 @@ export type FieldFormPayload =
   | { type: FORM_ACTIONS.CHANGE_SEQUENCE_FIELD; payload: { startsWith: number; step: number } }
   | { type: FORM_ACTIONS.CHANGE_PICK_DATATYPE; payload: { count: number; values: ArrayValue[] } }
   | { type: FORM_ACTIONS.CHANGE_PROBABILITY_DATATYPE; payload: { values: ProbabilityValue[] } }
+  | {
+      type: FORM_ACTIONS.CHANGE_SCHEMA_OPTION
+      payload: {
+        option: SchemaOption
+      }
+    }
+  | { type: FORM_ACTIONS.CHANGE_SCHEMA; payload: { schema: Schema } }
 
 export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
   form: FieldForm,
@@ -144,6 +152,29 @@ export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
 
     case FORM_ACTIONS.CHANGE_PROBABILITY_DATATYPE: {
       return { ...form, datatype: { type: DATA_TYPES.PROBABILITY, values: action.payload.values } }
+    }
+
+    case FORM_ACTIONS.CHANGE_SCHEMA_OPTION: {
+      if (form.datatype.type === DATA_TYPES.SINGLE_VALUE) {
+        return { ...form, datatype: { ...form.datatype, option: action.payload.option } }
+      }
+
+      return form
+    }
+
+    case FORM_ACTIONS.CHANGE_SCHEMA: {
+      if (form.datatype.type === DATA_TYPES.SINGLE_VALUE) {
+        return {
+          ...form,
+          datatype: {
+            ...form.datatype,
+            schema: action.payload.schema,
+            option: action.payload.schema.options[0],
+          },
+        }
+      }
+
+      return form
     }
 
     default:

@@ -1,4 +1,4 @@
-import { Field as FieldNode, MixedNode } from "@modules/datasets/domain/dataset"
+import { Field as FieldNode, MixedNode } from "@modules/datasets/domain/core"
 import { Connect, FieldKeyIcon, FieldName, FieldType } from "./components"
 import { useSchemas } from "@modules/schemas/hooks"
 import { useDatasets } from "@modules/datasets/hooks"

@@ -1,4 +1,4 @@
-import { Dataset } from "@modules/datasets/domain/dataset"
+import { Dataset } from "@modules/datasets/domain/core"
 import { DatasetUseCase } from "./DatasetUseCase"
 import { DeleteReceiveRef } from "./DeleteReceiveRef"
 

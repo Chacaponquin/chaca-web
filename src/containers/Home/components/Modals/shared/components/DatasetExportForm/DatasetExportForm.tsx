@@ -1,13 +1,14 @@
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { ChacaSelect, ChacaTextInput } from "@form/components"
 import { useConfig } from "@modules/config/hooks"
-import { Config } from "@modules/config/interfaces"
 import { FormSection } from "@modules/modal/components"
+import { ExportDatasetForm } from "../../domain/export-dataset"
+import { FileConfigOption } from "@modules/config/domain/core"
 
 interface Props {
   saveModelOption: boolean
-  form: Config
-  handleChangeFileType(f: string): void
+  form: ExportDatasetForm
+  handleChangeFileType(f: FileConfigOption): void
   handleChangeName(n: string): void
 }
 
@@ -39,11 +40,10 @@ export default function DatasetExportForm({ form, handleChangeFileType, handleCh
       <FormSection vertical={true} labelText={FORMAT_TEXT}>
         <ChacaSelect
           options={fileOptions}
-          labelKey="title"
-          valueKey="id"
+          label={(f) => f.title}
           placeholder={SELECT_FORMAT}
-          onChange={handleChangeFileType}
-          value={form.file.type}
+          onChange={(v) => handleChangeFileType(v)}
+          value={(f) => f === form.file.type}
           size="base"
         />
       </FormSection>

@@ -6,7 +6,7 @@ interface Props {
   name: string
 }
 
-export class FileNameValidator implements IValidator {
+export class FilenameValidator implements IValidator {
   constructor(private readonly props: Props) {}
 
   validate(): ChacaError | null {

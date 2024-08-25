@@ -1,6 +1,6 @@
 import { DATASETS_ACTIONS } from "../constants"
 import { Reducer } from "react"
-import { Dataset } from "@modules/datasets/domain/dataset"
+import { Dataset } from "@modules/datasets/domain/core"
 import { NodeProps } from "@modules/datasets/interfaces/dataset"
 import {
   AddDataset,
@@ -12,7 +12,7 @@ import {
   EditField,
   InsertDataset,
 } from "./cases"
-import { FieldProps } from "../dto/field"
+import { FieldProps } from "../dto/export"
 import { DeleteReceiveRef } from "./cases/DeleteReceiveRef"
 import { DatasetNameGenerator } from "./cases/DatasetNameGenerator"
 

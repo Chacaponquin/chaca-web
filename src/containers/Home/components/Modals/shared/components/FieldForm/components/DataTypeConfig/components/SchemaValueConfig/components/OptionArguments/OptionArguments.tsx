@@ -1,13 +1,12 @@
 import { ArgumentObject } from "@modules/datasets/interfaces/dataset-field"
-import { UpdateArgumentsProps } from "@containers/Home/components/Modals/shared/interfaces"
-import { useSchemas } from "@modules/schemas/hooks"
+import { UpdateArgumentsProps } from "@containers/Home/components/Modals/shared/domain/field"
 import { Fragment } from "react"
 import { Argument } from "./components"
 import { Argument as IArgument } from "@modules/schemas/domain/argument"
+import { SchemaOption } from "@modules/schemas/domain/schema"
 
 interface Props {
-  module: string
-  option: string
+  option: SchemaOption
   args: ArgumentObject
   handleUpdateFieldSchemaArguments(p: UpdateArgumentsProps): void
   handleAddFieldSchemaArgument(argument: IArgument): void
@@ -15,19 +14,15 @@ interface Props {
 }
 
 export default function OptionArguments({
-  module,
   option,
   args,
   handleUpdateFieldSchemaArguments,
   handleAddFieldSchemaArgument,
   handleDeleteFieldSchemaArgument,
 }: Props) {
-  const { findType } = useSchemas()
-  const foundOption = findType(module, option)
-
   return (
     <Fragment>
-      {foundOption.arguments.map((a) => (
+      {option.arguments.map((a) => (
         <Argument
           key={a.id}
           handleUpdateFieldSchemaArguments={handleUpdateFieldSchemaArguments}

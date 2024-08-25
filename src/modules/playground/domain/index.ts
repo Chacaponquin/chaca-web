@@ -1,7 +1,7 @@
 import { CardProps } from "@containers/Home/components/DatasetPlayground/components"
-import { Dataset } from "@modules/datasets/domain/dataset"
+import { Dataset } from "@modules/datasets/domain/core"
+import { Id } from "@modules/shared/domain/id"
 import { Edge, MarkerType, Node, Viewport } from "reactflow"
-import { v4 as uuid } from "uuid"
 
 interface BuildDefaultProps {
   dataset: Dataset
@@ -38,7 +38,7 @@ export class DatasetNodeBuilder {
 
 export class DatasetEdgeBuilder {
   static build({ datasetFrom, datasetTo, fieldFrom, fieldTo }: EdgeBuildProps): Edge {
-    const id = uuid()
+    const id = Id.generate()
 
     return {
       id: id,

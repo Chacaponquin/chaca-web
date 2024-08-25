@@ -1,4 +1,4 @@
-import { ImageFormats } from "@modules/config/interfaces"
+import { ImageFormats } from "@modules/config/domain/core"
 
 export interface ExportImageProps {
   filename: string

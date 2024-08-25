@@ -1,6 +1,7 @@
 import { useConfig } from "@modules/config/hooks"
-import { Config } from "@modules/config/interfaces"
 import { useState } from "react"
+import { ExportDatasetForm } from "../domain/export-dataset"
+import { FileConfigOption } from "@modules/config/domain/core"
 
 interface ChangeFileArgumentsProps {
   field: string
@@ -10,12 +11,11 @@ interface ChangeFileArgumentsProps {
 export default function useExportForm() {
   const { fileOptions } = useConfig()
 
-  const [form, setForm] = useState<Config>({
-    file: { name: "", type: fileOptions[0].id, arguments: {} },
-    saveSchema: null,
+  const [form, setForm] = useState<ExportDatasetForm>({
+    file: { name: "", type: fileOptions[0], arguments: {} },
   })
 
-  function handleChangeFileType(type: string) {
+  function handleChangeFileType(type: FileConfigOption) {
     setForm((prev) => ({
       ...prev,
       file: {

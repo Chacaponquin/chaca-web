@@ -1,11 +1,7 @@
+import { FieldForm } from "@modules/datasets/domain/form"
 import { ArrayValue, ProbabilityValue, RefWhere } from "@modules/datasets/interfaces/dataset-field"
-import { FieldForm } from "@modules/modal/domain"
 import { Argument } from "@modules/schemas/domain/argument"
-
-export interface SelectFieldSchemaOptionProps {
-  option: string
-  parent: string
-}
+import { Schema, SchemaOption } from "@modules/schemas/domain/schema"
 
 export interface UpdateArgumentsProps {
   name: string
@@ -13,7 +9,7 @@ export interface UpdateArgumentsProps {
 }
 
 export interface UpdateRefProps {
-  currentLocation: Array<string>
+  currentLocation: string[]
   currentfieldId: string
 }
 
@@ -35,8 +31,8 @@ export interface FieldActions {
   handleChangePossibleNull(v: boolean): void
   handleChangePossibleNullValue(v: number): void
   handleChangeDataType(v: string): void
-  handleSelectFieldSchema(v: string): void
-  handleSelectFieldSchemaOption(p: SelectFieldSchemaOptionProps): void
+  handleSelectFieldSchema(v: Schema): void
+  handleSelectFieldSchemaOption(p: SchemaOption): void
   handleUpdateFieldSchemaArguments(p: UpdateArgumentsProps): void
   handleUpdateRefField(p: UpdateRefProps): void
   handleUpdateCustomField(p: UpdateCustomProps): void

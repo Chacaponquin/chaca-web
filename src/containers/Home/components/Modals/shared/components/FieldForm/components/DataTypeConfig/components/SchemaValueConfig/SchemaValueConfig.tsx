@@ -1,23 +1,20 @@
 import { ChacaSelect } from "@form/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
-import {
-  SelectFieldSchemaOptionProps,
-  UpdateArgumentsProps,
-} from "@containers/Home/components/Modals/shared/interfaces"
+import { UpdateArgumentsProps } from "@containers/Home/components/Modals/shared/domain/field"
 import { useSchemas } from "@modules/schemas/hooks"
 import { OptionArguments } from "./components"
-import { useMemo } from "react"
 import { Argument } from "@modules/schemas/domain/argument"
 import clsx from "clsx"
 import { ArgumentObject } from "@modules/datasets/interfaces/dataset-field"
 import { FormSection } from "@modules/modal/components"
+import { Schema, SchemaOption } from "@modules/schemas/domain/schema"
 
 interface Props {
   args: ArgumentObject
-  schema: string
-  option: string
-  handleSelectFieldSchema(v: string): void
-  handleSelectFieldSchemaOption(p: SelectFieldSchemaOptionProps): void
+  schema: Schema
+  option: SchemaOption
+  handleSelectFieldSchema(v: Schema): void
+  handleSelectFieldSchemaOption(p: SchemaOption): void
   handleUpdateFieldSchemaArguments(p: UpdateArgumentsProps): void
   handleAddFieldSchemaArgument(argument: Argument): void
   handleDeleteFieldSchemaArgument(argument: string): void
@@ -33,21 +30,11 @@ export default function SchemaValueConfig({
   handleAddFieldSchemaArgument,
   handleDeleteFieldSchemaArgument,
 }: Props) {
-  const { schemas, findParentOptions } = useSchemas()
+  const { schemas } = useSchemas()
   const { MODULE_TEXT, OPTION_TEXT } = useTranslation({
     MODULE_TEXT: { en: "Module", es: "Módulo" },
     OPTION_TEXT: { en: "Option", es: "Opción" },
   })
-
-  const foundOptions = useMemo(() => findParentOptions(schema), [findParentOptions, schema])
-
-  function handleSelectModule(m: string) {
-    handleSelectFieldSchema(m)
-  }
-
-  function handleSelectModuleOption(option: string) {
-    handleSelectFieldSchemaOption({ option: option, parent: schema })
-  }
 
   const CLASS = clsx("grid grid-cols-2 esm:grid-cols-1", "rounded", "gap-x-4 gap-y-3", "mb-5")
 
@@ -56,29 +43,26 @@ export default function SchemaValueConfig({
       <FormSection vertical={true} labelText={MODULE_TEXT}>
         <ChacaSelect
           options={schemas}
-          labelKey="name"
-          valueKey="id"
+          label={(s) => s.name}
           placeholder={MODULE_TEXT}
-          value={schema}
-          onChange={handleSelectModule}
+          value={(s) => s === schema}
+          onChange={handleSelectFieldSchema}
           size="base"
         />
       </FormSection>
 
       <FormSection vertical={true} labelText={OPTION_TEXT}>
         <ChacaSelect
-          value={option}
-          options={foundOptions}
-          labelKey="name"
-          valueKey="id"
+          value={(o) => o === option}
+          options={schema.options}
+          label={(o) => o.name}
           placeholder={OPTION_TEXT}
-          onChange={handleSelectModuleOption}
+          onChange={handleSelectFieldSchemaOption}
           size="base"
         />
       </FormSection>
 
       <OptionArguments
-        module={schema}
         option={option}
         args={args}
         handleUpdateFieldSchemaArguments={handleUpdateFieldSchemaArguments}

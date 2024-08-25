@@ -2,7 +2,7 @@ import { useFetch } from "@modules/app/modules/http/hooks"
 import { LoginUserDTO, SignUpUserDTO } from "../dto/user"
 import { FetchFunctionsProps, PostProps } from "@modules/app/modules/http/interfaces/fetch"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
-import { NoUserLimits } from "@modules/config/interfaces"
+import { NoUserLimits } from "@modules/config/domain/core"
 import { LoginUser } from "../interfaces/user"
 
 export default function useUserServices() {

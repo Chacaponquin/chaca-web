@@ -1,5 +1,5 @@
 import { Validator } from "@modules/app/domain"
-import { Dataset } from "../../dataset"
+import { Dataset } from "../../core"
 import { DatasetNameValidator } from "./DatasetNameValidator"
 import { NoDuplicateDataset } from "./NoDuplicateDataset"
 

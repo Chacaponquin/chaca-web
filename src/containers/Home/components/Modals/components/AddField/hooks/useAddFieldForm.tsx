@@ -1,8 +1,9 @@
 import { useDatasets, useDatatypes } from "@modules/datasets/hooks"
 import { useFieldForm } from "../../../shared/hooks"
-import { v4 as uuid } from "uuid"
 import { useModal } from "@modules/modal/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
+import { Id } from "@modules/shared/domain/id"
+import { useMemo } from "react"
 
 interface Props {
   parentfieldId: string
@@ -10,7 +11,7 @@ interface Props {
 }
 
 export default function useAddFieldForm({ datasetId, parentfieldId }: Props) {
-  const fieldId = uuid()
+  const fieldId = useMemo(() => Id.generate(), [])
 
   const { toastChacaError } = useToast()
 

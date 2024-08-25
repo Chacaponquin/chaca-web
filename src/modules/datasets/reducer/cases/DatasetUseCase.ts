@@ -1,4 +1,4 @@
-import { Dataset } from "@modules/datasets/domain/dataset"
+import { Dataset } from "@modules/datasets/domain/core"
 
 export abstract class DatasetUseCase<T = undefined> {
   constructor(protected readonly datasets: Array<Dataset>) {}

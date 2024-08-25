@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { ChacaFormProps } from "../../interfaces"
+import { ChacaFormProps } from "../../domain"
 
 interface Props extends ChacaFormProps<string> {
   placeholder?: string

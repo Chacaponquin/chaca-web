@@ -1,26 +1,21 @@
-import { useState, useEffect } from "react"
+import { useMemo, useState } from "react"
 import clsx from "clsx"
-import { ChacaFormProps, Size } from "../../interfaces"
+import { Size } from "../../domain"
 import { Option, Select } from "./components"
 import { ChacaDropdown } from ".."
 
-interface Props<T> extends ChacaFormProps<unknown> {
-  size: Size
+interface Props<T> {
   placeholder: string
   options: T[]
-  labelKey: keyof T
-  valueKey: keyof T
-  color?: "dark" | "light"
-}
-
-interface SelectOptions {
-  label: string
-  value: string
+  label(o: T): string
+  onChange(value: T): void
+  size: Size
+  value(o: T): boolean
+  id?: string
 }
 
 export default function ChacaSelect<T>({
-  valueKey,
-  labelKey,
+  label,
   onChange,
   options,
   placeholder,
@@ -29,28 +24,8 @@ export default function ChacaSelect<T>({
 }: Props<T>) {
   const [openOptions, setOpenOptions] = useState(false)
 
-  const [selectIndex, setSelectIndex] = useState<number | null>(null)
-  const [selectOptions, setSelectOptions] = useState<SelectOptions[]>([])
-
-  useEffect(() => {
-    setSelectOptions(
-      options.map((o) => {
-        return { label: o[labelKey] as string, value: o[valueKey] as string }
-      }),
-    )
-  }, [options])
-
-  useEffect(() => {
-    selectOptions.forEach((o, index) => {
-      if (o.value === value) {
-        setSelectIndex(index)
-      }
-    })
-  }, [value, selectOptions])
-
-  function handleSelectOption(index: number) {
-    setSelectIndex(index)
-    onChange(selectOptions[index].value)
+  function handleSelectOption(v: T) {
+    onChange(v)
   }
 
   const PARENT_CLASS = clsx(
@@ -87,12 +62,16 @@ export default function ChacaSelect<T>({
     setOpenOptions((prev) => !prev)
   }
 
+  const selectedOption = useMemo(() => {
+    return options.find((o) => value(o))
+  }, [options, value])
+
   return (
     <ChacaDropdown
       full={true}
       header={
         <Select
-          text={selectIndex !== null ? selectOptions[selectIndex].label : placeholder}
+          text={selectedOption ? label(selectedOption) : placeholder}
           className={PARENT_CLASS}
           onClick={handleChangeOpenOptions}
         />
@@ -100,12 +79,12 @@ export default function ChacaSelect<T>({
       className={SELECTED_CLASS}
       height={300}
     >
-      {options.map((_, index) => (
+      {options.map((o, index) => (
         <Option
           key={index}
-          text={selectOptions[index]?.label}
-          onClick={() => handleSelectOption(index)}
-          selected={index === selectIndex}
+          text={label(o)}
+          onClick={() => handleSelectOption(o)}
+          selected={value(o)}
           size={size}
         />
       ))}

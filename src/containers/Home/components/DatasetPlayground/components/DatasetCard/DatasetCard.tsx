@@ -1,4 +1,4 @@
-import { Dataset } from "@modules/datasets/domain/dataset"
+import { Dataset } from "@modules/datasets/domain/core"
 import { CardHeader, Field } from "./components"
 import { useDatasetCard } from "./hooks"
 import clsx from "clsx"

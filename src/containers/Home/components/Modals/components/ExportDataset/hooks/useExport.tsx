@@ -1,12 +1,12 @@
 import { useToast } from "@modules/app/modules/toast/hooks"
-import { Config } from "@modules/config/interfaces"
-import { Dataset } from "@modules/datasets/domain/dataset"
+import { Dataset } from "@modules/datasets/domain/core"
 import { ExportDatasetValidator } from "@modules/datasets/domain/validators/export"
 import { useModal } from "@modules/modal/hooks"
 import { useExportForm } from "@containers/Home/components/Modals/shared/hooks"
+import { ExportFileConfigDTO } from "@modules/config/dto/file"
 
 interface Props {
-  handleExportDatasets(datasets: Dataset[], config: Config): void
+  handleExportDatasets(datasets: Dataset[], config: ExportFileConfigDTO): void
   dataset: Dataset
 }
 
@@ -21,7 +21,11 @@ export default function useExport({ handleExportDatasets, dataset }: Props) {
 
     validator.execute({
       success() {
-        handleExportDatasets([dataset], form)
+        handleExportDatasets([dataset], {
+          arguments: form.file.arguments,
+          name: form.file.name,
+          type: form.file.type.fileType,
+        })
         handleCloseModal()
       },
       error: toastChacaError,

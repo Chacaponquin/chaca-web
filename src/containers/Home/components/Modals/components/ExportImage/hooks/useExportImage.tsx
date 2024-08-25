@@ -13,12 +13,7 @@ interface Props {
 export default function useExportImage({ handleExportImage }: Props) {
   const { toastChacaError } = useToast()
   const { handleCloseModal } = useModal()
-
   const { handleGenerateImage } = usePlayground()
-
-  const [showImage, setShowImage] = useState("")
-
-  const [form, setForm] = useState<Form>({ name: "", format: "png" })
 
   const formats: FormatOptions[] = useMemo(() => {
     return [
@@ -26,6 +21,9 @@ export default function useExportImage({ handleExportImage }: Props) {
       { format: "svg", name: "SVG" },
     ]
   }, [])
+
+  const [showImage, setShowImage] = useState("")
+  const [form, setForm] = useState<Form>({ name: "", format: formats[0] })
 
   useEffect(() => {
     handleGenerateImage({
@@ -40,15 +38,9 @@ export default function useExportImage({ handleExportImage }: Props) {
     setForm((prev) => ({ ...prev, name: name }))
   }
 
-  function handleChangeFormat(name: string) {
-    const found = formats.find((f) => f.name === name)
-
-    if (found) {
-      setForm((prev) => ({ ...prev, format: found.format }))
-    }
+  function handleChangeFormat(f: FormatOptions) {
+    setForm((prev) => ({ ...prev, format: f }))
   }
-
-  const foundFormat = formats.find((f) => f.format === form.format)
 
   function handleNext() {
     const validator = new ExportDatasetImageValidator({ name: form.name })
@@ -57,7 +49,7 @@ export default function useExportImage({ handleExportImage }: Props) {
       success() {
         handleExportImage({
           filename: form.name,
-          format: form.format,
+          format: form.format.format,
         })
 
         handleCloseModal()
@@ -66,5 +58,5 @@ export default function useExportImage({ handleExportImage }: Props) {
     })
   }
 
-  return { handleNext, showImage, form, handleChangeName, handleChangeFormat, formats, foundFormat }
+  return { handleNext, showImage, form, handleChangeName, handleChangeFormat, formats }
 }

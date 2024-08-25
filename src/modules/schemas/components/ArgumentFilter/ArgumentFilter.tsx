@@ -10,23 +10,27 @@ interface Props {
   handleChangeArgumentValue(v: unknown): void
 }
 
+interface SelectValue {
+  label: string
+  value: string
+}
+
 export default function ArgumentFilter({ arg, value, handleChangeArgumentValue }: Props) {
-  const filterArgument = useMemo(() => {
+  const filter = useMemo(() => {
     switch (arg.config.type) {
       case ARGUMENT_TYPE.SELECT: {
-        const options = arg.config.values
+        const options: SelectValue[] = arg.config.values.map((o) => ({ label: o, value: o }))
 
         return (
           <ChacaSelect
-            options={options.map((o) => ({ label: o, value: o }))}
-            labelKey="label"
+            options={options}
+            label={(option) => option.label}
             placeholder={`Select ${arg.argument}`}
             onChange={(value) => {
-              handleChangeArgumentValue(value)
+              handleChangeArgumentValue(value.value)
             }}
-            value={value}
+            value={(option) => option.value === value}
             size="sm"
-            valueKey="value"
           />
         )
       }
@@ -94,5 +98,5 @@ export default function ArgumentFilter({ arg, value, handleChangeArgumentValue }
     }
   }, [arg, handleChangeArgumentValue, value])
 
-  return filterArgument
+  return filter
 }

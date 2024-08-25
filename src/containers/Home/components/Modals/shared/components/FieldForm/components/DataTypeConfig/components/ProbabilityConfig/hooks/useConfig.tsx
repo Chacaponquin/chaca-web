@@ -2,6 +2,7 @@ import { ProbabilityValue } from "@modules/datasets/interfaces/dataset-field"
 import { useTypes } from "../../../shared/hooks"
 import { ARRAY_VALUE_TYPE } from "@modules/datasets/constants"
 import { useCode } from "@modules/modal/hooks"
+import { SelectTypes } from "../../../domain"
 
 interface Props {
   values: ProbabilityValue[]
@@ -50,23 +51,17 @@ export default function useConfig({ values, handleChangeProbabilityValues }: Pro
     )
   }
 
-  function handleChangeValueType(name: string, index: number) {
-    const found = valueTypes.find((t) => t.name === name)
+  function handleChangeValueType(type: SelectTypes, index: number) {
+    handleChangeProbabilityValues(
+      values.map((v, i) => {
+        if (i === index) {
+          v.value.type = type.type
+          v.value.value = type.defaultValue
+        }
 
-    if (found) {
-      const { defaultValue, type } = found
-
-      handleChangeProbabilityValues(
-        values.map((v, i) => {
-          if (i === index) {
-            v.value.type = type
-            v.value.value = defaultValue
-          }
-
-          return v
-        }),
-      )
-    }
+        return v
+      }),
+    )
   }
 
   function handleOpenValueCode(index: number) {
@@ -89,23 +84,17 @@ export default function useConfig({ values, handleChangeProbabilityValues }: Pro
     })
   }
 
-  function handleChangeChanceType(name: string, index: number) {
-    const found = chanceTypes.find((t) => t.name === name)
+  function handleChangeChanceType(type: SelectTypes, index: number) {
+    handleChangeProbabilityValues(
+      values.map((v, i) => {
+        if (i === index) {
+          v.chance.type = type.type
+          v.chance.value = type.defaultValue
+        }
 
-    if (found) {
-      const { defaultValue, type } = found
-
-      handleChangeProbabilityValues(
-        values.map((v, i) => {
-          if (i === index) {
-            v.chance.type = type
-            v.chance.value = defaultValue
-          }
-
-          return v
-        }),
-      )
-    }
+        return v
+      }),
+    )
   }
 
   return {

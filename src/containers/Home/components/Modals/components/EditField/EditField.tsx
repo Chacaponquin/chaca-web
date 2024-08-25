@@ -1,6 +1,6 @@
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useEditFieldForm } from "./hooks"
-import { Field } from "@modules/datasets/domain/dataset"
+import { Field } from "@modules/datasets/domain/core"
 import { Modal } from "@modules/modal/components"
 import { FieldForm } from "../../shared/components"
 

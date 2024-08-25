@@ -1,5 +1,5 @@
 import { Validator } from "@modules/app/domain"
-import { FileNameValidator } from "@modules/config/domain/validators"
+import { FilenameValidator } from "@modules/config/domain/validators/FileNameValidator"
 
 interface Props {
   name: string
@@ -7,6 +7,6 @@ interface Props {
 
 export class ExportDatasetValidator extends Validator {
   constructor({ name }: Props) {
-    super([new FileNameValidator({ name: name })])
+    super([new FilenameValidator({ name: name })])
   }
 }

@@ -1,7 +1,7 @@
 import { ArgumentFilter } from "@modules/schemas/components"
 import { Fragment, useState } from "react"
 import { Enable, Name } from "./components"
-import { UpdateArgumentsProps } from "@containers/Home/components/Modals/shared/interfaces"
+import { UpdateArgumentsProps } from "@containers/Home/components/Modals/shared/domain/field"
 import { Argument as IArgument } from "@modules/schemas/domain/argument"
 import { ArgumentObject } from "@modules/datasets/interfaces/dataset-field"
 

@@ -1,5 +1,4 @@
 import { Validator } from "@modules/app/domain"
-import { FileNameValidator } from "./FileNameValidator"
 import { ImageFilenameValidator } from "./ImageFilenameValidator"
 
 interface Props {
@@ -11,5 +10,3 @@ export class ExportDatasetImageValidator extends Validator {
     super([new ImageFilenameValidator({ name: name })])
   }
 }
-
-export { FileNameValidator }

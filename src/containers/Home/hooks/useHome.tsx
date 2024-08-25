@@ -12,13 +12,13 @@ import {
   ExportDatasetImageModalProps,
   ExportDatasetModalProps,
 } from "../domain/modal"
-import { Config } from "@modules/config/interfaces"
-import { Dataset } from "@modules/datasets/domain/dataset"
+import { Dataset } from "@modules/datasets/domain/core"
 import { ExportDatasetDTO } from "@modules/datasets/dto/dataset"
 import { DatasetError } from "@modules/datasets/errors/dataset"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { useContext } from "react"
 import { HomeContext } from "../context"
+import { ExportFileConfigDTO } from "@modules/config/dto/file"
 
 export default function useHome() {
   const { handleChangeLoading } = useContext(HomeContext)
@@ -65,7 +65,7 @@ export default function useHome() {
     })
   }
 
-  function handleExportDatasets(idatasets: Dataset[], config: Config): void {
+  function handleExportDatasets(idatasets: Dataset[], config: ExportFileConfigDTO): void {
     handleChangeLoading(true)
 
     const datasetsDTO: ExportDatasetDTO[] = []
@@ -99,11 +99,7 @@ export default function useHome() {
     } else {
       exportDatasets({
         datasets: datasetsDTO,
-        config: {
-          type: config.file.type,
-          arguments: config.file.arguments,
-          name: config.file.name,
-        },
+        config: config,
         onError: toastChacaError,
         onFinally() {
           handleChangeLoading(false)

@@ -1,6 +1,6 @@
-import { FieldDatatype } from "../interfaces/dataset-field"
 import { IsArrayConfig, IsKeyConfig, PossibleNullConfig } from "../interfaces/field-config"
-import { ExportDatatypeDTO } from "./field"
+import { ExportDatatypeDTO } from "./export"
+import { SaveFieldDatatype } from "./save"
 
 export type ExportDatasetFieldDTO = {
   name: string
@@ -12,7 +12,7 @@ export type ExportDatasetFieldDTO = {
 
 export type SaveFieldDTO = {
   name: string
-  datatype: FieldDatatype
+  datatype: SaveFieldDatatype
   isPossibleNull: PossibleNullConfig
   isArray: IsArrayConfig
   isKey: IsKeyConfig

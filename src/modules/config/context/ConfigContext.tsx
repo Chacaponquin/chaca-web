@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react"
-import { FileConfigOption } from "../interfaces"
+import { FileConfigOption } from "../domain/core"
 import { useErrorBoundary } from "react-error-boundary"
 import { useConfigServices } from "../services"
 

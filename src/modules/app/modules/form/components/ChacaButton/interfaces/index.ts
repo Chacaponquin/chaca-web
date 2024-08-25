@@ -1,4 +1,4 @@
-import { Size } from "@form/interfaces"
+import { Size } from "@form/domain"
 
 export interface ChacaButtonProps {
   text: string

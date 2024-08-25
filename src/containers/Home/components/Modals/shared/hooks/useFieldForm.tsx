@@ -3,7 +3,6 @@ import { useReducer, Reducer } from "react"
 import { FieldFormPayload, fieldFormReducer } from "../reducer"
 import { FORM_ACTIONS } from "../constants"
 import { ARGUMENT_TYPE, DATA_TYPES } from "@modules/schemas/constants"
-import { useSchemas } from "@modules/schemas/hooks"
 import {
   ArrayValue,
   PickDataType,
@@ -16,12 +15,12 @@ import {
 import {
   ChangeSequentialFieldProps,
   FieldActions,
-  SelectFieldSchemaOptionProps,
   UpdateArgumentsProps,
   UpdateRefProps,
-} from "../interfaces"
-import { FieldForm } from "@modules/modal/domain"
+} from "../domain/field"
 import { Argument } from "@modules/schemas/domain/argument"
+import { FieldForm } from "@modules/datasets/domain/form"
+import { Schema, SchemaOption } from "@modules/schemas/domain/schema"
 
 interface Props {
   field: FieldForm
@@ -34,7 +33,6 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
     fieldFormReducer,
     ifield,
   )
-  const { findParent } = useSchemas()
 
   function resetForm(): void {
     formDispatch({ type: FORM_ACTIONS.RESET_CONFIG })
@@ -90,30 +88,20 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
     }
   }
 
-  function handleSelectFieldSchema(parent: string) {
+  function handleSelectFieldSchema(parent: Schema) {
     formDispatch({
-      type: FORM_ACTIONS.CHANGE_FIELD_DATATYPE,
+      type: FORM_ACTIONS.CHANGE_SCHEMA,
       payload: {
-        datatype: {
-          type: DATA_TYPES.SINGLE_VALUE,
-          args: {},
-          schema: parent,
-          option: findParent(parent).options[0].id,
-        },
+        schema: parent,
       },
     })
   }
 
-  function handleSelectFieldSchemaOption({ option, parent }: SelectFieldSchemaOptionProps) {
+  function handleSelectFieldSchemaOption(option: SchemaOption) {
     formDispatch({
-      type: FORM_ACTIONS.CHANGE_FIELD_DATATYPE,
+      type: FORM_ACTIONS.CHANGE_SCHEMA_OPTION,
       payload: {
-        datatype: {
-          type: DATA_TYPES.SINGLE_VALUE,
-          args: {},
-          schema: parent,
-          option: option,
-        },
+        option: option,
       },
     })
   }

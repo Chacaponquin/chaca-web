@@ -1,7 +1,7 @@
 import { ArrayValue } from "@modules/datasets/interfaces/dataset-field"
 import { ValuesForm } from "../../shared/components"
 import { ChacaNumberInput } from "@form/components"
-import { PickNode } from "@modules/datasets/domain/dataset/Field"
+import { PickNode } from "@modules/datasets/domain/core/Field"
 import { CountInfo } from "./components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { FormSection } from "@modules/modal/components"

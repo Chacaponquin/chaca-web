@@ -1,12 +1,12 @@
 import { ARRAY_VALUE_TYPE } from "@modules/datasets/constants"
-import { SelectTypes } from "../../../../interfaces"
+import { SelectTypes } from "../../../../domain"
 import { SelectType, ValueInput } from "../../../../shared/components"
 
 interface Props {
   index: number
   handleChange(v: string, index: number): void
   handleOpenCode(index: number): void
-  handleChangeType(v: string, index: number): void
+  handleChangeType(v: SelectTypes, index: number): void
   types: SelectTypes[]
   value: string
   type: ARRAY_VALUE_TYPE

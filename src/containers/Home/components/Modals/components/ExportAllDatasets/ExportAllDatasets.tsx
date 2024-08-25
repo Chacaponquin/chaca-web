@@ -1,12 +1,12 @@
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useExport } from "./hooks"
-import { Config } from "@modules/config/interfaces"
 import { DatasetExportForm } from "../../shared/components"
 import { Modal } from "@modules/modal/components"
-import { Dataset } from "@modules/datasets/domain/dataset"
+import { Dataset } from "@modules/datasets/domain/core"
+import { ExportFileConfigDTO } from "@modules/config/dto/file"
 
 interface Props {
-  handleExportDatasets(datasets: Dataset[], config: Config): void
+  handleExportDatasets(datasets: Dataset[], config: ExportFileConfigDTO): void
 }
 
 export default function ExportAllDatasets({ handleExportDatasets }: Props) {

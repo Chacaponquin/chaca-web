@@ -17,18 +17,18 @@ import {
 } from "@modules/datasets/interfaces/dataset-field"
 import {
   ChangeSequentialFieldProps,
-  SelectFieldSchemaOptionProps,
   UpdateArgumentsProps,
   UpdateCustomProps,
-} from "@containers/Home/components/Modals/shared/interfaces"
+} from "@containers/Home/components/Modals/shared/domain/field"
 import { Argument } from "@modules/schemas/domain/argument"
+import { Schema, SchemaOption } from "@modules/schemas/domain/schema"
 
 interface Props {
   id: string
   datasetId: string
   datatype: FieldDatatype
-  handleSelectFieldSchema(v: string): void
-  handleSelectFieldSchemaOption(p: SelectFieldSchemaOptionProps): void
+  handleSelectFieldSchema(v: Schema): void
+  handleSelectFieldSchemaOption(p: SchemaOption): void
   handleUpdateCustomField(p: UpdateCustomProps): void
   handleUpdateFieldSchemaArguments(p: UpdateArgumentsProps): void
   handleChangeSequentialValues(props: ChangeSequentialFieldProps): void

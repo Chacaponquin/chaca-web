@@ -1,9 +1,9 @@
-import { FieldProps } from "@modules/datasets/dto/field"
 import { Field, MixedNode, RefNode } from "./Field"
 import { RootNode } from "./RootNode"
 import { ExportFieldsProps, SaveProps } from "@modules/datasets/interfaces/dataset"
 import { ExportDatasetFieldDTO, SaveFieldDTO } from "@modules/datasets/dto/dataset"
 import { DatasetError } from "@modules/datasets/errors/dataset"
+import { FieldProps } from "@modules/datasets/dto/field"
 
 interface GetLocationProps {
   fieldId: string

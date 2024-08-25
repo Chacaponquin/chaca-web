@@ -1,4 +1,4 @@
-import { ChacaFormProps } from "../../interfaces"
+import { ChacaFormProps } from "../../domain"
 import { motion } from "framer-motion"
 import clsx from "clsx"
 

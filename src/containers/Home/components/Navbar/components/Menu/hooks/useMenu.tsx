@@ -2,7 +2,7 @@ import { Delete, Image, Plus, Share } from "@modules/app/modules/icon/components
 import { LanguageOption, MenuItem } from "../interfaces"
 import { useTheme } from "@modules/app/modules/theme/hooks"
 import { THEME } from "@modules/app/modules/theme/constants"
-import { createRef, useEffect, useState } from "react"
+import { createRef, useEffect, useMemo, useState } from "react"
 import { useClickOutside } from "@modules/shared/hooks"
 import {
   AddDatasetCommand,
@@ -30,7 +30,7 @@ export default function useMenu({
   const listRef = createRef<HTMLDivElement>()
 
   const { handleChangeTheme: handleChangeThemeHook, theme } = useTheme()
-  const { handleChangeLanguage: handleChangeLanguageHook, language } = useLanguage()
+  const { handleChangeLanguage: handleChangeLanguageHook } = useLanguage()
 
   useClickOutside({ element: listRef, onClickOutside: () => setOpen(false) })
 
@@ -93,25 +93,20 @@ export default function useMenu({
     }
   }
 
-  const languageOptions: LanguageOption[] = [
-    { title: "Español", type: "es" },
-    { title: "English", type: "en" },
-  ]
+  const languageOptions: LanguageOption[] = useMemo(() => {
+    return [
+      { title: "Español", type: "es" },
+      { title: "English", type: "en" },
+    ]
+  }, [])
 
-  function handleChangeLanguage(name: string) {
-    const found = languageOptions.find((l) => l.title === name)
-
-    if (found) {
-      handleChangeLanguageHook(found.type)
-    }
+  function handleChangeLanguage(v: LanguageOption) {
+    handleChangeLanguageHook(v.type)
   }
-
-  const foundLanguage = languageOptions.find((l) => l.type === language)
 
   return {
     items,
     handleChangeTheme,
-    foundLanguage,
     open,
     handleChangeOpen,
     listRef,
