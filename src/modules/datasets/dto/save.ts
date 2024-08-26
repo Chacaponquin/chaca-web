@@ -1,30 +1,44 @@
-import { DATA_TYPES } from "@modules/schemas/constants"
+import { DATA_TYPES } from "@modules/schemas/domain/constants"
 import {
   ArgumentObject,
-  CustomDataType,
-  EnumDataType,
-  MixedDataType,
-  PickDataType,
-  ProbabilityDataType,
-  RefDataType,
-  SequenceDataType,
-  SequentialDataType,
-} from "../interfaces/dataset-field"
+  CustomDatatype,
+  EnumDatatype,
+  PickDatatype,
+  ProbabilityDatatype,
+  RefDatatype,
+  SequenceDatatype,
+  SequentialDatatype,
+} from "../domain/core/datatype"
+import { IsArrayConfig, IsKeyConfig, PossibleNullConfig } from "../domain/core/field-config"
+
+export type SaveFieldDTO = {
+  name: string
+  datatype: SaveFieldDatatype
+  isPossibleNull: PossibleNullConfig
+  isArray: IsArrayConfig
+  isKey: IsKeyConfig
+  id: string
+}
 
 export type SaveFieldDatatype =
-  | CustomDataType
-  | SaveSingleValueDataType
-  | RefDataType
-  | SequenceDataType
-  | SequentialDataType
-  | EnumDataType
-  | MixedDataType
-  | ProbabilityDataType
-  | PickDataType
+  | CustomDatatype
+  | SaveSingleValueDatatype
+  | RefDatatype
+  | SequenceDatatype
+  | SequentialDatatype
+  | EnumDatatype
+  | SaveMixedDatatype
+  | ProbabilityDatatype
+  | PickDatatype
 
-export interface SaveSingleValueDataType {
+export interface SaveSingleValueDatatype {
   type: DATA_TYPES.SINGLE_VALUE
   schema: string
   option: string
   args: ArgumentObject
+}
+
+export interface SaveMixedDatatype {
+  type: DATA_TYPES.MIXED
+  object: SaveFieldDTO[]
 }

@@ -1,7 +1,7 @@
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { useFetch } from "@modules/app/modules/http/hooks"
 import { FetchFunctionsProps } from "@modules/app/modules/http/interfaces/fetch"
-import { Schema } from "../domain/schema"
+import { Schema } from "../domain/core/schema"
 import { SchemaResponse } from "../dto"
 import { Id } from "@modules/shared/domain/id"
 

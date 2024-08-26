@@ -1,3 +1,4 @@
+import clsx from "clsx"
 import { useState, useRef, useMemo } from "react"
 
 interface Props {
@@ -50,6 +51,16 @@ export default function Tooltip({ position = "top", children, text }: Props) {
     }
   }, [position, elementRef, textRef, show, children])
 
+  const CLASS = clsx(
+    "shadow-lg",
+    "bg-scale-3 dark:bg-scale-3",
+    "text-xs",
+    "absolute",
+    "px-3 py-1",
+    "text-white",
+    "rounded",
+  )
+
   return (
     <div
       className="relative flex justify-center items-center"
@@ -57,7 +68,7 @@ export default function Tooltip({ position = "top", children, text }: Props) {
       onMouseLeave={handleHide}
     >
       <div
-        className="shadow-lg bg-scale-3 dark:bg-scale-3 text-white px-3 py-1 rounded absolute"
+        className={CLASS}
         style={{
           transform: `translateX(${posStyle.translateX}px) translateY(${posStyle.translateY}px)`,
           visibility: show ? "visible" : "hidden",

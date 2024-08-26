@@ -1,7 +1,8 @@
 import { DatasetError } from "../errors/dataset"
-import { FieldDatatype } from "./dataset-field"
-import { IsArrayConfig, IsKeyConfig, PossibleNullConfig } from "./field-config"
-import { SchemaOption, Schema } from "@modules/schemas/domain/schema"
+import { FieldDatatype } from "../domain/core/datatype"
+import { IsArrayConfig, IsKeyConfig, PossibleNullConfig } from "../domain/core/field-config"
+import { SaveFieldDTO } from "../dto/save"
+import { SchemaSearcher } from "@modules/schemas/domain/core/search"
 
 export interface NodeProps {
   name: string
@@ -13,8 +14,6 @@ export interface NodeProps {
 }
 
 export interface SearchProps {
-  findOption(p: string, o: string): SchemaOption
-  findParent(p: string): Schema
   searchRefField(ref: string[]): string[]
   fieldRoute: string[]
 }
@@ -22,12 +21,10 @@ export interface SearchProps {
 export type ExportFieldsProps = SearchProps & { errors: DatasetError[] }
 
 export interface StringInfProps {
-  findOption(p: string, o: string): SchemaOption
-  findParent(p: string): Schema
   searchRefField(ref: string[]): string[]
 }
 
-export interface SaveProps {
-  findOption(p: string, o: string): SchemaOption
-  findParent(p: string): Schema
+export interface CreateFromSaveProps {
+  searcher: SchemaSearcher
+  props: SaveFieldDTO
 }

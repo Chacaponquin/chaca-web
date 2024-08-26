@@ -1,4 +1,4 @@
-import { ProbabilityValue } from "@modules/datasets/interfaces/dataset-field"
+import { ProbabilityValue } from "@modules/datasets/domain/core/datatype"
 import { useConfig } from "./hooks"
 import { AddButton, DeleteButton } from "../../shared/components"
 import { ProbInfo, Section } from "./components"

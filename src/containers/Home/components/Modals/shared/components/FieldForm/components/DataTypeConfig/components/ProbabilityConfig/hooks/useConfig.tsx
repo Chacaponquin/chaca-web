@@ -1,6 +1,6 @@
-import { ProbabilityValue } from "@modules/datasets/interfaces/dataset-field"
+import { ProbabilityValue } from "@modules/datasets/domain/core/datatype"
 import { useTypes } from "../../../shared/hooks"
-import { ARRAY_VALUE_TYPE } from "@modules/datasets/constants"
+import { ARRAY_VALUE_TYPE } from "@modules/datasets/domain/constants"
 import { useCode } from "@modules/modal/hooks"
 import { SelectTypes } from "../../../domain"
 

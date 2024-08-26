@@ -7,11 +7,11 @@ import { ChacaDropdown } from ".."
 interface Props<T> {
   placeholder: string
   options: T[]
+  size: Size
+  id?: string
   label(o: T): string
   onChange(value: T): void
-  size: Size
   value(o: T): boolean
-  id?: string
 }
 
 export default function ChacaSelect<T>({
@@ -33,7 +33,7 @@ export default function ChacaSelect<T>({
     "w-full",
     "gap-5",
     "transition-all duration-300",
-    "rounded-sm",
+    "rounded",
     "whitespace-nowrap",
     "flex items-center justify-between",
     "text-black dark:text-white",

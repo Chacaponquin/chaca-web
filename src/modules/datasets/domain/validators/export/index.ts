@@ -1,5 +1,5 @@
 import { Validator } from "@modules/app/domain"
-import { FilenameValidator } from "@modules/config/domain/validators/FileNameValidator"
+import { FilenameValidator } from "@modules/config/domain/validators/FilenameValidator"
 
 interface Props {
   name: string

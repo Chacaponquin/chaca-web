@@ -43,7 +43,7 @@ export default function ChacaTextarea({
     "transition-all duration-300",
     "resize-none",
     "outline-none",
-    "rounded-sm",
+    "rounded",
     "bg-white dark:bg-scale-5",
     "border-2 dark:border-scale-3 border-gray-300",
     "dark:hover:border-scale-9 hover:border-purple-6",

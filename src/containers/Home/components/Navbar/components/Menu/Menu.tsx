@@ -50,7 +50,7 @@ export default function Menu({
           <Button open={open} onClick={handleChangeOpen} />
 
           {open && (
-            <ul className="absolute rounded mt-2 dark:bg-scale-3 bg-white z-20 shadow-md">
+            <ul className="absolute rounded mt-2 dark:bg-scale-3 bg-white z-20 shadow-md p-1.5 dark:border-scale-7 border-[1px]">
               {items.map(({ icon, onClick, title, command }, index) => (
                 <Item
                   key={index}
@@ -58,7 +58,7 @@ export default function Menu({
                   handleCloseList={handleChangeOpen}
                   clickEffect={true}
                 >
-                  <div className="flex items-center gap-x-5">
+                  <div className="flex items-center gap-x-3.5">
                     <Icon icon={icon} />
                     <Title text={title} />
                   </div>

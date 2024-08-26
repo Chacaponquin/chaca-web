@@ -1,4 +1,4 @@
-import { ChacaSimpleButton } from "@form/components"
+import { ChacaButton } from "@form/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 
 interface Props {
@@ -12,7 +12,7 @@ export default function AddButton({ handleClick }: Props) {
 
   return (
     <div className="flex justify-end mt-0.5">
-      <ChacaSimpleButton
+      <ChacaButton
         text={ADD}
         color="cancel"
         size="sm"

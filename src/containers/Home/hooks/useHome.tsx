@@ -13,12 +13,12 @@ import {
   ExportDatasetModalProps,
 } from "../domain/modal"
 import { Dataset } from "@modules/datasets/domain/core"
-import { ExportDatasetDTO } from "@modules/datasets/dto/dataset"
 import { DatasetError } from "@modules/datasets/errors/dataset"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { useContext } from "react"
 import { HomeContext } from "../context"
 import { ExportFileConfigDTO } from "@modules/config/dto/file"
+import { ExportDatasetDTO } from "@modules/datasets/dto/export"
 
 export default function useHome() {
   const { handleChangeLoading } = useContext(HomeContext)
@@ -26,7 +26,7 @@ export default function useHome() {
   const { handleOpenModal } = useModal()
   const { handleGenerateImage } = usePlayground()
   const { downloadDatasetsImage, exportDatasets } = useDatasetServices()
-  const { loading: schemasLoading, findParent, findType } = useSchemas()
+  const { loading: schemasLoading } = useSchemas()
   const { loading: configLoading } = useConfig()
   const { toastChacaError } = useToast()
 
@@ -73,8 +73,6 @@ export default function useHome() {
 
     for (const dataset of idatasets) {
       const [fields, errors] = dataset.exportFields({
-        findOption: findType,
-        findParent: findParent,
         searchRefField: searchRefField,
         fieldRoute: [],
       })

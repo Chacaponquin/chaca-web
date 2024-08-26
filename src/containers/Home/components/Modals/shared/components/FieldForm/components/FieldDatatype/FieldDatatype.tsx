@@ -1,6 +1,6 @@
 import { ChacaSelect } from "@form/components"
 import { useDatatypes } from "@modules/datasets/hooks"
-import { DATA_TYPES } from "@modules/schemas/constants"
+import { DATA_TYPES } from "@modules/schemas/domain/constants"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import {
   CustomInfo,
@@ -14,11 +14,11 @@ import {
   SequentialInfo,
 } from "@modules/datasets/components"
 import { FormSection } from "@modules/modal/components"
-import { FieldDatatype as IFieldDatatype } from "@modules/datasets/interfaces/dataset-field"
+import { FieldDatatype as IFieldDatatype } from "@modules/datasets/domain/core/datatype"
 
 interface Props {
   label: string
-  handleChangeDataType(i: string): void
+  handleChangeDatatype(i: string): void
   datatype: IFieldDatatype
   fieldId: string
   datasetId: string
@@ -26,7 +26,7 @@ interface Props {
 
 export default function FieldDatatype({
   label,
-  handleChangeDataType,
+  handleChangeDatatype,
   datatype,
   datasetId,
   fieldId,
@@ -41,7 +41,7 @@ export default function FieldDatatype({
         options={DATA_TYPES_ARRAY.filter((d) => d.condition)}
         label={(o) => o.title}
         value={(o) => o.default.type === datatype.type}
-        onChange={(v) => handleChangeDataType(v.id)}
+        onChange={(v) => handleChangeDatatype(v.id)}
         size="base"
       />
 

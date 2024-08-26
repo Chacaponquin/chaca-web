@@ -7,7 +7,7 @@ interface Props {
 export default function Icon({ icon }: Props) {
   return (
     <i className="dark:stroke-white dark:fill-white stroke-black fill-black">
-      {icon({ size: 20 })}
+      {icon({ size: 17 })}
     </i>
   )
 }

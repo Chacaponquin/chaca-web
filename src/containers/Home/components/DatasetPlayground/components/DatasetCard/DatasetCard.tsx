@@ -25,9 +25,9 @@ export default function DatasetCard({ data: { dataset } }: Props) {
     dataset: dataset,
   })
 
-  const CARD_CLASS = clsx(
+  const CLASS = clsx(
     "flex flex-col",
-    "rounded-lg",
+    "rounded",
     "bg-scale-4",
     "cursor-grab",
     "stroke-white",
@@ -35,11 +35,11 @@ export default function DatasetCard({ data: { dataset } }: Props) {
     "relative",
     // "animate-jump-in animate-once animate-duration-400 animate-ease-in-out",
 
-    { "outline outline-4 outline-purple-6": selected },
+    { "outline outline-[2px] outline-purple-6": selected },
   )
 
   return (
-    <div className={CARD_CLASS} id={dataset.id} onClick={handleClickCard}>
+    <article className={CLASS} id={dataset.id} onClick={handleClickCard}>
       <CardHeader
         handleDeleteDataset={handleDeleteDataset}
         handleEditDataset={handleEditDataset}
@@ -51,11 +51,18 @@ export default function DatasetCard({ data: { dataset } }: Props) {
         handleAddField={handleAddField}
       />
 
-      <div className="flex flex-col py-2 min-w-[380px]">
+      <div className="flex flex-col gap-y-0.5 min-w-[230px] p-1.5">
         {dataset.nodes.map((field, i) => (
-          <Field key={i} field={field} datasetHasKeys={dataset.hasKeyField()} margin={0} />
+          <Field
+            key={i}
+            field={field}
+            datasetHasKeys={dataset.hasKeyField()}
+            margin={0}
+            datasetId={dataset.id}
+            parentfieldId={dataset.id}
+          />
         ))}
       </div>
-    </div>
+    </article>
   )
 }

@@ -9,6 +9,7 @@ export default function ListItem({ children }: Props) {
         className="rounded-full dark:bg-white bg-black"
         style={{ minWidth: "5px", minHeight: "5px", transform: `translateY(7px)` }}
       ></div>
+
       {children}
     </li>
   )

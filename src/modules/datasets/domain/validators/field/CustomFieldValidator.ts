@@ -1,8 +1,8 @@
 import { IValidator } from "@modules/app/domain"
 import { ChacaError } from "@modules/app/exceptions"
 import { EmptyCustomFunctionError } from "@modules/datasets/errors/dataset"
-import { FieldDatatype } from "@modules/datasets/interfaces/dataset-field"
-import { DATA_TYPES } from "@modules/schemas/constants"
+import { FieldDatatype } from "@modules/datasets/domain/core/datatype"
+import { DATA_TYPES } from "@modules/schemas/domain/constants"
 
 interface Props {
   type: FieldDatatype

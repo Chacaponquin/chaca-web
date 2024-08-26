@@ -1,46 +1,41 @@
 import { Field as FieldNode, MixedNode } from "@modules/datasets/domain/core"
 import { Connect, FieldKeyIcon, FieldName, FieldType } from "./components"
-import { useSchemas } from "@modules/schemas/hooks"
-import { useDatasets } from "@modules/datasets/hooks"
 import { Position } from "reactflow"
-import { Fragment, useMemo } from "react"
+import { Fragment } from "react"
+import { useField } from "./hooks"
 
 interface Props {
   field: FieldNode
   datasetHasKeys: boolean
   margin: number
+  datasetId: string
+  parentfieldId: string
 }
 
-export default function Field({ field, datasetHasKeys, margin }: Props) {
-  const { findParent, findType } = useSchemas()
-  const { searchRefField } = useDatasets()
-
-  const type = useMemo(() => {
-    const value = field.stringInf({
-      findOption: findType,
-      findParent: findParent,
-      searchRefField: searchRefField,
-    })
-
-    return value
-  }, [findType, findParent, field])
+export default function Field({ field, datasetHasKeys, margin, datasetId, parentfieldId }: Props) {
+  const { handleClick, type } = useField({
+    field: field,
+    parentfieldId: parentfieldId,
+    datasetId: datasetId,
+  })
 
   return (
     <Fragment>
       <div className="flex items-center relative w-full justify-between">
         <Connect id={field.id} position={Position.Left} type="target" />
 
-        <div className="flex items-center w-full py-1.5 px-4 gap-x-3" id={field.id}>
+        <div
+          className="flex items-center w-full py-1.5 px-2 gap-x-3 hover:bg-scale-5 rounded"
+          id={field.id}
+          onClick={handleClick}
+        >
           {datasetHasKeys && <FieldKeyIcon isKey={field.isKey} />}
 
           <div
-            className="flex text-sm items-center w-full justify-between gap-x-8"
+            className="flex items-center w-full justify-between gap-x-8 cursor-pointer"
             style={{ paddingLeft: `${margin}px` }}
           >
-            <section className="flex items-center">
-              <FieldName name={field.name} />
-            </section>
-
+            <FieldName name={field.name} />
             <FieldType type={type} />
           </div>
         </div>
@@ -48,13 +43,17 @@ export default function Field({ field, datasetHasKeys, margin }: Props) {
         <Connect id={field.id} position={Position.Right} type="source" />
       </div>
 
-      {field instanceof MixedNode && (
-        <Fragment>
-          {field.nodes.map((f) => (
-            <Field margin={margin + 20} datasetHasKeys={datasetHasKeys} field={f} key={f.id} />
-          ))}
-        </Fragment>
-      )}
+      {field instanceof MixedNode &&
+        field.nodes.map((f) => (
+          <Field
+            margin={margin + 20}
+            datasetId={datasetId}
+            parentfieldId={field.id}
+            datasetHasKeys={datasetHasKeys}
+            field={f}
+            key={f.id}
+          />
+        ))}
     </Fragment>
   )
 }

@@ -16,7 +16,7 @@ export default function EnumInfo() {
   })
 
   return (
-    <div className="flex flex-col gap-y-1">
+    <div className="flex flex-col">
       <TypeInfo type="default" header="Enum field">
         <P>{INFO}</P>
       </TypeInfo>

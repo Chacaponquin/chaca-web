@@ -1,7 +1,7 @@
-import { ChacaIconButton, ChacaSelect } from "@form/components"
+import { ChacaButton, ChacaSelect } from "@form/components"
 import { Edit } from "@modules/app/modules/icon/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
-import { RefWhere } from "@modules/datasets/interfaces/dataset-field"
+import { RefWhere } from "@modules/datasets/domain/core/datatype"
 import { UniqueInfo, WhereInfo } from "./components"
 import { useRefConfig } from "./hooks"
 import { CheckField, FormSection } from "@modules/modal/components"
@@ -66,7 +66,7 @@ export default function RefConfig({
         text="Where"
         info={<WhereInfo />}
       >
-        <ChacaIconButton
+        <ChacaButton
           size="sm"
           color="cancel"
           text={EDIT_WHERE}

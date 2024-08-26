@@ -11,10 +11,10 @@ export default function ModalTitle({ title }: Props) {
 
   return (
     <section className="flex w-full justify-between mb-3 items-center">
-      <h1 className="font-fontMedium text-2xl dark:text-white">{title}</h1>
+      <h1 className="font-fontMedium text-xl dark:text-white">{title}</h1>
 
       <button type="button" onClick={handleCloseModal} className="fill-black dark:fill-white">
-        <X size={20} />
+        <X size={17} />
       </button>
     </section>
   )

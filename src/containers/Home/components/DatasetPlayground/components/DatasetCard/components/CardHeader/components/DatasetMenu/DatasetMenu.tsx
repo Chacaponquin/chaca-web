@@ -2,7 +2,7 @@ import { Copy, Delete, Edit, Plus, Share } from "@modules/app/modules/icon/compo
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { Fragment } from "react"
 import { Item } from "./components"
-import { MenuItem } from "./interfaces"
+import { MenuItem } from "./domain"
 import {
   AddFieldCommand,
   CloneDatasetCommand,

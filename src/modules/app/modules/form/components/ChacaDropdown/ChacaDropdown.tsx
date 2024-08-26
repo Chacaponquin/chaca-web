@@ -24,7 +24,20 @@ export default function ChacaDropdown({
   const wrapperRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
 
-  const LIST_CLASS = clsx("absolute", "z-20", "overflow-auto", "mt-2", iclass)
+  const LIST_CLASS = clsx(
+    "absolute",
+    "z-20",
+    "overflow-auto",
+    "mt-2",
+    "flex flex-col",
+    "dark:border-scale-7 border-[1px]",
+    "p-1",
+    "gap-y-0.5",
+    "rounded",
+    "z-50",
+    "bg-white dark:bg-scale-3",
+    iclass,
+  )
 
   const onClickOutside = useCallback(() => {
     setOpen(false)

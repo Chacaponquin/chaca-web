@@ -1,18 +1,18 @@
-import { DATA_TYPES } from "@modules/schemas/constants"
+import { DATA_TYPES } from "@modules/schemas/domain/constants"
 import {
-  CustomDataType,
-  EnumDataType,
-  MixedDataType,
-  PickDataType,
-  ProbabilityDataType,
-  RefDataType,
-  SequenceDataType,
-  SequentialDataType,
-  SingleValueDataType,
-} from "../interfaces/dataset-field"
+  CustomDatatype,
+  EnumDatatype,
+  MixedDatatype,
+  PickDatatype,
+  ProbabilityDatatype,
+  RefDatatype,
+  SequenceDatatype,
+  SequentialDatatype,
+  SingleValueDatatype,
+} from "../domain/core/datatype"
 import { useSchemas } from "@modules/schemas/hooks"
 import { useDatasets } from "./"
-import { ARRAY_VALUE_TYPE, DatasetFunctions } from "../constants"
+import { ARRAY_VALUE_TYPE, DatasetFunctions } from "../domain/constants"
 import { Datatype } from "../domain/data-types"
 
 interface Props {
@@ -24,54 +24,54 @@ export default function useDatatypes({ fieldId, datasetId }: Props) {
   const { schemas } = useSchemas()
   const { searchPossibleFieldsToRef } = useDatasets()
 
-  const DEFAULT_CUSTOM_DATA_TYPE: CustomDataType = {
+  const DEFAULT_CUSTOM_DATA_TYPE: CustomDatatype = {
     type: DATA_TYPES.CUSTOM,
     code: DatasetFunctions.custom(),
   }
 
-  const DEFAULT_MIXED_DATA_TYPE: MixedDataType = {
+  const DEFAULT_MIXED_DATA_TYPE: MixedDatatype = {
     type: DATA_TYPES.MIXED,
     object: [],
   }
 
-  const DEFAULT_SCHEMA_VALUE_DATA_TYPE: SingleValueDataType = {
+  const DEFAULT_SCHEMA_VALUE_DATA_TYPE: SingleValueDatatype = {
     type: DATA_TYPES.SINGLE_VALUE,
     args: {},
     schema: schemas[0],
     option: schemas[0].options[0],
   }
 
-  const DEFAULT_REF_DATA_TYPE: RefDataType = {
+  const DEFAULT_REF_DATA_TYPE: RefDatatype = {
     type: DATA_TYPES.REF,
     ref: [],
     unique: false,
     where: null,
   }
 
-  const DEFAULT_SEQUENCE_DATA_TYPE: SequenceDataType = {
+  const DEFAULT_SEQUENCE_DATA_TYPE: SequenceDatatype = {
     type: DATA_TYPES.SEQUENCE,
     startsWith: 1,
     step: 1,
   }
 
-  const DEFAULT_SEQUENTIAL_DATA_TYPE: SequentialDataType = {
+  const DEFAULT_SEQUENTIAL_DATA_TYPE: SequentialDatatype = {
     type: DATA_TYPES.SEQUENTIAL,
     values: [{ type: ARRAY_VALUE_TYPE.STRING, value: "" }],
     loop: false,
   }
 
-  const DEFAULT_ENUM_DATA_TYPE: EnumDataType = {
+  const DEFAULT_ENUM_DATA_TYPE: EnumDatatype = {
     type: DATA_TYPES.ENUM,
     values: [{ type: ARRAY_VALUE_TYPE.STRING, value: "" }],
   }
 
-  const DEFAULT_PICK_DATA_TYPE: PickDataType = {
+  const DEFAULT_PICK_DATA_TYPE: PickDatatype = {
     type: DATA_TYPES.PICK,
     count: 1,
     values: [{ type: ARRAY_VALUE_TYPE.STRING, value: "" }],
   }
 
-  const DEFAULT_PROBABILITY_DATA_TYPE: ProbabilityDataType = {
+  const DEFAULT_PROBABILITY_DATA_TYPE: ProbabilityDatatype = {
     type: DATA_TYPES.PROBABILITY,
     values: [
       {

@@ -1,4 +1,4 @@
-import { DATA_TYPES } from "@modules/schemas/constants"
+import { DATA_TYPES } from "@modules/schemas/domain/constants"
 import {
   CustomConfig,
   EnumConfig,
@@ -14,14 +14,14 @@ import {
   FieldDatatype,
   ProbabilityValue,
   RefWhere,
-} from "@modules/datasets/interfaces/dataset-field"
+} from "@modules/datasets/domain/core/datatype"
 import {
   ChangeSequentialFieldProps,
   UpdateArgumentsProps,
   UpdateCustomProps,
 } from "@containers/Home/components/Modals/shared/domain/field"
-import { Argument } from "@modules/schemas/domain/argument"
-import { Schema, SchemaOption } from "@modules/schemas/domain/schema"
+import { Argument } from "@modules/schemas/domain/core/argument"
+import { Schema, SchemaOption } from "@modules/schemas/domain/core/schema"
 
 interface Props {
   id: string
@@ -45,7 +45,7 @@ interface Props {
   handleChangeRefWhere(value: RefWhere): void
 }
 
-export default function DataTypeConfig({
+export default function DatatypeConfig({
   id,
   datasetId,
   datatype,

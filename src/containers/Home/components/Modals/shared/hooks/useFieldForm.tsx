@@ -2,25 +2,25 @@ import { useDatatypes } from "@modules/datasets/hooks"
 import { useReducer, Reducer } from "react"
 import { FieldFormPayload, fieldFormReducer } from "../reducer"
 import { FORM_ACTIONS } from "../constants"
-import { ARGUMENT_TYPE, DATA_TYPES } from "@modules/schemas/constants"
+import { ARGUMENT_TYPE, DATA_TYPES } from "@modules/schemas/domain/constants"
 import {
   ArrayValue,
-  PickDataType,
+  PickDatatype,
   ProbabilityValue,
-  RefDataType,
+  RefDatatype,
   RefWhere,
-  SequenceDataType,
-  SingleValueDataType,
-} from "@modules/datasets/interfaces/dataset-field"
+  SequenceDatatype,
+  SingleValueDatatype,
+} from "@modules/datasets/domain/core/datatype"
 import {
   ChangeSequentialFieldProps,
   FieldActions,
   UpdateArgumentsProps,
   UpdateRefProps,
 } from "../domain/field"
-import { Argument } from "@modules/schemas/domain/argument"
+import { Argument } from "@modules/schemas/domain/core/argument"
 import { FieldForm } from "@modules/datasets/domain/form"
-import { Schema, SchemaOption } from "@modules/schemas/domain/schema"
+import { Schema, SchemaOption } from "@modules/schemas/domain/core/schema"
 
 interface Props {
   field: FieldForm
@@ -75,13 +75,13 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
     })
   }
 
-  function handleChangeDataType(id: string) {
-    const foundDataType = DATA_TYPES_ARRAY.find((d) => d.id === id)
+  function handleChangeDatatype(id: string) {
+    const foundDatatype = DATA_TYPES_ARRAY.find((d) => d.id === id)
 
-    if (foundDataType) {
+    if (foundDatatype) {
       formDispatch({
         type: FORM_ACTIONS.CHANGE_FIELD_DATATYPE,
-        payload: { datatype: foundDataType.default },
+        payload: { datatype: foundDatatype.default },
       })
 
       resetForm()
@@ -139,7 +139,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
   }
 
   function handleDeleteFieldSchemaArgument(argument: string) {
-    const datatype = field.datatype as SingleValueDataType
+    const datatype = field.datatype as SingleValueDatatype
 
     let newArguments = {}
     Object.entries(datatype.args).forEach(([key, value]) => {
@@ -162,7 +162,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
   }
 
   function handleUpdateFieldSchemaArguments({ name, value }: UpdateArgumentsProps) {
-    const datatype = field.datatype as SingleValueDataType
+    const datatype = field.datatype as SingleValueDatatype
 
     formDispatch({
       type: FORM_ACTIONS.CHANGE_FIELD_DATATYPE,
@@ -178,7 +178,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
   }
 
   function handleUpdateRefField({ currentfieldId, currentLocation }: UpdateRefProps) {
-    const f = field.datatype as RefDataType
+    const f = field.datatype as RefDatatype
 
     formDispatch({
       type: FORM_ACTIONS.CHANGE_FIELD_DATATYPE,
@@ -224,7 +224,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
   }
 
   function handleChangeSequenceStartsWith(value: number): void {
-    const f = field.datatype as SequenceDataType
+    const f = field.datatype as SequenceDatatype
 
     formDispatch({
       type: FORM_ACTIONS.CHANGE_SEQUENCE_FIELD,
@@ -233,7 +233,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
   }
 
   function handleChangeSequenceStep(value: number): void {
-    const f = field.datatype as SequenceDataType
+    const f = field.datatype as SequenceDatatype
 
     formDispatch({
       type: FORM_ACTIONS.CHANGE_SEQUENCE_FIELD,
@@ -242,7 +242,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
   }
 
   function handleChangeRef(ref: string): void {
-    const f = field.datatype as RefDataType
+    const f = field.datatype as RefDatatype
 
     formDispatch({
       type: FORM_ACTIONS.CHANGE_REF_DATATYPE,
@@ -251,7 +251,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
   }
 
   function handleChangePickValues(values: ArrayValue[]) {
-    const f = field.datatype as PickDataType
+    const f = field.datatype as PickDatatype
 
     formDispatch({
       type: FORM_ACTIONS.CHANGE_PICK_DATATYPE,
@@ -260,7 +260,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
   }
 
   function handleChangePickCount(count: number) {
-    const f = field.datatype as PickDataType
+    const f = field.datatype as PickDatatype
 
     formDispatch({
       type: FORM_ACTIONS.CHANGE_PICK_DATATYPE,
@@ -273,13 +273,13 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
   }
 
   function handleChangeRefUnique(value: boolean) {
-    const f = field.datatype as RefDataType
+    const f = field.datatype as RefDatatype
 
     formDispatch({ type: FORM_ACTIONS.CHANGE_REF_DATATYPE, payload: { ...f, unique: value } })
   }
 
   function handleChangeRefWhere(value: RefWhere): void {
-    const f = field.datatype as RefDataType
+    const f = field.datatype as RefDatatype
 
     formDispatch({ type: FORM_ACTIONS.CHANGE_REF_DATATYPE, payload: { ...f, where: value } })
   }
@@ -295,7 +295,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
     handleChangeMinIsArray,
     handleChangePossibleNull,
     handleChangePossibleNullValue,
-    handleChangeDataType,
+    handleChangeDatatype,
     handleSelectFieldSchema,
     handleSelectFieldSchemaOption,
     handleUpdateCustomField,

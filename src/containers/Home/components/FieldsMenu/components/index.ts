@@ -1,8 +1,3 @@
-import CloseSection from "./CloseSection/CloseSection"
-import DatasetButtons from "./DatasetButtons/DatasetButtons"
-import ExportButton from "./ExportButton/ExportButton"
-import FieldContainer from "./FieldContainer/FieldContainer"
-import Loader from "./Loader/Loader"
-import NoFieldsMessage from "./NoFieldsMessage/NoFieldsMessage"
+import Aside from "./Aside/Aside"
 
-export { ExportButton, FieldContainer, NoFieldsMessage, DatasetButtons, CloseSection, Loader }
+export { Aside }

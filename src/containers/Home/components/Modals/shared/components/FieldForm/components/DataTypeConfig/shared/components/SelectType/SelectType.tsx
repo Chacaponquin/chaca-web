@@ -1,6 +1,6 @@
 import { ChacaSelect } from "@form/components"
 import { SelectTypes } from "../../../domain"
-import { ARRAY_VALUE_TYPE } from "@modules/datasets/constants"
+import { ARRAY_VALUE_TYPE } from "@modules/datasets/domain/constants"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 
 interface Props {
@@ -18,7 +18,7 @@ export default function SelectType({ types, handleChange, type }: Props) {
       label={(t) => t.name}
       onChange={(v) => handleChange(v)}
       value={(t) => t.type === type}
-      size="sm"
+      size="base"
       placeholder={TYPE}
     />
   )

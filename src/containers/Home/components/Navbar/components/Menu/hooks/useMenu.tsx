@@ -1,5 +1,5 @@
 import { Delete, Image, Plus, Share } from "@modules/app/modules/icon/components"
-import { LanguageOption, MenuItem } from "../interfaces"
+import { LanguageOption, MenuItem } from "../domain"
 import { useTheme } from "@modules/app/modules/theme/hooks"
 import { THEME } from "@modules/app/modules/theme/constants"
 import { createRef, useEffect, useMemo, useState } from "react"

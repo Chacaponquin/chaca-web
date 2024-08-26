@@ -1,4 +1,4 @@
-import { ChacaIconButton } from "@form/components"
+import { ChacaButton } from "@form/components"
 import { Edit } from "@modules/app/modules/icon/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useCode } from "@modules/modal/hooks"
@@ -30,7 +30,7 @@ export default function CustomConfig({ code, handleUpdateCustomField }: Props) {
 
   return (
     <FormSection labelText={FUNCTION} vertical={false} className="mb-5">
-      <ChacaIconButton
+      <ChacaButton
         icon={
           <i className="dark:fill-white fill-black">
             <Edit size={18} />

@@ -1,5 +1,5 @@
 import { useValuesForm } from "./hooks"
-import { ArrayValue } from "@modules/datasets/interfaces/dataset-field"
+import { ArrayValue } from "@modules/datasets/domain/core/datatype"
 import ValueInput from "../ValueInput/ValueInput"
 import DeleteButton from "../DeleteButton/DeleteButton"
 import SelectType from "../SelectType/SelectType"
@@ -27,7 +27,7 @@ export default function ValuesForm({ values, handleChangeValues }: Props) {
 
   return (
     <div className="flex flex-col w-full gap-y-1">
-      <div className="grid grid-cols-2 gap-x-1 gap-y-1 w-full">
+      <div className="grid grid-cols-2 gap-x-1 gap-y-0.5 w-full">
         <Label text="Valor" />
         <Label text="Tipo de dato" />
 

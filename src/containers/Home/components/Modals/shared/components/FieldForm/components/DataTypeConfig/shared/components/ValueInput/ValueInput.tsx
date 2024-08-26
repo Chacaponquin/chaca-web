@@ -1,6 +1,6 @@
 import { ChacaTextInput } from "@form/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
-import { ARRAY_VALUE_TYPE } from "@modules/datasets/constants"
+import { ARRAY_VALUE_TYPE } from "@modules/datasets/domain/constants"
 
 interface Props {
   value: string
@@ -31,7 +31,7 @@ export default function ValueInput({
         value={value}
         disabled={false}
         name={`new-value-${valuesLength}`}
-        size="sm"
+        size="base"
         type="text"
         onChange={handleChange}
         placeholder={NEW_VALUE}

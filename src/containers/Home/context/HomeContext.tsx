@@ -2,14 +2,13 @@ import { SCREEN_SIZES } from "@modules/app/constants"
 import { SOCKET_EVENTS } from "@modules/app/modules/socket/constants"
 import { useSocket } from "@modules/app/modules/socket/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
-import { RespExportDatasetDTO } from "@modules/datasets/dto/dataset"
 import { useScreen } from "@modules/shared/hooks"
 import { createContext, createRef, RefObject, useEffect, useState } from "react"
 import { useDatasetServices } from "@modules/datasets/services"
 import { DatasetCreationError } from "@modules/app/modules/socket/domain/error"
+import { RespExportDatasetDTO } from "@modules/datasets/dto/export"
 
 interface Props {
-  fieldsMenuRef: RefObject<HTMLElement>
   playgroundRef: RefObject<HTMLDivElement>
   exportLink: RefObject<HTMLAnchorElement>
   smallWindow: boolean
@@ -28,7 +27,6 @@ export function HomeProvider({ children }: { children: React.ReactNode }) {
   const { socket } = useSocket()
   const { downloadDatasetFile, onCreationError } = useDatasetServices()
 
-  const fieldsMenuRef = createRef<HTMLElement>()
   const playgroundRef = createRef<HTMLDivElement>()
   const exportLink = createRef<HTMLAnchorElement>()
 
@@ -69,7 +67,6 @@ export function HomeProvider({ children }: { children: React.ReactNode }) {
   }
 
   const data: Props = {
-    fieldsMenuRef,
     playgroundRef,
     smallWindow: !condition,
     exportLink,

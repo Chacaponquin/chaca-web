@@ -3,11 +3,11 @@ import { useTranslation } from "@modules/app/modules/language/hooks"
 import { UpdateArgumentsProps } from "@containers/Home/components/Modals/shared/domain/field"
 import { useSchemas } from "@modules/schemas/hooks"
 import { OptionArguments } from "./components"
-import { Argument } from "@modules/schemas/domain/argument"
+import { Argument } from "@modules/schemas/domain/core/argument"
 import clsx from "clsx"
-import { ArgumentObject } from "@modules/datasets/interfaces/dataset-field"
+import { ArgumentObject } from "@modules/datasets/domain/core/datatype"
 import { FormSection } from "@modules/modal/components"
-import { Schema, SchemaOption } from "@modules/schemas/domain/schema"
+import { Schema, SchemaOption } from "@modules/schemas/domain/core/schema"
 
 interface Props {
   args: ArgumentObject

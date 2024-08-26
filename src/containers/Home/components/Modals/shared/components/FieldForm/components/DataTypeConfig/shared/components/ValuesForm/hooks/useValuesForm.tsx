@@ -1,5 +1,5 @@
-import { ARRAY_VALUE_TYPE } from "@modules/datasets/constants"
-import { ArrayValue } from "@modules/datasets/interfaces/dataset-field"
+import { ARRAY_VALUE_TYPE } from "@modules/datasets/domain/constants"
+import { ArrayValue } from "@modules/datasets/domain/core/datatype"
 import { useCode } from "@modules/modal/hooks"
 import { useTypes } from "../../../hooks"
 import { SelectTypes } from "../../../../domain"

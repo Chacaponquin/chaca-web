@@ -3,12 +3,12 @@ import {
   FieldDatatype,
   ProbabilityValue,
   RefWhere,
-} from "@modules/datasets/interfaces/dataset-field"
+} from "@modules/datasets/domain/core/datatype"
 import { FORM_ACTIONS } from "../constants"
 import { Reducer } from "react"
-import { DATA_TYPES } from "@modules/schemas/constants"
+import { DATA_TYPES } from "@modules/schemas/domain/constants"
 import { FieldForm } from "@modules/datasets/domain/form"
-import { Schema, SchemaOption } from "@modules/schemas/domain/schema"
+import { Schema, SchemaOption } from "@modules/schemas/domain/core/schema"
 
 export type FieldFormPayload =
   | {

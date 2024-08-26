@@ -1,8 +1,8 @@
 import { Fragment, useContext } from "react"
-import { CloseSection, DatasetButtons, FieldContainer, Loader, NoFieldsMessage } from "./components"
+import { Aside } from "./components"
+import { HomeContext } from "@containers/Home/context"
 import clsx from "clsx"
 import { useDatasets } from "@modules/datasets/hooks"
-import { HomeContext } from "@containers/Home/context"
 
 interface Props {
   handleAddNewField(): void
@@ -10,45 +10,28 @@ interface Props {
 }
 
 export default function FieldsMenu({ handleAddNewField, loading }: Props) {
-  const { selectedDataset, handleCloseFieldsMenu, showFieldsMenu } = useDatasets()
-  const { fieldsMenuRef, smallWindow } = useContext(HomeContext)
+  const { smallWindow } = useContext(HomeContext)
+  const { handleCloseFieldsMenu } = useDatasets()
 
   const CLASS = clsx(
-    "flex flex-col justify-between",
-    "w-full max-w-[300px]",
-    "h-full",
-    "bg-white dark:bg-scale-3",
-
-    { "top-0 left-0 h-screen absolute z-40 shadow-lg": smallWindow },
-
-    {
-      "shadow-lg": !smallWindow,
-    },
+    "flex",
+    "w-full h-screen",
+    "absolute top-0 left-0",
+    "z-50",
+    "bg-scale-5/50",
+    "overflow-y-auto",
+    "pr-4",
   )
 
   return (
-    <section className={CLASS} ref={fieldsMenuRef}>
-      {smallWindow && showFieldsMenu && (
-        <CloseSection handleCloseFieldsMenu={handleCloseFieldsMenu} />
-      )}
-
-      {!loading && (
-        <div className="h-full w-full flex flex-col text-black dark:text-white pt-1">
-          {selectedDataset && selectedDataset.nodes.length > 0 ? (
-            <Fragment>
-              {selectedDataset.nodes.map((field) => (
-                <FieldContainer key={field.id} margin={0} field={field} />
-              ))}
-
-              <DatasetButtons handleAddNewField={handleAddNewField} />
-            </Fragment>
-          ) : (
-            <NoFieldsMessage handleAddNewField={handleAddNewField} />
-          )}
+    <Fragment>
+      {smallWindow && (
+        <div className={CLASS} onClick={handleCloseFieldsMenu}>
+          <Aside handleAddNewField={handleAddNewField} loading={loading} />
         </div>
       )}
 
-      {loading && <Loader />}
-    </section>
+      {!smallWindow && <Aside handleAddNewField={handleAddNewField} loading={loading} />}
+    </Fragment>
   )
 }

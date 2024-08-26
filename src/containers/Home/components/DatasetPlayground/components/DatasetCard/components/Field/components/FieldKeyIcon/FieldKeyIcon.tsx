@@ -6,7 +6,7 @@ export default function FieldKeyIcon({ isKey }: { isKey: boolean }) {
 
   return (
     <div className={KEY_CLASS}>
-      <Key size={17} />
+      <Key size={14} />
     </div>
   )
 }

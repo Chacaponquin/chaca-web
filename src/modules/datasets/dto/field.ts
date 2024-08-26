@@ -1,5 +1,5 @@
-import { FieldDatatype } from "../interfaces/dataset-field"
-import { IsArrayConfig, IsKeyConfig, PossibleNullConfig } from "../interfaces/field-config"
+import { FieldDatatype } from "../domain/core/datatype"
+import { IsArrayConfig, IsKeyConfig, PossibleNullConfig } from "../domain/core/field-config"
 
 export interface FieldProps {
   id: string

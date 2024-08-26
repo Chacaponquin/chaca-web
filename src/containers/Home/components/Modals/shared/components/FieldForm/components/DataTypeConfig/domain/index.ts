@@ -1,4 +1,4 @@
-import { ARRAY_VALUE_TYPE } from "@modules/datasets/constants"
+import { ARRAY_VALUE_TYPE } from "@modules/datasets/domain/constants"
 
 export interface SelectTypes {
   name: string

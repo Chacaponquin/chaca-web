@@ -1,4 +1,4 @@
-import { ChacaSimpleButton } from "@form/components"
+import { ChacaButton } from "@form/components"
 import { Image } from "@modules/app/components"
 import { APP_IMAGES } from "@modules/app/constants"
 import { useTranslation } from "@modules/app/modules/language/hooks"
@@ -20,7 +20,7 @@ export default function NoDatasetsMessage() {
 
       <p className="text-xl mt-8 text-black dark:text-white text-center mb-6">{WELCOME_MESSAGE}</p>
 
-      <ChacaSimpleButton
+      <ChacaButton
         color="secondary"
         size="xl"
         text={MESSAGE}

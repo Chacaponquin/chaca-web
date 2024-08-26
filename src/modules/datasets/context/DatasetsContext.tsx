@@ -1,17 +1,18 @@
 import { useEffect, Dispatch, Reducer, createContext, useReducer, useState } from "react"
-import { DatasetPayload, datasetsReducer } from "../reducer/datasets-reducer"
+import { DatasetPayload, datasetsReducer } from "../reducer/datasets"
 import { Dataset, Field, SaveDatasets } from "@modules/datasets/domain/core"
 import { useSchemas } from "@modules/schemas/hooks"
 import { useLocalStorage } from "@modules/app/hooks"
 import { STORAGE_KEYS } from "@modules/app/constants"
 import { InitLoadValidator } from "../domain/validators/init-load"
-import { ISaveDatasets, LoadDataset, SaveDataset } from "../domain/core/SaveDataset"
-import { DATASETS_ACTIONS } from "../constants"
-import { DEFAULT_VERSION } from "@modules/schemas/constants"
+import { ISaveDatasets, LoadDataset, SaveDataset } from "../domain/core/save"
+import { DATASETS_ACTIONS } from "../domain/constants"
+import { DEFAULT_VERSION } from "@modules/schemas/domain/constants"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { usePlayground } from "@modules/playground/hooks"
 import { DatasetNodeBuilder } from "@modules/playground/domain"
+import { SchemaSearcher } from "@modules/schemas/domain/core/search"
 
 interface Props {
   datasets: Dataset[]
@@ -30,7 +31,7 @@ export const DatasetsContext = createContext<Props>({
 } as Props)
 
 export function DatasetsProvider({ children }: { children: React.ReactNode }) {
-  const { fetch: fetchSchemas, findParent, findType, schemas, version } = useSchemas()
+  const { fetch: fetchSchemas, schemas, version } = useSchemas()
   const { set: setStorage, get: getStorage, remove: removeStorage } = useLocalStorage()
   const { toastError } = useToast()
   const { LOAD_DATASETS_ERROR } = useTranslation({
@@ -65,52 +66,60 @@ export function DatasetsProvider({ children }: { children: React.ReactNode }) {
 
       validator.execute({
         success() {
-          const result = [] as LoadDataset[]
+          fetchSchemas({
+            version: content.version,
+            success(schemas) {
+              const result = [] as LoadDataset[]
 
-          content.datasets.forEach((save) => {
-            const newDataset = new Dataset({ limit: save.limit, name: save.name, id: save.id })
+              content.datasets.forEach((save) => {
+                const newDataset = new Dataset({ limit: save.limit, name: save.name, id: save.id })
+                const searcher = new SchemaSearcher(schemas)
 
-            save.fields.forEach((saveField) => {
-              const field = Field.create({
-                datatype: saveField.datatype,
-                name: saveField.name,
-                isArray: saveField.isArray,
-                isKey: saveField.isKey,
-                isPossibleNull: saveField.isPossibleNull,
-                id: saveField.id,
+                save.fields.forEach((f) => {
+                  const field = Field.createFromSave({
+                    props: f,
+                    searcher: searcher,
+                  })
+
+                  newDataset.insertField(field)
+                })
+
+                result.push({ dataset: newDataset, posX: save.posX, posY: save.posY })
               })
 
-              newDataset.insertField(field)
-            })
+              const saveDatasets = result.map((r) => r.dataset)
+              const saveNodes = result.map((r) => {
+                return DatasetNodeBuilder.build({ dataset: r.dataset, posX: r.posX, posY: r.posY })
+              })
 
-            result.push({ dataset: newDataset, posX: save.posX, posY: save.posY })
+              handleSetDatasets(saveDatasets)
+              handleSetNodes(saveNodes)
+
+              updateConnections(saveDatasets)
+
+              if (saveDatasets.length > 0) {
+                setSelectedDataset(saveDatasets[0])
+              }
+            },
           })
-
-          const saveDatasets = result.map((r) => r.dataset)
-          const saveNodes = result.map((r) => {
-            return DatasetNodeBuilder.build({ dataset: r.dataset, posX: r.posX, posY: r.posY })
-          })
-
-          fetchSchemas(content.version)
-
-          handleSetDatasets(saveDatasets)
-          handleSetNodes(saveNodes)
-
-          updateConnections(saveDatasets)
-
-          if (saveDatasets.length > 0) {
-            setSelectedDataset(saveDatasets[0])
-          }
         },
         error() {
-          fetchSchemas(DEFAULT_VERSION)
-          handleClearDatasets()
-          toastError({ id: "load-datasets-error", message: LOAD_DATASETS_ERROR })
+          fetchSchemas({
+            version: DEFAULT_VERSION,
+            success() {
+              handleClearDatasets()
+              toastError({ id: "load-datasets-error", message: LOAD_DATASETS_ERROR })
+            },
+          })
         },
       })
     } else {
-      fetchSchemas(DEFAULT_VERSION)
-      handleClearDatasets()
+      fetchSchemas({
+        version: DEFAULT_VERSION,
+        success() {
+          handleClearDatasets()
+        },
+      })
     }
   }, [])
 
@@ -126,7 +135,7 @@ export function DatasetsProvider({ children }: { children: React.ReactNode }) {
             posX: foundNode.position.x,
             posY: foundNode.position.y,
             limit: d.limit,
-            fields: d.saveFields({ findOption: findType, findParent: findParent }),
+            fields: d.saveFields(),
             name: d.name,
             id: d.id,
           })
@@ -141,7 +150,7 @@ export function DatasetsProvider({ children }: { children: React.ReactNode }) {
 
       setStorage(STORAGE_KEYS.PREVIEW_CONFIG, save.json())
     }
-  }, [datasets, findType, findParent, nodes])
+  }, [datasets, schemas, nodes])
 
   function handleSelectDataset(id: string | null) {
     const findDataset = datasets.find((el) => el.id === id)

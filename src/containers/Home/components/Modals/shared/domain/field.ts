@@ -1,7 +1,7 @@
 import { FieldForm } from "@modules/datasets/domain/form"
-import { ArrayValue, ProbabilityValue, RefWhere } from "@modules/datasets/interfaces/dataset-field"
-import { Argument } from "@modules/schemas/domain/argument"
-import { Schema, SchemaOption } from "@modules/schemas/domain/schema"
+import { ArrayValue, ProbabilityValue, RefWhere } from "@modules/datasets/domain/core/datatype"
+import { Argument } from "@modules/schemas/domain/core/argument"
+import { Schema, SchemaOption } from "@modules/schemas/domain/core/schema"
 
 export interface UpdateArgumentsProps {
   name: string
@@ -30,7 +30,7 @@ export interface FieldActions {
   handleChangeMinIsArray(v: number | null): void
   handleChangePossibleNull(v: boolean): void
   handleChangePossibleNullValue(v: number): void
-  handleChangeDataType(v: string): void
+  handleChangeDatatype(v: string): void
   handleSelectFieldSchema(v: Schema): void
   handleSelectFieldSchemaOption(p: SchemaOption): void
   handleUpdateFieldSchemaArguments(p: UpdateArgumentsProps): void

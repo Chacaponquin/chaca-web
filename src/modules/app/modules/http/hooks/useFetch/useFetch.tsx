@@ -66,5 +66,5 @@ export default function useFetch() {
       })
   }
 
-  return { get, post }
+  return { get, post, instance }
 }

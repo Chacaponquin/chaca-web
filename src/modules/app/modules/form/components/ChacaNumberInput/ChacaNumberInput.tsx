@@ -140,7 +140,7 @@ export default function ChacaNumberInput({ min, max, step = 1, value, size, onCh
     "w-full",
     "flex items-center",
     "transition-all duration-300",
-    "rounded-sm",
+    "rounded",
     "border-2",
     "bg-white dark:bg-scale-5",
 

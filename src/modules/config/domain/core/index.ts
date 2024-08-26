@@ -1,4 +1,4 @@
-import { Argument } from "@modules/schemas/domain/argument"
+import { Argument } from "@modules/schemas/domain/core/argument"
 
 export interface FileConfigOption {
   fileType: string

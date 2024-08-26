@@ -26,6 +26,7 @@ export default function useExport({ handleExportDatasets, dataset }: Props) {
           name: form.file.name,
           type: form.file.type.fileType,
         })
+
         handleCloseModal()
       },
       error: toastChacaError,

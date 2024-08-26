@@ -1,4 +1,4 @@
-import { ArgumentConfig } from "../domain/argument"
+import { ArgumentConfig } from "../domain/core/argument"
 
 export interface SchemaResponse {
   schemas: Array<{

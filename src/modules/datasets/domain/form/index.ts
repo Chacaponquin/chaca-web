@@ -1,9 +1,9 @@
-import { FieldDatatype } from "@modules/datasets/interfaces/dataset-field"
+import { FieldDatatype } from "@modules/datasets/domain/core/datatype"
 import {
   IsArrayConfig,
   IsKeyConfig,
   PossibleNullConfig,
-} from "@modules/datasets/interfaces/field-config"
+} from "@modules/datasets/domain/core/field-config"
 
 export interface FieldForm {
   id: string

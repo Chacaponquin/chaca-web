@@ -1,4 +1,4 @@
-import { FieldDatatype } from "@modules/datasets/interfaces/dataset-field"
+import { FieldDatatype } from "@modules/datasets/domain/core/datatype"
 
 export interface Datatype {
   title: string

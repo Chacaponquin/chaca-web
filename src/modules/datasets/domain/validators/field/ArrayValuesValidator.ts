@@ -5,8 +5,8 @@ import {
   InvalidArrayNumberValue,
 } from "@modules/datasets/errors/dataset"
 import { IValidator } from "@modules/app/domain"
-import { ArrayValue } from "@modules/datasets/interfaces/dataset-field"
-import { ARRAY_VALUE_TYPE } from "@modules/datasets/constants"
+import { ArrayValue } from "@modules/datasets/domain/core/datatype"
+import { ARRAY_VALUE_TYPE } from "@modules/datasets/domain/constants"
 
 interface Props {
   values: ArrayValue[]

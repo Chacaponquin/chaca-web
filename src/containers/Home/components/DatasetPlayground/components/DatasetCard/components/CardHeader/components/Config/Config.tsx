@@ -15,7 +15,7 @@ export default function Config({ name }: Props) {
       id={`${name}-dataset-config-button`}
     >
       <Tooltip text={TEXT} position="right">
-        <ConfigIcon size={20} />
+        <ConfigIcon size={15} />
       </Tooltip>
     </button>
   )

@@ -1,7 +1,7 @@
-import { FieldDatatype } from "@modules/datasets/interfaces/dataset-field"
+import { FieldDatatype } from "@modules/datasets/domain/core/datatype"
 import { IValidator } from "../../../../app/domain/Validator"
 import { DatasetError } from "@modules/datasets/errors/dataset"
-import { DATA_TYPES } from "@modules/schemas/constants"
+import { DATA_TYPES } from "@modules/schemas/domain/constants"
 import { ArrayValuesValidator } from "./ArrayValuesValidator"
 import { PickCountValidator } from "./PickCountValidator"
 

@@ -7,8 +7,8 @@ interface Props {
 
 export default function Button({ open, onClick }: Props) {
   const CLASS = clsx(
-    "px-4 py-1.5",
-    "text-lg",
+    "px-3 py-1",
+    "text-base",
     "dark:text-white text-black",
     "font-fontMedium",
     "rounded",

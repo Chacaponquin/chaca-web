@@ -21,7 +21,7 @@ export default function DatasetsButtons() {
     "flex items-center",
     "py-1.5 px-2",
     "bg-scale-4",
-    "gap-x-1",
+    "gap-x-2",
   )
 
   return (

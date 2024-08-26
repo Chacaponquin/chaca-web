@@ -3,5 +3,5 @@ interface Props {
 }
 
 export default function FieldType({ type }: Props) {
-  return <p className="font-fontCodeBold text-center whitespace-nowrap">{type}</p>
+  return <p className="font-fontCodeBold text-center whitespace-nowrap text-xs">{type}</p>
 }

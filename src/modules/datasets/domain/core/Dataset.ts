@@ -1,9 +1,10 @@
-import { Field, MixedNode, RefNode } from "./Field"
-import { RootNode } from "./RootNode"
-import { SaveProps, SearchProps } from "@modules/datasets/interfaces/dataset"
-import { ExportDatasetFieldDTO, SaveFieldDTO } from "@modules/datasets/dto/dataset"
+import { RootNode } from "./root"
+import { SearchProps } from "@modules/datasets/interfaces/dataset"
 import { DatasetError } from "@modules/datasets/errors/dataset"
 import { FieldProps } from "@modules/datasets/dto/field"
+import { ExportDatasetFieldDTO } from "@modules/datasets/dto/export"
+import { SaveFieldDTO } from "@modules/datasets/dto/save"
+import { Field, MixedNode, RefNode } from "./field"
 
 interface Props {
   name: string
@@ -55,8 +56,8 @@ export class Dataset {
     return [fields, errors]
   }
 
-  saveFields(props: SaveProps): SaveFieldDTO[] {
-    return this.root.utils.saveFields(props)
+  saveFields(): SaveFieldDTO[] {
+    return this.root.utils.saveFields()
   }
 
   setLimit(limit: number) {

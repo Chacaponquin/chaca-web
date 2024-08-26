@@ -1,9 +1,9 @@
-import { ArgumentObject } from "@modules/datasets/interfaces/dataset-field"
+import { ArgumentObject } from "@modules/datasets/domain/core/datatype"
 import { UpdateArgumentsProps } from "@containers/Home/components/Modals/shared/domain/field"
 import { Fragment } from "react"
 import { Argument } from "./components"
-import { Argument as IArgument } from "@modules/schemas/domain/argument"
-import { SchemaOption } from "@modules/schemas/domain/schema"
+import { Argument as IArgument } from "@modules/schemas/domain/core/argument"
+import { SchemaOption } from "@modules/schemas/domain/core/schema"
 
 interface Props {
   option: SchemaOption

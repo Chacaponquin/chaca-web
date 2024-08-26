@@ -1,9 +1,7 @@
 import { useSocket } from "@modules/app/modules/socket/hooks"
-import { ExportDatasetDTO } from "../dto/dataset"
 import { DATASETS_ERROR_HTTP_STATUS, SOCKET_EVENTS } from "@modules/app/modules/socket/constants"
 import { ConnectSockerError } from "@modules/app/modules/socket/errors"
 import { ExportFileConfigDTO } from "@modules/config/dto/file"
-import { useConfig } from "@modules/config/hooks"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { useEnv } from "@modules/app/modules/env/hooks"
 import {
@@ -18,8 +16,9 @@ import {
 } from "../errors/dataset"
 import { ImageFormats } from "@modules/config/domain/core"
 import { DatasetCreationError } from "@modules/app/modules/socket/domain/error"
+import { ExportDatasetDTO } from "../dto/export"
 
-interface handleExportDatasetsProps {
+interface ExportDatasetsProps {
   datasets: ExportDatasetDTO[]
   config: ExportFileConfigDTO
   onError(error: ConnectSockerError): void
@@ -47,27 +46,22 @@ interface CreationErrorProps {
 
 export default function useDatasetServices() {
   const { socket } = useSocket()
-  const { fileOptions } = useConfig()
   const { API_ROUTE } = useEnv()
 
-  function exportDatasets({ config, datasets, onError }: handleExportDatasetsProps): void {
-    const found = fileOptions.find((f) => f.id === config.type)
-
-    if (found) {
-      if (socket.connected) {
-        const newConfig: ExportFileConfigDTO = {
-          arguments: config.arguments,
-          type: found.fileType,
-          name: config.name,
-        }
-
-        socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {
-          datasets: datasets,
-          config: newConfig,
-        })
-      } else {
-        onError(new ConnectSockerError())
+  function exportDatasets({ config, datasets, onError }: ExportDatasetsProps): void {
+    if (socket.connected) {
+      const newConfig: ExportFileConfigDTO = {
+        arguments: config.arguments,
+        type: config.type,
+        name: config.name,
       }
+
+      socket.emit(SOCKET_EVENTS.CREATE_DATASETS, {
+        datasets: datasets,
+        config: newConfig,
+      })
+    } else {
+      onError(new ConnectSockerError())
     }
   }
 

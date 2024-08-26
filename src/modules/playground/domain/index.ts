@@ -1,7 +1,7 @@
 import { CardProps } from "@containers/Home/components/DatasetPlayground/components"
 import { Dataset } from "@modules/datasets/domain/core"
 import { Id } from "@modules/shared/domain/id"
-import { Edge, MarkerType, Node, Viewport } from "reactflow"
+import { Edge, Node, Viewport } from "reactflow"
 
 interface BuildDefaultProps {
   dataset: Dataset
@@ -46,9 +46,7 @@ export class DatasetEdgeBuilder {
       target: datasetTo,
       sourceHandle: fieldFrom,
       targetHandle: fieldTo,
-      markerEnd: {
-        type: MarkerType.ArrowClosed,
-      },
+      markerEnd: undefined,
       type: "smart",
       hidden: false,
       selected: false,

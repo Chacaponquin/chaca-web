@@ -1,65 +1,84 @@
-import { DATA_TYPES } from "@modules/schemas/constants"
-import { ArgumentObject, RefWhere } from "../interfaces/dataset-field"
-import { ExportDatasetFieldDTO } from "./dataset"
+import { DATA_TYPES } from "@modules/schemas/domain/constants"
+import { ArgumentObject, RefWhere } from "../domain/core/datatype"
+import { IsArrayConfig, IsKeyConfig, PossibleNullConfig } from "../domain/core/field-config"
+
+export type ExportDatasetFieldDTO = {
+  name: string
+  datatype: ExportDatatypeDTO
+  isPossibleNull: PossibleNullConfig
+  isArray: IsArrayConfig
+  isKey: IsKeyConfig
+}
+
+export interface ExportDatasetDTO {
+  name: string
+  limit: number
+  fields: ExportDatasetFieldDTO[]
+}
+
+export interface RespExportDatasetDTO {
+  id: string
+  filename: string
+}
 
 export type ExportDatatypeDTO =
-  | ExportMixedDataType
-  | ExportRefDataType
-  | ExportCustomDataType
-  | ExportSingleValueDataType
-  | ExportSequenceDataType
-  | ExportSequentialDataType
-  | ExportEnumDataType
-  | ExportProbabilityDataType
-  | ExportPickDataType
+  | ExportMixedDatatype
+  | ExportRefDatatype
+  | ExportCustomDatatype
+  | ExportSingleValueDatatype
+  | ExportSequenceDatatype
+  | ExportSequentialDatatype
+  | ExportEnumDatatype
+  | ExportProbabilityDatatype
+  | ExportPickDatatype
 
-export interface ExportMixedDataType {
+export interface ExportMixedDatatype {
   type: DATA_TYPES.MIXED
   object: ExportDatasetFieldDTO[]
 }
 
-export interface ExportRefDataType {
+export interface ExportRefDatatype {
   type: DATA_TYPES.REF
   ref: string
   unique: boolean
   where: RefWhere
 }
 
-export interface ExportCustomDataType {
+export interface ExportCustomDatatype {
   type: DATA_TYPES.CUSTOM
   code: string
 }
 
-export interface ExportSingleValueDataType {
+export interface ExportSingleValueDatatype {
   type: DATA_TYPES.SINGLE_VALUE
   schema: string
   option: string
   args: ArgumentObject
 }
 
-export interface ExportSequenceDataType {
+export interface ExportSequenceDatatype {
   type: DATA_TYPES.SEQUENCE
   startsWith: number
   step: number
 }
 
-export interface ExportSequentialDataType {
+export interface ExportSequentialDatatype {
   type: DATA_TYPES.SEQUENTIAL
   values: unknown[]
   loop: boolean
 }
 
-export interface ExportEnumDataType {
+export interface ExportEnumDatatype {
   type: DATA_TYPES.ENUM
   values: unknown[]
 }
 
-export interface ExportProbabilityDataType {
+export interface ExportProbabilityDatatype {
   type: DATA_TYPES.PROBABILITY
   values: { value: unknown; chance: unknown }[]
 }
 
-export interface ExportPickDataType {
+export interface ExportPickDatatype {
   type: DATA_TYPES.PICK
   count: number
   values: unknown[]

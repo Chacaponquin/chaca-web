@@ -26,8 +26,8 @@ export default function CardHeader({
   const CLASS = clsx(
     "relative",
     "flex justify-center items-center",
-    "border-b-[1px] border-white",
-    "py-2.5 px-12",
+    "border-b-[0.5px] border-white",
+    "py-2 px-12",
   )
 
   return (
@@ -36,7 +36,7 @@ export default function CardHeader({
 
       <ChacaDropdown
         header={<Config name={nameId} />}
-        className="bg-white dark:bg-scale-3 dark:fill-white dark:text-white dark:stroke-white shadow-lg mt-5 -translate-x-6 z-50 rounded text-black fill-black stroke-black"
+        className="translate-y-1"
         id={`${nameId}-dataset-config-menu`}
         height={300}
       >

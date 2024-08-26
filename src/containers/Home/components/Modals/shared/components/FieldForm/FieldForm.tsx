@@ -4,7 +4,7 @@ import {
   FieldName,
   PossibleNullConfig,
   FieldDatatype,
-  DataTypeConfig,
+  DatatypeConfig,
   KeyConfig,
 } from "./components"
 import { Field } from "@modules/datasets/domain/core"
@@ -21,7 +21,7 @@ export default function FieldForm({
   handleChangeName,
   handleChangePossibleNull,
   handleChangePossibleNullValue,
-  handleChangeDataType,
+  handleChangeDatatype,
   handleSelectFieldSchema,
   handleSelectFieldSchemaOption,
   handleUpdateCustomField,
@@ -56,13 +56,13 @@ export default function FieldForm({
 
       <FieldDatatype
         label={DATA_TYPE_TEXT}
-        handleChangeDataType={handleChangeDataType}
+        handleChangeDatatype={handleChangeDatatype}
         datatype={field.datatype}
         fieldId={field.id}
         datasetId={datasetId}
       />
 
-      <DataTypeConfig
+      <DatatypeConfig
         id={field.id}
         datasetId={datasetId}
         handleSelectFieldSchema={handleSelectFieldSchema}

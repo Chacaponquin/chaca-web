@@ -26,7 +26,7 @@ export default function ChacaTextInput({
 }: Props) {
   const CLASS = clsx(
     "transition-all duration-300",
-    "rounded-sm",
+    "rounded",
     "w-full",
     "border-2",
     "outline-none",

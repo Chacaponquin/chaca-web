@@ -1,6 +1,6 @@
-import { DatasetFunctions } from "@modules/datasets/constants"
+import { DatasetFunctions } from "@modules/datasets/domain/constants"
 import { useDatasets } from "@modules/datasets/hooks"
-import { RefWhere } from "@modules/datasets/interfaces/dataset-field"
+import { RefWhere } from "@modules/datasets/domain/core/datatype"
 import { useCode } from "@modules/modal/hooks"
 
 interface Props {

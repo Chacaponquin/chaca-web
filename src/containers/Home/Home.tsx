@@ -1,5 +1,5 @@
 import {
-  CreationLoadingModal,
+  CreationLoading,
   DatasetPlayground,
   FieldsMenu,
   HomeLayout,
@@ -43,7 +43,7 @@ export default function Home() {
 
       {datasets.length > 0 && (
         <main className="flex flex-grow">
-          {createDataLoading && <CreationLoadingModal />}
+          {createDataLoading && <CreationLoading />}
 
           {showMenu && <FieldsMenu loading={loading} handleAddNewField={handleAddNewField} />}
 

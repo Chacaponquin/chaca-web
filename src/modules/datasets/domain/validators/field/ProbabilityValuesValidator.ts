@@ -5,9 +5,9 @@ import {
 } from "@modules/datasets/errors/dataset"
 import { IValidator } from "../../../../app/domain/Validator"
 import { ArrayValuesValidator } from "./ArrayValuesValidator"
-import { ArrayValue, FieldDatatype } from "@modules/datasets/interfaces/dataset-field"
-import { DATA_TYPES } from "@modules/schemas/constants"
-import { ARRAY_VALUE_TYPE } from "@modules/datasets/constants"
+import { ArrayValue, FieldDatatype } from "@modules/datasets/domain/core/datatype"
+import { DATA_TYPES } from "@modules/schemas/domain/constants"
+import { ARRAY_VALUE_TYPE } from "@modules/datasets/domain/constants"
 
 interface Props {
   type: FieldDatatype

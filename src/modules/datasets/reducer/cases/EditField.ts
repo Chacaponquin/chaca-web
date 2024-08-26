@@ -1,6 +1,6 @@
 import { Dataset, RefNode } from "@modules/datasets/domain/core"
 import { DatasetUseCase } from "./DatasetUseCase"
-import { DATA_TYPES } from "@modules/schemas/constants"
+import { DATA_TYPES } from "@modules/schemas/domain/constants"
 import { DeleteReceiveRef } from "./DeleteReceiveRef"
 import { FieldProps } from "@modules/datasets/dto/field"
 

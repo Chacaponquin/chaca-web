@@ -1,6 +1,6 @@
 import { DatasetsContext } from "../context"
 import { useCallback, useContext } from "react"
-import { DATASETS_ACTIONS } from "../constants"
+import { DATASETS_ACTIONS } from "../domain/constants"
 import { Dataset, Field } from "@modules/datasets/domain/core"
 import { PossibleFieldToRef } from "../interfaces/ref"
 import { DatasetValidator } from "../domain/validators/dataset"

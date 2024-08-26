@@ -1,4 +1,4 @@
-import { ChacaIconButton } from "@form/components"
+import { ChacaButton } from "@form/components"
 import { Send } from "@modules/app/modules/icon/components"
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 export default function ButtonSection({ buttonText, loading }: Props) {
   return (
     <section className="flex justify-end">
-      <ChacaIconButton
+      <ChacaButton
         color="primary"
         icon={<Send size={20} />}
         size="lg"

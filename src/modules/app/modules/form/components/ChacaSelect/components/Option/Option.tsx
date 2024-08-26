@@ -13,6 +13,7 @@ export default function Option({ onClick, text, selected, size }: Props) {
     "duration-300 transition-all",
     "cursor-pointer",
     "py-2",
+    "rounded",
     {
       "bg-gray-100 dark:bg-scale-3": selected,
       "dark:text-white": selected,
