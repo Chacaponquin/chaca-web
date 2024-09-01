@@ -1,49 +1,49 @@
 import { CardProps } from "@containers/Home/components/DatasetPlayground/components"
-import { Dataset } from "@modules/datasets/domain/core"
+import { Schema } from "@modules/dataset/domain/core"
 import { Id } from "@modules/shared/domain/id"
 import { Edge, Node, Viewport } from "reactflow"
 
 interface BuildDefaultProps {
-  dataset: Dataset
+  schema: Schema
 }
 
 interface NodeBuildProps {
-  dataset: Dataset
+  schema: Schema
   posX: number
   posY: number
 }
 
 interface EdgeBuildProps {
-  datasetFrom: string
-  datasetTo: string
+  schemaFrom: string
+  schemaTo: string
   fieldFrom: string
   fieldTo: string
 }
 
 export class DatasetNodeBuilder {
-  static build({ dataset, posX, posY }: NodeBuildProps): Node<CardProps> {
+  static build({ schema, posX, posY }: NodeBuildProps): Node<CardProps> {
     return {
-      id: dataset.id,
+      id: schema.id,
       type: "custom",
       draggable: true,
       position: { x: posX, y: posY },
-      data: { dataset: dataset },
+      data: { schema: schema },
     }
   }
 
-  static default({ dataset }: BuildDefaultProps): Node<CardProps> {
-    return this.build({ dataset: dataset, posX: 100, posY: 200 })
+  static default({ schema }: BuildDefaultProps): Node<CardProps> {
+    return this.build({ schema: schema, posX: 100, posY: 200 })
   }
 }
 
 export class DatasetEdgeBuilder {
-  static build({ datasetFrom, datasetTo, fieldFrom, fieldTo }: EdgeBuildProps): Edge {
+  static build({ schemaFrom, schemaTo, fieldFrom, fieldTo }: EdgeBuildProps): Edge {
     const id = Id.generate()
 
     return {
       id: id,
-      source: datasetFrom,
-      target: datasetTo,
+      source: schemaFrom,
+      target: schemaTo,
       sourceHandle: fieldFrom,
       targetHandle: fieldTo,
       markerEnd: undefined,

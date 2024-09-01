@@ -1,12 +1,12 @@
-import { useDatasets } from "@modules/datasets/hooks"
+import { useDataset } from "@modules/dataset/hooks"
 import { useModal } from "@modules/modal/hooks"
 
 export default function useActions() {
-  const { handleClearDatasets } = useDatasets()
+  const { handleClearDataset } = useDataset()
   const { handleCloseModal } = useModal()
 
   function handleNext() {
-    handleClearDatasets()
+    handleClearDataset()
     handleCloseModal()
   }
 

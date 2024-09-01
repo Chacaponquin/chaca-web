@@ -1,50 +1,50 @@
-import { useDatasets } from "@modules/datasets/hooks"
+import { useDataset } from "@modules/dataset/hooks"
 import { useModal } from "@modules/modal/hooks"
-import { useDatasetServices } from "@modules/datasets/services"
+import { useDatasetServices } from "@modules/dataset/services"
 import { usePlayground } from "@modules/playground/hooks"
-import { useSchemas } from "@modules/schemas/hooks"
+import { useModules } from "@modules/modules/hooks"
 import { useConfig } from "@modules/config/hooks"
 import { ExportImageProps } from "../domain/props"
 import {
   AddFieldModalProps,
-  DeleteAllDatasetsModalProps,
-  ExportAllDatasetsModalProps,
-  ExportDatasetImageModalProps,
+  DeleteAllSchemasModalProps,
   ExportDatasetModalProps,
+  ExportDatasetImageModalProps,
+  ExportSchemaModalProps,
 } from "../domain/modal"
-import { Dataset } from "@modules/datasets/domain/core"
-import { DatasetError } from "@modules/datasets/errors/dataset"
+import { Schema } from "@modules/dataset/domain/core"
+import { DatasetError } from "@modules/dataset/errors/dataset"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { useContext } from "react"
 import { HomeContext } from "../context"
 import { ExportFileConfigDTO } from "@modules/config/dto/file"
-import { ExportDatasetDTO } from "@modules/datasets/dto/export"
+import { ExportSchemaDTO } from "@modules/dataset/dto/export"
 
 export default function useHome() {
   const { handleChangeLoading } = useContext(HomeContext)
-  const { datasets, selectedDataset, showFieldsMenu, searchRefField } = useDatasets()
+  const { dataset, selectedSchema, showFieldsMenu, searchRefField } = useDataset()
   const { handleOpenModal } = useModal()
   const { handleGenerateImage } = usePlayground()
   const { downloadDatasetsImage, exportDatasets } = useDatasetServices()
-  const { loading: schemasLoading } = useSchemas()
+  const { loading: modulesLoading } = useModules()
   const { loading: configLoading } = useConfig()
   const { toastChacaError } = useToast()
 
-  const loading = schemasLoading || configLoading
+  const loading = modulesLoading || configLoading
 
-  function handleOpenExportAllDatasets() {
-    handleOpenModal(new ExportAllDatasetsModalProps())
+  function handleOpenExportDataset() {
+    handleOpenModal(new ExportDatasetModalProps())
   }
 
-  function handleOpenExportSelectedDataset() {
-    if (selectedDataset) {
-      handleOpenModal(new ExportDatasetModalProps(selectedDataset))
+  function handleOpenExportSelectedSchema() {
+    if (selectedSchema) {
+      handleOpenModal(new ExportSchemaModalProps(selectedSchema))
     }
   }
 
   function handleAddNewField() {
-    if (selectedDataset) {
-      handleOpenModal(new AddFieldModalProps(selectedDataset.id, selectedDataset.id))
+    if (selectedSchema) {
+      handleOpenModal(new AddFieldModalProps(selectedSchema.id, selectedSchema.id))
     }
   }
 
@@ -53,7 +53,7 @@ export default function useHome() {
   }
 
   function handleOpenDeleteAll() {
-    handleOpenModal(new DeleteAllDatasetsModalProps())
+    handleOpenModal(new DeleteAllSchemasModalProps())
   }
 
   function handleExportImage({ filename, format }: ExportImageProps) {
@@ -65,22 +65,22 @@ export default function useHome() {
     })
   }
 
-  function handleExportDatasets(idatasets: Dataset[], config: ExportFileConfigDTO): void {
+  function handleExportDataset(idataset: Schema[], config: ExportFileConfigDTO): void {
     handleChangeLoading(true)
 
-    const datasetsDTO: ExportDatasetDTO[] = []
+    const schemasDTO: ExportSchemaDTO[] = []
     const allErrors = [] as DatasetError[]
 
-    for (const dataset of idatasets) {
-      const [fields, errors] = dataset.exportFields({
+    for (const schema of idataset) {
+      const [fields, errors] = schema.exportFields({
         searchRefField: searchRefField,
         fieldRoute: [],
       })
 
       if (errors.length === 0) {
-        datasetsDTO.push({
-          limit: dataset.limit,
-          name: dataset.name,
+        schemasDTO.push({
+          limit: schema.limit,
+          name: schema.name,
           fields: fields,
         })
       } else {
@@ -96,7 +96,7 @@ export default function useHome() {
       handleChangeLoading(false)
     } else {
       exportDatasets({
-        datasets: datasetsDTO,
+        dataset: schemasDTO,
         config: config,
         onError: toastChacaError,
         onFinally() {
@@ -107,15 +107,15 @@ export default function useHome() {
   }
 
   return {
-    handleExportDatasets,
+    handleExportDataset,
     handleAddNewField,
-    datasets,
+    dataset,
     showFieldsMenu,
     handleExportImage,
     handleOpenDeleteAll,
     loading,
     handleOpenExportImage,
-    handleOpenExportAllDatasets,
-    handleOpenExportSelectedDataset,
+    handleOpenExportDataset,
+    handleOpenExportSelectedSchema,
   }
 }

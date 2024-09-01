@@ -1,6 +1,6 @@
 import { ChacaTextInput } from "@form/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
-import { ARRAY_VALUE_TYPE } from "@modules/datasets/domain/constants"
+import { ARRAY_VALUE_TYPE } from "@modules/dataset/domain/constants"
 
 interface Props {
   value: string

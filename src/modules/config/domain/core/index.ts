@@ -1,15 +1,10 @@
-import { Argument } from "@modules/schemas/domain/core/argument"
+import { Argument } from "@modules/modules/domain/core/argument"
 
 export interface FileConfigOption {
-  fileType: string
+  type: string
   arguments: Argument[]
   title: string
   id: string
-}
-
-export interface NoUserLimits {
-  LIMIT_DATASETS: number
-  LIMIT_DOCUMENTS: number
 }
 
 export type ImageFormats = "svg" | "png"

@@ -3,8 +3,8 @@
 ## `email`
 
 ```js
-schemas.internet.email().getValue() // 'juan527120@gmail.com'
-schemas.internet.email.getValue({
+modules.internet.email().getValue() // 'juan527120@gmail.com'
+modules.internet.email.getValue({
   firstName: "pedro",
   lastName: "Scott",
   provider: "yahoo.com",
@@ -20,11 +20,11 @@ schemas.internet.email.getValue({
 ## `password`
 
 ```js
-schemas.internet.password().getValue() // '89G1wJuBLbGziIs'
-schemas.internet.password().getValue({ length: 20 }) // 'aF55c_8O9kZaPOrysFB_'
-schemas.internet.password().getValue({ length: 20, memorable: true }) // 'lawetimufozujosodedi'
-schemas.internet.password().getValue({ length: 20, memorable: true, pattern: /[A-Z]/ }) // 'HMAQDFFYLDDUTBKVNFVS'
-schemas.internet.password().getValue({
+modules.internet.password().getValue() // '89G1wJuBLbGziIs'
+modules.internet.password().getValue({ length: 20 }) // 'aF55c_8O9kZaPOrysFB_'
+modules.internet.password().getValue({ length: 20, memorable: true }) // 'lawetimufozujosodedi'
+modules.internet.password().getValue({ length: 20, memorable: true, pattern: /[A-Z]/ }) // 'HMAQDFFYLDDUTBKVNFVS'
+modules.internet.password().getValue({
   length: 20,
   memorable: true,
   pattern: /[A-Z]/,
@@ -42,7 +42,7 @@ schemas.internet.password().getValue({
 ## `url`
 
 ```js
-schemas.internet.url().getValue() // 'http://words.info.net'
+modules.internet.url().getValue() // 'http://words.info.net'
 ```
 
 | Argument | Description                                                    |
@@ -52,8 +52,8 @@ schemas.internet.url().getValue() // 'http://words.info.net'
 ## `username`
 
 ```js
-schemas.internet.username().getValue() // 'juan527134'
-schemas.internet.username().getValue({ firstName: "pedro", lastName: "Scott" }) // 'pedro_scott'
+modules.internet.username().getValue() // 'juan527134'
+modules.internet.username().getValue({ firstName: "pedro", lastName: "Scott" }) // 'pedro_scott'
 ```
 
 | Argument  | Description      |
@@ -64,25 +64,25 @@ schemas.internet.username().getValue({ firstName: "pedro", lastName: "Scott" }) 
 ## `httpMethod`
 
 ```js
-schemas.internet.httpMethod().getValue() // 'GET'
+modules.internet.httpMethod().getValue() // 'GET'
 ```
 
 ## `ipv6`
 
 ```js
-schemas.internet.ipv6().getValue() // '269f:1230:73e3:318d:842b:daab:326d:897b'
+modules.internet.ipv6().getValue() // '269f:1230:73e3:318d:842b:daab:326d:897b'
 ```
 
 ## `ipv4`
 
 ```js
-schemas.internet.ipv4().getValue() // '245.108.222.0'
+modules.internet.ipv4().getValue() // '245.108.222.0'
 ```
 
 ## `emoji`
 
 ```js
-schemas.internet.emoji().getValue() // '🔎'
+modules.internet.emoji().getValue() // '🔎'
 ```
 
 | Argument | Description    |
@@ -92,41 +92,41 @@ schemas.internet.emoji().getValue() // '🔎'
 ## `mac`
 
 ```js
-schemas.internet.mac().getValue() // '32:8e:2e:09:c6:05'
+modules.internet.mac().getValue() // '32:8e:2e:09:c6:05'
 ```
 
 ## `port`
 
 ```js
-schemas.internet.port().getValue() // 8001
+modules.internet.port().getValue() // 8001
 ```
 
 ## `userAgent`
 
 ```js
-schemas.internet.userAgent().getValue() // 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_8_8)  AppleWebKit/536.0.2 (KHTML, like Gecko) Chrome/27.0.849.0 Safari/536.0.2'
+modules.internet.userAgent().getValue() // 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_8_8)  AppleWebKit/536.0.2 (KHTML, like Gecko) Chrome/27.0.849.0 Safari/536.0.2'
 ```
 
 ## `protocol`
 
 ```js
-schemas.internet.protocol().getValue() // 'https'
+modules.internet.protocol().getValue() // 'https'
 ```
 
 ## `domainSuffix`
 
 ```js
-schemas.internet.domainSuffix().getValue() // '.com'
+modules.internet.domainSuffix().getValue() // '.com'
 ```
 
 ## `domainName`
 
 ```js
-schemas.internet.domainName().getValue() // 'words.info'
+modules.internet.domainName().getValue() // 'words.info'
 ```
 
 ## `httpStatudCode`
 
 ```js
-schemas.internet.httpStatusCode().getValue // 201
+modules.internet.httpStatusCode().getValue // 201
 ```

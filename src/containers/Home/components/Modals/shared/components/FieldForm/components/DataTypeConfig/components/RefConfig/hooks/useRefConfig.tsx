@@ -1,20 +1,20 @@
-import { DatasetFunctions } from "@modules/datasets/domain/constants"
-import { useDatasets } from "@modules/datasets/hooks"
-import { RefWhere } from "@modules/datasets/domain/core/datatype"
+import { DatasetFunctions } from "@modules/dataset/domain/constants"
+import { useDataset } from "@modules/dataset/hooks"
+import { RefWhere } from "@modules/dataset/domain/core/datatype"
 import { useCode } from "@modules/modal/hooks"
 
 interface Props {
-  datasetId: string
+  schemaId: string
   fieldId: string
   where: RefWhere
   handleChangeRefWhere(value: RefWhere): void
 }
 
-export default function useRefConfig({ datasetId, fieldId, handleChangeRefWhere, where }: Props) {
-  const { searchPossibleFieldsToRef } = useDatasets()
+export default function useRefConfig({ schemaId, fieldId, handleChangeRefWhere, where }: Props) {
+  const { searchPossibleFieldsToRef } = useDataset()
   const { handleOpen } = useCode()
 
-  const possibleFields = searchPossibleFieldsToRef({ datasetId: datasetId, fieldId: fieldId })
+  const possibleFields = searchPossibleFieldsToRef({ schemaId: schemaId, fieldId: fieldId })
 
   function handleChangeWhere(value: boolean) {
     if (value) {

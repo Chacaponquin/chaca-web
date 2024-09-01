@@ -3,7 +3,7 @@
 ## `food`
 
 ```js
-schemas.video.food().getValue()
+modules.video.food().getValue()
 ```
 
 <div className="markdown-image">
@@ -13,7 +13,7 @@ schemas.video.food().getValue()
 ## `event`
 
 ```js
-schemas.video.event().getValue()
+modules.video.event().getValue()
 ```
 
 <div className="markdown-image">
@@ -23,7 +23,7 @@ schemas.video.event().getValue()
 ## `wallpaper`
 
 ```js
-schemas.video.wallpaper().getValue()
+modules.video.wallpaper().getValue()
 ```
 
 <div className="markdown-image">
@@ -33,7 +33,7 @@ schemas.video.wallpaper().getValue()
 ## `threeDimension`
 
 ```js
-schemas.video.threeDimension().getValue()
+modules.video.threeDimension().getValue()
 ```
 
 <div className="markdown-image">
@@ -43,7 +43,7 @@ schemas.video.threeDimension().getValue()
 ## `sport`
 
 ```js
-schemas.video.sport().getValue()
+modules.video.sport().getValue()
 ```
 
 <div className="markdown-image">
@@ -53,7 +53,7 @@ schemas.video.sport().getValue()
 ## `animal`
 
 ```js
-schemas.video.animal().getValue()
+modules.video.animal().getValue()
 ```
 
 <div className="markdown-image">
@@ -63,7 +63,7 @@ schemas.video.animal().getValue()
 ## `experimental`
 
 ```js
-schemas.video.experimental().getValue()
+modules.video.experimental().getValue()
 ```
 
 <div className="markdown-image">
@@ -73,7 +73,7 @@ schemas.video.experimental().getValue()
 ## `architecture`
 
 ```js
-schemas.video.architecture().getValue()
+modules.video.architecture().getValue()
 ```
 
 <div className="markdown-image">
@@ -83,7 +83,7 @@ schemas.video.architecture().getValue()
 ## `nature`
 
 ```js
-schemas.video.nature().getValue()
+modules.video.nature().getValue()
 ```
 
 <div className="markdown-image">
@@ -93,7 +93,7 @@ schemas.video.nature().getValue()
 ## `fashion`
 
 ```js
-schemas.video.fashion().getValue()
+modules.video.fashion().getValue()
 ```
 
 <div className="markdown-image">
@@ -103,7 +103,7 @@ schemas.video.fashion().getValue()
 ## `film`
 
 ```js
-schemas.video.film().getValue()
+modules.video.film().getValue()
 ```
 
 <div className="markdown-image">
@@ -113,7 +113,7 @@ schemas.video.film().getValue()
 ## `health`
 
 ```js
-schemas.video.health().getValue()
+modules.video.health().getValue()
 ```
 
 <div className="markdown-image">
@@ -123,7 +123,7 @@ schemas.video.health().getValue()
 ## `people`
 
 ```js
-schemas.video.people().getValue()
+modules.video.people().getValue()
 ```
 
 <div className="markdown-image">
@@ -133,7 +133,7 @@ schemas.video.people().getValue()
 ## `street`
 
 ```js
-schemas.video.street().getValue()
+modules.video.street().getValue()
 ```
 
 <div className="markdown-image">
@@ -143,7 +143,7 @@ schemas.video.street().getValue()
 ## `spirituality`
 
 ```js
-schemas.video.spirituality().getValue()
+modules.video.spirituality().getValue()
 ```
 
 <div className="markdown-image">
@@ -153,7 +153,7 @@ schemas.video.spirituality().getValue()
 ## `travel`
 
 ```js
-schemas.video.travel().getValue()
+modules.video.travel().getValue()
 ```
 
 <div className="markdown-image">
@@ -163,7 +163,7 @@ schemas.video.travel().getValue()
 ## `art`
 
 ```js
-schemas.video.art().getValue()
+modules.video.art().getValue()
 ```
 
 <div className="markdown-image">
@@ -173,7 +173,7 @@ schemas.video.art().getValue()
 ## `history`
 
 ```js
-schemas.video.history().getValue()
+modules.video.history().getValue()
 ```
 
 <div className="markdown-image">

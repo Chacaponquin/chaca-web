@@ -1,14 +1,14 @@
 import { ChacaButton, ChacaSelect } from "@form/components"
 import { Edit } from "@modules/app/modules/icon/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
-import { RefWhere } from "@modules/datasets/domain/core/datatype"
+import { RefWhere } from "@modules/dataset/domain/core/datatype"
 import { UniqueInfo, WhereInfo } from "./components"
 import { useRefConfig } from "./hooks"
 import { CheckField, FormSection } from "@modules/modal/components"
 
 interface RefConfigProps {
   refField: string[]
-  datasetId: string
+  schemaId: string
   unique: boolean
   where: RefWhere
   id: string
@@ -19,7 +19,7 @@ interface RefConfigProps {
 
 export default function RefConfig({
   refField,
-  datasetId,
+  schemaId,
   handleChangeRefField,
   id,
   handleChangeRefUnique,
@@ -28,7 +28,7 @@ export default function RefConfig({
   where,
 }: RefConfigProps) {
   const { handleChangeWhere, handleClick, possibleFields } = useRefConfig({
-    datasetId: datasetId,
+    schemaId: schemaId,
     fieldId: id,
     handleChangeRefWhere: handleChangeRefWhere,
     where: where,

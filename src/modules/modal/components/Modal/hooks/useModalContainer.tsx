@@ -6,7 +6,7 @@ interface Props {
 }
 
 export default function useModalContainer({ handleNext }: Props) {
-  const { openCode, handleSubmit: handleSubmitCode } = useCode()
+  const { openCode, handleSubmit: handleSubmitCode, handleClose: handleCloseCode } = useCode()
   const { handleCloseModal } = useModal()
 
   function handleSubmit(e: FormEvent): void {
@@ -21,6 +21,7 @@ export default function useModalContainer({ handleNext }: Props) {
 
   function handleClose() {
     handleCloseModal()
+    handleCloseCode()
   }
 
   useEffect(() => {

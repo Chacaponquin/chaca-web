@@ -16,10 +16,10 @@ export default function DatasetForm({
   limit,
   handleChangeLimit,
 }: Props) {
-  const { USER_DOCUMENTS_LIMIT } = useUser()
+  const { userLimits } = useUser()
 
   const { DATASET_NAME_LABEL, FIELD_NAME_TEXT, COUNT_DOCUMENTS } = useTranslation({
-    DATASET_NAME_LABEL: { en: "Dataset name", es: "Nombre" },
+    DATASET_NAME_LABEL: { en: "Schema name", es: "Nombre" },
     FIELD_NAME_TEXT: { en: "Field name", es: "Nombre del campo" },
     COUNT_DOCUMENTS: { en: "Count Document", es: "Documentos" },
   })
@@ -44,7 +44,7 @@ export default function DatasetForm({
           value={limit}
           size="base"
           min={0}
-          max={USER_DOCUMENTS_LIMIT}
+          max={userLimits.LIMIT_SCHEMAS}
           onChange={handleChangeLimit}
         />
       </FormSection>

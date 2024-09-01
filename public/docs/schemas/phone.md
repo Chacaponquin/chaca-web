@@ -3,7 +3,7 @@
 ## `number`
 
 ```js
-schemas.phone.number().getValue({ format: '+53 #### ## ##' }) // '+53 5417 35 99'
+modules.phone.number().getValue({ format: "+53 #### ## ##" }) // '+53 5417 35 99'
 ```
 
 | Argument | Description                                |
@@ -13,14 +13,14 @@ schemas.phone.number().getValue({ format: '+53 #### ## ##' }) // '+53 5417 35 99
 ## `prefix`
 
 ```js
-schemas.phone.prefix().getValue() // '+53'
+modules.phone.prefix().getValue() // '+53'
 ```
 
 ## `callDuration`
 
 ```js
-schemas.phone.callDuration().getValue({ min: 10, max: 30 }) // '27:30'
-schemas.phone.callDuration().getValue() // '20:52'
+modules.phone.callDuration().getValue({ min: 10, max: 30 }) // '27:30'
+modules.phone.callDuration().getValue() // '20:52'
 ```
 
 | Argument | Description                               |

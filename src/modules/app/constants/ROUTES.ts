@@ -1,6 +1,6 @@
 export const APP_ROUTES = {
   ROOT: "/",
-  AUTH_ROUTES: {
+  AUTH: {
     LOGIN: "/login",
     SIGN_UP: "/sign-up",
     FORGOT_PASSWORD: "/forgot-password",
@@ -24,19 +24,17 @@ export const APP_ROUTES = {
 } as const
 
 export const API_ROUTES = {
-  AUTH_ROUTES: {
-    LOGIN: "/auth/signIn",
-    SIGN_UP: "/auth/signUp",
+  AUTH: {
+    LOGIN: "/auth/sign-in",
+    SIGN_UP: "/auth/sign-up",
     GET_USER_BY_TOKEN: "/auth/refresh",
     GOOGLE_AUTH: "/auth/google",
     GITHUB_AUTH: "/auth/github",
   },
-  GET_NO_USER_LIMITS: "/web-api/no-user-limits",
-  GET_SCHEMAS: (version: string) => `/web-api/schemas/${version}`,
-  GET_FILE_OPTIONS: "/web-api/file-config",
-  GET_FAQ: "/web-api/faq",
+  GET_MODULES: (version: string) => `/modules/${version}`,
+  GET_FILE_OPTIONS: "/dataset/file-options",
   CREATE_USER_MESSAGE: "/user-message/new-message",
   DOWNLOAD_FILE(id: string) {
-    return `web-api/download-file/${id}`
+    return `dataset/download/${id}`
   },
 } as const

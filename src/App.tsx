@@ -8,8 +8,8 @@ import { UserProvider } from "@modules/user/context"
 import { ErrorBoundary } from "react-error-boundary"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { ContactUs, Error404, Home, Landing } from "./containers"
-import { SchemasProvider } from "@modules/schemas/context"
-import { DatasetsProvider } from "@modules/datasets/context"
+import { ModulesProvider } from "@modules/modules/context"
+import { DatasetProvider } from "@modules/dataset/context"
 import { ConfigProvider } from "@modules/config/context"
 import { ModalProvider } from "@modules/modal/context"
 import { HomeProvider } from "@containers/Home/context"
@@ -37,7 +37,7 @@ import {
   VEHICLE,
   VIDEO,
   WORD,
-} from "@modules/docs/domain/core/sections/schemas"
+} from "@modules/docs/domain/core/sections/modules"
 import {
   Address,
   Animal,
@@ -93,8 +93,8 @@ export default function App() {
                 <ModalProvider>
                   <DocsProvider>
                     <Routes>
-                      {/* <Route path={APP_ROUTES.AUTH_ROUTES.LOGIN} element={<Login />} /> */}
-                      {/* <Route path={APP_ROUTES.AUTH_ROUTES.SIGN_UP} element={<SignUp />} /> */}
+                      {/* <Route path={APP_ROUTES.AUTH.LOGIN} element={<Login />} /> */}
+                      {/* <Route path={APP_ROUTES.AUTH.SIGN_UP} element={<SignUp />} /> */}
                       <Route path={APP_ROUTES.CONTACT_US} element={<ContactUs />} />
                       <Route path={APP_ROUTES.ROOT} element={<Landing />} />
 
@@ -102,17 +102,17 @@ export default function App() {
                         path={APP_ROUTES.HOME}
                         element={
                           <SocketProvider>
-                            <SchemasProvider>
+                            <ModulesProvider>
                               <ConfigProvider>
                                 <PlaygroundProvider>
-                                  <DatasetsProvider>
+                                  <DatasetProvider>
                                     <HomeProvider>
                                       <Home />
                                     </HomeProvider>
-                                  </DatasetsProvider>
+                                  </DatasetProvider>
                                 </PlaygroundProvider>
                               </ConfigProvider>
-                            </SchemasProvider>
+                            </ModulesProvider>
                           </SocketProvider>
                         }
                       />

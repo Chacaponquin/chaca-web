@@ -1,30 +1,30 @@
 import { useToast } from "@modules/app/modules/toast/hooks"
-import { Dataset } from "@modules/datasets/domain/core"
-import { ExportDatasetValidator } from "@modules/datasets/domain/validators/export"
+import { Schema } from "@modules/dataset/domain/core"
+import { ExportDatasetValidator } from "@modules/dataset/domain/validators/export"
+import { useDataset } from "@modules/dataset/hooks"
 import { useModal } from "@modules/modal/hooks"
 import { useExportForm } from "@containers/Home/components/Modals/shared/hooks"
 import { ExportFileConfigDTO } from "@modules/config/dto/file"
 
 interface Props {
-  handleExportDatasets(datasets: Dataset[], config: ExportFileConfigDTO): void
-  dataset: Dataset
+  handleExportDataset(dataset: Schema[], config: ExportFileConfigDTO): void
 }
 
-export default function useExport({ handleExportDatasets, dataset }: Props) {
-  const { form, handleChangeFileArguments, handleChangeFileType, handleChangeName } =
-    useExportForm()
+export default function useExport({ handleExportDataset }: Props) {
   const { handleCloseModal } = useModal()
+  const { form, handleChangeFileType, handleChangeName } = useExportForm()
   const { toastChacaError } = useToast()
+  const { dataset } = useDataset()
 
   function handleExport() {
     const validator = new ExportDatasetValidator({ name: form.file.name })
 
     validator.execute({
       success() {
-        handleExportDatasets([dataset], {
+        handleExportDataset(dataset, {
           arguments: form.file.arguments,
           name: form.file.name,
-          type: form.file.type.fileType,
+          type: form.file.type.type,
         })
 
         handleCloseModal()
@@ -33,5 +33,5 @@ export default function useExport({ handleExportDatasets, dataset }: Props) {
     })
   }
 
-  return { form, handleExport, handleChangeFileType, handleChangeName, handleChangeFileArguments }
+  return { form, handleChangeFileType, handleChangeName, handleExport }
 }

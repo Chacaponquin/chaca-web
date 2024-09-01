@@ -1,7 +1,7 @@
 import { Fragment } from "react"
 import { FieldName, FieldOptions, OpenFieldsButton, Point } from "./components"
 import { useFieldContainer } from "./hooks"
-import { Field as IField, MixedNode } from "@modules/datasets/domain/core"
+import { Field as IField, MixedNode } from "@modules/dataset/domain/core"
 
 interface Props {
   field: IField

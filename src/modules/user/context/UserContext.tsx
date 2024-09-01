@@ -1,30 +1,31 @@
 import { createContext, useState, ReactElement, useEffect } from "react"
 import { LoginUser } from "../interfaces/user"
-import { NoUserLimits } from "@modules/config/domain/core"
 import { DEFAULT_LIMITS } from "../constants"
 import { useUserServices } from "../services"
+import { NoUserLimits } from "../domain/limits"
 
 interface Props {
   actualUser: LoginUser | null
   loading: boolean
-  noUserLimits: NoUserLimits
+  userLimits: NoUserLimits
 }
 
-const UserContext = createContext<Props>({
+export const UserContext = createContext<Props>({
   actualUser: null,
   loading: true,
-  noUserLimits: DEFAULT_LIMITS,
+  userLimits: DEFAULT_LIMITS,
 })
 
-const UserProvider = ({ children }: { children: ReactElement }) => {
+export function UserProvider({ children }: { children: ReactElement }) {
   const [loading, setLoading] = useState(false)
   const [actualUser, setActualUser] = useState<LoginUser | null>(null)
-  const [noUserLimits, setNoUserLimits] = useState<NoUserLimits>(DEFAULT_LIMITS)
+  const userLimits = DEFAULT_LIMITS
 
-  const { getNoUserLimits, getUserByToken } = useUserServices()
+  const { getUserByToken } = useUserServices()
 
   useEffect(() => {
     setLoading(true)
+
     getUserByToken({
       onSuccess: (user) => {
         setActualUser(user)
@@ -38,21 +39,11 @@ const UserProvider = ({ children }: { children: ReactElement }) => {
     })
   }, [])
 
-  useEffect(() => {
-    getNoUserLimits({
-      onSuccess: (data) => {
-        setNoUserLimits(data)
-      },
-    })
-  }, [])
-
-  const data = {
+  const data: Props = {
     actualUser,
     loading,
-    noUserLimits,
+    userLimits,
   }
 
   return <UserContext.Provider value={data}>{children}</UserContext.Provider>
 }
-
-export { UserContext, UserProvider }

@@ -1,8 +1,8 @@
 import { Bars } from "@modules/app/modules/icon/components"
-import { useDatasets } from "@modules/datasets/hooks"
+import { useDataset } from "@modules/dataset/hooks"
 
 export default function OpenFields() {
-  const { handleOpenFieldsMenu } = useDatasets()
+  const { handleOpenFieldsMenu } = useDataset()
 
   return (
     <button onClick={handleOpenFieldsMenu} className="mr-4 fill-black dark:fill-white">

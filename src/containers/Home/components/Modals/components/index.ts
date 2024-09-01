@@ -1,19 +1,19 @@
 import AddField from "./AddField/AddField"
 import DeleteAllDatasets from "./DeleteAllDatasets/DeleteAllDatasets"
-import DeleteDataset from "./DeleteDataset/DeleteDataset"
-import EditDataset from "./EditDataset/EditDataset"
+import DeleteSchema from "./DeleteSchema/DeleteSchema"
+import EditSchema from "./EditSchema/EditSchema"
 import EditField from "./EditField/EditField"
-import ExportAllDatasets from "./ExportAllDatasets/ExportAllDatasets"
+import ExportSchema from "./ExportSchema/ExportSchema"
 import ExportImage from "./ExportImage/ExportImage"
 import ExportDataset from "./ExportDataset/ExportDataset"
 
 export {
   DeleteAllDatasets,
   AddField,
-  DeleteDataset,
+  DeleteSchema,
   EditField,
-  EditDataset,
-  ExportAllDatasets,
-  ExportImage,
+  EditSchema,
   ExportDataset,
+  ExportImage,
+  ExportSchema,
 }

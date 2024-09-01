@@ -1,9 +1,9 @@
-import DatasetCard, { CardProps } from "./DatasetCard/DatasetCard"
-import DatasetsButtons from "./DatasetsButtons/DatasetsButtons"
+import SchemaCard, { CardProps } from "./SchemaCard/SchemaCard"
+import Buttons from "./Buttons/Buttons"
 import Edge from "./Edge/Edge"
 import Loader from "./Loader/Loader"
 import Playground from "./Playground/Playground"
 
-export { DatasetCard, DatasetsButtons, Playground, Loader, Edge }
+export { SchemaCard, Buttons, Playground, Loader, Edge }
 
 export type { CardProps }

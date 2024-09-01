@@ -18,15 +18,15 @@ export default function Sections() {
     FIRST_SECTION_HEADER_1: { en: "Use our functions", es: "Utiliza nuestras funciones" },
     FIRST_SECTION_HEADER_2: { en: "for your fields", es: "para tus campos" },
     FIRST_SECTION_TEXT: {
-      en: "Use the defined mock functions in the fields of your datasets to define the type of values that will be generated in each document",
-      es: "Usa las funciones mock predefinidas en los campos de tus datasets para definir el tipo de valores que se generarán en cada documento",
+      en: "Use the defined mock functions in the fields of your dataset to define the type of values that will be generated in each document",
+      es: "Usa las funciones mock predefinidas en los campos de tus dataset para definir el tipo de valores que se generarán en cada documento",
     },
 
     SECOND_SECTION_HEADER_1: { en: "Create relations in", es: "Crea relaciones entre" },
-    SECOND_SECTION_HEADER_2: { en: "your datasets", es: "tus datasets" },
+    SECOND_SECTION_HEADER_2: { en: "your dataset", es: "tus dataset" },
     SECOND_SECTION_TEXT: {
-      en: "Relate the fields between your datasets to be able to take values from documents generated from another dataset from one field",
-      es: "Relaciona los campos entre tus datasets para poder desde un campo tomar valores de los documentos generados de otro dataset",
+      en: "Relate the fields between your dataset to be able to take values from documents generated from another dataset from one field",
+      es: "Relaciona los campos entre tus dataset para poder desde un campo tomar valores de los documentos generados de otro dataset",
     },
 
     FOURTH_SECTION_HEADER_1: { en: "Export your data", es: "Exporta tus datos" },

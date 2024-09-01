@@ -1,6 +1,6 @@
 import { ChacaSelect } from "@form/components"
-import { useDatatypes } from "@modules/datasets/hooks"
-import { DATA_TYPES } from "@modules/schemas/domain/constants"
+import { useDatatypes } from "@modules/dataset/hooks"
+import { DATA_TYPES } from "@modules/modules/domain/constants"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import {
   CustomInfo,
@@ -9,30 +9,30 @@ import {
   PickInfo,
   ProbabilityInfo,
   RefInfo,
-  SchemaValueInfo,
+  ModuleValueInfo,
   SequenceInfo,
   SequentialInfo,
-} from "@modules/datasets/components"
+} from "@modules/dataset/components"
 import { FormSection } from "@modules/modal/components"
-import { FieldDatatype as IFieldDatatype } from "@modules/datasets/domain/core/datatype"
+import { FieldDatatype as IFieldDatatype } from "@modules/dataset/domain/core/datatype"
 
 interface Props {
   label: string
   handleChangeDatatype(i: string): void
   datatype: IFieldDatatype
   fieldId: string
-  datasetId: string
+  schemaId: string
 }
 
 export default function FieldDatatype({
   label,
   handleChangeDatatype,
   datatype,
-  datasetId,
+  schemaId,
   fieldId,
 }: Props) {
   const { PLACEHOLDER } = useTranslation({ PLACEHOLDER: { en: "Datatype", es: "Tipo de dato" } })
-  const { DATA_TYPES_ARRAY } = useDatatypes({ fieldId, datasetId })
+  const { DATA_TYPES_ARRAY } = useDatatypes({ fieldId, schemaId })
 
   return (
     <FormSection vertical={true} labelText={label} className="mb-4">
@@ -53,7 +53,7 @@ export default function FieldDatatype({
       {datatype.type === DATA_TYPES.REF && <RefInfo />}
       {datatype.type === DATA_TYPES.SEQUENCE && <SequenceInfo />}
       {datatype.type === DATA_TYPES.SEQUENTIAL && <SequentialInfo />}
-      {datatype.type === DATA_TYPES.SINGLE_VALUE && <SchemaValueInfo />}
+      {datatype.type === DATA_TYPES.MODULE_VALUE && <ModuleValueInfo />}
     </FormSection>
   )
 }

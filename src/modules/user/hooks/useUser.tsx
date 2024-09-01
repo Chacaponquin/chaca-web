@@ -1,5 +1,5 @@
 import Cookies from "universal-cookie"
-import { useCallback, useContext, useMemo } from "react"
+import { useCallback, useContext } from "react"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { useEnv } from "@modules/app/modules/env/hooks"
 import { UserContext } from "../context"
@@ -9,15 +9,7 @@ import { STORAGE_KEYS } from "@modules/app/constants"
 export default function useUser() {
   const { API_ROUTE } = useEnv()
   const { set, remove, get } = useLocalStorage()
-  const { actualUser, noUserLimits, loading } = useContext(UserContext)
-
-  const USER_DATASETS_LIMIT = useMemo(() => {
-    return actualUser ? actualUser.limitDatasets : noUserLimits.LIMIT_DATASETS
-  }, [actualUser])
-
-  const USER_DOCUMENTS_LIMIT = useMemo(() => {
-    return actualUser ? actualUser.limitDocuments : noUserLimits.LIMIT_DOCUMENTS
-  }, [actualUser])
+  const { actualUser, loading, userLimits } = useContext(UserContext)
 
   function handleSignIn(token: string) {
     set(STORAGE_KEYS.ACCESS_TOKEN, token)
@@ -30,11 +22,11 @@ export default function useUser() {
   }
 
   function handleGoogleLogin() {
-    window.open(`${API_ROUTE}${API_ROUTES.AUTH_ROUTES.GOOGLE_AUTH}`, "_self")
+    window.open(`${API_ROUTE}${API_ROUTES.AUTH.GOOGLE_AUTH}`, "_self")
   }
 
   function handleGithubLogin() {
-    window.open(`${API_ROUTE}${API_ROUTES.AUTH_ROUTES.GITHUB_AUTH}`, "_self")
+    window.open(`${API_ROUTE}${API_ROUTES.AUTH.GITHUB_AUTH}`, "_self")
   }
 
   const getToken = useCallback((): string => {
@@ -57,8 +49,7 @@ export default function useUser() {
     handleGoogleLogin,
     handleGithubLogin,
     actualUser,
-    USER_DATASETS_LIMIT,
-    USER_DOCUMENTS_LIMIT,
     fetchUserLoading: loading,
+    userLimits,
   }
 }

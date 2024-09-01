@@ -19,7 +19,7 @@ export default function useConfigServices() {
         const result: FileConfigOption[] = data.map((d) => ({
           id: Id.generate(),
           arguments: d.arguments,
-          fileType: d.fileType,
+          type: d.type,
           title: d.title,
         }))
 

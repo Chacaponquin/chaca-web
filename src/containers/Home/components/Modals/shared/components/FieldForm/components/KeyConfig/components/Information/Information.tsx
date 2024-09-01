@@ -7,13 +7,13 @@ export default function Information() {
     WARNING: {
       en: (
         <P>
-          Indicates if the field is a key in the Dataset. Similar to the concept of{" "}
+          Indicates if the field is a key in the Schema. Similar to the concept of{" "}
           <MiniCode>PRIMARY KEY</MiniCode> in SQL
         </P>
       ),
       es: (
         <P>
-          Indica si el campo es llave del Dataset. Similar al concepto de{" "}
+          Indica si el campo es llave del Schema. Similar al concepto de{" "}
           <MiniCode>PRIMARY KEY</MiniCode> en SQL
         </P>
       ),

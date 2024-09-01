@@ -3,12 +3,12 @@ import {
   FieldDatatype,
   ProbabilityValue,
   RefWhere,
-} from "@modules/datasets/domain/core/datatype"
+} from "@modules/dataset/domain/core/datatype"
 import { FORM_ACTIONS } from "../constants"
 import { Reducer } from "react"
-import { DATA_TYPES } from "@modules/schemas/domain/constants"
-import { FieldForm } from "@modules/datasets/domain/form"
-import { Schema, SchemaOption } from "@modules/schemas/domain/core/schema"
+import { DATA_TYPES } from "@modules/modules/domain/constants"
+import { FieldForm } from "@modules/dataset/domain/form"
+import { ModuleSection, Module } from "@modules/modules/domain/core/schema"
 
 export type FieldFormPayload =
   | {
@@ -63,10 +63,10 @@ export type FieldFormPayload =
   | {
       type: FORM_ACTIONS.CHANGE_SCHEMA_OPTION
       payload: {
-        option: SchemaOption
+        option: Module
       }
     }
-  | { type: FORM_ACTIONS.CHANGE_SCHEMA; payload: { schema: Schema } }
+  | { type: FORM_ACTIONS.CHANGE_MODULE_SECTION; payload: { schema: ModuleSection } }
 
 export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
   form: FieldForm,
@@ -155,21 +155,21 @@ export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
     }
 
     case FORM_ACTIONS.CHANGE_SCHEMA_OPTION: {
-      if (form.datatype.type === DATA_TYPES.SINGLE_VALUE) {
-        return { ...form, datatype: { ...form.datatype, option: action.payload.option } }
+      if (form.datatype.type === DATA_TYPES.MODULE_VALUE) {
+        return { ...form, datatype: { ...form.datatype, module: action.payload.option } }
       }
 
       return form
     }
 
-    case FORM_ACTIONS.CHANGE_SCHEMA: {
-      if (form.datatype.type === DATA_TYPES.SINGLE_VALUE) {
+    case FORM_ACTIONS.CHANGE_MODULE_SECTION: {
+      if (form.datatype.type === DATA_TYPES.MODULE_VALUE) {
         return {
           ...form,
           datatype: {
             ...form.datatype,
-            schema: action.payload.schema,
-            option: action.payload.schema.options[0],
+            section: action.payload.schema,
+            module: action.payload.schema.options[0],
           },
         }
       }

@@ -2,7 +2,7 @@ import { Fragment, useContext } from "react"
 import { Aside } from "./components"
 import { HomeContext } from "@containers/Home/context"
 import clsx from "clsx"
-import { useDatasets } from "@modules/datasets/hooks"
+import { useDataset } from "@modules/dataset/hooks"
 
 interface Props {
   handleAddNewField(): void
@@ -11,7 +11,7 @@ interface Props {
 
 export default function FieldsMenu({ handleAddNewField, loading }: Props) {
   const { smallWindow } = useContext(HomeContext)
-  const { handleCloseFieldsMenu } = useDatasets()
+  const { handleCloseFieldsMenu } = useDataset()
 
   const CLASS = clsx(
     "flex",

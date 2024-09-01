@@ -1,17 +1,17 @@
 # Multi Generate
 
-If you want to relate several schemas to make up a single dataset, you can do it in the following way
+If you want to relate several modules to make up a single dataset, you can do it in the following way
 
 ```js
-import { chaca, schemas } from "chaca"
+import { chaca, modules } from "chaca"
 
 // define user schema
 const userSchema = chaca.schema({
   id: chaca.sequence(),
-  username: schemas.internet.username(),
-  email: schemas.internet.email(),
+  username: modules.internet.username(),
+  email: modules.internet.email(),
   image: {
-    type: schemas.image.people(),
+    type: modules.image.people(),
     posibleNull: 40,
   },
   posts: {
@@ -23,15 +23,15 @@ const userSchema = chaca.schema({
 // define post schema
 const postSchema = chaca.schema({
   id: chaca.key(chaca.sequence()),
-  title: schemas.lorem.words(),
-  date: schemas.date.past(),
+  title: modules.lorem.words(),
+  date: modules.date.past(),
   category: chaca.ref("Category.id"),
 })
 
 // define category schema
 const categorySchema = chaca.schema({
   id: chaca.key(chaca.sequence()),
-  name: schemas.word.noun(),
+  name: modules.word.noun(),
 })
 
 // create dataset
@@ -50,9 +50,9 @@ const data = chaca.multiGenerate([
 */
 ```
 
-## Dataset Config
+## Schema Config
 
-To configure a dataset, an array must be passed with the configuration of each of the schemas that make it up.
+To configure a dataset, an array must be passed with the configuration of each of the modules that make it up.
 
 ```js
 chaca.multiGenerate([

@@ -5,10 +5,10 @@ import { FieldForm } from "../../shared/components"
 
 interface Props {
   parentfieldId: string
-  datasetId: string
+  schemaId: string
 }
 
-export default function AddField({ datasetId, parentfieldId }: Props) {
+export default function AddField({ schemaId, parentfieldId }: Props) {
   const { NEW_FIELD_TEXT, SUBMIT_TEXT } = useTranslation({
     NEW_FIELD_TEXT: { en: "New Field", es: "Nuevo Campo" },
     SUBMIT_TEXT: { en: "Add Field", es: "Añadir Campo" },
@@ -16,7 +16,7 @@ export default function AddField({ datasetId, parentfieldId }: Props) {
 
   const { handleAddField, fieldActions } = useAddFieldForm({
     parentfieldId: parentfieldId,
-    datasetId: datasetId,
+    schemaId: schemaId,
   })
 
   return (
@@ -27,7 +27,7 @@ export default function AddField({ datasetId, parentfieldId }: Props) {
       handleNext={handleAddField}
       name="add-field"
     >
-      <FieldForm {...fieldActions} datasetId={datasetId} />
+      <FieldForm {...fieldActions} schemaId={schemaId} />
     </Modal>
   )
 }

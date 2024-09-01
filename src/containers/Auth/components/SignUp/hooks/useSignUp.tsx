@@ -6,7 +6,7 @@ import {
   EmailEmptyError,
   PasswordEmptyError,
 } from "@modules/user/errors"
-import { SaveUser } from "@modules/user/domain"
+import { SaveUser } from "@modules/user/domain/save-user"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { SignUpForm } from "../interfaces"

@@ -7,14 +7,14 @@ import {
   DatatypeConfig,
   KeyConfig,
 } from "./components"
-import { Field } from "@modules/datasets/domain/core"
+import { Field } from "@modules/dataset/domain/core"
 import { FieldActions } from "../../domain/field"
 
-type Props = FieldActions & { datasetId: string }
+type Props = FieldActions & { schemaId: string }
 
 export default function FieldForm({
   field,
-  datasetId,
+  schemaId,
   handleChangeIsArray,
   handleChangeMaxIsArray,
   handleChangeMinIsArray,
@@ -59,12 +59,12 @@ export default function FieldForm({
         handleChangeDatatype={handleChangeDatatype}
         datatype={field.datatype}
         fieldId={field.id}
-        datasetId={datasetId}
+        schemaId={schemaId}
       />
 
       <DatatypeConfig
         id={field.id}
-        datasetId={datasetId}
+        schemaId={schemaId}
         handleSelectFieldSchema={handleSelectFieldSchema}
         handleSelectFieldSchemaOption={handleSelectFieldSchemaOption}
         datatype={field.datatype}

@@ -23,32 +23,32 @@ If you're using npm, pnpm or Yarn to install Chaca, we support:
 ## Usage
 
 ```js
-const { chaca, schemas } = require("chaca")
+const { chaca, modules } = require("chaca")
 
 // or
 
-import { chaca, schemas } from "chaca"
+import { chaca, modules } from "chaca"
 ```
 
-## Predefined schemas
+## Predefined modules
 
-- [`address`](/schemas/address)
-- [`dataType`](/schemas/data_type)
-- [`finance`](/schemas/finance)
-- [`date`](/schemas/date)
-- [`color`](/schemas/color)
-- [`animal`](/schemas/animal)
-- [`id`](/schemas/id)
-- [`image`](/schemas/image)
-- [`video`](/schemas/video)
-- [`internet`](/schemas/internet)
-- [`lorem`](/schemas/lorem)
-- [`person`](/schemas/person)
-- [`phone`](/schemas/phone)
-- [`science`](/schemas/science)
-- [`system`](/schemas/system)
-- [`vehicle`](/schemas/vehicle)
-- [`word`](/schemas/word)
+- [`address`](/modules/address)
+- [`dataType`](/modules/data_type)
+- [`finance`](/modules/finance)
+- [`date`](/modules/date)
+- [`color`](/modules/color)
+- [`animal`](/modules/animal)
+- [`id`](/modules/id)
+- [`image`](/modules/image)
+- [`video`](/modules/video)
+- [`internet`](/modules/internet)
+- [`lorem`](/modules/lorem)
+- [`person`](/modules/person)
+- [`phone`](/modules/phone)
+- [`science`](/modules/science)
+- [`system`](/modules/system)
+- [`vehicle`](/modules/vehicle)
+- [`word`](/modules/word)
 
 ## Congratulations
 

@@ -1,16 +1,16 @@
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useEditFieldForm } from "./hooks"
-import { Field } from "@modules/datasets/domain/core"
+import { Field } from "@modules/dataset/domain/core"
 import { Modal } from "@modules/modal/components"
 import { FieldForm } from "../../shared/components"
 
 interface Props {
   field: Field
   parentfieldId: string
-  datasetId: string
+  schemaId: string
 }
 
-export default function EditField({ datasetId, field, parentfieldId }: Props) {
+export default function EditField({ schemaId, field, parentfieldId }: Props) {
   const { EDIT_FIELD_TEXT, SUBMIT_TEXT } = useTranslation({
     EDIT_FIELD_TEXT: { en: "Edit Field", es: "Editar Campo" },
     SUBMIT_TEXT: { en: "Edit", es: "Editar" },
@@ -19,7 +19,7 @@ export default function EditField({ datasetId, field, parentfieldId }: Props) {
   const { handleEditField, fieldActions } = useEditFieldForm({
     field: field,
     parentfieldId: parentfieldId,
-    datasetId: datasetId,
+    schemaId: schemaId,
   })
 
   return (
@@ -30,7 +30,7 @@ export default function EditField({ datasetId, field, parentfieldId }: Props) {
       type="edit"
       name="edit-field"
     >
-      <FieldForm {...fieldActions} datasetId={datasetId} />
+      <FieldForm {...fieldActions} schemaId={schemaId} />
     </Modal>
   )
 }

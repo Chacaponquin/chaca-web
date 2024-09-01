@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react"
-import { Dataset } from "../../datasets/domain/core"
-import { DatasetConnection } from "../../datasets/interfaces/dataset-connect"
+import { Schema } from "../../dataset/domain/core"
+import { DatasetConnection } from "../../dataset/interfaces/dataset-connect"
 import { Edge, getRectOfNodes, getViewportForBounds } from "reactflow"
 import { toPng, toSvg } from "html-to-image"
 import { ImageFormats } from "@modules/config/domain/core"
@@ -77,8 +77,8 @@ export default function usePlayground() {
     handleDeleteNode(id)
   }
 
-  function updateConnections(datasets: Dataset[]): void {
-    const connections: DatasetConnection[] = getDatasetsConnections(datasets)
+  function updateConnections(dataset: Schema[]): void {
+    const connections: DatasetConnection[] = getDatasetsConnections(dataset)
 
     handleCleanEdges()
 
@@ -86,8 +86,8 @@ export default function usePlayground() {
       for (const target of con.to) {
         handleAddEdge(
           DatasetEdgeBuilder.build({
-            datasetFrom: con.fromDataset,
-            datasetTo: con.targetDataset,
+            schemaFrom: con.fromDataset,
+            schemaTo: con.targetDataset,
             fieldFrom: con.from,
             fieldTo: target,
           }),
@@ -96,15 +96,15 @@ export default function usePlayground() {
     }
   }
 
-  function getDatasetsConnections(datasets: Dataset[]): DatasetConnection[] {
+  function getDatasetsConnections(dataset: Schema[]): DatasetConnection[] {
     let allConnections = [] as DatasetConnection[]
 
-    for (const dataset of datasets) {
+    for (const schema of dataset) {
       const connections: DatasetConnection[] = []
-      const refFields = dataset.refFields()
+      const refFields = schema.refFields()
 
-      for (const dat of datasets) {
-        if (dat !== dataset) {
+      for (const s of dataset) {
+        if (schema !== s) {
           refFields.forEach((f) => {
             const fieldToRef = f.ref.at(-1)
             const datasetRef = f.ref[0]
@@ -112,12 +112,12 @@ export default function usePlayground() {
             const saveConnection: DatasetConnection = {
               from: f.id,
               to: [],
-              fromDataset: dataset.id,
+              fromDataset: schema.id,
               targetDataset: datasetRef,
             }
 
             if (fieldToRef) {
-              const found = dat.findFieldById(fieldToRef)
+              const found = s.findFieldById(fieldToRef)
 
               if (found) {
                 saveConnection.to.push(fieldToRef)

@@ -1,5 +1,5 @@
 import { SelectTypes } from "../../domain"
-import { ARRAY_VALUE_TYPE, DatasetFunctions } from "@modules/datasets/domain/constants"
+import { ARRAY_VALUE_TYPE, DatasetFunctions } from "@modules/dataset/domain/constants"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useMemo } from "react"
 

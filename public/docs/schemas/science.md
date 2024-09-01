@@ -3,8 +3,8 @@
 ## `periodicTableElement`
 
 ```js
-schemas.science.periodicTableElement().getValue() // 'Curium'
-schemas.science.periodicTableElement().getValue({ type: 'symbol' }) // 'Zn'
+modules.science.periodicTableElement().getValue() // 'Curium'
+modules.science.periodicTableElement().getValue({ type: "symbol" }) // 'Zn'
 ```
 
 | Argument | Description                                                      |
@@ -14,8 +14,8 @@ schemas.science.periodicTableElement().getValue({ type: 'symbol' }) // 'Zn'
 ## `unit`
 
 ```js
-schemas.science.unit() // 'hertz (Hz)'
-schemas.science.unit({ type: 'symbol' }) // 'N'
+modules.science.unit() // 'hertz (Hz)'
+modules.science.unit({ type: "symbol" }) // 'N'
 ```
 
 | Argument | Description                                                      |

@@ -1,11 +1,11 @@
-import { DATA_TYPES } from "@modules/schemas/domain/constants"
+import { DATA_TYPES } from "@modules/modules/domain/constants"
 import {
   CustomConfig,
   EnumConfig,
   PickConfig,
   ProbabilityConfig,
   RefConfig,
-  SchemaValueConfig,
+  ModuleValueConfig,
   SequenceConfig,
   SequentialConfig,
 } from "./components"
@@ -14,21 +14,21 @@ import {
   FieldDatatype,
   ProbabilityValue,
   RefWhere,
-} from "@modules/datasets/domain/core/datatype"
+} from "@modules/dataset/domain/core/datatype"
 import {
   ChangeSequentialFieldProps,
   UpdateArgumentsProps,
   UpdateCustomProps,
 } from "@containers/Home/components/Modals/shared/domain/field"
-import { Argument } from "@modules/schemas/domain/core/argument"
-import { Schema, SchemaOption } from "@modules/schemas/domain/core/schema"
+import { Argument } from "@modules/modules/domain/core/argument"
+import { ModuleSection, Module } from "@modules/modules/domain/core/schema"
 
 interface Props {
   id: string
-  datasetId: string
+  schemaId: string
   datatype: FieldDatatype
-  handleSelectFieldSchema(v: Schema): void
-  handleSelectFieldSchemaOption(p: SchemaOption): void
+  handleSelectFieldSchema(v: ModuleSection): void
+  handleSelectFieldSchemaOption(p: Module): void
   handleUpdateCustomField(p: UpdateCustomProps): void
   handleUpdateFieldSchemaArguments(p: UpdateArgumentsProps): void
   handleChangeSequentialValues(props: ChangeSequentialFieldProps): void
@@ -47,7 +47,7 @@ interface Props {
 
 export default function DatatypeConfig({
   id,
-  datasetId,
+  schemaId,
   datatype,
   handleSelectFieldSchema,
   handleSelectFieldSchemaOption,
@@ -79,7 +79,7 @@ export default function DatatypeConfig({
       {datatype.type === DATA_TYPES.REF && (
         <RefConfig
           refField={datatype.ref}
-          datasetId={datasetId}
+          schemaId={schemaId}
           unique={datatype.unique}
           where={datatype.where}
           handleChangeRefField={handleChangeRefField}
@@ -106,11 +106,11 @@ export default function DatatypeConfig({
         />
       )}
 
-      {datatype.type === DATA_TYPES.SINGLE_VALUE && (
-        <SchemaValueConfig
+      {datatype.type === DATA_TYPES.MODULE_VALUE && (
+        <ModuleValueConfig
           args={datatype.args}
-          option={datatype.option}
-          schema={datatype.schema}
+          module={datatype.module}
+          section={datatype.section}
           handleSelectFieldSchema={handleSelectFieldSchema}
           handleSelectFieldSchemaOption={handleSelectFieldSchemaOption}
           handleUpdateFieldSchemaArguments={handleUpdateFieldSchemaArguments}

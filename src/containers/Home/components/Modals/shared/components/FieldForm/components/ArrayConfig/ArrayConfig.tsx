@@ -1,4 +1,4 @@
-import { IsArrayConfig } from "@modules/datasets/domain/core/field-config"
+import { IsArrayConfig } from "@modules/dataset/domain/core/field-config"
 import { Config, Information } from "./components"
 import { USER_LIMITS } from "@modules/user/constants"
 import { CheckField, ConfigContainer } from "@modules/modal/components"

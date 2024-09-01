@@ -1,6 +1,6 @@
 import { ChacaSelect } from "@form/components"
 import { SelectTypes } from "../../../domain"
-import { ARRAY_VALUE_TYPE } from "@modules/datasets/domain/constants"
+import { ARRAY_VALUE_TYPE } from "@modules/dataset/domain/constants"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 
 interface Props {

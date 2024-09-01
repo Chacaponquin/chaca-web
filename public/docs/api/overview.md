@@ -6,7 +6,7 @@ Our API returns JSON responses, dependent upon on the request header specified.
 
 The Chaca Web API provides a wide range of functionality for developers, including:
 
-- Create data through defined schemas by passing it through HTTP requests. [See examples](./schema)
+- Create data through defined modules by passing it through HTTP requests. [See examples](./schema)
 - Obtain data generated through defined functions of Chaca. [See examples](./schema-option)
 
 ## Request format

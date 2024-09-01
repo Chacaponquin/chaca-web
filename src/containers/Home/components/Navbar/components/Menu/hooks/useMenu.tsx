@@ -9,19 +9,19 @@ import {
   CommandsExecutor,
   ExportAllDatasetsCommand,
   handleExportDatasetsImageCommand,
-} from "@modules/datasets/domain/commands"
+} from "@modules/dataset/domain/commands"
 import { useLanguage, useTranslation } from "@modules/app/modules/language/hooks"
 
 interface Props {
-  handleExportAllDatasets(): void
+  handleExportDataset(): void
   handleExportImage(): void
-  handleAddDataset(): void
+  handleAddSchema(): void
   handleDeleteAll(): void
 }
 
 export default function useMenu({
-  handleAddDataset,
-  handleExportAllDatasets,
+  handleAddSchema,
+  handleExportDataset,
   handleExportImage,
   handleDeleteAll,
 }: Props) {
@@ -35,15 +35,15 @@ export default function useMenu({
   useClickOutside({ element: listRef, onClickOutside: () => setOpen(false) })
 
   const { ADD_DATASET, DELETE_ALL, EXPORT_ALL, EXPORT_IMAGE } = useTranslation({
-    ADD_DATASET: { en: "Add Dataset", es: "Añadir Dataset" },
-    EXPORT_ALL: { en: "Export all", es: "Exportar todo" },
+    ADD_DATASET: { en: "Add schema", es: "Añadir schema" },
+    EXPORT_ALL: { en: "Export dataset", es: "Exportar dataset" },
     EXPORT_IMAGE: { en: "Export image", es: "Exportar imagen" },
     DELETE_ALL: { en: "Delete all", es: "Eliminar todo" },
   })
 
   const commands = new CommandsExecutor([
-    new AddDatasetCommand(handleAddDataset),
-    new ExportAllDatasetsCommand(handleExportAllDatasets),
+    new AddDatasetCommand(handleAddSchema),
+    new ExportAllDatasetsCommand(handleExportDataset),
     new handleExportDatasetsImageCommand(handleExportImage),
   ])
 
@@ -63,13 +63,13 @@ export default function useMenu({
     {
       icon: Plus,
       title: ADD_DATASET,
-      onClick: handleAddDataset,
+      onClick: handleAddSchema,
       command: AddDatasetCommand.value,
     },
     {
       icon: Share,
       title: EXPORT_ALL,
-      onClick: handleExportAllDatasets,
+      onClick: handleExportDataset,
       command: ExportAllDatasetsCommand.value,
     },
     {

@@ -9,7 +9,7 @@ These are only useful to indicate the fields that can be referenced
 
 ```js
 const mySchema = chaca.schema({
-  id: chaca.key(schemas.id.uuid()),
+  id: chaca.key(modules.id.uuid()),
   // rest fields
 })
 ```
@@ -41,4 +41,4 @@ const postSchema = chaca.schema({
 });
 ```
 
-In the above code two schemas are created: `User` and `Post`. The `User.posts` field will be an array with values of the `id` field from the `Post` schema
+In the above code two modules are created: `User` and `Post`. The `User.posts` field will be an array with values of the `id` field from the `Post` schema

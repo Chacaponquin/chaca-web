@@ -32,7 +32,7 @@ const ProfileSection = () => {
         ) : (
           <Link
             className="w-[40px] rounded-full h-[40px] bg-slate-100 flex justify-center items-center"
-            to={APP_ROUTES.AUTH_ROUTES.LOGIN}
+            to={APP_ROUTES.AUTH.LOGIN}
           >
             <User size={20} />
           </Link>

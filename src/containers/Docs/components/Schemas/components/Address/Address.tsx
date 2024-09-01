@@ -1,5 +1,5 @@
 import { DocLayout } from "@containers/Docs/shared/components"
-import { ADDRESS } from "@modules/docs/domain/core/sections/schemas"
+import { ADDRESS } from "@modules/docs/domain/core/sections/modules"
 
 export default function Address() {
   return (

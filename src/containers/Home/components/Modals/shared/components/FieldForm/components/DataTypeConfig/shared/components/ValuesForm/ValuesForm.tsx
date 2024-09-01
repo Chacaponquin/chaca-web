@@ -1,5 +1,5 @@
 import { useValuesForm } from "./hooks"
-import { ArrayValue } from "@modules/datasets/domain/core/datatype"
+import { ArrayValue } from "@modules/dataset/domain/core/datatype"
 import ValueInput from "../ValueInput/ValueInput"
 import DeleteButton from "../DeleteButton/DeleteButton"
 import SelectType from "../SelectType/SelectType"

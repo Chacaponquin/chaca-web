@@ -1,5 +1,5 @@
 import { HomeContext } from "@containers/Home/context"
-import { useDatasets } from "@modules/datasets/hooks"
+import { useDataset } from "@modules/dataset/hooks"
 import clsx from "clsx"
 import { Fragment, useContext } from "react"
 import { CloseSection, DatasetButtons, Field, Loader, NoFieldsMessage } from "./components"
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function Aside({ handleAddNewField, loading }: Props) {
-  const { selectedDataset, handleCloseFieldsMenu, showFieldsMenu } = useDatasets()
+  const { selectedSchema, handleCloseFieldsMenu, showFieldsMenu } = useDataset()
   const { smallWindow } = useContext(HomeContext)
 
   const CLASS = clsx(
@@ -30,9 +30,9 @@ export default function Aside({ handleAddNewField, loading }: Props) {
 
       {!loading && (
         <div className="h-full w-full flex flex-col text-black dark:text-white pt-1">
-          {selectedDataset && selectedDataset.nodes.length > 0 ? (
+          {selectedSchema && selectedSchema.nodes.length > 0 ? (
             <Fragment>
-              {selectedDataset.nodes.map((field) => (
+              {selectedSchema.nodes.map((field) => (
                 <Field key={field.id} margin={0} field={field} />
               ))}
 

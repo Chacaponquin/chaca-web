@@ -1,7 +1,7 @@
 import { DEFAULT_ICON_SIZE } from "../constants"
 import { IconProps } from "../interfaces"
 
-const Schema = ({ size = DEFAULT_ICON_SIZE }: IconProps) => {
+export default function Schema({ size = DEFAULT_ICON_SIZE }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -17,5 +17,3 @@ const Schema = ({ size = DEFAULT_ICON_SIZE }: IconProps) => {
     </svg>
   )
 }
-
-export default Schema

@@ -1,6 +1,6 @@
 import { ChacaSlider } from "@form/components"
 import { Information } from "./components"
-import { Field } from "@modules/datasets/domain/core"
+import { Field } from "@modules/dataset/domain/core"
 import { CheckField, ConfigContainer } from "@modules/modal/components"
 
 interface Props {

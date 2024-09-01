@@ -1,5 +1,5 @@
 import ReactFlow, { Background } from "reactflow"
-import { DatasetCard, DatasetsButtons, Edge, Loader, Playground } from "./components"
+import { SchemaCard, Buttons, Edge, Loader, Playground } from "./components"
 import { useTheme } from "@modules/app/modules/theme/hooks"
 import { THEME } from "@modules/app/modules/theme/constants"
 import { usePlayground } from "@modules/playground/hooks"
@@ -8,7 +8,7 @@ import { APP_COLORS } from "@modules/app/constants"
 import "reactflow/dist/style.css"
 
 const nodeTypes = {
-  custom: DatasetCard,
+  custom: SchemaCard,
 }
 
 const edgeTypes = {
@@ -43,7 +43,7 @@ export default function DatasetPlayground({ loading }: Props) {
           onEdgeClick={(_, edge) => handleClickEdge(edge)}
         >
           <Playground />
-          <DatasetsButtons />
+          <Buttons />
           <Background color={color} />
         </ReactFlow>
       )}

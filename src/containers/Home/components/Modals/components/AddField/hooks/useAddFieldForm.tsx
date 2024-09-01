@@ -1,4 +1,4 @@
-import { useDatasets, useDatatypes } from "@modules/datasets/hooks"
+import { useDataset, useDatatypes } from "@modules/dataset/hooks"
 import { useFieldForm } from "../../../shared/hooks"
 import { useModal } from "@modules/modal/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
@@ -7,21 +7,21 @@ import { useMemo } from "react"
 
 interface Props {
   parentfieldId: string
-  datasetId: string
+  schemaId: string
 }
 
-export default function useAddFieldForm({ datasetId, parentfieldId }: Props) {
+export default function useAddFieldForm({ schemaId, parentfieldId }: Props) {
   const fieldId = useMemo(() => Id.generate(), [])
 
   const { toastChacaError } = useToast()
 
-  const { DEFAULT_SCHEMA_VALUE_DATA_TYPE } = useDatatypes({
-    datasetId: datasetId,
+  const { DEFAULT_MODULE_VALUE_DATATYPE } = useDatatypes({
+    schemaId: schemaId,
     fieldId: fieldId,
   })
 
   const { handleCloseModal } = useModal()
-  const { handleAddField: handleAddFieldHook } = useDatasets()
+  const { handleAddField: handleAddFieldHook } = useDataset()
 
   const fieldActions = useFieldForm({
     field: {
@@ -29,17 +29,17 @@ export default function useAddFieldForm({ datasetId, parentfieldId }: Props) {
       name: "",
       isArray: null,
       isPossibleNull: 0,
-      datatype: DEFAULT_SCHEMA_VALUE_DATA_TYPE,
+      datatype: DEFAULT_MODULE_VALUE_DATATYPE,
       isKey: false,
     },
-    datasetId: datasetId,
+    schemaId: schemaId,
   })
 
   function handleAddField() {
     const field = fieldActions.field
 
     handleAddFieldHook({
-      datasetId: datasetId,
+      schemaId: schemaId,
       field: {
         name: fieldActions.field.name.trim(),
         datatype: field.datatype,

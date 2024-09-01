@@ -3,89 +3,89 @@
 ## `dog`
 
 ```js
-schemas.animal.dog().getValue() // 'Irish Water Spaniel'
+modules.animal.dog().getValue() // 'Irish Water Spaniel'
 ```
 
 ## `bear`
 
 ```js
-schemas.animal.bear().getValue() // 'Singapuria'
+modules.animal.bear().getValue() // 'Singapuria'
 ```
 
 ## `bird`
 
 ```js
-schemas.animal.bird().getValue() // 'Singapuria'
+modules.animal.bird().getValue() // 'Singapuria'
 ```
 
 ## `cat`
 
 ```js
-schemas.animal.cat().getValue() // 'Bengal'
+modules.animal.cat().getValue() // 'Bengal'
 ```
 
 ## `cetacean`
 
 ```js
-schemas.animal.cetacean().getValue() // 'Spinner Dolphin'
+modules.animal.cetacean().getValue() // 'Spinner Dolphin'
 ```
 
 ## `cow`
 
 ```js
-schemas.animal.cow().getValue() // 'Brava'
+modules.animal.cow().getValue() // 'Brava'
 ```
 
 ## `crocodilia`
 
 ```js
-schemas.animal.crocodilia().getValue() // 'Philippine Crocodile'
+modules.animal.crocodilia().getValue() // 'Philippine Crocodile'
 ```
 
 ## `fish`
 
 ```js
-schemas.animal.fish().getValue() // 'Mandarin fish'
+modules.animal.fish().getValue() // 'Mandarin fish'
 ```
 
 ## `horse`
 
 ```js
-schemas.animal.horse().getValue() // 'Swedish Warmblood'
+modules.animal.horse().getValue() // 'Swedish Warmblood'
 ```
 
 ## `insect`
 
 ```js
-schemas.animal.insect().getValue() // 'Pyramid ant'
+modules.animal.insect().getValue() // 'Pyramid ant'
 ```
 
 ## `lion`
 
 ```js
-schemas.animal.lion().getValue() // 'Northeast Congo Lion'
+modules.animal.lion().getValue() // 'Northeast Congo Lion'
 ```
 
 ## `rabbit`
 
 ```js
-schemas.animal.rabbit().getValue() // 'Florida White'
+modules.animal.rabbit().getValue() // 'Florida White'
 ```
 
 ## `rodent`
 
 ```js
-schemas.animal.rodent().getValue() // 'Cuscomys ashanika'
+modules.animal.rodent().getValue() // 'Cuscomys ashanika'
 ```
 
 ## `snake`
 
 ```js
-schemas.animal.snake().getValue() // 'Eyelash viper'
+modules.animal.snake().getValue() // 'Eyelash viper'
 ```
 
 ## `animalType`
 
 ```js
-schemas.animal.animalType().getValue() // 'Singapuria'
+modules.animal.animalType().getValue() // 'Singapuria'
 ```

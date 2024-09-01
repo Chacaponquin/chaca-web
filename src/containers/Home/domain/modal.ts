@@ -1,33 +1,33 @@
-import { Dataset, Field } from "@modules/datasets/domain/core"
+import { Schema, Field } from "@modules/dataset/domain/core"
 import { ModalProps } from "@modules/modal/domain"
 
-export class DeleteAllDatasetsModalProps extends ModalProps {}
+export class DeleteAllSchemasModalProps extends ModalProps {}
 
 export class AddFieldModalProps extends ModalProps {
-  constructor(readonly parentfieldId: string, readonly datasetId: string) {
+  constructor(readonly parentfieldId: string, readonly schemaId: string) {
     super()
   }
 }
 
-export class DeleteDatasetModalProps extends ModalProps {
+export class DeleteSchemaModalProps extends ModalProps {
   constructor(readonly name: string, readonly id: string) {
     super()
   }
 }
 
 export class EditFieldModalProps extends ModalProps {
-  constructor(readonly field: Field, readonly parentfieldId: string, readonly datasetId: string) {
+  constructor(readonly field: Field, readonly parentfieldId: string, readonly schemaId: string) {
     super()
   }
 }
 
-export class EditDatasetModalProps extends ModalProps {
-  constructor(readonly dataset: Dataset) {
+export class EditSchemaModalProps extends ModalProps {
+  constructor(readonly schema: Schema) {
     super()
   }
 }
 
-export class ExportAllDatasetsModalProps extends ModalProps {
+export class ExportDatasetModalProps extends ModalProps {
   constructor() {
     super()
   }
@@ -39,8 +39,8 @@ export class ExportDatasetImageModalProps extends ModalProps {
   }
 }
 
-export class ExportDatasetModalProps extends ModalProps {
-  constructor(readonly dataset: Dataset) {
+export class ExportSchemaModalProps extends ModalProps {
+  constructor(readonly schema: Schema) {
     super()
   }
 }

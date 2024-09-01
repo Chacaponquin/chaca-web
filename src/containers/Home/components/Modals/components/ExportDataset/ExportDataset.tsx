@@ -2,37 +2,35 @@ import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useExport } from "./hooks"
 import { DatasetExportForm } from "../../shared/components"
 import { Modal } from "@modules/modal/components"
-import { Dataset } from "@modules/datasets/domain/core"
+import { Schema } from "@modules/dataset/domain/core"
 import { ExportFileConfigDTO } from "@modules/config/dto/file"
 
 interface Props {
-  handleExportDatasets(datasets: Dataset[], config: ExportFileConfigDTO): void
-  dataset: Dataset
+  handleExportDataset(dataset: Schema[], config: ExportFileConfigDTO): void
 }
 
-export default function ExportDataset({ dataset, handleExportDatasets }: Props) {
+export default function ExportDataset({ handleExportDataset }: Props) {
   const { form, handleChangeFileType, handleChangeName, handleExport } = useExport({
-    dataset: dataset,
-    handleExportDatasets: handleExportDatasets,
+    handleExportDataset: handleExportDataset,
   })
 
-  const { EXPORT_DATASET_TEXT, SUBMIT_TEXT } = useTranslation({
-    EXPORT_DATASET_TEXT: { en: "Export Dataset", es: "Exportar Dataset" },
-    SUBMIT_TEXT: { en: "Export", es: "Exportar" },
+  const { EXPORT_ALL_DATASETS_TEXT, SUBMIT_TEXT } = useTranslation({
+    SUBMIT_TEXT: { en: "Export Datasets", es: "Exportar Datasets" },
+    EXPORT_ALL_DATASETS_TEXT: { en: "Export All Datasets", es: "Exportar todos los dataset" },
   })
 
   return (
     <Modal
-      title={EXPORT_DATASET_TEXT}
-      handleNext={handleExport}
+      title={EXPORT_ALL_DATASETS_TEXT}
       nextText={SUBMIT_TEXT}
+      handleNext={handleExport}
       type="edit"
-      name="export-select-dataset"
+      name="export-all-dataset"
     >
       <DatasetExportForm
-        saveModelOption={true}
-        form={form}
+        saveModelOption={false}
         handleChangeFileType={handleChangeFileType}
+        form={form}
         handleChangeName={handleChangeName}
       />
     </Modal>

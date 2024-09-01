@@ -1,24 +1,24 @@
 import { ChacaLogo, Menu, OpenFields } from "./components"
 import { useContext } from "react"
 import { HomeContext } from "@containers/Home/context"
-import { useDatasets } from "@modules/datasets/hooks"
+import { useDataset } from "@modules/dataset/hooks"
 import clsx from "clsx"
 
 interface Props {
-  handleExportAllDatasets(): void
+  handleExportDataset(): void
   handleExportImage(): void
   handleDeleteAll(): void
   loading: boolean
 }
 
 export default function Navbar({
-  handleExportAllDatasets,
+  handleExportDataset,
   handleExportImage,
   handleDeleteAll,
   loading,
 }: Props) {
   const { smallWindow } = useContext(HomeContext)
-  const { datasets, handleAddDataset } = useDatasets()
+  const { dataset, handleAddSchema } = useDataset()
 
   const CLASS = clsx(
     "text-black dark:text-white",
@@ -33,15 +33,15 @@ export default function Navbar({
   return (
     <nav className={CLASS}>
       <section className="flex items-center">
-        {smallWindow && datasets.length > 0 && <OpenFields />}
+        {smallWindow && dataset.length > 0 && <OpenFields />}
 
         <ChacaLogo />
 
-        {datasets.length > 0 && (
+        {dataset.length > 0 && (
           <Menu
             loading={loading}
-            handleAddDataset={handleAddDataset}
-            handleExportAllDatasets={handleExportAllDatasets}
+            handleAddSchema={handleAddSchema}
+            handleExportDataset={handleExportDataset}
             handleExportImage={handleExportImage}
             handleDeleteAll={handleDeleteAll}
           />

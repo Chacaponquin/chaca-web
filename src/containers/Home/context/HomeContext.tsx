@@ -4,9 +4,9 @@ import { useSocket } from "@modules/app/modules/socket/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { useScreen } from "@modules/shared/hooks"
 import { createContext, createRef, RefObject, useEffect, useState } from "react"
-import { useDatasetServices } from "@modules/datasets/services"
+import { useDatasetServices } from "@modules/dataset/services"
 import { DatasetCreationError } from "@modules/app/modules/socket/domain/error"
-import { RespExportDatasetDTO } from "@modules/datasets/dto/export"
+import { RespExportDatasetDTO } from "@modules/dataset/dto/export"
 
 interface Props {
   playgroundRef: RefObject<HTMLDivElement>
@@ -39,7 +39,7 @@ export function HomeProvider({ children }: { children: React.ReactNode }) {
     return () => {
       socket.off(SOCKET_EVENTS.GET_FILE_URL)
       socket.off(SOCKET_EVENTS.CREATION_ERROR)
-      socket.off(SOCKET_EVENTS.CREATE_DATASETS)
+      socket.off(SOCKET_EVENTS.CREATE_DATASET)
     }
   }, [socket, handleFinishCreation, handleErrorCreation])
 

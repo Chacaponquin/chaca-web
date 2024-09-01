@@ -1,4 +1,4 @@
-import { ArrayValue } from "@modules/datasets/domain/core/datatype"
+import { ArrayValue } from "@modules/dataset/domain/core/datatype"
 import { ValuesForm } from "../../shared/components"
 
 interface Props {

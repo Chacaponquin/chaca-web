@@ -1,6 +1,6 @@
 import { createAppRoute } from "cypress/fixtures/route"
 
-describe("# Edit Dataset tests", () => {
+describe("# Edit Schema tests", () => {
   beforeEach(() => {
     cy.visit(createAppRoute("home"))
 
@@ -11,11 +11,11 @@ describe("# Edit Dataset tests", () => {
 
   it("Try edit dataset name to empty string. Should show an error toast", () => {
     // open menu
-    cy.get("#New-Dataset-dataset-config-button").click()
-    cy.get("#New-Dataset-dataset-config-menu").should("exist")
+    cy.get("#New-Schema-dataset-config-button").click()
+    cy.get("#New-Schema-dataset-config-menu").should("exist")
 
     // open modal
-    cy.get("#New-Dataset-dataset-edit-button").click()
+    cy.get("#New-Schema-dataset-edit-button").click()
     cy.get("#edit-dataset-modal").should("exist")
 
     cy.get("input[name=dataset-name]").clear()
@@ -36,7 +36,7 @@ describe("# Edit Dataset tests", () => {
     cy.get("#edit-dataset-modal").should("exist")
 
     // type name
-    cy.get("input[name=dataset-name]").clear().type("New Dataset")
+    cy.get("input[name=dataset-name]").clear().type("New Schema")
     cy.get("#modal-edit-dataset-button").click()
     cy.get("#toast-repeat-dataset-name").should("exist")
   })

@@ -1,4 +1,4 @@
-import { ARRAY_VALUE_TYPE } from "@modules/datasets/domain/constants"
+import { ARRAY_VALUE_TYPE } from "@modules/dataset/domain/constants"
 import { SelectTypes } from "../../../../domain"
 import { SelectType, ValueInput } from "../../../../shared/components"
 

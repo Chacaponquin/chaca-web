@@ -13,10 +13,10 @@
 
 ### Query Params
 
-|    Param    |      Type       | Required | Description                                                                                                                                                                                                                      |
-| :---------: | :-------------: | :------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|   ...args   |       any       | no       | Parameters of the chosen option. [Learn about predefined schemas](../category/schemas)                                                                                                                                           |
-|   isArray   | boolean, number | no       | Indicates whether the return value can be an array of values. In case of being a `boolean` it will be an array of size between 0 and 10, in case of being a `number` greater than 0 the return will be an array with that length |
+|    Param     |      Type       | Required | Description                                                                                                                                                                                                                      |
+| :----------: | :-------------: | :------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|   ...args    |       any       | no       | Parameters of the chosen option. [Learn about predefined modules](../category/modules)                                                                                                                                           |
+|   isArray    | boolean, number | no       | Indicates whether the return value can be an array of values. In case of being a `boolean` it will be an array of size between 0 and 10, in case of being a `number` greater than 0 the return will be an array with that length |
 | possibleNull |     number      | no       | Indicates the probability that the return value is `null`                                                                                                                                                                        |
 
 ### Example

@@ -30,18 +30,18 @@ If you try to reference a ref field an exception will be thrown
 
 ```js
 export const schemaOne = chaca.schema({
-  id: schemas.id.uuid(),
+  id: modules.id.uuid(),
   ref: chaca.ref("SchemaTwo.ref"), // this will throw an error because 'SchemaTwo.ref' is a ref field,
 })
 
 export const schemaTwo = chaca.schema({
-  id: schemas.id.uuid(),
+  id: modules.id.uuid(),
   ref: chaca.ref("SchemaThree.name"),
 })
 
 export const schemaThree = chaca.schema({
-  id: schemas.id.uuid(),
-  name: schemas.person.fullName(),
+  id: modules.id.uuid(),
+  name: modules.person.fullName(),
 })
 ```
 
@@ -71,7 +71,7 @@ This function receives as a parameter an object with 3 properties:
 
   ```js
   const postSchema = chaca.schema({
-    id: schemas.id.uuid(),
+    id: modules.id.uuid(),
     author: chaca.ref("User.id", ({ refFields }) => {
       return refFields.age >= 18
     }),
@@ -83,7 +83,7 @@ This function receives as a parameter an object with 3 properties:
 
   ```js
   const userSchema = chaca.schema({
-    id: schemas.id.uuid(),
+    id: modules.id.uuid(),
     favoriteCategory: chaca.enum(["Horror", "Comedy", "Action"]),
     posts: {
       type: chaca.ref("Post.id", ({ currentFields, refFields }) => {
@@ -95,7 +95,7 @@ This function receives as a parameter an object with 3 properties:
   ```
 
 - `store`
-  Dataset store to interact with all the data in the dataset. [Learn about Dataset Store](../relational-schemas/dataset-store)
+  Schema store to interact with all the data in the dataset. [Learn about Schema Store](../relational-modules/dataset-store)
 
 ### `unique`
 

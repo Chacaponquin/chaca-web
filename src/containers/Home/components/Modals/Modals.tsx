@@ -3,60 +3,60 @@ import { Fragment } from "react"
 import {
   AddField,
   DeleteAllDatasets,
-  DeleteDataset,
-  EditDataset,
+  DeleteSchema,
+  EditSchema,
   EditField,
-  ExportAllDatasets,
-  ExportImage,
   ExportDataset,
+  ExportImage,
+  ExportSchema,
 } from "./components"
 import {
   AddFieldModalProps,
-  DeleteAllDatasetsModalProps,
-  DeleteDatasetModalProps,
-  EditDatasetModalProps,
+  DeleteAllSchemasModalProps,
+  DeleteSchemaModalProps,
+  EditSchemaModalProps,
   EditFieldModalProps,
-  ExportAllDatasetsModalProps,
-  ExportDatasetImageModalProps,
   ExportDatasetModalProps,
+  ExportDatasetImageModalProps,
+  ExportSchemaModalProps,
 } from "@containers/Home/domain/modal"
 import { ExportImageProps } from "@containers/Home/domain/props"
-import { Dataset } from "@modules/datasets/domain/core"
+import { Schema } from "@modules/dataset/domain/core"
 import { ExportFileConfigDTO } from "@modules/config/dto/file"
 
 interface Props {
   handleExportImage(props: ExportImageProps): void
-  handleExportDatasets(datasets: Dataset[], config: ExportFileConfigDTO): void
+  handleExportDataset(dataset: Schema[], config: ExportFileConfigDTO): void
 }
 
-export default function Modals({ handleExportImage, handleExportDatasets }: Props) {
+export default function Modals({ handleExportImage, handleExportDataset }: Props) {
   const { openModal } = useModal()
 
   return (
     <Fragment>
-      {openModal instanceof DeleteAllDatasetsModalProps && <DeleteAllDatasets />}
+      {openModal instanceof DeleteAllSchemasModalProps && <DeleteAllDatasets />}
       {openModal instanceof AddFieldModalProps && (
-        <AddField datasetId={openModal.datasetId} parentfieldId={openModal.parentfieldId} />
+        <AddField schemaId={openModal.schemaId} parentfieldId={openModal.parentfieldId} />
       )}
-      {openModal instanceof DeleteDatasetModalProps && (
-        <DeleteDataset id={openModal.id} name={openModal.name} />
+      {openModal instanceof DeleteSchemaModalProps && (
+        <DeleteSchema id={openModal.id} name={openModal.name} />
       )}
       {openModal instanceof EditFieldModalProps && (
         <EditField
           field={openModal.field}
-          datasetId={openModal.datasetId}
+          schemaId={openModal.schemaId}
           parentfieldId={openModal.parentfieldId}
         />
       )}
-      {openModal instanceof EditDatasetModalProps && <EditDataset dataset={openModal.dataset} />}
-      {openModal instanceof ExportAllDatasetsModalProps && (
-        <ExportAllDatasets handleExportDatasets={handleExportDatasets} />
+      {openModal instanceof EditSchemaModalProps && <EditSchema schema={openModal.schema} />}
+      {openModal instanceof ExportDatasetModalProps && (
+        <ExportDataset handleExportDataset={handleExportDataset} />
       )}
       {openModal instanceof ExportDatasetImageModalProps && (
         <ExportImage handleExportImage={handleExportImage} />
       )}
-      {openModal instanceof ExportDatasetModalProps && (
-        <ExportDataset handleExportDatasets={handleExportDatasets} dataset={openModal.dataset} />
+      {openModal instanceof ExportSchemaModalProps && (
+        <ExportSchema handleExportDataset={handleExportDataset} schema={openModal.schema} />
       )}
     </Fragment>
   )

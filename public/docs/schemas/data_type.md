@@ -3,20 +3,20 @@
 ## `specialCharacter`
 
 ```js
-schemas.dataType.specialCharacter().getValue() // '_'
+modules.dataType.specialCharacter().getValue() // '_'
 ```
 
 ## `boolean`
 
 ```js
-schemas.dataType.boolean().getValue() // true
+modules.dataType.boolean().getValue() // true
 ```
 
 ## `int`
 
 ```js
-schemas.dataType.int().getValue() // 462
-schemas.dataType.int().getValue({ min: 10, max: 30 }) // 28
+modules.dataType.int().getValue() // 462
+modules.dataType.int().getValue({ min: 10, max: 30 }) // 28
 ```
 
 | Argument | Description           |
@@ -27,9 +27,9 @@ schemas.dataType.int().getValue({ min: 10, max: 30 }) // 28
 ## `float`
 
 ```js
-schemas.dataType.float().getValue() // 462.12
-schemas.dataType.float().getValue({ min: 10, max: 30 }) // 10.23
-schemas.dataType.number().getValue({ precision: 4 }) // 90.5362
+modules.dataType.float().getValue() // 462.12
+modules.dataType.float().getValue({ min: 10, max: 30 }) // 10.23
+modules.dataType.number().getValue({ precision: 4 }) // 90.5362
 ```
 
 | Argument  | Description                                                               |
@@ -41,8 +41,8 @@ schemas.dataType.number().getValue({ precision: 4 }) // 90.5362
 ## `number`
 
 ```js
-schemas.dataType.number().getValue() // 301
-schemas.dataType.number().getValue({ min: 10, max: 30 }) // 10.2327
+modules.dataType.number().getValue() // 301
+modules.dataType.number().getValue({ min: 10, max: 30 }) // 10.2327
 ```
 
 | Argument  | Description                                                  |
@@ -54,9 +54,9 @@ schemas.dataType.number().getValue({ min: 10, max: 30 }) // 10.2327
 ## `hexadecimal`
 
 ```js
-schemas.dataType.hexadecimal().getValue() // '009df'
-schemas.dataType.hexadecimal().getValue({ length: 3 }) // '01D'
-schemas.dataType.hexadecimal().getValue({ lenght: 3, case: 'upper' }) // 'DE20'
+modules.dataType.hexadecimal().getValue() // '009df'
+modules.dataType.hexadecimal().getValue({ length: 3 }) // '01D'
+modules.dataType.hexadecimal().getValue({ lenght: 3, case: "upper" }) // 'DE20'
 ```
 
 | Argument | Description                                                                   |
@@ -67,8 +67,8 @@ schemas.dataType.hexadecimal().getValue({ lenght: 3, case: 'upper' }) // 'DE20'
 ## `matrix`
 
 ```js
-schemas.dataType.matrix().getValue() // [[1, 0, 5], [5, 10, 9]]
-schemas.dataType.matrix().getValue({ x_size: 4, y_size: 2 }) // [[1, 2], [0, 0], [1, 1], [4, 5]]
+modules.dataType.matrix().getValue() // [[1, 0, 5], [5, 10, 9]]
+modules.dataType.matrix().getValue({ x_size: 4, y_size: 2 }) // [[1, 2], [0, 0], [1, 1], [4, 5]]
 ```
 
 | Argument  | Description                             |
@@ -82,9 +82,9 @@ schemas.dataType.matrix().getValue({ x_size: 4, y_size: 2 }) // [[1, 2], [0, 0],
 ## `characters`
 
 ```js
-schemas.dataType.characters().getValue() // 'v'
-schemas.dataType.characters().getValue({ length: 5 }) // 'bhtlw'
-schemas.dataType.characters().getValue({ length: 5, case: 'upper' }) // 'HQRSD'
+modules.dataType.characters().getValue() // 'v'
+modules.dataType.characters().getValue({ length: 5 }) // 'bhtlw'
+modules.dataType.characters().getValue({ length: 5, case: "upper" }) // 'HQRSD'
 ```
 
 | Argument | Description                                     |
@@ -95,8 +95,8 @@ schemas.dataType.characters().getValue({ length: 5, case: 'upper' }) // 'HQRSD'
 ## `binaryCode`
 
 ```js
-schemas.dataType.binaryCode().getValue() // '00101'
-schemas.dataType.binaryCode().getValue({ length: 6 }) // '010100'
+modules.dataType.binaryCode().getValue() // '00101'
+modules.dataType.binaryCode().getValue({ length: 6 }) // '010100'
 ```
 
 | Argument | Description               |
@@ -106,13 +106,11 @@ schemas.dataType.binaryCode().getValue({ length: 6 }) // '010100'
 ## `alphaNumeric`
 
 ```js
-schemas.dataType.alphaNumeric().getValue() // 'b29o'
-schemas.dataType.alphaNumeric().getValue({ length: 7 }) // 'HN5fR2w'
-schemas.dataType.alphaNumeric().getValue({ banned: 'arf' }) // 'HN5vR2w'
-schemas.dataType.alphaNumeric().getValue({ banned: ['a', 'r', 'f'] }) // 'HN5vR2w'
-schemas.dataType
-   .alphaNumeric()
-   .getValue({ banned: ['a', 'r', 'f'], case: 'lower' }) // 'l09bct'
+modules.dataType.alphaNumeric().getValue() // 'b29o'
+modules.dataType.alphaNumeric().getValue({ length: 7 }) // 'HN5fR2w'
+modules.dataType.alphaNumeric().getValue({ banned: "arf" }) // 'HN5vR2w'
+modules.dataType.alphaNumeric().getValue({ banned: ["a", "r", "f"] }) // 'HN5vR2w'
+modules.dataType.alphaNumeric().getValue({ banned: ["a", "r", "f"], case: "lower" }) // 'l09bct'
 ```
 
 | Argument | Description                                                                                                       |

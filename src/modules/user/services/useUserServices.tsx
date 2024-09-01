@@ -2,7 +2,6 @@ import { useFetch } from "@modules/app/modules/http/hooks"
 import { LoginUserDTO, SignUpUserDTO } from "../dto/user"
 import { FetchFunctionsProps, PostProps } from "@modules/app/modules/http/interfaces/fetch"
 import { API_ROUTES } from "@modules/app/constants/ROUTES"
-import { NoUserLimits } from "@modules/config/domain/core"
 import { LoginUser } from "../interfaces/user"
 
 export default function useUserServices() {
@@ -10,7 +9,7 @@ export default function useUserServices() {
 
   async function loginUser(props: PostProps<string, LoginUserDTO>): Promise<void> {
     post({
-      url: API_ROUTES.AUTH_ROUTES.LOGIN,
+      url: API_ROUTES.AUTH.LOGIN,
       body: props.body,
       onError: props.onError,
       onSuccess: props.onSuccess,
@@ -20,7 +19,7 @@ export default function useUserServices() {
 
   async function signUpUser(props: PostProps<string, SignUpUserDTO>): Promise<void> {
     post({
-      url: API_ROUTES.AUTH_ROUTES.SIGN_UP,
+      url: API_ROUTES.AUTH.SIGN_UP,
       body: props.body,
       onError: props.onError,
       onSuccess: props.onSuccess,
@@ -28,23 +27,14 @@ export default function useUserServices() {
     })
   }
 
-  async function getNoUserLimits(props: FetchFunctionsProps<NoUserLimits>): Promise<void> {
-    get({
-      url: API_ROUTES.GET_NO_USER_LIMITS,
-      onError: props.onError,
-      onFinally: props.onFinally,
-      onSuccess: props.onSuccess,
-    })
-  }
-
   async function getUserByToken(props: FetchFunctionsProps<LoginUser>): Promise<void> {
     get({
-      url: API_ROUTES.AUTH_ROUTES.GET_USER_BY_TOKEN,
+      url: API_ROUTES.AUTH.GET_USER_BY_TOKEN,
       onError: props.onError,
       onFinally: props.onFinally,
       onSuccess: props.onSuccess,
     })
   }
 
-  return { loginUser, signUpUser, getNoUserLimits, getUserByToken }
+  return { loginUser, signUpUser, getUserByToken }
 }

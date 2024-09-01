@@ -5,7 +5,7 @@ import {
   HomeLayout,
   Modals,
   Navbar,
-  NoDatasetsMessage,
+  NoSchemasMessage,
 } from "./components"
 import { useHome } from "./hooks"
 import { useContext } from "react"
@@ -16,32 +16,32 @@ export default function Home() {
 
   const {
     handleAddNewField,
-    datasets,
+    dataset,
     showFieldsMenu,
     handleExportImage,
     handleOpenDeleteAll,
     loading,
     handleOpenExportImage,
-    handleOpenExportAllDatasets,
-    handleExportDatasets,
+    handleOpenExportDataset,
+    handleExportDataset,
   } = useHome()
 
   const showMenu = !smallWindow || (smallWindow && showFieldsMenu)
 
   return (
     <HomeLayout>
-      <Modals handleExportImage={handleExportImage} handleExportDatasets={handleExportDatasets} />
+      <Modals handleExportImage={handleExportImage} handleExportDataset={handleExportDataset} />
 
       <Navbar
-        handleExportAllDatasets={handleOpenExportAllDatasets}
+        handleExportDataset={handleOpenExportDataset}
         handleExportImage={handleOpenExportImage}
         handleDeleteAll={handleOpenDeleteAll}
         loading={loading}
       />
 
-      {!loading && datasets.length === 0 && <NoDatasetsMessage />}
+      {!loading && dataset.length === 0 && <NoSchemasMessage />}
 
-      {datasets.length > 0 && (
+      {dataset.length > 0 && (
         <main className="flex flex-grow">
           {createDataLoading && <CreationLoading />}
 

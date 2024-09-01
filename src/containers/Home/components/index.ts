@@ -4,13 +4,13 @@ import FieldsMenu from "./FieldsMenu/FieldsMenu"
 import HomeLayout from "./HomeLayout/HomeLayout"
 import Modals from "./Modals/Modals"
 import Navbar from "./Navbar/Navbar"
-import NoDatasetsMessage from "./NoDatasetsMessage/NoDatasetsMessage"
+import NoSchemasMessage from "./NoSchemasMessage/NoSchemasMessage"
 
 export {
   CreationLoading,
   FieldsMenu,
   DatasetPlayground,
-  NoDatasetsMessage,
+  NoSchemasMessage,
   HomeLayout,
   Navbar,
   Modals,

@@ -3,7 +3,7 @@
 ## `paragraphs`
 
 ```js
-schemas.lorem.paragraphs().getValue()
+modules.lorem.paragraphs().getValue()
 ```
 
 |    Argument     | Description                                |
@@ -16,7 +16,7 @@ schemas.lorem.paragraphs().getValue()
 ## `sentences`
 
 ```js
-schemas.lorem.sentences().getValue()
+modules.lorem.sentences().getValue()
 ```
 
 |    Argument    | Description                               |
@@ -29,7 +29,7 @@ schemas.lorem.sentences().getValue()
 ## `slug`
 
 ```js
-schemas.lorem.slug().getValue() // 'lorem-ipsum-ad'
+modules.lorem.slug().getValue() // 'lorem-ipsum-ad'
 ```
 
 | Argument  | Description                 |
@@ -39,7 +39,7 @@ schemas.lorem.slug().getValue() // 'lorem-ipsum-ad'
 ## `words`
 
 ```js
-schemas.lorem.words().getValue() // 'lorem ipsum in'
+modules.lorem.words().getValue() // 'lorem ipsum in'
 ```
 
 | Argument | Description                  |
@@ -49,7 +49,7 @@ schemas.lorem.words().getValue() // 'lorem ipsum in'
 ## `text`
 
 ```js
-schemas.lorem.text().getValue()
+modules.lorem.text().getValue()
 ```
 
 |   Argument    | Description                       |

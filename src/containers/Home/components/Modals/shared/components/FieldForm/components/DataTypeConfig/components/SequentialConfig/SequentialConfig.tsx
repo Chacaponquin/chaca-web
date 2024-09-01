@@ -1,4 +1,4 @@
-import { ArrayValue } from "@modules/datasets/domain/core/datatype"
+import { ArrayValue } from "@modules/dataset/domain/core/datatype"
 import { ChangeSequentialFieldProps } from "@containers/Home/components/Modals/shared/domain/field"
 import { ValuesForm } from "../../shared/components"
 import { LoopInfo } from "./components"

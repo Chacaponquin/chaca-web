@@ -1,8 +1,8 @@
-import { useDatatypes } from "@modules/datasets/hooks"
+import { useDatatypes } from "@modules/dataset/hooks"
 import { useReducer, Reducer } from "react"
 import { FieldFormPayload, fieldFormReducer } from "../reducer"
 import { FORM_ACTIONS } from "../constants"
-import { ARGUMENT_TYPE, DATA_TYPES } from "@modules/schemas/domain/constants"
+import { ARGUMENT_TYPE, DATA_TYPES } from "@modules/modules/domain/constants"
 import {
   ArrayValue,
   PickDatatype,
@@ -10,25 +10,25 @@ import {
   RefDatatype,
   RefWhere,
   SequenceDatatype,
-  SingleValueDatatype,
-} from "@modules/datasets/domain/core/datatype"
+  ModuleValueDatatype,
+} from "@modules/dataset/domain/core/datatype"
 import {
   ChangeSequentialFieldProps,
   FieldActions,
   UpdateArgumentsProps,
   UpdateRefProps,
 } from "../domain/field"
-import { Argument } from "@modules/schemas/domain/core/argument"
-import { FieldForm } from "@modules/datasets/domain/form"
-import { Schema, SchemaOption } from "@modules/schemas/domain/core/schema"
+import { Argument } from "@modules/modules/domain/core/argument"
+import { FieldForm } from "@modules/dataset/domain/form"
+import { ModuleSection, Module } from "@modules/modules/domain/core/schema"
 
 interface Props {
   field: FieldForm
-  datasetId: string
+  schemaId: string
 }
 
-export default function useFieldForm({ field: ifield, datasetId }: Props): FieldActions {
-  const { DATA_TYPES_ARRAY } = useDatatypes({ fieldId: ifield.id, datasetId: datasetId })
+export default function useFieldForm({ field: ifield, schemaId }: Props): FieldActions {
+  const { DATA_TYPES_ARRAY } = useDatatypes({ fieldId: ifield.id, schemaId: schemaId })
   const [field, formDispatch] = useReducer<Reducer<FieldForm, FieldFormPayload>>(
     fieldFormReducer,
     ifield,
@@ -88,16 +88,16 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
     }
   }
 
-  function handleSelectFieldSchema(parent: Schema) {
+  function handleSelectFieldSchema(parent: ModuleSection) {
     formDispatch({
-      type: FORM_ACTIONS.CHANGE_SCHEMA,
+      type: FORM_ACTIONS.CHANGE_MODULE_SECTION,
       payload: {
         schema: parent,
       },
     })
   }
 
-  function handleSelectFieldSchemaOption(option: SchemaOption) {
+  function handleSelectFieldSchemaOption(option: Module) {
     formDispatch({
       type: FORM_ACTIONS.CHANGE_SCHEMA_OPTION,
       payload: {
@@ -139,7 +139,7 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
   }
 
   function handleDeleteFieldSchemaArgument(argument: string) {
-    const datatype = field.datatype as SingleValueDatatype
+    const datatype = field.datatype as ModuleValueDatatype
 
     let newArguments = {}
     Object.entries(datatype.args).forEach(([key, value]) => {
@@ -152,9 +152,9 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
       type: FORM_ACTIONS.CHANGE_FIELD_DATATYPE,
       payload: {
         datatype: {
-          type: DATA_TYPES.SINGLE_VALUE,
-          option: datatype.option,
-          schema: datatype.schema,
+          type: DATA_TYPES.MODULE_VALUE,
+          module: datatype.module,
+          section: datatype.section,
           args: newArguments,
         },
       },
@@ -162,16 +162,16 @@ export default function useFieldForm({ field: ifield, datasetId }: Props): Field
   }
 
   function handleUpdateFieldSchemaArguments({ name, value }: UpdateArgumentsProps) {
-    const datatype = field.datatype as SingleValueDatatype
+    const datatype = field.datatype as ModuleValueDatatype
 
     formDispatch({
       type: FORM_ACTIONS.CHANGE_FIELD_DATATYPE,
       payload: {
         datatype: {
-          type: DATA_TYPES.SINGLE_VALUE,
+          type: DATA_TYPES.MODULE_VALUE,
           args: { ...datatype.args, [name]: value },
-          option: datatype.option,
-          schema: datatype.schema,
+          module: datatype.module,
+          section: datatype.section,
         },
       },
     })

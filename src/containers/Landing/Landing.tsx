@@ -5,7 +5,7 @@ import { useTranslation } from "@modules/app/modules/language/hooks"
 export default function Landing() {
   const { DESCRIPTION } = useTranslation({
     DESCRIPTION: {
-      en: "The best web site to create mock data and schemas for your applications",
+      en: "The best web site to create mock data and modules for your applications",
       es: "La mejor herramienta online para crear mock data y esquemas para tus aplicaciones",
     },
   })

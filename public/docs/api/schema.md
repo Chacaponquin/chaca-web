@@ -72,7 +72,7 @@ Within the configuration of a schema there are different ways to define the fiel
 
 ### String declaration
 
-If you want to use one of the predefined options, you must write a string with the pattern `schema.option`. [Learn about predefined schemas](../category/schemas)
+If you want to use one of the predefined options, you must write a string with the pattern `schema.option`. [Learn about predefined modules](../category/modules)
 
 ```json
 {

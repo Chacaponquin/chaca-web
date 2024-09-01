@@ -6,16 +6,16 @@ import { ChacaSelect } from "@form/components"
 import { ContentLoader } from "@modules/shared/components"
 
 interface Props {
-  handleExportAllDatasets(): void
+  handleExportDataset(): void
   handleExportImage(): void
-  handleAddDataset(): void
+  handleAddSchema(): void
   handleDeleteAll(): void
   loading: boolean
 }
 
 export default function Menu({
-  handleAddDataset,
-  handleExportAllDatasets,
+  handleAddSchema,
+  handleExportDataset,
   handleExportImage,
   handleDeleteAll,
   loading,
@@ -30,8 +30,8 @@ export default function Menu({
     handleChangeLanguage,
     languageOptions,
   } = useMenu({
-    handleAddDataset,
-    handleExportAllDatasets,
+    handleAddSchema,
+    handleExportDataset,
     handleExportImage,
     handleDeleteAll,
   })

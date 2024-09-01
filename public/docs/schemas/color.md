@@ -3,25 +3,25 @@
 ## `cssSupportedFunction`
 
 ```js
-schemas.color.cssSupportedFunction().getValue() // 'rgb'
+modules.color.cssSupportedFunction().getValue() // 'rgb'
 ```
 
 ## `cssSupportedSpace`
 
 ```js
-schemas.color.cssSupportedSpace().getValue() // 'display-p3'
+modules.color.cssSupportedSpace().getValue() // 'display-p3'
 ```
 
 ## `rgb`
 
 ```js
-schemas.color.rgb().getValue({ prefix: '#' }) // '#ffffFF'
-schemas.color.rgb().getValue({ casing: 'upper' }) // '0xFFFFFF'
-schemas.color.rgb().getValue({ casing: 'lower' }) // '0xffffff'
-schemas.color.rgb().getValue({ prefix: '#', casing: 'lower' }) // '#ffffff'
-schemas.color.rgb().getValue({ format: 'hex', casing: 'lower' }) // '#ffffff'
-schemas.color.rgb().getValue({ format: 'css' }) // 'rgb(255, 0, 0)'
-schemas.color.rgb().getValue({ format: 'binary' }) // '10000000 00000000 11111111'
+modules.color.rgb().getValue({ prefix: "#" }) // '#ffffFF'
+modules.color.rgb().getValue({ casing: "upper" }) // '0xFFFFFF'
+modules.color.rgb().getValue({ casing: "lower" }) // '0xffffff'
+modules.color.rgb().getValue({ prefix: "#", casing: "lower" }) // '#ffffff'
+modules.color.rgb().getValue({ format: "hex", casing: "lower" }) // '#ffffff'
+modules.color.rgb().getValue({ format: "css" }) // 'rgb(255, 0, 0)'
+modules.color.rgb().getValue({ format: "binary" }) // '10000000 00000000 11111111'
 ```
 
 |   Argument   | Description                                                                                                  |
@@ -34,9 +34,9 @@ schemas.color.rgb().getValue({ format: 'binary' }) // '10000000 00000000 1111111
 ## `cmyk`
 
 ```js
-schemas.color.cmyk().getValue() // cmyk(100%, 0%, 0%, 0%)
-schemas.color.cmyk().getValue({ format: 'css' }) // cmyk(100%, 0%, 0%, 0%)
-schemas.color.cmyk().getValue({ format: 'binary' }) // (8-32 bits) x 4
+modules.color.cmyk().getValue() // cmyk(100%, 0%, 0%, 0%)
+modules.color.cmyk().getValue({ format: "css" }) // cmyk(100%, 0%, 0%, 0%)
+modules.color.cmyk().getValue({ format: "binary" }) // (8-32 bits) x 4
 ```
 
 | Argument | Description                                           |
@@ -46,10 +46,10 @@ schemas.color.cmyk().getValue({ format: 'binary' }) // (8-32 bits) x 4
 ## `hsl`
 
 ```js
-schemas.color.hsl().getValue({ format: 'css' }) // hsl(0deg, 100%, 80%)
-schemas.color.hsl().getValue({ format: 'css', includeAlpha: true }) // hsl(0deg 100% 50% / 0.5)
-schemas.color.hsl().getValue({ format: 'binary' }) // (8-32 bits) x 3
-schemas.color.hsl().getValue({ format: 'binary', includeAlpha: true }) // (8-32 bits) x 4
+modules.color.hsl().getValue({ format: "css" }) // hsl(0deg, 100%, 80%)
+modules.color.hsl().getValue({ format: "css", includeAlpha: true }) // hsl(0deg 100% 50% / 0.5)
+modules.color.hsl().getValue({ format: "binary" }) // (8-32 bits) x 3
+modules.color.hsl().getValue({ format: "binary", includeAlpha: true }) // (8-32 bits) x 4
 ```
 
 |   Argument   | Description                                                  |
@@ -60,8 +60,8 @@ schemas.color.hsl().getValue({ format: 'binary', includeAlpha: true }) // (8-32 
 ## `hwb`
 
 ```js
-schemas.color.hwb().getValue({ format: 'css' }) // hwb(194 0% 0%)
-schemas.color.hwb().getValue({ format: 'binary' }) // (8-32 bits x 3)
+modules.color.hwb().getValue({ format: "css" }) // hwb(194 0% 0%)
+modules.color.hwb().getValue({ format: "binary" }) // (8-32 bits x 3)
 ```
 
 | Argument | Description                                          |
@@ -71,8 +71,8 @@ schemas.color.hwb().getValue({ format: 'binary' }) // (8-32 bits x 3)
 ## `lch`
 
 ```js
-schemas.color.lch().getValue({ format: 'css' }) // lch(52.2345% 72.2 56.2)
-schemas.color.lch().getValue({ format: 'binary' }) // (8-32 bits x 3)
+modules.color.lch().getValue({ format: "css" }) // lch(52.2345% 72.2 56.2)
+modules.color.lch().getValue({ format: "binary" }) // (8-32 bits x 3)
 ```
 
 | Argument | Description                                          |
@@ -82,10 +82,8 @@ schemas.color.lch().getValue({ format: 'binary' }) // (8-32 bits x 3)
 ## `colorByCSSColorSpace`
 
 ```js
-schemas.color
-   .colorByCSSColorSpace()
-   .getValue({ format: 'css', space: 'display-p3' }) // color(display-p3 0.12 1 0.23)
-schemas.color.colorByCSSColorSpace().getValue({ format: 'binary' }) // (8-32 bits x 3)
+modules.color.colorByCSSColorSpace().getValue({ format: "css", space: "display-p3" }) // color(display-p3 0.12 1 0.23)
+modules.color.colorByCSSColorSpace().getValue({ format: "binary" }) // (8-32 bits x 3)
 ```
 
 | Argument | Description                                                |

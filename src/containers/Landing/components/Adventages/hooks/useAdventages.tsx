@@ -17,8 +17,8 @@ export default function useAdventages() {
       es: "Más de 256 funciones de mock data",
     },
     FIRST_DESCRIPTION: {
-      en: "Use the data generating functions organized by categories to define your datasets",
-      es: "Utiliza las funciones generadoras de datos ordeneadas por categorías para definir tus datasets",
+      en: "Use the data generating functions organized by categories to define your dataset",
+      es: "Utiliza las funciones generadoras de datos ordeneadas por categorías para definir tus dataset",
     },
     SECOND_TITLE: { en: "A NodeJS package", es: "Una librería NodeJS" },
     SECOND_DESCRIPTION: {

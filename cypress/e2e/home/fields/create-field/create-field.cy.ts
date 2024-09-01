@@ -1,6 +1,6 @@
 import { createAppRoute } from "cypress/fixtures/route"
 
-describe("# Create Dataset Field tests", () => {
+describe("# Create Schema Field tests", () => {
   beforeEach(() => {
     cy.visit(createAppRoute("home"))
 

@@ -1,6 +1,6 @@
 # Custom schema fields
 
-If none of the [defined options](/schemas/address) are useful you can create your own schemas with the schemaField method.
+If none of the [defined options](/modules/address) are useful you can create your own modules with the schemaField method.
 
 ```js
 chaca.schemaField(fieldFunction)
@@ -16,7 +16,7 @@ chaca.schemaField(fieldFunction)
 
 For this example, we want to create a schema where the id will be a string that will have the letter T as the first character and the rest of the 6 characters will be integers.
 
-With the predefined schemas in Chaca there is no way to achieve this result for this field, therefore you can create a function that returns values with this pattern.
+With the predefined modules in Chaca there is no way to achieve this result for this field, therefore you can create a function that returns values with this pattern.
 
 ### Declaration
 

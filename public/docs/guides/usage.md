@@ -3,14 +3,14 @@
 ## Create dataset schema
 
 ```js
-import { chaca, schemas } from "chaca"
+import { chaca, modules } from "chaca"
 
 const userSchema = chaca.schema({
   id: chaca.sequence(),
-  username: schemas.internet.userName(),
-  password: schemas.internet.password(),
-  image: schemas.image.person(),
-  age: schemas.dataType.int({ min: 18, max: 90 }),
+  username: modules.internet.userName(),
+  password: modules.internet.password(),
+  image: modules.image.person(),
+  age: modules.dataType.int({ min: 18, max: 90 }),
   isOlder: ({ currentFields: fields }) => {
     return fields.age >= 60
   },
@@ -34,7 +34,7 @@ The code presented generates an array with 50 users that will have the following
 If you want to use any of the predefined functions individually, you can do it as follows
 
 ```js
-import { schemas } from "chaca"
+import { modules } from "chaca"
 
-schemas.id.uuid().getValue() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
+modules.id.uuid().getValue() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
 ```
