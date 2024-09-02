@@ -8,7 +8,7 @@ class FieldTypesSection extends DocSection {
 
 export const SECTION = new FieldTypesSection()
 
-class CustomSchemaField extends DocSubSection {
+class Module extends DocSubSection {
   constructor() {
     super({ parent: SECTION, title: "Custom Field", url: "custom-schema-fields" })
   }
@@ -23,12 +23,6 @@ class Custom extends DocSubSection {
 class Enum extends DocSubSection {
   constructor() {
     super({ parent: SECTION, title: "Enum", url: "enum" })
-  }
-}
-
-class FieldConfig extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: "Field config", url: "field" })
   }
 }
 
@@ -68,10 +62,9 @@ class Pick extends DocSubSection {
   }
 }
 
-export const CUSTOM_SCHEMA_FIELD = new CustomSchemaField()
+export const MODULE = new Module()
 export const CUSTOM = new Custom()
 export const ENUM = new Enum()
-export const FIELD_CONFIG = new FieldConfig()
 export const NESTED_SCHEMA = new NestedSchema()
 export const REF = new Ref()
 export const SEQUENCE = new Sequence()
@@ -79,15 +72,4 @@ export const SEQUENTIAL = new Sequential()
 export const PICK = new Pick()
 export const PROBABILITY = new Probability()
 
-SECTION.push([
-  CUSTOM_SCHEMA_FIELD,
-  CUSTOM,
-  ENUM,
-  FIELD_CONFIG,
-  NESTED_SCHEMA,
-  REF,
-  SEQUENCE,
-  SEQUENTIAL,
-  PROBABILITY,
-  PICK,
-])
+SECTION.push([MODULE, CUSTOM, ENUM, NESTED_SCHEMA, REF, SEQUENCE, SEQUENTIAL, PROBABILITY, PICK])

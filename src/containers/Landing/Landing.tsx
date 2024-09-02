@@ -1,6 +1,9 @@
 import { Layout } from "@containers/Layout/components"
 import { Adventages, Footer, Sections, Presentation, LinksSection } from "./components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
+import { useCallback } from "react"
+
+useCallback
 
 export default function Landing() {
   const { DESCRIPTION } = useTranslation({

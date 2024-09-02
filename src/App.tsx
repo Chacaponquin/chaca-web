@@ -14,10 +14,20 @@ import { ConfigProvider } from "@modules/config/context"
 import { ModalProvider } from "@modules/modal/context"
 import { HomeProvider } from "@containers/Home/context"
 import { PlaygroundProvider } from "@modules/playground/context"
-import { Overview } from "@containers/Docs/components/Api/components"
-import { Command, Start } from "@containers/Docs/components/Guides/components"
-import { COMMAND_LINE, GETTING_STARTED } from "@modules/docs/domain/core/sections/guides"
-import { OVERVIEW } from "@modules/docs/domain/core/sections/api"
+import {
+  ModuleValue,
+  Overview,
+  SchemaArray,
+  SchemaObject,
+} from "@containers/Docs/components/Api/components"
+import { Command, Introduction } from "@containers/Docs/components/GetStarted/components"
+import { COMMAND_LINE, INTRODUCTION, USAGE } from "@modules/docs/domain/core/sections/get-started"
+import {
+  MODULE_VALUE,
+  OVERVIEW,
+  SCHEMA_ARRAY,
+  SCHEMA_OBJECT,
+} from "@modules/docs/domain/core/sections/api"
 import { DocsProvider } from "@modules/docs/context"
 import {
   ADDRESS,
@@ -56,11 +66,10 @@ import {
   Vehicle,
   Video,
   Word,
-} from "@containers/Docs/components/Schemas/components"
+} from "@containers/Docs/components/Modules/components"
 import {
-  Config as FieldConfig,
   Custom,
-  CustomSchemaField,
+  Module,
   Enum,
   NestedSchema,
   Pick,
@@ -70,9 +79,8 @@ import {
   Sequential,
 } from "@containers/Docs/components/Fields/components"
 import {
-  FIELD_CONFIG,
   CUSTOM,
-  CUSTOM_SCHEMA_FIELD,
+  MODULE,
   ENUM,
   NESTED_SCHEMA,
   PICK,
@@ -81,6 +89,20 @@ import {
   SEQUENCE,
   SEQUENTIAL,
 } from "@modules/docs/domain/core/sections/field-types"
+import Usage from "@containers/Docs/components/GetStarted/components/Usage/Usage"
+import {
+  Dataset,
+  DatasetStore,
+  Schema,
+  SchemaField,
+} from "@containers/Docs/components/Concepts/components"
+import {
+  DATASET,
+  DATASET_STORE,
+  SCHEMA,
+  SCHEMA_FIELD,
+} from "@modules/docs/domain/core/sections/concepts"
+import { DocLayout } from "@modules/docs/components"
 
 export default function App() {
   return (
@@ -119,39 +141,49 @@ export default function App() {
 
                       <Route path={APP_ROUTES.NOT_FOUND} element={<Error404 />} />
 
-                      <Route element={<Overview />} path={OVERVIEW.url} />
+                      <Route path={APP_ROUTES.DOCS.ROOT} element={<DocLayout />}>
+                        <Route element={<Overview />} path={OVERVIEW.url} />
+                        <Route element={<ModuleValue />} path={MODULE_VALUE.url} />
+                        <Route element={<SchemaArray />} path={SCHEMA_ARRAY.url} />
+                        <Route element={<SchemaObject />} path={SCHEMA_OBJECT.url} />
 
-                      <Route element={<Command />} path={COMMAND_LINE.url} />
-                      <Route element={<Start />} path={GETTING_STARTED.url} />
+                        <Route element={<Dataset />} path={DATASET.url} />
+                        <Route element={<DatasetStore />} path={DATASET_STORE.url} />
+                        <Route element={<Schema />} path={SCHEMA.url} />
+                        <Route element={<SchemaField />} path={SCHEMA_FIELD.url} />
 
-                      <Route element={<Address />} path={ADDRESS.url} />
-                      <Route element={<Animal />} path={ANIMAL.url} />
-                      <Route element={<Color />} path={COLOR.url} />
-                      <Route element={<Datatype />} path={DATATYPE.url} />
-                      <Route element={<Date />} path={DATE.url} />
-                      <Route element={<Finance />} path={FINANCE.url} />
-                      <Route element={<Id />} path={ID.url} />
-                      <Route element={<Image />} path={IMAGE.url} />
-                      <Route element={<Internet />} path={INTERNET.url} />
-                      <Route element={<Lorem />} path={LOREM.url} />
-                      <Route element={<Person />} path={PERSON.url} />
-                      <Route element={<Phone />} path={PHONE.url} />
-                      <Route element={<Science />} path={SCIENCE.url} />
-                      <Route element={<System />} path={SYSTEM.url} />
-                      <Route element={<Vehicle />} path={VEHICLE.url} />
-                      <Route element={<Word />} path={WORD.url} />
-                      <Route element={<Video />} path={VIDEO.url} />
+                        <Route element={<Command />} path={COMMAND_LINE.url} />
+                        <Route element={<Introduction />} path={INTRODUCTION.url} />
+                        <Route element={<Usage />} path={USAGE.url} />
 
-                      <Route element={<FieldConfig />} path={FIELD_CONFIG.url} />
-                      <Route element={<Custom />} path={CUSTOM.url} />
-                      <Route element={<CustomSchemaField />} path={CUSTOM_SCHEMA_FIELD.url} />
-                      <Route element={<Enum />} path={ENUM.url} />
-                      <Route element={<NestedSchema />} path={NESTED_SCHEMA.url} />
-                      <Route element={<Sequence />} path={SEQUENCE.url} />
-                      <Route element={<Sequential />} path={SEQUENTIAL.url} />
-                      <Route element={<Pick />} path={PICK.url} />
-                      <Route element={<Probability />} path={PROBABILITY.url} />
-                      <Route element={<Ref />} path={REF.url} />
+                        <Route element={<Address />} path={ADDRESS.url} />
+                        <Route element={<Animal />} path={ANIMAL.url} />
+                        <Route element={<Color />} path={COLOR.url} />
+                        <Route element={<Datatype />} path={DATATYPE.url} />
+                        <Route element={<Date />} path={DATE.url} />
+                        <Route element={<Finance />} path={FINANCE.url} />
+                        <Route element={<Id />} path={ID.url} />
+                        <Route element={<Image />} path={IMAGE.url} />
+                        <Route element={<Internet />} path={INTERNET.url} />
+                        <Route element={<Lorem />} path={LOREM.url} />
+                        <Route element={<Person />} path={PERSON.url} />
+                        <Route element={<Phone />} path={PHONE.url} />
+                        <Route element={<Science />} path={SCIENCE.url} />
+                        <Route element={<System />} path={SYSTEM.url} />
+                        <Route element={<Vehicle />} path={VEHICLE.url} />
+                        <Route element={<Word />} path={WORD.url} />
+                        <Route element={<Video />} path={VIDEO.url} />
+
+                        <Route element={<Custom />} path={CUSTOM.url} />
+                        <Route element={<Module />} path={MODULE.url} />
+                        <Route element={<Enum />} path={ENUM.url} />
+                        <Route element={<NestedSchema />} path={NESTED_SCHEMA.url} />
+                        <Route element={<Sequence />} path={SEQUENCE.url} />
+                        <Route element={<Sequential />} path={SEQUENTIAL.url} />
+                        <Route element={<Pick />} path={PICK.url} />
+                        <Route element={<Probability />} path={PROBABILITY.url} />
+                        <Route element={<Ref />} path={REF.url} />
+                      </Route>
 
                       <Route path="*" element={<Error404 />} />
                     </Routes>

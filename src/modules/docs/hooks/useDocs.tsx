@@ -1,19 +1,25 @@
-import { useCallback, useContext } from "react"
-import { DocSubSection } from "../domain/core/base"
+import { useContext, useMemo } from "react"
 import { DocsContext } from "../context"
+import { DocSubSection } from "../domain/core/base"
+import { useLocation } from "react-router-dom"
 
 export default function useDocs() {
   const { docs } = useContext(DocsContext)
+  const location = useLocation()
 
-  const getAllDocs = useCallback(() => {
-    let all: DocSubSection[] = []
+  const selected: DocSubSection = useMemo(() => {
+    const sections = [] as DocSubSection[]
 
-    for (const doc of docs) {
-      all = [...all, ...doc.sections]
+    for (const section of docs) {
+      section.sections.forEach((s) => {
+        sections.push(s)
+      })
     }
 
-    return all
-  }, [docs])
+    const found = sections.find((s) => s.redirect === location.pathname) as DocSubSection
 
-  return { docs, getAllDocs }
+    return found
+  }, [docs, location])
+
+  return { docs, selected }
 }

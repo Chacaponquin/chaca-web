@@ -1,4 +1,4 @@
-import DocLayout from "./DocLayout/DocLayout"
+import Content from "./Content/Content"
 import Sections from "./Sections/Sections"
 
-export { Sections, DocLayout }
+export { Sections, Content }

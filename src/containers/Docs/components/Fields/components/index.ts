@@ -1,6 +1,5 @@
-import Config from "./Config/Config"
 import Custom from "./Custom/Custom"
-import CustomSchemaField from "./CustomSchemaField/CustomSchemaField"
+import Module from "./Module/Module"
 import Enum from "./Enum/Enum"
 import NestedSchema from "./NestedSchema/NestedSchema"
 import Pick from "./Pick/Pick"
@@ -9,15 +8,4 @@ import Ref from "./Ref/Ref"
 import Sequence from "./Sequence/Sequence"
 import Sequential from "./Sequential/Sequential"
 
-export {
-  Config,
-  Custom,
-  CustomSchemaField,
-  Enum,
-  NestedSchema,
-  Sequence,
-  Sequential,
-  Pick,
-  Probability,
-  Ref,
-}
+export { Custom, Module, Enum, NestedSchema, Sequence, Sequential, Pick, Probability, Ref }

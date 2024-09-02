@@ -1,12 +1,12 @@
 import { DocSection, DocSubSection } from "../base"
 
-class SchemaSection extends DocSection {
+class ModulesSection extends DocSection {
   constructor() {
     super({ title: "Schemas", url: "modules" })
   }
 }
 
-export const SECTION = new SchemaSection()
+export const SECTION = new ModulesSection()
 
 class Address extends DocSubSection {
   constructor() {

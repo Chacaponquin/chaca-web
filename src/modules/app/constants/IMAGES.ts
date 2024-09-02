@@ -9,7 +9,7 @@ export const APP_IMAGES = {
   SIGN_UP_IMAGE: { image: "/images/signUp-image.png", alt: "sign-up-image" },
   WELCOME: { image: "/images/welcome.png", alt: "chaca-welcome-image" },
   PRESENTATION: {
-    SIMPLE_DATASET: { image: "/images/Simple Schema.png", alt: "Simple Schema" },
+    SIMPLE_DATASET: { image: "/images/simple-schema.png", alt: "simple-schema" },
     RELATIONAL_DATASETS: { image: "/images/Relational Datasets.png", alt: "Relational Datasets" },
 
     EXTENSIONS: {

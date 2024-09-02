@@ -6,7 +6,7 @@ class ExportSection extends DocSection {
   }
 }
 
-const SECTION = new ExportSection()
+export const SECTION = new ExportSection()
 
 class Overview extends DocSubSection {
   constructor() {

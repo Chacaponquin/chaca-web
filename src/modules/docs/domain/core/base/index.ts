@@ -43,7 +43,15 @@ export abstract class DocSubSection {
   }
 
   get url() {
-    return `/${this.parent.url}/${this._url}`
+    return `${this.parent.url}/${this._url}`
+  }
+
+  get redirect(): string {
+    return `/docs/${this.parent.url}/${this._url}`
+  }
+
+  get location(): string[] {
+    return [this.parent.title, this.title]
   }
 
   get next(): DocSubSection | null {

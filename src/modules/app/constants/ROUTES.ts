@@ -10,16 +10,7 @@ export const APP_ROUTES = {
   NOT_FOUND: "/not-found",
 
   DOCS: {
-    API: {
-      OVERVIEW: "/api/overviw",
-      SCHEMA_OPTION: "/api/schema-option",
-      SCHEMA: "/api/schema",
-    },
-    GUIDES: {
-      START: "/guides/getiing-started",
-      COMMAND: "/guides/command-line",
-      USAGE: "/guides/usage",
-    },
+    ROOT: "/docs",
   },
 } as const
 

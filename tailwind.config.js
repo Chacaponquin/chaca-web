@@ -99,6 +99,7 @@ module.exports = {
         fontSemiBold: "Poppins Semi Bold",
         fontTitle: "Poppins Extra Bold",
         fontLight: "Poppins Light",
+        forntItalic: "Poppins Italic",
         fontMedium: "Poppins Medium",
         fontExtraBold: "Poppins Extra Bold",
         fontCode: "JetBrains Mono Regular",

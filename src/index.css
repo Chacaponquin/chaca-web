@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @font-face {
+  font-family: "Poppins Italic";
+  src: url("./assets//font/Poppins/Poppins-Italic.ttf");
+}
+
+@font-face {
   font-family: "Poppins Light";
   src: url("./assets//font/Poppins/Poppins-Light.ttf");
 }

@@ -18,7 +18,7 @@ export default function Section({ title, subs, selected }: Props) {
             key={sub.url}
             title={sub.title}
             active={selected.url === sub.url}
-            url={sub.url}
+            url={sub.redirect}
           />
         ))}
       </ul>

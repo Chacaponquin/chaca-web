@@ -2,7 +2,7 @@ import { APP_ROUTES } from "@modules/app/constants"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { NavbarLink } from "../interfaces"
 import { useState } from "react"
-import { GETTING_STARTED } from "@modules/docs/domain/core/sections/guides"
+import { INTRODUCTION } from "@modules/docs/domain/core/sections/get-started"
 
 export default function useNavbar() {
   const [open, setOpen] = useState(false)
@@ -19,7 +19,7 @@ export default function useNavbar() {
 
   const LINKS: NavbarLink[] = [
     { route: APP_ROUTES.HOME, title: HOME_TEXT },
-    { route: GETTING_STARTED.url, title: DOCS_TEXT },
+    { route: INTRODUCTION.redirect, title: DOCS_TEXT },
     { route: APP_ROUTES.CONTACT_US, title: CONTACT_US_TEXT },
   ]
 
