@@ -14,7 +14,7 @@ export default function Button({ url, text, title, direction }: Props) {
     "justify-center",
     "transition-all duration-200",
     "rounded",
-    "border-[1px] border-scale-10",
+    "border-[0.5px] border-scale-10",
     "w-full h-max",
     "px-6 py-2.5",
     "hover:border-purple-6",

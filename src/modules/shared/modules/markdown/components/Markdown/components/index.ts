@@ -13,17 +13,13 @@ import Table from "./Table/Table"
 import Th from "./Th/Th"
 import Td from "./Td/Td"
 import A from "./A/A"
-import ApiRouteExample from "./ApiRouteExample/ApiRouteExample"
-import ApiRoute from "./ApiRoute/ApiRoute"
-import PostSchemaArrayOne from "./PostSchemaArrayOne/PostSchemaArrayOne"
-import PostSchemaExampleOne from "./PostSchemaExampleOne/PostSchemaExampleOne"
-import PostSchemaExampleSecond from "./PostSchemaExampleSecond/PostSchemaExampleSecond"
 import Info from "./Info/Info"
 import Danger from "./Danger/Danger"
 import Tip from "./Tip/Tip"
 import Link from "./Link/Link"
 import I from "./I/I"
 import ExternalLink from "./ExternalLink/ExternalLink"
+import MiniCode from "./MiniCode/MiniCode"
 
 export {
   ListItem,
@@ -41,15 +37,11 @@ export {
   Th,
   Td,
   A,
-  ApiRouteExample,
-  ApiRoute,
-  PostSchemaArrayOne,
-  PostSchemaExampleOne,
-  PostSchemaExampleSecond,
   Info,
   Danger,
   Tip,
   Link,
   I,
   ExternalLink,
+  MiniCode,
 }

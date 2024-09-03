@@ -5,6 +5,7 @@ import ArrowUp from "./ArrowUp"
 import Bars from "./Bars"
 import Change from "./Change"
 import Check from "./Check"
+import Clipboard from "./Clipboard"
 import Code from "./Code"
 import Config from "./Config"
 import Copy from "./Copy"
@@ -90,4 +91,5 @@ export {
   Unlock,
   Lock,
   ScreenFit,
+  Clipboard,
 }

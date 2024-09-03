@@ -6,16 +6,19 @@ import clsx from "clsx"
 interface Props {
   code: string
   language: Language
+  className?: string
 }
 
-export default function ExampleCode({ code, language }: Props) {
+export default function ExampleCode({ code, language, className }: Props) {
   const CLASS = clsx(
-    "px-4 py-3",
+    "px-4 py-4",
     "code-view",
-    "bg-code-dark dark:bg-[#282A36]",
+    "bg-scale-3",
     "w-full",
     "overflow-x-auto",
     "rounded",
+    "text-sm",
+    className,
   )
 
   return (

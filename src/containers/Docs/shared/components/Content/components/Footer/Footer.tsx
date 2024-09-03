@@ -1,6 +1,7 @@
 import { DocSubSection } from "@modules/docs/domain/core/base"
 import { Button } from "./components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
+import clsx from "clsx"
 
 interface Props {
   next: DocSubSection | null
@@ -13,16 +14,25 @@ export default function Footer({ back, next }: Props) {
     BACK: { en: "Previous page", es: "Anterior" },
   })
 
+  const CLASS = clsx(
+    "w-full",
+    "grid grid-cols-1 md:grid-cols-2",
+    "gap-y-3 gap-x-7",
+    "border-t-[1px] border-scale-10",
+    "mt-24",
+    "pt-8 pb-16",
+  )
+
   return (
-    <footer className="grid w-full grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-7 pt-8 border-t-[1px] border-scale-10 mt-8">
+    <footer className={CLASS}>
       {back ? (
-        <Button text={BACK} title={back.title} url={back.url} direction="left" />
+        <Button text={BACK} title={back.title} url={back.redirect} direction="left" />
       ) : (
         <div></div>
       )}
 
       {next ? (
-        <Button text={NEXT} title={next.title} url={next.url} direction="right" />
+        <Button text={NEXT} title={next.title} url={next.redirect} direction="right" />
       ) : (
         <div></div>
       )}

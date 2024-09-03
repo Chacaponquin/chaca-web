@@ -13,6 +13,8 @@ import {
   P,
 } from "@modules/shared/modules/markdown/components/Markdown/components"
 import { Commands } from "./components"
+import { APP_ROUTES } from "@modules/app/constants"
+import { CHACA_LINKS } from "@modules/shared/domain/links"
 
 export default function Introduction() {
   const NODE_LINK = "https://nodejs.org/en"
@@ -21,6 +23,7 @@ export default function Introduction() {
   const FALSO_LINK = "https://ngneat.github.io/falso/"
   const FAKER_LINK = "https://next.fakerjs.dev/"
   const MOCKAROO_LINK = "https://www.mockaroo.com/"
+  const SHAZAM_LINK = "https://www.shazam.com/shazamkit"
 
   return (
     <Content>
@@ -93,8 +96,9 @@ export default function Introduction() {
         </ListItem>
         <ListItem>
           <ExternalLink to={UNPLASH_LINK}>Unplash</ExternalLink>,{" "}
-          <ExternalLink to={LOREM_PICSUM_LINK}>Lorem Picsum</ExternalLink>, Shazam con REST API
-          públicas que brindan datos realistas de un sector específico
+          <ExternalLink to={LOREM_PICSUM_LINK}>Lorem Picsum</ExternalLink>,{" "}
+          <ExternalLink to={SHAZAM_LINK}>Shazam</ExternalLink> como REST API públicas que brindan
+          datos realistas de un sector específico
         </ListItem>
       </List>
 
@@ -111,6 +115,21 @@ export default function Introduction() {
       </P>
 
       <Commands />
+
+      <H2>Requisitos</H2>
+
+      <P>
+        Es necesario para la instalación una versión de{" "}
+        <ExternalLink to={NODE_LINK}>Nodejs</ExternalLink> superior a la 16 en el sistema operativo
+      </P>
+
+      <H2>Comunidad</H2>
+
+      <P>
+        Si tienes alguna duda o necesitas ayuda, únete a la comunidad de{" "}
+        <ExternalLink to={CHACA_LINKS.DISCORD}>Discord</ExternalLink>, Github Discussion, o ponte en{" "}
+        <Link to={APP_ROUTES.CONTACT_US}>contacto</Link> nosotros
+      </P>
     </Content>
   )
 }

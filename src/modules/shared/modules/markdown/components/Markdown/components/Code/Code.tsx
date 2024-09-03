@@ -7,6 +7,6 @@ interface Props {
   language: Language
 }
 
-export default function Code({ code, language }: Props) {
-  return <ExampleCode code={code} language={language} />
+export default function Code({ code, language, className }: Props) {
+  return <ExampleCode code={code} language={language} className={className} />
 }

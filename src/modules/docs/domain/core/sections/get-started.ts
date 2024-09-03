@@ -30,4 +30,4 @@ export const INTRODUCTION = new IntroductionSection()
 export const COMMAND_LINE = new CommandLineSection()
 export const USAGE = new UsageSection()
 
-SECTION.push([INTRODUCTION, COMMAND_LINE, USAGE])
+SECTION.push([INTRODUCTION, USAGE, COMMAND_LINE])
