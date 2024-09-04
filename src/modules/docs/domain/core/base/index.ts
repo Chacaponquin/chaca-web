@@ -54,6 +54,10 @@ export abstract class DocSubSection {
     return [this.parent.title, this.title]
   }
 
+  get titleSeo(): string {
+    return `${this.title} | Chaca Docs`
+  }
+
   get next(): DocSubSection | null {
     const index = this.parent.sections.indexOf(this)
 

@@ -11,6 +11,7 @@ import {
   List,
   ListItem,
   P,
+  Warning,
 } from "@modules/shared/modules/markdown/components/Markdown/components"
 import { Commands } from "./components"
 import { APP_ROUTES } from "@modules/app/constants"
@@ -115,6 +116,14 @@ export default function Introduction() {
       </P>
 
       <Commands />
+
+      <Warning title="Cuidado con las dependencias">
+        <P>
+          Si usas Chaca dentro de tu proyecto web es recomendable que lo tengas como una dependencia
+          de desarrollo, ya que un paquete pesado que puede provocar una ralentización en la carga
+          de una web en producción
+        </P>
+      </Warning>
 
       <H2>Requisitos</H2>
 

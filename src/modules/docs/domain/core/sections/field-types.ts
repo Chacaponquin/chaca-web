@@ -32,6 +32,12 @@ class NestedSchema extends DocSubSection {
   }
 }
 
+class Key extends DocSubSection {
+  constructor() {
+    super({ parent: SECTION, title: "Key", url: "key" })
+  }
+}
+
 class Ref extends DocSubSection {
   constructor() {
     super({ parent: SECTION, title: "Ref", url: "ref" })
@@ -71,5 +77,17 @@ export const SEQUENCE = new Sequence()
 export const SEQUENTIAL = new Sequential()
 export const PICK = new Pick()
 export const PROBABILITY = new Probability()
+export const KEY = new Key()
 
-SECTION.push([MODULE, CUSTOM, ENUM, NESTED_SCHEMA, REF, SEQUENCE, SEQUENTIAL, PROBABILITY, PICK])
+SECTION.push([
+  MODULE,
+  CUSTOM,
+  ENUM,
+  NESTED_SCHEMA,
+  KEY,
+  REF,
+  SEQUENCE,
+  SEQUENTIAL,
+  PROBABILITY,
+  PICK,
+])

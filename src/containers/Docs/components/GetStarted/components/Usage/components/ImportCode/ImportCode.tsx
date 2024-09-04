@@ -13,5 +13,5 @@ const schema = chaca.schema({
 })
 `
 
-  return <Code code={code} className="my-3" language="typescript"></Code>
+  return <Code title="Use Chaca" code={code} language="typescript"></Code>
 }

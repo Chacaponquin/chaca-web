@@ -8,12 +8,12 @@ interface Props {
 
 export default function CardTitle({ icon, text }: Props) {
   return (
-    <div className="flex gap-x-4 mb-2">
+    <header className="flex gap-x-2.5 mb-2 items-center">
       <i className="dark:stroke-white dark:fill-white stroke-black fill-black">
-        {icon({ size: 25 })}{" "}
+        {icon({ size: 20 })}{" "}
       </i>
 
-      <h1 className="font-fontMedium text-lg uppercase">{text}</h1>
-    </div>
+      <span className="font-fontMedium text-base uppercase text-white">{text}</span>
+    </header>
   )
 }

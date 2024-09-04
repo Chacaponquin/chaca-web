@@ -11,5 +11,5 @@ const id = modules.id.uuid().value()
 const numberLowerThan5 = modules.datatype.int().value({ max: 5 })
 `
 
-  return <Code code={code} className="my-5" language="typescript"></Code>
+  return <Code title="Generate module value" code={code} language="typescript"></Code>
 }

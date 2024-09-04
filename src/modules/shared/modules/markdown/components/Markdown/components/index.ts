@@ -20,6 +20,8 @@ import Link from "./Link/Link"
 import I from "./I/I"
 import ExternalLink from "./ExternalLink/ExternalLink"
 import MiniCode from "./MiniCode/MiniCode"
+import CodesCard from "./CodesCard/CodesCard"
+import Warning from "./Warning/Warning"
 
 export {
   ListItem,
@@ -44,4 +46,6 @@ export {
   I,
   ExternalLink,
   MiniCode,
+  CodesCard,
+  Warning,
 }

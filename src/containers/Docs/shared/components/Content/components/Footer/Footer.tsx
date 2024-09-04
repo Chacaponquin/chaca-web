@@ -18,7 +18,7 @@ export default function Footer({ back, next }: Props) {
     "w-full",
     "grid grid-cols-1 md:grid-cols-2",
     "gap-y-3 gap-x-7",
-    "border-t-[1px] border-scale-10",
+    "border-t-[1px] border-scale-10/50",
     "mt-24",
     "pt-8 pb-16",
   )

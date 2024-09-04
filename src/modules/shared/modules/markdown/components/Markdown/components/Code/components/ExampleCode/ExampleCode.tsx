@@ -16,7 +16,6 @@ export default function ExampleCode({ code, language, className }: Props) {
     "bg-scale-3",
     "w-full",
     "overflow-x-auto",
-    "rounded",
     "text-sm",
     className,
   )
@@ -27,13 +26,27 @@ export default function ExampleCode({ code, language, className }: Props) {
         <Highlight {...defaultProps} language={language} code={code} theme={theme}>
           {({ tokens, getLineProps, getTokenProps }) => {
             return tokens.map((line, index) => {
-              return (
-                <div {...getLineProps({ line, key: index })} key={Id.generate()}>
-                  {line.map((token, key) => (
-                    <span {...getTokenProps({ token, key })} key={key} />
-                  ))}
-                </div>
-              )
+              if (language === "typescript" || language === "javascript" || language === "json") {
+                if (index !== 0 && index !== tokens.length - 1) {
+                  return (
+                    <div {...getLineProps({ line, key: index })} key={Id.generate()}>
+                      {line.map((token, key) => (
+                        <span {...getTokenProps({ token, key })} key={key} />
+                      ))}
+                    </div>
+                  )
+                } else {
+                  return <></>
+                }
+              } else {
+                return (
+                  <div {...getLineProps({ line, key: index })} key={Id.generate()}>
+                    {line.map((token, key) => (
+                      <span {...getTokenProps({ token, key })} key={key} />
+                    ))}
+                  </div>
+                )
+              }
             })
           }}
         </Highlight>

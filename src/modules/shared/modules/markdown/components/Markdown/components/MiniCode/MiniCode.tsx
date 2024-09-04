@@ -15,5 +15,5 @@ export default function MiniCode({ children }: Props) {
     "w-max",
   )
 
-  return <pre className={CLASS}>{children}</pre>
+  return <code className={CLASS}>{children}</code>
 }

@@ -77,6 +77,7 @@ import {
   Ref,
   Sequence,
   Sequential,
+  Key,
 } from "@containers/Docs/components/Fields/components"
 import {
   CUSTOM,
@@ -88,6 +89,7 @@ import {
   REF,
   SEQUENCE,
   SEQUENTIAL,
+  KEY,
 } from "@modules/docs/domain/core/sections/field-types"
 import Usage from "@containers/Docs/components/GetStarted/components/Usage/Usage"
 import {
@@ -103,6 +105,28 @@ import {
   SCHEMA_FIELD,
 } from "@modules/docs/domain/core/sections/concepts"
 import { DocLayout } from "@modules/docs/components"
+import {
+  Csv,
+  JSON,
+  Java,
+  Javascript,
+  Overview as ExportOverview,
+  Postgresql,
+  Python,
+  Typescript,
+  Yaml,
+} from "@containers/Docs/components/Export/components"
+import {
+  CSV,
+  OVERVIEW as EXPORT_OVERVIEW,
+  JAVA,
+  JS,
+  JSON as JSON_SECTION,
+  POSTGRES,
+  PYTHON,
+  TYPESCRIPT,
+  YAML,
+} from "@modules/docs/domain/core/sections/export"
 
 export default function App() {
   return (
@@ -177,12 +201,23 @@ export default function App() {
                         <Route element={<Custom />} path={CUSTOM.url} />
                         <Route element={<Module />} path={MODULE.url} />
                         <Route element={<Enum />} path={ENUM.url} />
+                        <Route element={<Key />} path={KEY.url} />
                         <Route element={<NestedSchema />} path={NESTED_SCHEMA.url} />
                         <Route element={<Sequence />} path={SEQUENCE.url} />
                         <Route element={<Sequential />} path={SEQUENTIAL.url} />
                         <Route element={<Pick />} path={PICK.url} />
                         <Route element={<Probability />} path={PROBABILITY.url} />
                         <Route element={<Ref />} path={REF.url} />
+
+                        <Route element={<ExportOverview />} path={EXPORT_OVERVIEW.url} />
+                        <Route element={<Csv />} path={CSV.url} />
+                        <Route element={<Java />} path={JAVA.url} />
+                        <Route element={<Javascript />} path={JS.url} />
+                        <Route element={<JSON />} path={JSON_SECTION.url} />
+                        <Route element={<Postgresql />} path={POSTGRES.url} />
+                        <Route element={<Python />} path={PYTHON.url} />
+                        <Route element={<Typescript />} path={TYPESCRIPT.url} />
+                        <Route element={<Yaml />} path={YAML.url} />
                       </Route>
 
                       <Route path="*" element={<Error404 />} />

@@ -9,7 +9,7 @@ interface Props {
 
 export default function Tip({ children, title }: Props) {
   return (
-    <Card color="yellow">
+    <Card color="green">
       <CardTitle icon={TipIcon} text={title} />
       {children}
     </Card>

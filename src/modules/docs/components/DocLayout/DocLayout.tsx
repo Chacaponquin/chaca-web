@@ -7,8 +7,7 @@ import { Outlet } from "react-router-dom"
 export default function DocLayout() {
   const { handleChangeOpenAside, openAside, handleOpenSearch, selected } = useLayout()
 
-  const { DESCRIPTION, TITLE } = useTranslation({
-    TITLE: { en: "Chaca | Docs", es: "Chaca | Docs" },
+  const { DESCRIPTION } = useTranslation({
     DESCRIPTION: {
       en: "Explore our guides and examples to integrate Chaca.",
       es: "Explora nuestras guías y ejemplos para integrar Chaca.",
@@ -16,7 +15,7 @@ export default function DocLayout() {
   })
 
   return (
-    <Layout title={TITLE} description={DESCRIPTION}>
+    <Layout title={selected.titleSeo} description={DESCRIPTION}>
       <Aside
         handleOpenSearch={handleOpenSearch}
         handleClose={handleChangeOpenAside}

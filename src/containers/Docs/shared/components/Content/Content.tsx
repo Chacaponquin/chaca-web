@@ -17,7 +17,7 @@ export default function Content({ children }: Props) {
       <main className="w-full flex overflow-y-auto z-40">
         <Doc location={selected.location}>
           <Markdown>
-            <H1>Introduction</H1>
+            <H1>{selected.title}</H1>
             {children}
           </Markdown>
 
