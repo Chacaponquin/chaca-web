@@ -1,4 +1,4 @@
-import { Languages } from "@modules/shared/modules/markdown/interfaces"
+import { Languages } from "@modules/shared/modules/markdown/domain"
 
 export interface ModalCodeProps {
   handleChange(v: string): void

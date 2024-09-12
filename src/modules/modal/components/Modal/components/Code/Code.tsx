@@ -1,6 +1,6 @@
 import { useCode } from "@modules/modal/hooks"
 import { CodeEditor } from "@modules/shared/modules/markdown/components"
-import { Languages } from "@modules/shared/modules/markdown/interfaces"
+import { Languages } from "@modules/shared/modules/markdown/domain"
 import clsx from "clsx"
 
 interface Props {

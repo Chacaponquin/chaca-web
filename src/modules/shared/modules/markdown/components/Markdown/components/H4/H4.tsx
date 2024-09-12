@@ -1,7 +1,9 @@
+import React from "react"
+
 interface Props {
-  children: string
+  children: React.ReactNode
 }
 
 export default function H4({ children }: Props) {
-  return <h4 className="text-xl esm:text-base mb-1 mt-4 font-fontSemiBold">{children}</h4>
+  return <h4 className="text-sm text-white font-fontCodeMedium">{children}</h4>
 }

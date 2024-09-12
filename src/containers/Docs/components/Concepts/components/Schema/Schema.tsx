@@ -11,6 +11,7 @@ import {
 } from "@modules/shared/modules/markdown/components/Markdown/components"
 import {
   Definition,
+  ExportParams,
   ExportSchema,
   ExportUserSchema,
   GenerateCode,
@@ -128,9 +129,11 @@ export default function Schema() {
         ruta especificada.
       </P>
 
-      <H3>Definición</H3>
-
       <ExportSchema />
+
+      <H3>Parámetros</H3>
+
+      <ExportParams />
 
       <H3>Ejemplo</H3>
 

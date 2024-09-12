@@ -22,6 +22,7 @@ import ExternalLink from "./ExternalLink/ExternalLink"
 import MiniCode from "./MiniCode/MiniCode"
 import CodesCard from "./CodesCard/CodesCard"
 import Warning from "./Warning/Warning"
+import Params from "./Params/Params"
 
 export {
   ListItem,
@@ -48,4 +49,5 @@ export {
   MiniCode,
   CodesCard,
   Warning,
+  Params,
 }

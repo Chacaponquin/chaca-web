@@ -1,4 +1,5 @@
 import Definition from "./Definition/Definition"
+import ExportParams from "./ExportParams/ExportParams"
 import ExportSchema from "./ExportSchema/ExportSchema"
 import ExportUserSchema from "./ExportUserSchema/ExportUserSchema"
 import GenerateCode from "./GenerateCode/GenerateCode"
@@ -14,4 +15,5 @@ export {
   ExportSchema,
   ExportUserSchema,
   UserDataExample,
+  ExportParams,
 }

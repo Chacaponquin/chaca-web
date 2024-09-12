@@ -3,7 +3,7 @@ import { javascript } from "@codemirror/lang-javascript"
 import { json } from "@codemirror/lang-json"
 import { LanguageSupport } from "@codemirror/language"
 import { vscodeDark } from "@uiw/codemirror-themes-all"
-import { Languages } from "../../interfaces"
+import { Languages } from "../../domain"
 
 interface Props {
   onChange(value: string): void

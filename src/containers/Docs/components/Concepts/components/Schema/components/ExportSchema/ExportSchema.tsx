@@ -2,7 +2,7 @@ import { Code } from "@modules/shared/modules/markdown/components/Markdown/compo
 
 export default function ExportSchema() {
   const code = `
-schema.export(countDocuments: number, fileConfig: FileConfig) => Promise<string>
+schema.export(documents, config) => Promise<string>
 `
 
   return <Code title="Export schema definition" code={code} language="typescript" />
