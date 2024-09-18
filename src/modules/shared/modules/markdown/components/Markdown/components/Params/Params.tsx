@@ -7,7 +7,7 @@ interface Props {
 
 export default function Params({ params }: Props) {
   return (
-    <div className="flex flex-col mt-2 border-[1px] border-scale-7 rounded mb-4">
+    <div className="flex flex-col my-3 border-[1px] border-scale-7 rounded">
       {params.map((p, index) => (
         <Card
           key={index}

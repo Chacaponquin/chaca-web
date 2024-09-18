@@ -1,6 +1,6 @@
 export interface Param {
   name: string
-  description: string
+  description: React.ReactNode
   required: boolean
   params: Param[]
   types: string[]

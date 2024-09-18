@@ -10,9 +10,11 @@ const schema = chaca.schema({
 })
 
 schema.object()
-// {
-//   numbers: [7, 2, 9]  
-// }
+
+// result
+{
+   numbers: [7, 2, 9]  
+}
 `
 
   return <Code code={code} language="typescript" title="" />

@@ -1,0 +1,14 @@
+import { Code } from "@modules/shared/modules/markdown/components/Markdown/components"
+
+export default function UserSchemaDefinition() {
+  const code = `
+const userSchema = chaca.schema({
+    id: chaca.key(chaca.sequence()),
+    username: () => modules.internet.username(),
+    image: () => modules.image.people(),
+    email: () => modules.internet.email()
+})    
+`
+
+  return <Code code={code} language="typescript" title="User schema definition" />
+}

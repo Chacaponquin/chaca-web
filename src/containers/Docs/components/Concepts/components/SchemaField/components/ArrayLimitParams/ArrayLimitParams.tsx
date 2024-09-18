@@ -1,5 +1,6 @@
 import { Params } from "@modules/shared/modules/markdown/components/Markdown/components"
 import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
+import { COMMON_TYPES } from "@modules/shared/modules/markdown/domain/constants"
 
 export default function ArrayLimitParams() {
   const params: Param[] = [
@@ -8,14 +9,15 @@ export default function ArrayLimitParams() {
       description: "Longitud mínima que puede tener el arreglo",
       required: false,
       params: [],
-      types: ["ArrayMin"],
+      types: [COMMON_TYPES.NUMBER],
+      default: "0",
     },
     {
       name: "max",
       description: "Longitud máxima que puede tener el arreglo",
       params: [],
       required: false,
-      types: ["ArrayMax"],
+      types: [COMMON_TYPES.NUMBER],
       default: "1000",
     },
   ]

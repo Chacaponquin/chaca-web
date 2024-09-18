@@ -5,7 +5,7 @@ import { Required, SubParams } from "./components"
 
 interface Props {
   name: string
-  description: string
+  description: React.ReactNode
   required: boolean
   params: Param[]
   types: string[]

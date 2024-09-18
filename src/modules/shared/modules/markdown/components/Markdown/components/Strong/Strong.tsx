@@ -1,5 +1,5 @@
 interface Props {
-  children: string
+  children: React.ReactNode
 }
 
 export default function Strong({ children }: Props) {
