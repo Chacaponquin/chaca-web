@@ -22,7 +22,7 @@ export default function Card({ description, name, required, params, types }: Pro
         <MiniCode size="xs">{types.join("|")}</MiniCode>
       </header>
 
-      <p className="my-1 text-white text-sm px-4 py-1.5">{description}</p>
+      <p className="my-1 text-white text-sm px-4 py-1.5 leading-6">{description}</p>
 
       {params.length > 0 && <SubParams params={params} name={name} />}
     </article>
