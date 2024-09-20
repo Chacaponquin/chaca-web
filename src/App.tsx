@@ -69,7 +69,6 @@ import {
 } from "@containers/Docs/components/Modules/components"
 import {
   Custom,
-  Module,
   Enum,
   NestedSchema,
   Pick,
@@ -81,7 +80,6 @@ import {
 } from "@containers/Docs/components/Fields/components"
 import {
   CUSTOM,
-  MODULE,
   ENUM,
   NESTED_SCHEMA,
   PICK,
@@ -199,7 +197,6 @@ export default function App() {
                         <Route element={<Video />} path={VIDEO.url} />
 
                         <Route element={<Custom />} path={CUSTOM.url} />
-                        <Route element={<Module />} path={MODULE.url} />
                         <Route element={<Enum />} path={ENUM.url} />
                         <Route element={<Key />} path={KEY.url} />
                         <Route element={<NestedSchema />} path={NESTED_SCHEMA.url} />

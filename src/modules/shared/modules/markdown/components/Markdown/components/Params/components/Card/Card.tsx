@@ -14,7 +14,7 @@ interface Props {
 export default function Card({ description, name, required, params, types }: Props) {
   return (
     <article className="flex flex-col bg-scale-3 rounded">
-      <header className="flex items-end gap-x-3.5 dark:bg-scale-2 px-4 py-2 rounded">
+      <header className="flex items-center gap-x-3.5 dark:bg-scale-2 px-4 py-2 rounded">
         <H4>{name}</H4>
 
         {required && <Required />}
