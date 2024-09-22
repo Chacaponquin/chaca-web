@@ -6,7 +6,7 @@ import {
   P,
   Tip,
 } from "@modules/shared/modules/markdown/components/Markdown/components"
-import { ArrayEnum, Definition, Example } from "./components"
+import { ArrayEnum, Definition, EnumParams, Example } from "./components"
 import { SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 import { PICK } from "@modules/docs/domain/core/sections/field-types"
 
@@ -20,6 +20,8 @@ export default function Enum() {
       </P>
 
       <Definition />
+
+      <EnumParams />
 
       <P>
         Por ejemplo, el estado de un ticket, a diferencia de otros valores como el título o la

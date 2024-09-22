@@ -7,7 +7,7 @@ interface Props {
 export default function Doc({ children }: Props) {
   const CLASS = clsx(
     "flex-col flex",
-    "w-full max-w-[1000px] min-h-screen max-h-screen",
+    "w-full max-w-[950px] min-h-screen max-h-screen",
     "pt-[65px] pb-5 px-10 esm:px-6",
   )
 
