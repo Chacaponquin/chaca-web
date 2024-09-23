@@ -1,4 +1,4 @@
-import { Content, FormatsList } from "@containers/Docs/shared/components"
+import { FormatsList } from "@containers/Docs/shared/components"
 import { DATASET_STORE, SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 import {
   Danger,
@@ -33,7 +33,7 @@ import { DOCS_IMAGE } from "@modules/docs/domain/constants/image"
 
 export default function Dataset() {
   return (
-    <Content>
+    <>
       <P>
         Los <MiniCode>Dataset</MiniCode> contituyen un conjunto de n cantidad de{" "}
         <Link to={SCHEMA.redirect}>schemas</Link> que pueden o no estar relacionados entre sí. Estos
@@ -325,6 +325,6 @@ export default function Dataset() {
       </P>
 
       <Img src={DOCS_IMAGE.NEW_CIRCULAR_DEPENDENCY} full />
-    </Content>
+    </>
   )
 }

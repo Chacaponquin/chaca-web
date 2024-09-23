@@ -1,4 +1,3 @@
-import { Content } from "@containers/Docs/shared/components"
 import { DATASET, DATASET_STORE, SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 import { Link, MiniCode, P } from "@modules/shared/modules/markdown/components/Markdown/components"
 import { Definition, FieldDependency, NewMovieSchema, Props } from "./components"
@@ -7,7 +6,7 @@ import MovieSchemaDefinition from "./components/MovieSchemaDefinition/MovieSchem
 
 export default function Custom() {
   return (
-    <Content>
+    <>
       <P>
         Este tipo de campos constituyen una función que se ejecutará para generar el valor del campo
         en cada documento. Esta función recibe como parámetro un objeto con la información generada
@@ -40,6 +39,6 @@ export default function Custom() {
       <NewMovieSchema />
 
       <FieldDependency />
-    </Content>
+    </>
   )
 }

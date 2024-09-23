@@ -1,5 +1,5 @@
 import { Layout } from "@containers/Layout/components"
-import { Aside, Navbar } from "./components"
+import { Aside, Content, Navbar } from "./components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useLayout } from "./hooks"
 import { Outlet } from "react-router-dom"
@@ -26,7 +26,9 @@ export default function DocLayout() {
       <div className="w-full flex flex-col">
         <Navbar handleChangeOpenAside={handleChangeOpenAside} handleOpenSearch={handleOpenSearch} />
 
-        <Outlet />
+        <Content selected={selected}>
+          <Outlet />
+        </Content>
       </div>
     </Layout>
   )

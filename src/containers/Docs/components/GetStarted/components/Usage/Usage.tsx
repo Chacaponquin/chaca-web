@@ -1,4 +1,3 @@
-import { Content } from "@containers/Docs/shared/components"
 import {
   H2,
   Img,
@@ -27,7 +26,7 @@ import { OVERVIEW } from "@modules/docs/domain/core/sections/export"
 
 export default function Usage() {
   return (
-    <Content>
+    <>
       <P>
         Ahora observemos las funcionalidades de Chaca aplicada a casos de uso reales. De todas
         formas, eres bienvenido a plantear otros casos de uso para poder aportar más ejemplos.
@@ -153,6 +152,6 @@ export default function Usage() {
       </P>
 
       <ExportExampleCode />
-    </Content>
+    </>
   )
 }

@@ -1,4 +1,3 @@
-import { Content } from "@containers/Docs/shared/components"
 import {
   Danger,
   H2,
@@ -32,7 +31,7 @@ import { DATASET, SCHEMA_FIELD } from "@modules/docs/domain/core/sections/concep
 
 export default function SchemaField() {
   return (
-    <Content>
+    <>
       <P>
         Un campo dentro de un <MiniCode>Schema</MiniCode> puede ser definido de dos formas: una de
         forma simple y otra para modificar el valor a generar.
@@ -209,6 +208,6 @@ export default function SchemaField() {
       <NullFunctionParams />
 
       <FunctionNullExample />
-    </Content>
+    </>
   )
 }

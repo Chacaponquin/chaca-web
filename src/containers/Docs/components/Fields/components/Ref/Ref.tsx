@@ -1,4 +1,3 @@
-import { Content } from "@containers/Docs/shared/components"
 import { DATASET, SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 import {
   Danger,
@@ -23,7 +22,7 @@ import { KEY, REF } from "@modules/docs/domain/core/sections/field-types"
 
 export default function Ref() {
   return (
-    <Content>
+    <>
       <P>
         Para relacionar de forma directa dos <Link to={SCHEMA.redirect}>schemas</Link> dentro de un{" "}
         <Link to={DATASET.redirect}>dataset</Link> el campo referencia resulta la vía más útil. Este
@@ -126,6 +125,6 @@ export default function Ref() {
 
         <WrongUniqueExample />
       </Danger>
-    </Content>
+    </>
   )
 }

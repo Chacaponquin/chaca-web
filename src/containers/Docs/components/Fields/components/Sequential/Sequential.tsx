@@ -1,4 +1,3 @@
-import { Content } from "@containers/Docs/shared/components"
 import {
   Danger,
   Link,
@@ -10,7 +9,7 @@ import { SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 
 export default function Sequential() {
   return (
-    <Content>
+    <>
       <P>
         Para contextos donde se conoce el valor que debe tener un campo en cada documento a generar
         se utiliza el método <MiniCode>sequential</MiniCode> para asignar de forma secuencial un
@@ -37,6 +36,6 @@ export default function Sequential() {
       </P>
 
       <Example />
-    </Content>
+    </>
   )
 }

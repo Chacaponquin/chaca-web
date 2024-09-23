@@ -1,4 +1,3 @@
-import { Content } from "@containers/Docs/shared/components"
 import { DATASET, SCHEMA, SCHEMA_FIELD } from "@modules/docs/domain/core/sections/concepts"
 import { ENUM } from "@modules/docs/domain/core/sections/field-types"
 import {
@@ -21,7 +20,7 @@ import {
 
 export default function Pick() {
   return (
-    <Content>
+    <>
       <P>
         Uno de los principales problemas del <Link to={ENUM.redirect}>campo enum</Link> es que en
         caso de convertirlo en un{" "}
@@ -99,6 +98,6 @@ export default function Pick() {
       <FunctionDefinition />
 
       <FunctionProps />
-    </Content>
+    </>
   )
 }

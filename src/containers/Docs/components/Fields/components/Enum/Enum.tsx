@@ -1,4 +1,3 @@
-import { Content } from "@containers/Docs/shared/components"
 import {
   Danger,
   Link,
@@ -12,7 +11,7 @@ import { PICK } from "@modules/docs/domain/core/sections/field-types"
 
 export default function Enum() {
   return (
-    <Content>
+    <>
       <P>
         Si el un campo tiene una cantidad limitada de valores que puede asumir se puede utilizar el
         campo <MiniCode>enum</MiniCode> para definir este tipo de campos. Este recibe un arreglo con
@@ -56,6 +55,6 @@ export default function Enum() {
           recomendable usar un <Link to={PICK.redirect}>campo pick</Link>.
         </P>
       </Tip>
-    </Content>
+    </>
   )
 }

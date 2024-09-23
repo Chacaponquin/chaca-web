@@ -1,4 +1,3 @@
-import { Content } from "@containers/Docs/shared/components"
 import {
   H2,
   H3,
@@ -25,7 +24,7 @@ import { DATATYPE, IMAGE, INTERNET } from "@modules/docs/domain/core/sections/mo
 
 export default function Schema() {
   return (
-    <Content>
+    <>
       <P>
         Chaca provee la capacidad de crear y definir objetos <Strong>mock</Strong> de datos
         simulando la definición de una tabla o una colección en una base de datos, esto utilizando
@@ -161,6 +160,6 @@ export default function Schema() {
       </P>
 
       <NestedSchemaExample />
-    </Content>
+    </>
   )
 }

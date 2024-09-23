@@ -1,4 +1,3 @@
-import { Content } from "@containers/Docs/shared/components"
 import { SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 import {
   Info,
@@ -13,7 +12,7 @@ import { REF } from "@modules/docs/domain/core/sections/field-types"
 
 export default function Key() {
   return (
-    <Content>
+    <>
       <P>
         Los campos llave declaran al campo definido como una de las llaves del{" "}
         <Link to={SCHEMA.redirect}>schema</Link> (similar a una <MiniCode>PRIMARY KEY</MiniCode> en
@@ -56,6 +55,6 @@ export default function Key() {
           <MiniCode>possibleNull</MiniCode>
         </P>
       </Info>
-    </Content>
+    </>
   )
 }

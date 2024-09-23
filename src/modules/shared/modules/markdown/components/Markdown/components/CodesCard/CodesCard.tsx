@@ -13,7 +13,7 @@ export default function CodesCard({ sections }: Props) {
 
   return (
     <div className="rounded w-full flex flex-col border-[1px] border-scale-7 my-3">
-      <header className="flex justify-between px-4 items-center">
+      <header className="flex justify-between px-4 items-center dark:bg-scale-2 rounded-t">
         <div className="flex items-center gap-x-3">
           {sections.map((s, index) => (
             <Section

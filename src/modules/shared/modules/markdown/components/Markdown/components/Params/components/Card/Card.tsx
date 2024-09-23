@@ -19,7 +19,7 @@ export default function Card({ description, name, required, params, types }: Pro
 
         {required && <Required />}
 
-        <MiniCode size="xs">{types.join("|")}</MiniCode>
+        <MiniCode size="xs">{types.join(" | ")}</MiniCode>
       </header>
 
       <p className="my-1 text-white text-sm px-4 py-1.5 leading-6">{description}</p>

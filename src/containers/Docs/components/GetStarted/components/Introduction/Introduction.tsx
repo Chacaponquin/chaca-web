@@ -1,4 +1,3 @@
-import { Content } from "@containers/Docs/shared/components"
 import { DOCS_IMAGE } from "@modules/docs/domain/constants/image"
 import { OVERVIEW } from "@modules/docs/domain/core/sections/api"
 import { SCHEMA } from "@modules/docs/domain/core/sections/concepts"
@@ -27,7 +26,7 @@ export default function Introduction() {
   const SHAZAM_LINK = "https://www.shazam.com/shazamkit"
 
   return (
-    <Content>
+    <>
       <P>
         Chaca es una pieza de software que permite crear y exportar grandes cantidades de mock data
         (información falsa pero realista) a través de <Link to={SCHEMA.redirect}>schemas</Link>{" "}
@@ -139,6 +138,6 @@ export default function Introduction() {
         <ExternalLink to={CHACA_LINKS.DISCORD}>Discord</ExternalLink>, Github Discussion, o ponte en{" "}
         <Link to={APP_ROUTES.CONTACT_US}>contacto</Link> nosotros
       </P>
-    </Content>
+    </>
   )
 }

@@ -1,4 +1,3 @@
-import { Content } from "@containers/Docs/shared/components"
 import { ENUM } from "@modules/docs/domain/core/sections/field-types"
 import {
   H2,
@@ -20,7 +19,7 @@ import { DATASET } from "@modules/docs/domain/core/sections/concepts"
 
 export default function Probability() {
   return (
-    <Content>
+    <>
       <P>
         Al utilizar un <Link to={ENUM.redirect}>campo enum</Link> todos los valores definidos como
         posibles tienen la misma posibilidad de ser escogidos. Para los casos en los cuales se
@@ -80,6 +79,6 @@ export default function Probability() {
         si esta cantidad supera a <MiniCode>3</MiniCode> la probabilidad de que el sexo sea{" "}
         <MiniCode>female</MiniCode> será <MiniCode>0.8</MiniCode>, sino <MiniCode>0.2</MiniCode>.
       </P>
-    </Content>
+    </>
   )
 }

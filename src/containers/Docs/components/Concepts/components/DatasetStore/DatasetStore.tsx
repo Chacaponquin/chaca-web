@@ -1,4 +1,3 @@
-import { Content } from "@containers/Docs/shared/components"
 import { DATASET, SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 import { CUSTOM, REF } from "@modules/docs/domain/core/sections/field-types"
 import {
@@ -14,7 +13,7 @@ import { CurrentDefinition, GetDefinition, GetExample, GetParams } from "./compo
 
 export default function DatasetStore() {
   return (
-    <Content>
+    <>
       <P>
         En ciertos un campo definido de un <Link to={SCHEMA.redirect}>schema</Link> necesita de
         información de otros <Link to={SCHEMA.redirect}>schemas</Link> dentro del{" "}
@@ -84,6 +83,6 @@ export default function DatasetStore() {
           utilizar el objeto <MiniCode>currentFields</MiniCode>.
         </P>
       </Tip>
-    </Content>
+    </>
   )
 }
