@@ -27,7 +27,7 @@ export default function ExampleCode({ code, language, className }: Props) {
         <Highlight {...defaultProps} language={language} code={code} theme={theme}>
           {({ tokens, getLineProps, getTokenProps }) => {
             return tokens.map((line, index) => {
-              if (language === "typescript" || language === "javascript" || language === "json") {
+              if (language !== "bash") {
                 if (index !== 0 && index !== tokens.length - 1) {
                   return (
                     <div {...getLineProps({ line, key: index })} key={Id.generate()}>
