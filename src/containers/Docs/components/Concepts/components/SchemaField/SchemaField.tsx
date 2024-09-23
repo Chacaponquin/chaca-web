@@ -28,7 +28,7 @@ import {
   ObjectParams,
 } from "./components"
 import { KEY } from "@modules/docs/domain/core/sections/field-types"
-import { DATASET } from "@modules/docs/domain/core/sections/concepts"
+import { DATASET, SCHEMA_FIELD } from "@modules/docs/domain/core/sections/concepts"
 
 export default function SchemaField() {
   return (
@@ -58,7 +58,7 @@ export default function SchemaField() {
 
       <ObjectParams />
 
-      <H2>Campos que son arreglos</H2>
+      <H2 id={SCHEMA_FIELD.arrayFieldsId}>Campos que son arreglos</H2>
 
       <P>
         Los campos de un <MiniCode>Schema</MiniCode> pueden ser modificados para que devuelvan

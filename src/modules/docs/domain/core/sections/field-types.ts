@@ -20,12 +20,6 @@ class Enum extends DocSubSection {
   }
 }
 
-class NestedSchema extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: "Nested schema", url: "nested-schema" })
-  }
-}
-
 class Key extends DocSubSection {
   constructor() {
     super({ parent: SECTION, title: "Key", url: "key" })
@@ -64,7 +58,6 @@ class Pick extends DocSubSection {
 
 export const CUSTOM = new Custom()
 export const ENUM = new Enum()
-export const NESTED_SCHEMA = new NestedSchema()
 export const REF = new Ref()
 export const SEQUENCE = new Sequence()
 export const SEQUENTIAL = new Sequential()
@@ -72,4 +65,4 @@ export const PICK = new Pick()
 export const PROBABILITY = new Probability()
 export const KEY = new Key()
 
-SECTION.push([CUSTOM, ENUM, NESTED_SCHEMA, KEY, REF, SEQUENCE, SEQUENTIAL, PROBABILITY, PICK])
+SECTION.push([CUSTOM, ENUM, KEY, REF, SEQUENCE, SEQUENTIAL, PROBABILITY, PICK])

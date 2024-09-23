@@ -1,7 +1,7 @@
 import { Content } from "@containers/Docs/shared/components"
 import { DATASET, DATASET_STORE, SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 import { Link, MiniCode, P } from "@modules/shared/modules/markdown/components/Markdown/components"
-import { Definition, FieldDependency, NewMovieSchema } from "./components"
+import { Definition, FieldDependency, NewMovieSchema, Props } from "./components"
 import { ADDRESS } from "@modules/docs/domain/core/sections/modules"
 import MovieSchemaDefinition from "./components/MovieSchemaDefinition/MovieSchemaDefinition"
 
@@ -17,6 +17,8 @@ export default function Custom() {
       </P>
 
       <Definition />
+
+      <Props />
 
       <P>
         El caso de uso más simple para este tipo de campos es utilizando los valores generados por

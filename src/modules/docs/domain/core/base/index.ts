@@ -58,6 +58,10 @@ export abstract class DocSubSection {
     return `${this.title} | Chaca Docs`
   }
 
+  buildUrl(url: string): string {
+    return `${this.redirect}#${url}`
+  }
+
   get next(): DocSubSection | null {
     const index = this.parent.sections.indexOf(this)
 

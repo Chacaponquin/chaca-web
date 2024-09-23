@@ -15,6 +15,7 @@ import {
   ExportSchema,
   ExportUserSchema,
   GenerateCode,
+  NestedSchemaExample,
   NewFieldCode,
   UserDataExample,
   UserSchemaDefinition,
@@ -150,6 +151,16 @@ export default function Schema() {
       </P>
 
       <UserDataExample />
+
+      <H2>Schemas anidados</H2>
+
+      <P>
+        Si se desea que el valor generado para un campo dentro de un <MiniCode>Schema</MiniCode>{" "}
+        tenga forma de objeto Chaca provee la posibilidad de definir un campo como un{" "}
+        <MiniCode>Schema</MiniCode>.
+      </P>
+
+      <NestedSchemaExample />
     </Content>
   )
 }

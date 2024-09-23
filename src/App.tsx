@@ -70,7 +70,6 @@ import {
 import {
   Custom,
   Enum,
-  NestedSchema,
   Pick,
   Probability,
   Ref,
@@ -81,7 +80,6 @@ import {
 import {
   CUSTOM,
   ENUM,
-  NESTED_SCHEMA,
   PICK,
   PROBABILITY,
   REF,
@@ -199,7 +197,6 @@ export default function App() {
                         <Route element={<Custom />} path={CUSTOM.url} />
                         <Route element={<Enum />} path={ENUM.url} />
                         <Route element={<Key />} path={KEY.url} />
-                        <Route element={<NestedSchema />} path={NESTED_SCHEMA.url} />
                         <Route element={<Sequence />} path={SEQUENCE.url} />
                         <Route element={<Sequential />} path={SEQUENTIAL.url} />
                         <Route element={<Pick />} path={PICK.url} />

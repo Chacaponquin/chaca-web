@@ -2,10 +2,8 @@ import { Code } from "@modules/shared/modules/markdown/components/Markdown/compo
 
 export default function Definition() {
   const code = `
-{
-    field({ currentFields, store } : CustomFieldProps): any
-}
+chaca.pick<V>(props: PickFieldProps) => PickField<V>
 `
 
-  return <Code code={code} language="typescript" title="" />
+  return <Code code={code} language="typescript" title="Pick field definition" />
 }

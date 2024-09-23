@@ -27,6 +27,8 @@ class Schema extends DocSubSection {
 }
 
 class SchemaField extends DocSubSection {
+  readonly arrayFieldsId = "array-fields"
+
   constructor() {
     super({ parent: SECTION, title: "Schema field", url: "schema-field" })
   }
