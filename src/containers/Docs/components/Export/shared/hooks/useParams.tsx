@@ -17,5 +17,15 @@ export default function useParams() {
     default: "false",
   }
 
-  return { ZIP_PARAM }
+  function EXT(ext: string): Param {
+    return {
+      name: "ext",
+      description: "Configuración del formato de archivo",
+      types: [`'${ext}'`],
+      params: [],
+      required: true,
+    }
+  }
+
+  return { ZIP_PARAM, EXT }
 }

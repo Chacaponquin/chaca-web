@@ -7,15 +7,12 @@ import {
   Warning,
 } from "@modules/shared/modules/markdown/components/Markdown/components"
 import { CsvParams, DatasetDefinition, DatasetResult, Definition } from "./components"
+import { Header } from "../../shared/components"
 
 export default function Csv() {
   return (
     <>
-      <P>
-        Para exportar datos en formato <MiniCode>csv</MiniCode> se puede definir{" "}
-        <MiniCode>csv</MiniCode> en la pripiedad <MiniCode>format</MiniCode> o puede configurar un
-        objeto con los siguientes parámetros.
-      </P>
+      <Header extension="csv" format="csv" />
 
       <CsvParams />
 
