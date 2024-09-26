@@ -15,6 +15,7 @@ export default function MiniCode({ children, size = "base" }: Props) {
     "font-fontCodeMedium",
     "w-max",
     "text-white",
+    "whitespace-nowrap",
 
     { "text-sm": size === "sm", "text-xs": size === "xs" },
   )

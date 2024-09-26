@@ -1,3 +1,12 @@
+import { Header } from "../../shared/components"
+import { Definition, TsParams } from "./components"
+
 export default function Typescript() {
-  return <div>Typescript</div>
+  return (
+    <>
+      <Header extension="ts" format="typescript" />
+      <TsParams />
+      <Definition />
+    </>
+  )
 }

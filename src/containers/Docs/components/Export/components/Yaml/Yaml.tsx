@@ -1,3 +1,12 @@
+import { Header } from "../../shared/components"
+import { Definition, YamlParams } from "./components"
+
 export default function Yaml() {
-  return <div>Yaml</div>
+  return (
+    <>
+      <Header extension="yml" format="yaml" />
+      <YamlParams />
+      <Definition />
+    </>
+  )
 }

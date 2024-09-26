@@ -1,6 +1,6 @@
 import { DATASET, SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 import {
-  Info,
+  Tip,
   Link,
   MiniCode,
   P,
@@ -22,17 +22,17 @@ export default function Csv() {
         <P>Solo pueden ser exportados datos en forma de objeto.</P>
       </Warning>
 
-      <Info>
+      <Tip title="Exportar datasets">
         <P>
-          Si se exportan los datos de un <Link to={DATASET.redirect}>dataset</Link> en formato{" "}
-          <MiniCode>csv</MiniCode> se crearán varios archivos <MiniCode>csv</MiniCode> con los datos
-          de cada <Link to={SCHEMA.redirect}>schema</Link> de forma separada.
+          Si se exportan los datos generados de un <Link to={DATASET.redirect}>dataset</Link> en
+          formato <MiniCode>csv</MiniCode> se crearán varios archivos <MiniCode>csv</MiniCode> con
+          los datos de cada <Link to={SCHEMA.redirect}>schema</Link> de forma separada.
         </P>
 
         <DatasetDefinition />
 
         <DatasetResult />
-      </Info>
+      </Tip>
     </>
   )
 }

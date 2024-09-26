@@ -6,7 +6,7 @@ export default function Definition() {
 schema.export({
     filename: 'data',
     location: 'folder',
-    format: 'json'
+    format: 'javascript'
 })
 
 // complex config
@@ -14,11 +14,11 @@ schema.export({
     filename: 'data',
     location: 'folder',
     format: {
-        ext: 'json',
+        ext: 'javascript',
         zip: false
     }
 })
 `
 
-  return <Code code={code} language="typescript" title="Json format definition" />
+  return <Code code={code} language="typescript" title="Javascript format definition" />
 }

@@ -17,7 +17,7 @@ export default function ExampleCode({ code, language, className }: Props) {
     "w-full",
     "overflow-x-auto",
     "text-sm",
-    "rounded",
+    "rounded-b",
     className,
   )
 

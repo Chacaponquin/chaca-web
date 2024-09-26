@@ -1,3 +1,14 @@
+import { Header } from "../../shared/components"
+import { Definition, PythonParams } from "./components"
+
 export default function Python() {
-  return <div>Python</div>
+  return (
+    <>
+      <Header extension="py" format="python" />
+
+      <PythonParams />
+
+      <Definition />
+    </>
+  )
 }
