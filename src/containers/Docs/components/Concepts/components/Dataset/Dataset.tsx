@@ -53,6 +53,17 @@ export default function Dataset() {
 
       <DatasetParams />
 
+      <Danger title="Nombres para los schemas">
+        <P>
+          En caso de que se defina un <Link to={SCHEMA.redirect}>schema</Link> con un nombre vacío
+          se lanzará una excepción.
+        </P>
+        <P>
+          Tampoco pueden definirse dos o más <Link to={SCHEMA.redirect}>schemas</Link> con nombres
+          iguales.
+        </P>
+      </Danger>
+
       <P>
         Por ejemplo, para el contexto de un E-commerce existen dos entidades comunes en el dominio:
         la entidad <MiniCode>User</MiniCode> y la entidad <MiniCode>Product</MiniCode>. Para simular

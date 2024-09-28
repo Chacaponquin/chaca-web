@@ -6,7 +6,7 @@ import {
   MiniCode,
   P,
 } from "@modules/shared/modules/markdown/components/Markdown/components"
-import { Features } from "./components"
+import { CodesTable, Error, Features } from "./components"
 
 export default function Overview() {
   const JSON_URL = "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON"
@@ -110,6 +110,25 @@ export default function Overview() {
           <P>Web scaping.</P>
         </ListItem>
       </List>
+
+      <H2>Mensajes de error</H2>
+
+      <P>
+        Si un error ocurre en alguno de los procesos la respuesta a la petición HTTP tendrá la
+        siguiente estructura.
+      </P>
+
+      <Error />
+
+      <H2>Códigos de respuesta</H2>
+
+      <P>
+        De forma general, los códigos en el rango <MiniCode>2xx</MiniCode> indican una respuesta
+        exitosa. Los códigos en el rango <MiniCode>4xx</MiniCode> indican la ocurrencia de un error
+        debido a los parámetros requeridos.
+      </P>
+
+      <CodesTable />
     </>
   )
 }

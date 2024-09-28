@@ -8,6 +8,7 @@ import Id from "./Id/Id"
 import Image from "./Image/Image"
 import Internet from "./Internet/Internet"
 import Lorem from "./Lorem/Lorem"
+import Overview from "./Overview/Overview"
 import Person from "./Person/Person"
 import Phone from "./Phone/Phone"
 import Science from "./Science/Science"
@@ -34,4 +35,5 @@ export {
   Vehicle,
   Video,
   Word,
+  Overview,
 }

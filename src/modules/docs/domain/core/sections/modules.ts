@@ -110,6 +110,12 @@ class Word extends DocSubSection {
   }
 }
 
+class Overview extends DocSubSection {
+  constructor() {
+    super({ parent: SECTION, title: "Overview", url: "overview" })
+  }
+}
+
 export const ADDRESS = new Address()
 export const ANIMAL = new Animal()
 export const COLOR = new Color()
@@ -127,8 +133,10 @@ export const SYSTEM = new System()
 export const VEHICLE = new Vehicle()
 export const VIDEO = new Video()
 export const WORD = new Word()
+export const OVERVIEW = new Overview()
 
 SECTION.push([
+  OVERVIEW,
   ADDRESS,
   ANIMAL,
   COLOR,

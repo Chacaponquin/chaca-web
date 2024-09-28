@@ -47,6 +47,7 @@ import {
   VEHICLE,
   VIDEO,
   WORD,
+  OVERVIEW as MODULE_OVERVIEW,
 } from "@modules/docs/domain/core/sections/modules"
 import {
   Address,
@@ -66,6 +67,7 @@ import {
   Vehicle,
   Video,
   Word,
+  Overview as ModulesOverview,
 } from "@containers/Docs/components/Modules/components"
 import {
   Custom,
@@ -176,6 +178,7 @@ export default function App() {
                         <Route element={<Introduction />} path={INTRODUCTION.url} />
                         <Route element={<Usage />} path={USAGE.url} />
 
+                        <Route element={<ModulesOverview />} path={MODULE_OVERVIEW.url} />
                         <Route element={<Address />} path={ADDRESS.url} />
                         <Route element={<Animal />} path={ANIMAL.url} />
                         <Route element={<Color />} path={COLOR.url} />

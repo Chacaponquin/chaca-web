@@ -1,3 +1,5 @@
+import CodesTable from "./CodesTable/CodesTable"
+import Error from "./Error/Error"
 import Features from "./Features/Features"
 
-export { Features }
+export { Features, Error, CodesTable }

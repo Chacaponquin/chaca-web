@@ -50,6 +50,13 @@ export default function Postgresql() {
         </P>
       </Info>
 
+      <Warning title="Palabras reservadas">
+        <P>
+          Chaca no valida errores que puedan ocurrir debido a que los campos o los nombres de los{" "}
+          <Link to={SCHEMA.redirect}>schemas</Link> coincidan con palabras reservadas SQL.
+        </P>
+      </Warning>
+
       <H2>Transformaciones</H2>
 
       <P>

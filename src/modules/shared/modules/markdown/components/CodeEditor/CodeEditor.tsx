@@ -28,7 +28,7 @@ export default function CodeEditor({ onChange, height, code, language }: Props) 
       height={`${height}px`}
       extensions={[filter()]}
       theme={vscodeDark}
-      className="flex w-full"
+      className="flex w-full code-playground"
       width="100%"
     />
   )
