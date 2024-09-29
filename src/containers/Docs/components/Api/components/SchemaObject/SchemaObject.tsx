@@ -39,7 +39,7 @@ export default function SchemaObject() {
         petición.
       </P>
 
-      <H2>Body</H2>
+      <H2 id={SCHEMA_OBJECT.bodyId}>Body</H2>
       <P>
         El cuerpo de la petición debe contener la definición del{" "}
         <Link to={SCHEMA.redirect}>schema</Link>. La definición de los campos difiere un poco a la

@@ -7,14 +7,11 @@ import {
 } from "@modules/shared/modules/markdown/components/Markdown/components"
 import { Example, QueryParams, Try } from "./components"
 import { Route } from "../../shared/components"
-import { useBuildUrl } from "../../shared/hooks"
 
 export default function ModuleValue() {
-  const { url } = useBuildUrl({ route: "api/{section}/{module}" })
-
   return (
     <>
-      <Route method="post" url={url} />
+      <Route method="post" url="api/{section}/{module}" />
 
       <P>
         Esta ruta permite generar valores de los <Link to={OVERVIEW.redirect}>módulos</Link>{" "}

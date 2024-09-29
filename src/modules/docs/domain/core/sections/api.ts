@@ -22,6 +22,7 @@ export class SchemaArraySection extends DocSubSection {
 
 export class SchemaObjectSection extends DocSubSection {
   readonly enumId = "enum"
+  readonly bodyId = "body"
   readonly nestedSchemaId = "nested-schema"
   readonly moduleId = "module"
 

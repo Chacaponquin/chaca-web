@@ -1,11 +1,14 @@
 import clsx from "clsx"
+import { useBuildUrl } from "../../hooks"
 
 interface Props {
   url: string
   method: "get" | "post" | "put" | "delete"
 }
 
-export default function Route({ method, url }: Props) {
+export default function Route({ method, url: iurl }: Props) {
+  const { url } = useBuildUrl({ route: iurl })
+
   const CLASS = clsx("flex", "rounded", "p-3", "items-center", "gap-x-4", "my-4", {
     "bg-blue-500/10": method === "post",
   })
