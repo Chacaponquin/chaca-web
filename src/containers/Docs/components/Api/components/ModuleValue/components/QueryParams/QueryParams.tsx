@@ -1,4 +1,5 @@
-import { Params } from "@modules/shared/modules/markdown/components/Markdown/components"
+import { OVERVIEW } from "@modules/docs/domain/core/sections/modules"
+import { Link, Params } from "@modules/shared/modules/markdown/components/Markdown/components"
 import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
 import { COMMON_TYPES } from "@modules/shared/modules/markdown/domain/constants"
 
@@ -6,14 +7,24 @@ export default function QueryParams() {
   const params: Param[] = [
     {
       name: "section",
-      description: "Nombre de la sección en la que se encuentra el módulo a elegir",
+      description: (
+        <>
+          <Link to={OVERVIEW.buildUrl(OVERVIEW.apiIdId)}>Api id</Link> de la sección en la que se
+          encuentra el <Link to={OVERVIEW.redirect}>módulo</Link> a elegir
+        </>
+      ),
       params: [],
       required: true,
       types: [COMMON_TYPES.STRING],
     },
     {
       name: "module",
-      description: "Módulo del cual se generará el valor",
+      description: (
+        <>
+          <Link to={OVERVIEW.buildUrl(OVERVIEW.apiIdId)}>Api id</Link> del{" "}
+          <Link to={OVERVIEW.redirect}>módulo</Link> del cual se generará el valor
+        </>
+      ),
       params: [],
       required: true,
       types: [COMMON_TYPES.STRING],

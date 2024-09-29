@@ -21,6 +21,8 @@ class DatasetStore extends DocSubSection {
 }
 
 class Schema extends DocSubSection {
+  readonly nestedSchemaId = "nested-schema"
+
   constructor() {
     super({ parent: SECTION, title: "Schema", url: "schema" })
   }

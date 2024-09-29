@@ -1,3 +1,9 @@
+import { Route } from "../../shared/components"
+
 export default function SchemaArray() {
-  return <div>SchemaArray</div>
+  return (
+    <>
+      <Route method="post" url="api/schema/{count}" />
+    </>
+  )
 }

@@ -62,6 +62,10 @@ export abstract class DocSubSection {
     return `${this.redirect}#${url}`
   }
 
+  buildIdUrl(id: string): string {
+    return `#${id}`
+  }
+
   get next(): DocSubSection | null {
     const index = this.parent.sections.indexOf(this)
 

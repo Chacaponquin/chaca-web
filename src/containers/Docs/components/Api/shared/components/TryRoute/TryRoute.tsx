@@ -5,7 +5,7 @@ import { RequestParam } from "./domain"
 import { useFetch } from "@modules/app/modules/http/hooks"
 
 interface Props {
-  body: boolean
+  body?: string
   params: RequestParam[]
   url: string
   method: HttpMethod
@@ -17,7 +17,7 @@ export default function TryRoute({ url: iurl, method, body: ibody, params: ipara
   const [loading, setLoading] = useState(false)
   const [response, setResponse] = useState("")
 
-  const [body, setBody] = useState("{}")
+  const [body, setBody] = useState<string | undefined>(ibody)
   const [params, setParams] = useState<RequestParam[]>(iparams)
 
   const url = useMemo(() => {
@@ -39,7 +39,7 @@ export default function TryRoute({ url: iurl, method, body: ibody, params: ipara
   }
 
   function handleClick() {
-    const b = JSON.parse(body)
+    const b = JSON.parse(body ? body : "{}")
 
     try {
       setLoading(true)
@@ -47,9 +47,9 @@ export default function TryRoute({ url: iurl, method, body: ibody, params: ipara
       instance
         .post(url, b)
         .then((r) => {
-          const res = String(r.data)
+          const data = JSON.stringify(r.data)
 
-          setResponse(res)
+          setResponse(data)
         })
         .finally(() => setLoading(false))
     } catch (error) {
@@ -64,8 +64,8 @@ export default function TryRoute({ url: iurl, method, body: ibody, params: ipara
         <Button handleClick={handleClick} loading={loading} />
       </header>
 
-      <div className="flex flex-col w-full gap-y-1 py-1.5">
-        {ibody && <Body body={body} handleChangeBody={handleChangeBody} />}
+      <div className="flex flex-col w-full gap-y-2 py-2">
+        {body && <Body body={body} handleChangeBody={handleChangeBody} />}
 
         {params.length > 0 && (
           <Params loading={loading} params={params} handleChangeParam={handleChangeParam} />

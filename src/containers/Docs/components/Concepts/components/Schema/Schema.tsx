@@ -21,6 +21,7 @@ import {
 } from "./components"
 import { CUSTOM, KEY, SEQUENCE } from "@modules/docs/domain/core/sections/field-types"
 import { DATATYPE, IMAGE, INTERNET } from "@modules/docs/domain/core/sections/modules"
+import { SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 
 export default function Schema() {
   return (
@@ -151,7 +152,7 @@ export default function Schema() {
 
       <UserDataExample />
 
-      <H2>Schemas anidados</H2>
+      <H2 id={SCHEMA.nestedSchemaId}>Schemas anidados</H2>
 
       <P>
         Si se desea que el valor generado para un campo dentro de un <MiniCode>Schema</MiniCode>{" "}

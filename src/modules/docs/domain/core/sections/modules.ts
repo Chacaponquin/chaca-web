@@ -111,6 +111,8 @@ class Word extends DocSubSection {
 }
 
 class Overview extends DocSubSection {
+  readonly apiIdId = "api-id"
+
   constructor() {
     super({ parent: SECTION, title: "Overview", url: "overview" })
   }

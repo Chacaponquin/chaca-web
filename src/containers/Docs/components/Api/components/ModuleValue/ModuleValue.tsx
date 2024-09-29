@@ -5,8 +5,8 @@ import {
   MiniCode,
   P,
 } from "@modules/shared/modules/markdown/components/Markdown/components"
-import { Example, QueryParams } from "./components"
-import { Route, TryRoute } from "../../shared/components"
+import { Example, QueryParams, Try } from "./components"
+import { Route } from "../../shared/components"
 import { useBuildUrl } from "../../shared/hooks"
 
 export default function ModuleValue() {
@@ -43,17 +43,7 @@ export default function ModuleValue() {
 
       <Example />
 
-      <H2>Pruébalo tú mismo</H2>
-
-      <TryRoute
-        body={true}
-        url="api/module"
-        method="post"
-        params={[
-          { param: "section", value: "internet" },
-          { param: "module", value: "email" },
-        ]}
-      />
+      <Try />
     </>
   )
 }

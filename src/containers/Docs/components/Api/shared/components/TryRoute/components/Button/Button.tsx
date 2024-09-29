@@ -7,6 +7,6 @@ interface Props {
 
 export default function Button({ handleClick, loading }: Props) {
   return (
-    <ChacaButton onClick={handleClick} color="primary" size="sm" text="Submit" disabled={loading} />
+    <ChacaButton onClick={handleClick} color="primary" size="sm" text="Try it" disabled={loading} />
   )
 }

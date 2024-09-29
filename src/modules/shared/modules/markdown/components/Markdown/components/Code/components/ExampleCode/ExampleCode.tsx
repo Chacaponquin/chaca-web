@@ -6,10 +6,11 @@ import clsx from "clsx"
 interface Props {
   code: string
   language: Language
+  manual?: boolean
   className?: string
 }
 
-export default function ExampleCode({ code, language, className }: Props) {
+export default function ExampleCode({ code, language, className, manual = false }: Props) {
   const CLASS = clsx(
     "px-4 py-4",
     "code-view",
@@ -27,12 +28,12 @@ export default function ExampleCode({ code, language, className }: Props) {
         <Highlight {...defaultProps} language={language} code={code} theme={theme}>
           {({ tokens, getLineProps, getTokenProps }) => {
             return tokens.map((line, index) => {
-              if (language !== "bash") {
+              if (language !== "bash" && !manual) {
                 if (index !== 0 && index !== tokens.length - 1) {
                   return (
                     <div {...getLineProps({ line, key: index })} key={Id.generate()}>
                       {line.map((token, key) => (
-                        <span {...getTokenProps({ token, key })} key={key} />
+                        <span {...getTokenProps({ token, key })} key={Id.generate()} />
                       ))}
                     </div>
                   )
@@ -43,7 +44,7 @@ export default function ExampleCode({ code, language, className }: Props) {
                 return (
                   <div {...getLineProps({ line, key: index })} key={Id.generate()}>
                     {line.map((token, key) => (
-                      <span {...getTokenProps({ token, key })} key={key} />
+                      <span {...getTokenProps({ token, key })} key={Id.generate()} />
                     ))}
                   </div>
                 )
