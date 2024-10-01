@@ -4,7 +4,7 @@ import { ChacaNumberInput } from "@form/components"
 import { PickNode } from "@modules/dataset/domain/core/field"
 import { CountInfo } from "./components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
-import { FormSection } from "@modules/modal/components"
+import { FormSection } from "@containers/Home/components/Modals/shared/shared/components"
 
 interface Props {
   values: ArrayValue[]

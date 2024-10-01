@@ -1,7 +1,7 @@
 import { IsArrayConfig } from "@modules/dataset/domain/core/field-config"
 import { Config, Information } from "./components"
 import { USER_LIMITS } from "@modules/user/constants"
-import { CheckField, ConfigContainer } from "@modules/modal/components"
+import { CheckField, ConfigContainer } from "../../../../shared/components"
 
 interface Props {
   isArray: IsArrayConfig
@@ -21,7 +21,7 @@ export default function ArrayConfig({
       <CheckField
         onChange={handleChangeIsArray}
         check={isArray !== null}
-        text="Is Array"
+        text="Is array"
         info={<Information />}
       />
 

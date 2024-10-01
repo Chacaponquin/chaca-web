@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { Label } from ".."
+import { Label } from "./components"
 
 interface Props {
   labelText: string

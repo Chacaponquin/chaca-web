@@ -1,21 +1,16 @@
 import { ChacaNumberInput, ChacaTextInput } from "@form/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
-import { FormSection } from "@modules/modal/components"
 import { useUser } from "@modules/user/hooks"
+import { FormSection } from "../../shared/components"
 
 interface Props {
-  datasetName: string
+  name: string
   handleDatasetName(value: string): void
   limit: number
   handleChangeLimit(v: number): void
 }
 
-export default function DatasetForm({
-  datasetName,
-  handleDatasetName,
-  limit,
-  handleChangeLimit,
-}: Props) {
+export default function DatasetForm({ name, handleDatasetName, limit, handleChangeLimit }: Props) {
   const { userLimits } = useUser()
 
   const { DATASET_NAME_LABEL, FIELD_NAME_TEXT, COUNT_DOCUMENTS } = useTranslation({
@@ -29,7 +24,7 @@ export default function DatasetForm({
       <FormSection vertical={true} labelText={DATASET_NAME_LABEL}>
         <ChacaTextInput
           placeholder={FIELD_NAME_TEXT}
-          value={datasetName}
+          value={name}
           onChange={handleDatasetName}
           size="base"
           name="dataset-name"

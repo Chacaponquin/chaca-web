@@ -28,7 +28,7 @@ export default function EditSchema({ schema }: Props) {
       name="edit-dataset"
     >
       <DatasetForm
-        datasetName={datasetName}
+        name={datasetName}
         handleDatasetName={handleDatasetName}
         limit={datasetLimit}
         handleChangeLimit={handleChangeLimit}

@@ -4,7 +4,7 @@ import { AddButton, DeleteButton } from "../../shared/components"
 import { ProbInfo, Section } from "./components"
 import { Fragment } from "react"
 import { useTranslation } from "@modules/app/modules/language/hooks"
-import { Label } from "@modules/modal/components"
+import { Label } from "@containers/Home/components/Modals/shared/shared/components/FormSection/components"
 
 interface Props {
   handleChangeProbabilityValues(values: ProbabilityValue[]): void

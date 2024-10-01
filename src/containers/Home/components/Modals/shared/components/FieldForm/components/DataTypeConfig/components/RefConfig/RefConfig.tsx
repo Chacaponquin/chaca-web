@@ -4,7 +4,10 @@ import { useTranslation } from "@modules/app/modules/language/hooks"
 import { RefWhere } from "@modules/dataset/domain/core/datatype"
 import { UniqueInfo, WhereInfo } from "./components"
 import { useRefConfig } from "./hooks"
-import { CheckField, FormSection } from "@modules/modal/components"
+import {
+  CheckField,
+  FormSection,
+} from "@containers/Home/components/Modals/shared/shared/components"
 
 interface RefConfigProps {
   refField: string[]

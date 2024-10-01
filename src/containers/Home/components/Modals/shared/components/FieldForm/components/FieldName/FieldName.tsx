@@ -1,6 +1,6 @@
 import { ChacaTextInput } from "@form/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
-import { FormSection } from "@modules/modal/components"
+import { FormSection } from "../../../../shared/components"
 
 interface Props {
   handleChangeName(v: string): void

@@ -5,7 +5,7 @@ import DeleteButton from "../DeleteButton/DeleteButton"
 import SelectType from "../SelectType/SelectType"
 import AddButton from "../AddButton/AddButton"
 import { Fragment } from "react"
-import { Label } from "@modules/modal/components"
+import { Label } from "@containers/Home/components/Modals/shared/shared/components/FormSection/components"
 
 interface Props {
   values: ArrayValue[]

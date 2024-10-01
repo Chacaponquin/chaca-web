@@ -6,8 +6,8 @@ import { OptionArguments } from "./components"
 import { Argument } from "@modules/modules/domain/core/argument"
 import clsx from "clsx"
 import { ArgumentObject } from "@modules/dataset/domain/core/datatype"
-import { FormSection } from "@modules/modal/components"
 import { ModuleSection, Module } from "@modules/modules/domain/core/schema"
+import { FormSection } from "@containers/Home/components/Modals/shared/shared/components"
 
 interface Props {
   args: ArgumentObject

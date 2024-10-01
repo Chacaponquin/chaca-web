@@ -1,9 +1,9 @@
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { ChacaSelect, ChacaTextInput } from "@form/components"
 import { useConfig } from "@modules/config/hooks"
-import { FormSection } from "@modules/modal/components"
 import { ExportDatasetForm } from "../../domain/export-dataset"
 import { FileConfigOption } from "@modules/config/domain/core"
+import { FormSection } from "../../shared/components"
 
 interface Props {
   saveModelOption: boolean

@@ -13,8 +13,8 @@ import {
   SequenceInfo,
   SequentialInfo,
 } from "@modules/dataset/components"
-import { FormSection } from "@modules/modal/components"
 import { FieldDatatype as IFieldDatatype } from "@modules/dataset/domain/core/datatype"
+import { FormSection } from "../../../../shared/components"
 
 interface Props {
   label: string

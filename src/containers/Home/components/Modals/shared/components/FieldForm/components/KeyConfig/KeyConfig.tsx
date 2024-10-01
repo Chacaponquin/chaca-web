@@ -1,4 +1,4 @@
-import { CheckField } from "@modules/modal/components"
+import { CheckField } from "../../../../shared/components"
 import { Information } from "./components"
 
 interface Props {

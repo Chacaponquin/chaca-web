@@ -2,7 +2,7 @@ import { ArrayValue } from "@modules/dataset/domain/core/datatype"
 import { ChangeSequentialFieldProps } from "@containers/Home/components/Modals/shared/domain/field"
 import { ValuesForm } from "../../shared/components"
 import { LoopInfo } from "./components"
-import { CheckField } from "@modules/modal/components"
+import { CheckField } from "@containers/Home/components/Modals/shared/shared/components"
 
 interface Props {
   values: ArrayValue[]

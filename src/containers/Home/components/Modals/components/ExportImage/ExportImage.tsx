@@ -2,8 +2,9 @@ import { useExportImage } from "./hooks"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { ChacaSelect, ChacaTextInput } from "@form/components"
 import { Image } from "./components"
-import { FormSection, Modal } from "@modules/modal/components"
+import { Modal } from "@modules/modal/components"
 import { ExportImageProps } from "@containers/Home/domain/props"
+import { FormSection } from "../../shared/shared/components"
 
 type Props = {
   handleExportImage(props: ExportImageProps): void
