@@ -1,5 +1,5 @@
 import { Layout } from "@containers/Layout/components"
-import { Aside, Content, Navbar } from "./components"
+import { Aside, Content, Modals, Navbar } from "./components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useLayout } from "./hooks"
 import { Outlet } from "react-router-dom"
@@ -16,6 +16,8 @@ export default function DocLayout() {
 
   return (
     <Layout title={selected.titleSeo} description={DESCRIPTION}>
+      <Modals />
+
       <Aside
         handleOpenSearch={handleOpenSearch}
         handleClose={handleChangeOpenAside}
