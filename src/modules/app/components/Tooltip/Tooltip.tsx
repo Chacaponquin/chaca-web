@@ -54,11 +54,12 @@ export default function Tooltip({ position = "top", children, text }: Props) {
   const CLASS = clsx(
     "shadow-lg",
     "bg-scale-3 dark:bg-scale-3",
-    "text-xs",
+    "text-sm",
     "absolute",
-    "px-3 py-1",
+    "px-3 py-1.5",
     "text-white",
     "rounded",
+    "whitespace-nowrap",
   )
 
   return (
@@ -67,7 +68,7 @@ export default function Tooltip({ position = "top", children, text }: Props) {
       onMouseEnter={handleShow}
       onMouseLeave={handleHide}
     >
-      <div
+      <p
         className={CLASS}
         style={{
           transform: `translateX(${posStyle.translateX}px) translateY(${posStyle.translateY}px)`,
@@ -76,7 +77,7 @@ export default function Tooltip({ position = "top", children, text }: Props) {
         ref={textRef}
       >
         {text}
-      </div>
+      </p>
 
       <div ref={elementRef}>{children}</div>
     </div>

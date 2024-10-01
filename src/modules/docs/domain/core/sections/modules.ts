@@ -2,7 +2,7 @@ import { DocSection, DocSubSection } from "../base"
 
 class ModulesSection extends DocSection {
   constructor() {
-    super({ title: "Schemas", url: "modules" })
+    super({ title: "Modules", url: "modules" })
   }
 }
 
@@ -57,6 +57,8 @@ class Image extends DocSubSection {
 }
 
 class Internet extends DocSubSection {
+  readonly emailId = "email"
+
   constructor() {
     super({ parent: SECTION, title: "Internet", url: "internet" })
   }
@@ -69,6 +71,8 @@ class Lorem extends DocSubSection {
 }
 
 class Person extends DocSubSection {
+  readonly firstNameId = "first-name"
+
   constructor() {
     super({ parent: SECTION, title: "Person", url: "person" })
   }

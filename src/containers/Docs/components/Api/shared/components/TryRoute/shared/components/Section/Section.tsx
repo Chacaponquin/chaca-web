@@ -18,11 +18,12 @@ export default function Section({ children, title }: Props) {
 
   const CLASS = clsx(
     "flex items-center",
-    "rounded",
     "py-2 px-3",
     "cursor-pointer",
     "gap-x-2.5",
     "bg-scale-10/10",
+
+    { rounded: !open, "rounded-t": open },
   )
 
   return (

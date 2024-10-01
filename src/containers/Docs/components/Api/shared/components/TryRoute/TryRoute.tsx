@@ -47,7 +47,7 @@ export default function TryRoute({ url: iurl, method, body: ibody, params: ipara
       instance
         .post(url, b)
         .then((r) => {
-          const data = JSON.stringify(r.data)
+          const data = JSON.stringify(r.data, undefined, 4)
 
           setResponse(data)
         })
