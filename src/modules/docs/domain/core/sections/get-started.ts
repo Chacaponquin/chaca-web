@@ -27,6 +27,8 @@ class UsageSection extends DocSubSection {
 }
 
 class UtilsSection extends DocSubSection {
+  readonly replaceSymbolsId = "replace-symbols"
+
   constructor() {
     super({ parent: SECTION, title: "Utils", url: "utils" })
   }

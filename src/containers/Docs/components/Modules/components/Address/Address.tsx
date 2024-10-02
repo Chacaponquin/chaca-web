@@ -3,9 +3,12 @@ import { CARDINAL_DIRECTION_CODE } from "./domain/cardinal"
 import { COUNTRY_CODE, COUNTRY_PARAMS } from "./domain/country"
 import { COUNTRY_CODE_CODE } from "./domain/country-code"
 import { TIME_ZONE_CODE } from "./domain/time-zone"
-import { ZIP_CODE, ZIP_PARAMS } from "./domain/zip"
+import { ZIP_CODE } from "./domain/zip"
+import { useZip } from "./hooks"
 
 export default function Address() {
+  const { ZIP_PARAMS } = useZip()
+
   return (
     <>
       <MethodSection
