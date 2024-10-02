@@ -16,12 +16,11 @@ export default function BaseModal({ name, children }: Props) {
     "absolute top-0 left-0",
     "z-50",
     "bg-scale-5/50",
-    "overflow-y-auto",
   )
 
   const FORM_CLASS = clsx(
     "flex flex-col",
-    "w-full max-w-[650px]",
+    "w-full max-w-[650px] h-max max-h-[600px]",
     "bg-white dark:bg-scale-3",
     "px-8 py-5 esm:px-8",
     "text-black dark:text-scale-11",
@@ -29,13 +28,14 @@ export default function BaseModal({ name, children }: Props) {
     "rounded-md",
     "animate-fade-down animate-once animate-duration-500 animate-ease-in-out",
     "dark:border-scale-7 border-[1px]",
+    "overflow-y-auto",
   )
 
   return (
     <div onClick={handleCloseModal} id={`${name}-modal`} className={CLASS}>
-      <div className={FORM_CLASS} onClick={(e) => e.stopPropagation()}>
+      <dialog className={FORM_CLASS} onClick={(e) => e.stopPropagation()}>
         {children}
-      </div>
+      </dialog>
     </div>
   )
 }

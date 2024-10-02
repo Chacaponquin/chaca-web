@@ -1,39 +1,26 @@
 import { DEFAULT_ICON_SIZE } from "../constants"
 import { IconProps } from "../interfaces"
 
-const Search = ({ size = DEFAULT_ICON_SIZE }: IconProps) => {
+export default function Search({ size = DEFAULT_ICON_SIZE }: IconProps) {
   return (
     <svg
-      width={size}
-      height={size}
-      viewBox="0 0 48 48"
       fill="inherit"
-      stroke="inherit"
+      height={size}
+      width={size}
+      version="1.1"
       xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 488.4 488.4"
     >
-      <path
-        d="M21 38C30.3888 38 38 30.3888 38 21C38 11.6112 30.3888 4 21 4C11.6112 4 4 11.6112 4 21C4 30.3888 11.6112 38 21 38Z"
-        fill="none"
-        stroke="inherit"
-        strokeWidth="4"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M26.657 14.3431C25.2093 12.8954 23.2093 12 21.0001 12C18.791 12 16.791 12.8954 15.3433 14.3431"
-        stroke="inherit"
-        strokeWidth="4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M33.2216 33.2217L41.7069 41.707"
-        stroke="inherit"
-        strokeWidth="4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <g>
+        <g>
+          <path
+            d="M0,203.25c0,112.1,91.2,203.2,203.2,203.2c51.6,0,98.8-19.4,134.7-51.2l129.5,129.5c2.4,2.4,5.5,3.6,8.7,3.6
+			s6.3-1.2,8.7-3.6c4.8-4.8,4.8-12.5,0-17.3l-129.6-129.5c31.8-35.9,51.2-83,51.2-134.7c0-112.1-91.2-203.2-203.2-203.2
+			S0,91.15,0,203.25z M381.9,203.25c0,98.5-80.2,178.7-178.7,178.7s-178.7-80.2-178.7-178.7s80.2-178.7,178.7-178.7
+			S381.9,104.65,381.9,203.25z"
+          />
+        </g>
+      </g>
     </svg>
   )
 }
-
-export default Search

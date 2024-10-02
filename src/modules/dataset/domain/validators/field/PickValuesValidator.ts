@@ -1,5 +1,5 @@
 import { FieldDatatype } from "@modules/dataset/domain/core/datatype"
-import { IValidator } from "../../../../app/domain/Validator"
+import { IValidator } from "../../../../app/domain/validator"
 import { DatasetError } from "@modules/dataset/errors/dataset"
 import { DATA_TYPES } from "@modules/modules/domain/constants"
 import { ArrayValuesValidator } from "./ArrayValuesValidator"

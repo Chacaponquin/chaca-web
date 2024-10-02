@@ -18,7 +18,7 @@ export default function Aside({ handleClose, open, selected, handleOpenSearch }:
       style={{ display: open ? "flex" : "none" }}
     >
       <aside
-        className="h-full flex flex-col w-full max-w-[400px] shadow-lg dark:bg-scale-4 bg-white overflow-y-auto px-4"
+        className="h-full flex flex-col w-full max-w-[400px] shadow-lg dark:bg-scale-4 bg-white overflow-y-auto px-8"
         onClick={(e) => e.stopPropagation()}
       >
         <Header handleClose={handleClose} />

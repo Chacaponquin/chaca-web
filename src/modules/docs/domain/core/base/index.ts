@@ -1,3 +1,5 @@
+import { SaveIndex } from "./save-index"
+
 interface DocSectionProps {
   url: string
   title: string
@@ -28,6 +30,10 @@ export abstract class DocSection {
 
   push(s: DocSubSection[]): void {
     this.sections = s
+  }
+
+  save(): SaveIndex[] {
+    return this.sections.map((s) => s.save())
   }
 }
 
@@ -64,6 +70,10 @@ export abstract class DocSubSection {
 
   buildIdUrl(id: string): string {
     return `#${id}`
+  }
+
+  save(): SaveIndex {
+    return { title: this.title, location: this.location.join(" > "), url: this.url }
   }
 
   get next(): DocSubSection | null {

@@ -1,4 +1,4 @@
-import { Validator, IValidator } from "./Validator"
+import { Validator, IValidator } from "./validator"
 
 export { Validator }
 

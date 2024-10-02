@@ -1,30 +1,10 @@
-interface Props {
-  click(): void
-  command: string
-}
+import { KeyboardCommand } from "@modules/app/domain/command"
 
-export abstract class KeyboardCommand {
-  constructor(private readonly props: Props) {}
-
-  protected abstract action(event: globalThis.KeyboardEvent): boolean
-
-  get command() {
-    return this.props.command
-  }
-
-  execute(event: globalThis.KeyboardEvent): void {
-    if (this.action(event)) {
-      event.preventDefault()
-      this.props.click()
-    }
-  }
-}
-
-export class EditDatasetCommand extends KeyboardCommand {
+export class EditSchemaCommand extends KeyboardCommand {
   static value = "Q"
 
   constructor(click: () => void) {
-    super({ click, command: EditDatasetCommand.value })
+    super({ click, command: EditSchemaCommand.value })
   }
 
   protected action(event: globalThis.KeyboardEvent): boolean {
@@ -113,15 +93,5 @@ export class AddFieldCommand extends KeyboardCommand {
 
   protected action(event: globalThis.KeyboardEvent): boolean {
     return event.key === "a" && !event.ctrlKey
-  }
-}
-
-export class CommandsExecutor {
-  constructor(private readonly array: KeyboardCommand[]) {}
-
-  execute(event: globalThis.KeyboardEvent): void {
-    for (const command of this.array) {
-      command.execute(event)
-    }
   }
 }

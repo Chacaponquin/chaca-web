@@ -4,18 +4,19 @@ import {
   EditSchemaModalProps,
   ExportDatasetModalProps,
 } from "@containers/Home/domain/modal"
+import { CommandsExecutor } from "@modules/app/domain/command"
+import { useCommands } from "@modules/app/hooks"
 import {
   AddFieldCommand,
   CloneDatasetCommand,
-  CommandsExecutor,
   DeleteDatasetCommand,
-  EditDatasetCommand,
+  EditSchemaCommand,
   ExportDatasetCommand,
 } from "@modules/dataset/domain/commands"
 import { Schema } from "@modules/dataset/domain/core"
 import { useDataset } from "@modules/dataset/hooks"
 import { useModal } from "@modules/modal/hooks"
-import { useEffect } from "react"
+import { useMemo } from "react"
 
 interface Props {
   schema: Schema
@@ -29,29 +30,17 @@ export default function useSchemaCard({ schema }: Props) {
     selectedSchema,
   } = useDataset()
 
-  const selected = selectedSchema?.id === schema.id
+  const selected = useMemo(() => selectedSchema?.id === schema.id, [schema, selectedSchema])
 
   const commands = new CommandsExecutor([
     new DeleteDatasetCommand(handleDeleteSchema),
-    new EditDatasetCommand(handleEditSchema),
+    new EditSchemaCommand(handleEditSchema),
     new CloneDatasetCommand(handleCloneSchema),
     new ExportDatasetCommand(handleCreateSchema),
     new AddFieldCommand(handleAddField),
   ])
 
-  function handleKeyboardAction(event: globalThis.KeyboardEvent) {
-    if (selected && openModal === null) {
-      commands.execute(event)
-    }
-  }
-
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeyboardAction)
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyboardAction)
-    }
-  }, [selected, handleKeyboardAction])
+  useCommands({ executor: commands, condition: selected && openModal ? true : false })
 
   function handleDeleteSchema() {
     handleOpenModal(new DeleteSchemaModalProps(schema.name, schema.id))

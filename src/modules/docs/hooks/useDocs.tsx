@@ -4,7 +4,7 @@ import { DocSubSection } from "../domain/core/base"
 import { useLocation } from "react-router-dom"
 
 export default function useDocs() {
-  const { docs } = useContext(DocsContext)
+  const { docs, client } = useContext(DocsContext)
   const location = useLocation()
 
   const selected: DocSubSection = useMemo(() => {
@@ -21,5 +21,5 @@ export default function useDocs() {
     return found
   }, [docs, location])
 
-  return { docs, selected }
+  return { docs, selected, client }
 }

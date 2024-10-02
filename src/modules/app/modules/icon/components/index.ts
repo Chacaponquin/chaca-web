@@ -3,6 +3,7 @@ import ArrowLeft from "./ArrowLeft"
 import ArrowRight from "./ArrowRight"
 import ArrowUp from "./ArrowUp"
 import Bars from "./Bars"
+import Book from "./Book"
 import Change from "./Change"
 import Check from "./Check"
 import Clipboard from "./Clipboard"
@@ -92,4 +93,5 @@ export {
   Lock,
   ScreenFit,
   Clipboard,
+  Book,
 }

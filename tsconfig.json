@@ -22,7 +22,17 @@
 
     "types": ["cypress", "node"]
   },
-  "include": ["src", "cypress"],
+
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node",
+    "transpileOnly": true,
+    "compilerOptions": {
+      "module": "ESNext"
+    }
+  },
+
+  "include": ["src", "cypress", "scripts"],
   "references": [{ "path": "./tsconfig.node.json" }],
   "extends": "./tsconfig.paths.json"
 }

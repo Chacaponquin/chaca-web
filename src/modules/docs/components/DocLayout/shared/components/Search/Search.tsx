@@ -21,6 +21,7 @@ export default function Search({ handleClick, full, className }: Props) {
     "hover:outline-purple-6",
     "bg-scale-5",
     "text-black dark:text-white",
+    "dark:border-scale-7 border-[1px]",
 
     { "mr-3 w-max": !full, "w-full": full },
 
@@ -29,17 +30,15 @@ export default function Search({ handleClick, full, className }: Props) {
 
   return (
     <button type="button" onClick={handleClick} className={CLASS}>
-      <div className="flex items-center gap-x-3">
+      <div className="flex items-center gap-x-3.5">
         <i className="fill-white stroke-white">
-          <SearchIcon size={20} />
+          <SearchIcon size={17} />
         </i>
 
         <p className="text-sm text-scale-11">{TEXT}</p>
       </div>
 
-      <span className="font-fontCodeMedium text-xs py-1 px-1.5 border-[1px] border-gray-200 rounded bg-scale-7">
-        Ctrl+K
-      </span>
+      <span className="font-fontCodeMedium text-xs py-1 px-1.5 rounded bg-scale-7">Ctrl+K</span>
     </button>
   )
 }

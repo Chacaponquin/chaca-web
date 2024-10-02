@@ -2,15 +2,16 @@ import { Delete, Image, Plus, Share } from "@modules/app/modules/icon/components
 import { LanguageOption, MenuItem } from "../domain"
 import { useTheme } from "@modules/app/modules/theme/hooks"
 import { THEME } from "@modules/app/modules/theme/constants"
-import { createRef, useEffect, useMemo, useState } from "react"
+import { createRef, useMemo, useState } from "react"
 import { useClickOutside } from "@modules/shared/hooks"
 import {
   AddDatasetCommand,
-  CommandsExecutor,
   ExportAllDatasetsCommand,
   handleExportDatasetsImageCommand,
 } from "@modules/dataset/domain/commands"
 import { useLanguage, useTranslation } from "@modules/app/modules/language/hooks"
+import { CommandsExecutor } from "@modules/app/domain/command"
+import { useCommands } from "@modules/app/hooks"
 
 interface Props {
   handleExportDataset(): void
@@ -32,7 +33,14 @@ export default function useMenu({
   const { handleChangeTheme: handleChangeThemeHook, theme } = useTheme()
   const { handleChangeLanguage: handleChangeLanguageHook } = useLanguage()
 
+  const commands = new CommandsExecutor([
+    new AddDatasetCommand(handleAddSchema),
+    new ExportAllDatasetsCommand(handleExportDataset),
+    new handleExportDatasetsImageCommand(handleExportImage),
+  ])
+
   useClickOutside({ element: listRef, onClickOutside: () => setOpen(false) })
+  useCommands({ executor: commands })
 
   const { ADD_DATASET, DELETE_ALL, EXPORT_ALL, EXPORT_IMAGE } = useTranslation({
     ADD_DATASET: { en: "Add schema", es: "Añadir schema" },
@@ -40,24 +48,6 @@ export default function useMenu({
     EXPORT_IMAGE: { en: "Export image", es: "Exportar imagen" },
     DELETE_ALL: { en: "Delete all", es: "Eliminar todo" },
   })
-
-  const commands = new CommandsExecutor([
-    new AddDatasetCommand(handleAddSchema),
-    new ExportAllDatasetsCommand(handleExportDataset),
-    new handleExportDatasetsImageCommand(handleExportImage),
-  ])
-
-  const handleKeyboardAction = (event: globalThis.KeyboardEvent) => {
-    commands.execute(event)
-  }
-
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeyboardAction)
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyboardAction)
-    }
-  }, [handleKeyboardAction])
 
   const items: MenuItem[] = [
     {

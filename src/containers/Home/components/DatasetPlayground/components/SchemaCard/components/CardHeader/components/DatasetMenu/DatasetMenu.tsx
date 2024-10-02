@@ -7,7 +7,7 @@ import {
   AddFieldCommand,
   CloneDatasetCommand,
   DeleteDatasetCommand,
-  EditDatasetCommand,
+  EditSchemaCommand,
   ExportDatasetCommand,
 } from "@modules/dataset/domain/commands"
 
@@ -40,7 +40,7 @@ export default function DatasetMenu({
     {
       id: `${name}-dataset-edit-button`,
       icon: Edit,
-      command: EditDatasetCommand.value,
+      command: EditSchemaCommand.value,
       onClick: handleEditSchema,
       text: EDIT_OPTION,
     },

@@ -1,33 +1,24 @@
 import { createContext, useMemo } from "react"
 import { DocSection } from "../domain/core/base"
-import {
-  GET_STARTED_SECTION,
-  API_SECTION,
-  FIELD_TYPES_SECTION,
-  MODULES_SECTION,
-  CONCEPTS_SECTION,
-  EXPORT_SECTION,
-} from "../domain/core/sections"
+import { Algoliasearch, algoliasearch } from "algoliasearch"
+import { DOCS } from "../domain/constants/docs"
+import { useEnv } from "@modules/app/modules/env/hooks"
 
 interface Props {
   docs: DocSection[]
+  client: Algoliasearch
 }
 
 export const DocsContext = createContext<Props>({ docs: [] as DocSection[] } as Props)
 
 export function DocsProvider({ children }: { children: React.ReactNode }) {
-  const docs: DocSection[] = useMemo(() => {
-    return [
-      GET_STARTED_SECTION,
-      CONCEPTS_SECTION,
-      FIELD_TYPES_SECTION,
-      MODULES_SECTION,
-      EXPORT_SECTION,
-      API_SECTION,
-    ]
-  }, [])
+  const { ALGOLIA_API_ID, ALGOLIA_READ_API_KEY } = useEnv()
 
-  const value: Props = { docs: docs }
+  const client = algoliasearch(ALGOLIA_API_ID, ALGOLIA_READ_API_KEY, {})
+
+  const docs: DocSection[] = useMemo(() => DOCS, [])
+
+  const value: Props = { docs: docs, client: client }
 
   return <DocsContext.Provider value={value}>{children}</DocsContext.Provider>
 }
