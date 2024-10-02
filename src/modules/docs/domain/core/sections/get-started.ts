@@ -26,8 +26,15 @@ class UsageSection extends DocSubSection {
   }
 }
 
+class UtilsSection extends DocSubSection {
+  constructor() {
+    super({ parent: SECTION, title: "Utils", url: "utils" })
+  }
+}
+
 export const INTRODUCTION = new IntroductionSection()
 export const COMMAND_LINE = new CommandLineSection()
 export const USAGE = new UsageSection()
+export const UTILS = new UtilsSection()
 
-SECTION.push([INTRODUCTION, USAGE, COMMAND_LINE])
+SECTION.push([INTRODUCTION, USAGE, COMMAND_LINE, UTILS])

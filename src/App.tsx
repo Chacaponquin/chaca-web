@@ -20,8 +20,18 @@ import {
   SchemaArray,
   SchemaObject,
 } from "@containers/Docs/components/Api/components"
-import { Command, Introduction } from "@containers/Docs/components/GetStarted/components"
-import { COMMAND_LINE, INTRODUCTION, USAGE } from "@modules/docs/domain/core/sections/get-started"
+import {
+  Command,
+  Introduction,
+  Usage,
+  Utils,
+} from "@containers/Docs/components/GetStarted/components"
+import {
+  COMMAND_LINE,
+  INTRODUCTION,
+  USAGE,
+  UTILS,
+} from "@modules/docs/domain/core/sections/get-started"
 import {
   MODULE_VALUE,
   OVERVIEW,
@@ -89,7 +99,6 @@ import {
   SEQUENTIAL,
   KEY,
 } from "@modules/docs/domain/core/sections/field-types"
-import Usage from "@containers/Docs/components/GetStarted/components/Usage/Usage"
 import {
   Dataset,
   DatasetStore,
@@ -177,6 +186,7 @@ export default function App() {
                         <Route element={<Command />} path={COMMAND_LINE.url} />
                         <Route element={<Introduction />} path={INTRODUCTION.url} />
                         <Route element={<Usage />} path={USAGE.url} />
+                        <Route element={<Utils />} path={UTILS.url} />
 
                         <Route element={<ModulesOverview />} path={MODULE_OVERVIEW.url} />
                         <Route element={<Address />} path={ADDRESS.url} />
