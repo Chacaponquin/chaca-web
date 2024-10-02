@@ -11,7 +11,7 @@ interface Props {
 export default function Code({ code, language, title }: Props) {
   return (
     <div className="w-full flex flex-col relative my-4 border-[1px] border-scale-7 rounded">
-      <header className="flex rounded-t w-full justify-between py-2.5 px-4 border-b-[1px] border-b-scale-7 dark:bg-scale-2">
+      <header className="flex items-center rounded-t w-full justify-between py-2.5 px-4 border-b-[1px] border-b-scale-7 dark:bg-scale-2">
         <p className="text-sm text-scale-11">{title}</p>
 
         <Copy code={code} />

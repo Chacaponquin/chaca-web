@@ -11,9 +11,10 @@ interface Props {
   method: string
   params: Param[]
   code: string
+  title: string
 }
 
-export default function MethodSection({ method, params, code }: Props) {
+export default function MethodSection({ method, params, code, title }: Props) {
   return (
     <>
       <H2>
@@ -22,7 +23,7 @@ export default function MethodSection({ method, params, code }: Props) {
 
       {params.length > 0 && <Params params={params} />}
 
-      <Code title="" code={code} language="typescript" />
+      <Code title={`${title} examples`} code={code} language="typescript" />
     </>
   )
 }

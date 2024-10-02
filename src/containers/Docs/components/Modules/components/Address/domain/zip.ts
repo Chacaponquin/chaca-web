@@ -7,5 +7,11 @@ modules.address.zipCode({ format: '###' }) // '453'
 `
 
 export const ZIP_PARAMS: Param[] = [
-  { name: "format", description: "", params: [], required: false, types: [COMMON_TYPES.STRING] },
+  {
+    name: "format",
+    description: "Formato del código",
+    params: [],
+    required: false,
+    types: [COMMON_TYPES.STRING],
+  },
 ]

@@ -79,7 +79,9 @@ export default function Tooltip({ position = "top", children, text }: Props) {
         {text}
       </p>
 
-      <div ref={elementRef}>{children}</div>
+      <div className="flex items-center" ref={elementRef}>
+        {children}
+      </div>
     </div>
   )
 }

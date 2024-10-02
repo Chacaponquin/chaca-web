@@ -8,20 +8,40 @@ import { ZIP_CODE, ZIP_PARAMS } from "./domain/zip"
 export default function Address() {
   return (
     <>
-      <MethodSection apiId="zip_code" method="zipCode" params={ZIP_PARAMS} code={ZIP_CODE} />
-
-      <MethodSection apiId="time_zone" method="timeZone" params={[]} code={TIME_ZONE_CODE} />
+      <MethodSection
+        title="Zip code"
+        apiId="zip_code"
+        method="zipCode"
+        params={ZIP_PARAMS}
+        code={ZIP_CODE}
+      />
 
       <MethodSection
+        title="Time zone"
+        apiId="time_zone"
+        method="timeZone"
+        params={[]}
+        code={TIME_ZONE_CODE}
+      />
+
+      <MethodSection
+        title="Cardinal direction"
         apiId="cardinal_direction"
         method="cardinalDirection"
         params={[]}
         code={CARDINAL_DIRECTION_CODE}
       />
 
-      <MethodSection apiId="country" method="country" params={COUNTRY_PARAMS} code={COUNTRY_CODE} />
+      <MethodSection
+        title="Country"
+        apiId="country"
+        method="country"
+        params={COUNTRY_PARAMS}
+        code={COUNTRY_CODE}
+      />
 
       <MethodSection
+        title="Country code"
         apiId="country_code"
         method="countryCode"
         params={[]}
