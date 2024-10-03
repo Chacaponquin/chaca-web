@@ -2,7 +2,7 @@ import clsx from "clsx"
 
 interface Props {
   children: React.ReactNode
-  size?: "xs" | "base" | "sm"
+  size?: "xs" | "base" | "sm" | "xl"
 }
 
 export default function MiniCode({ children, size = "base" }: Props) {
@@ -17,7 +17,7 @@ export default function MiniCode({ children, size = "base" }: Props) {
     "text-white",
     "whitespace-nowrap",
 
-    { "text-sm": size === "sm", "text-xs": size === "xs" },
+    { "text-sm": size === "sm", "text-xs": size === "xs", "text-xl": size === "xl" },
   )
 
   return <code className={CLASS}>{children}</code>

@@ -18,7 +18,7 @@ export default function MethodSection({ method, params, code, title }: Props) {
   return (
     <>
       <H2>
-        <MiniCode>{method}</MiniCode>
+        <MiniCode size="xl">{method}</MiniCode>
       </H2>
 
       {params.length > 0 && <Params params={params} />}
