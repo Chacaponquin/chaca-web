@@ -1,19 +1,18 @@
 import { SaveIndex } from "./save-index"
 
+export interface SectionTitle {
+  id: string
+  title: string
+}
+
 interface DocSectionProps {
   url: string
   title: string
 }
 
-interface SubSectionProps {
+export interface SubSectionProps {
   title: string
   parent: DocSection
-  url: string
-}
-
-export interface SubSectionInf {
-  id: string
-  title: string
   url: string
 }
 
@@ -41,11 +40,13 @@ export abstract class DocSubSection {
   readonly title: string
   private readonly _url: string
   readonly parent: DocSection
+  titles: SectionTitle[]
 
   constructor({ title, parent, url }: SubSectionProps) {
     this._url = url
     this.title = title
     this.parent = parent
+    this.titles = []
   }
 
   get url() {

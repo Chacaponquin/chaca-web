@@ -1,17 +1,24 @@
-import { HttpMethod } from "../../domain"
 import { Body, Button, Params, Request, Response } from "./components"
 import { useMemo, useState } from "react"
-import { RequestParam } from "./domain"
+import { RequestParam, TryResult } from "./domain"
 import { useFetch } from "@modules/app/modules/http/hooks"
+import { HttpMethod } from "../../domain/constants/http"
 
 interface Props {
   body?: string
   params: RequestParam[]
   url: string
   method: HttpMethod
+  result: TryResult
 }
 
-export default function TryRoute({ url: iurl, method, body: ibody, params: iparams }: Props) {
+export default function TryRoute({
+  url: iurl,
+  method,
+  body: ibody,
+  params: iparams,
+  result,
+}: Props) {
   const { instance } = useFetch()
 
   const [loading, setLoading] = useState(false)
@@ -71,7 +78,7 @@ export default function TryRoute({ url: iurl, method, body: ibody, params: ipara
           <Params loading={loading} params={params} handleChangeParam={handleChangeParam} />
         )}
 
-        {response && <Response loading={loading} response={response} />}
+        {response && <Response loading={loading} response={response} result={result} />}
       </div>
     </div>
   )

@@ -10,8 +10,8 @@ interface Props {
   apiId: string
   method: string
   params: Param[]
-  code: string
   title: string
+  code?: string
 }
 
 export default function MethodSection({ method, params, code, title }: Props) {
@@ -23,7 +23,7 @@ export default function MethodSection({ method, params, code, title }: Props) {
 
       {params.length > 0 && <Params params={params} />}
 
-      <Code title={`${title} examples`} code={code} language="typescript" />
+      {code && <Code title={`${title} examples`} code={code} language="typescript" />}
     </>
   )
 }

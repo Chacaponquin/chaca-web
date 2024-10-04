@@ -1,8 +1,9 @@
-import { TryRoute } from "@containers/Docs/components/Api/shared/components"
+import { TryRoute } from "@containers/Docs/shared/components"
 
 export default function Try() {
   return (
     <TryRoute
+      result="json"
       body={"{}"}
       url="api/module"
       method="post"

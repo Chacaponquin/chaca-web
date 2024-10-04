@@ -1,5 +1,3 @@
-export type HttpMethod = "get" | "post" | "put" | "delete"
-
 export const MOVIE_SCHEMA_BODY = `{
     "id": {
         "type": "module",

@@ -1,5 +1,5 @@
+import { HttpMethod } from "@containers/Docs/shared/domain/constants/http"
 import clsx from "clsx"
-import { HttpMethod } from "../../../../domain"
 
 interface Props {
   method: HttpMethod
