@@ -6,11 +6,10 @@ import clsx from "clsx"
 interface Props {
   code: string
   language: Language
-  manual?: boolean
   className?: string
 }
 
-export default function ExampleCode({ code, language, className, manual = false }: Props) {
+export default function ExampleCode({ code, language, className }: Props) {
   const CLASS = clsx(
     "px-4 py-4",
     "code-view",
@@ -25,30 +24,16 @@ export default function ExampleCode({ code, language, className, manual = false 
   return (
     <div className={CLASS}>
       <pre>
-        <Highlight {...defaultProps} language={language} code={code} theme={theme}>
+        <Highlight {...defaultProps} language={language} code={code.trim()} theme={theme}>
           {({ tokens, getLineProps, getTokenProps }) => {
             return tokens.map((line, index) => {
-              if (language !== "bash" && !manual) {
-                if (index !== 0 && index !== tokens.length - 1) {
-                  return (
-                    <div {...getLineProps({ line, key: index })} key={Id.generate()}>
-                      {line.map((token, key) => (
-                        <span {...getTokenProps({ token, key })} key={Id.generate()} />
-                      ))}
-                    </div>
-                  )
-                } else {
-                  return <></>
-                }
-              } else {
-                return (
-                  <div {...getLineProps({ line, key: index })} key={Id.generate()}>
-                    {line.map((token, key) => (
-                      <span {...getTokenProps({ token, key })} key={Id.generate()} />
-                    ))}
-                  </div>
-                )
-              }
+              return (
+                <div {...getLineProps({ line, key: index })} key={Id.generate()}>
+                  {line.map((token, key) => (
+                    <span {...getTokenProps({ token, key })} key={Id.generate()} />
+                  ))}
+                </div>
+              )
             })
           }}
         </Highlight>

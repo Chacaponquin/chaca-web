@@ -8,7 +8,6 @@ import {
   Warning,
 } from "@modules/shared/modules/markdown/components/Markdown/components"
 import { MethodSection } from "../../shared/components"
-import { COMMON_PARAMS } from "./domain/params"
 import { Fragment } from "react"
 import { TryRoute } from "@containers/Docs/shared/components"
 
@@ -39,12 +38,7 @@ export default function Image() {
 
       {IMAGE.methods.map((m, index) => (
         <Fragment key={index}>
-          <MethodSection
-            apiId={m.apiId}
-            method={m.method}
-            params={m.params ? COMMON_PARAMS : []}
-            title={m.method}
-          />
+          <MethodSection apiId={m.apiId} method={m.method} params={m.params} title={m.method} />
 
           <TryRoute
             result="image"
@@ -52,6 +46,8 @@ export default function Image() {
             body="{}"
             params={[]}
             url={IMAGE.methodUrl(m.apiId)}
+            disableBody
+            initFetch
           />
         </Fragment>
       ))}

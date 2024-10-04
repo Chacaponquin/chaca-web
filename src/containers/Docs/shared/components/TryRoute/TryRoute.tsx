@@ -1,11 +1,13 @@
 import { Body, Button, Params, Request, Response } from "./components"
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { RequestParam, TryResult } from "./domain"
 import { useFetch } from "@modules/app/modules/http/hooks"
 import { HttpMethod } from "../../domain/constants/http"
 
 interface Props {
   body?: string
+  disableBody?: boolean
+  initFetch?: boolean
   params: RequestParam[]
   url: string
   method: HttpMethod
@@ -18,6 +20,8 @@ export default function TryRoute({
   body: ibody,
   params: iparams,
   result,
+  disableBody = false,
+  initFetch = false,
 }: Props) {
   const { instance } = useFetch()
 
@@ -33,6 +37,12 @@ export default function TryRoute({
     return all.join("/")
   }, [params])
 
+  useEffect(() => {
+    if (initFetch) {
+      handleFetch()
+    }
+  }, [])
+
   function handleChangeBody(b: string) {
     setBody(b)
   }
@@ -45,7 +55,7 @@ export default function TryRoute({
     })
   }
 
-  function handleClick() {
+  function handleFetch() {
     const b = JSON.parse(body ? body : "{}")
 
     try {
@@ -54,7 +64,13 @@ export default function TryRoute({
       instance
         .post(url, b)
         .then((r) => {
-          const data = JSON.stringify(r.data, undefined, 4)
+          let data: string
+
+          if (result === "json") {
+            data = JSON.stringify(r.data, undefined, 4)
+          } else {
+            data = r.data as string
+          }
 
           setResponse(data)
         })
@@ -68,11 +84,11 @@ export default function TryRoute({
     <div className="w-full my-4 flex flex-col border-[1px] border-scale-7 rounded">
       <header className="flex py-3 px-4 items-center w-full justify-between border-b-[1px] border-b-scale-7">
         <Request method={method} url={url} />
-        <Button handleClick={handleClick} loading={loading} />
+        <Button handleClick={handleFetch} loading={loading} />
       </header>
 
       <div className="flex flex-col w-full gap-y-2 py-2">
-        {body && <Body body={body} handleChangeBody={handleChangeBody} />}
+        {body && !disableBody && <Body body={body} handleChangeBody={handleChangeBody} />}
 
         {params.length > 0 && (
           <Params loading={loading} params={params} handleChangeParam={handleChangeParam} />
