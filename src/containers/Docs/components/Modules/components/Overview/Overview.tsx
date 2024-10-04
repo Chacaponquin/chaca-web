@@ -46,6 +46,13 @@ export default function Overview() {
 
       <UsageSchema />
 
+      <Info>
+        <P>
+          Muchas de estas secciones contienen una propiedad <MiniCode>constants</MiniCode> que
+          contienen las constantes utilizadas para generar los valores.
+        </P>
+      </Info>
+
       <H2 id={MODULES_OV.apiIdId}>Api id</H2>
 
       <P>
