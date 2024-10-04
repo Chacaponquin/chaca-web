@@ -51,6 +51,9 @@ class Id extends DocSubSection {
 }
 
 class Image extends DocSubSection {
+  readonly animateAvatarId = "animate-avatar"
+  readonly categoryId = "category"
+
   constructor() {
     super({ parent: SECTION, title: "Image", url: "image" })
   }
