@@ -12,6 +12,7 @@ import { Lorem } from "./lorem"
 import { ModuleDocSubSection } from "./module-section"
 import { Overview } from "./overview"
 import { Person } from "./person"
+import { Phone } from "./phone"
 
 class ModulesSection extends DocSection {
   constructor() {
@@ -20,12 +21,6 @@ class ModulesSection extends DocSection {
 }
 
 export const SECTION = new ModulesSection()
-
-class Phone extends ModuleDocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: "Phone", url: "phone", apiId: "phone" })
-  }
-}
 
 class Science extends ModuleDocSubSection {
   constructor() {
@@ -68,7 +63,7 @@ export const IMAGE = new Image(SECTION)
 export const INTERNET = new Internet(SECTION)
 export const LOREM = new Lorem(SECTION)
 export const PERSON = new Person(SECTION)
-export const PHONE = new Phone()
+export const PHONE = new Phone(SECTION)
 export const SCIENCE = new Science()
 export const SYSTEM = new System()
 export const VEHICLE = new Vehicle()
