@@ -7,6 +7,14 @@ import {
   P,
 } from "@modules/shared/modules/markdown/components/Markdown/components"
 import { CodesTable, Error, Features } from "./components"
+import {
+  ERROR_MESSAGE,
+  RATE_LIMIT,
+  RESPONSE_CODES,
+  WHAT_API,
+  WHY_RATE_LIMIT,
+  WHY_USE,
+} from "@modules/docs/domain/core/sections/api/overview"
 
 export default function Overview() {
   const JSON_URL = "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON"
@@ -26,7 +34,7 @@ export default function Overview() {
 
       <Features />
 
-      <H2>¿Qué es una API REST?</H2>
+      <H2 title={WHAT_API} />
 
       <P>
         API representa una abreviatura de Application Programming Interface. Una API constituye una
@@ -48,7 +56,7 @@ export default function Overview() {
         <MiniCode>PUT</MiniCode>, <MiniCode>DELETE</MiniCode>.
       </P>
 
-      <H2>¿Por qué deberías utilizar la API REST?</H2>
+      <H2 title={WHY_USE} />
 
       <P>La API REST de Chaca puede ser de gran utilidad en los siguientes escenarios:</P>
 
@@ -75,7 +83,7 @@ export default function Overview() {
         </ListItem>
       </List>
 
-      <H2>Límite de peticiones</H2>
+      <H2 title={RATE_LIMIT} />
 
       <P>
         La cantidad de peticiones HTTP que puede realizar un usuario poseen un valor máximo que no
@@ -89,7 +97,7 @@ export default function Overview() {
         El límite de peticiones está definido en <MiniCode>1000</MiniCode> peticiones por hora.
       </P>
 
-      <H2>¿Por qué existe un límite de peticiones?</H2>
+      <H2 title={WHY_RATE_LIMIT} />
 
       <P>
         El límite de peticiones es necesario para prevenir que la aplicación se vea sobrecargada por
@@ -111,7 +119,7 @@ export default function Overview() {
         </ListItem>
       </List>
 
-      <H2>Mensajes de error</H2>
+      <H2 title={ERROR_MESSAGE} />
 
       <P>
         Si un error ocurre en alguno de los procesos la respuesta a la petición HTTP tendrá la
@@ -120,7 +128,7 @@ export default function Overview() {
 
       <Error />
 
-      <H2>Códigos de respuesta</H2>
+      <H2 title={RESPONSE_CODES} />
 
       <P>
         De forma general, los códigos en el rango <MiniCode>2xx</MiniCode> indican una respuesta

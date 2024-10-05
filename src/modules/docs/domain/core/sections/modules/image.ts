@@ -28,8 +28,11 @@ export interface ImageMethod {
 }
 
 export class Image extends ModuleDocSubSection {
-  readonly animateAvatarId = "animated-avatar"
-  readonly categoryId = "category"
+  private readonly animateAvatarId = "animated-avatar"
+  private readonly categoryId = "category"
+
+  readonly animatedAvatarUrl = this.buildUrl(this.animateAvatarId)
+  readonly categoryUrl = this.buildUrl(this.categoryId)
 
   readonly methods: ImageMethod[]
 

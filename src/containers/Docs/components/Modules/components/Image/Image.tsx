@@ -19,8 +19,8 @@ export default function Image() {
       <Warning title="Imágenes generadas en la librería">
         <P>
           En la librería de Chaca al utilizar un módulo perteneciente a esta sección (exceptuando
-          los módulos <Link to={IMAGE.buildIdUrl(IMAGE.animateAvatarId)}>animateAvatar</Link> o{" "}
-          <Link to={IMAGE.buildIdUrl(IMAGE.categoryId)}>category</Link>) se genera una URL de{" "}
+          los módulos <Link to={IMAGE.animatedAvatarUrl}>animateAvatar</Link> o{" "}
+          <Link to={IMAGE.categoryUrl}>category</Link>) se genera una URL de{" "}
           <ExternalLink to={LOREM_FLICKR_URL}>Lorem Flickr</ExternalLink> con la categoría del
           módulo utilizado, pero esta URL no representa una imagen específica, sino que{" "}
           <ExternalLink to={LOREM_FLICKR_URL}>Lorem Flickr</ExternalLink> genera una imagen con esta
@@ -38,7 +38,7 @@ export default function Image() {
 
       {IMAGE.methods.map((m, index) => (
         <Fragment key={index}>
-          <MethodSection apiId={m.apiId} method={m.method} params={m.params} title={m.method} />
+          <MethodSection code={null} params={m.params} title={{ id: m.apiId, title: m.method }} />
 
           <TryRoute
             result="image"

@@ -1,17 +1,13 @@
-import { generateId } from "@modules/shared/modules/markdown/domain/id"
+import { SectionTitle } from "@modules/docs/domain/core/base"
 
 interface Props {
-  children: string
-  id?: string
+  title: SectionTitle
 }
 
-export default function H3({ children, id }: Props) {
+export default function H3({ title }: Props) {
   return (
-    <h3
-      id={id ? id : generateId(children)}
-      className="text-xl mt-8 mb-1 font-fontMedium text-white"
-    >
-      {children}
+    <h3 id={title.id} className="text-xl mt-8 mb-1 font-fontMedium text-white">
+      {title.title}
     </h3>
   )
 }

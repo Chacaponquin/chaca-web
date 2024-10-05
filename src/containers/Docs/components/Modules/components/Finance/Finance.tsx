@@ -1,3 +1,19 @@
+import {
+  BITCOIN,
+  SUBSCRIPTION_PLAN,
+  TRANSACTION,
+  ACCOUNT_TYPE,
+  AMOUNT,
+  CREDIT_CARD,
+  CREDIT_CARD_CVV,
+  CURRENCY_MONEY_NAME,
+  ETHEREUM,
+  MONEY_CODE,
+  MONEY_SYMBOL,
+  PIN,
+  ROUTING_NUMBER,
+  BIC,
+} from "@modules/docs/domain/core/sections/modules/finance"
 import { MethodSection } from "../../shared/components"
 import { ACCOUNT_TYPE_CODE } from "./domain/account-type"
 import { AMOUNT_CODE, AMOUNT_PARAMS } from "./domain/amount"
@@ -17,105 +33,33 @@ import { TRANSACTION_CODE } from "./domain/transaction"
 export default function Finance() {
   return (
     <>
-      <MethodSection
-        apiId="transaction"
-        code={TRANSACTION_CODE}
-        method="transaction"
-        params={[]}
-        title="Transaction"
-      />
+      <MethodSection code={TRANSACTION_CODE} params={[]} title={TRANSACTION} />
 
-      <MethodSection
-        apiId="subscription_plan"
-        method="subscriptionPlan"
-        code={SUBSCRIPTION_PLAN_CODE}
-        params={[]}
-        title="Subscription plan"
-      />
+      <MethodSection title={SUBSCRIPTION_PLAN} code={SUBSCRIPTION_PLAN_CODE} params={[]} />
 
-      <MethodSection params={PIN_PARAMS} apiId="pin" code={PIN_CODE} method="pin" title="Pin" />
+      <MethodSection params={PIN_PARAMS} title={PIN} code={PIN_CODE} />
 
-      <MethodSection
-        method="bitcoinAddress"
-        apiId="bitcoin_address"
-        code={BITCOIN_CODE}
-        params={[]}
-        title="Bitcoin address"
-      />
+      <MethodSection code={BITCOIN_CODE} params={[]} title={BITCOIN} />
 
-      <MethodSection
-        method="creditCard"
-        apiId="credit_card"
-        code={CREDIT_CARD_CODE}
-        params={[]}
-        title="Credit card"
-      />
+      <MethodSection code={CREDIT_CARD_CODE} params={[]} title={CREDIT_CARD} />
 
-      <MethodSection
-        apiId="ethereum_address"
-        method="ethereumAddress"
-        title="Ethereum address"
-        code={ETHEREUM_CODE}
-        params={[]}
-      />
+      <MethodSection title={ETHEREUM} code={ETHEREUM_CODE} params={[]} />
 
-      <MethodSection
-        method="accountType"
-        apiId="account_type"
-        code={ACCOUNT_TYPE_CODE}
-        params={[]}
-        title="Account type"
-      />
+      <MethodSection code={ACCOUNT_TYPE_CODE} params={[]} title={ACCOUNT_TYPE} />
 
-      <MethodSection method="bic" apiId="bic" code={BIC_CODE} params={[]} title="Bic" />
+      <MethodSection title={BIC} code={BIC_CODE} params={[]} />
 
-      <MethodSection
-        apiId="routing_number"
-        code={ROUTING_NUMBER_CODE}
-        method="routingNumber"
-        params={[]}
-        title="Routing number"
-      />
+      <MethodSection code={ROUTING_NUMBER_CODE} params={[]} title={ROUTING_NUMBER} />
 
-      <MethodSection
-        apiId="credit_card_cvv"
-        method="creditCardCVV"
-        code={CREDIT_CARD_CVV_CODE}
-        params={[]}
-        title="Credit card CVV"
-      />
+      <MethodSection code={CREDIT_CARD_CVV_CODE} params={[]} title={CREDIT_CARD_CVV} />
 
-      <MethodSection
-        method="moneySymbol"
-        apiId="money_symbol"
-        code={MONEY_SYMBOL_CODE}
-        params={[]}
-        title="Money symbol"
-      />
+      <MethodSection title={MONEY_SYMBOL} code={MONEY_SYMBOL_CODE} params={[]} />
 
-      <MethodSection
-        apiId="amount"
-        code={AMOUNT_CODE}
-        method="amount"
-        params={AMOUNT_PARAMS}
-        title="Amount"
-      />
+      <MethodSection title={AMOUNT} code={AMOUNT_CODE} params={AMOUNT_PARAMS} />
 
-      <MethodSection
-        method="currencyMoneyName"
-        apiId="currency_money_name"
-        code={CURRENCY_MONEY_NAME_CODE}
-        params={[]}
-        title="Currency money name"
-      />
+      <MethodSection title={CURRENCY_MONEY_NAME} code={CURRENCY_MONEY_NAME_CODE} params={[]} />
 
-      <MethodSection
-        apiId="money_code"
-        code={MONEY_CODE_CODE}
-        method="moneyCode"
-        params={[]}
-        title="Money code"
-      />
+      <MethodSection title={MONEY_CODE} code={MONEY_CODE_CODE} params={[]} />
     </>
   )
 }

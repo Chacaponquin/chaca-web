@@ -1,6 +1,16 @@
-import { DocSection, DocSubSection } from "../../base"
+import { DocSection } from "../../base"
+import { Address } from "./address"
+import { Animal } from "./animal"
+import { Color } from "./color"
+import { Datatype } from "./datatype"
+import { Date } from "./date"
+import { Finance } from "./finance"
+import { Id } from "./id"
 import { Image } from "./image"
+import { Internet } from "./internet"
 import { ModuleDocSubSection } from "./module-section"
+import { Overview } from "./overview"
+import { Person } from "./person"
 
 class ModulesSection extends DocSection {
   constructor() {
@@ -10,67 +20,9 @@ class ModulesSection extends DocSection {
 
 export const SECTION = new ModulesSection()
 
-class Address extends ModuleDocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: "Address", url: "address", apiId: "address" })
-  }
-}
-
-class Animal extends ModuleDocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: "Animal", url: "animal", apiId: "animal" })
-  }
-}
-
-class Color extends ModuleDocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: "Color", url: "color", apiId: "color" })
-  }
-}
-
-class Datatype extends ModuleDocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: "Datatype", url: "datatype", apiId: "datatype" })
-  }
-}
-
-class Date extends ModuleDocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: "Date", url: "date", apiId: "date" })
-  }
-}
-
-class Finance extends ModuleDocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: "Finance", url: "finance", apiId: "finance" })
-  }
-}
-
-class Id extends ModuleDocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: "Id", url: "id", apiId: "id" })
-  }
-}
-
-class Internet extends ModuleDocSubSection {
-  readonly emailId = "email"
-
-  constructor() {
-    super({ parent: SECTION, title: "Internet", url: "internet", apiId: "email" })
-  }
-}
-
 class Lorem extends ModuleDocSubSection {
   constructor() {
     super({ parent: SECTION, title: "Lorem", url: "lorem", apiId: "lorem" })
-  }
-}
-
-class Person extends ModuleDocSubSection {
-  readonly firstNameId = "first-name"
-
-  constructor() {
-    super({ parent: SECTION, title: "Person", url: "person", apiId: "person" })
   }
 }
 
@@ -110,32 +62,24 @@ class Word extends ModuleDocSubSection {
   }
 }
 
-class Overview extends DocSubSection {
-  readonly apiIdId = "api-id"
-
-  constructor() {
-    super({ parent: SECTION, title: "Overview", url: "overview" })
-  }
-}
-
-export const ADDRESS = new Address()
-export const ANIMAL = new Animal()
-export const COLOR = new Color()
-export const DATATYPE = new Datatype()
-export const DATE = new Date()
-export const FINANCE = new Finance()
-export const ID = new Id()
+export const ADDRESS = new Address(SECTION)
+export const ANIMAL = new Animal(SECTION)
+export const COLOR = new Color(SECTION)
+export const DATATYPE = new Datatype(SECTION)
+export const DATE = new Date(SECTION)
+export const FINANCE = new Finance(SECTION)
+export const ID = new Id(SECTION)
 export const IMAGE = new Image(SECTION)
-export const INTERNET = new Internet()
+export const INTERNET = new Internet(SECTION)
 export const LOREM = new Lorem()
-export const PERSON = new Person()
+export const PERSON = new Person(SECTION)
 export const PHONE = new Phone()
 export const SCIENCE = new Science()
 export const SYSTEM = new System()
 export const VEHICLE = new Vehicle()
 export const VIDEO = new Video()
 export const WORD = new Word()
-export const OVERVIEW = new Overview()
+export const OVERVIEW = new Overview(SECTION)
 
 SECTION.push([
   OVERVIEW,

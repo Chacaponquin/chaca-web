@@ -1,3 +1,20 @@
+import {
+  BEAR,
+  DOG,
+  BIRD,
+  CAT,
+  COW,
+  CROCODILIA,
+  FISH,
+  HORSE,
+  INSECT,
+  LION,
+  RABBIT,
+  RODENT,
+  SNAKE,
+  TYPE,
+  CETACEAN,
+} from "@modules/docs/domain/core/sections/modules/animal"
 import { MethodSection } from "../../shared/components"
 import {
   BEAR_CODE,
@@ -20,47 +37,35 @@ import {
 export default function Animal() {
   return (
     <>
-      <MethodSection apiId="dog" method="dog" params={[]} title="Dog" code={DOG_CODE} />
+      <MethodSection params={[]} title={DOG} code={DOG_CODE} />
 
-      <MethodSection apiId="bear" method="bear" code={BEAR_CODE} title="Bear" params={[]} />
+      <MethodSection title={BEAR} code={BEAR_CODE} params={[]} />
 
-      <MethodSection apiId="bird" code={BIRD_CODE} method="bird" params={[]} title="Bird" />
+      <MethodSection code={BIRD_CODE} title={BIRD} params={[]} />
 
-      <MethodSection apiId="cat" title="Cat" code={CAT_CODE} method="cat" params={[]} />
+      <MethodSection title={CAT} code={CAT_CODE} params={[]} />
 
-      <MethodSection
-        apiId="cetacean"
-        title="Cetacean"
-        code={CETACEAN_CODE}
-        method="cetacean"
-        params={[]}
-      />
+      <MethodSection title={CETACEAN} code={CETACEAN_CODE} params={[]} />
 
-      <MethodSection apiId="cow" title="Cow" code={COW_CODE} method="cow" params={[]} />
+      <MethodSection title={COW} code={COW_CODE} params={[]} />
 
-      <MethodSection
-        apiId="crocodilia"
-        code={CROCODILIA_CODE}
-        method="crocodilia"
-        params={[]}
-        title="Crocodilia"
-      />
+      <MethodSection title={CROCODILIA} code={CROCODILIA_CODE} params={[]} />
 
-      <MethodSection apiId="fish" code={FISH_CODE} method="fish" params={[]} title="Fish" />
+      <MethodSection code={FISH_CODE} title={FISH} params={[]} />
 
-      <MethodSection apiId="horse" code={HORSE_CODE} method="horse" params={[]} title="Horse" />
+      <MethodSection code={HORSE_CODE} title={HORSE} params={[]} />
 
-      <MethodSection apiId="insect" code={INSECT_CODE} method="insect" params={[]} title="Insect" />
+      <MethodSection code={INSECT_CODE} title={INSECT} params={[]} />
 
-      <MethodSection apiId="lion" code={LION_CODE} method="lion" params={[]} title="Lion" />
+      <MethodSection code={LION_CODE} title={LION} params={[]} />
 
-      <MethodSection apiId="rabbit" code={RABBIT_CODE} method="rabbit" params={[]} title="Rabbit" />
+      <MethodSection code={RABBIT_CODE} params={[]} title={RABBIT} />
 
-      <MethodSection apiId="rodent" code={RODENT_CODE} method="rodent" params={[]} title="Rodent" />
+      <MethodSection code={RODENT_CODE} params={[]} title={RODENT} />
 
-      <MethodSection apiId="snake" code={SNAKE_CODE} method="snake" params={[]} title="Snake" />
+      <MethodSection code={SNAKE_CODE} params={[]} title={SNAKE} />
 
-      <MethodSection apiId="type" code={TYPE_CODE} method="type" params={[]} title="Animal type" />
+      <MethodSection code={TYPE_CODE} params={[]} title={TYPE} />
     </>
   )
 }

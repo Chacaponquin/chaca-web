@@ -4,54 +4,48 @@ import {
   COLOR_BY_CSS_COLOR_SPACE_PARAMS,
 } from "./domain/color-by-css-color-space"
 import { CMYK_PARAMS, CYMK_CODE } from "./domain/cmyk"
-import { CSS_SUPPORTED_FUNCTION } from "./domain/css-supported-function"
-import { CSS_SUPPORTED_SPACE } from "./domain/css-supported-space"
+import { CSS_SUPPORTED_FUNCTION_CODE } from "./domain/css-supported-function"
+import { CSS_SUPPORTED_SPACE_CODE } from "./domain/css-supported-space"
 import { HSL_CODE, HSL_PARAMS } from "./domain/hsl"
 import { HWB_CODE, HWB_PARAMS } from "./domain/hwb"
 import { LCH_CODE, LCH_PARAMS } from "./domain/lch"
 import { RGB_CODE, RGB_PARAMS } from "./domain/rgb"
+import {
+  CMYK,
+  COLOR_BY_CSS_COLOR_SPACE,
+  CSS_SUPPORTED_FUNCTION,
+  CSS_SUPPORTED_SPACE,
+  HSL,
+  HWB,
+  LCH,
+  RGB,
+} from "@modules/docs/domain/core/sections/modules/color"
 
 export default function Color() {
   return (
     <>
       <MethodSection
-        method="cssSupportedFunction"
-        code={CSS_SUPPORTED_FUNCTION}
-        apiId="css_supported_function"
-        title="CSS Supported Function"
+        code={CSS_SUPPORTED_FUNCTION_CODE}
+        title={CSS_SUPPORTED_FUNCTION}
         params={[]}
       />
 
-      <MethodSection
-        method="cssSupportedSpace"
-        apiId="css_supported_space"
-        title="Css Supported Space"
-        params={[]}
-        code={CSS_SUPPORTED_SPACE}
-      />
+      <MethodSection title={CSS_SUPPORTED_SPACE} params={[]} code={CSS_SUPPORTED_SPACE_CODE} />
 
-      <MethodSection method="rgb" apiId="rgb" code={RGB_CODE} params={RGB_PARAMS} title="RGB" />
+      <MethodSection code={RGB_CODE} params={RGB_PARAMS} title={RGB} />
 
-      <MethodSection
-        method="cmyk"
-        apiId="cmyk"
-        code={CYMK_CODE}
-        params={CMYK_PARAMS}
-        title="Cmyk"
-      />
+      <MethodSection code={CYMK_CODE} params={CMYK_PARAMS} title={CMYK} />
 
-      <MethodSection method="hsl" title="Hsl" apiId="hsl" code={HSL_CODE} params={HSL_PARAMS} />
+      <MethodSection title={HSL} code={HSL_CODE} params={HSL_PARAMS} />
 
-      <MethodSection method="hwb" apiId="hwb" code={HWB_CODE} params={HWB_PARAMS} title="Hwb" />
+      <MethodSection code={HWB_CODE} params={HWB_PARAMS} title={HWB} />
 
-      <MethodSection method="lch" apiId="lch" code={LCH_CODE} params={LCH_PARAMS} title="Lch" />
+      <MethodSection title={LCH} code={LCH_CODE} params={LCH_PARAMS} />
 
       <MethodSection
-        method="colorByCSSColorSpace"
-        title="Color by CSS Space"
         code={COLOR_BY_CSS_COLOR_SPACE_CODE}
         params={COLOR_BY_CSS_COLOR_SPACE_PARAMS}
-        apiId="color_by_css_color_space"
+        title={COLOR_BY_CSS_COLOR_SPACE}
       />
     </>
   )

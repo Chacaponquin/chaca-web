@@ -1,3 +1,15 @@
+import {
+  SPECIAL_CHARACTER,
+  ALPHANUMERIC,
+  BINARY_CODE,
+  BOOLEAN,
+  CHARACTERS,
+  FLOAT,
+  HEXADECIMAL,
+  INT,
+  MATRIX,
+  NUMBER,
+} from "@modules/docs/domain/core/sections/modules/datatype"
 import { MethodSection } from "../../shared/components"
 import { ALPHA_NUMERIC_CODE, ALPHA_NUMERIC_PARAMS } from "./domain/alpha-numeric"
 import { BINARY_CODE_CODE, BINARY_CODE_PARAMS } from "./domain/binary-code"
@@ -13,79 +25,25 @@ import { SPECIAL_CHARACTER_CODE } from "./domain/special-character"
 export default function Datatype() {
   return (
     <>
-      <MethodSection
-        apiId="special_character"
-        title="Special character"
-        code={SPECIAL_CHARACTER_CODE}
-        method="specialCharacter"
-        params={[]}
-      />
+      <MethodSection title={SPECIAL_CHARACTER} code={SPECIAL_CHARACTER_CODE} params={[]} />
 
-      <MethodSection
-        apiId="boolean"
-        code={BOOLEAN_CODE}
-        method="boolean"
-        params={[]}
-        title="Boolean"
-      />
+      <MethodSection title={BOOLEAN} code={BOOLEAN_CODE} params={[]} />
 
-      <MethodSection apiId="int" code={INT_CODE} method="int" params={INT_PARAMS} title="Integer" />
+      <MethodSection code={INT_CODE} params={INT_PARAMS} title={INT} />
 
-      <MethodSection
-        method="float"
-        apiId="float"
-        code={FLOAT_CODE}
-        params={FLOAT_PARAMS}
-        title="Float"
-      />
+      <MethodSection code={FLOAT_CODE} params={FLOAT_PARAMS} title={FLOAT} />
 
-      <MethodSection
-        code={NUMBER_CODE}
-        params={NUMBER_PARAMS}
-        apiId="number"
-        method="number"
-        title="Number"
-      />
+      <MethodSection code={NUMBER_CODE} params={NUMBER_PARAMS} title={NUMBER} />
 
-      <MethodSection
-        apiId="hexadecimal"
-        code={HEXADECIMAL_CODE}
-        method="hexadecimal"
-        params={HEXADECIMAL_PARAMS}
-        title="Hexadecimal"
-      />
+      <MethodSection code={HEXADECIMAL_CODE} params={HEXADECIMAL_PARAMS} title={HEXADECIMAL} />
 
-      <MethodSection
-        apiId="matrix"
-        code={MATRIX_CODE}
-        method="matrix"
-        params={MATRIX_PARAMS}
-        title="Matrix"
-      />
+      <MethodSection code={MATRIX_CODE} params={MATRIX_PARAMS} title={MATRIX} />
 
-      <MethodSection
-        apiId="characters"
-        code={CHARACTERS_CODE}
-        params={CHARACTERS_PARAMS}
-        method="characters"
-        title="Characters"
-      />
+      <MethodSection title={CHARACTERS} code={CHARACTERS_CODE} params={CHARACTERS_PARAMS} />
 
-      <MethodSection
-        code={BINARY_CODE_CODE}
-        apiId="binary_code"
-        method="binaryCode"
-        params={BINARY_CODE_PARAMS}
-        title="Binary code"
-      />
+      <MethodSection code={BINARY_CODE_CODE} params={BINARY_CODE_PARAMS} title={BINARY_CODE} />
 
-      <MethodSection
-        method="alphaNumeric"
-        apiId="alphanumeric"
-        code={ALPHA_NUMERIC_CODE}
-        params={ALPHA_NUMERIC_PARAMS}
-        title="Alphanumeric"
-      />
+      <MethodSection code={ALPHA_NUMERIC_CODE} params={ALPHA_NUMERIC_PARAMS} title={ALPHANUMERIC} />
     </>
   )
 }

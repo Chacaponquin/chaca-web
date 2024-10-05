@@ -21,7 +21,14 @@ import {
 } from "./components"
 import { CUSTOM, KEY, SEQUENCE } from "@modules/docs/domain/core/sections/field-types"
 import { DATATYPE, IMAGE, INTERNET } from "@modules/docs/domain/core/sections/modules"
-import { SCHEMA } from "@modules/docs/domain/core/sections/concepts"
+import {
+  DEFINITION,
+  EXAMPLE,
+  EXPORT_DATA,
+  GENERATE_DATA,
+  NESTED_SCHEMA,
+  PARAMS,
+} from "@modules/docs/domain/core/sections/concepts/schema"
 
 export default function Schema() {
   return (
@@ -33,7 +40,7 @@ export default function Schema() {
         realista las reglas de negocio en los datos.
       </P>
 
-      <H2>Definir un schema</H2>
+      <H2 title={DEFINITION} />
 
       <P>
         Para definir un <MiniCode>Schema</MiniCode> solo es necesario utilizar el método{" "}
@@ -112,7 +119,7 @@ export default function Schema() {
         en caso contrario.
       </P>
 
-      <H2>Generar datos del schema</H2>
+      <H2 title={GENERATE_DATA} />
 
       <P>
         Una vez definido el <MiniCode>Schema</MiniCode> se pueden generar objetos de datos que
@@ -122,7 +129,7 @@ export default function Schema() {
 
       <GenerateCode />
 
-      <H2>Exportar datos del schema</H2>
+      <H2 title={EXPORT_DATA} />
 
       <P>
         Para generar y exportar los datos de un <MiniCode>Schema</MiniCode> se utiliza el método{" "}
@@ -132,11 +139,11 @@ export default function Schema() {
 
       <ExportSchema />
 
-      <H3>Parámetros</H3>
+      <H3 title={PARAMS} />
 
       <ExportParams />
 
-      <H3>Ejemplo</H3>
+      <H3 title={EXAMPLE} />
 
       <P>
         Para generar y exportar 3 documentos del <MiniCode>User Schema</MiniCode> creado
@@ -152,7 +159,7 @@ export default function Schema() {
 
       <UserDataExample />
 
-      <H2 id={SCHEMA.nestedSchemaId}>Schemas anidados</H2>
+      <H2 title={NESTED_SCHEMA} />
 
       <P>
         Si se desea que el valor generado para un campo dentro de un <MiniCode>Schema</MiniCode>{" "}

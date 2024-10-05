@@ -8,8 +8,9 @@ import {
 } from "@modules/shared/modules/markdown/components/Markdown/components"
 import { Comparation, SectionsList, Usage, UsageSchema } from "./components"
 import { CUSTOM } from "@modules/docs/domain/core/sections/field-types"
-import { OVERVIEW as MODULES_OV, PERSON } from "@modules/docs/domain/core/sections/modules"
+import { PERSON } from "@modules/docs/domain/core/sections/modules"
 import { OVERVIEW } from "@modules/docs/domain/core/sections/api"
+import { API_ID, USAGE } from "@modules/docs/domain/core/sections/modules/overview"
 
 export default function Overview() {
   return (
@@ -29,7 +30,7 @@ export default function Overview() {
 
       <SectionsList />
 
-      <H2 id="usage">Uso</H2>
+      <H2 title={USAGE} />
 
       <P>
         Para usar los módulos de Chaca solo debes importar <MiniCode>modules</MiniCode> dentro de
@@ -53,7 +54,7 @@ export default function Overview() {
         </P>
       </Info>
 
-      <H2 id={MODULES_OV.apiIdId}>Api id</H2>
+      <H2 title={API_ID} />
 
       <P>
         Para usar los módulos en la librería es solamente importar la variable{" "}
@@ -70,8 +71,8 @@ export default function Overview() {
 
       <P>
         A continuación se monstrará la diferencia a la hora de generar un valor del módulo{" "}
-        <Link to={PERSON.buildUrl(PERSON.firstNameId)}>person.firstName</Link> utilizando la
-        librería o utilizando la <Link to={OVERVIEW.redirect}>API REST</Link>.
+        <Link to={PERSON.firstNameUrl}>person.firstName</Link> utilizando la librería o utilizando
+        la <Link to={OVERVIEW.redirect}>API REST</Link>.
       </P>
 
       <Comparation />

@@ -7,6 +7,7 @@ import {
 } from "@modules/shared/modules/markdown/components/Markdown/components"
 import { Example, QueryParams, Try } from "./components"
 import { Route } from "../../shared/components"
+import { BODY, EXAMPLE, PARAMS } from "@modules/docs/domain/core/sections/api/module-value"
 
 export default function ModuleValue() {
   return (
@@ -19,11 +20,11 @@ export default function ModuleValue() {
         que son recibidos en el <MiniCode>body</MiniCode> de la petición.
       </P>
 
-      <H2>Parámetros</H2>
+      <H2 title={PARAMS} />
 
       <QueryParams />
 
-      <H2>Body</H2>
+      <H2 title={BODY} />
 
       <P>
         Cada <Link to={OVERVIEW.redirect}>módulo</Link> puede tener (o no) parámetros que pueden
@@ -31,7 +32,7 @@ export default function ModuleValue() {
         envía a través del <MiniCode>body</MiniCode> de la petición <MiniCode>POST</MiniCode>.
       </P>
 
-      <H2>Ejemplo</H2>
+      <H2 title={EXAMPLE} />
 
       <P>
         Para este ejemplo se expondrán distintas formas para generar un valor del{" "}

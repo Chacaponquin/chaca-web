@@ -4,4 +4,5 @@ export const COMMON_TYPES = {
   BOOLEAN: "boolean",
   ARRAY_STRING: "string[]",
   DATE: "Date",
+  REG_EXP: "RegExp",
 }

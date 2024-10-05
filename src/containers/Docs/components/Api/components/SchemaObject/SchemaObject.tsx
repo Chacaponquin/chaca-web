@@ -27,6 +27,18 @@ import { SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 import { CUSTOM } from "@modules/docs/domain/core/sections/field-types"
 import { OVERVIEW } from "@modules/docs/domain/core/sections/modules"
 import { SCHEMA_OBJECT } from "@modules/docs/domain/core/sections/api"
+import {
+  AVAILABLE_FIELDS,
+  BODY,
+  ENUM,
+  EXAMPLE,
+  MODULE,
+  NESTED_SCHEMA,
+  PICK,
+  PROBABILITY,
+  SEQUENCE,
+  SEQUENTIAL,
+} from "@modules/docs/domain/core/sections/api/schema-object"
 
 export default function SchemaObject() {
   return (
@@ -39,7 +51,8 @@ export default function SchemaObject() {
         petición.
       </P>
 
-      <H2 id={SCHEMA_OBJECT.bodyId}>Body</H2>
+      <H2 title={BODY} />
+
       <P>
         El cuerpo de la petición debe contener la definición del{" "}
         <Link to={SCHEMA.redirect}>schema</Link>. La definición de los campos difiere un poco a la
@@ -51,7 +64,7 @@ export default function SchemaObject() {
       </P>
       <Body />
 
-      <H3>Tipos de campo disponibles</H3>
+      <H3 title={AVAILABLE_FIELDS} />
       <P>
         Primero que nada se debe aclarar para generar datos a través de un{" "}
         <Link to={SCHEMA.redirect}>schema</Link> en esta ruta no se encuentran disponibles todos los{" "}
@@ -68,18 +81,18 @@ export default function SchemaObject() {
       <P>
         A estos se le suman dos tipos de campo existentes solamente para la API: uno para utilizar
         los <Link to={OVERVIEW.redirect}>módulos predefinidos</Link> de la librería y otro para
-        definir <Link to={SCHEMA.buildUrl(SCHEMA.nestedSchemaId)}>schemas anidados</Link>.
+        definir <Link to={SCHEMA.nestedSchemaUrl}>schemas anidados</Link>.
       </P>
 
       <List>
         <ListItem>
           <P>
-            <Link to={SCHEMA_OBJECT.buildIdUrl(SCHEMA_OBJECT.nestedSchemaId)}>Nested schema</Link>
+            <Link to={SCHEMA_OBJECT.nestedSchemaUrl}>Nested schema</Link>
           </P>
         </ListItem>
         <ListItem>
           <P>
-            <Link to={SCHEMA_OBJECT.buildIdUrl(SCHEMA_OBJECT.moduleId)}>Module</Link>
+            <Link to={SCHEMA_OBJECT.moduleUrl}>Module</Link>
           </P>
         </ListItem>
       </List>
@@ -97,42 +110,40 @@ export default function SchemaObject() {
         </P>
       </Tip>
 
-      <H3>Enum</H3>
+      <H3 title={ENUM} />
       <EnumParams />
 
-      <H3>Pick</H3>
+      <H3 title={PICK} />
 
       <PickParams />
 
-      <H3>Probability</H3>
+      <H3 title={PROBABILITY} />
       <ProbabilityParams />
 
-      <H3>Sequence</H3>
+      <H3 title={SEQUENCE} />
       <SequenceParams />
 
-      <H3>Sequential</H3>
+      <H3 title={SEQUENTIAL} />
       <SequentialParams />
 
-      <H3 id={SCHEMA_OBJECT.moduleId}>Module</H3>
+      <H3 title={MODULE} />
 
       <ModuleParams />
 
       <Warning title="Api id">
         <P>
-          Nótese que aunque en la mayoría de ocasiones el{" "}
-          <Link to={OVERVIEW.buildUrl(OVERVIEW.apiIdId)}>api id</Link> de un{" "}
-          <Link to={OVERVIEW.redirect}>módulo</Link> es igual al nombre de su método dentro de la
-          librería de Chaca, esto no se cumple para todos los casos, por lo que se debe revisar bien
-          la documentación de cada <Link to={OVERVIEW.redirect}>módulo</Link> que se quiera utilizar
-          para saber específicamente cuál es su{" "}
-          <Link to={OVERVIEW.buildUrl(OVERVIEW.apiIdId)}>api id</Link>.
+          Nótese que aunque en la mayoría de ocasiones el <Link to={OVERVIEW.apiIdUrl}>api id</Link>{" "}
+          de un <Link to={OVERVIEW.redirect}>módulo</Link> es igual al nombre de su método dentro de
+          la librería de Chaca, esto no se cumple para todos los casos, por lo que se debe revisar
+          bien la documentación de cada <Link to={OVERVIEW.redirect}>módulo</Link> que se quiera
+          utilizar para saber específicamente cuál es su <Link to={OVERVIEW.apiIdUrl}>api id</Link>.
         </P>
       </Warning>
 
-      <H3 id={SCHEMA_OBJECT.nestedSchemaId}>Schema</H3>
+      <H3 title={NESTED_SCHEMA} />
       <SchemaParams />
 
-      <H2>Ejemplo</H2>
+      <H2 title={EXAMPLE} />
 
       <P>
         Para este ejemplo se expondrán distintas formas en las que se puede generar un objeto de

@@ -1,4 +1,5 @@
-import { DocSection, DocSubSection } from "../base"
+import { DocSection, DocSubSection } from "../../base"
+import { Schema } from "./schema"
 
 class ConceptsSection extends DocSection {
   constructor() {
@@ -20,14 +21,6 @@ class DatasetStore extends DocSubSection {
   }
 }
 
-class Schema extends DocSubSection {
-  readonly nestedSchemaId = "nested-schema"
-
-  constructor() {
-    super({ parent: SECTION, title: "Schema", url: "schema" })
-  }
-}
-
 class SchemaField extends DocSubSection {
   readonly arrayFieldsId = "array-fields"
 
@@ -38,7 +31,7 @@ class SchemaField extends DocSubSection {
 
 export const DATASET = new Dataset()
 export const DATASET_STORE = new DatasetStore()
-export const SCHEMA = new Schema()
+export const SCHEMA = new Schema(SECTION)
 export const SCHEMA_FIELD = new SchemaField()
 
 SECTION.push([SCHEMA, SCHEMA_FIELD, DATASET, DATASET_STORE])

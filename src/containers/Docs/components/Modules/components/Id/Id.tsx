@@ -1,3 +1,4 @@
+import { MONGODB_ID, UUID } from "@modules/docs/domain/core/sections/modules/id"
 import { MethodSection } from "../../shared/components"
 import { MONGODB_ID_CODE } from "./domain/mongo-id"
 import { UUID_CODE } from "./domain/uuid"
@@ -5,15 +6,9 @@ import { UUID_CODE } from "./domain/uuid"
 export default function Id() {
   return (
     <>
-      <MethodSection method="uuid" apiId="uuid" code={UUID_CODE} params={[]} title="Uuid" />
+      <MethodSection title={UUID} code={UUID_CODE} params={[]} />
 
-      <MethodSection
-        method="mongodbId"
-        apiId="mongodb_id"
-        code={MONGODB_ID_CODE}
-        params={[]}
-        title="Mongodb id"
-      />
+      <MethodSection code={MONGODB_ID_CODE} params={[]} title={MONGODB_ID} />
     </>
   )
 }
