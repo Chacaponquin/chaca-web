@@ -13,6 +13,7 @@ import { ModuleDocSubSection } from "./module-section"
 import { Overview } from "./overview"
 import { Person } from "./person"
 import { Phone } from "./phone"
+import { Science } from "./science"
 
 class ModulesSection extends DocSection {
   constructor() {
@@ -21,12 +22,6 @@ class ModulesSection extends DocSection {
 }
 
 export const SECTION = new ModulesSection()
-
-class Science extends ModuleDocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: "Science", url: "science", apiId: "science" })
-  }
-}
 
 class System extends ModuleDocSubSection {
   constructor() {
@@ -64,7 +59,7 @@ export const INTERNET = new Internet(SECTION)
 export const LOREM = new Lorem(SECTION)
 export const PERSON = new Person(SECTION)
 export const PHONE = new Phone(SECTION)
-export const SCIENCE = new Science()
+export const SCIENCE = new Science(SECTION)
 export const SYSTEM = new System()
 export const VEHICLE = new Vehicle()
 export const VIDEO = new Video()
