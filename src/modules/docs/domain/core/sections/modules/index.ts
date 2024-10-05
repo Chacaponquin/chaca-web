@@ -8,6 +8,7 @@ import { Finance } from "./finance"
 import { Id } from "./id"
 import { Image } from "./image"
 import { Internet } from "./internet"
+import { Lorem } from "./lorem"
 import { ModuleDocSubSection } from "./module-section"
 import { Overview } from "./overview"
 import { Person } from "./person"
@@ -19,12 +20,6 @@ class ModulesSection extends DocSection {
 }
 
 export const SECTION = new ModulesSection()
-
-class Lorem extends ModuleDocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: "Lorem", url: "lorem", apiId: "lorem" })
-  }
-}
 
 class Phone extends ModuleDocSubSection {
   constructor() {
@@ -71,7 +66,7 @@ export const FINANCE = new Finance(SECTION)
 export const ID = new Id(SECTION)
 export const IMAGE = new Image(SECTION)
 export const INTERNET = new Internet(SECTION)
-export const LOREM = new Lorem()
+export const LOREM = new Lorem(SECTION)
 export const PERSON = new Person(SECTION)
 export const PHONE = new Phone()
 export const SCIENCE = new Science()
