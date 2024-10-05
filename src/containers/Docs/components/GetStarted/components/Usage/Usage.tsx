@@ -20,9 +20,15 @@ import {
 } from "./components"
 import { DATASET, SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 import { IMAGE, INTERNET } from "@modules/docs/domain/core/sections/modules"
-import { REF, SEQUENCE } from "@modules/docs/domain/core/sections/field-types"
 import { DOCS_IMAGE } from "@modules/docs/domain/constants/image"
 import { OVERVIEW } from "@modules/docs/domain/core/sections/export"
+import { REF, SEQUENCE } from "@modules/docs/domain/core/sections/field-types"
+import {
+  EXPORT_DATA,
+  MODULE_DATA,
+  RELATIONAL_DATA,
+  SCHEMA_DATA,
+} from "@modules/docs/domain/core/sections/get-started/usage"
 
 export default function Usage() {
   return (
@@ -39,7 +45,7 @@ export default function Usage() {
 
       <ImportCode />
 
-      <H2>Generar valores de un módulo</H2>
+      <H2 title={MODULE_DATA} />
 
       <P>
         El caso de uso más simple es la generación de valores de los modules definidos en la
@@ -55,7 +61,7 @@ export default function Usage() {
 
       <GenerateValueApi />
 
-      <H2>Generar datos de un schema</H2>
+      <H2 title={SCHEMA_DATA} />
 
       <P>
         Aparte de valores simples y primitivos, Chaca provee la forma de crear objetos complejos de
@@ -100,7 +106,7 @@ export default function Usage() {
 
       <UserDataExample />
 
-      <H2>Generar datos relacionales</H2>
+      <H2 title={RELATIONAL_DATA} />
 
       <P>
         En el mundo real la información almacenada y que se utiliza para cualquier tipo de proceso
@@ -142,7 +148,7 @@ export default function Usage() {
         <UserAndPostDefinition alternative={true} />
       </Tip>
 
-      <H2>Exportar datos</H2>
+      <H2 title={EXPORT_DATA} />
 
       <P>
         Una vez se tengan creados los datos a partir de un <MiniCode>Schema</MiniCode> o un{" "}

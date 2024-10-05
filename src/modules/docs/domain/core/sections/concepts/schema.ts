@@ -18,6 +18,6 @@ export class Schema extends DocSubSection {
   constructor(parent: DocSection) {
     super({ parent: parent, title: "Schema", url: "schema" })
 
-    this.titles = [NESTED_SCHEMA]
+    this.titles = [NESTED_SCHEMA, EXPORT_DATA, PARAMS, EXAMPLE, DEFINITION, GENERATE_DATA]
   }
 }

@@ -1,5 +1,4 @@
 import { DATASET, SCHEMA, SCHEMA_FIELD } from "@modules/docs/domain/core/sections/concepts"
-import { ENUM } from "@modules/docs/domain/core/sections/field-types"
 import {
   H2,
   Link,
@@ -17,14 +16,19 @@ import {
   LimitParams,
   PickParams,
 } from "./components"
+import { ENUM } from "@modules/docs/domain/core/sections/field-types"
+import {
+  CUSTOM_COUNT,
+  ELEMENTS_RANGE,
+  PICK_SPECIFIC_COUNT,
+} from "@modules/docs/domain/core/sections/field-types/pick"
 
 export default function Pick() {
   return (
     <>
       <P>
         Uno de los principales problemas del <Link to={ENUM.redirect}>campo enum</Link> es que en
-        caso de convertirlo en un{" "}
-        <Link to={SCHEMA_FIELD.buildUrl(SCHEMA_FIELD.arrayFieldsId)}>arreglo de valores</Link>{" "}
+        caso de convertirlo en un <Link to={SCHEMA_FIELD.arrayFieldsUrl}>arreglo de valores</Link>{" "}
         pueden generarse valores repetidos dentro del arreglo.
       </P>
 
@@ -66,7 +70,7 @@ export default function Pick() {
 
       <Example />
 
-      <H2>Cantidad de elementos específica</H2>
+      <H2 title={PICK_SPECIFIC_COUNT} />
 
       <P>
         La cantidad de elementos a escoger al ser definida como un número indica que para cada
@@ -75,19 +79,19 @@ export default function Pick() {
 
       <Example />
 
-      <H2>Cantidad de elementos limitada</H2>
+      <H2 title={ELEMENTS_RANGE} />
 
       <P>
         Similar a la configuración para devolver un valor en forma de{" "}
-        <Link to={SCHEMA_FIELD.buildUrl(SCHEMA_FIELD.arrayFieldsId)}>arreglo</Link> se puede definir
-        una cantidad máxima y mínima de valores que pueden ser escogidos en cada documento.
+        <Link to={SCHEMA_FIELD.arrayFieldsUrl}>arreglo</Link> se puede definir una cantidad máxima y
+        mínima de valores que pueden ser escogidos en cada documento.
       </P>
 
       <LimitParams />
 
       <LimitExample />
 
-      <H2>Cantidad variable de elementos</H2>
+      <H2 title={CUSTOM_COUNT} />
 
       <P>
         Si se quiere utilizar el estado actual del <Link to={DATASET.redirect}>dataset</Link> y del

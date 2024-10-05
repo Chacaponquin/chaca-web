@@ -1,4 +1,7 @@
-import { DocSection, DocSubSection } from "../base"
+import { DocSection, DocSubSection } from "../../base"
+import { Pick } from "./pick"
+import { Probability } from "./probability"
+import { Ref } from "./ref"
 
 class FieldTypesSection extends DocSection {
   constructor() {
@@ -26,12 +29,6 @@ class Key extends DocSubSection {
   }
 }
 
-class Ref extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: "Ref", url: "ref" })
-  }
-}
-
 class Sequence extends DocSubSection {
   constructor() {
     super({ parent: SECTION, title: "Sequence", url: "sequence" })
@@ -44,25 +41,13 @@ class Sequential extends DocSubSection {
   }
 }
 
-class Probability extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: "Probability", url: "probability" })
-  }
-}
-
-class Pick extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: "Pick", url: "pick" })
-  }
-}
-
 export const CUSTOM = new Custom()
 export const ENUM = new Enum()
-export const REF = new Ref()
+export const REF = new Ref(SECTION)
 export const SEQUENCE = new Sequence()
 export const SEQUENTIAL = new Sequential()
-export const PICK = new Pick()
-export const PROBABILITY = new Probability()
+export const PICK = new Pick(SECTION)
+export const PROBABILITY = new Probability(SECTION)
 export const KEY = new Key()
 
 SECTION.push([CUSTOM, ENUM, KEY, REF, SEQUENCE, SEQUENTIAL, PROBABILITY, PICK])

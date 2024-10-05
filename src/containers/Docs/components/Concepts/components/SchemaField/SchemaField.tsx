@@ -26,8 +26,18 @@ import {
   NullFunctionParams,
   ObjectParams,
 } from "./components"
+import { DATASET } from "@modules/docs/domain/core/sections/concepts"
+import {
+  ARRAY_FIELDS,
+  ARRAY_LIMIT_FUNCTION,
+  ARRAY_LIMITS,
+  NULL_FIELDS,
+  NULL_FUNCTION,
+  NULL_PROBABILITY,
+  PARAMS,
+  SPECIFIC_NULL_NUMBER,
+} from "@modules/docs/domain/core/sections/concepts/schema-field"
 import { KEY } from "@modules/docs/domain/core/sections/field-types"
-import { DATASET, SCHEMA_FIELD } from "@modules/docs/domain/core/sections/concepts"
 
 export default function SchemaField() {
   return (
@@ -47,7 +57,7 @@ export default function SchemaField() {
         </P>
       </Tip>
 
-      <H2>Parámetros</H2>
+      <H2 title={PARAMS} />
 
       <P>
         Todos los campos de un <MiniCode>Schema</MiniCode> pueden ser configurados para que el valor
@@ -57,7 +67,7 @@ export default function SchemaField() {
 
       <ObjectParams />
 
-      <H2 id={SCHEMA_FIELD.arrayFieldsId}>Campos que son arreglos</H2>
+      <H2 title={ARRAY_FIELDS} />
 
       <P>
         Los campos de un <MiniCode>Schema</MiniCode> pueden ser modificados para que devuelvan
@@ -66,7 +76,7 @@ export default function SchemaField() {
 
       <ArrayFieldExample />
 
-      <H3>Límites del arreglo</H3>
+      <H3 title={ARRAY_LIMITS} />
 
       <P>
         Obviamente en los contextos reales los campos con valores en forma de arreglos varían en
@@ -86,7 +96,7 @@ export default function SchemaField() {
         </P>
       </Danger>
 
-      <H3>Límites a través de una función</H3>
+      <H3 title={ARRAY_LIMIT_FUNCTION} />
 
       <P>
         En caso de que la longitud del arreglo dependa del valor de los campos del documento
@@ -107,7 +117,7 @@ export default function SchemaField() {
         tendrá como máximo 5 valores.
       </P>
 
-      <H2>Campos nulos</H2>
+      <H2 title={NULL_FIELDS} />
 
       <P>
         Para los campos que pueden tener valor <MiniCode>null</MiniCode> en los documentos a generar
@@ -128,7 +138,7 @@ export default function SchemaField() {
         <ListItem>Una función que devuelve una de las opciones anteriores.</ListItem>
       </List>
 
-      <H3>Cantidad específica de campos nulos</H3>
+      <H3 title={SPECIFIC_NULL_NUMBER} />
 
       <P>
         Si se define un número entero como <MiniCode>possibleNull</MiniCode> se elegirán esa
@@ -143,7 +153,7 @@ export default function SchemaField() {
         campo <MiniCode>username</MiniCode>.
       </P>
 
-      <H3>Probabilidades de valor nulo</H3>
+      <H3 title={NULL_PROBABILITY} />
 
       <P>
         Para casos donde no se necesite un número específico de campos con valor{" "}
@@ -193,7 +203,7 @@ export default function SchemaField() {
         </P>
       </Info>
 
-      <H3>Valor nulo a través de funciones</H3>
+      <H3 title={NULL_FUNCTION} />
 
       <P>
         Si la probabilidad de que el campo tenga valor <MiniCode>null</MiniCode> en cada documento

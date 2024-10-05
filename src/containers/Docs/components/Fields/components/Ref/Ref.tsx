@@ -19,6 +19,7 @@ import {
   WrongUniqueExample,
 } from "./components"
 import { KEY, REF } from "@modules/docs/domain/core/sections/field-types"
+import { FILTER_DOCUMENTS, REF_UNIQUE } from "@modules/docs/domain/core/sections/field-types/ref"
 
 export default function Ref() {
   return (
@@ -54,7 +55,7 @@ export default function Ref() {
 
       <RefExample />
 
-      <H2>Filtrar documentos referenciados</H2>
+      <H2 title={FILTER_DOCUMENTS} />
 
       <P>
         En ciertas ocasiones no todos los documentos del <Link to={SCHEMA.redirect}>schema</Link> a
@@ -79,7 +80,7 @@ export default function Ref() {
 
       <UserWhereExample />
 
-      <H2>Referencias únicas</H2>
+      <H2 title={REF_UNIQUE} />
 
       <P>
         Una de las peculiaridades del método <MiniCode>ref</MiniCode> es que todas las relaciones

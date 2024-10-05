@@ -22,9 +22,17 @@ import {
 } from "./components"
 import { DATASET, SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 import { KEY, REF } from "@modules/docs/domain/core/sections/field-types"
+import {
+  ARRAYS,
+  TRANSFORMATIONS,
+  KEY as KEY_POSTGRES,
+  NESTED_SCHEMA,
+  NULL_FIELDS,
+  REF as REF_POSTGRES,
+} from "@modules/docs/domain/core/sections/export/postgresql"
 
 export default function Postgresql() {
-  const primitiveJsUrl = "https://developer.mozilla.org/en-US/docs/Glossary/Primitive"
+  const PRIMITIVE_JS_URL = "https://developer.mozilla.org/en-US/docs/Glossary/Primitive"
 
   return (
     <>
@@ -57,14 +65,14 @@ export default function Postgresql() {
         </P>
       </Warning>
 
-      <H2>Transformaciones</H2>
+      <H2 title={TRANSFORMATIONS} />
 
       <P>
         A diferencia de otros formatos en este se realizan transformaciones en la creación de las
         tablas según la definición de los campos de un <Link to={SCHEMA.redirect}>schema</Link>.
       </P>
 
-      <H3>Campos llave</H3>
+      <H3 title={KEY_POSTGRES} />
 
       <P>
         Todos los <Link to={KEY.redirect}>campo llave</Link> definidos dentro de un{" "}
@@ -74,7 +82,7 @@ export default function Postgresql() {
 
       <KeyTransformation />
 
-      <H3>Referencias</H3>
+      <H3 title={REF_POSTGRES} />
 
       <P>
         Los campos referencia serán definidos en las tablas SQL como{" "}
@@ -83,7 +91,7 @@ export default function Postgresql() {
 
       <RefTransformation />
 
-      <H3>Campos nulos</H3>
+      <H3 title={NULL_FIELDS} />
 
       <P>
         Por defecto si un campo en ninguno de los objetos posee valor <MiniCode>null</MiniCode> se
@@ -95,7 +103,7 @@ export default function Postgresql() {
 
       <NullTranformation />
 
-      <H3>Schemas</H3>
+      <H3 title={NESTED_SCHEMA} />
 
       <P>
         En caso de que existan <Link to={SCHEMA.redirect}>schemas</Link> anidados, estos serán
@@ -130,7 +138,7 @@ export default function Postgresql() {
         <WrongObjectExport />
       </Warning>
 
-      <H3>Arreglos</H3>
+      <H3 title={ARRAYS} />
 
       <P>
         Los campos que al generarse constituyan arreglos de valores se convertirán en nuevas tablas
@@ -144,9 +152,9 @@ export default function Postgresql() {
       <P>
         Cada valor del arreglo es almacenado dentro de la nueva tabla SQL identificándose con una{" "}
         <MiniCode>PRIMARY KEY</MiniCode>. En caso de que el valor a guardar sea{" "}
-        <ExternalLink to={primitiveJsUrl}>primitivo de Javascript</ExternalLink>, este se registrará
-        dentro de la columna <MiniCode>value</MiniCode> como se pudo observar en el ejemplo
-        anterior.
+        <ExternalLink to={PRIMITIVE_JS_URL}>primitivo de Javascript</ExternalLink>, este se
+        registrará dentro de la columna <MiniCode>value</MiniCode> como se pudo observar en el
+        ejemplo anterior.
       </P>
 
       <P>

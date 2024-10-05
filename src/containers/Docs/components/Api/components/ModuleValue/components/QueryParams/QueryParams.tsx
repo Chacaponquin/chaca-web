@@ -9,8 +9,8 @@ export default function QueryParams() {
       name: "section",
       description: (
         <>
-          <Link to={OVERVIEW.buildUrl(OVERVIEW.apiIdId)}>Api id</Link> de la sección en la que se
-          encuentra el <Link to={OVERVIEW.redirect}>módulo</Link> a elegir
+          <Link to={OVERVIEW.apiIdUrl}>Api id</Link> de la sección en la que se encuentra el{" "}
+          <Link to={OVERVIEW.redirect}>módulo</Link> a elegir
         </>
       ),
       params: [],
@@ -21,8 +21,8 @@ export default function QueryParams() {
       name: "module",
       description: (
         <>
-          <Link to={OVERVIEW.buildUrl(OVERVIEW.apiIdId)}>Api id</Link> del{" "}
-          <Link to={OVERVIEW.redirect}>módulo</Link> del cual se generará el valor
+          <Link to={OVERVIEW.apiIdUrl}>Api id</Link> del <Link to={OVERVIEW.redirect}>módulo</Link>{" "}
+          del cual se generará el valor
         </>
       ),
       params: [],

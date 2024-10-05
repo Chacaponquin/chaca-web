@@ -1,4 +1,3 @@
-import { ENUM } from "@modules/docs/domain/core/sections/field-types"
 import {
   H2,
   Info,
@@ -16,6 +15,11 @@ import {
   ValueExample,
 } from "./components"
 import { DATASET } from "@modules/docs/domain/core/sections/concepts"
+import { ENUM } from "@modules/docs/domain/core/sections/field-types"
+import {
+  FUNCTION_VALUE,
+  PROBABILITY_VALUE,
+} from "@modules/docs/domain/core/sections/field-types/probability"
 
 export default function Probability() {
   return (
@@ -31,7 +35,7 @@ export default function Probability() {
 
       <ProbParams />
 
-      <H2>Valor de probabilidad</H2>
+      <H2 title={PROBABILITY_VALUE} />
 
       <P>
         Para definir una probabilidad de elección a un valor se debe definir un valor numérico
@@ -54,7 +58,7 @@ export default function Probability() {
         </P>
       </Info>
 
-      <H2>Probabilidad variable</H2>
+      <H2 title={FUNCTION_VALUE} />
 
       <P>
         El valor de probabilidad no necesariamente debe ser un valor numérico, ya que este valor

@@ -28,8 +28,17 @@ import {
   ProductSchemaDefinition,
   UserSchemaDefinition,
 } from "./components"
-import { REF } from "@modules/docs/domain/core/sections/field-types"
 import { DOCS_IMAGE } from "@modules/docs/domain/constants/image"
+import {
+  CYCLIC_DEPENDENCE,
+  DEFINITION,
+  EXAMPLE,
+  EXPORT_DATA,
+  GENERATE,
+  GENERATION_SEQUENCE,
+  HOW_CREATE_DATA,
+} from "@modules/docs/domain/core/sections/concepts/dataset"
+import { REF } from "@modules/docs/domain/core/sections/field-types"
 
 export default function Dataset() {
   return (
@@ -40,7 +49,7 @@ export default function Dataset() {
         son similares al modelado de una base de datos de cualquier software en desarrollo.
       </P>
 
-      <H2>Definir un Dataset</H2>
+      <H2 title={DEFINITION} />
 
       <P>
         Para definir un <MiniCode>Dataset</MiniCode> se deben definir en primera instancia los{" "}
@@ -90,7 +99,7 @@ export default function Dataset() {
 
       <EcommerceDatasetDefinition />
 
-      <H2>Generar datos</H2>
+      <H2 title={GENERATE} />
 
       <P>
         Para generar los datos de un <MiniCode>Dataset</MiniCode> definido se debe utilizar el
@@ -107,7 +116,7 @@ export default function Dataset() {
 
       <EcommerceGenerate />
 
-      <H2>Exportar datos generados</H2>
+      <H2 title={EXPORT_DATA} />
 
       <P>
         Para generar y exportar los datos de un <MiniCode>Dataset</MiniCode> se utiliza el método{" "}
@@ -136,7 +145,7 @@ export default function Dataset() {
 
       <EcommerceExample />
 
-      <H2>¿Cómo se generan los datos?</H2>
+      <H2 title={HOW_CREATE_DATA} />
 
       <P>
         En ciertas ocasiones la generación de datos puede provocar errores debido de la jerarquía a
@@ -144,7 +153,7 @@ export default function Dataset() {
         continuación la secuencia de pasos para generar estos datos.
       </P>
 
-      <H3>Secuencia de ejecución</H3>
+      <H3 title={GENERATION_SEQUENCE} />
 
       <P>
         Cuando se generan los datos de un <MiniCode>Dataset</MiniCode> se comienzan a crear los{" "}
@@ -214,7 +223,7 @@ export default function Dataset() {
         </P>
       </Tip>
 
-      <H3>Ejemplo práctico</H3>
+      <H3 title={EXAMPLE} />
 
       <P>
         Utilizaremos para representar la secuencia de ejecución el caso de{" "}
@@ -300,7 +309,7 @@ export default function Dataset() {
 
       <Img src={DOCS_IMAGE.ECOMMERCE_STEP_5} full />
 
-      <H3>Dependencia cíclica</H3>
+      <H3 title={CYCLIC_DEPENDENCE} />
 
       <P>
         Como se comentaba anteriormente en la generación de un <MiniCode>Dataset</MiniCode> puede

@@ -7,8 +7,8 @@ import {
   Tip,
 } from "@modules/shared/modules/markdown/components/Markdown/components"
 import { Definition, FieldsList, Params } from "./components"
-import { POSTGRES } from "@modules/docs/domain/core/sections/export"
 import { REF } from "@modules/docs/domain/core/sections/field-types"
+import { POSTGRES } from "@modules/docs/domain/core/sections/export"
 
 export default function Key() {
   return (

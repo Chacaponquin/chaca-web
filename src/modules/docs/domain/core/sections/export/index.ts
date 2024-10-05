@@ -1,4 +1,5 @@
-import { DocSection, DocSubSection } from "../base"
+import { DocSection, DocSubSection } from "../../base"
+import { Postgres } from "./postgresql"
 
 class ExportSection extends DocSection {
   constructor() {
@@ -38,12 +39,6 @@ class Json extends DocSubSection {
   }
 }
 
-class Postgres extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: "PostgreSQL", url: "postgres" })
-  }
-}
-
 class Python extends DocSubSection {
   constructor() {
     super({ parent: SECTION, title: "Python", url: "python" })
@@ -67,7 +62,7 @@ export const CSV = new Csv()
 export const JAVA = new Java()
 export const JS = new Javascript()
 export const JSON = new Json()
-export const POSTGRES = new Postgres()
+export const POSTGRES = new Postgres(SECTION)
 export const PYTHON = new Python()
 export const TYPESCRIPT = new Typescript()
 export const YAML = new Yaml()

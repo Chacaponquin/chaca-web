@@ -18,9 +18,8 @@ export default function ModuleParams() {
       description: (
         <>
           Módulo de Chaca que será utilizado para generar el valor del campo en cada documento. Esta
-          definición está compuesta por las{" "}
-          <Link to={OVERVIEW.buildUrl(OVERVIEW.apiIdId)}>api id</Link> de la sección y del módulo
-          separadas por un <MiniCode size="xs">.</MiniCode>. Por ejemplo:{" "}
+          definición está compuesta por las <Link to={OVERVIEW.apiIdUrl}>api id</Link> de la sección
+          y del módulo separadas por un <MiniCode size="xs">.</MiniCode>. Por ejemplo:{" "}
           <MiniCode size="xs">internet.username</MiniCode>
         </>
       ),

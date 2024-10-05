@@ -10,7 +10,7 @@ export default function useZip() {
       description: (
         <>
           Formato del código utilizando la definición de{" "}
-          <Link to={UTILS.buildUrl(UTILS.replaceSymbolsId)}>utils.replaceSymbols</Link>
+          <Link to={UTILS.replaceSymbolsUrl}>utils.replaceSymbols</Link>
         </>
       ),
       params: [],

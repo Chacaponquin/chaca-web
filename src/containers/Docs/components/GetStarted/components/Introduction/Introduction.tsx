@@ -15,6 +15,12 @@ import {
 import { Commands } from "./components"
 import { APP_ROUTES } from "@modules/app/constants"
 import { CHACA_LINKS } from "@modules/shared/domain/links"
+import {
+  ABOUT,
+  COMMUNITY,
+  INSTALATION,
+  REQUIREMENTS,
+} from "@modules/docs/domain/core/sections/get-started/introduction"
 
 export default function Introduction() {
   const NODE_LINK = "https://nodejs.org/en"
@@ -63,7 +69,7 @@ export default function Introduction() {
         <ListItem>Construcción de demos</ListItem>
       </List>
 
-      <H2>About</H2>
+      <H2 title={ABOUT} />
 
       <P>
         En los últimos años las aplicaciones web han escalado en gran medida, haciendo que exista
@@ -107,7 +113,7 @@ export default function Introduction() {
         creación de datos relacionales y exportarlos en diferentes formatos de archivo.
       </P>
 
-      <H2>Instalación</H2>
+      <H2 title={INSTALATION} />
 
       <P>
         Puedes añadir Chaca a tu proyecto Nodejs con un solo comando de consola con tu administrador
@@ -124,14 +130,14 @@ export default function Introduction() {
         </P>
       </Warning>
 
-      <H2>Requisitos</H2>
+      <H2 title={REQUIREMENTS} />
 
       <P>
         Es necesario para la instalación una versión de{" "}
         <ExternalLink to={NODE_LINK}>Nodejs</ExternalLink> superior a la 16 en el sistema operativo
       </P>
 
-      <H2>Comunidad</H2>
+      <H2 title={COMMUNITY} />
 
       <P>
         Si tienes alguna duda o necesitas ayuda, únete a la comunidad de{" "}

@@ -1,5 +1,8 @@
-import { DocSection, DocSubSection } from "../../base"
+import { DocSection } from "../../base"
+import { Dataset } from "./dataset"
 import { Schema } from "./schema"
+import { SchemaField } from "./schema-field"
+import { DatasetStore } from "./store"
 
 class ConceptsSection extends DocSection {
   constructor() {
@@ -9,29 +12,9 @@ class ConceptsSection extends DocSection {
 
 export const SECTION = new ConceptsSection()
 
-class Dataset extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: "Dataset", url: "dataset" })
-  }
-}
-
-class DatasetStore extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: "Dataset store", url: "dataset-store" })
-  }
-}
-
-class SchemaField extends DocSubSection {
-  readonly arrayFieldsId = "array-fields"
-
-  constructor() {
-    super({ parent: SECTION, title: "Schema field", url: "schema-field" })
-  }
-}
-
-export const DATASET = new Dataset()
-export const DATASET_STORE = new DatasetStore()
+export const DATASET = new Dataset(SECTION)
+export const DATASET_STORE = new DatasetStore(SECTION)
 export const SCHEMA = new Schema(SECTION)
-export const SCHEMA_FIELD = new SchemaField()
+export const SCHEMA_FIELD = new SchemaField(SECTION)
 
 SECTION.push([SCHEMA, SCHEMA_FIELD, DATASET, DATASET_STORE])

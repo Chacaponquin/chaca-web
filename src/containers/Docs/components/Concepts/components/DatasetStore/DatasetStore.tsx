@@ -1,5 +1,4 @@
 import { DATASET, SCHEMA } from "@modules/docs/domain/core/sections/concepts"
-import { CUSTOM, REF } from "@modules/docs/domain/core/sections/field-types"
 import {
   Danger,
   H2,
@@ -10,6 +9,11 @@ import {
   Tip,
 } from "@modules/shared/modules/markdown/components/Markdown/components"
 import { CurrentDefinition, GetDefinition, GetExample, GetParams } from "./components"
+import {
+  GET_CURRENT_SCHEMA_VALUES,
+  GET_SCHEMA_VALUES,
+} from "@modules/docs/domain/core/sections/concepts/store"
+import { CUSTOM, REF } from "@modules/docs/domain/core/sections/field-types"
 
 export default function DatasetStore() {
   return (
@@ -26,7 +30,7 @@ export default function DatasetStore() {
         <Link to={DATASET.redirect}>dataset</Link>.
       </P>
 
-      <H2>Obtener valores de un schema</H2>
+      <H2 title={GET_SCHEMA_VALUES} />
 
       <P>
         El método <MiniCode>get</MiniCode> permite obtener un arreglo de valores provenientes de un{" "}
@@ -54,7 +58,7 @@ export default function DatasetStore() {
         </P>
       </Danger>
 
-      <H2>Obtener documentos del schema actual</H2>
+      <H2 title={GET_CURRENT_SCHEMA_VALUES} />
 
       <P>
         En la sección anterior se utilizaba el método <MiniCode>get</MiniCode> para acceder a datos
