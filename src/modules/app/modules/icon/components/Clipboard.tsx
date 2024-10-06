@@ -13,7 +13,7 @@ export default function Clipboard({ size = DEFAULT_ICON_SIZE }: IconProps) {
       <path
         d="M17 7H16H10C8.89543 7 8 7.89543 8 9L8 42C8 43.1046 8.89543 44 10 44H38C39.1046 44 40 43.1046 40 42V9C40 7.89543 39.1046 7 38 7H33.0499H31"
         stroke="inherit"
-        strokeWidth="4"
+        strokeWidth="3"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -24,7 +24,7 @@ export default function Clipboard({ size = DEFAULT_ICON_SIZE }: IconProps) {
         height="6"
         fill="none"
         stroke="inherit"
-        strokeWidth="4"
+        strokeWidth="3"
         strokeLinejoin="round"
       />
     </svg>
