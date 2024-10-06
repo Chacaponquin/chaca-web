@@ -20,6 +20,12 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
+    "paths": {
+      "@modules/*": ["src/modules/*"],
+      "@containers/*": ["src/containers/*"],
+      "@form/*": ["src/modules/app/modules/form/*"]
+    },
+
     "types": ["cypress", "node"]
   },
 
@@ -28,11 +34,12 @@
     "experimentalSpecifierResolution": "node",
     "transpileOnly": true,
     "compilerOptions": {
-      "module": "ESNext"
+      "module": "ESNext",
+      "resolveJsonModule": true
     }
   },
 
-  "include": ["src", "cypress", "scripts"],
+  "include": ["src", "cypress", "scripts", "build-doc-indexes.ts"],
   "references": [{ "path": "./tsconfig.node.json" }],
   "extends": "./tsconfig.paths.json"
 }

@@ -32,7 +32,13 @@ export abstract class DocSection {
   }
 
   save(): SaveIndex[] {
-    return this.sections.map((s) => s.save())
+    const all = [] as SaveIndex[]
+
+    this.sections.forEach((s) => {
+      all.push(...s.save())
+    })
+
+    return all
   }
 }
 
@@ -73,8 +79,18 @@ export abstract class DocSubSection {
     return `#${id}`
   }
 
-  save(): SaveIndex {
-    return { title: this.title, location: this.location.join(" > "), url: this.url }
+  save(): SaveIndex[] {
+    return [
+      { title: this.title, location: this.location.join(" > "), url: this.url, language: "es" },
+      ...this.titles.map((t) => {
+        return {
+          title: t.title,
+          url: this.buildUrl(t.id),
+          location: [...this.location, t.title].join(" > "),
+          language: "es",
+        }
+      }),
+    ]
   }
 
   get next(): DocSubSection | null {

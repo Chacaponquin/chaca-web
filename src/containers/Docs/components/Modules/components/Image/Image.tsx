@@ -9,6 +9,9 @@ import {
 } from "@modules/shared/modules/markdown/components/Markdown/components"
 import { MethodSection } from "../../shared/components"
 import { SectionProvider } from "../../shared/context"
+import { COMMON_PARAMS } from "./domain/params"
+import { ANIMATED_AVATAR, CATEGORY } from "@modules/docs/domain/core/sections/modules/image"
+import { COMMON_TYPES } from "@modules/shared/modules/markdown/domain/constants"
 
 export default function Image() {
   const LOREM_FLICKR_URL = "https://loremflickr.com/"
@@ -39,10 +42,27 @@ export default function Image() {
         <MethodSection
           key={index}
           code={null}
-          params={m.params}
+          params={COMMON_PARAMS}
           title={{ id: m.apiId, title: m.method }}
         />
       ))}
+
+      <MethodSection
+        params={[
+          ...COMMON_PARAMS,
+          {
+            name: "category",
+            description: "Categoría de la imagen",
+            params: [],
+            required: true,
+            types: [COMMON_TYPES.STRING],
+          },
+        ]}
+        title={CATEGORY}
+        code={null}
+      />
+
+      <MethodSection title={ANIMATED_AVATAR} params={[]} code={null} />
     </SectionProvider>
   )
 }

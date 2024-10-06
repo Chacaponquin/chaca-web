@@ -7,7 +7,7 @@
     "prepare": "husky install",
     "dev": "tsc && vite",
     "build": "tsc && vite build",
-    "build:docs": "node --loader ts-node/esm --env-file=.env.dev scripts/build-doc-indexes.ts",
+    "build:docs": "node --loader ts-node/esm --loader tsconfig-paths/register.js --env-file=.env.dev scripts/build-doc-indexes.ts",
     "preview": "vite preview",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
     "lint-fix": "eslint --fix src/**/*.{js,jsx,ts,tsx,json}",
@@ -72,6 +72,7 @@
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   }
