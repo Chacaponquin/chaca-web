@@ -12,12 +12,14 @@ import { COUNTRY_CODE_CODE } from "./domain/country-code"
 import { TIME_ZONE_CODE } from "./domain/time-zone"
 import { ZIP_CODE_CODE } from "./domain/zip"
 import { useZip } from "./hooks"
+import { SectionProvider } from "../../shared/context"
+import { ADDRESS } from "@modules/docs/domain/core/sections/modules"
 
 export default function Address() {
   const { ZIP_PARAMS } = useZip()
 
   return (
-    <>
+    <SectionProvider section={ADDRESS} result="json">
       <MethodSection title={ZIP_CODE} params={ZIP_PARAMS} code={ZIP_CODE_CODE} />
 
       <MethodSection title={TIME_ZONE} params={[]} code={TIME_ZONE_CODE} />
@@ -27,6 +29,6 @@ export default function Address() {
       <MethodSection title={COUNTRY} params={COUNTRY_PARAMS} code={COUNTRY_CODE} />
 
       <MethodSection title={DOMAIN_COUNTRY_CODE} params={[]} code={COUNTRY_CODE_CODE} />
-    </>
+    </SectionProvider>
   )
 }

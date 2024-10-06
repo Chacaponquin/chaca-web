@@ -39,10 +39,12 @@ import { OAUTH_PROVIDER_CODE } from "./domain/oauth-provider"
 import { HTTP_STATUS_CODE_CODE } from "./domain/http-status-code"
 import { IPV4_CODE } from "./domain/ipv4"
 import { IPV6_CODE } from "./domain/ipv6"
+import { SectionProvider } from "../../shared/context"
+import { INTERNET } from "@modules/docs/domain/core/sections/modules"
 
 export default function Internet() {
   return (
-    <>
+    <SectionProvider section={INTERNET} result="json">
       <MethodSection params={[]} title={BROWSER_TITLE} code={BROWSER_CODE} />
 
       <MethodSection title={DOMAIN_NAME_TITLE} params={[]} code={DOMAIN_NAME_CODE} />
@@ -80,6 +82,6 @@ export default function Internet() {
       <MethodSection title={IPV6} code={IPV6_CODE} params={[]} />
 
       <MethodSection title={EMOJI} params={EMOJI_PARAMS} code={EMOJI_CODE} />
-    </>
+    </SectionProvider>
   )
 }

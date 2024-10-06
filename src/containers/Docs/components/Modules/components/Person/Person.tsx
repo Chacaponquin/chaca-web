@@ -19,10 +19,12 @@ import { LANGUAGE_CODE } from "./domain/language"
 import { LAST_NAME_CODE, LAST_NAME_PARAMS } from "./domain/last-name"
 import { PREFIX_CODE, PREFIX_PARAMS } from "./domain/prefix"
 import { SEX_CODE } from "./domain/sex"
+import { SectionProvider } from "../../shared/context"
+import { PERSON } from "@modules/docs/domain/core/sections/modules"
 
 export default function Person() {
   return (
-    <>
+    <SectionProvider section={PERSON} result="json">
       <MethodSection title={FIRST_NAME} code={FIRST_NAME_CODE} params={FIRST_NAME_PARAMS} />
 
       <MethodSection title={FULL_NAME} code={FULL_NAME_CODE} params={FULL_NAME_PARAMS} />
@@ -40,6 +42,6 @@ export default function Person() {
       <MethodSection title={PREFIX} code={PREFIX_CODE} params={PREFIX_PARAMS} />
 
       <MethodSection title={SEX} code={SEX_CODE} params={[]} />
-    </>
+    </SectionProvider>
   )
 }

@@ -15,7 +15,7 @@ export const SOON: SectionTitle = { id: "soon", title: "soon" }
 
 export const TIME_AGO: SectionTitle = { id: "time_ago", title: "timeAgo" }
 
-export const WEEK_DAY: SectionTitle = { id: "week_day", title: "weekDay" }
+export const WEEK_DAY: SectionTitle = { id: "weekday", title: "weekDay" }
 
 export class Date extends ModuleDocSubSection {
   constructor(parent: DocSection) {

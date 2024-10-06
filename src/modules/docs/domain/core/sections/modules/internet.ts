@@ -41,7 +41,7 @@ export const USERNAME: SectionTitle = { id: "username", title: "username" }
 
 export class Internet extends ModuleDocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Internet", url: "internet", apiId: "email" })
+    super({ parent: parent, title: "Internet", url: "internet", apiId: "internet" })
 
     this.titles = [
       BROWSER_TITLE,

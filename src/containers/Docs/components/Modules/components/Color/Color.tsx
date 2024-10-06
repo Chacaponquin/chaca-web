@@ -20,10 +20,12 @@ import {
   LCH,
   RGB,
 } from "@modules/docs/domain/core/sections/modules/color"
+import { SectionProvider } from "../../shared/context"
+import { COLOR } from "@modules/docs/domain/core/sections/modules"
 
 export default function Color() {
   return (
-    <>
+    <SectionProvider section={COLOR} result="json">
       <MethodSection
         code={CSS_SUPPORTED_FUNCTION_CODE}
         title={CSS_SUPPORTED_FUNCTION}
@@ -47,6 +49,6 @@ export default function Color() {
         params={COLOR_BY_CSS_COLOR_SPACE_PARAMS}
         title={COLOR_BY_CSS_COLOR_SPACE}
       />
-    </>
+    </SectionProvider>
   )
 }

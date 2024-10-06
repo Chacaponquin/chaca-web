@@ -29,10 +29,12 @@ import { PIN_CODE, PIN_PARAMS } from "./domain/pin"
 import { ROUTING_NUMBER_CODE } from "./domain/routing-number"
 import { SUBSCRIPTION_PLAN_CODE } from "./domain/subscription-plan"
 import { TRANSACTION_CODE } from "./domain/transaction"
+import { SectionProvider } from "../../shared/context"
+import { FINANCE } from "@modules/docs/domain/core/sections/modules"
 
 export default function Finance() {
   return (
-    <>
+    <SectionProvider section={FINANCE} result="json">
       <MethodSection code={TRANSACTION_CODE} params={[]} title={TRANSACTION} />
 
       <MethodSection title={SUBSCRIPTION_PLAN} code={SUBSCRIPTION_PLAN_CODE} params={[]} />
@@ -60,6 +62,6 @@ export default function Finance() {
       <MethodSection title={CURRENCY_MONEY_NAME} code={CURRENCY_MONEY_NAME_CODE} params={[]} />
 
       <MethodSection title={MONEY_CODE} code={MONEY_CODE_CODE} params={[]} />
-    </>
+    </SectionProvider>
   )
 }

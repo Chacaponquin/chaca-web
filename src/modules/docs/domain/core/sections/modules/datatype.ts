@@ -18,7 +18,7 @@ export const NUMBER: SectionTitle = { id: "number", title: "number" }
 
 export const HEXADECIMAL: SectionTitle = { id: "hexadecimal", title: "hexadecimal" }
 
-export const MATRIX: SectionTitle = { id: "maxtrix", title: "matrix" }
+export const MATRIX: SectionTitle = { id: "matrix", title: "matrix" }
 
 export const CHARACTERS: SectionTitle = { id: "characters", title: "characters" }
 

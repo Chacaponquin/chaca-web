@@ -11,10 +11,12 @@ import { FILE_EXT_CODE } from "./domain/file-ext"
 import { FILENAME_CODE, FILENAME_PARAMS } from "./domain/filename"
 import { FILE_PATH_CODE } from "./domain/file-path"
 import { DIRECTORY_PATH_CODE } from "./domain/directory-path"
+import { SectionProvider } from "../../shared/context"
+import { SYSTEM } from "@modules/docs/domain/core/sections/modules"
 
 export default function System() {
   return (
-    <>
+    <SectionProvider result="json" section={SYSTEM}>
       <MethodSection title={MIME_TYPE} code={MIME_TYPE_CODE} params={[]} />
 
       <MethodSection title={FILE_EXT} code={FILE_EXT_CODE} params={[]} />
@@ -24,6 +26,6 @@ export default function System() {
       <MethodSection title={FILE_PATH} code={FILE_PATH_CODE} params={[]} />
 
       <MethodSection title={DIRECTORY_PATH} code={DIRECTORY_PATH_CODE} params={[]} />
-    </>
+    </SectionProvider>
   )
 }

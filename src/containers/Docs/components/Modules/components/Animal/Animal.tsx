@@ -33,10 +33,12 @@ import {
   TYPE_CODE,
   SNAKE_CODE,
 } from "./domain"
+import { SectionProvider } from "../../shared/context"
+import { ANIMAL } from "@modules/docs/domain/core/sections/modules"
 
 export default function Animal() {
   return (
-    <>
+    <SectionProvider section={ANIMAL} result="json">
       <MethodSection params={[]} title={DOG} code={DOG_CODE} />
 
       <MethodSection title={BEAR} code={BEAR_CODE} params={[]} />
@@ -66,6 +68,6 @@ export default function Animal() {
       <MethodSection code={SNAKE_CODE} params={[]} title={SNAKE} />
 
       <MethodSection code={TYPE_CODE} params={[]} title={TYPE} />
-    </>
+    </SectionProvider>
   )
 }

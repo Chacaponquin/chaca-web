@@ -21,10 +21,12 @@ import { INT_CODE, INT_PARAMS } from "./domain/int"
 import { MATRIX_CODE, MATRIX_PARAMS } from "./domain/matrix"
 import { NUMBER_CODE, NUMBER_PARAMS } from "./domain/number"
 import { SPECIAL_CHARACTER_CODE } from "./domain/special-character"
+import { SectionProvider } from "../../shared/context"
+import { DATATYPE } from "@modules/docs/domain/core/sections/modules"
 
 export default function Datatype() {
   return (
-    <>
+    <SectionProvider section={DATATYPE} result="json">
       <MethodSection title={SPECIAL_CHARACTER} code={SPECIAL_CHARACTER_CODE} params={[]} />
 
       <MethodSection title={BOOLEAN} code={BOOLEAN_CODE} params={[]} />
@@ -44,6 +46,6 @@ export default function Datatype() {
       <MethodSection code={BINARY_CODE_CODE} params={BINARY_CODE_PARAMS} title={BINARY_CODE} />
 
       <MethodSection code={ALPHA_NUMERIC_CODE} params={ALPHA_NUMERIC_PARAMS} title={ALPHANUMERIC} />
-    </>
+    </SectionProvider>
   )
 }

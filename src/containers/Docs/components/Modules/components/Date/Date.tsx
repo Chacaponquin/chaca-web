@@ -17,10 +17,12 @@ import { PAST_CODE, PAST_PARAMS } from "./domain/past"
 import { SOON_CODE, SOON_PARAMS } from "./domain/soon"
 import { TIME_AGO_CODE, TIME_AGO_PARAMS } from "./domain/time-ago"
 import { WEEK_DAY_CODE } from "./domain/week-day"
+import { SectionProvider } from "../../shared/context"
+import { DATE } from "@modules/docs/domain/core/sections/modules"
 
 export default function Date() {
   return (
-    <>
+    <SectionProvider section={DATE} result="json">
       <MethodSection title={SOON} code={SOON_CODE} params={SOON_PARAMS} />
 
       <MethodSection title={PAST} code={PAST_CODE} params={PAST_PARAMS} />
@@ -36,6 +38,6 @@ export default function Date() {
       <MethodSection title={BETWEEN} code={BETWEEN_CODE} params={BETWEEN_PARAMS} />
 
       <MethodSection title={TIME_AGO} code={TIME_AGO_CODE} params={TIME_AGO_PARAMS} />
-    </>
+    </SectionProvider>
   )
 }

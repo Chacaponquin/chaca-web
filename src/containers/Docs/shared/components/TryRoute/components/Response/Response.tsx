@@ -1,4 +1,4 @@
-import { Loader, ResponseImage } from "./components"
+import { Loader, ResponseImage, ResponseVideo } from "./components"
 import { ExampleCode } from "@modules/shared/modules/markdown/components/Markdown/components/Code/components"
 import { Section } from "../../shared/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
@@ -18,6 +18,7 @@ export default function Response({ loading, response, result }: Props) {
       {loading && <Loader />}
       {!loading && result === "json" && <ExampleCode language="json" code={response} />}
       {!loading && result === "image" && <ResponseImage image={response} />}
+      {!loading && result === "video" && <ResponseVideo response={response} />}
     </Section>
   )
 }

@@ -8,14 +8,13 @@ import {
   Warning,
 } from "@modules/shared/modules/markdown/components/Markdown/components"
 import { MethodSection } from "../../shared/components"
-import { Fragment } from "react"
-import { TryRoute } from "@containers/Docs/shared/components"
+import { SectionProvider } from "../../shared/context"
 
 export default function Image() {
   const LOREM_FLICKR_URL = "https://loremflickr.com/"
 
   return (
-    <>
+    <SectionProvider section={IMAGE} result="image">
       <Warning title="Imágenes generadas en la librería">
         <P>
           En la librería de Chaca al utilizar un módulo perteneciente a esta sección (exceptuando
@@ -37,20 +36,13 @@ export default function Image() {
       </Tip>
 
       {IMAGE.methods.map((m, index) => (
-        <Fragment key={index}>
-          <MethodSection code={null} params={m.params} title={{ id: m.apiId, title: m.method }} />
-
-          <TryRoute
-            result="image"
-            method="post"
-            body="{}"
-            params={[]}
-            url={IMAGE.methodUrl(m.apiId)}
-            disableBody
-            initFetch
-          />
-        </Fragment>
+        <MethodSection
+          key={index}
+          code={null}
+          params={m.params}
+          title={{ id: m.apiId, title: m.method }}
+        />
       ))}
-    </>
+    </SectionProvider>
   )
 }
