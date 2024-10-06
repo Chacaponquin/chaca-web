@@ -9,7 +9,7 @@ export default function SearchDoc() {
 
   return (
     <BaseModal name="search-doc">
-      <InstantSearch searchClient={client} indexName={INDEX_NAME} future={{}} routing>
+      <InstantSearch searchClient={client} indexName={INDEX_NAME} future={{}} routing={false}>
         <Search />
         <Result />
       </InstantSearch>
