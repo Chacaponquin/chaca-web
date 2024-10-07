@@ -7,6 +7,7 @@ export default function Try() {
       body={"{}"}
       url="api/module"
       method="post"
+      initFetch
       params={[
         { param: "section", value: "internet" },
         { param: "module", value: "email" },

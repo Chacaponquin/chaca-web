@@ -16,7 +16,9 @@ export default function Response({ loading, response, result }: Props) {
   return (
     <Section title={LABEL}>
       {loading && <Loader />}
-      {!loading && result === "json" && <ExampleCode language="json" code={response} />}
+      {!loading && result === "json" && (
+        <ExampleCode rounded={false} language="json" code={response} />
+      )}
       {!loading && result === "image" && <ResponseImage image={response} />}
       {!loading && result === "video" && <ResponseVideo response={response} />}
     </Section>

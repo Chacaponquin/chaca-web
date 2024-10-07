@@ -10,23 +10,42 @@ interface Props {
   params: Param[]
   types: string[]
   alias?: string
+  default?: string
 }
 
-export default function Card({ description, name, required, params, types, alias }: Props) {
+export default function Card({
+  description,
+  name,
+  required,
+  params,
+  types,
+  alias,
+  default: idefault,
+}: Props) {
   return (
     <article className="flex flex-col bg-scale-3 rounded">
-      <header className="flex items-center gap-x-3.5 dark:bg-scale-2 px-4 py-2 rounded">
-        {alias ? (
-          <H4>
-            {name} ({alias})
-          </H4>
-        ) : (
-          <H4>{name}</H4>
-        )}
+      <header className="flex items-center justify-between dark:bg-scale-2 px-4 py-2 rounded gap-x-3">
+        <section className="flex items-center gap-x-3.5">
+          {alias ? (
+            <H4>
+              {name} ({alias})
+            </H4>
+          ) : (
+            <H4>{name}</H4>
+          )}
 
-        {required && <Required />}
+          {required && <Required />}
 
-        <MiniCode size="xs">{types.join(" | ")}</MiniCode>
+          <MiniCode size="xs">{types.join(" | ")}</MiniCode>
+        </section>
+
+        <section>
+          {idefault && (
+            <p className="text-white text-xs">
+              Default: <MiniCode size="xs">{idefault}</MiniCode>
+            </p>
+          )}
+        </section>
       </header>
 
       <p className="my-1 text-white text-sm px-4 py-1.5 leading-6">{description}</p>
