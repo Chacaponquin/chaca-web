@@ -26,6 +26,12 @@ export default function SchemaArray() {
 
       <QueryParams />
 
+      <Info>
+        <P>
+          La cantidad de documentos a generar no puede superar los <MiniCode>1000</MiniCode>.
+        </P>
+      </Info>
+
       <H2 title={BODY} />
 
       <P>
