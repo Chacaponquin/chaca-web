@@ -4,8 +4,6 @@ interface Props {
 
 export default function Th({ children }: Props) {
   return (
-    <th className="py-1 rounded text-center font-fontMedium px-4 font-normal border-scale-12 border-[1px]">
-      {children}
-    </th>
+    <th className="py-1 rounded pr-8 pb-1.5 text-left font-fontMedium font-normal">{children}</th>
   )
 }

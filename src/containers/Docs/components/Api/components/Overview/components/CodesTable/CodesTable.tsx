@@ -1,6 +1,7 @@
 import {
   MiniCode,
   P,
+  Strong,
   Table,
   Td,
   Th,
@@ -27,12 +28,16 @@ export default function CodesTable() {
 
   return (
     <Table>
-      <thead>
+      <thead className="">
         <Th>
-          <P>Código</P>
+          <P>
+            <Strong>Código</Strong>
+          </P>
         </Th>
         <Th>
-          <P>Descripción</P>
+          <P>
+            <Strong>Descripción</Strong>
+          </P>
         </Th>
       </thead>
 
@@ -41,7 +46,7 @@ export default function CodesTable() {
           <tr key={index}>
             <Td>
               <P>
-                <MiniCode>{c.code}</MiniCode>
+                <MiniCode size="sm">{c.code}</MiniCode>
               </P>
             </Td>
 

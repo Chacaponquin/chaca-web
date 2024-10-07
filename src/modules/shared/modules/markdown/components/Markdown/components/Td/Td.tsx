@@ -4,6 +4,8 @@ interface Props {
 
 export default function Td({ children }: Props) {
   return (
-    <td className="py-1.5 text-center px-4 border-scale-12 border-[1px] leading-7">{children}</td>
+    <td className="py-2 text-left rounded leading-7 border-t-[0.2px] border-t-scale-10/50">
+      {children}
+    </td>
   )
 }
