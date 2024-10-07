@@ -12,7 +12,6 @@ import {
   P,
   Warning,
 } from "@modules/shared/modules/markdown/components/Markdown/components"
-import { Commands } from "./components"
 import { APP_ROUTES } from "@modules/app/constants"
 import { CHACA_LINKS } from "@modules/shared/domain/links"
 import {
@@ -21,6 +20,7 @@ import {
   INSTALATION,
   REQUIREMENTS,
 } from "@modules/docs/domain/core/sections/get-started/introduction"
+import { Commands } from "../../shared/components"
 
 export default function Introduction() {
   const NODE_LINK = "https://nodejs.org/en"
@@ -142,7 +142,7 @@ export default function Introduction() {
       <P>
         Si tienes alguna duda o necesitas ayuda, únete a la comunidad de{" "}
         <ExternalLink to={CHACA_LINKS.DISCORD}>Discord</ExternalLink>, Github Discussion, o ponte en{" "}
-        <Link to={APP_ROUTES.CONTACT_US}>contacto</Link> nosotros
+        <Link to={APP_ROUTES.CONTACT_US}>contacto</Link> con nosotros
       </P>
     </>
   )

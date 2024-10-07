@@ -17,7 +17,7 @@ export default function Code({ code, language, title }: Props) {
         <Copy code={code} />
       </header>
 
-      <ExampleCode code={code} language={language} className="" />
+      <ExampleCode code={code} language={language} className="" rounded={false} />
     </div>
   )
 }

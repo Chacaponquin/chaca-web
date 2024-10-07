@@ -71,7 +71,7 @@ export abstract class DocSubSection {
     return `${this.title} | Chaca Docs`
   }
 
-  protected buildUrl(url: string): string {
+  buildUrl(url: string): string {
     return `${this.redirect}#${url}`
   }
 

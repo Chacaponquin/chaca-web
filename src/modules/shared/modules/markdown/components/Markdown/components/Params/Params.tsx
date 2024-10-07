@@ -16,6 +16,7 @@ export default function Params({ params }: Props) {
           params={p.params}
           required={p.required}
           types={p.types}
+          alias={p.alias}
         />
       ))}
     </div>

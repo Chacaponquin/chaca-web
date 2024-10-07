@@ -1,4 +1,4 @@
-import { useParams } from "@containers/Docs/components/Export/shared/hooks"
+import { useParams } from "@modules/docs/hooks"
 import { DATASET } from "@modules/docs/domain/core/sections/concepts"
 import {
   Link,

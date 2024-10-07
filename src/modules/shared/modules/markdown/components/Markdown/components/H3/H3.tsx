@@ -1,13 +1,15 @@
 import { SectionTitle } from "@modules/docs/domain/core/base"
+import MiniCode from "../MiniCode/MiniCode"
 
 interface Props {
   title: SectionTitle
+  code?: boolean
 }
 
-export default function H3({ title }: Props) {
+export default function H3({ title, code = false }: Props) {
   return (
     <h3 id={title.id} className="text-xl mt-8 mb-1 font-fontMedium text-white">
-      {title.title}
+      {code ? <MiniCode size="base"> {title.title}</MiniCode> : title.title}
     </h3>
   )
 }

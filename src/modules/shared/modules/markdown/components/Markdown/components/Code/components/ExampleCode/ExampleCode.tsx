@@ -7,9 +7,10 @@ interface Props {
   code: string
   language: Language
   className?: string
+  rounded?: boolean
 }
 
-export default function ExampleCode({ code, language, className }: Props) {
+export default function ExampleCode({ code, language, className, rounded = true }: Props) {
   const CLASS = clsx(
     "px-4 py-4",
     "code-view",
@@ -17,7 +18,7 @@ export default function ExampleCode({ code, language, className }: Props) {
     "w-full",
     "overflow-x-auto",
     "text-sm",
-    "rounded-b",
+    rounded ? "rounded" : "rounded-b",
     className,
   )
 

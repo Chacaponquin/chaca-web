@@ -5,4 +5,5 @@ export interface Param {
   params: Param[]
   types: string[]
   default?: string
+  alias?: string
 }
