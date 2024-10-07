@@ -26,7 +26,7 @@ import {
   NullFunctionParams,
   ObjectParams,
 } from "./components"
-import { DATASET } from "@modules/docs/domain/core/sections/concepts"
+import { DATASET, SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 import {
   ARRAY_FIELDS,
   ARRAY_LIMIT_FUNCTION,
@@ -43,8 +43,8 @@ export default function SchemaField() {
   return (
     <>
       <P>
-        Un campo dentro de un <MiniCode>Schema</MiniCode> puede ser definido de dos formas: una de
-        forma simple y otra para modificar el valor a generar.
+        Un campo dentro de un <Link to={SCHEMA.redirect}>schema</Link> puede ser definido de dos
+        formas: una de forma simple y otra para modificar el valor a generar.
       </P>
 
       <Definition />
@@ -60,9 +60,9 @@ export default function SchemaField() {
       <H2 title={PARAMS} />
 
       <P>
-        Todos los campos de un <MiniCode>Schema</MiniCode> pueden ser configurados para que el valor
-        resultante en cada documento sea <MiniCode>null</MiniCode> o un arreglo de valores. Esto se
-        puede hacer definiendo un objeto con los siguientes campos.
+        Todos los campos de un <Link to={SCHEMA.redirect}>schema</Link> pueden ser configurados para
+        que el valor resultante en cada documento sea <MiniCode>null</MiniCode> o un arreglo de
+        valores. Esto se puede hacer definiendo un objeto con los siguientes campos.
       </P>
 
       <ObjectParams />
@@ -70,8 +70,9 @@ export default function SchemaField() {
       <H2 title={ARRAY_FIELDS} />
 
       <P>
-        Los campos de un <MiniCode>Schema</MiniCode> pueden ser modificados para que devuelvan
-        valores en forma de arreglo del <Link to={KEY.redirect}>tipo de campo</Link> definido.
+        Los campos de un <Link to={SCHEMA.redirect}>schema</Link> pueden ser modificados para que
+        devuelvan valores en forma de arreglo del <Link to={KEY.redirect}>tipo de campo</Link>{" "}
+        definido.
       </P>
 
       <ArrayFieldExample />
@@ -128,14 +129,20 @@ export default function SchemaField() {
 
       <List>
         <ListItem>
-          Un número entero que indique la cantidad de documentos en los cuales el campo tendrá valor{" "}
-          <MiniCode>null</MiniCode>.
+          <P>
+            Un número entero que indique la cantidad de documentos en los cuales el campo tendrá
+            valor <MiniCode>null</MiniCode>.
+          </P>
         </ListItem>
         <ListItem>
-          Un número flotante entre 0 y 1 que indique la probabilidad de que en el documento el campo
-          tenga valor <MiniCode>null</MiniCode>.
+          <P>
+            Un número flotante entre 0 y 1 que indique la probabilidad de que en el documento el
+            campo tenga valor <MiniCode>null</MiniCode>.
+          </P>
         </ListItem>
-        <ListItem>Una función que devuelve una de las opciones anteriores.</ListItem>
+        <ListItem>
+          <P>Una función que devuelve una de las opciones anteriores.</P>
+        </ListItem>
       </List>
 
       <H3 title={SPECIFIC_NULL_NUMBER} />
