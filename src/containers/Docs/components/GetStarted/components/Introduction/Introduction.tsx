@@ -41,16 +41,22 @@ export default function Introduction() {
 
       <List>
         <ListItem>
-          Una librería para generar y exportar datos en proyectos{" "}
-          <ExternalLink to={NODE_LINK}>Nodejs</ExternalLink>
+          <P>
+            Una librería para generar y exportar datos en proyectos{" "}
+            <ExternalLink to={NODE_LINK}>Nodejs</ExternalLink>
+          </P>
         </ListItem>
         <ListItem>
-          Una <Link to={OVERVIEW.redirect}>REST API</Link> para generar datos con peticiones HTTP
-          simulando un backend real
+          <P>
+            Una <Link to={OVERVIEW.redirect}>REST API</Link> para generar datos con peticiones HTTP
+            simulando un backend real
+          </P>
         </ListItem>
         <ListItem>
-          Una plataforma web para desarrolladores que de forma interactiva pueden definir los
-          esquemas de los datasets
+          <P>
+            Una plataforma web para desarrolladores que de forma interactiva pueden definir los
+            esquemas de los datasets
+          </P>
         </ListItem>
       </List>
 
@@ -64,9 +70,15 @@ export default function Introduction() {
       <P>Estos datos generados pueden ser utilizados en:</P>
 
       <List>
-        <ListItem>Test unitarios</ListItem>
-        <ListItem>E2E tests</ListItem>
-        <ListItem>Construcción de demos</ListItem>
+        <ListItem>
+          <P>Test unitarios</P>
+        </ListItem>
+        <ListItem>
+          <P>E2E tests</P>
+        </ListItem>
+        <ListItem>
+          <P>Construcción de demos</P>
+        </ListItem>
       </List>
 
       <H2 title={ABOUT} />
@@ -93,18 +105,24 @@ export default function Introduction() {
 
       <List>
         <ListItem>
-          <ExternalLink to={FAKER_LINK}>Faker</ExternalLink> o{" "}
-          <ExternalLink to={FALSO_LINK}>Falso</ExternalLink> como Nodejs SDKs
+          <P>
+            <ExternalLink to={FAKER_LINK}>Faker</ExternalLink> o{" "}
+            <ExternalLink to={FALSO_LINK}>Falso</ExternalLink> como Nodejs SDKs
+          </P>
         </ListItem>
         <ListItem>
-          <ExternalLink to={MOCKAROO_LINK}>Mockaroo</ExternalLink> como plataforma web para generar
-          datos
+          <P>
+            <ExternalLink to={MOCKAROO_LINK}>Mockaroo</ExternalLink> como plataforma web para
+            generar datos
+          </P>
         </ListItem>
         <ListItem>
-          <ExternalLink to={UNPLASH_LINK}>Unplash</ExternalLink>,{" "}
-          <ExternalLink to={LOREM_PICSUM_LINK}>Lorem Picsum</ExternalLink>,{" "}
-          <ExternalLink to={SHAZAM_LINK}>Shazam</ExternalLink> como REST API públicas que brindan
-          datos realistas de un sector específico
+          <P>
+            <ExternalLink to={UNPLASH_LINK}>Unplash</ExternalLink>,{" "}
+            <ExternalLink to={LOREM_PICSUM_LINK}>Lorem Picsum</ExternalLink>,{" "}
+            <ExternalLink to={SHAZAM_LINK}>Shazam</ExternalLink> como REST API públicas que brindan
+            datos realistas de un sector específico
+          </P>
         </ListItem>
       </List>
 
