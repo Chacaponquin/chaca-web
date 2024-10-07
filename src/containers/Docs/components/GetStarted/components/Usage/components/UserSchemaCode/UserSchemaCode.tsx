@@ -8,9 +8,9 @@ export default function UserSchemaCode() {
 
   const schema = chaca.schema({
     id: chaca.sequence(),
-    username: modules.internet.username(),
-    image: modules.image.people(),
-    email: modules.internet.email()
+    username: () => modules.internet.username(),
+    image: () => modules.image.people(),
+    email: () => modules.internet.email()
   })
   `
 
@@ -24,11 +24,11 @@ export default function UserSchemaCode() {
     email: string
   }
 
-  const schema = chaca.schema({
+  const schema = chaca.schema<User>({
     id: chaca.sequence(),
-    username: modules.internet.username(),
-    image: modules.image.people(),
-    email: modules.internet.email()
+    username: () => modules.internet.username(),
+    image: () => modules.image.people(),
+    email: () => modules.internet.email()
   })
   `
 

@@ -10,15 +10,15 @@ export default function UserAndPostDefinition({ alternative }: Props) {
 
   const userSchema = chaca.schema({
     id: chaca.key(chaca.sequence()),
-    username: modules.internet.username(),
-    image: modules.image.people(),
-    email: modules.internet.email()
+    username: () => modules.internet.username(),
+    image: () => modules.image.people(),
+    email: () => modules.internet.email()
   })
 
   const postSchema = chaca.schema({
     id: chaca.key(chaca.sequence()),
-    title: modules.lorem.sentence(),
-    content: modules.lorem.text(),
+    title: () => modules.lorem.sentence(),
+    content: () => modules.lorem.paragraphs(),
     user_id: chaca.ref('User.id')
   })
 
@@ -41,9 +41,9 @@ export default function UserAndPostDefinition({ alternative }: Props) {
 
   const userSchema = chaca.schema({
     id: chaca.key(chaca.sequence()),
-    username: modules.internet.username(),
-    image: modules.image.people(),
-    email: modules.internet.email(),
+    username: () => modules.internet.username(),
+    image: () => modules.image.people(),
+    email: () => modules.internet.email(),
     posts: {
       type: chaca.ref('Post.id', { unique: true }),
       isArray: {
@@ -55,8 +55,8 @@ export default function UserAndPostDefinition({ alternative }: Props) {
 
   const postSchema = chaca.schema({
     id: chaca.key(chaca.sequence()),
-    title: modules.lorem.sentence(),
-    content: modules.lorem.text(),
+    title: () => modules.lorem.sentence(),
+    content: () => modules.lorem.paragraphs(),
   })
 
   const dataset = chaca.dataset([

@@ -71,8 +71,8 @@ export default function Usage() {
       </P>
 
       <P>
-        Para este ejemplo se definirá un schema <MiniCode>User</MiniCode> similar a la información
-        guardada de un usuario en una aplicación.
+        Para este ejemplo se definirá un <Link to={SCHEMA.redirect}>schema</Link>{" "}
+        <MiniCode>User</MiniCode> similar a la información guardada de un usuario en una aplicación.
       </P>
 
       <UserSchemaCode />
@@ -83,25 +83,34 @@ export default function Usage() {
 
       <List>
         <ListItem>
-          <MiniCode>id</MiniCode> valor numérico secuencial.{" "}
-          <Link to={SEQUENCE.redirect}>Leer sobre los campos sequence</Link>
+          <P>
+            <MiniCode>id</MiniCode> valor numérico secuencial.{" "}
+            <Link to={SEQUENCE.redirect}>Leer sobre los campos sequence</Link>
+          </P>
         </ListItem>
         <ListItem>
-          <MiniCode>username</MiniCode> nombre de usuario utilizando el módulo{" "}
-          <Link to={INTERNET.redirect}>internet.username</Link>
+          <P>
+            <MiniCode>username</MiniCode> nombre de usuario utilizando el módulo{" "}
+            <Link to={INTERNET.redirect}>internet.username</Link>
+          </P>
         </ListItem>
         <ListItem>
-          <MiniCode>image</MiniCode> url de la imagen de portada del usuario utilizando el módulo{" "}
-          <Link to={IMAGE.redirect}>image.people</Link>
+          <P>
+            <MiniCode>image</MiniCode> url de la imagen de portada del usuario utilizando el módulo{" "}
+            <Link to={IMAGE.redirect}>image.people</Link>
+          </P>
         </ListItem>
         <ListItem>
-          <MiniCode>email</MiniCode> correo electrónico del usuario utilizando el módulo{" "}
-          <Link to={INTERNET.redirect}>internet.email</Link>
+          <P>
+            <MiniCode>email</MiniCode> correo electrónico del usuario utilizando el módulo{" "}
+            <Link to={INTERNET.redirect}>internet.email</Link>
+          </P>
         </ListItem>
       </List>
 
       <P>
-        Este schema puede generar información en forma de objetos que tendrán la estructura definida
+        Este schema puede generar información en forma de objetos que tendrán la estructura
+        definida.
       </P>
 
       <UserDataExample />
@@ -110,9 +119,10 @@ export default function Usage() {
 
       <P>
         En el mundo real la información almacenada y que se utiliza para cualquier tipo de proceso
-        no se limita a valores simples como la generada en el schema <MiniCode>User</MiniCode>, sino
-        que esta información está relacionada, como por ejemplo a través de las relaciones entre
-        tablas en una base de datos <MiniCode>SQL</MiniCode>.
+        no se limita a valores simples como la generada en el{" "}
+        <Link to={SCHEMA.redirect}>schema</Link> <MiniCode>User</MiniCode>, sino que esta
+        información está relacionada, como por ejemplo a través de las relaciones entre tablas en
+        una base de datos <MiniCode>SQL</MiniCode>.
       </P>
 
       <P>
@@ -129,7 +139,7 @@ export default function Usage() {
         Para generar datos que respeten esta relación se pueden definir ambos schemas:{" "}
         <MiniCode>User</MiniCode> y <MiniCode>Post</MiniCode> dentro de un{" "}
         <Link to={DATASET.redirect}>Dataset</Link>, relaciónandolos utilizando un{" "}
-        <Link to={REF.redirect}>campo ref</Link>.
+        <Link to={REF.redirect}>campo referencia</Link>.
       </P>
 
       <UserAndPostDefinition alternative={false} />

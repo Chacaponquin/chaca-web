@@ -4,9 +4,9 @@ export default function ExportExampleCode() {
   const code = `
 import { chaca, modules } from 'chaca'
 
-const userSchema = chaca.schema({...})
+const userSchema = chaca.schema({ ... })
 
-const postSchema = chaca.schema({...})
+const postSchema = chaca.schema({ ... })
 
 const dataset = chaca.dataset([
   {

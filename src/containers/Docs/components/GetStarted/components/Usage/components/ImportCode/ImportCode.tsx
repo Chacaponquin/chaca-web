@@ -5,7 +5,7 @@ export default function ImportCode() {
 import { chaca, modules } from 'chaca'
 
 // generate simple value
-const id = modules.id.uuid().getValue()
+const id = modules.id.uuid()
 
 // define a schema
 const schema = chaca.schema({
