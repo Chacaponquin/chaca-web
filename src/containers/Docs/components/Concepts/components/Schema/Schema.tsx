@@ -43,7 +43,7 @@ export default function Schema() {
       <H2 title={DEFINITION} />
 
       <P>
-        Para definir un <MiniCode>Schema</MiniCode> solo es necesario utilizar el método{" "}
+        Para definir un <MiniCode>schema</MiniCode> solo es necesario utilizar el método{" "}
         <MiniCode>chaca.schema</MiniCode> el cual recibe un objeto con los campos que tendrán cada
         uno de los documentos a generar.
       </P>
@@ -51,48 +51,60 @@ export default function Schema() {
       <Definition />
 
       <P>
-        En el siguiente ejemplo se define un <MiniCode>User Schema</MiniCode> con campos que guardan
-        información realista de un usuario
+        En el siguiente ejemplo se define un schema <MiniCode>User</MiniCode> con campos que guardan
+        información realista de un usuario.
       </P>
 
       <UserSchemaDefinition />
 
       <P>
-        Como se puede ver en este <MiniCode>Schema</MiniCode> se definen los siguientes campos:
+        Como se puede ver en este <MiniCode>schema</MiniCode> se definen los siguientes campos:
       </P>
 
       <List>
         <ListItem>
-          <MiniCode>id</MiniCode> valor numérico secuencial y <Link to={KEY.redirect}>llave</Link>{" "}
-          del <MiniCode>Schema</MiniCode>.{" "}
-          <Link to={SEQUENCE.redirect}>Leer sobre los campos sequence</Link>
+          <P>
+            <MiniCode>id</MiniCode>: valor numérico secuencial y{" "}
+            <Link to={KEY.redirect}>llave</Link> del <MiniCode>Schema</MiniCode>.{" "}
+            <Link to={SEQUENCE.redirect}>Leer sobre los campos sequence</Link>
+          </P>
         </ListItem>
 
         <ListItem>
-          <MiniCode>username</MiniCode> nombre de usuario utilizando el módulo{" "}
-          <Link to={INTERNET.redirect}>internet.username</Link>
+          <P>
+            <MiniCode>username</MiniCode>: nombre de usuario utilizando el módulo{" "}
+            <Link to={INTERNET.redirect}>internet.username</Link>
+          </P>
         </ListItem>
 
         <ListItem>
-          <MiniCode>email</MiniCode> correo electrónico del usuario utilizando el módulo{" "}
-          <Link to={INTERNET.redirect}>internet.email</Link>
+          <P>
+            <MiniCode>email</MiniCode>: correo electrónico del usuario utilizando el módulo{" "}
+            <Link to={INTERNET.redirect}>internet.email</Link>
+          </P>
         </ListItem>
 
         <ListItem>
-          <MiniCode>password</MiniCode> contraseña del usuario utilizando el módulo{" "}
-          <Link to={INTERNET.redirect}>internet.password</Link>
+          <P>
+            <MiniCode>password</MiniCode>: contraseña del usuario utilizando el módulo{" "}
+            <Link to={INTERNET.redirect}>internet.password</Link>
+          </P>
         </ListItem>
 
         <ListItem>
-          <MiniCode>image</MiniCode> url de la imagen de portada del usuario utilizando el módulo{" "}
-          <Link to={IMAGE.redirect}>image.people</Link>
+          <P>
+            <MiniCode>image</MiniCode>: url de la imagen de portada del usuario utilizando el módulo{" "}
+            <Link to={IMAGE.redirect}>image.people</Link>
+          </P>
         </ListItem>
 
         <ListItem>
-          <MiniCode>age</MiniCode> edad del usuario utilizando el módulo{" "}
-          <Link to={DATATYPE.redirect}>datatype.int</Link>, limitando los valores a números enteros
-          entre <MiniCode>18</MiniCode> y <MiniCode>100</MiniCode> asegurando que el usuario sea
-          mayor de edad
+          <P>
+            <MiniCode>age</MiniCode>: edad del usuario utilizando el módulo{" "}
+            <Link to={DATATYPE.redirect}>datatype.int</Link>, limitando los valores a números
+            enteros entre <MiniCode>18</MiniCode> y <MiniCode>100</MiniCode> asegurando que el
+            usuario sea mayor de edad
+          </P>
         </ListItem>
       </List>
 
@@ -103,10 +115,10 @@ export default function Schema() {
       </P>
 
       <P>
-        Para este caso se supone que es necesario la información dque indique si un usuario es
-        considerado joven dentro de la aplicación, siendo el límite de juventud 35 años. Para esto
-        se creará un campo <MiniCode>isYoung</MiniCode> dentro del <MiniCode>Schema</MiniCode> como
-        se observa en el siguiente código.
+        Para este caso se supone que es necesario la información que indique si un usuario es
+        considerado joven dentro de la aplicación, siendo el límite de juventud{" "}
+        <MiniCode>35</MiniCode> años. Para esto se creará un campo <MiniCode>isYoung</MiniCode>{" "}
+        dentro del <MiniCode>schema</MiniCode> como se observa en el siguiente código.
       </P>
 
       <NewFieldCode />
@@ -114,15 +126,15 @@ export default function Schema() {
       <P>
         En este código el campo <MiniCode>isYoung</MiniCode> es de tipo{" "}
         <Link to={CUSTOM.redirect}>custom</Link> y accede al campo <MiniCode>age</MiniCode> para
-        comparándolo con el límite definido (35), devolviendo <MiniCode>true</MiniCode> en caso de
-        que sea menor a 35 y <MiniCode>false</MiniCode>
+        compararlo con el límite definido (35), devolviendo <MiniCode>true</MiniCode> en caso de que
+        sea menor a 35 y <MiniCode>false</MiniCode>
         en caso contrario.
       </P>
 
       <H2 title={GENERATE_DATA} />
 
       <P>
-        Una vez definido el <MiniCode>Schema</MiniCode> se pueden generar objetos de datos que
+        Una vez definido el <MiniCode>schema</MiniCode> se pueden generar objetos de datos que
         cumplan con los campos y reglas definidas. Se puede generar un objeto o un arreglo de
         objetos como se ve en los siguientes códigos
       </P>
@@ -162,9 +174,9 @@ export default function Schema() {
       <H2 title={NESTED_SCHEMA} />
 
       <P>
-        Si se desea que el valor generado para un campo dentro de un <MiniCode>Schema</MiniCode>{" "}
+        Si se desea que el valor generado para un campo dentro de un <MiniCode>schema</MiniCode>{" "}
         tenga forma de objeto Chaca provee la posibilidad de definir un campo como un{" "}
-        <MiniCode>Schema</MiniCode>.
+        <MiniCode>schema</MiniCode>.
       </P>
 
       <NestedSchemaExample />
