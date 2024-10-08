@@ -57,6 +57,21 @@
   src: url("./assets//font/Jetbrains/JetBrainsMono-Light.ttf");
 }
 
+@font-face {
+  font-family: "SpaceGrotesk Regular";
+  src: url("./assets/font/SpaceGrotesk/SpaceGrotesk-Regular.ttf");
+}
+
+@font-face {
+  font-family: "SpaceGrotesk Medium";
+  src: url("./assets/font/SpaceGrotesk/SpaceGrotesk-Medium.ttf");
+}
+
+@font-face {
+  font-family: "SpaceGrotesk SemiBold";
+  src: url("./assets/font/SpaceGrotesk/SpaceGrotesk-SemiBold.ttf");
+}
+
 * {
   font-family: "Poppins Regular";
 }

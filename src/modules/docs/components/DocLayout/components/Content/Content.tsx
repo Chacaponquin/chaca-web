@@ -16,7 +16,7 @@ export default function Content({ children, selected }: Props) {
       <main className="w-full flex justify-center overflow-y-auto z-40">
         <Doc>
           <Markdown>
-            <H1>{selected.title}</H1>
+            <H1 id={selected.url}>{selected.title}</H1>
             {children}
           </Markdown>
 

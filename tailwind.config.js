@@ -117,7 +117,9 @@ module.exports = {
         fontCode: "JetBrains Mono Regular",
         fontCodeMedium: "JetBrains Mono Medium",
         fontCodeBold: "JetBrains Mono Bold",
-        fontDoc: "Poppins Regular",
+        fontTitleRegular: "SpaceGrotesk Regular",
+        fontTitleMedium: "SpaceGrotesk Medium",
+        fontTitleSemiBold: "SpaceGrotesk SemiBold",
       },
       backgroundImage: {
         "first-bg": 'url("./assets/images/first-bg.svg")',
