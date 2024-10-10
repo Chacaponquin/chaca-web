@@ -10,6 +10,7 @@ import {
   P,
   Strong,
   Tip,
+  Warning,
 } from "@modules/shared/modules/markdown/components/Markdown/components"
 import {
   ArrayFieldExample,
@@ -141,6 +142,11 @@ export default function SchemaField() {
           </P>
         </ListItem>
         <ListItem>
+          <P>
+            Un <MiniCode>boolean</MiniCode> que indique si siempre se generará un valor nulo o no.
+          </P>
+        </ListItem>
+        <ListItem>
           <P>Una función que devuelve una de las opciones anteriores.</P>
         </ListItem>
       </List>
@@ -181,8 +187,9 @@ export default function SchemaField() {
 
       <Info>
         <P>
-          Si defines un valor de probabilidad mayor a <MiniCode>1</MiniCode> se asumirá como{" "}
-          <MiniCode>1</MiniCode>.
+          Si defines un valor de probabilidad mayor a <MiniCode>1</MiniCode> o menor que{" "}
+          <MiniCode>0</MiniCode> se lanzará la excepción{" "}
+          <MiniCode>WrongPossibleNullDefinitionError</MiniCode>.
         </P>
       </Info>
 
@@ -195,13 +202,20 @@ export default function SchemaField() {
         ocasiones se debe cumplir esta situación.
       </P>
 
-      <Tip title="Posibilidades absolutas">
+      <Warning title="Probabilidades absolutas">
         <P>
-          En caso de definir una probabilidad de <MiniCode>0</MiniCode> el valor generado nunca será{" "}
-          <MiniCode>null</MiniCode>. Mientras que si es <MiniCode>1</MiniCode> siempre se generará{" "}
-          <MiniCode>null</MiniCode>.
+          Los valores de probabilidad deben ser valores entre <MiniCode>0</MiniCode> y{" "}
+          <MiniCode>1</MiniCode>. En caso de definir uno de estos límites (<MiniCode>0</MiniCode> o{" "}
+          <MiniCode>1</MiniCode>) como valor de probabilidad se tomarán como la cantidad de
+          documentos que tendrán el campo definido como <MiniCode>null</MiniCode>.
         </P>
-      </Tip>
+        <P>
+          Si deseas indicar que un campo siempre tendrá valor <MiniCode>null</MiniCode>, o en caso
+          contrario, que nunca lo tendrá puedes utilizar los <MiniCode>boolean</MiniCode>,{" "}
+          <MiniCode>true</MiniCode> para que siempre se genere un valor <MiniCode>null</MiniCode> y{" "}
+          <MiniCode>false</MiniCode> para conseguir el efecto contrario.
+        </P>
+      </Warning>
 
       <Info>
         <P>

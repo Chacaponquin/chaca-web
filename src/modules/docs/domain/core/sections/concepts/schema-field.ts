@@ -20,7 +20,7 @@ export const SPECIFIC_NULL_NUMBER: SectionTitle = {
 
 export const NULL_PROBABILITY: SectionTitle = {
   id: "null-probability",
-  title: "robabilidades de valor nulo",
+  title: "Probabilidades de valor nulo",
 }
 
 export const NULL_FUNCTION: SectionTitle = {
