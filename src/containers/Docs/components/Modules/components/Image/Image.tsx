@@ -54,7 +54,7 @@ export default function Image() {
             name: "category",
             description: "Categoría de la imagen",
             params: [],
-            required: true,
+            required: false,
             types: [COMMON_TYPES.STRING],
           },
         ]}

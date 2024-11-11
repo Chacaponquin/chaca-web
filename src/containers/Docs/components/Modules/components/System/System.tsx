@@ -1,4 +1,5 @@
 import {
+  CRON,
   DIRECTORY_PATH,
   FILE_EXT,
   FILE_PATH,
@@ -13,6 +14,7 @@ import { FILE_PATH_CODE } from "./domain/file-path"
 import { DIRECTORY_PATH_CODE } from "./domain/directory-path"
 import { SectionProvider } from "../../shared/context"
 import { SYSTEM } from "@modules/docs/domain/core/sections/modules"
+import { CRON_CODE, CRON_PARAMS } from "./domain/cron"
 
 export default function System() {
   return (
@@ -26,6 +28,8 @@ export default function System() {
       <MethodSection title={FILE_PATH} code={FILE_PATH_CODE} params={[]} />
 
       <MethodSection title={DIRECTORY_PATH} code={DIRECTORY_PATH_CODE} params={[]} />
+
+      <MethodSection title={CRON} code={CRON_CODE} params={CRON_PARAMS} />
     </SectionProvider>
   )
 }

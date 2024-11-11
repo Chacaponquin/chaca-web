@@ -19,7 +19,7 @@ export default function Csv() {
       <Definition />
 
       <Warning title="¿Qué se puede exportar?">
-        <P>Solo pueden ser exportados datos en forma de objeto.</P>
+        <P>Este formato solo puede recibir como dato a exportar un arreglo de objetos</P>
       </Warning>
 
       <Tip title="Exportar datasets">

@@ -17,10 +17,12 @@ export const TIME_AGO: SectionTitle = { id: "time_ago", title: "timeAgo" }
 
 export const WEEK_DAY: SectionTitle = { id: "weekday", title: "weekDay" }
 
+export const ANYTIME: SectionTitle = { id: "anytime", title: "anytime" }
+
 export class Date extends ModuleDocSubSection {
   constructor(parent: DocSection) {
     super({ parent: parent, title: "Date", url: "date", apiId: "date" })
 
-    this.titles = [BETWEEN, BIRTHDATE, FUTURE, MONTH, PAST, SOON, TIME_AGO, WEEK_DAY]
+    this.titles = [BETWEEN, BIRTHDATE, FUTURE, MONTH, PAST, SOON, TIME_AGO, WEEK_DAY, ANYTIME]
   }
 }

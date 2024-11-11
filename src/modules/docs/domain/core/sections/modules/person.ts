@@ -19,6 +19,8 @@ export const FULL_NAME: SectionTitle = { id: "full_name", title: "fullName" }
 
 export const PREFIX: SectionTitle = { id: "prefix", title: "prefix" }
 
+export const ZODIAC_SIGN: SectionTitle = { id: "zodiac_sign", title: "zodiacSign" }
+
 export class Person extends ModuleDocSubSection {
   readonly firstNameUrl = this.buildUrl(FIRST_NAME.id)
 
@@ -35,6 +37,7 @@ export class Person extends ModuleDocSubSection {
       JOB_LEVEL,
       JOB_AREA,
       GENDER,
+      ZODIAC_SIGN,
     ]
   }
 }

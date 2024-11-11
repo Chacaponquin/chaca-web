@@ -13,6 +13,7 @@ import {
   PIN,
   ROUTING_NUMBER,
   BIC,
+  LITECOIN,
 } from "@modules/docs/domain/core/sections/modules/finance"
 import { MethodSection } from "../../shared/components"
 import { ACCOUNT_TYPE_CODE } from "./domain/account-type"
@@ -31,6 +32,7 @@ import { SUBSCRIPTION_PLAN_CODE } from "./domain/subscription-plan"
 import { TRANSACTION_CODE } from "./domain/transaction"
 import { SectionProvider } from "../../shared/context"
 import { FINANCE } from "@modules/docs/domain/core/sections/modules"
+import { LITECOIN_CODE } from "./domain/litecoin"
 
 export default function Finance() {
   return (
@@ -62,6 +64,8 @@ export default function Finance() {
       <MethodSection title={CURRENCY_MONEY_NAME} code={CURRENCY_MONEY_NAME_CODE} params={[]} />
 
       <MethodSection title={MONEY_CODE} code={MONEY_CODE_CODE} params={[]} />
+
+      <MethodSection title={LITECOIN} code={LITECOIN_CODE} params={[]} />
     </SectionProvider>
   )
 }

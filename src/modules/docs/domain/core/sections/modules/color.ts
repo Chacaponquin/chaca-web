@@ -26,6 +26,8 @@ export const COLOR_BY_CSS_COLOR_SPACE: SectionTitle = {
   title: "colorByCssColorSpace",
 }
 
+export const HUMAN: SectionTitle = { id: "human", title: "human" }
+
 export class Color extends ModuleDocSubSection {
   constructor(parent: DocSection) {
     super({ parent: parent, title: "Color", url: "color", apiId: "color" })
@@ -39,6 +41,7 @@ export class Color extends ModuleDocSubSection {
       COLOR_BY_CSS_COLOR_SPACE,
       CSS_SUPPORTED_FUNCTION,
       CSS_SUPPORTED_SPACE,
+      HUMAN,
     ]
   }
 }

@@ -14,6 +14,7 @@ chaca.utils.replaceSymbols('#####') // '98441'
 chaca.utils.replaceSymbols('?????') // 'ZYRQQ'
 chaca.utils.replaceSymbols('***$$') // '4Z3pa'
 chaca.utils.replaceSymbols('Your pin is: #?*#?*') // 'Your pin is: 0T85L1'
+chaca.utils.replaceSymbols('#####', { banned: ["3", "7", "8"] }) // '91220'
 `
 
 export default function ReplaceSymbols() {
@@ -24,6 +25,31 @@ export default function ReplaceSymbols() {
       params: [],
       required: true,
       types: [COMMON_TYPES.STRING],
+    },
+    {
+      name: "props",
+      required: false,
+      description: "Configuración para reemplazar los símbolos",
+      params: [
+        {
+          name: "banned",
+          description: "Caracteres que no pueden aparecer en la cadena de texto",
+          params: [],
+          required: false,
+          default: "[]",
+          types: [COMMON_TYPES.ARRAY_STRING],
+        },
+        {
+          name: "symbols",
+          description:
+            "Objeto con otros símbolos junto con los valores que pueden sustituirlos en la cadena de texto",
+          params: [],
+          required: false,
+          default: "{}",
+          types: ["Record<string, string[]>"],
+        },
+      ],
+      types: ["ReplaceSymbolsProps"],
     },
   ]
 

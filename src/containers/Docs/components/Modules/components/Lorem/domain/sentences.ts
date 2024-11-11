@@ -1,5 +1,7 @@
 import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
 import { COMMON_TYPES } from "@modules/shared/modules/markdown/domain/constants"
+import { WORDS_MAX } from "../shared/domain/words-max"
+import { WORDS_MIN } from "../shared/domain/words-min"
 
 export const SENTENCES_CODE = `
 modules.lorem.sentences()
@@ -22,18 +24,6 @@ export const SENTENCES_PARAMS: Param[] = [
     types: [COMMON_TYPES.STRING],
     default: "/n",
   },
-  {
-    name: "wordsMin",
-    description: "Cantidad mínima de palabras en cada oración",
-    params: [],
-    required: false,
-    types: [COMMON_TYPES.NUMBER],
-  },
-  {
-    name: "wordsMax",
-    description: "Cantidad máxima de palabras en cada oración",
-    params: [],
-    required: false,
-    types: [COMMON_TYPES.NUMBER],
-  },
+  WORDS_MAX,
+  WORDS_MIN,
 ]

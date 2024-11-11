@@ -18,6 +18,7 @@ import {
   URL,
   USERNAME,
   USER_AGENT,
+  IP,
 } from "@modules/docs/domain/core/sections/modules/internet"
 import { MethodSection } from "../../shared/components"
 import { BROWSER_CODE } from "./domain/browser"
@@ -41,6 +42,7 @@ import { IPV4_CODE } from "./domain/ipv4"
 import { IPV6_CODE } from "./domain/ipv6"
 import { SectionProvider } from "../../shared/context"
 import { INTERNET } from "@modules/docs/domain/core/sections/modules"
+import { IP_CODE } from "./domain/ip"
 
 export default function Internet() {
   return (
@@ -82,6 +84,8 @@ export default function Internet() {
       <MethodSection title={IPV6} code={IPV6_CODE} params={[]} />
 
       <MethodSection title={EMOJI} params={EMOJI_PARAMS} code={EMOJI_CODE} />
+
+      <MethodSection title={IP} params={[]} code={IP_CODE} />
     </SectionProvider>
   )
 }

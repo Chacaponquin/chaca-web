@@ -16,12 +16,14 @@ import {
   CSS_SUPPORTED_FUNCTION,
   CSS_SUPPORTED_SPACE,
   HSL,
+  HUMAN,
   HWB,
   LCH,
   RGB,
 } from "@modules/docs/domain/core/sections/modules/color"
 import { SectionProvider } from "../../shared/context"
 import { COLOR } from "@modules/docs/domain/core/sections/modules"
+import { HUMAN_CODE } from "./domain/human"
 
 export default function Color() {
   return (
@@ -49,6 +51,8 @@ export default function Color() {
         params={COLOR_BY_CSS_COLOR_SPACE_PARAMS}
         title={COLOR_BY_CSS_COLOR_SPACE}
       />
+
+      <MethodSection code={HUMAN_CODE} params={[]} title={HUMAN} />
     </SectionProvider>
   )
 }

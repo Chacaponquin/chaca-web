@@ -55,6 +55,13 @@ export default function Ref() {
 
       <RefExample />
 
+      <Danger title="Referencia errónea">
+        <P>
+          Si se intenta referenciar un campo de forma errónea se lanzará la excepción{" "}
+          <MiniCode>NotExistFieldError</MiniCode>.
+        </P>
+      </Danger>
+
       <H2 title={FILTER_DOCUMENTS} />
 
       <P>

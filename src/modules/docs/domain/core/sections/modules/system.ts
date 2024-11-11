@@ -11,10 +11,12 @@ export const DIRECTORY_PATH: SectionTitle = { id: "directory_path", title: "dire
 
 export const FILE_PATH: SectionTitle = { id: "file_path", title: "filePath" }
 
+export const CRON: SectionTitle = { id: "cron", title: "cron" }
+
 export class System extends ModuleDocSubSection {
   constructor(parent: DocSection) {
     super({ parent: parent, title: "System", url: "system", apiId: "system" })
 
-    this.titles = [FILE_EXT, FILENAME, DIRECTORY_PATH, FILE_PATH, MIME_TYPE]
+    this.titles = [FILE_EXT, FILENAME, DIRECTORY_PATH, FILE_PATH, MIME_TYPE, CRON]
   }
 }

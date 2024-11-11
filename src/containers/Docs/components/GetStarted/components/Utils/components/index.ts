@@ -1,8 +1,21 @@
 import CamelCase from "./CamelCase/CamelCase"
-import Capitalize from "./Capitalize/Capitalize"
-import CapitalizeWord from "./CapitalizeWord/CapitalizeWord"
+import CapitalCase from "./CapitalCase/CapitalCase"
+import DotCase from "./DotCase/DorCase"
 import OneOfArray from "./OneOfArray/OneOfArray"
+import PascalCase from "./PascalCase/PascalCase"
 import ReplaceSymbols from "./ReplaceSymbols/ReplaceSymbols"
+import SentenceCase from "./SentenceCase/SentenceCase"
+import SnakeCase from "./SnakeCase/SnakeCase"
 import SumDateRange from "./SumDateRange/SumDateRange"
 
-export { CamelCase, Capitalize, CapitalizeWord, OneOfArray, ReplaceSymbols, SumDateRange }
+export {
+  CamelCase,
+  OneOfArray,
+  ReplaceSymbols,
+  SumDateRange,
+  CapitalCase,
+  DotCase,
+  PascalCase,
+  SentenceCase,
+  SnakeCase,
+}

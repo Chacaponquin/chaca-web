@@ -7,6 +7,7 @@ import {
   MONTH,
   TIME_AGO,
   WEEK_DAY,
+  ANYTIME,
 } from "@modules/docs/domain/core/sections/modules/date"
 import { MethodSection } from "../../shared/components"
 import { BETWEEN_CODE, BETWEEN_PARAMS } from "./domain/between"
@@ -19,6 +20,7 @@ import { TIME_AGO_CODE, TIME_AGO_PARAMS } from "./domain/time-ago"
 import { WEEK_DAY_CODE } from "./domain/week-day"
 import { SectionProvider } from "../../shared/context"
 import { DATE } from "@modules/docs/domain/core/sections/modules"
+import { ANYTIME_CODE, ANYTIME_PARAMS } from "./domain/anytime"
 
 export default function Date() {
   return (
@@ -38,6 +40,8 @@ export default function Date() {
       <MethodSection title={BETWEEN} code={BETWEEN_CODE} params={BETWEEN_PARAMS} />
 
       <MethodSection title={TIME_AGO} code={TIME_AGO_CODE} params={TIME_AGO_PARAMS} />
+
+      <MethodSection title={ANYTIME} code={ANYTIME_CODE} params={ANYTIME_PARAMS} />
     </SectionProvider>
   )
 }

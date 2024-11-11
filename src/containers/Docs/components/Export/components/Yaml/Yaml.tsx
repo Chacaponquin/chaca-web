@@ -10,7 +10,6 @@ export default function Yaml() {
       <Definition />
 
       <Danger title="¿Qué se puede exportar?">
-        <P>A la función solo puedes pasarle como dato a exportar un arreglo de datos.</P>
         <P>
           Si intentas exportar datos que sean expresiones regulares o funciones estos no serán
           tenidos en cuenta para crear el archivo.

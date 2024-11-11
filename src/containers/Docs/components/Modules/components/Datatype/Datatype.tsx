@@ -9,6 +9,9 @@ import {
   INT,
   MATRIX,
   NUMBER,
+  OCTAL,
+  CHARACTER,
+  BIGINT,
 } from "@modules/docs/domain/core/sections/modules/datatype"
 import { MethodSection } from "../../shared/components"
 import { ALPHA_NUMERIC_CODE, ALPHA_NUMERIC_PARAMS } from "./domain/alpha-numeric"
@@ -23,6 +26,9 @@ import { NUMBER_CODE, NUMBER_PARAMS } from "./domain/number"
 import { SPECIAL_CHARACTER_CODE } from "./domain/special-character"
 import { SectionProvider } from "../../shared/context"
 import { DATATYPE } from "@modules/docs/domain/core/sections/modules"
+import { OCTAL_CODE, OCTAL_PARAMS } from "./domain/octal"
+import { CHARACTER_CODE, CHARACTER_PARAMS } from "./domain/character"
+import { BIGINT_CODE, BIGINT_PARAMS } from "./domain/bigint"
 
 export default function Datatype() {
   return (
@@ -46,6 +52,12 @@ export default function Datatype() {
       <MethodSection code={BINARY_CODE_CODE} params={BINARY_CODE_PARAMS} title={BINARY_CODE} />
 
       <MethodSection code={ALPHA_NUMERIC_CODE} params={ALPHA_NUMERIC_PARAMS} title={ALPHANUMERIC} />
+
+      <MethodSection code={OCTAL_CODE} params={OCTAL_PARAMS} title={OCTAL} />
+
+      <MethodSection code={CHARACTER_CODE} params={CHARACTER_PARAMS} title={CHARACTER} />
+
+      <MethodSection code={BIGINT_CODE} params={BIGINT_PARAMS} title={BIGINT} />
     </SectionProvider>
   )
 }

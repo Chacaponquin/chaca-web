@@ -1,10 +1,13 @@
 import { Link, MiniCode, P } from "@modules/shared/modules/markdown/components/Markdown/components"
 import {
   CamelCase,
-  Capitalize,
-  CapitalizeWord,
+  CapitalCase,
+  DotCase,
   OneOfArray,
+  PascalCase,
   ReplaceSymbols,
+  SentenceCase,
+  SnakeCase,
   SumDateRange,
 } from "./components"
 import { OVERVIEW } from "@modules/docs/domain/core/sections/modules"
@@ -18,12 +21,15 @@ export default function Utils() {
         propiedad <MiniCode>chaca.utils</MiniCode> donde se encuentran los siguientes métodos.
       </P>
 
-      <CamelCase />
-      <Capitalize />
-      <CapitalizeWord />
       <OneOfArray />
       <SumDateRange />
       <ReplaceSymbols />
+      <CamelCase />
+      <CapitalCase />
+      <DotCase />
+      <PascalCase />
+      <SentenceCase />
+      <SnakeCase />
     </>
   )
 }

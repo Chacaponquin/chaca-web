@@ -8,6 +8,7 @@ import {
   LAST_NAME,
   PREFIX,
   SEX,
+  ZODIAC_SIGN,
 } from "@modules/docs/domain/core/sections/modules/person"
 import { MethodSection } from "../../shared/components"
 import { FIRST_NAME_CODE, FIRST_NAME_PARAMS } from "./domain/first-name"
@@ -21,6 +22,7 @@ import { PREFIX_CODE, PREFIX_PARAMS } from "./domain/prefix"
 import { SEX_CODE } from "./domain/sex"
 import { SectionProvider } from "../../shared/context"
 import { PERSON } from "@modules/docs/domain/core/sections/modules"
+import { ZODIAC_SIGN_CODE } from "./domain/zodiac-sign"
 
 export default function Person() {
   return (
@@ -42,6 +44,8 @@ export default function Person() {
       <MethodSection title={PREFIX} code={PREFIX_CODE} params={PREFIX_PARAMS} />
 
       <MethodSection title={SEX} code={SEX_CODE} params={[]} />
+
+      <MethodSection title={ZODIAC_SIGN} code={ZODIAC_SIGN_CODE} params={[]} />
     </SectionProvider>
   )
 }

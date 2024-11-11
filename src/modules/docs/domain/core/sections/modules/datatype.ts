@@ -24,6 +24,14 @@ export const CHARACTERS: SectionTitle = { id: "characters", title: "characters" 
 
 export const BINARY_CODE: SectionTitle = { id: "binary_code", title: "binaryCode" }
 
+export const OCTAL: SectionTitle = { id: "octal", title: "octal" }
+
+export const CHARACTER: SectionTitle = { id: "character", title: "character" }
+
+export const BIGINT: SectionTitle = { id: "bigint", title: "bigint" }
+
+export const NUMERIC: SectionTitle = { id: "numeric", title: "numeric" }
+
 export class Datatype extends ModuleDocSubSection {
   constructor(parent: DocSection) {
     super({ parent: parent, title: "Datatype", url: "datatype", apiId: "datatype" })
@@ -39,6 +47,10 @@ export class Datatype extends ModuleDocSubSection {
       MATRIX,
       CHARACTERS,
       BINARY_CODE,
+      OCTAL,
+      CHARACTER,
+      BIGINT,
+      NUMERIC,
     ]
   }
 }

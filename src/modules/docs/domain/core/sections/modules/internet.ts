@@ -39,6 +39,8 @@ export const USER_AGENT: SectionTitle = { id: "user_agent", title: "user_agent" 
 
 export const USERNAME: SectionTitle = { id: "username", title: "username" }
 
+export const IP: SectionTitle = { id: "ip", title: "ip" }
+
 export class Internet extends ModuleDocSubSection {
   constructor(parent: DocSection) {
     super({ parent: parent, title: "Internet", url: "internet", apiId: "internet" })
@@ -63,6 +65,7 @@ export class Internet extends ModuleDocSubSection {
       USERNAME,
       IPV4,
       IPV6,
+      IP,
     ]
   }
 }

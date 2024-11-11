@@ -35,6 +35,8 @@ export const BIC: SectionTitle = { id: "bic", title: "bic" }
 
 export const MONEY_CODE: SectionTitle = { id: "money_code", title: "moneyCode" }
 
+export const LITECOIN: SectionTitle = { id: "litecoin", title: "litecoinAddress" }
+
 export class Finance extends ModuleDocSubSection {
   constructor(parent: DocSection) {
     super({ parent: parent, title: "Finance", url: "finance", apiId: "finance" })
@@ -54,6 +56,7 @@ export class Finance extends ModuleDocSubSection {
       CURRENCY_MONEY_NAME,
       MONEY_CODE,
       BIC,
+      LITECOIN,
     ]
   }
 }
