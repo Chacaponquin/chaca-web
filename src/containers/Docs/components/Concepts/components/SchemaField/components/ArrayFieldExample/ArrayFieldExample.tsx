@@ -17,5 +17,5 @@ schema.object()
 }
 `
 
-  return <Code code={code} language="typescript" title="" />
+  return <Code code={code} language="typescript" title="Array field definition" />
 }

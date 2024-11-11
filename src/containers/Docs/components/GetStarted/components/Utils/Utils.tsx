@@ -3,8 +3,10 @@ import {
   CamelCase,
   CapitalCase,
   DotCase,
+  Multiple,
   OneOfArray,
   PascalCase,
+  Pick,
   ReplaceSymbols,
   SentenceCase,
   SnakeCase,
@@ -30,6 +32,8 @@ export default function Utils() {
       <PascalCase />
       <SentenceCase />
       <SnakeCase />
+      <Pick />
+      <Multiple />
     </>
   )
 }

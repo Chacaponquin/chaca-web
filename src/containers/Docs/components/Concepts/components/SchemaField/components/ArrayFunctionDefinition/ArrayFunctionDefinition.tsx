@@ -3,7 +3,7 @@ import { Code } from "@modules/shared/modules/markdown/components/Markdown/compo
 export default function ArrayFunctionDefinition() {
   const code = `
 {
-    isArray: ({ currentFields, store }: IsArrayFunctionProps) => number
+    isArray: ({ currentFields, store }: IsArrayFunctionProps) => number | undefined
 }
 `
 
