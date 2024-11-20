@@ -17,6 +17,49 @@ export default function useParams() {
     default: "false",
   }
 
+  const INDENT: Param = {
+    name: "indent",
+    required: false,
+    description: "Tamaño de indentación a utilizar (en espacios)",
+    default: "3",
+    params: [],
+    types: [COMMON_TYPES.NUMBER],
+  }
+
+  const SEPARATE: Param = {
+    name: "separate",
+    description: "Los datos de cada schema del dataset van a ser definidos en archivos separados",
+    params: [],
+    required: false,
+    default: "false",
+    types: [COMMON_TYPES.BOOLEAN],
+  }
+
+  const DECLARATION_ONLY: (d: string) => Param = (d: string) => {
+    return {
+      name: "declarationOnly",
+      description: d,
+      params: [],
+      required: false,
+      default: "false",
+      types: [COMMON_TYPES.BOOLEAN],
+    }
+  }
+
+  const SKIP_INVALID: Param = {
+    name: "skipInvalid",
+    description: (
+      <>
+        Los tipos de dato que no pueden ser exportados no serán considerados. En caso de que sea{" "}
+        <MiniCode size="sm">false</MiniCode> se lanzará una excepción
+      </>
+    ),
+    params: [],
+    required: false,
+    default: "false",
+    types: [COMMON_TYPES.BOOLEAN],
+  }
+
   function EXT(ext: string): Param {
     return {
       name: "ext",
@@ -27,5 +70,5 @@ export default function useParams() {
     }
   }
 
-  return { ZIP_PARAM, EXT }
+  return { ZIP_PARAM, EXT, SKIP_INVALID, DECLARATION_ONLY, SEPARATE, INDENT }
 }

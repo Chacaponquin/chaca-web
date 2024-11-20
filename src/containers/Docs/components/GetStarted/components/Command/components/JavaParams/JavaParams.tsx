@@ -1,8 +1,9 @@
 import { ExportParams } from "../../shared/components"
-import { useParams } from "@modules/docs/hooks"
+import { useJavaParams, useParams } from "@modules/docs/hooks"
 
 export default function JavaParams() {
-  const { ZIP_PARAM } = useParams()
+  const { ZIP_PARAM, INDENT, SKIP_INVALID } = useParams()
+  const { DECLARATION, PACKAGE } = useJavaParams()
 
-  return <ExportParams params={[ZIP_PARAM]} />
+  return <ExportParams params={[ZIP_PARAM, INDENT, SKIP_INVALID, DECLARATION, PACKAGE]} />
 }

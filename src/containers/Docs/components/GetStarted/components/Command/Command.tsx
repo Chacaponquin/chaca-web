@@ -21,6 +21,7 @@ import {
   MiniCode,
   P,
   Tip,
+  Warning,
 } from "@modules/shared/modules/markdown/components/Markdown/components"
 import { Commands } from "../../shared/components"
 import {
@@ -44,6 +45,7 @@ import {
 import { useParams } from "./hooks"
 import { OVERVIEW } from "@modules/docs/domain/core/sections/export"
 import { ExportParams } from "./shared/components"
+import PackageJsonExample from "./components/PackageJsonExample/PackageJsonExample"
 
 export default function Command() {
   const { EXPORT_PARAMS } = useParams()
@@ -71,6 +73,15 @@ export default function Command() {
         Una vez instalado Chaca en tu proyecto puedes ejecutar cualquier comando disponible en la
         librería a través del ejecutable <MiniCode>chaca</MiniCode>.
       </P>
+
+      <Warning title="Cofigurar commonjs">
+        <P>
+          En tu archivo <MiniCode>package.json</MiniCode> debes tener la siguiente configuración si
+          deseas ejecutar el CLI correctamente.
+        </P>
+
+        <PackageJsonExample />
+      </Warning>
 
       <RunExample />
 

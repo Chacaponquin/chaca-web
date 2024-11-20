@@ -37,10 +37,6 @@ module.exports = chaca.dataset([
 ]);
 `
 
-const elseCode = `
-module.exports = [1, 2, 3, 4, 5]
-`
-
 export default function Datatypes() {
   return (
     <List>
@@ -60,17 +56,6 @@ export default function Datatypes() {
         </P>
 
         <ExampleCode code={datasetCode} language="javascript" />
-      </ListItem>
-
-      <ListItem>
-        <>
-          <P>
-            En caso de que no se exporte ninguna de las anteriores opciones se utilizará como
-            referencia cualquier tipo de dato que se haya exportado en el archivo.
-          </P>
-
-          <ExampleCode code={elseCode} language="javascript" />
-        </>
       </ListItem>
     </List>
   )

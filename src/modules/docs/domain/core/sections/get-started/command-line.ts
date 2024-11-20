@@ -6,24 +6,24 @@ export const RUN: SectionTitle = { id: "run", title: "Ejecutar CLI" }
 
 export const EXPORT: SectionTitle = { id: "export", title: "Comandos" }
 
-export const EXPORT_JSON: SectionTitle = { id: "export-json", title: "export-json" }
+export const EXPORT_JSON: SectionTitle = { id: "json", title: "json" }
 
-export const EXPORT_CSV: SectionTitle = { id: "export-csv", title: "export-csv" }
+export const EXPORT_CSV: SectionTitle = { id: "csv", title: "csv" }
 
-export const EXPORT_PYTHON: SectionTitle = { id: "export-python", title: "export-py" }
+export const EXPORT_PYTHON: SectionTitle = { id: "python", title: "python" }
 
-export const EXPORT_YAML: SectionTitle = { id: "export-yaml", title: "export-yml" }
+export const EXPORT_YAML: SectionTitle = { id: "yaml", title: "yaml" }
 
 export const EXPORT_POSTGRES: SectionTitle = {
-  id: "export-postgres",
-  title: "export-postgres",
+  id: "postgresql",
+  title: "postgresql",
 }
 
-export const EXPORT_JS: SectionTitle = { id: "export-js", title: "export-js" }
+export const EXPORT_JS: SectionTitle = { id: "js", title: "js" }
 
-export const EXPORT_JAVA: SectionTitle = { id: "export-java", title: "export-java" }
+export const EXPORT_JAVA: SectionTitle = { id: "java", title: "java" }
 
-export const EXPORT_TS: SectionTitle = { id: "export-ts", title: "export-ts" }
+export const EXPORT_TS: SectionTitle = { id: "ts", title: "ts" }
 
 export const EXPORT_EXAMPLE: SectionTitle = { id: "export-example", title: "Ejemplo" }
 
