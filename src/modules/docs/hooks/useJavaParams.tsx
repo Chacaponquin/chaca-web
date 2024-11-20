@@ -11,7 +11,7 @@ export default function useJavaParams() {
 
   const PACKAGE: Param = {
     name: "package",
-    description: "",
+    description: "Nombre del paquete al que pertenecerán las clases",
     params: [],
     required: false,
     default: "chaca.data",

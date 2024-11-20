@@ -30,6 +30,7 @@ export default function SubParams({ params, name }: Props) {
                 params={p.params}
                 required={p.required}
                 description={p.description}
+                default={p.default}
               />
             ))}
           </div>

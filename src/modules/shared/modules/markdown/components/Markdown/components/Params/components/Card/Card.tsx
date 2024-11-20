@@ -40,7 +40,7 @@ export default function Card({
         </section>
 
         <section>
-          {idefault && (
+          {idefault !== undefined && (
             <p className="text-white text-xs">
               Default: <MiniCode size="xs">{idefault}</MiniCode>
             </p>

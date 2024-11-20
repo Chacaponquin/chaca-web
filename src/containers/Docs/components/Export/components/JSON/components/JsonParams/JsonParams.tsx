@@ -1,37 +1,11 @@
 import { useParams } from "@modules/docs/hooks"
-import { DATASET } from "@modules/docs/domain/core/sections/concepts"
-import {
-  Link,
-  MiniCode,
-  Params,
-  Strong,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+import { Params } from "@modules/shared/modules/markdown/components/Markdown/components"
 import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
-import { COMMON_TYPES } from "@modules/shared/modules/markdown/domain/constants"
 
 export default function JsonParams() {
-  const { ZIP_PARAM, EXT } = useParams()
+  const { ZIP_PARAM, EXT, SEPARATE, INDENT } = useParams()
 
-  const params: Param[] = [
-    EXT("json"),
-    ZIP_PARAM,
-    {
-      name: "separate",
-      description: (
-        <>
-          Indica si se deben separar los resultados generados por un{" "}
-          <Link to={DATASET.redirect}>dataset</Link> en archivos individuales.{" "}
-          <Strong>
-            Solo se aplicará si se utiliza el método <MiniCode>dataset.export</MiniCode>
-          </Strong>
-        </>
-      ),
-      params: [],
-      required: false,
-      types: [COMMON_TYPES.BOOLEAN],
-      default: "false",
-    },
-  ]
+  const params: Param[] = [EXT("json"), ZIP_PARAM, SEPARATE, INDENT]
 
   return <Params params={params} />
 }
