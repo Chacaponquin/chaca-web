@@ -15,6 +15,33 @@ export default function PostgresParams() {
     DECLARATION,
     GENERATE_IDS,
     {
+      name: "refs",
+      description: (
+        <>
+          Columnas que serán definidas como <MiniCode size="sm">FOREIGN KEY</MiniCode>
+        </>
+      ),
+      params: [
+        {
+          name: "column",
+          description: "Ruta de la columna a modificar",
+          required: true,
+          params: [],
+          types: [COMMON_TYPES.STRING],
+        },
+        {
+          name: "ref",
+          description: "Ruta de la columna a la que referencia",
+          params: [],
+          required: true,
+          types: [COMMON_TYPES.STRING],
+        },
+      ],
+      required: false,
+      default: "[]",
+      types: ["RefColumnParser[]"],
+    },
+    {
       name: "keys",
       description: (
         <>

@@ -53,6 +53,68 @@ export default function CsvParams() {
       ],
       required: false,
     },
+    {
+      name: "delimiters",
+      types: ["Delimiters"],
+      description: "Configuración de los caracteres que delimitan los valores del CSV",
+      params: [
+        {
+          name: "field",
+          description: "Delimitador para cada valor de una columna",
+          params: [],
+          required: false,
+          default: "','",
+          types: [COMMON_TYPES.STRING],
+        },
+        {
+          name: "eol",
+          description: "Delimitador que se ubica al final de cada fila",
+          params: [],
+          required: false,
+          default: "\\n",
+          types: [COMMON_TYPES.STRING],
+        },
+        {
+          name: "wrap",
+          description: "Envuelve los valores del delimitador de elección",
+          params: [],
+          required: false,
+          default: '"',
+          types: [COMMON_TYPES.STRING],
+        },
+      ],
+      required: false,
+    },
+    {
+      name: "parseValue",
+      description: "Función que transforma los valores a formato CSV",
+      params: [],
+      required: false,
+      types: ["(value: any, defaultParser: (v: any) => string) => string"],
+    },
+    {
+      name: "keys",
+      description: "Llaves que serán transformadas en el resultado final",
+      params: [
+        {
+          name: "field",
+          description: "Ruta del campo",
+          params: [],
+          required: true,
+          types: [COMMON_TYPES.STRING],
+        },
+        {
+          name: "title",
+          description: "Nombre de la cabecera que tendrá en CSV",
+          params: [],
+          required: true,
+          types: [COMMON_TYPES.STRING],
+        },
+      ],
+      required: false,
+      types: ["KeyConverter[]"],
+      default: "[]",
+    },
   ]
 
   return <Params params={params} />
