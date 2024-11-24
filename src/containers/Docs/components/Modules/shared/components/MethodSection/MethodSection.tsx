@@ -20,7 +20,7 @@ export default function MethodSection({ params, code, title }: Props) {
 
       {params.length > 0 && <Params params={params} />}
 
-      {code && <Code title={`Examples`} code={code} language="typescript" />}
+      {code && <Code title="Examples" code={code} language="typescript" />}
 
       <TryRoute
         result={result}

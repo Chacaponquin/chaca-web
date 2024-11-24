@@ -6,6 +6,7 @@ import { Copy } from "../../shared/components"
 
 interface Props {
   sections: CodeSection[]
+  loading?: boolean
 }
 
 export default function CodesCard({ sections }: Props) {

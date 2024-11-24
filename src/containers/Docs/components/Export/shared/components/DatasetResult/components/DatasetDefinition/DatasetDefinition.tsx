@@ -1,6 +1,10 @@
 import { Code } from "@modules/shared/modules/markdown/components/Markdown/components"
 
-export default function DatasetDefinition() {
+interface Props {
+  extension: string
+}
+
+export default function DatasetDefinition({ extension }: Props) {
   const code = `
 const userSchema = chaca.schema({
     id: chaca.key(chaca.sequence()),
@@ -27,6 +31,12 @@ const dataset = chaca.dataset([
         documents: 10
     }
 ])
+
+await dataset.export({
+    filename: "user",
+    location: "data",
+    format: "${extension}"
+})
 `
 
   return <Code title="Example dataset definition" code={code} language="typescript" />

@@ -9,6 +9,6 @@ export class ModuleDocSubSection extends DocSubSection {
   }
 
   methodUrl(sub: string): string {
-    return `api/module/${this.apiId}/${sub}`
+    return `api/v1/module/${this.apiId}/${sub}`
   }
 }

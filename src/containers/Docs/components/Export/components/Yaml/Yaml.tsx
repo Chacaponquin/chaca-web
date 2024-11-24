@@ -1,5 +1,5 @@
 import { Danger, P } from "@modules/shared/modules/markdown/components/Markdown/components"
-import { Header } from "../../shared/components"
+import { DatasetResult, Header } from "../../shared/components"
 import { Definition, YamlParams } from "./components"
 
 export default function Yaml() {
@@ -15,6 +15,8 @@ export default function Yaml() {
           tenidos en cuenta para crear el archivo.
         </P>
       </Danger>
+
+      <DatasetResult extension="yaml" language="yaml" />
     </>
   )
 }

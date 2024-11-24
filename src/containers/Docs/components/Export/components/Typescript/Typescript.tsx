@@ -1,4 +1,4 @@
-import { Header } from "../../shared/components"
+import { DatasetResult, Header } from "../../shared/components"
 import { Definition, TsParams } from "./components"
 
 export default function Typescript() {
@@ -7,6 +7,7 @@ export default function Typescript() {
       <Header extension="ts" format="typescript" />
       <TsParams />
       <Definition />
+      <DatasetResult extension="typescript" language="typescript" />
     </>
   )
 }

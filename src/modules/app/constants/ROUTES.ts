@@ -28,4 +28,7 @@ export const API_ROUTES = {
   DOWNLOAD_FILE(id: string) {
     return `dataset/download/${id}`
   },
+  API: {
+    TRANSFORM_DATASET: "/api/v1/dataset/transform",
+  },
 } as const

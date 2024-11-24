@@ -1,4 +1,4 @@
-import { Header } from "../../shared/components"
+import { DatasetResult, Header } from "../../shared/components"
 import { Definition, PythonParams } from "./components"
 
 export default function Python() {
@@ -9,6 +9,8 @@ export default function Python() {
       <PythonParams />
 
       <Definition />
+
+      <DatasetResult extension="python" language="python" />
     </>
   )
 }

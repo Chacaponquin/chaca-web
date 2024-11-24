@@ -1,4 +1,4 @@
-import { Header } from "../../shared/components"
+import { DatasetResult, Header } from "../../shared/components"
 import { Definition, JavaParams } from "./components"
 
 export default function Java() {
@@ -7,6 +7,7 @@ export default function Java() {
       <Header extension="java" format="java" />
       <JavaParams />
       <Definition />
+      <DatasetResult language="typescript" extension="java" />
     </>
   )
 }

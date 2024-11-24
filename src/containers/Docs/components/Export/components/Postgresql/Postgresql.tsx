@@ -8,7 +8,7 @@ import {
   P,
   Warning,
 } from "@modules/shared/modules/markdown/components/Markdown/components"
-import { Header } from "../../shared/components"
+import { DatasetResult, Header } from "../../shared/components"
 import {
   ArrayTransformation,
   Definition,
@@ -48,6 +48,8 @@ export default function Postgresql() {
       <PostgresParams />
 
       <Definition />
+
+      <DatasetResult extension="postgresql" language="sql" />
 
       <Info>
         <P>
