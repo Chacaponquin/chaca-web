@@ -12,7 +12,7 @@ import { BODY, EXAMPLE, PARAMS } from "@modules/docs/domain/core/sections/api/mo
 export default function ModuleValue() {
   return (
     <>
-      <Route method="post" url="api/{section}/{module}" />
+      <Route method="post" url="{section}/{module}" />
 
       <P>
         Esta ruta permite generar valores de los <Link to={OVERVIEW.redirect}>módulos</Link>{" "}

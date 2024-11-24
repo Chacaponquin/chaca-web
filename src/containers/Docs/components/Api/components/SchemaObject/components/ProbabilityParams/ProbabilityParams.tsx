@@ -12,10 +12,16 @@ export default function ProbabilityParams() {
       name: "values",
       description: "Arreglo de valores que pueden ser escogidos",
       params: [
-        { name: "value", description: "", params: [], required: true, types: ["any"] },
+        {
+          name: "value",
+          description: "Valor que puede ser escogido",
+          params: [],
+          required: true,
+          types: ["any"],
+        },
         {
           name: "chance",
-          description: "",
+          description: "Valor entre 0 y 1 que indica la probabilidad de que el valor sea escogido",
           params: [],
           required: true,
           types: [COMMON_TYPES.NUMBER],

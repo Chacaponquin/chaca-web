@@ -8,7 +8,7 @@ export default function Try() {
       method="post"
       result="json"
       params={[{ param: "count", value: "10" }]}
-      url="api/schema"
+      url="api/v1/schema"
     />
   )
 }

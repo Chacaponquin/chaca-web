@@ -5,7 +5,7 @@ export default function Try() {
     <TryRoute
       result="json"
       body={"{}"}
-      url="api/module"
+      url="api/v1/module"
       method="post"
       initFetch
       params={[

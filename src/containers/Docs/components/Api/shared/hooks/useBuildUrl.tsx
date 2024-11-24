@@ -7,7 +7,7 @@ interface Props {
 export default function useBuildUrl({ route }: Props) {
   const { API_ROUTE } = useEnv()
 
-  const url = `${API_ROUTE}/${route}`
+  const url = `${API_ROUTE}/api/v1/${route}`
 
   return { url }
 }

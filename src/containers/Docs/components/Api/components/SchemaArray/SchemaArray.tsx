@@ -14,7 +14,7 @@ import { PARAMS, BODY, EXAMPLE } from "@modules/docs/domain/core/sections/api/sc
 export default function SchemaArray() {
   return (
     <>
-      <Route method="post" url="api/schema/{count}" />
+      <Route method="post" url="schema/{count}" />
 
       <P>
         Esta ruta permite crear un arreglo de documentos al definir un{" "}

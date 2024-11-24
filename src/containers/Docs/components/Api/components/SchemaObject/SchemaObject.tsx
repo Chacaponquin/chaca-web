@@ -43,7 +43,7 @@ import {
 export default function SchemaObject() {
   return (
     <>
-      <Route method="post" url="api/schema" />
+      <Route method="post" url="schema" />
 
       <P>
         Esta ruta permite generar un documento a partir de la definición de un{" "}
@@ -114,7 +114,6 @@ export default function SchemaObject() {
       <EnumParams />
 
       <H3 title={PICK} />
-
       <PickParams />
 
       <H3 title={PROBABILITY} />
