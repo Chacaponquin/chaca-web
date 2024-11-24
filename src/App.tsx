@@ -19,6 +19,9 @@ import {
   Overview,
   SchemaArray,
   SchemaObject,
+  Dataset as ApiDataset,
+  TransformDataset,
+  TransformSchema,
 } from "@containers/Docs/components/Api/components"
 import {
   Command,
@@ -37,6 +40,9 @@ import {
   OVERVIEW,
   SCHEMA_ARRAY,
   SCHEMA_OBJECT,
+  DATASET as API_DATASET,
+  TRANSFORM_DATASET,
+  TRANSFORM_SCHEMA,
 } from "@modules/docs/domain/core/sections/api"
 import { DocsProvider } from "@modules/docs/context"
 import {
@@ -177,6 +183,9 @@ export default function App() {
                         <Route element={<ModuleValue />} path={MODULE_VALUE.url} />
                         <Route element={<SchemaArray />} path={SCHEMA_ARRAY.url} />
                         <Route element={<SchemaObject />} path={SCHEMA_OBJECT.url} />
+                        <Route element={<ApiDataset />} path={API_DATASET.url} />
+                        <Route element={<TransformSchema />} path={TRANSFORM_SCHEMA.url} />
+                        <Route element={<TransformDataset />} path={TRANSFORM_DATASET.url} />
 
                         <Route element={<Dataset />} path={DATASET.url} />
                         <Route element={<DatasetStore />} path={DATASET_STORE.url} />

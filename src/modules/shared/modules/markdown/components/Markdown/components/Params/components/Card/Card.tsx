@@ -36,7 +36,7 @@ export default function Card({
 
           {required && <Required />}
 
-          <MiniCode size="xs">{types.join(" | ")}</MiniCode>
+          {types.length > 0 && <MiniCode size="xs">{types.join(" | ")}</MiniCode>}
         </section>
 
         <section>
