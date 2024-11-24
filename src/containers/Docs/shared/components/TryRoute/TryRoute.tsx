@@ -67,7 +67,7 @@ export default function TryRoute({
           let data: string
 
           if (result === "json") {
-            data = JSON.stringify(r.data, undefined, 4)
+            data = JSON.stringify(r.data, undefined, 3)
           } else {
             data = r.data as string
           }
