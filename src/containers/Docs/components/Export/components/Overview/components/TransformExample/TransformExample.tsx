@@ -1,18 +1,22 @@
 import { Code } from "@modules/shared/modules/markdown/components/Markdown/components"
 
-export default function ExampleCode() {
+export default function TransformExample() {
   const code = `
 const data = [
     { id: 1, name: 'Alberto', age: 20 },
     { id: 2, name: 'Carolina', age: 28 }
 ]
 
-await chaca.export(data, {
+chaca.transform(data, {
     filename: "user",
     location: "data",
     format: "json"
 })
+
+//[
+//    { filename: "user.json", content: "..." }
+//]
 `
 
-  return <Code code={code} language="typescript" title="Export data example code" />
+  return <Code code={code} language="typescript" title="Transform data example code" />
 }

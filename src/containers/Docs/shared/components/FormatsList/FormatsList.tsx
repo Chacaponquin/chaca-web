@@ -29,7 +29,7 @@ export default function FormatsList() {
     { section: JSON, title: "JSON" },
     { title: "Javascript", section: JS },
     { title: "Yaml", section: YAML },
-    { section: POSTGRES, title: "Postgres" },
+    { section: POSTGRES, title: "PostgreSQL" },
     { title: "Python", section: PYTHON },
   ]
 

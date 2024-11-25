@@ -1,4 +1,5 @@
 import { DocSection, DocSubSection } from "../../base"
+import { Overview } from "./overview"
 import { Postgres } from "./postgresql"
 
 class ExportSection extends DocSection {
@@ -8,12 +9,6 @@ class ExportSection extends DocSection {
 }
 
 export const SECTION = new ExportSection()
-
-class Overview extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: "Overview", url: "overview" })
-  }
-}
 
 class Csv extends DocSubSection {
   constructor() {
@@ -57,7 +52,7 @@ class Yaml extends DocSubSection {
   }
 }
 
-export const OVERVIEW = new Overview()
+export const OVERVIEW = new Overview(SECTION)
 export const CSV = new Csv()
 export const JAVA = new Java()
 export const JS = new Javascript()
