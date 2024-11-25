@@ -1,6 +1,6 @@
 import { useParams } from "@containers/Docs/components/Api/shared/hooks"
-import { DATASET } from "@modules/docs/domain/core/sections/api"
-import { DATASET as DATASET_CONCEPT } from "@modules/docs/domain/core/sections/concepts"
+import { SCHEMA_OBJECT } from "@modules/docs/domain/core/sections/api"
+import { SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 import { Link, Params } from "@modules/shared/modules/markdown/components/Markdown/components"
 import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
 
@@ -11,15 +11,15 @@ export default function Body() {
     FILENAME_PARAM,
     FORMAT_PARAM,
     {
-      name: "dataset",
+      name: "schema",
+      required: true,
       description: (
         <>
-          Objeto con la definición del <Link to={DATASET_CONCEPT.redirect}>dataset</Link>. Se define
-          de la misma forma que el cuerpo de la ruta <Link to={DATASET.bodyUrl}>api/dataset</Link>
+          Objeto con la definición del <Link to={SCHEMA.redirect}>dataset</Link>. Se define de la
+          misma forma que el cuerpo de la ruta <Link to={SCHEMA_OBJECT.bodyUrl}>api/schema</Link>
         </>
       ),
       params: [],
-      required: true,
       types: [],
     },
   ]

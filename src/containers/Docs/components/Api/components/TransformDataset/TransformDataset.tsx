@@ -35,7 +35,8 @@ export default function TransformDataset() {
         En el siguiente ejemplo se muestra como se generaría un{" "}
         <Link to={DATASET.redirect}>dataset</Link> que contiene los{" "}
         <Link to={SCHEMA.redirect}>schemas</Link> <MiniCode>User</MiniCode> y{" "}
-        <MiniCode>Product</MiniCode>
+        <MiniCode>Product</MiniCode> y su posterior transpilación a formato{" "}
+        <MiniCode>json</MiniCode>.
       </P>
 
       <Example />

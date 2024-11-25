@@ -2,15 +2,20 @@ import { MOVIE_SCHEMA } from "@containers/Docs/components/Api/shared/domain/movi
 import { TryRoute } from "@containers/Docs/shared/components"
 
 export default function Try() {
-  const body = JSON.stringify(MOVIE_SCHEMA, undefined, 3)
+  const body = JSON.stringify(
+    { schema: MOVIE_SCHEMA, filename: "Schema", format: "json" },
+    undefined,
+    3,
+  )
 
   return (
     <TryRoute
-      body={body}
-      method="post"
       result="json"
+      body={body}
+      url="api/v1/schema/transform"
+      method="post"
+      initFetch
       params={[{ param: "count", value: "10" }]}
-      url="api/v1/schema"
     />
   )
 }

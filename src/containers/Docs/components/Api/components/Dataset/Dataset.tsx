@@ -3,6 +3,7 @@ import {
   Link,
   MiniCode,
   P,
+  Tip,
 } from "@modules/shared/modules/markdown/components/Markdown/components"
 import { Route } from "../../shared/components"
 import { DATASET, SCHEMA } from "@modules/docs/domain/core/sections/concepts"
@@ -26,6 +27,13 @@ export default function Dataset() {
         <Link to={SCHEMA.redirect}>schema</Link> y la cantidad de documentos a generar. De cada{" "}
         <Link to={SCHEMA.redirect}>schema</Link> se definen los siguientes parámetros.
       </P>
+
+      <Tip title="Nombres de schemas">
+        <P>
+          El nombre de cada <Link to={DATASET.redirect}>dataset</Link> será el valor de la propiedad
+          donde fue declarado.
+        </P>
+      </Tip>
 
       <Params />
 

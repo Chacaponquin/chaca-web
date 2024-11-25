@@ -1,7 +1,7 @@
 import { DocSection, SectionTitle } from "../../base"
 import { ModuleDocSubSection } from "./module-section"
 
-export const DOG: SectionTitle = { id: "dog", title: "title" }
+export const DOG: SectionTitle = { id: "dog", title: "dog" }
 
 export const BEAR: SectionTitle = { id: "bear", title: "bear" }
 
