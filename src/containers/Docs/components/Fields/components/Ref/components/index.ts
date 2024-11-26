@@ -1,4 +1,6 @@
 import Definition from "./Definition/Definition"
+import FirstNullExample from "./FirstNullExample/FirstNullExample"
+import OwnRefExample from "./OwnRefExample/OwnRefExample"
 import RefExample from "./RefExample/RefExample"
 import RefParams from "./RefParams/RefParams"
 import UniqueExample from "./UniqueExample/UniqueExample"
@@ -16,4 +18,6 @@ export {
   UniqueExample,
   WrongUniqueExample,
   RefExample,
+  OwnRefExample,
+  FirstNullExample,
 }

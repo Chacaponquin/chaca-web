@@ -1,4 +1,4 @@
-import { Params } from "@markdown/components/Markdown/components"
+import { MiniCode, Params } from "@markdown/components/Markdown/components"
 import { Param } from "@markdown/components/Markdown/components/Params/domain"
 import { COMMON_TYPES } from "@markdown/domain/constants"
 
@@ -31,6 +31,21 @@ export default function RefParams() {
           params: [],
           required: false,
           types: [where],
+        },
+        {
+          name: "nullOnEmpty",
+          description: (
+            <>
+              Se devolverá <MiniCode size="sm">null</MiniCode> como resultado en caso de que no
+              existan documentos a referenciar. En caso de que sea definido como{" "}
+              <MiniCode size="sm">false</MiniCode> al no existir posibles referencias se lanzará la
+              excepción <MiniCode size="sm">NotEnoughValuesForRefError</MiniCode>
+            </>
+          ),
+          params: [],
+          required: false,
+          default: "false",
+          types: [],
         },
       ],
       required: false,

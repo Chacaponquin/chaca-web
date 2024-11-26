@@ -1,7 +1,18 @@
 import { DATASET, SCHEMA } from "@modules/docs/domain/core/sections/concepts"
-import { Danger, H2, Info, Link, MiniCode, P, Tip } from "@markdown/components/Markdown/components"
+import {
+  Danger,
+  H2,
+  Info,
+  Link,
+  MiniCode,
+  P,
+  Tip,
+  Warning,
+} from "@markdown/components/Markdown/components"
 import {
   Definition,
+  FirstNullExample,
+  OwnRefExample,
   RefExample,
   RefParams,
   UniqueExample,
@@ -11,7 +22,11 @@ import {
   WrongUniqueExample,
 } from "./components"
 import { KEY, REF } from "@modules/docs/domain/core/sections/field-types"
-import { FILTER_DOCUMENTS, REF_UNIQUE } from "@modules/docs/domain/core/sections/field-types/ref"
+import {
+  FILTER_DOCUMENTS,
+  OWN_REF,
+  REF_UNIQUE,
+} from "@modules/docs/domain/core/sections/field-types/ref"
 
 export default function Ref() {
   return (
@@ -125,6 +140,39 @@ export default function Ref() {
 
         <WrongUniqueExample />
       </Danger>
+
+      <H2 title={OWN_REF} />
+
+      <P>
+        Un campo <MiniCode>ref</MiniCode> puede referenciar al{" "}
+        <Link to={SCHEMA.redirect}>schema</Link> en el que se encuentra definido sin necesidad de
+        provocar una <Link to={DATASET.cyclicUrl}>dependencia cíclica</Link>. Por ejemplo, para
+        definir un <Link to={SCHEMA.redirect}>schema</Link> <MiniCode>Category</MiniCode> donde cada
+        categoría puede tener una categoría padre se puede hacer de la siguiente forma.
+      </P>
+
+      <OwnRefExample />
+
+      <Warning title="Referencias nulas">
+        <P>
+          Los datos para cada <Link to={SCHEMA.redirect}>schema</Link> son creados de forma
+          secuencial. Por lo que a la hora de crear el primer documento al buscar una referencia en
+          el propio <Link to={SCHEMA.redirect}>schema</Link> no existirán documentos para
+          referenciar. Por esta razón es que el primer documento generado siempre tendrá valor{" "}
+          <MiniCode>null</MiniCode> para ese campo.
+        </P>
+
+        <FirstNullExample />
+      </Warning>
+
+      <Info>
+        <P>
+          Si un campo referencia a su propio <Link to={SCHEMA.redirect}>schema</Link>{" "}
+          automáticamente el parámetro <MiniCode>nullOnEmpty</MiniCode> es convertido a{" "}
+          <MiniCode>true</MiniCode>, ya que el primer devuelto por la referencia siempre será{" "}
+          <MiniCode>null</MiniCode>.
+        </P>
+      </Info>
     </>
   )
 }
