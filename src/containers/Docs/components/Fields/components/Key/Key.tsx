@@ -1,5 +1,5 @@
 import { SCHEMA } from "@modules/docs/domain/core/sections/concepts"
-import { Info, Link, MiniCode, P, Tip } from "@markdown/components/Markdown/components"
+import { Danger, Info, Link, MiniCode, P, Tip } from "@markdown/components/Markdown/components"
 import { Definition, FieldsList, Params } from "./components"
 import { REF } from "@modules/docs/domain/core/sections/field-types"
 import { POSTGRES } from "@modules/docs/domain/core/sections/export"
@@ -26,6 +26,12 @@ export default function Key() {
       <Definition />
 
       <Params />
+
+      <Danger title="Valores nulos">
+        <P>
+          Si este tipo de campo devolve un valor <MiniCode>null</MiniCode> se lanzará una excepción.
+        </P>
+      </Danger>
 
       <Tip title="Exportar a Postgresql">
         <P>

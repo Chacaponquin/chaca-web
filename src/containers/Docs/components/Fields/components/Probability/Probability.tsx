@@ -1,4 +1,12 @@
-import { H2, Info, Link, MiniCode, P, Strong } from "@markdown/components/Markdown/components"
+import {
+  Danger,
+  H2,
+  Info,
+  Link,
+  MiniCode,
+  P,
+  Strong,
+} from "@markdown/components/Markdown/components"
 import {
   Definition,
   FunctionDefinition,
@@ -27,6 +35,13 @@ export default function Probability() {
       <Definition />
 
       <ProbParams />
+
+      <Danger title="Excepción">
+        <P>
+          En caso de que ocurra cualquier error en la declaración de este tipo de campo se lanzará
+          la excepción <MiniCode>WrongProbabilityFieldDefinitionError</MiniCode>.
+        </P>
+      </Danger>
 
       <H2 title={PROBABILITY_VALUE} />
 

@@ -18,11 +18,10 @@ CREATE TABLE Data (
 )
 
 CREATE TABLE User (
-    id INTEGER NULL,
+    id INTEGER PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
     age INTEGER NOT NULL,
-    FOREIGN KEY (data_id) REFERENCES Data (id),
-    PRIMARY KEY (id)
+    data_id INTEGER NOT NULL REFERENCES Data(id)
 )
 `
 

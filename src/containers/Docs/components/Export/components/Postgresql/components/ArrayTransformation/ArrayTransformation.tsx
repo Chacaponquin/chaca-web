@@ -20,8 +20,7 @@ CREATE TABLE Data (
 CREATE TABLE Numbers (
     id INTEGER NOT NULL,
     value INTEGER NOT NULL,
-    data_id INTEGER NOT NULL,
-    FOREIGN KEY (data_id) REFERENCES Data (id)
+    data_id INTEGER NOT NULL REFERENCES Data (id)
 )
 `
 

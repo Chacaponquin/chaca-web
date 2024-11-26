@@ -12,8 +12,8 @@ export default function usePostgresParams() {
     name: "generateIds",
     description: (
       <>
-        Genera de forma automática un id secuencial para las tablas a las que no se les ha definido
-        una <MiniCode size="sm">PRIMARY KEY</MiniCode>
+        Genera de forma automática una columna <MiniCode>id</MiniCode> secuencial para las tablas a
+        las que no se les ha definido una <MiniCode size="sm">PRIMARY KEY</MiniCode>
       </>
     ),
     params: [],

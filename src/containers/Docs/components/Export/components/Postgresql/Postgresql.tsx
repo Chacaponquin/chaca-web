@@ -47,6 +47,15 @@ export default function Postgresql() {
 
       <PostgresParams />
 
+      <Warning title="PRIMARY KEYS">
+        <P>
+          Si defines el parámetro <MiniCode>generateIds</MiniCode> en <MiniCode>false</MiniCode>{" "}
+          debes asegurarte de que en el parámetro <MiniCode>keys</MiniCode> se definan llaves para
+          cada tabla que se vaya a crear. Si alguna tabla no tiene definida al menos una{" "}
+          <MiniCode>PRIMARY KEY</MiniCode> se lanzará una excepción.
+        </P>
+      </Warning>
+
       <Definition />
 
       <DatasetResult extension="postgresql" language="sql" />

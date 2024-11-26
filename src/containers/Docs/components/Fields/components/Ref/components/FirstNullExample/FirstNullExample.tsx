@@ -30,5 +30,5 @@ dataset.generate()
 */
 `
 
-  return <ExampleCode code={code} language="typescript" className="mt-1" />
+  return <ExampleCode code={code} language="typescript" className="mt-2.5" />
 }

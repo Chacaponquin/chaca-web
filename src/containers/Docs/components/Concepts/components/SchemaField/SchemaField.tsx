@@ -78,6 +78,13 @@ export default function SchemaField() {
 
       <ArrayFieldExample />
 
+      <Danger title="Excepción">
+        <P>
+          Cualquier error en la definición del parámetro <MiniCode>isArray</MiniCode> lanzará la
+          excepción <MiniCode>WrongArrayDefinitionError</MiniCode>.
+        </P>
+      </Danger>
+
       <H3 title={ARRAY_LIMITS} />
 
       <P>
@@ -150,6 +157,13 @@ export default function SchemaField() {
           <P>Una función que devuelve una de las opciones anteriores.</P>
         </ListItem>
       </List>
+
+      <Danger title="Excepción">
+        <P>
+          Cualquier error en la definición del parámetro <MiniCode>possibleNull</MiniCode> lanzará
+          la excepción <MiniCode>WrongPossibleNullDefinitionError</MiniCode>.
+        </P>
+      </Danger>
 
       <H3 title={SPECIFIC_NULL_NUMBER} />
 

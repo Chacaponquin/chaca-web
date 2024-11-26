@@ -22,12 +22,10 @@ CREATE TABLE Data (
 )
 
 CREATE TABLE Users (
-    id INTEGER NOT NULL,
+    id INTEGER PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL
-    data_id INTEGER NOT NULL
-    PRIMARY KEY (id),
-    FOREIGN KEY (data_id) REFERENCES Data (id)
+    data_id INTEGER NOT NULL REFERENCES Data (id),
 )
 `
 
