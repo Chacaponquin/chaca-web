@@ -1,7 +1,7 @@
 import { useParams, usePostgresParams } from "@modules/docs/hooks"
-import { MiniCode, Params } from "@modules/shared/modules/markdown/components/Markdown/components"
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
-import { COMMON_TYPES } from "@modules/shared/modules/markdown/domain/constants"
+import { MiniCode, Params } from "@markdown/components/Markdown/components"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
+import { COMMON_TYPES } from "@markdown/domain/constants"
 
 export default function PostgresParams() {
   const { EXT, ZIP_PARAM, INDENT, SKIP_INVALID } = useParams()

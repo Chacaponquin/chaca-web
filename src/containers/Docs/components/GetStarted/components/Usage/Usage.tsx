@@ -8,7 +8,7 @@ import {
   P,
   Strong,
   Tip,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+} from "@markdown/components/Markdown/components"
 import {
   ExportExampleCode,
   GenerateValueApi,

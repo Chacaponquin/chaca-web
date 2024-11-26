@@ -1,11 +1,4 @@
-import {
-  MiniCode,
-  P,
-  Strong,
-  Table,
-  Td,
-  Th,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+import { MiniCode, P, Strong, Table, Td, Th } from "@markdown/components/Markdown/components"
 
 interface Code {
   code: number

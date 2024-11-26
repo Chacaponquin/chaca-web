@@ -1,4 +1,4 @@
-import { Code } from "@modules/shared/modules/markdown/components/Markdown/components"
+import { Code } from "@markdown/components/Markdown/components"
 
 const code = `
 npx chaca json --filename user --output data --config modules/user.js --count 10

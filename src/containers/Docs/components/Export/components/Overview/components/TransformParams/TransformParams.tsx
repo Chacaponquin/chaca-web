@@ -1,6 +1,6 @@
 import { DUMP_CONFIG_PARAM } from "@containers/Docs/shared/domain/constants/file-config"
-import { Params } from "@modules/shared/modules/markdown/components/Markdown/components"
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
+import { Params } from "@markdown/components/Markdown/components"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
 
 export default function TransformParams() {
   const params: Param[] = [

@@ -1,7 +1,7 @@
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
 import { Method } from "../../shared/components"
 import { DOT_CASE } from "@modules/docs/domain/core/sections/get-started/utils"
-import { ExternalLink, P } from "@modules/shared/modules/markdown/components/Markdown/components"
+import { ExternalLink, P } from "@markdown/components/Markdown/components"
 import { TEXT_PARAM } from "../../shared/domain/text"
 
 const code = `

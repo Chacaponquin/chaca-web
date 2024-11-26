@@ -7,7 +7,7 @@ import {
   MiniCode,
   P,
   Warning,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+} from "@markdown/components/Markdown/components"
 import { DatasetResult, Header } from "../../shared/components"
 import {
   ArrayTransformation,

@@ -1,7 +1,7 @@
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
 import { Method } from "../../shared/components"
 import { ONE_OF_ARRAY } from "@modules/docs/domain/core/sections/get-started/utils"
-import { P } from "@modules/shared/modules/markdown/components/Markdown/components"
+import { P } from "@markdown/components/Markdown/components"
 
 const code = `
 chaca.utils.oneOfArray([1, 2, 3, 5, 4]) // 3

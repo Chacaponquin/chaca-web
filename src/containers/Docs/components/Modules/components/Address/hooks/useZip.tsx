@@ -1,7 +1,7 @@
 import { UTILS } from "@modules/docs/domain/core/sections/get-started"
-import { Link } from "@modules/shared/modules/markdown/components/Markdown/components"
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
-import { COMMON_TYPES } from "@modules/shared/modules/markdown/domain/constants"
+import { Link } from "@markdown/components/Markdown/components"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
+import { COMMON_TYPES } from "@markdown/domain/constants"
 
 export default function useZip() {
   const ZIP_PARAMS: Param[] = [

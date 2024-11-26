@@ -1,4 +1,4 @@
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
 
 export const PERIODIC_TABLE_ELEMENT_CODE = `
 modules.science.periodicTableElement() // 'Curium'

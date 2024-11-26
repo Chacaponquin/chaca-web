@@ -1,11 +1,4 @@
-import {
-  H2,
-  Info,
-  Link,
-  MiniCode,
-  P,
-  Strong,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+import { H2, Info, Link, MiniCode, P, Strong } from "@markdown/components/Markdown/components"
 import {
   Definition,
   FunctionDefinition,

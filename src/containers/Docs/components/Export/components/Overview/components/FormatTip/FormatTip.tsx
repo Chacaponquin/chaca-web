@@ -1,4 +1,4 @@
-import { P, Tip } from "@modules/shared/modules/markdown/components/Markdown/components"
+import { P, Tip } from "@markdown/components/Markdown/components"
 
 export default function FormatTip() {
   return (

@@ -1,11 +1,6 @@
 import { DocSubSection } from "@modules/docs/domain/core/base"
 import { CUSTOM, REF, SEQUENCE } from "@modules/docs/domain/core/sections/field-types"
-import {
-  Link,
-  List,
-  ListItem,
-  P,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+import { Link, List, ListItem, P } from "@markdown/components/Markdown/components"
 
 interface Field {
   title: string

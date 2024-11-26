@@ -1,11 +1,6 @@
 import { EXAMPLE, PARAMS, BODY } from "@modules/docs/domain/core/sections/api/transform-schema"
 import { Route } from "../../shared/components"
-import {
-  H2,
-  Link,
-  MiniCode,
-  P,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+import { H2, Link, MiniCode, P } from "@markdown/components/Markdown/components"
 import { Body, Example, QueryParams, Try } from "./components"
 import { SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 

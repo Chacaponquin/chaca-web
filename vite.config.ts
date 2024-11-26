@@ -18,6 +18,10 @@ export default defineConfig(({ mode }) => {
         { find: "@containers", replacement: path.resolve(__dirname, "src/containers") },
         { find: "@form", replacement: path.resolve(__dirname, "src/modules/app/modules/form") },
         { find: "@modules", replacement: path.resolve(__dirname, "src/modules") },
+        {
+          find: "@markdown",
+          replacement: path.resolve(__dirname, "src/modules/shared/modules/markdown"),
+        },
       ],
     },
     server: { port: PORT, host: true },

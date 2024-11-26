@@ -1,4 +1,4 @@
-import { CodeEditor } from "@modules/shared/modules/markdown/components"
+import { CodeEditor } from "@markdown/components"
 import { Section } from "../../shared/components"
 
 interface Props {

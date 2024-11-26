@@ -10,12 +10,7 @@ import {
   EXPORT_TS,
   EXPORT_YAML,
 } from "@modules/docs/domain/core/sections/get-started/command-line"
-import {
-  Link,
-  List,
-  ListItem,
-  P,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+import { Link, List, ListItem, P } from "@markdown/components/Markdown/components"
 
 export default function Sections() {
   const sections: SectionTitle[] = [

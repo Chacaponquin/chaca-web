@@ -1,13 +1,5 @@
 import { DATASET, SCHEMA } from "@modules/docs/domain/core/sections/concepts"
-import {
-  Danger,
-  H2,
-  Info,
-  Link,
-  MiniCode,
-  P,
-  Tip,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+import { Danger, H2, Info, Link, MiniCode, P, Tip } from "@markdown/components/Markdown/components"
 import {
   Definition,
   RefExample,

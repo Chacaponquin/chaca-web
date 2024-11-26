@@ -1,4 +1,4 @@
-import { Link, P } from "@modules/shared/modules/markdown/components/Markdown/components"
+import { Link, P } from "@markdown/components/Markdown/components"
 import { Definition, Example, SequenceParams } from "./components"
 import { SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 

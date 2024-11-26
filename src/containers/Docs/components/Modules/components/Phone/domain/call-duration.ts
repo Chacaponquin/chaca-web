@@ -1,5 +1,5 @@
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
-import { COMMON_TYPES } from "@modules/shared/modules/markdown/domain/constants"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
+import { COMMON_TYPES } from "@markdown/domain/constants"
 
 export const CALL_DURATION_CODE = `
 modules.phone.callDuration({ min: 10, max: 30 }) // '27:30'

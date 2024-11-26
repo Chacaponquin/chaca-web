@@ -1,13 +1,8 @@
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
 import { Method } from "../../shared/components"
-import {
-  List,
-  ListItem,
-  MiniCode,
-  P,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+import { List, ListItem, MiniCode, P } from "@markdown/components/Markdown/components"
 import { REPLACE_SYMBOLS } from "@modules/docs/domain/core/sections/get-started/utils"
-import { COMMON_TYPES } from "@modules/shared/modules/markdown/domain/constants"
+import { COMMON_TYPES } from "@markdown/domain/constants"
 
 const code = `
 chaca.utils.replaceSymbols('#####') // '98441'

@@ -1,4 +1,4 @@
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
 import { REF_DATE } from "../shared/domain/ref-date"
 import { YEARS } from "../shared/domain/years"
 

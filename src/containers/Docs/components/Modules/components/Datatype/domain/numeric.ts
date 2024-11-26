@@ -1,8 +1,8 @@
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
 import { BANNED } from "../shared/domain/banned"
 import { PREFIX } from "../shared/domain/prefix"
 import { LENGTH } from "../shared/domain/length"
-import { COMMON_TYPES } from "@modules/shared/modules/markdown/domain/constants"
+import { COMMON_TYPES } from "@markdown/domain/constants"
 
 export const NUMERIC_CODE = `
 modules.datatype.numeric() // '2'

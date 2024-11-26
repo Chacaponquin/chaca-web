@@ -1,5 +1,5 @@
 import { DATASET, DATASET_STORE, SCHEMA } from "@modules/docs/domain/core/sections/concepts"
-import { Link, MiniCode, P } from "@modules/shared/modules/markdown/components/Markdown/components"
+import { Link, MiniCode, P } from "@markdown/components/Markdown/components"
 import { Definition, FieldDependency, NewMovieSchema, Props } from "./components"
 import { ADDRESS } from "@modules/docs/domain/core/sections/modules"
 import MovieSchemaDefinition from "./components/MovieSchemaDefinition/MovieSchemaDefinition"

@@ -1,8 +1,8 @@
 import { useParams } from "@containers/Docs/components/Api/shared/hooks"
 import { DATASET } from "@modules/docs/domain/core/sections/api"
 import { DATASET as DATASET_CONCEPT } from "@modules/docs/domain/core/sections/concepts"
-import { Link, Params } from "@modules/shared/modules/markdown/components/Markdown/components"
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
+import { Link, Params } from "@markdown/components/Markdown/components"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
 
 export default function Body() {
   const { FILENAME_PARAM, FORMAT_PARAM } = useParams()

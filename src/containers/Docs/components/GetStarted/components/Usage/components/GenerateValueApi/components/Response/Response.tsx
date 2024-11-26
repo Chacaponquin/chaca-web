@@ -1,6 +1,6 @@
 import { Fragment } from "react"
 import { Loader } from "./components"
-import { ExampleCode } from "@modules/shared/modules/markdown/components/Markdown/components/Code/components"
+import { ExampleCode } from "@markdown/components/Markdown/components/Code/components"
 
 interface Props {
   loading: boolean

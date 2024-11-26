@@ -1,6 +1,6 @@
 import { OVERVIEW } from "@modules/docs/domain/core/sections/api"
 import { VIDEO } from "@modules/docs/domain/core/sections/modules"
-import { Info, Link, P } from "@modules/shared/modules/markdown/components/Markdown/components"
+import { Info, Link, P } from "@markdown/components/Markdown/components"
 import { MethodSection } from "../../shared/components"
 import { SectionProvider } from "../../shared/context"
 

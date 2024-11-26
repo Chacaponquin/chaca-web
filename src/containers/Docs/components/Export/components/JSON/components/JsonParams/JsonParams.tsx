@@ -1,6 +1,6 @@
 import { useParams } from "@modules/docs/hooks"
-import { Params } from "@modules/shared/modules/markdown/components/Markdown/components"
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
+import { Params } from "@markdown/components/Markdown/components"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
 
 export default function JsonParams() {
   const { ZIP_PARAM, EXT, SEPARATE, INDENT } = useParams()

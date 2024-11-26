@@ -1,12 +1,8 @@
 import { useParams } from "@containers/Docs/components/Api/shared/hooks"
 import { OVERVIEW } from "@modules/docs/domain/core/sections/modules"
-import {
-  Link,
-  MiniCode,
-  Params,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
-import { COMMON_TYPES } from "@modules/shared/modules/markdown/domain/constants"
+import { Link, MiniCode, Params } from "@markdown/components/Markdown/components"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
+import { COMMON_TYPES } from "@markdown/domain/constants"
 
 export default function ModuleParams() {
   const { TYPE, COMMON_PARAMS } = useParams()

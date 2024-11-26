@@ -1,10 +1,4 @@
-import {
-  Danger,
-  Link,
-  MiniCode,
-  P,
-  Tip,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+import { Danger, Link, MiniCode, P, Tip } from "@markdown/components/Markdown/components"
 import { ArrayEnum, Definition, EnumParams, Example } from "./components"
 import { SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 import { PICK } from "@modules/docs/domain/core/sections/field-types"

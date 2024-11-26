@@ -1,9 +1,4 @@
-import {
-  Danger,
-  Link,
-  MiniCode,
-  P,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+import { Danger, Link, MiniCode, P } from "@markdown/components/Markdown/components"
 import { Definition, Example, SeqParams } from "./components"
 import { SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 

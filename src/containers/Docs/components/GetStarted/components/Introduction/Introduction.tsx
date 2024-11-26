@@ -11,7 +11,7 @@ import {
   ListItem,
   P,
   Warning,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+} from "@markdown/components/Markdown/components"
 import { APP_ROUTES } from "@modules/app/constants"
 import { CHACA_LINKS } from "@modules/shared/domain/links"
 import {

@@ -1,7 +1,7 @@
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
 import useParams from "./useParams"
-import { COMMON_TYPES } from "@modules/shared/modules/markdown/domain/constants"
-import { MiniCode } from "@modules/shared/modules/markdown/components/Markdown/components"
+import { COMMON_TYPES } from "@markdown/domain/constants"
+import { MiniCode } from "@markdown/components/Markdown/components"
 
 export default function usePostgresParams() {
   const { DECLARATION_ONLY } = useParams()

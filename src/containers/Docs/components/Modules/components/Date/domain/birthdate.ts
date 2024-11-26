@@ -1,6 +1,6 @@
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
 import { REF_DATE } from "../shared/domain/ref-date"
-import { COMMON_TYPES } from "@modules/shared/modules/markdown/domain/constants"
+import { COMMON_TYPES } from "@markdown/domain/constants"
 
 export const BIRTHDATE_CODE = `
 modules.date.birthdate() // 1977-07-10T01:37:30.719Z

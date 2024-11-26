@@ -1,6 +1,6 @@
-import { Markdown } from "@modules/shared/modules/markdown/components"
+import { Markdown } from "@markdown/components"
 import { Doc, Footer, SideBar } from "./components"
-import { H1 } from "@modules/shared/modules/markdown/components/Markdown/components"
+import { H1 } from "@markdown/components/Markdown/components"
 import { DocSubSection } from "@modules/docs/domain/core/base"
 
 interface Props {

@@ -1,5 +1,5 @@
-import { CodesCard } from "@modules/shared/modules/markdown/components/Markdown/components"
-import { CodeSection } from "@modules/shared/modules/markdown/components/Markdown/components/CodesCard/domain"
+import { CodesCard } from "@markdown/components/Markdown/components"
+import { CodeSection } from "@markdown/components/Markdown/components/CodesCard/domain"
 import { useMemo } from "react"
 
 export default function UserSchemaCode() {

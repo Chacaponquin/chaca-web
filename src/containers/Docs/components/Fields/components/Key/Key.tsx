@@ -1,11 +1,5 @@
 import { SCHEMA } from "@modules/docs/domain/core/sections/concepts"
-import {
-  Info,
-  Link,
-  MiniCode,
-  P,
-  Tip,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+import { Info, Link, MiniCode, P, Tip } from "@markdown/components/Markdown/components"
 import { Definition, FieldsList, Params } from "./components"
 import { REF } from "@modules/docs/domain/core/sections/field-types"
 import { POSTGRES } from "@modules/docs/domain/core/sections/export"

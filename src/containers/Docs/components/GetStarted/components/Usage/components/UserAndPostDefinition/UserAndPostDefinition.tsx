@@ -1,4 +1,4 @@
-import { Code } from "@modules/shared/modules/markdown/components/Markdown/components"
+import { Code } from "@markdown/components/Markdown/components"
 
 interface Props {
   alternative: boolean

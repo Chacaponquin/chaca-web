@@ -1,6 +1,6 @@
-import { CodesCard } from "@modules/shared/modules/markdown/components/Markdown/components"
+import { CodesCard } from "@markdown/components/Markdown/components"
 import { useMemo } from "react"
-import { CodeSection } from "@modules/shared/modules/markdown/components/Markdown/components/CodesCard/domain"
+import { CodeSection } from "@markdown/components/Markdown/components/CodesCard/domain"
 
 export default function Commands() {
   const NPM_CMD = "npm install chaca -D"

@@ -1,6 +1,6 @@
 import { SectionTitle } from "@modules/docs/domain/core/base"
-import { Code, H2, Params } from "@modules/shared/modules/markdown/components/Markdown/components"
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
+import { Code, H2, Params } from "@markdown/components/Markdown/components"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
 
 interface Props {
   title: SectionTitle

@@ -1,10 +1,5 @@
 import { FormatsList } from "@containers/Docs/shared/components"
-import {
-  H2,
-  MiniCode,
-  P,
-  Tip,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+import { H2, MiniCode, P, Tip } from "@markdown/components/Markdown/components"
 import {
   Definition,
   ExampleCode,

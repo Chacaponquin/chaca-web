@@ -1,4 +1,4 @@
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
 import { LENGTH } from "../shared/domain/length"
 import { CASE } from "../shared/domain/case"
 

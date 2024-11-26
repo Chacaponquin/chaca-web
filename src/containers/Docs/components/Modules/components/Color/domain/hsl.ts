@@ -1,4 +1,4 @@
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
 import { FORMAT } from "../shared/domain/format"
 import { INCLUDE_ALPHA } from "../shared/domain/include-alpha"
 

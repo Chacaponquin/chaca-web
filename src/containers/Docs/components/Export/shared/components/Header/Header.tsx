@@ -1,4 +1,4 @@
-import { MiniCode, P } from "@modules/shared/modules/markdown/components/Markdown/components"
+import { MiniCode, P } from "@markdown/components/Markdown/components"
 
 interface Props {
   format: string

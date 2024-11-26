@@ -1,4 +1,4 @@
-import { Danger, P } from "@modules/shared/modules/markdown/components/Markdown/components"
+import { Danger, P } from "@markdown/components/Markdown/components"
 import { DatasetResult, Header } from "../../shared/components"
 import { Definition, YamlParams } from "./components"
 

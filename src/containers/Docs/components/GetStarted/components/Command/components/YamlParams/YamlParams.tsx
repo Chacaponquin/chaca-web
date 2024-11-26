@@ -1,6 +1,6 @@
 import { useParams, useYamlParams } from "@modules/docs/hooks"
 import { ExportParams } from "../../shared/components"
-import { COMMON_TYPES } from "@modules/shared/modules/markdown/domain/constants"
+import { COMMON_TYPES } from "@markdown/domain/constants"
 
 export default function YamlParams() {
   const { ZIP_PARAM, SEPARATE, INDENT } = useParams()

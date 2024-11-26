@@ -1,5 +1,5 @@
 import { Loader, ResponseImage, ResponseVideo } from "./components"
-import { ExampleCode } from "@modules/shared/modules/markdown/components/Markdown/components/Code/components"
+import { ExampleCode } from "@markdown/components/Markdown/components/Code/components"
 import { Section } from "../../shared/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { TryResult } from "../../domain"

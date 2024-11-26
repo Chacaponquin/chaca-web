@@ -1,11 +1,6 @@
 import { DATASET, SCHEMA } from "@modules/docs/domain/core/sections/concepts"
-import {
-  Link,
-  List,
-  ListItem,
-  P,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
-import { ExampleCode } from "@modules/shared/modules/markdown/components/Markdown/components/Code/components"
+import { Link, List, ListItem, P } from "@markdown/components/Markdown/components"
+import { ExampleCode } from "@markdown/components/Markdown/components/Code/components"
 
 const schemaCode = `
 const { chaca, modules } = require("chaca")

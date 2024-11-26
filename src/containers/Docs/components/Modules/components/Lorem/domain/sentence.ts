@@ -1,4 +1,4 @@
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
 import { WORDS_MIN } from "../shared/domain/words-min"
 import { WORDS_MAX } from "../shared/domain/words-max"
 

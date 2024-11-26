@@ -1,8 +1,8 @@
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
 import { Method } from "../../shared/components"
 import { SUM_DATE_RANGE } from "@modules/docs/domain/core/sections/get-started/utils"
-import { P } from "@modules/shared/modules/markdown/components/Markdown/components"
-import { COMMON_TYPES } from "@modules/shared/modules/markdown/domain/constants"
+import { P } from "@markdown/components/Markdown/components"
+import { COMMON_TYPES } from "@markdown/domain/constants"
 
 export default function SumDateRange() {
   const params: Param[] = [

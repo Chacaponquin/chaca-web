@@ -1,8 +1,8 @@
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
 import { Method } from "../../shared/components"
-import { Danger, P } from "@modules/shared/modules/markdown/components/Markdown/components"
+import { Danger, P } from "@markdown/components/Markdown/components"
 import { PICK } from "@modules/docs/domain/core/sections/get-started/utils"
-import { COMMON_TYPES } from "@modules/shared/modules/markdown/domain/constants"
+import { COMMON_TYPES } from "@markdown/domain/constants"
 
 const code = `
 chaca.utils.pick({ values: [1, 2, 3, 4, 5], count: 2 }) // [2, 4]

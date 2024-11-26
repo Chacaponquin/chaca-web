@@ -7,7 +7,7 @@ import {
   MiniCode,
   P,
   Strong,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+} from "@markdown/components/Markdown/components"
 import {
   Definition,
   ExportParams,

@@ -1,6 +1,6 @@
 import { EXPORT_FORMATS } from "@modules/docs/domain/constants/export-formats"
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
-import { COMMON_TYPES } from "@modules/shared/modules/markdown/domain/constants"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
+import { COMMON_TYPES } from "@markdown/domain/constants"
 
 export const DUMP_CONFIG_PARAM: Param = {
   name: "config",

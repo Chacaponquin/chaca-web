@@ -20,10 +20,13 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
+    "baseUrl": "./",
+
     "paths": {
       "@modules/*": ["src/modules/*"],
       "@containers/*": ["src/containers/*"],
-      "@form/*": ["src/modules/app/modules/form/*"]
+      "@form/*": ["src/modules/app/modules/form/*"],
+      "@markdown/*": ["src/modules/shared/modules/markdown/*"]
     },
 
     "types": ["cypress", "node"]
@@ -40,6 +43,5 @@
   },
 
   "include": ["src", "cypress", "scripts", "build-doc-indexes.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }],
-  "extends": "./tsconfig.paths.json"
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

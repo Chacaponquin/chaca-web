@@ -1,10 +1,5 @@
 import { OVERVIEW } from "@modules/docs/domain/core/sections/modules"
-import {
-  H2,
-  Link,
-  MiniCode,
-  P,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+import { H2, Link, MiniCode, P } from "@markdown/components/Markdown/components"
 import { Example, QueryParams, Try } from "./components"
 import { Route } from "../../shared/components"
 import { BODY, EXAMPLE, PARAMS } from "@modules/docs/domain/core/sections/api/module-value"

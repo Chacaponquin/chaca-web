@@ -1,4 +1,4 @@
-import { Link, MiniCode, P } from "@modules/shared/modules/markdown/components/Markdown/components"
+import { Link, MiniCode, P } from "@markdown/components/Markdown/components"
 import {
   CamelCase,
   CapitalCase,

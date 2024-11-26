@@ -1,10 +1,5 @@
 import { DATASET, SCHEMA, SCHEMA_FIELD } from "@modules/docs/domain/core/sections/concepts"
-import {
-  H2,
-  Link,
-  MiniCode,
-  P,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+import { H2, Link, MiniCode, P } from "@markdown/components/Markdown/components"
 import {
   Definition,
   EnumExample,

@@ -1,6 +1,6 @@
 import { useBuildUrl } from "@containers/Docs/components/Api/shared/hooks"
-import { CodesCard } from "@modules/shared/modules/markdown/components/Markdown/components"
-import { CodeSection } from "@modules/shared/modules/markdown/components/Markdown/components/CodesCard/domain"
+import { CodesCard } from "@markdown/components/Markdown/components"
+import { CodeSection } from "@markdown/components/Markdown/components/CodesCard/domain"
 
 export default function Comparation() {
   const { url: moduleUrl } = useBuildUrl({ route: "api/module/person/first_name" })

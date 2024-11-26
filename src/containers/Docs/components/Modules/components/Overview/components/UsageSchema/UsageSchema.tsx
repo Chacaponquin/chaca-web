@@ -1,4 +1,4 @@
-import { Code } from "@modules/shared/modules/markdown/components/Markdown/components"
+import { Code } from "@markdown/components/Markdown/components"
 
 const code = `
 import { modules } from "chaca"

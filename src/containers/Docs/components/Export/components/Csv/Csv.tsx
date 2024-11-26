@@ -1,4 +1,4 @@
-import { P, Warning } from "@modules/shared/modules/markdown/components/Markdown/components"
+import { P, Warning } from "@markdown/components/Markdown/components"
 import { CsvParams, Definition } from "./components"
 import { DatasetResult, Header } from "../../shared/components"
 

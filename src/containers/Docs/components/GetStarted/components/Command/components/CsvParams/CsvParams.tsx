@@ -1,4 +1,4 @@
-import { COMMON_TYPES } from "@modules/shared/modules/markdown/domain/constants"
+import { COMMON_TYPES } from "@markdown/domain/constants"
 import { ExportParams } from "../../shared/components"
 import { useCsvParams, useParams } from "@modules/docs/hooks"
 

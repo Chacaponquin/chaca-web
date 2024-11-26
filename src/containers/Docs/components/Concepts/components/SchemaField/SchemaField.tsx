@@ -11,7 +11,7 @@ import {
   Strong,
   Tip,
   Warning,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+} from "@markdown/components/Markdown/components"
 import {
   ArrayFieldExample,
   ArrayFunctionDefinition,

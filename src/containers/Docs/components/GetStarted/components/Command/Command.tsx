@@ -14,15 +14,7 @@ import {
   EXPORT_EXAMPLE,
   DEFINE_CONFIG,
 } from "@modules/docs/domain/core/sections/get-started/command-line"
-import {
-  H2,
-  H3,
-  Link,
-  MiniCode,
-  P,
-  Tip,
-  Warning,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+import { H2, H3, Link, MiniCode, P, Tip, Warning } from "@markdown/components/Markdown/components"
 import { Commands } from "../../shared/components"
 import {
   ConfigFile,

@@ -1,5 +1,5 @@
-import { Param } from "@modules/shared/modules/markdown/components/Markdown/components/Params/domain"
-import { COMMON_TYPES } from "@modules/shared/modules/markdown/domain/constants"
+import { Param } from "@markdown/components/Markdown/components/Params/domain"
+import { COMMON_TYPES } from "@markdown/domain/constants"
 import { REF_DATE } from "../shared/domain/ref-date"
 
 export const SOON_PARAMS: Param[] = [

@@ -1,11 +1,5 @@
 import { SCHEMA } from "@modules/docs/domain/core/sections/concepts"
-import {
-  H2,
-  Info,
-  Link,
-  MiniCode,
-  P,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+import { H2, Info, Link, MiniCode, P } from "@markdown/components/Markdown/components"
 import { Comparation, SectionsList, Usage, UsageSchema } from "./components"
 import { CUSTOM } from "@modules/docs/domain/core/sections/field-types"
 import { PERSON } from "@modules/docs/domain/core/sections/modules"

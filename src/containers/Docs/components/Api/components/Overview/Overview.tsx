@@ -5,7 +5,7 @@ import {
   ListItem,
   MiniCode,
   P,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+} from "@markdown/components/Markdown/components"
 import { CodesTable, Error, Features } from "./components"
 import {
   ERROR_MESSAGE,

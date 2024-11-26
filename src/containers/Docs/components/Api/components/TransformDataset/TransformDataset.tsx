@@ -1,9 +1,4 @@
-import {
-  H2,
-  Link,
-  MiniCode,
-  P,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+import { H2, Link, MiniCode, P } from "@markdown/components/Markdown/components"
 import { Route } from "../../shared/components"
 import { DATASET, SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 import { Body, Example, Structure, Try } from "./components"

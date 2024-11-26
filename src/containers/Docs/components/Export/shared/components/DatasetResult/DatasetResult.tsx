@@ -1,9 +1,5 @@
-import {
-  CodesCard,
-  MiniCode,
-  P,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
-import { CodeSection } from "@modules/shared/modules/markdown/components/Markdown/components/CodesCard/domain"
+import { CodesCard, MiniCode, P } from "@markdown/components/Markdown/components"
+import { CodeSection } from "@markdown/components/Markdown/components/CodesCard/domain"
 import { Language } from "prism-react-renderer"
 import { DatasetDefinition } from "./components"
 import { useEffect, useState } from "react"

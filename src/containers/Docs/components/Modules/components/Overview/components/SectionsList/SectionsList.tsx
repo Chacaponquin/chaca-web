@@ -18,12 +18,7 @@ import {
   VIDEO,
   WORD,
 } from "@modules/docs/domain/core/sections/modules"
-import {
-  Link,
-  List,
-  ListItem,
-  P,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+import { Link, List, ListItem, P } from "@markdown/components/Markdown/components"
 
 export default function SectionsList() {
   const sections: DocSubSection[] = [

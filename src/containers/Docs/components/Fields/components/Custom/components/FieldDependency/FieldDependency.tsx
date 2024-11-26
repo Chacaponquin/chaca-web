@@ -1,10 +1,5 @@
 import { SCHEMA } from "@modules/docs/domain/core/sections/concepts"
-import {
-  Code,
-  Link,
-  P,
-  Warning,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+import { Code, Link, P, Warning } from "@markdown/components/Markdown/components"
 
 export default function FieldDependency() {
   const code = `

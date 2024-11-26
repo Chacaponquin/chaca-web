@@ -1,11 +1,6 @@
 import { DocSubSection } from "@modules/docs/domain/core/base"
 import { MODULE_VALUE, SCHEMA_ARRAY, SCHEMA_OBJECT } from "@modules/docs/domain/core/sections/api"
-import {
-  Link,
-  List,
-  ListItem,
-  P,
-} from "@modules/shared/modules/markdown/components/Markdown/components"
+import { Link, List, ListItem, P } from "@markdown/components/Markdown/components"
 
 interface Item {
   text: string
