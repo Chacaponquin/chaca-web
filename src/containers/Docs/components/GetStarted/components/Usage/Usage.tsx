@@ -14,6 +14,7 @@ import {
   GenerateValueApi,
   GenerateValueCode,
   ImportCode,
+  TransformExampleCode,
   UserAndPostDefinition,
   UserDataExample,
   UserSchemaCode,
@@ -28,6 +29,7 @@ import {
   MODULE_DATA,
   RELATIONAL_DATA,
   SCHEMA_DATA,
+  TRANSFORM_DATA,
 } from "@modules/docs/domain/core/sections/get-started/usage"
 
 export default function Usage() {
@@ -168,6 +170,17 @@ export default function Usage() {
       </P>
 
       <ExportExampleCode />
+
+      <H2 title={TRANSFORM_DATA} />
+
+      <P>
+        Si se desean transpilar los datos generados a partir de un <MiniCode>Schema</MiniCode> o un{" "}
+        <MiniCode>Dataset</MiniCode> a la sintáxis de uno de los{" "}
+        <Link to={OVERVIEW.redirect}>formatos definidos</Link> sin necesidad de esportarlos de forma
+        física se puede hacer de la siguiente forma.
+      </P>
+
+      <TransformExampleCode />
     </>
   )
 }

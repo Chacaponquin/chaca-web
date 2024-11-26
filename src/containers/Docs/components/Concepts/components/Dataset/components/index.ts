@@ -9,6 +9,9 @@ import GenerateDefinition from "./GenerateDefinition/GenerateDefinition"
 import LikeSchemaDefinition from "./LikeSchemaDefinition/LikeSchemaDefinition"
 import NewEcommerceDataset from "./NewEcommerceDataset/NewEcommerceDataset"
 import ProductSchemaDefinition from "./ProductSchemaDefinition/ProductSchemaDefinition"
+import TransformDefinition from "./TransformDefinition/TransformDefinition"
+import TransformExample from "./TransformExample/TransformExample"
+import TransformParams from "./TransformParams/TransformParams"
 import UserSchemaDefinition from "./UserSchemaDefinition/UserSchemaDefinition"
 
 export {
@@ -24,4 +27,7 @@ export {
   EcommerceExample,
   LikeSchemaDefinition,
   NewEcommerceDataset,
+  TransformDefinition,
+  TransformExample,
+  TransformParams,
 }

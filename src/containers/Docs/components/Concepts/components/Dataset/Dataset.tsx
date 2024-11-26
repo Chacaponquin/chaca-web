@@ -26,6 +26,9 @@ import {
   LikeSchemaDefinition,
   NewEcommerceDataset,
   ProductSchemaDefinition,
+  TransformDefinition,
+  TransformExample,
+  TransformParams,
   UserSchemaDefinition,
 } from "./components"
 import { DOCS_IMAGE } from "@modules/docs/domain/constants/image"
@@ -37,8 +40,10 @@ import {
   GENERATE,
   GENERATION_SEQUENCE,
   HOW_CREATE_DATA,
+  TRANSFORM_DATA,
 } from "@modules/docs/domain/core/sections/concepts/dataset"
 import { REF } from "@modules/docs/domain/core/sections/field-types"
+import { OVERVIEW } from "@modules/docs/domain/core/sections/export"
 
 export default function Dataset() {
   return (
@@ -144,6 +149,25 @@ export default function Dataset() {
       </P>
 
       <EcommerceExample />
+
+      <H2 title={TRANSFORM_DATA} />
+
+      <P>
+        Para generar y transformar los datos de un <MiniCode>Dataset</MiniCode> en uno de los{" "}
+        <Link to={OVERVIEW.redirect}>formatos definidos</Link> se utiliza el método{" "}
+        <MiniCode>transform</MiniCode>.
+      </P>
+
+      <TransformDefinition />
+
+      <TransformParams />
+
+      <P>
+        Continuando con el ejemplo anterior el siguiente código genera y transforma los datos del{" "}
+        <MiniCode>Dataset</MiniCode> en un archivo <MiniCode>ecommerce.json</MiniCode>.
+      </P>
+
+      <TransformExample />
 
       <H2 title={HOW_CREATE_DATA} />
 

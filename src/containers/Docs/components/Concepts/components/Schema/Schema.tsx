@@ -16,6 +16,9 @@ import {
   GenerateCode,
   NestedSchemaExample,
   NewFieldCode,
+  TransformDefinition,
+  TransformExample,
+  TransformParams,
   UserDataExample,
   UserSchemaDefinition,
 } from "./components"
@@ -28,7 +31,11 @@ import {
   GENERATE_DATA,
   NESTED_SCHEMA,
   PARAMS,
+  TRANSFORM_DATA,
+  TRANSFORM_EXAMPLE,
+  TRANSFORM_PARAMS,
 } from "@modules/docs/domain/core/sections/concepts/schema"
+import { FormatsList } from "@containers/Docs/shared/components"
 
 export default function Schema() {
   return (
@@ -146,8 +153,10 @@ export default function Schema() {
       <P>
         Para generar y exportar los datos de un <MiniCode>Schema</MiniCode> se utiliza el método{" "}
         <MiniCode>export</MiniCode>. Este método crea los archivos con los datos generados en la
-        ruta especificada.
+        ruta especificada. Se pueden exportar archivos en cualquiera de los siguientes formatos:
       </P>
+
+      <FormatsList />
 
       <ExportSchema />
 
@@ -158,7 +167,7 @@ export default function Schema() {
       <H3 title={EXAMPLE} />
 
       <P>
-        Para generar y exportar 3 documentos del <MiniCode>User Schema</MiniCode> creado
+        Para generar y exportar 3 documentos del <MiniCode>Schema</MiniCode> User creado
         anteriormente se haría de la siguiente forma, guardando los datos en un archivo{" "}
         <MiniCode>user.json</MiniCode> dentro de la carpeta <MiniCode>data</MiniCode>
       </P>
@@ -170,6 +179,28 @@ export default function Schema() {
       </P>
 
       <UserDataExample />
+
+      <H2 title={TRANSFORM_DATA} />
+
+      <P>
+        Para transformar los datos de un <MiniCode>Schema</MiniCode> se utiliza el método{" "}
+        <MiniCode>transform</MiniCode>.
+      </P>
+
+      <TransformDefinition />
+
+      <H3 title={TRANSFORM_PARAMS} />
+
+      <TransformParams />
+
+      <H3 title={TRANSFORM_EXAMPLE} />
+
+      <P>
+        Para transformar 3 documentos del <MiniCode>Schema</MiniCode> User creado anteriormente en
+        formato <MiniCode>json</MiniCode> se haría de la siguiente forma.
+      </P>
+
+      <TransformExample />
 
       <H2 title={NESTED_SCHEMA} />
 

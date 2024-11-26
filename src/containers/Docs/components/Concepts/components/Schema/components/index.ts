@@ -5,6 +5,9 @@ import ExportUserSchema from "./ExportUserSchema/ExportUserSchema"
 import GenerateCode from "./GenerateCode/GenerateCode"
 import NestedSchemaExample from "./NestedSchemaExample/NestedSchemaExample"
 import NewFieldCode from "./NewFieldCode/NewFieldCode"
+import TransformDefinition from "./TransformDefinition/TransformDefinition"
+import TransformExample from "./TransformExample/TransformExample"
+import TransformParams from "./TransformParams/TransformParams"
 import UserDataExample from "./UserDataExample/UserDataExample"
 import UserSchemaDefinition from "./UserSchemaDefinition/UserSchemaDefinition"
 
@@ -18,4 +21,7 @@ export {
   UserDataExample,
   ExportParams,
   NestedSchemaExample,
+  TransformDefinition,
+  TransformParams,
+  TransformExample,
 }

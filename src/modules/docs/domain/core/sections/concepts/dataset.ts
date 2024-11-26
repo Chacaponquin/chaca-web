@@ -19,8 +19,13 @@ export const GENERATION_SEQUENCE: SectionTitle = {
 export const EXAMPLE: SectionTitle = { id: "example", title: "Ejemplo práctico" }
 
 export const CYCLIC_DEPENDENCE: SectionTitle = {
-  id: "cyclic dependence",
+  id: "cyclic-dependence",
   title: "Dependencia cíclica",
+}
+
+export const TRANSFORM_DATA: SectionTitle = {
+  id: "transform",
+  title: "Transformar datos generados",
 }
 
 export class Dataset extends DocSubSection {
@@ -35,6 +40,7 @@ export class Dataset extends DocSubSection {
       GENERATION_SEQUENCE,
       EXAMPLE,
       CYCLIC_DEPENDENCE,
+      TRANSFORM_DATA,
     ]
   }
 }
