@@ -4,7 +4,7 @@ import {
   InvalidArrayJSONValue,
   InvalidArrayNumberValue,
 } from "@modules/dataset/errors/dataset"
-import { IValidator } from "@modules/app/domain/validator1"
+import { IValidator } from "@modules/app/domain/validator"
 import { ArrayValue } from "@modules/dataset/domain/core/datatype"
 import { ARRAY_VALUE_TYPE } from "@modules/dataset/domain/constants"
 

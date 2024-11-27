@@ -1,4 +1,4 @@
-import { Validator } from "@modules/app/domain/validator1"
+import { Validator } from "@modules/app/domain/validator"
 import { SequentialValuesValidator } from "./SequentialValuesValidator"
 import { RefFieldValidator } from "./RefFieldValidator"
 import { EnumValuesValidator } from "./EnumValuesValidator"

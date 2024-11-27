@@ -1,4 +1,4 @@
-import { IValidator } from "@modules/app/domain/validator1"
+import { IValidator } from "@modules/app/domain/validator"
 import { ChacaError } from "@modules/app/exceptions"
 import { EmptyCustomFunctionError } from "@modules/dataset/errors/dataset"
 import { FieldDatatype } from "@modules/dataset/domain/core/datatype"

@@ -3,7 +3,7 @@ import {
   EmptyValuesError,
   InvalidChanceValueError,
 } from "@modules/dataset/errors/dataset"
-import { IValidator } from "../../../../app/domain/validator1"
+import { IValidator } from "../../../../app/domain/validator"
 import { ArrayValuesValidator } from "./ArrayValuesValidator"
 import { ArrayValue, FieldDatatype } from "@modules/dataset/domain/core/datatype"
 import { DATA_TYPES } from "@modules/modules/domain/constants"
