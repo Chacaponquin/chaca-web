@@ -31,7 +31,7 @@ export const DEFINE_CONFIG: SectionTitle = { id: "define-config", title: "Defini
 
 export class CommandLineSection extends DocSubSection {
   constructor(parent: DocSection) {
-    super({ title: "CLI", parent: parent, url: "cli" })
+    super({ title: { en: "CLI", es: "CLI" }, parent: parent, url: "cli" })
 
     this.titles = [
       INSTALL,

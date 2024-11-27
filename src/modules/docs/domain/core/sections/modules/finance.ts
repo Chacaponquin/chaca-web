@@ -39,7 +39,12 @@ export const LITECOIN: SectionTitle = { id: "litecoin", title: "litecoinAddress"
 
 export class Finance extends ModuleDocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Finance", url: "finance", apiId: "finance" })
+    super({
+      parent: parent,
+      title: { en: "Finance", es: "Finance" },
+      url: "finance",
+      apiId: "finance",
+    })
 
     this.titles = [
       ACCOUNT_TYPE,

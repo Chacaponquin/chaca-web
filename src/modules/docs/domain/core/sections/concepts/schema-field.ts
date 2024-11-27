@@ -32,7 +32,11 @@ export class SchemaField extends DocSubSection {
   readonly arrayFieldsUrl = this.buildUrl(ARRAY_FIELDS.id)
 
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Schema field", url: "schema-field" })
+    super({
+      parent: parent,
+      title: { en: "Schema field", es: "Campos de un schema" },
+      url: "schema-field",
+    })
 
     this.titles = [
       PARAMS,

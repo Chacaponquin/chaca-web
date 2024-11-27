@@ -14,7 +14,7 @@ export const CUSTOM_COUNT: SectionTitle = {
 
 export class Pick extends DocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Pick", url: "pick" })
+    super({ parent: parent, title: { en: "Pick", es: "Pick" }, url: "pick" })
 
     this.titles = [PICK_SPECIFIC_COUNT, ELEMENTS_RANGE, CUSTOM_COUNT]
   }

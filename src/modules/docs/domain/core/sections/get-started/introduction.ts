@@ -10,7 +10,11 @@ export const COMMUNITY: SectionTitle = { id: "community", title: "Comunidad" }
 
 export class IntroductionSection extends DocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Introduction", url: "introduction" })
+    super({
+      parent: parent,
+      title: { en: "Introduction", es: "Introducción" },
+      url: "introduction",
+    })
 
     this.titles = [ABOUT, INSTALATION, REQUIREMENTS, COMMUNITY]
   }

@@ -30,7 +30,7 @@ export const HUMAN: SectionTitle = { id: "human", title: "human" }
 
 export class Color extends ModuleDocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Color", url: "color", apiId: "color" })
+    super({ parent: parent, title: { en: "Color", es: "Color" }, url: "color", apiId: "color" })
 
     this.titles = [
       RGB,

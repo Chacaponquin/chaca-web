@@ -29,7 +29,11 @@ export class SchemaObjectSection extends DocSubSection {
   readonly moduleUrl = this.buildUrl(MODULE.id)
 
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Schema Object", url: "schema-object" })
+    super({
+      parent: parent,
+      title: { en: "Schema Object", es: "Schema Object" },
+      url: "schema-object",
+    })
 
     this.titles = [
       BODY,

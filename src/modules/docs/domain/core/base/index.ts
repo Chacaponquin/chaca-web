@@ -1,3 +1,4 @@
+import { Languages, TranslationConfig } from "@modules/app/modules/language/interfaces"
 import { SaveIndex } from "./save-index"
 
 export interface SectionTitle {
@@ -11,7 +12,7 @@ interface DocSectionProps {
 }
 
 export interface SubSectionProps {
-  title: string
+  title: TranslationConfig<string>
   parent: DocSection
   url: string
 }
@@ -31,11 +32,11 @@ export abstract class DocSection {
     this.sections = s
   }
 
-  save(): SaveIndex[] {
+  save(language: Languages): SaveIndex[] {
     const all = [] as SaveIndex[]
 
     this.sections.forEach((s) => {
-      all.push(...s.save())
+      all.push(...s.save(language))
     })
 
     return all
@@ -43,7 +44,7 @@ export abstract class DocSection {
 }
 
 export abstract class DocSubSection {
-  readonly title: string
+  readonly title: TranslationConfig<string>
   private readonly _url: string
   readonly parent: DocSection
   titles: SectionTitle[]
@@ -63,8 +64,8 @@ export abstract class DocSubSection {
     return `/docs/${this.parent.url}/${this._url}`
   }
 
-  get location(): string[] {
-    return [this.parent.title, this.title]
+  location(language: Languages): string[] {
+    return [this.parent.title, this.title[language]]
   }
 
   get titleSeo(): string {
@@ -79,14 +80,19 @@ export abstract class DocSubSection {
     return `#${id}`
   }
 
-  save(): SaveIndex[] {
+  save(language: Languages): SaveIndex[] {
     return [
-      { title: this.title, location: this.location.join(" > "), url: this.url, language: "es" },
+      {
+        title: this.title[language],
+        location: this.location(language).join(" > "),
+        url: this.url,
+        language: "es",
+      },
       ...this.titles.map((t) => {
         return {
           title: t.title,
           url: this.buildUrl(t.id),
-          location: [...this.location, t.title].join(" > "),
+          location: [...this.location(language), t.title].join(" > "),
           language: "es",
         }
       }),

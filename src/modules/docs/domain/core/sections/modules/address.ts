@@ -25,7 +25,12 @@ export const LATITUDE: SectionTitle = { id: "latitude", title: "latitude" }
 
 export class Address extends ModuleDocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Address", url: "address", apiId: "address" })
+    super({
+      parent: parent,
+      title: { en: "Address", es: "Address" },
+      url: "address",
+      apiId: "address",
+    })
 
     this.titles = [
       ZIP_CODE,

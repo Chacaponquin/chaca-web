@@ -17,7 +17,7 @@ export const PARAGRAPH: SectionTitle = { id: "paragraph", title: "paragraph" }
 
 export class Lorem extends ModuleDocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Lorem", url: "lorem", apiId: "lorem" })
+    super({ parent: parent, title: { en: "Lorem", es: "Lorem" }, url: "lorem", apiId: "lorem" })
 
     this.titles = [SLUG, WORDS, PARAGRAPHS, SENTENCES, WORD, SENTENCE, PARAGRAPH]
   }

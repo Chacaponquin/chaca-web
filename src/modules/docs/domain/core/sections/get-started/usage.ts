@@ -18,7 +18,7 @@ export const TRANSFORM_DATA: SectionTitle = { id: "transform-data", title: "Tran
 
 export class UsageSection extends DocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Usage", url: "usage" })
+    super({ parent: parent, title: { en: "Usage", es: "Uso" }, url: "usage" })
 
     this.titles = [MODULE_DATA, EXPORT_DATA, RELATIONAL_DATA, SCHEMA_DATA, TRANSFORM_DATA]
   }

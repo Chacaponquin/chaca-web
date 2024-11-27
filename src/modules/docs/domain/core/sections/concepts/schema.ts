@@ -4,8 +4,6 @@ export const NESTED_SCHEMA: SectionTitle = { id: "nested-schema", title: "Schema
 
 export const EXPORT_DATA: SectionTitle = { id: "export", title: "Exportar datos del schema" }
 
-export const PARAMS: SectionTitle = { id: "params", title: "Parámetros" }
-
 export const EXAMPLE: SectionTitle = { id: "example", title: "Ejemplo" }
 
 export const DEFINITION: SectionTitle = { id: "definition", title: "Definir un schema" }
@@ -22,27 +20,20 @@ export const TRANSFORM_EXAMPLE: SectionTitle = {
   title: "Ejemplo",
 }
 
-export const TRANSFORM_PARAMS: SectionTitle = {
-  id: "transform-params",
-  title: "Parámetros",
-}
-
 export class Schema extends DocSubSection {
   readonly nestedSchemaUrl = this.buildUrl(NESTED_SCHEMA.id)
 
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Schema", url: "schema" })
+    super({ parent: parent, title: { en: "Schema", es: "Schema" }, url: "schema" })
 
     this.titles = [
       NESTED_SCHEMA,
       EXPORT_DATA,
-      PARAMS,
       EXAMPLE,
       DEFINITION,
       GENERATE_DATA,
       TRANSFORM_DATA,
       TRANSFORM_EXAMPLE,
-      TRANSFORM_PARAMS,
     ]
   }
 }

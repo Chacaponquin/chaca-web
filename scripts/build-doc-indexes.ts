@@ -14,7 +14,8 @@ client.clearObjects({ indexName: INDEX_NAME }).then(() => {
   const save = [] as SaveIndex[]
 
   for (const doc of DOCS) {
-    save.push(...doc.save())
+    save.push(...doc.save("en"))
+    save.push(...doc.save("es"))
   }
 
   client.saveObjects({ indexName: INDEX_NAME, objects: save })

@@ -1,5 +1,6 @@
 import { DocSubSection } from "@modules/docs/domain/core/base"
 import { SubSection, Title } from "./components"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 
 interface Props {
   title: string
@@ -8,6 +9,8 @@ interface Props {
 }
 
 export default function Section({ title, subs, selected }: Props) {
+  const { language } = useLanguage()
+
   return (
     <li className="flex flex-col mb-4">
       <Title title={title} />
@@ -16,7 +19,7 @@ export default function Section({ title, subs, selected }: Props) {
         {subs.map((sub) => (
           <SubSection
             key={sub.url}
-            title={sub.title}
+            title={sub.title[language]}
             active={selected.url === sub.url}
             url={sub.redirect}
           />

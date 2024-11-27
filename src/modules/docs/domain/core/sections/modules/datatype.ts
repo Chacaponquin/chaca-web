@@ -34,7 +34,12 @@ export const NUMERIC: SectionTitle = { id: "numeric", title: "numeric" }
 
 export class Datatype extends ModuleDocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Datatype", url: "datatype", apiId: "datatype" })
+    super({
+      parent: parent,
+      title: { en: "Datatype", es: "Datatype" },
+      url: "datatype",
+      apiId: "datatype",
+    })
 
     this.titles = [
       ALPHANUMERIC,

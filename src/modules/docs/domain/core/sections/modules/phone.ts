@@ -9,7 +9,7 @@ export const PREFIX: SectionTitle = { id: "prefix", title: "prefix" }
 
 export class Phone extends ModuleDocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Phone", url: "phone", apiId: "phone" })
+    super({ parent: parent, title: { en: "Phone", es: "Phone" }, url: "phone", apiId: "phone" })
 
     this.titles = [CALL_DURATION, NUMBER, PREFIX]
   }

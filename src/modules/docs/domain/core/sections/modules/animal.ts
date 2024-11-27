@@ -33,7 +33,7 @@ export const TYPE: SectionTitle = { id: "type", title: "type" }
 
 export class Animal extends ModuleDocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Animal", url: "animal", apiId: "animal" })
+    super({ parent: parent, title: { en: "Animal", es: "Animal" }, url: "animal", apiId: "animal" })
 
     this.titles = [
       BEAR,

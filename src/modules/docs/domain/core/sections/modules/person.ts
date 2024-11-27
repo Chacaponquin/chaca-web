@@ -25,7 +25,7 @@ export class Person extends ModuleDocSubSection {
   readonly firstNameUrl = this.buildUrl(FIRST_NAME.id)
 
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Person", url: "person", apiId: "person" })
+    super({ parent: parent, title: { en: "Person", es: "Person" }, url: "person", apiId: "person" })
 
     this.titles = [
       FIRST_NAME,

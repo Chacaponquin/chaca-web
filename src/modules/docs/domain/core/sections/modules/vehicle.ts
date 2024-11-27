@@ -15,7 +15,12 @@ export const VEHICLE: SectionTitle = { id: "vehicle", title: "vehicle" }
 
 export class Vehicle extends ModuleDocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Vehicle", url: "vehicle", apiId: "vehicle" })
+    super({
+      parent: parent,
+      title: { en: "Vehicle", es: "Vehicle" },
+      url: "vehicle",
+      apiId: "vehicle",
+    })
 
     this.titles = [MODEL, TYPE, VEHICLE, MANUFACTURER, BICYCLE, FUEL]
   }

@@ -3,7 +3,7 @@ import { ModuleDocSubSection } from "./module-section"
 
 export class Video extends ModuleDocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Video", url: "video", apiId: "video" })
+    super({ parent: parent, title: { en: "Video", es: "Video" }, url: "video", apiId: "video" })
 
     this.titles = [
       { id: "3D", title: "3D" },

@@ -6,7 +6,7 @@ export const TRANSFORM_TITLE: SectionTitle = { id: "transform", title: "chaca.tr
 
 export class Overview extends DocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Overview", url: "overview" })
+    super({ parent: parent, title: { en: "Overview", es: "Introducción" }, url: "overview" })
 
     this.titles = [EXPORT_TITLE, TRANSFORM_TITLE]
   }

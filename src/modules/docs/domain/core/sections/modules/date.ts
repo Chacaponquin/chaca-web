@@ -21,7 +21,7 @@ export const ANYTIME: SectionTitle = { id: "anytime", title: "anytime" }
 
 export class Date extends ModuleDocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Date", url: "date", apiId: "date" })
+    super({ parent: parent, title: { en: "Date", es: "Date" }, url: "date", apiId: "date" })
 
     this.titles = [BETWEEN, BIRTHDATE, FUTURE, MONTH, PAST, SOON, TIME_AGO, WEEK_DAY, ANYTIME]
   }

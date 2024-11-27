@@ -8,7 +8,7 @@ export class DatasetSection extends DocSubSection {
   readonly bodyUrl = this.buildIdUrl(BODY.id)
 
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Dataset", url: "dataset" })
+    super({ parent: parent, title: { en: "Dataset", es: "Dataset" }, url: "dataset" })
 
     this.titles = [BODY, EXAMPLE]
   }

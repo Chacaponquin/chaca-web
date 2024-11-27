@@ -10,7 +10,12 @@ export const UNIT: SectionTitle = { id: "unit", title: "unit" }
 
 export class Science extends ModuleDocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Science", url: "science", apiId: "science" })
+    super({
+      parent: parent,
+      title: { en: "Science", es: "Science" },
+      url: "science",
+      apiId: "science",
+    })
 
     this.titles = [UNIT, PERIODIC_TABLE_ELEMENT]
   }

@@ -13,31 +13,31 @@ export const SECTION = new FieldTypesSection()
 
 class Custom extends DocSubSection {
   constructor() {
-    super({ parent: SECTION, title: "Custom", url: "custom" })
+    super({ parent: SECTION, title: { en: "Custom", es: "Custom" }, url: "custom" })
   }
 }
 
 class Enum extends DocSubSection {
   constructor() {
-    super({ parent: SECTION, title: "Enum", url: "enum" })
+    super({ parent: SECTION, title: { en: "Enum", es: "Enum" }, url: "enum" })
   }
 }
 
 class Key extends DocSubSection {
   constructor() {
-    super({ parent: SECTION, title: "Key", url: "key" })
+    super({ parent: SECTION, title: { en: "Key", es: "Key" }, url: "key" })
   }
 }
 
 class Sequence extends DocSubSection {
   constructor() {
-    super({ parent: SECTION, title: "Sequence", url: "sequence" })
+    super({ parent: SECTION, title: { en: "Sequence", es: "Sequence" }, url: "sequence" })
   }
 }
 
 class Sequential extends DocSubSection {
   constructor() {
-    super({ parent: SECTION, title: "Sequential", url: "sequential" })
+    super({ parent: SECTION, title: { en: "Sequential", es: "Sequential" }, url: "sequential" })
   }
 }
 

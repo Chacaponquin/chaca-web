@@ -17,7 +17,7 @@ export const VERB: SectionTitle = { id: "verb", title: "verb" }
 
 export class Word extends ModuleDocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Word", url: "word", apiId: "word" })
+    super({ parent: parent, title: { en: "Word", es: "Word" }, url: "word", apiId: "word" })
 
     this.titles = [VERB, NOUN, INTERJECTION, PREPOSITION, ADVERB, ADJECTIVE, CONJUCTION]
   }

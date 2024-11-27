@@ -6,7 +6,11 @@ export const EXAMPLE: SectionTitle = { id: "example", title: "Example" }
 
 export class TransformDatasetSection extends DocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Transform Dataset", url: "transform-dataset" })
+    super({
+      parent: parent,
+      title: { en: "Transform Dataset", es: "Transform Dataset" },
+      url: "transform-dataset",
+    })
 
     this.titles = [BODY, EXAMPLE]
   }

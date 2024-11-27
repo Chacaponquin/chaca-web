@@ -19,8 +19,11 @@ import {
   WORD,
 } from "@modules/docs/domain/core/sections/modules"
 import { Link, List, ListItem, P } from "@markdown/components/Markdown/components"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 
 export default function SectionsList() {
+  const { language } = useLanguage()
+
   const sections: DocSubSection[] = [
     ADDRESS,
     ANIMAL,
@@ -46,7 +49,7 @@ export default function SectionsList() {
       {sections.map((s, index) => (
         <ListItem key={index}>
           <P>
-            <Link to={s.redirect}>{s.title}</Link>
+            <Link to={s.redirect}>{s.title[language]}</Link>
           </P>
         </ListItem>
       ))}

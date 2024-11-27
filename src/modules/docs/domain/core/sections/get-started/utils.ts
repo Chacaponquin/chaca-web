@@ -26,7 +26,7 @@ export class UtilsSection extends DocSubSection {
   readonly replaceSymbolsUrl = this.buildUrl(REPLACE_SYMBOLS.id)
 
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Utils", url: "utils" })
+    super({ parent: parent, title: { en: "Utils", es: "Utils" }, url: "utils" })
 
     this.titles = [
       ONE_OF_ARRAY,

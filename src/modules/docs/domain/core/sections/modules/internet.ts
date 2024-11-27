@@ -43,7 +43,12 @@ export const IP: SectionTitle = { id: "ip", title: "ip" }
 
 export class Internet extends ModuleDocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Internet", url: "internet", apiId: "internet" })
+    super({
+      parent: parent,
+      title: { en: "Internet", es: "Internet" },
+      url: "internet",
+      apiId: "internet",
+    })
 
     this.titles = [
       BROWSER_TITLE,

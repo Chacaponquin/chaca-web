@@ -20,6 +20,6 @@ export const RESPONSE_CODES: SectionTitle = { id: "response-codes", title: "Cód
 
 export class OverviewSection extends DocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Overview", url: "overview" })
+    super({ parent: parent, title: { en: "Overview", es: "Introducción" }, url: "overview" })
   }
 }

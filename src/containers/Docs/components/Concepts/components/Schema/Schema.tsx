@@ -30,10 +30,8 @@ import {
   EXPORT_DATA,
   GENERATE_DATA,
   NESTED_SCHEMA,
-  PARAMS,
   TRANSFORM_DATA,
   TRANSFORM_EXAMPLE,
-  TRANSFORM_PARAMS,
 } from "@modules/docs/domain/core/sections/concepts/schema"
 import { FormatsList } from "@containers/Docs/shared/components"
 
@@ -160,8 +158,6 @@ export default function Schema() {
 
       <ExportSchema />
 
-      <H3 title={PARAMS} />
-
       <ExportParams />
 
       <H3 title={EXAMPLE} />
@@ -188,8 +184,6 @@ export default function Schema() {
       </P>
 
       <TransformDefinition />
-
-      <H3 title={TRANSFORM_PARAMS} />
 
       <TransformParams />
 

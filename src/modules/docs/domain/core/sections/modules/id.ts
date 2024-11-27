@@ -13,7 +13,7 @@ export const CUID: SectionTitle = { id: "cuid", title: "cuid" }
 
 export class Id extends ModuleDocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Id", url: "id", apiId: "id" })
+    super({ parent: parent, title: { en: "Id", es: "Id" }, url: "id", apiId: "id" })
 
     this.titles = [UUID, MONGODB_ID, NANOID, ULID, CUID]
   }

@@ -20,7 +20,7 @@ export class Image extends ModuleDocSubSection {
   readonly methods: ImageMethod[]
 
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Image", url: "image", apiId: "image" })
+    super({ parent: parent, title: { en: "Image", es: "Image" }, url: "image", apiId: "image" })
 
     this.methods = [
       { apiId: "food", method: "food" },

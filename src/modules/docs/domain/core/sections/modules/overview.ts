@@ -8,7 +8,7 @@ export class Overview extends DocSubSection {
   readonly apiIdUrl = this.buildUrl(API_ID.id)
 
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Overview", url: "overview" })
+    super({ parent: parent, title: { en: "Overview", es: "Introducción" }, url: "overview" })
 
     this.titles = [API_ID, USAGE]
   }

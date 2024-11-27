@@ -14,7 +14,7 @@ export const ARRAYS: SectionTitle = { id: "arrays", title: "Arreglos" }
 
 export class Postgres extends DocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "PostgreSQL", url: "postgres" })
+    super({ parent: parent, title: { en: "PostgreSQL", es: "PostgresSQL" }, url: "postgres" })
 
     this.titles = [TRANSFORMATIONS, KEY, REF, NESTED_SCHEMA, NULL_FIELDS, ARRAYS]
   }

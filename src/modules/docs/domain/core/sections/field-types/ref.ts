@@ -11,7 +11,7 @@ export const OWN_REF: SectionTitle = { id: "own-refs", title: "Referencias propi
 
 export class Ref extends DocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Ref", url: "ref" })
+    super({ parent: parent, title: { en: "Ref", es: "Ref" }, url: "ref" })
 
     this.titles = [REF_UNIQUE, FILTER_DOCUMENTS, OWN_REF]
   }

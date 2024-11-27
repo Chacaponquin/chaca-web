@@ -6,7 +6,7 @@ export const FUNCTION_VALUE: SectionTitle = { id: "function-value", title: "Prob
 
 export class Probability extends DocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Probability", url: "probability" })
+    super({ parent: parent, title: { en: "Probability", es: "Probability" }, url: "probability" })
 
     this.titles = [PROBABILITY_VALUE, FUNCTION_VALUE]
   }

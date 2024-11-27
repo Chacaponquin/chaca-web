@@ -8,7 +8,11 @@ export const EXAMPLE: SectionTitle = { id: "example", title: "Example" }
 
 export class TransformSchemaSection extends DocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Transform Schema", url: "transform-schema" })
+    super({
+      parent: parent,
+      title: { en: "Transform Schema", es: "Transform Schema" },
+      url: "transform-schema",
+    })
 
     this.titles = [PARAMS, BODY, EXAMPLE]
   }

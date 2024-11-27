@@ -32,7 +32,7 @@ export class Dataset extends DocSubSection {
   readonly cyclicUrl = this.buildUrl(CYCLIC_DEPENDENCE.id)
 
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Dataset", url: "dataset" })
+    super({ parent: parent, title: { en: "Dataset", es: "Dataset" }, url: "dataset" })
 
     this.titles = [
       DEFINITION,

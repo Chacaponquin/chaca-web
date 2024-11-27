@@ -12,7 +12,11 @@ export const GET_CURRENT_SCHEMA_VALUES: SectionTitle = {
 
 export class DatasetStore extends DocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: "Dataset store", url: "dataset-store" })
+    super({
+      parent: parent,
+      title: { en: "Dataset store", es: "Almacén de datos" },
+      url: "dataset-store",
+    })
 
     this.titles = [GET_SCHEMA_VALUES, GET_CURRENT_SCHEMA_VALUES]
   }

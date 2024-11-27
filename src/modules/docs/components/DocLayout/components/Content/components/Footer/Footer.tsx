@@ -1,6 +1,6 @@
 import { DocSubSection } from "@modules/docs/domain/core/base"
 import { Button } from "./components"
-import { useTranslation } from "@modules/app/modules/language/hooks"
+import { useLanguage, useTranslation } from "@modules/app/modules/language/hooks"
 import clsx from "clsx"
 
 interface Props {
@@ -9,6 +9,8 @@ interface Props {
 }
 
 export default function Footer({ back, next }: Props) {
+  const { language } = useLanguage()
+
   const { BACK, NEXT } = useTranslation({
     NEXT: { en: "Next page", es: "Próxima" },
     BACK: { en: "Previous page", es: "Anterior" },
@@ -26,13 +28,13 @@ export default function Footer({ back, next }: Props) {
   return (
     <footer className={CLASS}>
       {back ? (
-        <Button text={BACK} title={back.title} url={back.redirect} direction="left" />
+        <Button text={BACK} title={back.title[language]} url={back.redirect} direction="left" />
       ) : (
         <div></div>
       )}
 
       {next ? (
-        <Button text={NEXT} title={next.title} url={next.redirect} direction="right" />
+        <Button text={NEXT} title={next.title[language]} url={next.redirect} direction="right" />
       ) : (
         <div></div>
       )}
