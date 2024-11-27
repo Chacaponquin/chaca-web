@@ -1,4 +1,4 @@
-import { Validator } from "@modules/app/domain"
+import { Validator } from "@modules/app/domain/validator1"
 import { FilenameValidator } from "@modules/config/domain/validators/FilenameValidator"
 
 interface Props {

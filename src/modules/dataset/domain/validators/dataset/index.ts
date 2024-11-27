@@ -1,4 +1,4 @@
-import { Validator } from "@modules/app/domain"
+import { Validator } from "@modules/app/domain/validator1"
 import { Schema } from "../../core"
 import { DatasetNameValidator } from "./name-validator"
 import { NoDuplicateSchema } from "./no-duplicate"

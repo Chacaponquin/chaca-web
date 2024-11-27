@@ -1,5 +1,5 @@
 import { DatasetError, RepeatDatasetNameError } from "@modules/dataset/errors/dataset"
-import { IValidator } from "@modules/app/domain/validator"
+import { IValidator } from "@modules/app/domain/validator1"
 import { Schema } from "@modules/dataset/domain/core"
 
 interface Props {

@@ -1,5 +1,5 @@
 import { DatasetError, EmptyFieldNameError } from "@modules/dataset/errors/dataset"
-import { IValidator } from "@modules/app/domain"
+import { IValidator } from "@modules/app/domain/validator1"
 
 interface Props {
   name: string

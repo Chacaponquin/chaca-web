@@ -1,5 +1,5 @@
 import { DatasetError, RepeatSameLevelFieldNameError } from "@modules/dataset/errors/dataset"
-import { IValidator } from "@modules/app/domain"
+import { IValidator } from "@modules/app/domain/validator1"
 import { Schema, MixedNode, RootNode } from "@modules/dataset/domain/core"
 
 interface Props {
