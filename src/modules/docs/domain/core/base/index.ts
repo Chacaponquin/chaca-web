@@ -68,8 +68,8 @@ export abstract class DocSubSection {
     return [this.parent.title, this.title[language]]
   }
 
-  get titleSeo(): string {
-    return `${this.title} | Chaca Docs`
+  titleSeo(langauge: Languages): string {
+    return `${this.title[langauge]} | Chaca Docs`
   }
 
   buildUrl(url: string): string {
