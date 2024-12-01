@@ -1,6 +1,6 @@
 import { DOCS_IMAGE } from "@modules/docs/domain/constants/image"
 import { OVERVIEW } from "@modules/docs/domain/core/sections/api"
-import { SCHEMA } from "@modules/docs/domain/core/sections/concepts"
+import { DATASET, SCHEMA } from "@modules/docs/domain/core/sections/concepts"
 import { ADDRESS } from "@modules/docs/domain/core/sections/modules"
 import {
   ExternalLink,
@@ -10,6 +10,7 @@ import {
   List,
   ListItem,
   P,
+  Strong,
   Warning,
 } from "@markdown/components/Markdown/components"
 import { APP_ROUTES } from "@modules/app/constants"
@@ -36,7 +37,7 @@ export default function Introduction() {
       <P>
         Chaca es una pieza de software que permite crear y exportar grandes cantidades de mock data
         (información falsa pero realista) a través de <Link to={SCHEMA.redirect}>schemas</Link>{" "}
-        definidos y personalizados por el desarrollador a través de diferentes herramientas:
+        definidos y personalizados por el desarrollador a través de las siguientes herramientas:
       </P>
 
       <List>
@@ -54,17 +55,16 @@ export default function Introduction() {
         </ListItem>
         <ListItem>
           <P>
-            Una plataforma web para desarrolladores que de forma interactiva pueden definir los
-            esquemas de los datasets
+            Una plataforma web para desarrolladores que de forma interactiva pueden definir{" "}
+            <Link to={DATASET.redirect}>datasets</Link>
           </P>
         </ListItem>
       </List>
 
       <P>
-        Estas herramientas están soportadas por{" "}
-        <Link to={ADDRESS.redirect}>módulos predefinidos</Link> que permiten crear valores
-        comúnmente utilizados en aplicaciones (email, contraseñas, colores, nombres de usuario,
-        entre otros) a través de diferentes algoritmos.
+        Estas herramientas están soportadas por <Link to={ADDRESS.redirect}>módulos</Link> que
+        permiten generar valores comúnmente utilizados en aplicaciones (email, contraseñas, colores,
+        nombres de usuario, entre otros) a través de diferentes algoritmos.
       </P>
 
       <P>Estos datos generados pueden ser utilizados en:</P>
@@ -93,9 +93,9 @@ export default function Introduction() {
 
       <P>
         Para estos casos, simular la entrada de datos en un componente resulta una forma funcional
-        de eliminar esta dependencia, esta técnica es popularmente conocida como mocking, utilizada
-        en su mayoría para realizar pruebas, construir aplicaciones de prueba o desarrollar sin la
-        necesidad de un backend terminado.
+        de eliminar esta dependencia, esta técnica es popularmente conocida como{" "}
+        <Strong>mocking</Strong>, utilizada en su mayoría para realizar pruebas, construir
+        aplicaciones de prueba o desarrollar sin la necesidad de un backend terminado.
       </P>
 
       <P>
@@ -107,7 +107,8 @@ export default function Introduction() {
         <ListItem>
           <P>
             <ExternalLink to={FAKER_LINK}>Faker</ExternalLink> o{" "}
-            <ExternalLink to={FALSO_LINK}>Falso</ExternalLink> como Nodejs SDKs
+            <ExternalLink to={FALSO_LINK}>Falso</ExternalLink> como Nodejs SDKs para la creación de
+            valores
           </P>
         </ListItem>
         <ListItem>
@@ -127,8 +128,8 @@ export default function Introduction() {
       </List>
 
       <P>
-        Chaca constituye un software que unifica todas estas herramientas permitiendo a su vez la
-        creación de datos relacionales y exportarlos en diferentes formatos de archivo.
+        Chaca constituye un software que unifica todas este tipo de herramientas permitiendo a su
+        vez la creación de datos relacionales y exportarlos en diferentes formatos de archivo.
       </P>
 
       <H2 title={INSTALATION} />
