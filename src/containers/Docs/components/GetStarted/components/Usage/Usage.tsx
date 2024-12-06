@@ -37,11 +37,8 @@ export default function Usage() {
     <>
       <P>
         Ahora observemos las funcionalidades de Chaca aplicada a casos de uso reales. De todas
-        formas, eres bienvenido a plantear otros casos de uso para poder aportar más ejemplos.
-      </P>
-
-      <P>
-        Para utilizar Chaca solo es necesario importar <MiniCode>chaca</MiniCode> o{" "}
+        formas, eres bienvenido a plantear otros casos de uso para poder aportar más ejemplos. Para
+        utilizar Chaca solo es necesario importar <MiniCode>chaca</MiniCode> o{" "}
         <MiniCode>modules</MiniCode>
       </P>
 
@@ -50,8 +47,8 @@ export default function Usage() {
       <H2 title={MODULE_DATA} />
 
       <P>
-        El caso de uso más simple es la generación de valores de los modules definidos en la
-        librería
+        El caso de uso más simple es la generación de valores de los <MiniCode>modules</MiniCode>{" "}
+        definidos en la librería
       </P>
 
       <GenerateValueCode />
@@ -80,7 +77,7 @@ export default function Usage() {
       <UserSchemaCode />
 
       <P>
-        En este caso se puede observar como el <MiniCode>schema</MiniCode> tiene:
+        En este caso se puede observar como el <Link to={SCHEMA.redirect}>schema</Link> tiene:
       </P>
 
       <List>
@@ -111,8 +108,8 @@ export default function Usage() {
       </List>
 
       <P>
-        Este schema puede generar información en forma de objetos que tendrán la estructura
-        definida.
+        Este <Link to={SCHEMA.redirect}>schema</Link> puede generar información en forma de objetos
+        que tendrán la estructura definida.
       </P>
 
       <UserDataExample />
@@ -147,14 +144,16 @@ export default function Usage() {
       <UserAndPostDefinition alternative={false} />
 
       <P>
-        Donde en el schema <MiniCode>Post</MiniCode> el campo <MiniCode>user_id</MiniCode> elige
-        para cada objeto a crear uno de los id de los usuarios creados.
+        En el <Link to={SCHEMA.redirect}>schema</Link> <MiniCode>Post</MiniCode> el campo{" "}
+        <MiniCode>user_id</MiniCode> elige para cada objeto a crear uno de los{" "}
+        <MiniCode>id</MiniCode> de los usuarios creados.
       </P>
 
-      <Tip title="Otro enfoque a la relación">
+      <Tip title="Otro enfoque de la relación">
         <P>
           Esta relación también se puede definir de forma inversa donde el usuario almacena un
-          arreglo con los id de los <MiniCode>posts</MiniCode> escritos en el campo posts.
+          arreglo con los <MiniCode>id</MiniCode> de los <MiniCode>posts</MiniCode> escritos en el
+          campo posts.
         </P>
 
         <UserAndPostDefinition alternative={true} />
@@ -163,9 +162,9 @@ export default function Usage() {
       <H2 title={EXPORT_DATA} />
 
       <P>
-        Una vez se tengan creados los datos a partir de un <MiniCode>Schema</MiniCode> o un{" "}
-        <MiniCode>Dataset</MiniCode>, estos pueden ser exportados en diferentes formatos de archivo
-        para ser utilizados en otro momento.{" "}
+        Una vez se tengan creados los datos a partir de un <Link to={SCHEMA.redirect}>schema</Link>{" "}
+        o <Link to={DATASET.redirect}>dataset</Link>, estos pueden ser exportados en diferentes
+        formatos de archivo para ser utilizados en otro momento.{" "}
         <Link to={OVERVIEW.redirect}>Leer más sobre los métodos de exportación.</Link>
       </P>
 
@@ -174,10 +173,10 @@ export default function Usage() {
       <H2 title={TRANSFORM_DATA} />
 
       <P>
-        Si se desean transpilar los datos generados a partir de un <MiniCode>Schema</MiniCode> o un{" "}
-        <MiniCode>Dataset</MiniCode> a la sintáxis de uno de los{" "}
-        <Link to={OVERVIEW.redirect}>formatos definidos</Link> sin necesidad de esportarlos de forma
-        física se puede hacer de la siguiente forma.
+        Si se desean transpilar los datos generados a partir de un{" "}
+        <Link to={SCHEMA.redirect}>schema</Link> o <Link to={DATASET.redirect}>dataset</Link> a la
+        sintáxis de uno de los <Link to={OVERVIEW.redirect}>formatos definidos</Link> sin necesidad
+        de exportarlos de forma física se puede hacer de la siguiente forma.
       </P>
 
       <TransformExampleCode />

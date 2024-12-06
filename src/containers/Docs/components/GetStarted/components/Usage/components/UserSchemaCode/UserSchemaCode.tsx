@@ -4,33 +4,33 @@ import { useMemo } from "react"
 
 export default function UserSchemaCode() {
   const js = `
-  import { chaca, modules } from 'chaca'
+import { chaca, modules } from 'chaca'
 
-  const schema = chaca.schema({
-    id: chaca.sequence(),
-    username: () => modules.internet.username(),
-    image: () => modules.image.people(),
-    email: () => modules.internet.email()
-  })
-  `
+const schema = chaca.schema({
+  id: chaca.sequence(),
+  username: () => modules.internet.username(),
+  image: () => modules.image.people(),
+  email: () => modules.internet.email()
+})
+`
 
   const ts = `
-  import { chaca, modules } from 'chaca'
+import { chaca, modules } from 'chaca'
 
-  interface User {
-    id: string,
-    username: string,
-    image: string,
-    email: string
-  }
+interface User {
+  id: string,
+  username: string,
+  image: string,
+  email: string
+}
 
-  const schema = chaca.schema<User>({
-    id: chaca.sequence(),
-    username: () => modules.internet.username(),
-    image: () => modules.image.people(),
-    email: () => modules.internet.email()
-  })
-  `
+const schema = chaca.schema<User>({
+  id: chaca.sequence(),
+  username: () => modules.internet.username(),
+  image: () => modules.image.people(),
+  email: () => modules.internet.email()
+})
+`
 
   const sections: CodeSection[] = useMemo(() => {
     const s: CodeSection[] = [

@@ -21,13 +21,13 @@ const dataset = chaca.dataset([
   }
 ])
 
-// export 50 user schema documents on a json file
+// transform 50 user schema documents to json syntax
 userSchema.transform(50, {
   filename: 'user',
   format: 'json'
 })
 
-// export dataset data on a postgresql file
+// transform dataset data to postgresql syntax
 dataset.transform({
   filename: 'dataset',
   format: 'postgresql'
