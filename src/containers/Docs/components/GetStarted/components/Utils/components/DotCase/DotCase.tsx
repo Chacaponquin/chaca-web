@@ -17,8 +17,8 @@ export default function DotCase() {
   return (
     <Method code={code} params={params} title={DOT_CASE}>
       <P>
-        Tranforma en cualquier cadena de texto en la sintáxis{" "}
-        <ExternalLink to={URL}>dot case</ExternalLink>.
+        Transforma en cualquier cadena de texto en la sintáxis{" "}
+        <ExternalLink to={URL}>dot.case</ExternalLink>.
       </P>
     </Method>
   )

@@ -17,8 +17,8 @@ export default function PascalCase() {
   return (
     <Method code={code} params={params} title={PASCAL_CASE}>
       <P>
-        Tranforma en cualquier cadena de texto en la sintáxis{" "}
-        <ExternalLink to={URL}>pascal case</ExternalLink>.
+        Transforma en cualquier cadena de texto en la sintáxis{" "}
+        <ExternalLink to={URL}>PascalCase</ExternalLink>.
       </P>
     </Method>
   )

@@ -1,6 +1,6 @@
 import CamelCase from "./CamelCase/CamelCase"
 import CapitalCase from "./CapitalCase/CapitalCase"
-import DotCase from "./DotCase/DorCase"
+import DotCase from "./DotCase/DotCase"
 import Multiple from "./Multiple/Multiple"
 import OneOfArray from "./OneOfArray/OneOfArray"
 import PascalCase from "./PascalCase/PascalCase"

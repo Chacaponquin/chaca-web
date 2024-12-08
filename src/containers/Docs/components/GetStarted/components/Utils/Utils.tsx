@@ -18,7 +18,7 @@ export default function Utils() {
   return (
     <>
       <P>
-        Chaca provee algunas de las functiones que son utilizadas para generar los valores en los{" "}
+        Chaca provee algunas de las funciones que son utilizadas para generar los valores en los{" "}
         <Link to={OVERVIEW.redirect}>módulos</Link>. Para utilizarlas solo es necesario acceder a la
         propiedad <MiniCode>chaca.utils</MiniCode> donde se encuentran los siguientes métodos.
       </P>

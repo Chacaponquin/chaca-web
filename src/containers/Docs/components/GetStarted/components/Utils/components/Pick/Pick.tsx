@@ -35,9 +35,7 @@ export default function Pick() {
       </P>
 
       <Danger title="Cantidad de valores a escoger">
-        <P>
-          La cantidad de valores a escoger no puede ser mayor a la longitud de arreglos a escoger.
-        </P>
+        <P>La cantidad de valores a escoger no puede ser mayor a la longitud del arreglo.</P>
       </Danger>
     </Method>
   )

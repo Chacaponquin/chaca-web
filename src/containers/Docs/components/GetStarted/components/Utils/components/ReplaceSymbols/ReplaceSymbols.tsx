@@ -37,7 +37,7 @@ export default function ReplaceSymbols() {
         {
           name: "symbols",
           description:
-            "Objeto con otros símbolos junto con los valores que pueden sustituirlos en la cadena de texto",
+            "Objeto con la definición de otros símbolos junto con los valores que pueden sustituirlos en la cadena de texto",
           params: [],
           required: false,
           default: "{}",

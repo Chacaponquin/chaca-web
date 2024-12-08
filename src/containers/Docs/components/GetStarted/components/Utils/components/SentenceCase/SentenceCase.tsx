@@ -17,8 +17,8 @@ export default function SentenceCase() {
   return (
     <Method code={code} params={params} title={SENTENCE_CASE}>
       <P>
-        Tranforma en cualquier cadena de texto en la sintáxis{" "}
-        <ExternalLink to={URL}>sentence case</ExternalLink>.
+        Transforma en cualquier cadena de texto en la sintáxis{" "}
+        <ExternalLink to={URL}>Sentence case</ExternalLink>.
       </P>
     </Method>
   )

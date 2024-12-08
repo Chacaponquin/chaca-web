@@ -17,8 +17,8 @@ export default function CapitalCase() {
   return (
     <Method code={code} params={params} title={CAPITAL_CASE}>
       <P>
-        Tranforma en cualquier cadena de texto en la sintáxis{" "}
-        <ExternalLink to={URL}>capital case</ExternalLink>.
+        Transforma en cualquier cadena de texto en la sintáxis{" "}
+        <ExternalLink to={URL}>Capital Case</ExternalLink>.
       </P>
     </Method>
   )

@@ -17,8 +17,8 @@ export default function SnakeCase() {
   return (
     <Method code={code} params={params} title={SNAKE_CASE}>
       <P>
-        Tranforma en cualquier cadena de texto en la sintáxis{" "}
-        <ExternalLink to={URL}>snake case</ExternalLink>.
+        Transforma en cualquier cadena de texto en la sintáxis{" "}
+        <ExternalLink to={URL}>snake_case</ExternalLink>.
       </P>
     </Method>
   )
