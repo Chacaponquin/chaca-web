@@ -6,7 +6,7 @@ import { MiniCode } from "@markdown/components/Markdown/components"
 export default function usePostgresParams() {
   const { DECLARATION_ONLY } = useParams()
 
-  const DECLARATION = DECLARATION_ONLY("Solo serán definidas las tablas de cada objeto")
+  const DECLARATION = DECLARATION_ONLY("Solo serán definidas las tablas de cada objeto encontrado")
 
   const GENERATE_IDS: Param = {
     name: "generateIds",

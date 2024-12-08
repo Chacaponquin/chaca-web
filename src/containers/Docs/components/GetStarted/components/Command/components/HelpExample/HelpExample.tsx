@@ -1,7 +1,7 @@
 import { Code } from "@markdown/components/Markdown/components"
 
 const code = `
-npx chaca json --help 
+npx chaca [command] --help 
 `
 
 export default function HelpExample() {

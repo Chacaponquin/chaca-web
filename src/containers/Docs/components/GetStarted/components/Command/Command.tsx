@@ -14,7 +14,16 @@ import {
   EXPORT_EXAMPLE,
   DEFINE_CONFIG,
 } from "@modules/docs/domain/core/sections/get-started/command-line"
-import { H2, H3, Link, MiniCode, P, Tip, Warning } from "@markdown/components/Markdown/components"
+import {
+  H2,
+  H3,
+  Link,
+  MiniCode,
+  P,
+  Strong,
+  Tip,
+  Warning,
+} from "@markdown/components/Markdown/components"
 import { Commands } from "../../shared/components"
 import {
   ConfigFile,
@@ -135,7 +144,7 @@ export default function Command() {
       <FolderStructure />
 
       <P>
-        El archivo <MiniCode>build-users.js</MiniCode> será el que será definido en el parámetro{" "}
+        El archivo <MiniCode>build-users.js</MiniCode> será definido en el parámetro{" "}
         <MiniCode>--config</MiniCode>. Este archivo tiene el siguiente código.
       </P>
 
@@ -150,7 +159,11 @@ export default function Command() {
 
       <P>
         Este archivo tendrá los 10 documentos creados del <Link to={SCHEMA.redirect}>schema</Link>{" "}
-        <MiniCode>User</MiniCode>.
+        <MiniCode>User</MiniCode>.{" "}
+        <Strong>
+          (Estos datos son una muestra de ejemplo, cada vez que se ejecute el comando se crearán
+          datos diferentes)
+        </Strong>
       </P>
 
       <ExampleResult />

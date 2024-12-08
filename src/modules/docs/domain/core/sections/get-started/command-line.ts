@@ -27,7 +27,10 @@ export const EXPORT_TS: SectionTitle = { id: "ts", title: "ts" }
 
 export const EXPORT_EXAMPLE: SectionTitle = { id: "export-example", title: "Ejemplo" }
 
-export const DEFINE_CONFIG: SectionTitle = { id: "define-config", title: "Definir configuración" }
+export const DEFINE_CONFIG: SectionTitle = {
+  id: "define-config",
+  title: "Definir archivo de configuración",
+}
 
 export class CommandLineSection extends DocSubSection {
   constructor(parent: DocSection) {

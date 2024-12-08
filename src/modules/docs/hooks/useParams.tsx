@@ -1,6 +1,7 @@
-import { MiniCode } from "@markdown/components/Markdown/components"
+import { Link, MiniCode } from "@markdown/components/Markdown/components"
 import { Param } from "@markdown/components/Markdown/components/Params/domain"
 import { COMMON_TYPES } from "@markdown/domain/constants"
+import { DATASET, SCHEMA } from "../domain/core/sections/concepts"
 
 export default function useParams() {
   const ZIP_PARAM: Param = {
@@ -28,7 +29,14 @@ export default function useParams() {
 
   const SEPARATE: Param = {
     name: "separate",
-    description: "Los datos de cada schema del dataset van a ser definidos en archivos separados",
+    description: (
+      <>
+        Los datos de cada <Link to={SCHEMA.redirect}>schema</Link> del{" "}
+        <Link to={DATASET.redirect}>dataset</Link> van a ser definidos en archivos separados. Este
+        parámetro solo tiene efecto en caso de que se exporte un{" "}
+        <Link to={DATASET.redirect}>dataset</Link>
+      </>
+    ),
     params: [],
     required: false,
     default: "false",

@@ -24,7 +24,7 @@ export default function useParams() {
     },
     {
       name: "output",
-      description: "Ruta de la carpeta donde se ubicará el archivo creado",
+      description: "Ruta de la carpeta donde se ubicarán los archivos creados",
       params: [],
       required: false,
       types: [COMMON_TYPES.STRING],

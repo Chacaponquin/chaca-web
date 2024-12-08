@@ -6,7 +6,7 @@ export default function useJavaParams() {
   const { DECLARATION_ONLY } = useParams()
 
   const DECLARATION = DECLARATION_ONLY(
-    "No será creado el archivo Main.java, solo los archivos con las clases de cada objeto",
+    "No será creado el archivo Main.java, solo los archivos con las clases de cada objeto encontrado",
   )
 
   const PACKAGE: Param = {
