@@ -10,7 +10,10 @@ const schema = chaca.schema({
     email: () => modules.internet.email(),
     password: () => modules.internet.password({ len: 8 }),
     image: () => modules.image.people(),
-    age: () => modules.datatype.int({ min: 18, max: 100 })
+    age: () => modules.datatype.int({ min: 18, max: 100 }),
+    isYoung: ({ currentFields }) => {
+        return currentFields.age <= 35
+    }
 })
 `
 

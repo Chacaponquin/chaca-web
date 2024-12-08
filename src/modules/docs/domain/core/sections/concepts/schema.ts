@@ -12,7 +12,7 @@ export const GENERATE_DATA: SectionTitle = { id: "generate", title: "Generar dat
 
 export const TRANSFORM_DATA: SectionTitle = {
   id: "transform",
-  title: "Transformas datos del schema",
+  title: "Transformar datos del schema",
 }
 
 export const TRANSFORM_EXAMPLE: SectionTitle = {
