@@ -1,4 +1,4 @@
-import { Params } from "@markdown/components/Markdown/components"
+import { MiniCode, Params } from "@markdown/components/Markdown/components"
 import { Param } from "@markdown/components/Markdown/components/Params/domain"
 
 export default function ObjectParams() {
@@ -12,14 +12,19 @@ export default function ObjectParams() {
     },
     {
       name: "isArray",
-      description: "Indica si el valor generado es un arreglo de valores",
+      description:
+        "Indica si el valor generado es un arreglo de valores con tipo de campo definido",
       params: [],
       required: false,
       types: ["IsArrayConfig"],
     },
     {
       name: "possibleNull",
-      description: "Indica la probabilidad de que el valor generado sea null",
+      description: (
+        <>
+          Indica la probabilidad de que el valor generado sea <MiniCode size="sm">null</MiniCode>
+        </>
+      ),
       params: [],
       required: false,
       types: ["PossibleNullConfig"],

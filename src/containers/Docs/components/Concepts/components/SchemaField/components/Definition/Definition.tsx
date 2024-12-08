@@ -5,10 +5,12 @@ export default function Definition() {
 import { chaca, modules } from 'chaca'
 
 const schema = chaca.schema({
-    id: () => modules.id.uuid(), // simple definition
+    // simple definition
+    id: () => modules.id.uuid(),
 
+    // object definition
     images: {
-        type: () => modules.image.people(), // object definition
+        type: () => modules.image.people(),
         isArray: {
             min: 2,
             max: 10

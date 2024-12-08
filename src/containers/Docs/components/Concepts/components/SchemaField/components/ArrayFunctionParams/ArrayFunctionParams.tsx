@@ -17,7 +17,7 @@ export default function ArrayFunctionParams() {
       description: (
         <Fragment>
           Estado actual del <Link to={DATASET.redirect}>Dataset</Link> para acceder a datos de otros{" "}
-          <Link to={SCHEMA.redirect}>Schema</Link>.{" "}
+          <Link to={SCHEMA.redirect}>schemas</Link>.{" "}
           <Link to={DATASET_STORE.redirect}>Leer más sobre la Dataset Store</Link>
         </Fragment>
       ),
