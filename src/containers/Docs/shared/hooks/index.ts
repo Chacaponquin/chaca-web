@@ -1,3 +1,4 @@
 import useExportParams from "./useExportParams"
+import useFunctionParams from "./useFunctionParams"
 
-export { useExportParams }
+export { useExportParams, useFunctionParams }

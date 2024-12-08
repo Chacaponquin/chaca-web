@@ -1,17 +1,12 @@
-import { DATASET_STORE } from "@modules/docs/domain/core/sections/concepts"
-import { Link, Params } from "@markdown/components/Markdown/components"
+import { Params } from "@markdown/components/Markdown/components"
 import { Param } from "@markdown/components/Markdown/components/Params/domain"
-import { Fragment } from "react"
+import { useFunctionParams } from "@containers/Docs/shared/hooks"
 
 export default function WhereParams() {
+  const { CURRENT_FIELDS_PARAM, DATASET_STORE_PARAM } = useFunctionParams()
+
   const params: Param[] = [
-    {
-      name: "currentFields",
-      description: "Objeto con todos los campos generados hasta ese momento",
-      params: [],
-      required: false,
-      types: ["any"],
-    },
+    CURRENT_FIELDS_PARAM,
     {
       name: "refFields",
       description: "Objeto con los campos generados del documento a referenciar",
@@ -19,18 +14,7 @@ export default function WhereParams() {
       required: false,
       types: ["any"],
     },
-    {
-      name: "store",
-      description: (
-        <Fragment>
-          Estado actual del dataset en el que se encuentra.{" "}
-          <Link to={DATASET_STORE.redirect}>Leer más</Link>
-        </Fragment>
-      ),
-      params: [],
-      required: false,
-      types: ["DatasetStore"],
-    },
+    DATASET_STORE_PARAM,
   ]
 
   return <Params params={params} />
