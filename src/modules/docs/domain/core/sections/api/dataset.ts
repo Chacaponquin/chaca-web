@@ -1,8 +1,8 @@
 import { DocSection, DocSubSection, SectionTitle } from "../../base"
 
-export const BODY: SectionTitle = { id: "body", title: "Body" }
+export const BODY: SectionTitle = { id: "body", title: { en: "Body", es: "Cuerpo de la petición" } }
 
-export const EXAMPLE: SectionTitle = { id: "example", title: "Example" }
+export const EXAMPLE: SectionTitle = { id: "example", title: { en: "Example", es: "Ejemplo" } }
 
 export class DatasetSection extends DocSubSection {
   readonly bodyUrl = this.buildIdUrl(BODY.id)

@@ -20,7 +20,7 @@ import { Word } from "./word"
 
 class ModulesSection extends DocSection {
   constructor() {
-    super({ title: "Modules", url: "modules" })
+    super({ title: { en: "Modules", es: "Módulos" }, url: "modules" })
   }
 }
 

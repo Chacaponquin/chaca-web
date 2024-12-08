@@ -1,55 +1,59 @@
-import { DocSection, SectionTitle } from "../../base"
-import { ModuleDocSubSection } from "./module-section"
+import { DocSection } from "../../base"
+import { ModuleDocSubSection, ModuleSubSectionTitle } from "./module-section"
 
-export const DOG: SectionTitle = { id: "dog", title: "dog" }
+export const DOG: ModuleSubSectionTitle = { id: "dog", title: "dog" }
 
-export const BEAR: SectionTitle = { id: "bear", title: "bear" }
+export const BEAR: ModuleSubSectionTitle = { id: "bear", title: "bear" }
 
-export const BIRD: SectionTitle = { id: "bird", title: "bird" }
+export const BIRD: ModuleSubSectionTitle = { id: "bird", title: "bird" }
 
-export const CAT: SectionTitle = { id: "cat", title: "cat" }
+export const CAT: ModuleSubSectionTitle = { id: "cat", title: "cat" }
 
-export const COW: SectionTitle = { id: "cow", title: "cow" }
+export const COW: ModuleSubSectionTitle = { id: "cow", title: "cow" }
 
-export const FISH: SectionTitle = { id: "fish", title: "fish" }
+export const FISH: ModuleSubSectionTitle = { id: "fish", title: "fish" }
 
-export const CETACEAN: SectionTitle = { id: "cetacean", title: "cetacean" }
+export const CETACEAN: ModuleSubSectionTitle = { id: "cetacean", title: "cetacean" }
 
-export const HORSE: SectionTitle = { id: "horse", title: "horse" }
+export const HORSE: ModuleSubSectionTitle = { id: "horse", title: "horse" }
 
-export const CROCODILIA: SectionTitle = { id: "crocodilia", title: "crocodilia" }
+export const CROCODILIA: ModuleSubSectionTitle = { id: "crocodilia", title: "crocodilia" }
 
-export const INSECT: SectionTitle = { id: "insect", title: "insect" }
+export const INSECT: ModuleSubSectionTitle = { id: "insect", title: "insect" }
 
-export const LION: SectionTitle = { id: "lion", title: "lion" }
+export const LION: ModuleSubSectionTitle = { id: "lion", title: "lion" }
 
-export const RABBIT: SectionTitle = { id: "rabbit", title: "rabbit" }
+export const RABBIT: ModuleSubSectionTitle = { id: "rabbit", title: "rabbit" }
 
-export const RODENT: SectionTitle = { id: "rodent", title: "rodent" }
+export const RODENT: ModuleSubSectionTitle = { id: "rodent", title: "rodent" }
 
-export const SNAKE: SectionTitle = { id: "snake", title: "snake" }
+export const SNAKE: ModuleSubSectionTitle = { id: "snake", title: "snake" }
 
-export const TYPE: SectionTitle = { id: "type", title: "type" }
+export const TYPE: ModuleSubSectionTitle = { id: "type", title: "type" }
 
 export class Animal extends ModuleDocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: { en: "Animal", es: "Animal" }, url: "animal", apiId: "animal" })
-
-    this.titles = [
-      BEAR,
-      CAT,
-      FISH,
-      COW,
-      HORSE,
-      CROCODILIA,
-      INSECT,
-      LION,
-      RABBIT,
-      RODENT,
-      SNAKE,
-      TYPE,
-      BIRD,
-      DOG,
-    ]
+    super({
+      parent: parent,
+      title: { en: "Animal", es: "Animal" },
+      url: "animal",
+      apiId: "animal",
+      titles: [
+        BEAR,
+        CAT,
+        FISH,
+        COW,
+        HORSE,
+        CROCODILIA,
+        INSECT,
+        LION,
+        RABBIT,
+        RODENT,
+        SNAKE,
+        TYPE,
+        BIRD,
+        DOG,
+      ],
+    })
   }
 }

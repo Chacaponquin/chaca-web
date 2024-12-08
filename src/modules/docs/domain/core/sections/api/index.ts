@@ -9,7 +9,7 @@ import { TransformSchemaSection } from "./transform-schema"
 
 class ApiSection extends DocSection {
   constructor() {
-    super({ title: "REST API", url: "rest-api" })
+    super({ title: { en: "REST API", es: "API REST" }, url: "rest-api" })
   }
 }
 

@@ -1,35 +1,41 @@
 import { DocSection, DocSubSection, SectionTitle } from "../../base"
 
-export const INSTALL: SectionTitle = { id: "instalation", title: "Instalación" }
+export const INSTALL: SectionTitle = {
+  id: "instalation",
+  title: { es: "Instalación", en: "Installation" },
+}
 
-export const RUN: SectionTitle = { id: "run", title: "Ejecutar CLI" }
+export const RUN: SectionTitle = { id: "run", title: { es: "Ejecutar CLI", en: "Execute CLI" } }
 
-export const EXPORT: SectionTitle = { id: "export", title: "Comandos" }
+export const EXPORT: SectionTitle = { id: "export", title: { es: "Comandos", en: "Commands" } }
 
-export const EXPORT_JSON: SectionTitle = { id: "json", title: "json" }
+export const EXPORT_JSON: SectionTitle = { id: "json", title: { es: "json", en: "json" } }
 
-export const EXPORT_CSV: SectionTitle = { id: "csv", title: "csv" }
+export const EXPORT_CSV: SectionTitle = { id: "csv", title: { en: "csv", es: "csv" } }
 
-export const EXPORT_PYTHON: SectionTitle = { id: "python", title: "python" }
+export const EXPORT_PYTHON: SectionTitle = { id: "python", title: { en: "python", es: "python" } }
 
-export const EXPORT_YAML: SectionTitle = { id: "yaml", title: "yaml" }
+export const EXPORT_YAML: SectionTitle = { id: "yaml", title: { en: "yaml", es: "yaml" } }
 
 export const EXPORT_POSTGRES: SectionTitle = {
   id: "postgresql",
-  title: "postgresql",
+  title: { en: "postgresql", es: "postgresql" },
 }
 
-export const EXPORT_JS: SectionTitle = { id: "js", title: "js" }
+export const EXPORT_JS: SectionTitle = { id: "js", title: { en: "js", es: "js" } }
 
-export const EXPORT_JAVA: SectionTitle = { id: "java", title: "java" }
+export const EXPORT_JAVA: SectionTitle = { id: "java", title: { en: "java", es: "java" } }
 
-export const EXPORT_TS: SectionTitle = { id: "ts", title: "ts" }
+export const EXPORT_TS: SectionTitle = { id: "ts", title: { en: "ts", es: "ts" } }
 
-export const EXPORT_EXAMPLE: SectionTitle = { id: "export-example", title: "Ejemplo" }
+export const EXPORT_EXAMPLE: SectionTitle = {
+  id: "export-example",
+  title: { es: "Ejemplo", en: "Example" },
+}
 
 export const DEFINE_CONFIG: SectionTitle = {
   id: "define-config",
-  title: "Definir archivo de configuración",
+  title: { es: "Definir archivo de configuración", en: "Define config file" },
 }
 
 export class CommandLineSection extends DocSubSection {

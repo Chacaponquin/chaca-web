@@ -2,14 +2,17 @@ import { DocSection, DocSubSection, SectionTitle } from "../../base"
 
 export const PICK_SPECIFIC_COUNT: SectionTitle = {
   id: "pick-count",
-  title: "Cantidad de elementos específica",
+  title: { es: "Cantidad de elementos específica", en: "Specific quantity of elements" },
 }
 
-export const ELEMENTS_RANGE: SectionTitle = { id: "elements-range", title: "Rango de elementos" }
+export const ELEMENTS_RANGE: SectionTitle = {
+  id: "elements-range",
+  title: { es: "Rango de elementos", en: "Values range" },
+}
 
 export const CUSTOM_COUNT: SectionTitle = {
   id: "custom-count",
-  title: "Cantidad variable de elementos",
+  title: { es: "Cantidad variable de elementos", en: "Variable elements amount" },
 }
 
 export class Pick extends DocSubSection {

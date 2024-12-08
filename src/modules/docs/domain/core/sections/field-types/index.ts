@@ -5,7 +5,7 @@ import { Ref } from "./ref"
 
 class FieldTypesSection extends DocSection {
   constructor() {
-    super({ title: "Field types", url: "field-types" })
+    super({ title: { en: "Field types", es: "Tipos de campo" }, url: "field-types" })
   }
 }
 

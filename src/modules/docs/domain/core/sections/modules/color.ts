@@ -1,47 +1,51 @@
-import { DocSection, SectionTitle } from "../../base"
-import { ModuleDocSubSection } from "./module-section"
+import { DocSection } from "../../base"
+import { ModuleDocSubSection, ModuleSubSectionTitle } from "./module-section"
 
-export const CSS_SUPPORTED_FUNCTION: SectionTitle = {
+export const CSS_SUPPORTED_FUNCTION: ModuleSubSectionTitle = {
   id: "css_supported_function",
   title: "cssSupportedFunction",
 }
 
-export const CSS_SUPPORTED_SPACE: SectionTitle = {
+export const CSS_SUPPORTED_SPACE: ModuleSubSectionTitle = {
   id: "css_supported_space",
   title: "cssSupportedSpace",
 }
 
-export const RGB: SectionTitle = { id: "rgb", title: "rgb" }
+export const RGB: ModuleSubSectionTitle = { id: "rgb", title: "rgb" }
 
-export const CMYK: SectionTitle = { id: "cmyk", title: "cymk" }
+export const CMYK: ModuleSubSectionTitle = { id: "cmyk", title: "cymk" }
 
-export const HSL: SectionTitle = { id: "hsl", title: "hsl" }
+export const HSL: ModuleSubSectionTitle = { id: "hsl", title: "hsl" }
 
-export const HWB: SectionTitle = { id: "hwb", title: "hwb" }
+export const HWB: ModuleSubSectionTitle = { id: "hwb", title: "hwb" }
 
-export const LCH: SectionTitle = { id: "lch", title: "lch" }
+export const LCH: ModuleSubSectionTitle = { id: "lch", title: "lch" }
 
-export const COLOR_BY_CSS_COLOR_SPACE: SectionTitle = {
+export const COLOR_BY_CSS_COLOR_SPACE: ModuleSubSectionTitle = {
   id: "color_by_css_color_space",
   title: "colorByCssColorSpace",
 }
 
-export const HUMAN: SectionTitle = { id: "human", title: "human" }
+export const HUMAN: ModuleSubSectionTitle = { id: "human", title: "human" }
 
 export class Color extends ModuleDocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: { en: "Color", es: "Color" }, url: "color", apiId: "color" })
-
-    this.titles = [
-      RGB,
-      CMYK,
-      HSL,
-      LCH,
-      HWB,
-      COLOR_BY_CSS_COLOR_SPACE,
-      CSS_SUPPORTED_FUNCTION,
-      CSS_SUPPORTED_SPACE,
-      HUMAN,
-    ]
+    super({
+      parent: parent,
+      title: { en: "Color", es: "Color" },
+      url: "color",
+      apiId: "color",
+      titles: [
+        RGB,
+        CMYK,
+        HSL,
+        LCH,
+        HWB,
+        COLOR_BY_CSS_COLOR_SPACE,
+        CSS_SUPPORTED_FUNCTION,
+        CSS_SUPPORTED_SPACE,
+        HUMAN,
+      ],
+    })
   }
 }

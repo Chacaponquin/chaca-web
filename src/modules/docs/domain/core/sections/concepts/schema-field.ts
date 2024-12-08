@@ -1,31 +1,40 @@
 import { DocSection, DocSubSection, SectionTitle } from "../../base"
 
-export const PARAMS: SectionTitle = { id: "params", title: "Parámetros" }
+export const PARAMS: SectionTitle = { id: "params", title: { es: "Parámetros", en: "Params" } }
 
-export const ARRAY_FIELDS: SectionTitle = { id: "array-fields", title: "Campos que son arreglos" }
+export const ARRAY_FIELDS: SectionTitle = {
+  id: "array-fields",
+  title: { es: "Campos que son arreglos", en: "Array fields" },
+}
 
-export const ARRAY_LIMITS: SectionTitle = { id: "array-limits", title: "Límites del arreglo" }
+export const ARRAY_LIMITS: SectionTitle = {
+  id: "array-limits",
+  title: { es: "Límites del arreglo", en: "Array limits" },
+}
 
 export const ARRAY_LIMIT_FUNCTION: SectionTitle = {
   id: "array-limit-function",
-  title: "Límites a través de una función",
+  title: { es: "Límites a través de una función", en: "Array limits function" },
 }
 
-export const NULL_FIELDS: SectionTitle = { id: "null-fields", title: "Campos nulos" }
+export const NULL_FIELDS: SectionTitle = {
+  id: "null-fields",
+  title: { es: "Campos nulos", en: "Null fields" },
+}
 
 export const SPECIFIC_NULL_NUMBER: SectionTitle = {
   id: "specific-null-number",
-  title: "Cantidad específica de campos nulos",
+  title: { es: "Cantidad específica de campos nulos", en: "Specific amount of null fields" },
 }
 
 export const NULL_PROBABILITY: SectionTitle = {
   id: "null-probability",
-  title: "Probabilidades de valor nulo",
+  title: { es: "Probabilidades de valor nulo", en: "Null value probabilities" },
 }
 
 export const NULL_FUNCTION: SectionTitle = {
   id: "null-function",
-  title: "Valor nulo a través de funciones",
+  title: { es: "Valor nulo a través de funciones", en: "Null value function" },
 }
 
 export class SchemaField extends DocSubSection {

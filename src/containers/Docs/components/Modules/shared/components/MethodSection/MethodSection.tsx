@@ -1,13 +1,13 @@
 import { TryRoute } from "@containers/Docs/shared/components"
-import { SectionTitle } from "@modules/docs/domain/core/base"
 import { Code, H2, Params } from "@markdown/components/Markdown/components"
 import { Param } from "@markdown/components/Markdown/components/Params/domain"
 import { useContext } from "react"
 import { SectionContext } from "../../context"
+import { ModuleSubSectionTitle } from "@modules/docs/domain/core/sections/modules/module-section"
 
 interface Props {
   params: Param[]
-  title: SectionTitle
+  title: ModuleSubSectionTitle
   code: string | null
 }
 
@@ -16,7 +16,7 @@ export default function MethodSection({ params, code, title }: Props) {
 
   return (
     <>
-      <H2 title={title} code />
+      <H2 title={{ id: title.id, title: { en: title.title, es: title.title } }} code />
 
       {params.length > 0 && <Params params={params} />}
 

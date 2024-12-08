@@ -1,20 +1,29 @@
 import { DocSection, DocSubSection, SectionTitle } from "../../base"
 
-export const SCHEMA_DATA: SectionTitle = { id: "schema-data", title: "Generar datos de un schema" }
+export const SCHEMA_DATA: SectionTitle = {
+  id: "schema-data",
+  title: { es: "Generar datos de un schema", en: "Generate schema data" },
+}
 
 export const RELATIONAL_DATA: SectionTitle = {
   id: "relational-data",
-  title: "Generar datos relacionales",
+  title: { es: "Generar datos relacionales", en: "Generate relational data" },
 }
 
 export const MODULE_DATA: SectionTitle = {
   id: "module-value",
-  title: "Generar valores de un módulo",
+  title: { es: "Generar valores de un módulo", en: "Generate module values" },
 }
 
-export const EXPORT_DATA: SectionTitle = { id: "export-data", title: "Exportar datos" }
+export const EXPORT_DATA: SectionTitle = {
+  id: "export-data",
+  title: { es: "Exportar datos", en: "Export data" },
+}
 
-export const TRANSFORM_DATA: SectionTitle = { id: "transform-data", title: "Transformar datos" }
+export const TRANSFORM_DATA: SectionTitle = {
+  id: "transform-data",
+  title: { es: "Transformar datos", en: "Transform data" },
+}
 
 export class UsageSection extends DocSubSection {
   constructor(parent: DocSection) {

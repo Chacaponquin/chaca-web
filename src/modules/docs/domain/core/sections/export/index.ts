@@ -4,7 +4,7 @@ import { Postgres } from "./postgresql"
 
 class ExportSection extends DocSection {
   constructor() {
-    super({ title: "Export", url: "export" })
+    super({ title: { en: "Extensions", es: "Extensiones" }, url: "export" })
   }
 }
 

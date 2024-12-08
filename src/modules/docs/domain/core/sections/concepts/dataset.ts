@@ -1,31 +1,40 @@
 import { DocSection, DocSubSection, SectionTitle } from "../../base"
 
-export const DEFINITION: SectionTitle = { id: "definition", title: "Definir un Dataset" }
+export const DEFINITION: SectionTitle = {
+  id: "definition",
+  title: { es: "Definir un dataset", en: "Define a dataset" },
+}
 
-export const GENERATE: SectionTitle = { id: "generate", title: "Generar datos" }
+export const GENERATE: SectionTitle = {
+  id: "generate",
+  title: { es: "Generar datos", en: "Generate dataset data" },
+}
 
-export const EXPORT_DATA: SectionTitle = { id: "export", title: "Exportar datos generados" }
+export const EXPORT_DATA: SectionTitle = {
+  id: "export",
+  title: { es: "Exportar datos  generados", en: "Export dataset data" },
+}
 
 export const HOW_CREATE_DATA: SectionTitle = {
   id: "how-create-data",
-  title: "¿Cómo se generan los datos?",
+  title: { es: "¿Cómo se generan los datos?", en: "How is data generated?" },
 }
 
 export const GENERATION_SEQUENCE: SectionTitle = {
   id: "generation-sequence",
-  title: "Secuencia de ejecución",
+  title: { es: "Secuencia de ejecución", en: "Execution sequence" },
 }
 
-export const EXAMPLE: SectionTitle = { id: "example", title: "Ejemplo práctico" }
+export const EXAMPLE: SectionTitle = { id: "example", title: { es: "Ejemplo", en: "Example" } }
 
 export const CYCLIC_DEPENDENCE: SectionTitle = {
   id: "cyclic-dependence",
-  title: "Dependencia cíclica",
+  title: { es: "Dependencia cíclica", en: "Cyclic dependence" },
 }
 
 export const TRANSFORM_DATA: SectionTitle = {
   id: "transform",
-  title: "Transformar datos generados",
+  title: { es: "Transformar datos", en: "Transform data" },
 }
 
 export class Dataset extends DocSubSection {

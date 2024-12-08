@@ -1,26 +1,32 @@
 import { DocSection, DocSubSection, SectionTitle } from "../../base"
 
-export const BODY: SectionTitle = { id: "body", title: "Body" }
+export const BODY: SectionTitle = { id: "body", title: { en: "Body", es: "Cuerpo de la petición" } }
 
-export const EXAMPLE: SectionTitle = { id: "example", title: "Example" }
+export const EXAMPLE: SectionTitle = { id: "example", title: { en: "Example", es: "Example" } }
 
-export const SEQUENTIAL: SectionTitle = { id: "sequential", title: "Sequential" }
+export const SEQUENTIAL: SectionTitle = {
+  id: "sequential",
+  title: { en: "Sequential", es: "Sequential" },
+}
 
-export const SEQUENCE: SectionTitle = { id: "sequence", title: "Sequence" }
+export const SEQUENCE: SectionTitle = { id: "sequence", title: { en: "Sequence", es: "Sequence" } }
 
-export const ENUM: SectionTitle = { id: "enum", title: "Enum" }
+export const ENUM: SectionTitle = { id: "enum", title: { en: "Enum", es: "Enum" } }
 
-export const PICK: SectionTitle = { id: "pick", title: "Pick" }
+export const PICK: SectionTitle = { id: "pick", title: { en: "Pick", es: "Pick" } }
 
-export const PROBABILITY: SectionTitle = { id: "probability", title: "Probability" }
+export const PROBABILITY: SectionTitle = {
+  id: "probability",
+  title: { en: "Probability", es: "Probability" },
+}
 
-export const MODULE: SectionTitle = { id: "module", title: "Module" }
+export const MODULE: SectionTitle = { id: "module", title: { en: "Module", es: "Module" } }
 
-export const NESTED_SCHEMA: SectionTitle = { id: "schema", title: "Schema" }
+export const NESTED_SCHEMA: SectionTitle = { id: "schema", title: { en: "Schema", es: "Schema" } }
 
 export const AVAILABLE_FIELDS: SectionTitle = {
   id: "available-fields",
-  title: "Tipos de campo disponibles",
+  title: { es: "Tipos de campo disponibles", en: "Available field types" },
 }
 
 export class SchemaObjectSection extends DocSubSection {

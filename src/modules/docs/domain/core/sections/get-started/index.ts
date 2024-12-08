@@ -6,7 +6,7 @@ import { UtilsSection } from "./utils"
 
 class GetStartedSection extends DocSection {
   constructor() {
-    super({ title: "Guides", url: "guides" })
+    super({ title: { en: "Guides", es: "Guías" }, url: "guides" })
   }
 }
 

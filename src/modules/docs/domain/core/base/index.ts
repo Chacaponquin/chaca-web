@@ -3,12 +3,12 @@ import { SaveIndex } from "./save-index"
 
 export interface SectionTitle {
   id: string
-  title: string
+  title: TranslationConfig<string>
 }
 
 interface DocSectionProps {
   url: string
-  title: string
+  title: TranslationConfig<string>
 }
 
 export interface SubSectionProps {
@@ -19,7 +19,7 @@ export interface SubSectionProps {
 
 export abstract class DocSection {
   readonly url: string
-  readonly title: string
+  readonly title: TranslationConfig<string>
   sections: DocSubSection[]
 
   constructor({ url, title }: DocSectionProps) {
@@ -65,7 +65,7 @@ export abstract class DocSubSection {
   }
 
   location(language: Languages): string[] {
-    return [this.parent.title, this.title[language]]
+    return [this.parent.title[language], this.title[language]]
   }
 
   titleSeo(langauge: Languages): string {
@@ -86,14 +86,14 @@ export abstract class DocSubSection {
         title: this.title[language],
         location: this.location(language).join(" > "),
         url: this.url,
-        language: "es",
+        language: language,
       },
       ...this.titles.map((t) => {
         return {
-          title: t.title,
+          title: t.title[language],
           url: this.buildUrl(t.id),
-          location: [...this.location(language), t.title].join(" > "),
-          language: "es",
+          location: [...this.location(language), t.title[language]].join(" > "),
+          language: language,
         }
       }),
     ]

@@ -6,7 +6,7 @@ import { DatasetStore } from "./store"
 
 class ConceptsSection extends DocSection {
   constructor() {
-    super({ title: "Core Concepts", url: "core-concepts" })
+    super({ title: { en: "Core Concepts", es: "Conceptos" }, url: "core-concepts" })
   }
 }
 

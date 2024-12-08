@@ -11,8 +11,11 @@ import {
   EXPORT_YAML,
 } from "@modules/docs/domain/core/sections/get-started/command-line"
 import { Link, List, ListItem, P } from "@markdown/components/Markdown/components"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 
 export default function Sections() {
+  const { language } = useLanguage()
+
   const sections: SectionTitle[] = [
     EXPORT_CSV,
     EXPORT_JAVA,
@@ -29,7 +32,7 @@ export default function Sections() {
       {sections.map((s, index) => (
         <ListItem key={index}>
           <P>
-            <Link to={COMMAND_LINE.buildUrl(s.id)}>{s.title}</Link>
+            <Link to={COMMAND_LINE.buildUrl(s.id)}>{s.title[language]}</Link>
           </P>
         </ListItem>
       ))}
