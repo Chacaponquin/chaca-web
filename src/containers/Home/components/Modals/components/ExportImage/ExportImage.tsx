@@ -47,6 +47,7 @@ export default function ExportImage({ handleExportImage }: Props) {
             label={(f) => f.name}
             placeholder={FORMAT_PLACEHOLDER}
             size="base"
+            id="export-image-select"
             value={(f) => f === form.format}
           />
         </FormSection>

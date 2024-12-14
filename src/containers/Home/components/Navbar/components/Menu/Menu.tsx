@@ -81,6 +81,7 @@ export default function Menu({
               <Item clickEffect={false} handleCloseList={handleChangeOpen}>
                 <Title text={LANGUAGE} />
                 <ChacaSelect
+                  id="language-select"
                   options={languageOptions}
                   label={(l) => l.title}
                   value={(l) => l.type === language}

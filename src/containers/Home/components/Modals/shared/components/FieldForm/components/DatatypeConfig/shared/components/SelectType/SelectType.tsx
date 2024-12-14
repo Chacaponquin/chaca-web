@@ -19,6 +19,7 @@ export default function SelectType({ types, handleChange, type }: Props) {
       onChange={(v) => handleChange(v)}
       value={(t) => t.type === type}
       size="base"
+      id="datatype-select"
       placeholder={TYPE}
     />
   )

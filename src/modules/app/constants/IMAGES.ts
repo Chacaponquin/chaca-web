@@ -11,7 +11,6 @@ export const APP_IMAGES = {
   PRESENTATION: {
     SIMPLE_DATASET: { image: "/images/simple-schema.png", alt: "simple-schema" },
     RELATIONAL_DATASETS: { image: "/images/Relational Datasets.png", alt: "Relational Datasets" },
-
     EXTENSIONS: {
       CSV: { image: "/images/extensions/csv.png", alt: "csv" },
       JAVA: { image: "/images/extensions/java.png", alt: "java" },
@@ -22,5 +21,9 @@ export const APP_IMAGES = {
       POSTGRESQL: { image: "/images/extensions/postgresql.webp", alt: "postgresql" },
       YAML: { image: "/images/extensions/yaml.svg", alt: "yaml" },
     },
+  },
+  FLAGS: {
+    UNITED_STATES: { image: "/images/flags/united-states.png", alt: "United States" },
+    SPAIN: { image: "/images/flags/spain.png", alt: "Spain" },
   },
 } as const

@@ -1,4 +1,4 @@
-import { ChacaLogo, Links, Menu, Theme } from "./components"
+import { ChacaLogo, Language, Links, Menu, Theme } from "./components"
 import clsx from "clsx"
 import { useScreen } from "@modules/shared/hooks"
 import { SCREEN_SIZES } from "@modules/app/constants"
@@ -34,6 +34,7 @@ export default function Navbar({ handleChangeOpenAside, handleOpenSearch }: Prop
 
       <section className="flex items-center gap-x-2 h-full">
         {condition && <Search handleClick={handleOpenSearch} full={false} />}
+        <Language />
         <Theme />
         <Links />
       </section>

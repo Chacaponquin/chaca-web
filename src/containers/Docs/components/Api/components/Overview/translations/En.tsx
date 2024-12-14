@@ -21,8 +21,8 @@ export default function En() {
   return (
     <>
       <P>
-        Owr API is built on REST, with URLs oriented to the resources to be obtained, it uses
-        standardized HTTP responses and returns <ExternalLink to={JSON_URL}>JSON</ExternalLink>
+        Our API is built on REST, with URLs oriented to the resources to be obtained, it uses
+        standardized HTTP responses and returns <ExternalLink to={JSON_URL}>JSON</ExternalLink>{" "}
         format responses.
       </P>
 

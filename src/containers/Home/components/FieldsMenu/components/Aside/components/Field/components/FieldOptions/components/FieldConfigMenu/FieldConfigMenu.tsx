@@ -1,8 +1,8 @@
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useFieldConfigMenu } from "./hooks"
-import { Fragment } from "react"
 import { Item } from "./components"
 import { Field, MixedNode } from "@modules/dataset/domain/core"
+import { PopoverList } from "@modules/app/modules/form/components/ChacaPopover/components"
 
 interface Props {
   field: Field
@@ -20,10 +20,10 @@ export default function FieldConfigMenu({ field }: Props) {
   const { handleDeleteField, handleEditField, handleAddSubField } = useFieldConfigMenu({ field })
 
   return (
-    <Fragment>
+    <PopoverList height={300}>
       <Item text={EDIT_OPTION_TEXT} onClick={handleEditField} />
       {isMixed && <Item text={ADD_FIELD_OPTION_TEXT} onClick={handleAddSubField} />}
       <Item text={DELETE_OPTION_TEXT} onClick={handleDeleteField} />
-    </Fragment>
+    </PopoverList>
   )
 }

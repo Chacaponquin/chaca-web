@@ -43,6 +43,7 @@ export default function FieldDatatype({
         value={(o) => o.default.type === datatype.type}
         onChange={(v) => handleChangeDatatype(v.id)}
         size="base"
+        id="field-type-select"
       />
 
       {datatype.type === DATA_TYPES.CUSTOM && <CustomInfo />}

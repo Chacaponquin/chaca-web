@@ -1,6 +1,5 @@
 import { Copy, Delete, Edit, Plus, Share } from "@modules/app/modules/icon/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
-import { Fragment } from "react"
 import { Item } from "./components"
 import { MenuItem } from "./domain"
 import {
@@ -10,6 +9,7 @@ import {
   EditSchemaCommand,
   ExportDatasetCommand,
 } from "@modules/dataset/domain/commands"
+import { PopoverList } from "@modules/app/modules/form/components/ChacaPopover/components"
 
 interface Props {
   handleEditSchema(): void
@@ -75,10 +75,10 @@ export default function DatasetMenu({
   ]
 
   return (
-    <Fragment>
+    <PopoverList height={300}>
       {items.map(({ command, icon, id, onClick, text }, index) => (
         <Item onClick={onClick} text={text} key={index} icon={icon} id={id} command={command} />
       ))}
-    </Fragment>
+    </PopoverList>
   )
 }

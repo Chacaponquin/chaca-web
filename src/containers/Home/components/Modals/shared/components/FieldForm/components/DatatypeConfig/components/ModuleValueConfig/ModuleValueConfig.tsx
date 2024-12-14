@@ -42,6 +42,7 @@ export default function ModuleValueConfig({
     <div className={CLASS}>
       <FormSection vertical={true} labelText={MODULE_TEXT}>
         <ChacaSelect
+          id="section-select"
           options={modules}
           label={(s) => s.name}
           placeholder={MODULE_TEXT}
@@ -53,6 +54,7 @@ export default function ModuleValueConfig({
 
       <FormSection vertical={true} labelText={OPTION_TEXT}>
         <ChacaSelect
+          id="module-select"
           value={(o) => o === module}
           options={section.options}
           label={(o) => o.name}

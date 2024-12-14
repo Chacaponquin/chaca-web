@@ -47,6 +47,7 @@ export default function RefConfig({
     <div className="flex flex-col gap-y-3 mb-5">
       <FormSection vertical={false} labelText={REF_TEXT}>
         <ChacaSelect
+          id="ref-select"
           size="base"
           options={possibleFields}
           label={(f) => f.locationNames}

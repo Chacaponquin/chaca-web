@@ -3,6 +3,7 @@ import { Calendar } from "primereact/calendar"
 import { Argument } from "@modules/modules/domain/core/argument"
 import { ARGUMENT_TYPE } from "@modules/modules/domain/constants"
 import { ChacaTextInput, ChacaSelect, ChacaNumberInput, ChacaSwitchButton } from "@form/components"
+import { useTranslation } from "@modules/app/modules/language/hooks"
 
 interface Props {
   arg: Argument
@@ -16,6 +17,10 @@ interface SelectValue {
 }
 
 export default function ArgumentFilter({ arg, value, handleChangeArgumentValue }: Props) {
+  const { SELECT_PLACEHOLDER } = useTranslation({
+    SELECT_PLACEHOLDER: { en: `Select ${arg.argument}`, es: `Seleccionar ${arg.argument}` },
+  })
+
   const filter = useMemo(() => {
     switch (arg.config.type) {
       case ARGUMENT_TYPE.SELECT: {
@@ -23,9 +28,10 @@ export default function ArgumentFilter({ arg, value, handleChangeArgumentValue }
 
         return (
           <ChacaSelect
+            id="argument-select"
             options={options}
             label={(option) => option.label}
-            placeholder={`Select ${arg.argument}`}
+            placeholder={SELECT_PLACEHOLDER}
             onChange={(value) => {
               handleChangeArgumentValue(value.value)
             }}

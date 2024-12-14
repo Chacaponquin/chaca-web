@@ -1,6 +1,7 @@
-import { ChacaDropdown } from "@form/components"
+import { ChacaPopover } from "@modules/app/modules/form/components"
 import { Config, DatasetInfo, DatasetMenu } from "./components"
 import clsx from "clsx"
+import { useState } from "react"
 
 interface Props {
   handleEditSchema(): void
@@ -23,6 +24,8 @@ export default function CardHeader({
   name,
   nameId,
 }: Props) {
+  const [open, setOpen] = useState(false)
+
   const CLASS = clsx(
     "relative",
     "flex justify-center items-center",
@@ -34,11 +37,11 @@ export default function CardHeader({
     <header className={CLASS}>
       <DatasetInfo limit={limit} name={name} />
 
-      <ChacaDropdown
-        header={<Config name={nameId} />}
-        className="translate-y-1"
-        id={`${nameId}-dataset-config-menu`}
-        height={300}
+      <ChacaPopover
+        onClickOutside={() => setOpen(false)}
+        open={open}
+        position="bottom"
+        parent={<Config name={nameId} />}
       >
         <DatasetMenu
           handleDeleteSchema={handleDeleteSchema}
@@ -48,7 +51,7 @@ export default function CardHeader({
           handleAddField={handleAddField}
           name={nameId}
         />
-      </ChacaDropdown>
+      </ChacaPopover>
     </header>
   )
 }

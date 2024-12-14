@@ -39,6 +39,7 @@ export default function DatasetExportForm({ form, handleChangeFileType, handleCh
 
       <FormSection vertical={true} labelText={FORMAT_TEXT}>
         <ChacaSelect
+          id="export-dataset-select"
           options={fileOptions}
           label={(f) => f.title}
           placeholder={SELECT_FORMAT}

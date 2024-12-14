@@ -1,14 +1,15 @@
 import { useMemo, useState } from "react"
 import clsx from "clsx"
 import { Size } from "../../domain"
-import { Option, Select } from "./components"
-import { ChacaDropdown } from ".."
+import ChacaPopover from "../ChacaPopover/ChacaPopover"
+import { PopoverItem, PopoverList } from "../ChacaPopover/components"
+import { ArrowDown } from "@modules/app/modules/icon/components"
 
 interface Props<T> {
   placeholder: string
   options: T[]
   size: Size
-  id?: string
+  id: string
   label(o: T): string
   onChange(value: T): void
   value(o: T): boolean
@@ -38,6 +39,7 @@ export default function ChacaSelect<T>({
     "flex items-center justify-between",
     "text-black dark:text-white",
     "border-2 border-gray-300",
+
     "dark:border-scale-3 dark:focus:border-scale-9 dark:hover:border-scale-9",
     "bg-white dark:bg-scale-5",
 
@@ -56,38 +58,38 @@ export default function ChacaSelect<T>({
     },
   )
 
-  const SELECTED_CLASS = clsx("bg-white dark:bg-scale-5", "shadow-lg")
-
-  function handleChangeOpenOptions() {
-    setOpenOptions((prev) => !prev)
-  }
-
   const selectedOption = useMemo(() => {
     return options.find((o) => value(o))
   }, [options, value])
 
   return (
-    <ChacaDropdown
-      full={true}
-      header={
-        <Select
-          text={selectedOption ? label(selectedOption) : placeholder}
-          className={PARENT_CLASS}
-          onClick={handleChangeOpenOptions}
-        />
+    <ChacaPopover
+      parent={
+        <button className={PARENT_CLASS} type="button">
+          <p className="pointer-events-none overflow-x-auto no-scroll">
+            {selectedOption ? label(selectedOption) : placeholder}
+          </p>
+
+          <div className="stroke-black dark:stroke-white">
+            <ArrowDown size={18} />
+          </div>
+        </button>
       }
-      className={SELECTED_CLASS}
-      height={300}
+      open={openOptions}
+      onClickOutside={() => setOpenOptions(false)}
+      position="bottom"
     >
-      {options.map((o, index) => (
-        <Option
-          key={index}
-          text={label(o)}
-          onClick={() => handleSelectOption(o)}
-          selected={value(o)}
-          size={size}
-        />
-      ))}
-    </ChacaDropdown>
+      <PopoverList height={300}>
+        {options.map((o, index) => (
+          <PopoverItem
+            key={index}
+            text={label(o)}
+            onClick={() => handleSelectOption(o)}
+            selected={value(o)}
+            size={size}
+          />
+        ))}
+      </PopoverList>
+    </ChacaPopover>
   )
 }
