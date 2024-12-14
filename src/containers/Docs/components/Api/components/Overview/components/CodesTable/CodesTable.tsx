@@ -1,35 +1,64 @@
 import { MiniCode, P, Strong, Table, Td, Th } from "@markdown/components/Markdown/components"
+import { useLanguage, useTranslation } from "@modules/app/modules/language/hooks"
 
 interface Code {
   code: number
-  description: React.ReactNode
+  description: { en: React.ReactNode; es: React.ReactNode }
 }
 
-export default function CodesTable() {
-  const codes: Code[] = [
-    { code: 200, description: "Todo funcionó de forma correcta" },
-    {
-      code: 400,
-      description: "La petición fue inaceptable debido a un parámetro faltando o erroneo",
+const codes: Code[] = [
+  {
+    code: 200,
+    description: { es: "Todo funcionó de forma correcta", en: "Todo funcionó de forma correcta" },
+  },
+  {
+    code: 400,
+    description: {
+      es: "La petición fue inaceptable debido a un parámetro faltando o erroneo",
+      en: "The request was unacceptable due to a missing or incorrect parameter",
     },
-    { code: 401, description: "Token de acceso inválido" },
-    { code: 403, description: "Permiso requerido para acceder al recurso" },
-    { code: 404, description: "Recurso no encontrado" },
-    { code: 429, description: "Límite de peticiones sobrepasado" },
-    { code: 500, description: "Algún error ocurrió en la ejecución del proceso" },
-  ]
+  },
+  { code: 401, description: { es: "Token de acceso inválido", en: "Invalid access token" } },
+  {
+    code: 403,
+    description: {
+      es: "Permiso requerido para acceder al recurso",
+      en: "Permission required to access the resource",
+    },
+  },
+  { code: 404, description: { es: "Recurso no encontrado", en: "Resource not found" } },
+  {
+    code: 429,
+    description: { es: "Límite de peticiones sobrepasado", en: "Request limit exceeded" },
+  },
+  {
+    code: 500,
+    description: {
+      es: "Algún error ocurrió en la ejecución del proceso",
+      en: "An error occurred during the execution of the process.",
+    },
+  },
+]
+
+export default function CodesTable() {
+  const { language } = useLanguage()
+
+  const { CODE, DESCRIPTION } = useTranslation({
+    CODE: { en: "Code", es: "Código" },
+    DESCRIPTION: { en: "Description", es: "Descripción" },
+  })
 
   return (
     <Table>
       <thead className="">
         <Th>
           <P>
-            <Strong>Código</Strong>
+            <Strong>{CODE}</Strong>
           </P>
         </Th>
         <Th>
           <P>
-            <Strong>Descripción</Strong>
+            <Strong>{DESCRIPTION}</Strong>
           </P>
         </Th>
       </thead>
@@ -44,7 +73,7 @@ export default function CodesTable() {
             </Td>
 
             <Td>
-              <P>{c.description}</P>
+              <P>{c.description[language]}</P>
             </Td>
           </tr>
         ))}

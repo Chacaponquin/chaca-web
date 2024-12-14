@@ -1,35 +1,9 @@
-import { EXAMPLE, PARAMS, BODY } from "@modules/docs/domain/core/sections/api/transform-schema"
-import { Route } from "../../shared/components"
-import { H2, Link, MiniCode, P } from "@markdown/components/Markdown/components"
-import { Body, Example, QueryParams, Try } from "./components"
-import { SCHEMA } from "@modules/docs/domain/core/sections/concepts"
+import { useTranslationComponent } from "@modules/app/modules/language/hooks"
+import En from "./translations/En"
+import Es from "./translations/Es"
 
 export default function TransformSchema() {
-  return (
-    <>
-      <Route method="post" url="schema/transform/{count}" />
+  const { CONTENT } = useTranslationComponent({ CONTENT: { en: <En />, es: <Es /> } })
 
-      <H2 title={PARAMS} />
-
-      <QueryParams />
-
-      <H2 title={BODY} />
-
-      <P>En el cuerpo de la petición se deben definir los siguientes parámetros</P>
-
-      <Body />
-
-      <H2 title={EXAMPLE} />
-
-      <P>
-        En el siguiente ejemplo se muestra la creación y transpilación de datos generados por el{" "}
-        <Link to={SCHEMA.redirect}>schema</Link> <MiniCode>Movie</MiniCode> a formato{" "}
-        <MiniCode>json</MiniCode>.
-      </P>
-
-      <Example />
-
-      <Try />
-    </>
-  )
+  return CONTENT
 }

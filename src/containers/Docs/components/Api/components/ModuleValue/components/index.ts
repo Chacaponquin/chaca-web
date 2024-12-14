@@ -1,5 +1,6 @@
+import ApiRoute from "./ApiRoute/ApiRoute"
 import Example from "./Example/Example"
 import QueryParams from "./QueryParams/QueryParams"
 import Try from "./Try/Try"
 
-export { QueryParams, Example, Try }
+export { QueryParams, Example, Try, ApiRoute }

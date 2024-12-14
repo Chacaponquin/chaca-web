@@ -1,3 +1,4 @@
+import ApiRoute from "./ApiRoute/ApiRoute"
 import Body from "./Body/Body"
 import EnumParams from "./EnumParams/EnumParams"
 import Example from "./Example/Example"
@@ -22,4 +23,5 @@ export {
   SchemaParams,
   Try,
   Example,
+  ApiRoute,
 }
