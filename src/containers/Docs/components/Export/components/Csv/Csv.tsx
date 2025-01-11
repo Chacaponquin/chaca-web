@@ -1,21 +1,9 @@
-import { P, Warning } from "@markdown/components/Markdown/components"
-import { CsvParams, Definition } from "./components"
-import { DatasetResult, Header } from "../../shared/components"
+import { useTranslationComponent } from "@modules/app/modules/language/hooks"
+import En from "./translations/En"
+import Es from "./translations/Es"
 
 export default function Csv() {
-  return (
-    <>
-      <Header extension="csv" format="csv" />
+  const { CONTENT } = useTranslationComponent({ CONTENT: { en: <En />, es: <Es /> } })
 
-      <CsvParams />
-
-      <Definition />
-
-      <Warning title="¿Qué se puede exportar?">
-        <P>Este formato solo puede recibir como dato a exportar un arreglo de objetos</P>
-      </Warning>
-
-      <DatasetResult extension="csv" language="css" />
-    </>
-  )
+  return CONTENT
 }
