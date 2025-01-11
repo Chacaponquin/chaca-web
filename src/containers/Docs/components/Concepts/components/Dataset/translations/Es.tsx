@@ -59,7 +59,7 @@ export default function Es() {
       <P>
         Para definir un <MiniCode>Dataset</MiniCode> se deben definir en primera instancia los{" "}
         <Link to={SCHEMA.redirect}>schemas</Link> que lo componen. Para esto se utiliza el método{" "}
-        <MiniCode>dataset</MiniCode>, el cual recibe un arreglo con la configuración de los{" "}
+        <MiniCode>chaca.dataset</MiniCode>, el cual recibe un arreglo con la configuración de los{" "}
         <Link to={SCHEMA.redirect}>schemas</Link> que lo componen.
       </P>
 

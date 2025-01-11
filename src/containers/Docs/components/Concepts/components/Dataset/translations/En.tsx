@@ -58,8 +58,8 @@ export default function En() {
 
       <P>
         To define a <MiniCode>Dataset</MiniCode>, its <Link to={SCHEMA.redirect}>schemas</Link> must
-        first be defined. For this, the <MiniCode>dataset</MiniCode> method is used, which receives
-        an array with the <Link to={SCHEMA.redirect}>schemas</Link> configuration.
+        first be defined. For this, the <MiniCode>chaca.dataset</MiniCode> method is used, which
+        receives an array with the <Link to={SCHEMA.redirect}>schemas</Link> configuration.
       </P>
 
       <DatasetDefinition />
