@@ -5,5 +5,11 @@ export default function GetDefinition() {
 store.get<T>(route: string, config?: GetStoreValueInput) => T[]
 `
 
-  return <Code code={code} language="typescript" title="Get values definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "get method definition", es: "Definición del método get" }}
+    />
+  )
 }

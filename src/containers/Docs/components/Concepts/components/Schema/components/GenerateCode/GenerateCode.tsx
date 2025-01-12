@@ -9,5 +9,11 @@ schema.object()
 schema.array(10)
   `
 
-  return <Code title="Schema generation" language="javascript" code={code} />
+  return (
+    <Code
+      title={{ en: "Schema data generation", es: "Generar datos de un schema" }}
+      language="javascript"
+      code={code}
+    />
+  )
 }

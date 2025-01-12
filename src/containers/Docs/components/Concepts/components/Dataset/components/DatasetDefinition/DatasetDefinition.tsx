@@ -5,5 +5,11 @@ export default function DatasetDefinition() {
 chaca.dataset(schemas: DatasetSchema[]) => Dataset
 `
 
-  return <Code code={code} language="typescript" title="Dataset definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Dataset definition", es: "Definició de un Dataset" }}
+    />
+  )
 }

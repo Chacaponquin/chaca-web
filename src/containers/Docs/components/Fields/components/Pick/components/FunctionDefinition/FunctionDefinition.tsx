@@ -7,5 +7,14 @@ export default function FunctionDefinition() {
 }
 `
 
-  return <Code code={code} language="typescript" title="Pick count definition as function" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{
+        en: "Pick count definition as function",
+        es: "Definición de la cantidad de elementos como función",
+      }}
+    />
+  )
 }

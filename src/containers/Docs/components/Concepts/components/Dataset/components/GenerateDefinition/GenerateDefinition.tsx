@@ -5,5 +5,11 @@ export default function GenerateDefinition() {
 dataset.generate() => any
 `
 
-  return <Code code={code} language="typescript" title="Generate dataset definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Generate dataset definition", es: "Definición del método generate" }}
+    />
+  )
 }

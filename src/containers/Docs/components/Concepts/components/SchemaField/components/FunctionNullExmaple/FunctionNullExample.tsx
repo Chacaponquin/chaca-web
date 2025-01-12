@@ -17,5 +17,11 @@ const schema = chaca.schema({
 })
 `
 
-  return <Code code={code} language="typescript" title="Null function example" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Null function example", es: "Ejemplo de una función para un valor nulo" }}
+    />
+  )
 }

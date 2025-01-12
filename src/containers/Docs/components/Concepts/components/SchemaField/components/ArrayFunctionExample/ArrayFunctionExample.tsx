@@ -24,5 +24,11 @@ const userSchema = chaca.schema({
 })
 `
 
-  return <Code code={code} language="typescript" title="Array function example" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Array function example", es: "Ejemplo de un campo arreglo con una función" }}
+    />
+  )
 }

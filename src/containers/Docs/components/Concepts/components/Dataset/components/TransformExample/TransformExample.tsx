@@ -8,5 +8,11 @@ dataset.transform({
 })
 `
 
-  return <Code code={code} language="typescript" title="Transform ecommerce dataset" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Transform Ecommerce dataset", es: "Transformar dataset Ecommerce" }}
+    />
+  )
 }

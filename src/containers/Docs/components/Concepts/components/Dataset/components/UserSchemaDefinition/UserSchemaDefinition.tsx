@@ -10,5 +10,11 @@ const userSchema = chaca.schema({
 })    
 `
 
-  return <Code code={code} language="typescript" title="User schema definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "User schema definition", es: "Definición del schema User" }}
+    />
+  )
 }

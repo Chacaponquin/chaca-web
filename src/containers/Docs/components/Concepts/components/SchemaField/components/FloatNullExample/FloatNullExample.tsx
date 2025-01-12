@@ -20,5 +20,11 @@ schema.array(5)
     { username: null }
 ]
 `
-  return <Code code={code} language="typescript" title="Probability null definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Probability null definition", es: "Definición de un valor de probabilidad" }}
+    />
+  )
 }

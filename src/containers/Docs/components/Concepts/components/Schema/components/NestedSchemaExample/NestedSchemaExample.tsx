@@ -12,5 +12,11 @@ const schema = chaca.schema({
     })
 })
 `
-  return <Code code={code} language="typescript" title="Nested schema definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Nested schema definition", es: "Definición de un schema anidado" }}
+    />
+  )
 }

@@ -5,5 +5,11 @@ export default function ExportSchema() {
 schema.export(count: number, config: FileConfig) => Promise<string[]>
 `
 
-  return <Code title="Export schema definition" code={code} language="typescript" />
+  return (
+    <Code
+      title={{ en: "Export schema method definition", es: "Definición del método export" }}
+      code={code}
+      language="typescript"
+    />
+  )
 }

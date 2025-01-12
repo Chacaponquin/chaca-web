@@ -5,5 +5,11 @@ export default function ExportDefinition() {
 dataset.export(config: FileConfig) => Promise<string[]>
 `
 
-  return <Code code={code} language="typescript" title="Export dataset definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Export dataset method", es: "Definición del método export" }}
+    />
+  )
 }

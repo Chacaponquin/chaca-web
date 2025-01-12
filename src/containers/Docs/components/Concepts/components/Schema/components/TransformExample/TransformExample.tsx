@@ -15,5 +15,11 @@ userSchema.transform(3, {
 //]
 `
 
-  return <Code title="Transform schema example" code={code} language="typescript" />
+  return (
+    <Code
+      title={{ en: "Transform schema example", es: "Ejemplo de transformación de un schema" }}
+      code={code}
+      language="typescript"
+    />
+  )
 }

@@ -9,5 +9,11 @@ const likesSchema = chaca.schema({
 })
 `
 
-  return <Code code={code} language="typescript" title="Like schema definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Like schema definition", es: "Definición del schema Like" }}
+    />
+  )
 }

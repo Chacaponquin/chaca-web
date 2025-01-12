@@ -5,5 +5,11 @@ export default function Definition() {
 chaca.key(field: KeyFieldProps) => KeyField
 `
 
-  return <Code code={code} language="typescript" title="Key field declaration" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Key field definition", es: "Definición de un campo key" }}
+    />
+  )
 }

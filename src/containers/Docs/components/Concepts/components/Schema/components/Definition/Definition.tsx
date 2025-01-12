@@ -5,5 +5,11 @@ export default function Definition() {
 chaca.schema<T>(input: SchemaInput) => Schema<T>
 `
 
-  return <Code title="Schema definition" code={code} language="typescript" />
+  return (
+    <Code
+      title={{ en: "Schema definition", es: "Definición de un schema" }}
+      code={code}
+      language="typescript"
+    />
+  )
 }

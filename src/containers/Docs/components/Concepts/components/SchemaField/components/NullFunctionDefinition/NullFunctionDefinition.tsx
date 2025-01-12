@@ -7,5 +7,11 @@ export default function NullFunctionDefinition() {
 }
 `
 
-  return <Code code={code} language="typescript" title="Null function definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Null function definition", es: "Definición de valores nulos con una función" }}
+    />
+  )
 }

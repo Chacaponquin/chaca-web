@@ -9,5 +9,11 @@ await userSchema.export(3, {
 })
 `
 
-  return <Code title="Export user schema" code={code} language="javascript" />
+  return (
+    <Code
+      title={{ en: "Export user schema", es: "Exportar schema user" }}
+      code={code}
+      language="javascript"
+    />
+  )
 }

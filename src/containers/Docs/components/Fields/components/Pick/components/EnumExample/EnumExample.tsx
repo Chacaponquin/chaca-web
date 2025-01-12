@@ -13,5 +13,11 @@ const schema = chaca.schema({
 })
 `
 
-  return <Code code={code} language="typescript" title="Product sizes as enum" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Product sizes as enum", es: "Tallas de un producto con un campo enum" }}
+    />
+  )
 }

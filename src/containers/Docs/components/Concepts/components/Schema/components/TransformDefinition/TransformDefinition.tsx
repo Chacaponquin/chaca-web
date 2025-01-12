@@ -5,5 +5,11 @@ export default function TransformDefinition() {
 schema.transform(count: number, config: DumpConfig) => DumpFile[]
 `
 
-  return <Code title="Transform schema definition" code={code} language="typescript" />
+  return (
+    <Code
+      title={{ en: "Schema transform method definition", es: "Definición del método transform" }}
+      code={code}
+      language="typescript"
+    />
+  )
 }

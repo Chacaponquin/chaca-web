@@ -7,5 +7,11 @@ export default function ArrayFunctionDefinition() {
 }
 `
 
-  return <Code code={code} language="typescript" title="Array function definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Array function definition", es: "Definición de un arreglo con una función" }}
+    />
+  )
 }

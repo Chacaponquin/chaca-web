@@ -23,5 +23,11 @@ dataset.generate()
     Product: [...]
 }
 `
-  return <Code code={code} language="typescript" title="Generate dataset example" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Generate dataset example", es: "Generar dataset de ejemplo" }}
+    />
+  )
 }

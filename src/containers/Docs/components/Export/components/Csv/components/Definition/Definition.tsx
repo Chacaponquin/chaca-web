@@ -20,5 +20,11 @@ schema.export({
 })
 `
 
-  return <Code code={code} language="typescript" title="Csv format definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Csv format definition", es: "Definición del formato csv" }}
+    />
+  )
 }

@@ -25,5 +25,11 @@ const productSchema = chaca.schema({
 })
 `
 
-  return <Code code={code} language="typescript" title="Get schema values example" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Get schema values example", es: "Obtener valores de un schema" }}
+    />
+  )
 }

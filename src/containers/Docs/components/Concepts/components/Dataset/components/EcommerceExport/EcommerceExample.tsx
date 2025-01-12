@@ -10,5 +10,11 @@ dataset.export({
 })
 `
 
-  return <Code code={code} language="typescript" title="Export ecommerce dataset" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Export Ecommerce dataset", es: "Exportar dataset de Ecommerce" }}
+    />
+  )
 }

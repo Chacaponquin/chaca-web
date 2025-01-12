@@ -31,5 +31,11 @@ const schema = chaca.schema({
 })
 `
 
-  return <Code code={code} language="typescript" title="Limitar la longitud del arreglo" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ es: "Limitar la longitud del arreglo", en: "Define array limits" }}
+    />
+  )
 }

@@ -20,5 +20,5 @@ const schema = chaca.schema({
 })
 `
 
-  return <Code code={code} language="typescript" title="schema.js" />
+  return <Code code={code} language="typescript" title={{ en: "schema.js", es: "schema.js" }} />
 }

@@ -20,5 +20,11 @@ schema.export({
 })
 `
 
-  return <Code code={code} language="typescript" title="Postgresql format definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Postgresql format definition", es: "Definición del formato postgresql" }}
+    />
+  )
 }

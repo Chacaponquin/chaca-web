@@ -10,5 +10,11 @@ export default function Error() {
 }
 `
 
-  return <Code code={code} language="typescript" title="Error response structure" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Error response structure", es: "Estructura del mensaje de error" }}
+    />
+  )
 }

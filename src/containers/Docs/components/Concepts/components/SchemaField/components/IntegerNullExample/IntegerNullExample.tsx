@@ -19,5 +19,11 @@ schema.array(3)
  ]
 `
 
-  return <Code code={code} language="typescript" title="Integer possible null" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Integer possible null", es: "Valor entero para valores nulos" }}
+    />
+  )
 }

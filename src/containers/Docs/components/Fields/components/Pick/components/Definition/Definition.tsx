@@ -5,5 +5,11 @@ export default function Definition() {
 chaca.pick<V>(props: PickFieldProps) => PickField<V>
 `
 
-  return <Code code={code} language="typescript" title="Pick field definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Pick field definition", es: "Definición del campo pick" }}
+    />
+  )
 }

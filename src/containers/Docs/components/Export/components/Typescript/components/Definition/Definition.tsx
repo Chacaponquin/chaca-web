@@ -20,5 +20,11 @@ schema.export({
 })
 `
 
-  return <Code code={code} language="typescript" title="Typescript format definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Typescript format definition", es: "Definición del formato typescript" }}
+    />
+  )
 }

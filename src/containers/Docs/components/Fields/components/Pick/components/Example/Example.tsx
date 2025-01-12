@@ -16,5 +16,14 @@ schema.array(3)
 ]
 `
 
-  return <Code code={code} language="typescript" title="Product sizes pick definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{
+        en: "Product sizes pick definition",
+        es: "Definición de las tallas de un producto con un campo pick",
+      }}
+    />
+  )
 }

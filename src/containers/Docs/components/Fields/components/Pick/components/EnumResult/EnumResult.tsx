@@ -10,5 +10,14 @@ schema.object()
 }
 `
 
-  return <Code code={code} language="typescript" title="Product sizes as enum result" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{
+        en: "Product sizes as enum result",
+        es: "Resultado de la generación de las tallas de un producto",
+      }}
+    />
+  )
 }

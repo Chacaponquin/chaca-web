@@ -5,5 +5,11 @@ export default function TransformDefinition() {
 dataset.transform(config: DumpConfig) => DumpFile[]
 `
 
-  return <Code code={code} language="typescript" title="Transform dataset definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Dataset transform method definition", es: "Definición del método transform" }}
+    />
+  )
 }

@@ -17,5 +17,11 @@ schema.object()
 }
 `
 
-  return <Code code={code} language="typescript" title="Array field definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Array field definition", es: "Definición de un campo array" }}
+    />
+  )
 }

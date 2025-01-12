@@ -20,5 +20,11 @@ schema.export({
 })
 `
 
-  return <Code code={code} language="typescript" title="Yaml format definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Yaml format definition", es: "Definición para el formato yaml" }}
+    />
+  )
 }

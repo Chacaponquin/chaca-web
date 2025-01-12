@@ -16,5 +16,11 @@ const dataset = chaca.dataset([
 ])
 `
 
-  return <Code code={code} language="typescript" title="Ecommerce dataset definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Ecommerce dataset definition", es: "Definición del dataset Ecommerce" }}
+    />
+  )
 }

@@ -5,5 +5,14 @@ export default function CurrentDefinition() {
 store.currentDocuments<T>() => T[]
 `
 
-  return <Code code={code} language="typescript" title="Get current schema documents definiton" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{
+        en: "currentDocuments method definiton",
+        es: "Definición del método currentDocuments",
+      }}
+    />
+  )
 }
