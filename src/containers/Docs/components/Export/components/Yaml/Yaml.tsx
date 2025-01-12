@@ -1,22 +1,9 @@
-import { Danger, P } from "@markdown/components/Markdown/components"
-import { DatasetResult, Header } from "../../shared/components"
-import { Definition, YamlParams } from "./components"
+import { useTranslationComponent } from "@modules/app/modules/language/hooks"
+import En from "./translations/En"
+import Es from "./translations/Es"
 
 export default function Yaml() {
-  return (
-    <>
-      <Header extension="yml" format="yaml" />
-      <YamlParams />
-      <Definition />
+  const { CONTENT } = useTranslationComponent({ CONTENT: { en: <En />, es: <Es /> } })
 
-      <Danger title="¿Qué se puede exportar?">
-        <P>
-          Si intentas exportar datos que sean expresiones regulares o funciones estos no serán
-          tenidos en cuenta para crear el archivo.
-        </P>
-      </Danger>
-
-      <DatasetResult extension="yaml" language="yaml" />
-    </>
-  )
+  return CONTENT
 }
