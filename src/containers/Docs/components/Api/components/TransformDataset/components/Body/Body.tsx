@@ -12,12 +12,21 @@ export default function Body() {
     FORMAT_PARAM,
     {
       name: "dataset",
-      description: (
-        <>
-          Objeto con la definición del <Link to={DATASET_CONCEPT.redirect}>dataset</Link>. Se define
-          de la misma forma que el cuerpo de la ruta <Link to={DATASET.bodyUrl}>api/dataset</Link>
-        </>
-      ),
+      description: {
+        es: (
+          <>
+            Objeto con la definición del <Link to={DATASET_CONCEPT.redirect}>dataset</Link>. Se
+            define de la misma forma que el cuerpo de la ruta{" "}
+            <Link to={DATASET.bodyUrl}>api/dataset</Link>
+          </>
+        ),
+        en: (
+          <>
+            Object with the <Link to={DATASET_CONCEPT.redirect}>dataset</Link> definition. It is
+            defined in the same way as the <Link to={DATASET.bodyUrl}>api/dataset</Link> route body
+          </>
+        ),
+      },
       params: [],
       required: true,
       types: [],

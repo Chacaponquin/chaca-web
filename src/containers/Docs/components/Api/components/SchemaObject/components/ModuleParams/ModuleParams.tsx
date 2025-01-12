@@ -11,14 +11,24 @@ export default function ModuleParams() {
     TYPE("module"),
     {
       name: "module",
-      description: (
-        <>
-          Módulo de Chaca que será utilizado para generar el valor del campo en cada documento. Esta
-          definición está compuesta por las <Link to={OVERVIEW.apiIdUrl}>api id</Link> de la sección
-          y del módulo separadas por un <MiniCode size="xs">.</MiniCode>. Por ejemplo:{" "}
-          <MiniCode size="xs">internet.username</MiniCode>
-        </>
-      ),
+      description: {
+        es: (
+          <>
+            Módulo de Chaca que será utilizado para generar el valor del campo en cada documento.
+            Esta definición está compuesta por las <Link to={OVERVIEW.apiIdUrl}>api id</Link> de la
+            sección y del módulo separadas por un <MiniCode size="xs">.</MiniCode>. Por ejemplo:{" "}
+            <MiniCode size="xs">internet.username</MiniCode>
+          </>
+        ),
+        en: (
+          <>
+            Chaca module that will be used to generate the field value in each document. This
+            definition is composed by the <Link to={OVERVIEW.apiIdUrl}>api id</Link> of the section
+            and the module separated by a <MiniCode size="xs">.</MiniCode>. For example:{" "}
+            <MiniCode size="xs">internet.username</MiniCode>
+          </>
+        ),
+      },
       params: [],
       required: true,
       types: [COMMON_TYPES.STRING],

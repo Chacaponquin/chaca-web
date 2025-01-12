@@ -5,18 +5,27 @@ export default function PickParams() {
   const params: Param[] = [
     {
       name: "props",
-      description: "Configuración para la selección de valores",
+      description: {
+        es: "Configuración para la selección de valores",
+        en: "Pick values configuration",
+      },
       params: [
         {
           name: "values",
-          description: "Valores que pueden ser seleccionados",
+          description: {
+            es: "Valores que pueden ser seleccionados",
+            en: "Values that can be selected",
+          },
           params: [],
           required: true,
           types: ["any[]"],
         },
         {
           name: "count",
-          description: "Cantidad de valores que pueden ser seleccionados",
+          description: {
+            es: "Cantidad de valores que pueden ser seleccionados",
+            en: "Count of values that can be selected",
+          },
           params: [],
           required: true,
           types: ["PickCount = number | PickCountLimits | PickCountFunction"],

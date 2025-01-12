@@ -5,11 +5,17 @@ export default function ProbParams() {
   const params: Param[] = [
     {
       name: "options",
-      description: "Configuración de los valores posibles",
+      description: {
+        es: "Configuración de los valores a escoger",
+        en: "Values to choose configuration",
+      },
       params: [
         {
           name: "chance",
-          description: "Probabilidad de que el valor sea seleccionado",
+          description: {
+            es: "Probabilidad de que el valor sea seleccionado",
+            en: "Probability of the value being selected",
+          },
           params: [],
           required: true,
           types: ["Chance = number | ChanceFunction"],
@@ -17,7 +23,7 @@ export default function ProbParams() {
         {
           name: "value",
           types: ["any"],
-          description: "Valor que puede ser seleccionado",
+          description: { es: "Valor que puede ser seleccionado", en: "Value that can be selected" },
           params: [],
           required: true,
         },

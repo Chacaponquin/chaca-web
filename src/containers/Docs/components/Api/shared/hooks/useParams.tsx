@@ -7,7 +7,7 @@ export default function useParams() {
   function TYPE(t: string): Param {
     return {
       name: "type",
-      description: "Indica el tipo de campo a definir",
+      description: { es: "Indica el tipo de campo", en: "Indicates the field type" },
       params: [],
       required: true,
       types: [`'${t}'`],
@@ -16,7 +16,7 @@ export default function useParams() {
 
   const COUNT_PARAM: Param = {
     name: "count",
-    description: "Cantidad de documentos a crear",
+    description: { es: "Cantidad de documentos a crear", en: "Count of documents to create" },
     params: [],
     required: true,
     types: [COMMON_TYPES.NUMBER],
@@ -24,7 +24,7 @@ export default function useParams() {
 
   const FILENAME_PARAM: Param = {
     name: "filename",
-    description: "Nombre del archivo a generar",
+    description: { es: "Nombre del archivo a generar", en: "Name of the generated file" },
     params: [],
     required: true,
     types: [COMMON_TYPES.STRING],
@@ -32,7 +32,10 @@ export default function useParams() {
 
   const FORMAT_PARAM: Param = {
     name: "format",
-    description: "Formato de archivo al que se transpilarán los datos generados",
+    description: {
+      es: "Formato de archivo al que se transpilarán los datos generados",
+      en: "File format which the generated data will be transpiled",
+    },
     params: [],
     required: true,
     types: EXPORT_FORMATS,
@@ -41,11 +44,17 @@ export default function useParams() {
   const COMMON_PARAMS: Param[] = [
     {
       name: "isArray",
-      description: "Indica si el valor a retornar para el campo definido será en forma de arreglo",
+      description: {
+        es: "Indica si el valor a retornar para el campo definido será en forma de arreglo",
+        en: "Indicates if the field type returned value will be an array",
+      },
       params: [
         {
           name: "min",
-          description: "Cantidad mínima de valores que van a generarse en el arreglo",
+          description: {
+            es: "Cantidad mínima de valores que van a generarse en el arreglo",
+            en: "Minimum count of values to be generated in the array",
+          },
           params: [],
           types: [COMMON_TYPES.NUMBER],
           required: false,
@@ -53,7 +62,10 @@ export default function useParams() {
         },
         {
           name: "max",
-          description: "Cantidad máxima de valores que van a generarse en el arreglo",
+          description: {
+            es: "Cantidad máxima de valores que van a generarse en el arreglo",
+            en: "Maximum count of values to be generated in the array",
+          },
           params: [],
           types: [COMMON_TYPES.NUMBER],
           required: false,
@@ -65,11 +77,19 @@ export default function useParams() {
     },
     {
       name: "possibleNull",
-      description: (
-        <>
-          Probabilidad de que al generar un documento el campo tenga valor <MiniCode>null</MiniCode>
-        </>
-      ),
+      description: {
+        es: (
+          <>
+            Probabilidad de que al generar un documento el campo tenga valor{" "}
+            <MiniCode>null</MiniCode>
+          </>
+        ),
+        en: (
+          <>
+            Probability that the field has a <MiniCode>null</MiniCode> value
+          </>
+        ),
+      },
       params: [],
       required: false,
       types: [COMMON_TYPES.BOOLEAN, COMMON_TYPES.NUMBER],

@@ -6,11 +6,17 @@ export default function SequenceParams() {
   const params: Param[] = [
     {
       name: "config",
-      description: "Configuración para la secuencia de valores",
+      description: {
+        es: "Configuración para la secuencia de valores",
+        en: "Configuration for the sequence of values",
+      },
       params: [
         {
           name: "startsWith",
-          description: "Valor con el que inicia la secuencia",
+          description: {
+            es: "Valor con el que inicia la secuencia",
+            en: "Sequence start value",
+          },
           params: [],
           required: false,
           types: [COMMON_TYPES.NUMBER],
@@ -18,7 +24,10 @@ export default function SequenceParams() {
         },
         {
           name: "step",
-          description: "Valor a incrementar en cada iteración",
+          description: {
+            es: "Valor a incrementar en cada iteración",
+            en: "Value to increment at each iteration",
+          },
           params: [],
           required: false,
           types: [COMMON_TYPES.NUMBER],

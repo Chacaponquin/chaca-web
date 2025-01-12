@@ -16,7 +16,7 @@ export default function ReplaceSymbols() {
   const params: Param[] = [
     {
       name: "text",
-      description: "Cadena de texto a tranformar",
+      description: { es: "Cadena de texto a tranformar", en: "String to transform" },
       params: [],
       required: true,
       types: [COMMON_TYPES.STRING],
@@ -24,11 +24,17 @@ export default function ReplaceSymbols() {
     {
       name: "props",
       required: false,
-      description: "Configuración para reemplazar los símbolos",
+      description: {
+        es: "Configuración para reemplazar los símbolos",
+        en: "Configuration for replacing symbols",
+      },
       params: [
         {
           name: "banned",
-          description: "Caracteres que no pueden aparecer en la cadena de texto",
+          description: {
+            es: "Caracteres que no pueden aparecer en la cadena de texto",
+            en: "Characters that cannot appear on the string",
+          },
           params: [],
           required: false,
           default: "[]",
@@ -36,8 +42,10 @@ export default function ReplaceSymbols() {
         },
         {
           name: "symbols",
-          description:
-            "Objeto con la definición de otros símbolos junto con los valores que pueden sustituirlos en la cadena de texto",
+          description: {
+            es: "Objeto con la definición de otros símbolos junto con los valores que pueden sustituirlos en la cadena de texto",
+            en: "Object with the definition of other symbols and values that can replace them in the string",
+          },
           params: [],
           required: false,
           default: "{}",

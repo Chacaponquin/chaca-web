@@ -9,24 +9,27 @@ chaca.utils.pick({ values: [1, 2, 3, 4, 5], count: 2 }) // [2, 4]
 chaca.utils.pick({ values: [1, 2, 3, 4, 5], count: 3 }) // [1, 5, 3]
 `
 
-export default function Pick() {
-  const params: Param[] = [
-    {
-      name: "values",
-      description: "Arraeglo de valores que pueden ser escogidos",
-      params: [],
-      required: true,
-      types: ["any[]"],
+const params: Param[] = [
+  {
+    name: "values",
+    description: {
+      es: "Arreglo de valores que pueden ser escogidos",
+      en: "Array of values that can be chosen",
     },
-    {
-      name: "count",
-      description: "Cantidad de valores a escoger",
-      params: [],
-      required: true,
-      types: [COMMON_TYPES.NUMBER],
-    },
-  ]
+    params: [],
+    required: true,
+    types: ["any[]"],
+  },
+  {
+    name: "count",
+    description: { es: "Cantidad de valores a escoger", en: "Count of values to choose" },
+    params: [],
+    required: true,
+    types: [COMMON_TYPES.NUMBER],
+  },
+]
 
+export default function Pick() {
   return (
     <Method title={PICK} code={code} params={params}>
       <P>

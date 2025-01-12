@@ -10,24 +10,27 @@ chaca.utils.multiple({ generator: () => modules.person.firstName(), count: 3 }) 
 chaca.utils.multiple({ generator: (i) => 'element-' + i, count: 3 }) // [ 'element-0', 'element-1', 'element-2' ]
 `
 
-export default function Multiple() {
-  const params: Param[] = [
-    {
-      name: "generator",
-      description: "Función que genera el valor en cada una de las iteraciones",
-      params: [],
-      required: true,
-      types: ["(index: number) => any"],
+const params: Param[] = [
+  {
+    name: "generator",
+    description: {
+      es: "Función que genera el valor en cada una de las iteraciones",
+      en: "Function that generates the value on each iterations",
     },
-    {
-      name: "count",
-      description: "Cantidad de valores a generar",
-      params: [],
-      required: true,
-      types: [COMMON_TYPES.NUMBER],
-    },
-  ]
+    params: [],
+    required: true,
+    types: ["(index: number) => any"],
+  },
+  {
+    name: "count",
+    description: { es: "Cantidad de valores a generar", en: "Count of values to generate" },
+    params: [],
+    required: true,
+    types: [COMMON_TYPES.NUMBER],
+  },
+]
 
+export default function Multiple() {
   return (
     <Method title={MULTIPLE} code={code} params={params}>
       <P>Genera un arreglo de valores a partir de una función generadora.</P>

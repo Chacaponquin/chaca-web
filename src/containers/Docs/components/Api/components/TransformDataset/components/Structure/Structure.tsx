@@ -6,14 +6,14 @@ export default function Structure() {
   const params: Param[] = [
     {
       name: "file",
-      description: "Nombre del archivo",
+      description: { es: "Nombre del archivo", en: "File name" },
       params: [],
       required: false,
       types: [COMMON_TYPES.STRING],
     },
     {
       name: "code",
-      description: "Código generado",
+      description: { es: "Código generado", en: "Generated code" },
       params: [],
       required: false,
       types: [COMMON_TYPES.STRING],

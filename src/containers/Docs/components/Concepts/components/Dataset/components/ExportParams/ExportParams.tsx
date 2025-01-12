@@ -1,31 +1,42 @@
 import { Params } from "@markdown/components/Markdown/components"
 import { Param } from "@markdown/components/Markdown/components/Params/domain"
 import { COMMON_TYPES } from "@markdown/domain/constants"
-import { Fragment } from "react"
 
 export default function ExportParams() {
   const params: Param[] = [
     {
       name: "config",
-      description: "Configuración del archivo a exportar",
+      description: {
+        es: "Configuración del archivo a exportar",
+        en: "Generated file configuration",
+      },
       params: [
         {
           name: "filename",
-          description: <Fragment>Nombre del archivo a exportar</Fragment>,
+          description: {
+            es: <>Nombre del archivo a exportar</>,
+            en: <>Name of the file to export</>,
+          },
           params: [],
           required: true,
           types: [COMMON_TYPES.STRING],
         },
         {
           name: "format",
-          description: "Formato de los archivos a exportar",
+          description: {
+            es: "Formato de los archivos a exportar",
+            en: "Format of files to export",
+          },
           params: [],
           required: true,
           types: ["ExportFormat"],
         },
         {
           name: "location",
-          description: "Carpeta de destino de los archivos a exportar",
+          description: {
+            es: "Carpeta de destino de los archivos a exportar",
+            en: "Destination folder for export files",
+          },
           params: [],
           required: true,
           types: [COMMON_TYPES.STRING],
@@ -35,7 +46,10 @@ export default function ExportParams() {
           required: false,
           default: "false",
           params: [],
-          description: "Mostrar en consola el progreso de creación del dataset",
+          description: {
+            es: "Mostrar en consola el progreso de creación del dataset",
+            en: "Show dataset creation progress in console",
+          },
           types: [COMMON_TYPES.BOOLEAN],
         },
       ],

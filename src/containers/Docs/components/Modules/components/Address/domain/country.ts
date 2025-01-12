@@ -7,7 +7,7 @@ modules.address.country() // 'Spain'
 export const COUNTRY_PARAMS: Param[] = [
   {
     name: "continent",
-    description: "Continente del país",
+    description: { es: "Continente del país", en: "Country continent" },
     params: [],
     required: false,
     types: [

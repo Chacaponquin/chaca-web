@@ -3,7 +3,7 @@ import { COMMON_TYPES } from "@markdown/domain/constants"
 
 export const TEXT_PARAM: Param = {
   name: "text",
-  description: "Cadena de texto a transformar",
+  description: { es: "Cadena de texto a transformar", en: "String to transform" },
   params: [],
   required: true,
   types: [COMMON_TYPES.STRING],

@@ -8,21 +8,21 @@ export default function SumDateRange() {
   const params: Param[] = [
     {
       name: "date",
-      description: "Fecha de referencia",
+      description: { es: "Fecha de referencia", en: "Reference date" },
       params: [],
       required: true,
       types: [COMMON_TYPES.DATE],
     },
     {
       name: "range",
-      description: "Unidad de tiempo",
+      description: { es: "Unidad de tiempo", en: "Time unit" },
       params: [],
       required: true,
       types: [`"years"`, `"seconds"`, `"minutes"`, `"days"`, `"hours"`, `"months"`],
     },
     {
       name: "value",
-      description: "Cantidad de tiempo a sumar",
+      description: { es: "Cantidad de tiempo a añadir", en: "Amount of time to add" },
       params: [],
       required: true,
       types: [COMMON_TYPES.NUMBER],

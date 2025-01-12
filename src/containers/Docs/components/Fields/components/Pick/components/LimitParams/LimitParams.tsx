@@ -6,7 +6,10 @@ export default function LimitParams() {
   const params: Param[] = [
     {
       name: "min",
-      description: "Cantidad mínima de valores a escoger",
+      description: {
+        es: "Cantidad mínima de valores a escoger",
+        en: "Minimum count of values to choose from",
+      },
       params: [],
       required: false,
       default: "0",
@@ -14,7 +17,10 @@ export default function LimitParams() {
     },
     {
       name: "max",
-      description: "Cantidad máxima de valores a escoger",
+      description: {
+        es: "Cantidad máxima de valores a escoger",
+        en: "Maximum count of values to choose from",
+      },
       params: [],
       required: false,
       default: "values.length",

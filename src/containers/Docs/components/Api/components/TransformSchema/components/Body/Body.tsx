@@ -13,12 +13,20 @@ export default function Body() {
     {
       name: "schema",
       required: true,
-      description: (
-        <>
-          Objeto con la definición del <Link to={SCHEMA.redirect}>dataset</Link>. Se define de la
-          misma forma que el cuerpo de la ruta <Link to={SCHEMA_OBJECT.bodyUrl}>api/schema</Link>
-        </>
-      ),
+      description: {
+        es: (
+          <>
+            Objeto con la definición del <Link to={SCHEMA.redirect}>schema</Link>. Se define de la
+            misma forma que el cuerpo de la ruta <Link to={SCHEMA_OBJECT.bodyUrl}>api/schema</Link>
+          </>
+        ),
+        en: (
+          <>
+            Object with the <Link to={SCHEMA.redirect}>schema</Link> definition. It is defined in
+            the same way as the <Link to={SCHEMA_OBJECT.bodyUrl}>api/schema</Link> route body
+          </>
+        ),
+      },
       params: [],
       types: [],
     },

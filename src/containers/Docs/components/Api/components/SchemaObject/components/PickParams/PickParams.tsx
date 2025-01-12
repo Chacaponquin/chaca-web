@@ -10,18 +10,27 @@ export default function PickParams() {
     TYPE("pick"),
     {
       name: "values",
-      description: "Arreglo de valores que pueden ser escogidos",
+      description: {
+        es: "Arreglo de valores que pueden ser escogidos",
+        en: "Array of values that can be chosen",
+      },
       params: [],
       types: ["any[]"],
       required: true,
     },
     {
       name: "count",
-      description: "Cantidad de valores que serán escogidos",
+      description: {
+        es: "Cantidad de valores que serán escogidos",
+        en: "Count of values to be chosen",
+      },
       params: [
         {
           name: "min",
-          description: "Cantidad mínima de valores que pueden ser escogidos",
+          description: {
+            es: "Cantidad mínima de valores que pueden ser escogidos",
+            en: "Minimum number of values that can be chosen",
+          },
           params: [],
           required: false,
           default: "0",
@@ -29,7 +38,10 @@ export default function PickParams() {
         },
         {
           name: "max",
-          description: "Cantidad máxima de valores que pueden ser escogidos",
+          description: {
+            es: "Cantidad máxima de valores que pueden ser escogidos",
+            en: "Maximum number of values that can be chosen",
+          },
           params: [],
           required: false,
           types: [COMMON_TYPES.NUMBER],

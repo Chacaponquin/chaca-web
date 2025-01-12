@@ -5,26 +5,36 @@ export default function ObjectParams() {
   const params: Param[] = [
     {
       name: "type",
-      description: "Definición del tipo de campo",
+      description: { es: "Definición del tipo de campo", en: "Field type definition" },
       params: [],
       required: true,
       types: ["FieldTypes"],
     },
     {
       name: "isArray",
-      description:
-        "Indica si el valor generado es un arreglo de valores con tipo de campo definido",
+      description: {
+        es: "Indica si el valor generado es un arreglo de valores con tipo de campo definido",
+        en: "Indicates if the generated value is an array of values with a defined field type",
+      },
       params: [],
       required: false,
       types: ["IsArrayConfig"],
     },
     {
       name: "possibleNull",
-      description: (
-        <>
-          Indica la probabilidad de que el valor generado sea <MiniCode size="sm">null</MiniCode>
-        </>
-      ),
+      description: {
+        es: (
+          <>
+            Indica la probabilidad de que el valor generado sea <MiniCode size="sm">null</MiniCode>
+          </>
+        ),
+        en: (
+          <>
+            Indicates the probability that the generated value is{" "}
+            <MiniCode size="sm">null</MiniCode>
+          </>
+        ),
+      },
       params: [],
       required: false,
       types: ["PossibleNullConfig"],

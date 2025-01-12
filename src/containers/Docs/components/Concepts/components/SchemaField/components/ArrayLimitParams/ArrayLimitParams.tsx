@@ -6,7 +6,10 @@ export default function ArrayLimitParams() {
   const params: Param[] = [
     {
       name: "min",
-      description: "Longitud mínima que puede tener el arreglo",
+      description: {
+        es: "Longitud mínima que puede tener el arreglo",
+        en: "Minimum length that the array can have",
+      },
       required: false,
       params: [],
       types: [COMMON_TYPES.NUMBER],
@@ -14,7 +17,10 @@ export default function ArrayLimitParams() {
     },
     {
       name: "max",
-      description: "Longitud máxima que puede tener el arreglo",
+      description: {
+        es: "Longitud máxima que puede tener el arreglo",
+        en: "Maximum length that the array can have",
+      },
       params: [],
       required: false,
       types: [COMMON_TYPES.NUMBER],

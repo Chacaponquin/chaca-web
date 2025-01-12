@@ -10,12 +10,18 @@ export default function SequentialParams() {
     TYPE("sequential"),
     {
       name: "values",
-      description: "Arreglo de valores que se asignarán de forma secuencial",
+      description: {
+        es: "Arreglo de valores que se asignarán de forma secuencial",
+        en: "Array of values to be assigned sequentially",
+      },
       params: [
         {
           name: "loop",
           required: false,
-          description: "Indica si la secuencia se reinicia al llegar al último valor",
+          description: {
+            es: "Indica si la secuencia se reinicia al llegar al último valor",
+            en: "Indicates if the sequence restarts when the last value is reached",
+          },
           params: [],
           types: [COMMON_TYPES.BOOLEAN],
           default: "false",

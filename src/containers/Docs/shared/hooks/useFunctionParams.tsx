@@ -5,7 +5,10 @@ import { Param } from "@modules/shared/modules/markdown/components/Markdown/comp
 export default function useFunctionParams() {
   const CURRENT_FIELDS_PARAM: Param = {
     types: ["any"],
-    description: "Objeto con los campos creados del documento hasta ese momento",
+    description: {
+      es: "Objeto con los campos creados del documento hasta ese momento",
+      en: "Object with the fields created in the document until that point",
+    },
     name: "currentFields",
     params: [],
     required: false,
@@ -13,13 +16,22 @@ export default function useFunctionParams() {
 
   const DATASET_STORE_PARAM: Param = {
     types: ["DatasetStore"],
-    description: (
-      <>
-        Almacén que contiene el estado actual del <Link to={DATASET.redirect}>dataset</Link> para
-        acceder a datos de otros <Link to={SCHEMA.redirect}>schemas</Link>.{" "}
-        <Link to={DATASET_STORE.redirect}>Leer más sobre la Dataset Store</Link>
-      </>
-    ),
+    description: {
+      es: (
+        <>
+          Almacén que contiene el estado actual del <Link to={DATASET.redirect}>dataset</Link> para
+          acceder a datos de otros <Link to={SCHEMA.redirect}>schemas</Link>.{" "}
+          <Link to={DATASET_STORE.redirect}>Leer más sobre la Dataset Store</Link>
+        </>
+      ),
+      en: (
+        <>
+          Store containing the current <Link to={DATASET.redirect}>dataset</Link> state to access
+          data from other <Link to={SCHEMA.redirect}>schemas</Link>.{" "}
+          <Link to={DATASET_STORE.redirect}>Read more about the Dataset Store</Link>
+        </>
+      ),
+    },
     name: "store",
     params: [],
     required: false,
