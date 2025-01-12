@@ -10,5 +10,11 @@ const code = `
 `
 
 export default function FolderStructure() {
-  return <Code code={code} language="bash" title="Folder structure" />
+  return (
+    <Code
+      code={code}
+      language="bash"
+      title={{ en: "Folder structure", es: "Estructura de carpetas" }}
+    />
+  )
 }

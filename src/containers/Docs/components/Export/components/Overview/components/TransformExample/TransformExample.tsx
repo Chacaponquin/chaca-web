@@ -18,5 +18,11 @@ chaca.transform(data, {
 //]
 `
 
-  return <Code code={code} language="typescript" title="Transform data example code" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Transform data example", es: "Ejemplo de transformación de datos" }}
+    />
+  )
 }

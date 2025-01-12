@@ -18,7 +18,9 @@ export default function Method({ title, params, code, children }: Props) {
 
       {params.length > 0 && <Params params={params} />}
 
-      {code && <Code code={code} language="typescript" title="Examples" />}
+      {code && (
+        <Code code={code} language="typescript" title={{ en: "Examples", es: "Ejemplos" }} />
+      )}
     </>
   )
 }

@@ -24,5 +24,11 @@ export default function UserDataExample() {
 ]
   `
 
-  return <Code title="User data example" language="json" code={code} />
+  return (
+    <Code
+      title={{ en: "User schema generated data", es: "Datos generados del schema User" }}
+      language="json"
+      code={code}
+    />
+  )
 }

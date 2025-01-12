@@ -5,5 +5,11 @@ export default function Definition() {
 chaca.key(field: FieldToRef, config?: FieldRefInputConfig) => RefField
 `
 
-  return <Code code={code} language="typescript" title="Key field definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Ref field definition", es: "Definición de un campo ref" }}
+    />
+  )
 }

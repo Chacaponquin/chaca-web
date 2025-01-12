@@ -20,5 +20,14 @@ schema.array(3)
 ]
 `
 
-  return <Code code={code} language="typescript" title="Probability as float value example" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{
+        en: "Probability value as float example",
+        es: "Valor de probabilidad como valor flotante",
+      }}
+    />
+  )
 }

@@ -13,5 +13,7 @@ const schema = chaca.schema({
 })
 `
 
-  return <Code title="Use Chaca" code={code} language="typescript"></Code>
+  return (
+    <Code title={{ en: "Use Chaca", es: "Uso de Chaca" }} code={code} language="typescript"></Code>
+  )
 }

@@ -17,5 +17,5 @@ const schema = chaca.schema({
 })
 `
 
-  return <Code title="user.js" code={code} language="javascript" />
+  return <Code title={{ en: "user.js", es: "user.js" }} code={code} language="javascript" />
 }

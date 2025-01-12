@@ -73,5 +73,11 @@ const dataset = chaca.dataset([
 ])
   `
 
-  return <Code title="Define blog dataset" code={alternative ? alt : code} language="javascript" />
+  return (
+    <Code
+      title={{ en: "Define blog dataset", es: "Definición del dataset Blog" }}
+      code={alternative ? alt : code}
+      language="javascript"
+    />
+  )
 }

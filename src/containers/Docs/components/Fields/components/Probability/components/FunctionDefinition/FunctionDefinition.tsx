@@ -7,5 +7,14 @@ export default function FunctionDefinition() {
 }
 `
 
-  return <Code code={code} language="typescript" title="Chance definition as function" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{
+        en: "Chance definition as function",
+        es: "Definición del valor de probabilidad como función",
+      }}
+    />
+  )
 }

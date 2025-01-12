@@ -10,5 +10,14 @@ const shopSchema = chaca.schema({
 })
 `
 
-  return <Code code={code} language="typescript" title="Ecommerce reference example" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{
+        en: "Ecommerce dataset reference example",
+        es: "Ejemplo de referencia en el dataset Ecommerce",
+      }}
+    />
+  )
 }

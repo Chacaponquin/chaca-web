@@ -7,5 +7,11 @@ export default function Definition() {
 }
 `
 
-  return <Code code={code} language="typescript" title="Custom field definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Custom field definition", es: "Definición de un campo custom" }}
+    />
+  )
 }

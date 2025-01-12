@@ -19,5 +19,11 @@ sizeSchema.array(5)
 ]
 `
 
-  return <Code code={code} language="typescript" title="Sequential field example" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Sequential field example", es: "Ejemplo de un campo sequential" }}
+    />
+  )
 }

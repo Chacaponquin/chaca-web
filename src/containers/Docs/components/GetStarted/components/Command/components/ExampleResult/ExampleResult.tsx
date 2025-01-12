@@ -58,5 +58,5 @@ const code = `
 `
 
 export default function ExampleResult() {
-  return <Code title="user.json" code={code} language="json" />
+  return <Code title={{ en: "user.json", es: "user.json" }} code={code} language="json" />
 }

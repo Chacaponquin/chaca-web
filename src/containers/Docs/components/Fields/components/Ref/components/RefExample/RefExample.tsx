@@ -39,5 +39,11 @@ dataset.generate()
 }
 `
 
-  return <Code code={code} language="typescript" title="User-Product relation example" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "User-Product relation", es: "Relación User-Product" }}
+    />
+  )
 }

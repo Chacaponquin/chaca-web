@@ -16,5 +16,11 @@ const dataset = chaca.dataset([
 ])
 `
 
-  return <Code code={code} language="typescript" title="Wrong unique reference" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Wrong unique reference", es: "Error en la definición de referencias únicas" }}
+    />
+  )
 }

@@ -5,5 +5,11 @@ npx chaca [command] --help
 `
 
 export default function HelpExample() {
-  return <Code code={code} language="bash" title="Export command help" />
+  return (
+    <Code
+      code={code}
+      language="bash"
+      title={{ en: "Command help", es: "Ayuda acerca de un comando" }}
+    />
+  )
 }

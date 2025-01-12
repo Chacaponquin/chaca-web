@@ -13,5 +13,14 @@ export default function WrongObjectExport() {
 ]
 `
 
-  return <Code code={code} title="Wrong data types for object fields" language="typescript" />
+  return (
+    <Code
+      code={code}
+      title={{
+        en: "Wrong data types for object fields",
+        es: "Error de tipos de datos en los objetos",
+      }}
+      language="typescript"
+    />
+  )
 }

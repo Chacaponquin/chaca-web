@@ -11,5 +11,11 @@ const id = modules.id.uuid()
 const numberLowerThan5 = modules.datatype.int({ max: 5 })
 `
 
-  return <Code title="Generate module value" code={code} language="typescript"></Code>
+  return (
+    <Code
+      title={{ en: "Generate module value", es: "Generar los valores de un módulo" }}
+      code={code}
+      language="typescript"
+    ></Code>
+  )
 }

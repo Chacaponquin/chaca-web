@@ -5,5 +5,11 @@ export default function Definition() {
 chaca.sequence(config?: SequenceFieldProps) => SequenceField
 `
 
-  return <Code code={code} language="typescript" title="Sequence field definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Sequence field definition", es: "Definición del campo sequence" }}
+    />
+  )
 }

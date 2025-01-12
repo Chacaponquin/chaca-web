@@ -16,5 +16,11 @@ ticketSchema.array(3)
 ]
 `
 
-  return <Code code={code} language="typescript" title="Enum ticket example" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Enum ticket status example", es: "Estado de un ticket con un campo enum" }}
+    />
+  )
 }

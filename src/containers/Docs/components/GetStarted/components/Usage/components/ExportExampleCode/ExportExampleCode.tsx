@@ -36,5 +36,11 @@ await dataset.export({
 })
 `
 
-  return <Code title="Export blog dataset" code={code} language="javascript" />
+  return (
+    <Code
+      title={{ en: "Export Blog dataset", es: "Exportar dataset Blog" }}
+      code={code}
+      language="javascript"
+    />
+  )
 }

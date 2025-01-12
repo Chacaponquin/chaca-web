@@ -35,5 +35,11 @@ schema.array(5)
 ]
 `
 
-  return <Code code={code} language="typescript" title="Sequence field example" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Sequence field example", es: "Ejemplo de un campo sequence" }}
+    />
+  )
 }

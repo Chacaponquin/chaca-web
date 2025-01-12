@@ -5,5 +5,11 @@ export default function TransformDefinition() {
 chaca.transform(data: any, config: DumpConfig) => Promise<DumpFile[]>
 `
 
-  return <Code code={code} language="typescript" title="Transform definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Transform definition", es: "Definición del método transform" }}
+    />
+  )
 }

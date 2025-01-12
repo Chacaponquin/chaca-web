@@ -5,5 +5,11 @@ export default function Definition() {
 chaca.export(data: any, config: FileConfig) => Promise<string[]>
 `
 
-  return <Code code={code} language="typescript" title="Export definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Export definition", es: "Definición del método export" }}
+    />
+  )
 }

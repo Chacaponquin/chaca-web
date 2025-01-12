@@ -9,5 +9,11 @@ const schema = chaca.schema({
 `
 
 export default function UsageSchema() {
-  return <Code code={code} language="typescript" title="Modules usage on schema" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Modules usage on schema definition", es: "Uso de módulos en un schema" }}
+    />
+  )
 }

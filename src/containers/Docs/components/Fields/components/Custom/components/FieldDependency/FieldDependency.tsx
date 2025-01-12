@@ -22,7 +22,11 @@ const movieSchema = chaca.schema({
         se encuentre definido más abajo en el objeto.
       </P>
 
-      <Code code={code} language="typescript" title="Wrong fields dependency" />
+      <Code
+        code={code}
+        language="typescript"
+        title={{ en: "Wrong fields dependency", es: "Dependencia errónea entre campos" }}
+      />
     </Warning>
   )
 }

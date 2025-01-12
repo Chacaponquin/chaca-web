@@ -22,5 +22,14 @@ const userSchema = chaca.schema({
 })
 `
 
-  return <Code code={code} language="typescript" title="Sex field using chance function" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{
+        en: "Sex field using chance function",
+        es: "Campo sex utilizando una función de probabilidad",
+      }}
+    />
+  )
 }

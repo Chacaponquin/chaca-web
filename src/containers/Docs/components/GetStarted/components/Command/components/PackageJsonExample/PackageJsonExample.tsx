@@ -7,5 +7,5 @@ const code = `
 `
 
 export default function PackageJsonExample() {
-  return <Code code={code} language="json" title="package.json" />
+  return <Code code={code} language="json" title={{ en: "package.json", es: "package.json" }} />
 }

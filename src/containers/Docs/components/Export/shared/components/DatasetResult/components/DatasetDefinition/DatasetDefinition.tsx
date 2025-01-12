@@ -39,5 +39,11 @@ await dataset.export({
 })
 `
 
-  return <Code title="Example dataset definition" code={code} language="typescript" />
+  return (
+    <Code
+      title={{ en: "Example dataset definition", es: "Ejemplo de la definición de un dataset" }}
+      code={code}
+      language="typescript"
+    />
+  )
 }

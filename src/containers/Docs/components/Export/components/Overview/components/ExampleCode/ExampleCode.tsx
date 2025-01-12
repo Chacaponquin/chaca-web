@@ -14,5 +14,11 @@ await chaca.export(data, {
 })
 `
 
-  return <Code code={code} language="typescript" title="Export data example code" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Export data example code", es: "Ejemplo de exportación de datos" }}
+    />
+  )
 }

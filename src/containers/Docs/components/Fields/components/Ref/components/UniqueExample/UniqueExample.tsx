@@ -32,5 +32,11 @@ dataset.generate()
 }
 `
 
-  return <Code code={code} language="typescript" title="Unique reference example" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Unique reference example", es: "Ejemplo de referencias únicas" }}
+    />
+  )
 }

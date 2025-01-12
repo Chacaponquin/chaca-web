@@ -11,5 +11,11 @@ module.exports = chaca.schema({
 `
 
 export default function ConfigFile() {
-  return <Code code={code} title="build-users.js" language="javascript" />
+  return (
+    <Code
+      code={code}
+      title={{ en: "build-users.js", es: "build-users.js" }}
+      language="javascript"
+    />
+  )
 }

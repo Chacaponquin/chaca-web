@@ -16,5 +16,11 @@ const dataset = chaca.dataset([
 ])
   `
 
-  return <Code code={code} language="typescript" title="Category schema definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Category schema definition", es: "Definición del schema Category" }}
+    />
+  )
 }

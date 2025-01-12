@@ -5,5 +5,11 @@ export default function Definition() {
 chaca.sequential<K>(values: K[], config?: SequentialFieldConfig) => SequentialField<K>
 `
 
-  return <Code code={code} language="typescript" title="Sequential field definition" />
+  return (
+    <Code
+      code={code}
+      language="typescript"
+      title={{ en: "Sequential field definition", es: "Definición del campo sequential" }}
+    />
+  )
 }

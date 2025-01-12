@@ -34,5 +34,11 @@ dataset.transform({
 })
 `
 
-  return <Code title="Transform blog dataset" code={code} language="typescript" />
+  return (
+    <Code
+      title={{ en: "Transform blog dataset", es: "Transformar dataset Blog" }}
+      code={code}
+      language="typescript"
+    />
+  )
 }
