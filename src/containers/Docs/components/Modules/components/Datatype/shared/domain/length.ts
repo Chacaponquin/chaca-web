@@ -3,7 +3,7 @@ import { COMMON_TYPES } from "@markdown/domain/constants"
 
 export const LENGTH: Param = {
   name: "length",
-  description: "Longitud de la cadena de texto a generar",
+  description: { es: "Longitud de la cadena de texto a generar", en: "String length" },
   params: [],
   required: false,
   types: [COMMON_TYPES.NUMBER],

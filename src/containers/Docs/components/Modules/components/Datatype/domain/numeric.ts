@@ -16,7 +16,10 @@ export const NUMERIC_PARAMS: Param[] = [
   LENGTH,
   {
     name: "allowLeadingZeros",
-    description: "",
+    description: {
+      es: "La cadena de texto puede tener 1 o más ceros en su inicio",
+      en: "The string may have 1 or more zeros at the beginning",
+    },
     types: [COMMON_TYPES.BOOLEAN],
     params: [],
     required: false,

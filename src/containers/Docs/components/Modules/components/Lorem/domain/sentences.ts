@@ -10,7 +10,7 @@ modules.lorem.sentences()
 export const SENTENCES_PARAMS: Param[] = [
   {
     name: "sentencesCount",
-    description: "Cantidad de oraciones a generar",
+    description: { es: "Cantidad de oraciones a generar", en: "Sentences count" },
     params: [],
     required: false,
     types: [COMMON_TYPES.NUMBER],
@@ -18,7 +18,7 @@ export const SENTENCES_PARAMS: Param[] = [
   },
   {
     name: "separator",
-    description: "Separador entre oraciones",
+    description: { es: "Separador entre oraciones", en: "Sentences separator" },
     params: [],
     required: false,
     types: [COMMON_TYPES.STRING],

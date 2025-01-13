@@ -8,7 +8,7 @@ modules.lorem.paragraphs()
 export const PARAGRAPHS_PARAMS: Param[] = [
   {
     name: "paragraphsCount",
-    description: "Cantidad de párrafos a generar",
+    description: { es: "Cantidad de párrafos a generar", en: "Paragraphs count" },
     params: [],
     required: false,
     types: [COMMON_TYPES.NUMBER],
@@ -16,7 +16,7 @@ export const PARAGRAPHS_PARAMS: Param[] = [
   },
   {
     name: "separator",
-    description: "Separador entre párrafos",
+    description: { es: "Separador entre párrafos", en: "Separator between paragraphs" },
     params: [],
     required: false,
     types: [COMMON_TYPES.STRING],
@@ -24,14 +24,20 @@ export const PARAGRAPHS_PARAMS: Param[] = [
   },
   {
     name: "minSentences",
-    description: "Cantidad mínima de oraciones que puede tener cada párrafo",
+    description: {
+      es: "Cantidad mínima de oraciones que puede tener cada párrafo",
+      en: "Minimum count of sentences that each paragraph can have",
+    },
     params: [],
     required: false,
     types: [COMMON_TYPES.NUMBER],
   },
   {
     name: "maxSentences",
-    description: "Cantidad máxima de oraciones que puede tener cada párrafo",
+    description: {
+      es: "Cantidad máxima de oraciones que puede tener cada párrafo",
+      en: "Maximun count of sentences that each paragraph can have",
+    },
     params: [],
     required: false,
     types: [COMMON_TYPES.NUMBER],

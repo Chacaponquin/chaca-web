@@ -8,7 +8,7 @@ export const EMOJI_PARAMS: Param[] = [
   {
     name: "emoji",
     required: false,
-    description: "Categoría",
+    description: { es: "Categoría del emoji", en: "Emoji category" },
     params: [],
     types: [
       "'smiley'",

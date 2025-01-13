@@ -8,7 +8,10 @@ modules.lorem.paragraph()
 export const PARAGRAPH_PARAMS: Param[] = [
   {
     name: "count",
-    description: "Cantidad de oraciones que tendrá el párrafo",
+    description: {
+      es: "Cantidad de oraciones que tendrá el párrafo",
+      en: "Count of sentences the paragraph will have",
+    },
     params: [],
     required: false,
     types: [COMMON_TYPES.NUMBER],

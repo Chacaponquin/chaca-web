@@ -7,7 +7,10 @@ export default function useParams() {
   const EXPORT_PARAMS: Param[] = [
     {
       name: "config",
-      description: "Ubicación del archivo de configuración",
+      description: {
+        es: "Ubicación del archivo de configuración",
+        en: "Configuration file location",
+      },
       params: [],
       required: true,
       types: [COMMON_TYPES.STRING],
@@ -15,7 +18,7 @@ export default function useParams() {
     },
     {
       name: "filename",
-      description: "Nombre del archivo a generar",
+      description: { es: "Nombre del archivo a generar", en: "Name of the file to generate" },
       params: [],
       required: false,
       types: [COMMON_TYPES.STRING],
@@ -24,7 +27,10 @@ export default function useParams() {
     },
     {
       name: "output",
-      description: "Ruta de la carpeta donde se ubicarán los archivos creados",
+      description: {
+        es: "Ruta de la carpeta donde se ubicarán los archivos creados",
+        en: "Path of the folder where the created files will be located",
+      },
       params: [],
       required: false,
       types: [COMMON_TYPES.STRING],
@@ -33,15 +39,26 @@ export default function useParams() {
     },
     {
       name: "count",
-      description: (
-        <>
-          Cantidad de documentos a generar.{" "}
-          <Strong>
-            En caso de que se exporte un <Link to={DATASET.redirect}>dataset</Link> este paámetro no
-            se tendrá en cuenta
-          </Strong>
-        </>
-      ),
+      description: {
+        es: (
+          <>
+            Cantidad de documentos a generar.{" "}
+            <Strong>
+              En caso de que se exporte un <Link to={DATASET.redirect}>dataset</Link> este paámetro
+              no se tendrá en cuenta
+            </Strong>
+          </>
+        ),
+        en: (
+          <>
+            Count of documents to generate.{" "}
+            <Strong>
+              If a <Link to={DATASET.redirect}>dataset</Link> is exported, this parameter will not
+              be taken
+            </Strong>
+          </>
+        ),
+      },
       params: [],
       required: false,
       default: "50",

@@ -9,7 +9,10 @@ export default function SchemaParams() {
     TYPE("schema"),
     {
       name: "fields",
-      description: "Objeto con la definición de los campos para el schema",
+      description: {
+        es: "Objeto con la definición de los campos para el schema",
+        en: "Object with the definition schema fields definition",
+      },
       types: ["Record<string, FieldConfig>"],
       params: [],
       required: true,

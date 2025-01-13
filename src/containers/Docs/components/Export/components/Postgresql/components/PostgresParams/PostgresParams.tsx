@@ -16,22 +16,32 @@ export default function PostgresParams() {
     GENERATE_IDS,
     {
       name: "refs",
-      description: (
-        <>
-          Columnas que serán definidas como <MiniCode size="sm">FOREIGN KEY</MiniCode>
-        </>
-      ),
+      description: {
+        es: (
+          <>
+            Columnas que serán definidas como <MiniCode size="sm">FOREIGN KEY</MiniCode>
+          </>
+        ),
+        en: (
+          <>
+            Columns that will be defined as <MiniCode size="sm">FOREIGN KEY</MiniCode>
+          </>
+        ),
+      },
       params: [
         {
           name: "column",
-          description: "Ruta de la columna a modificar",
+          description: { es: "Ruta de la columna a modificar", en: "Column path to modify" },
           required: true,
           params: [],
           types: [COMMON_TYPES.STRING],
         },
         {
           name: "ref",
-          description: "Ruta de la columna a la que referencia",
+          description: {
+            es: "Ruta de la columna a la que referencia",
+            en: "Column path which refers",
+          },
           params: [],
           required: true,
           types: [COMMON_TYPES.STRING],
@@ -43,12 +53,20 @@ export default function PostgresParams() {
     },
     {
       name: "keys",
-      description: (
-        <>
-          Arreglo con la ruta de los campos que tendrán la etiqueta <MiniCode>PRIMARY KEY</MiniCode>{" "}
-          en la definición de tablas
-        </>
-      ),
+      description: {
+        es: (
+          <>
+            Arreglo con la ruta de los campos que tendrán la etiqueta{" "}
+            <MiniCode>PRIMARY KEY</MiniCode> en la definición de tablas
+          </>
+        ),
+        en: (
+          <>
+            Array that contains the field paths that will have the label{" "}
+            <MiniCode>PRIMARY KEY</MiniCode> in the table definition
+          </>
+        ),
+      },
       default: "[]",
       params: [],
       required: false,
@@ -56,12 +74,20 @@ export default function PostgresParams() {
     },
     {
       name: "nulls",
-      description: (
-        <>
-          Arreglo con la ruta de los campos que no tendrán la etiqueta <MiniCode>NOT NULL</MiniCode>{" "}
-          en la definición de tablas
-        </>
-      ),
+      description: {
+        es: (
+          <>
+            Arreglo con la ruta de los campos que no tendrán la etiqueta{" "}
+            <MiniCode>NOT NULL</MiniCode> en la definición de tablas
+          </>
+        ),
+        en: (
+          <>
+            Array that containts the field paths that will not have the{" "}
+            <MiniCode>NOT NULL</MiniCode> tag in the table definition
+          </>
+        ),
+      },
       default: "[]",
       params: [],
       required: false,
@@ -69,12 +95,20 @@ export default function PostgresParams() {
     },
     {
       name: "uniques",
-      description: (
-        <>
-          Arreglo con la ruta de los campos que tendrán la etiqueta <MiniCode>UNIQUE</MiniCode> en
-          la definición de tablas
-        </>
-      ),
+      description: {
+        es: (
+          <>
+            Arreglo con la ruta de los campos que tendrán la etiqueta <MiniCode>UNIQUE</MiniCode> en
+            la definición de tablas
+          </>
+        ),
+        en: (
+          <>
+            Array that contains the field paths that will not have the <MiniCode>NOT NULL</MiniCode>{" "}
+            tag in the table definition
+          </>
+        ),
+      },
       default: "[]",
       params: [],
       required: false,

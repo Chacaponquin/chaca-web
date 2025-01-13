@@ -4,7 +4,7 @@ import { COMMON_TYPES } from "@markdown/domain/constants"
 export const SLUG_PARAMS: Param[] = [
   {
     name: "wordCount",
-    description: "Cantidad de palabras en la cadena de texto",
+    description: { es: "Cantidad de palabras en la cadena de texto", en: "Sentence word count" },
     params: [],
     required: false,
     types: [COMMON_TYPES.NUMBER],

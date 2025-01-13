@@ -23,7 +23,10 @@ export default function CsvParams() {
     UNWIND_ARRAYS,
     {
       name: "excludeKeys",
-      description: "Campos que van a ser eliminados del resultado final",
+      description: {
+        es: "Campos que van a ser eliminados del resultado final",
+        en: "Fields to be removed from the final result",
+      },
       params: [],
       required: false,
       default: "[]",
@@ -32,7 +35,10 @@ export default function CsvParams() {
     {
       name: "trim",
       types: ["TrimProps"],
-      description: "Configuración para la eliminación de espacios en cabeceras y valores",
+      description: {
+        es: "Configuración para la eliminación de espacios en cabeceras y valores",
+        en: "Removing spaces in headers and values configuration",
+      },
       params: [
         {
           description: TRIM_FIELDS_DESC,
@@ -56,11 +62,17 @@ export default function CsvParams() {
     {
       name: "delimiters",
       types: ["Delimiters"],
-      description: "Configuración de los caracteres que delimitan los valores del CSV",
+      description: {
+        es: "Configuración de los caracteres que delimitan los valores del CSV",
+        en: "Configuration of characters that delimit CSV values",
+      },
       params: [
         {
           name: "field",
-          description: "Delimitador para cada valor de una columna",
+          description: {
+            es: "Delimitador para cada valor de una columna",
+            en: "Delimiter for each value in a column",
+          },
           params: [],
           required: false,
           default: "','",
@@ -68,7 +80,10 @@ export default function CsvParams() {
         },
         {
           name: "eol",
-          description: "Delimitador que se ubica al final de cada fila",
+          description: {
+            es: "Delimitador que se ubica al final de cada fila",
+            en: "Delimiter that is placed at the end of each row",
+          },
           params: [],
           required: false,
           default: "\\n",
@@ -76,7 +91,10 @@ export default function CsvParams() {
         },
         {
           name: "wrap",
-          description: "Envuelve los valores del delimitador de elección",
+          description: {
+            es: "Envuelve los valores del delimitador de elección",
+            en: "Wraps the values of the choice delimiter",
+          },
           params: [],
           required: false,
           default: '"',
@@ -87,25 +105,34 @@ export default function CsvParams() {
     },
     {
       name: "parseValue",
-      description: "Función que transforma los valores a formato CSV",
+      description: {
+        es: "Función que transforma los valores a formato CSV",
+        en: "Function that transforms values into CSV format",
+      },
       params: [],
       required: false,
       types: ["(value: any, defaultParser: (v: any) => string) => string"],
     },
     {
       name: "keys",
-      description: "Llaves que serán transformadas en el resultado final",
+      description: {
+        es: "Llaves que serán transformadas en el resultado final",
+        en: "Keys that will be transformed into the final result",
+      },
       params: [
         {
           name: "field",
-          description: "Ruta del campo",
+          description: { es: "Ruta del campo", en: "Field route" },
           params: [],
           required: true,
           types: [COMMON_TYPES.STRING],
         },
         {
           name: "title",
-          description: "Nombre de la cabecera que tendrá en CSV",
+          description: {
+            es: "Nombre de la cabecera que tendrá en CSV",
+            en: "Name of the header that will be in CSV",
+          },
           params: [],
           required: true,
           types: [COMMON_TYPES.STRING],

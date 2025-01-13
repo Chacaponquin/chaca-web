@@ -15,12 +15,20 @@ export default function YamlParams() {
     LINE_WIDTH,
     {
       name: "sortKeys",
-      description: (
-        <>
-          Si es <MiniCode size="sm">true</MiniCode> se ordenarán las cabeceras en orden alfabético.
-          Si se define como una función esta se utilizará para ordenar las cabeceras
-        </>
-      ),
+      description: {
+        es: (
+          <>
+            Si es <MiniCode size="sm">true</MiniCode> se ordenarán las cabeceras en orden
+            alfabético. Si se define como una función esta se utilizará para ordenar las cabeceras
+          </>
+        ),
+        en: (
+          <>
+            If <MiniCode size="sm">true</MiniCode> the headers will be sorted alphabetically. If
+            defined as a function this will be used to sort the headers
+          </>
+        ),
+      },
       params: [],
       required: false,
       default: "false",

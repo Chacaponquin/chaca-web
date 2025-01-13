@@ -9,14 +9,20 @@ modules.phone.callDuration() // '20:52'
 export const CALL_DURATION_PARAMS: Param[] = [
   {
     name: "min",
-    description: "Mínima cantidad de minutos que puede tener la llamada",
+    description: {
+      es: "Mínima cantidad de minutos que puede tener la llamada",
+      en: "Minimum count of minutes that the call can have",
+    },
     params: [],
     required: false,
     types: [COMMON_TYPES.NUMBER],
   },
   {
     name: "max",
-    description: "Máxima cantidad de minutos que puede tener la llamada",
+    description: {
+      es: "Máxima cantidad de minutos que puede tener la llamada",
+      en: "Maximum count of minutes that the call can have",
+    },
     params: [],
     required: false,
     types: [COMMON_TYPES.NUMBER],

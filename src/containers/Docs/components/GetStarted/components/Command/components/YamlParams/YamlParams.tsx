@@ -15,7 +15,10 @@ export default function YamlParams() {
         LINE_WIDTH,
         {
           name: "sortKeys",
-          description: "Organiza las llaves de los objetos a crear en orden alfabético",
+          description: {
+            es: "Organiza las llaves de los objetos a crear en orden alfabético",
+            en: "Organize the objects keys in alphabetical order",
+          },
           params: [],
           required: false,
           types: [COMMON_TYPES.BOOLEAN],

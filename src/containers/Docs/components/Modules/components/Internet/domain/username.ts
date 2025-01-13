@@ -9,14 +9,14 @@ modules.internet.username({ firstName: 'pedro', lastName: 'Scott' }) // 'pedro_s
 export const USERNAME_PARAMS: Param[] = [
   {
     name: "firstName",
-    description: "Nombre del usuario",
+    description: { es: "Nombre del usuario", en: "User first name" },
     required: false,
     params: [],
     types: [COMMON_TYPES.STRING],
   },
   {
     name: "lastName",
-    description: "Apellido del usuario",
+    description: { es: "Apellido del usuario", en: "User last name" },
     required: false,
     params: [],
     types: [COMMON_TYPES.STRING],

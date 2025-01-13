@@ -8,7 +8,7 @@ modules.science.unit({ type: 'symbol' }) // 'N'
 export const UNIT_PARAMS: Param[] = [
   {
     name: "type",
-    description: "Formato de la unidad de medida",
+    description: { es: "Formato de la unidad de medida", en: "Unit format" },
     params: [],
     required: false,
     default: "'name'",

@@ -9,7 +9,7 @@ modules.system.filename({ ext: 'gif' }) // 'academy_button_school.gif'
 export const FILENAME_PARAMS: Param[] = [
   {
     name: "ext",
-    description: "Extensión del archivo",
+    description: { es: "Extensión del archivo", en: "File extension" },
     params: [],
     required: false,
     types: [COMMON_TYPES.STRING],

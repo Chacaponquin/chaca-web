@@ -4,7 +4,10 @@ import { COMMON_TYPES } from "@markdown/domain/constants"
 export const MIN = (def: number): Param => {
   return {
     name: "min",
-    description: "Límite inferior del valor a generar",
+    description: {
+      es: "Límite inferior del valor a generar",
+      en: "Lower limit of the value to generate",
+    },
     params: [],
     types: [COMMON_TYPES.NUMBER],
     required: false,

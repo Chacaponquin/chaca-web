@@ -9,7 +9,7 @@ modules.id.nanoid({ length: 10 }) // 'VsvwSdm_Am'
 export const NANOID_PARAMS: Param[] = [
   {
     name: "length",
-    description: "Longitud de la cadena de texto",
+    description: { es: "Longitud de la cadena de texto", en: "Id length" },
     params: [],
     required: false,
     default: "20",

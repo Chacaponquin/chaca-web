@@ -6,19 +6,24 @@ export default function SeqParams() {
   const params: Param[] = [
     {
       name: "values",
-      description: "Arreglo de valores a asignar ",
+      description: { es: "Arreglo de valores a asignar", en: "Array of values to be assigned" },
       params: [],
       required: true,
       types: ["any[]"],
     },
     {
       name: "config",
-      description: "Configuración de la asignación de valores",
+      description: {
+        es: "Configuración de la asignación de valores",
+        en: "Value assignment configuration",
+      },
       params: [
         {
           name: "loop",
-          description:
-            "Indica si la asignación de valores se reiniciará al acabarse los valores del arreglo",
+          description: {
+            es: "La asignación de valores se reiniciará al acabarse los valores del arreglo",
+            en: "The values assignment will be restarted when the array runs out of values",
+          },
           params: [],
           default: "false",
           required: false,

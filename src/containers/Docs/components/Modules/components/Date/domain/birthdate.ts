@@ -12,22 +12,30 @@ export const BIRTHDATE_PARAMS: Param[] = [
   REF_DATE,
   {
     name: "min",
-    description: "Límite inferior para el rango de edad o años de la fecha a generar",
+    description: {
+      es: "Límite inferior para el rango de edad o años de la fecha a generar",
+      en: "Lower limit for the age or years range of the date",
+    },
     params: [],
     required: false,
     types: [COMMON_TYPES.NUMBER],
   },
   {
     name: "max",
-    description: "Límite superior para el rango de edad o años de la fecha a generar",
+    description: {
+      es: "Límite superior para el rango de edad o años de la fecha a generar",
+      en: "Upper limit for the age or years range of the date",
+    },
     params: [],
     required: false,
     types: [COMMON_TYPES.NUMBER],
   },
   {
     name: "mode",
-    description:
-      "Valor que indica si los límites serán considerados como edad de la persona o años",
+    description: {
+      es: "Los límites serán considerados como edad de la persona o años",
+      en: "The limits will be considered as the person's age or years",
+    },
     params: [],
     required: false,
     types: ["'age'", "'year'"],

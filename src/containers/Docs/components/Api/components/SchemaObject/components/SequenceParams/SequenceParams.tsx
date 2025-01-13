@@ -10,7 +10,10 @@ export default function SequenceParams() {
     TYPE("sequence"),
     {
       name: "startsWith",
-      description: "Valor con el que inicia la secuencia numérica",
+      description: {
+        es: "Valor con el que inicia la secuencia numérica",
+        en: "The numerical sequence begins with this value",
+      },
       params: [],
       required: false,
       types: [COMMON_TYPES.NUMBER],
@@ -18,7 +21,10 @@ export default function SequenceParams() {
     },
     {
       name: "step",
-      description: "Valor que se le suma a la secuencia al generar un documento",
+      description: {
+        es: "Valor que se le suma a la secuencia al generar un documento",
+        en: "Value added to the sequence when generating a document",
+      },
       params: [],
       required: false,
       types: [COMMON_TYPES.NUMBER],

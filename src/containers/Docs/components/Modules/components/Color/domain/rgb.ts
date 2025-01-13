@@ -7,8 +7,10 @@ export const RGB_PARAMS: Param[] = [
   FORMAT("hex"),
   {
     name: "casing",
-    description:
-      "Tamaño de letra para el color generado. Solo es aplicable cuando el formato tiene valor 'hex'",
+    description: {
+      es: "Tamaño de letra para el color generado. Solo es aplicable cuando el formato tiene valor 'hex'",
+      en: "Character case for the generated color. Only applicable when format has value 'hex'",
+    },
     params: [],
     required: false,
     types: ["'lower'", "'upper'", "'mixed'"],
@@ -16,7 +18,10 @@ export const RGB_PARAMS: Param[] = [
   },
   {
     name: "prefix",
-    description: "Cadena de texto que aparece al inicio del color generado",
+    description: {
+      es: "Cadena de texto que aparece al inicio del color generado",
+      en: "String that appears at the beginning of the generated color",
+    },
     params: [],
     required: false,
     types: [COMMON_TYPES.STRING],

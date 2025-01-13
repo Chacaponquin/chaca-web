@@ -12,7 +12,7 @@ modules.internet.password({ length: 20, memorable: true, pattern: /[A-Z]/, prefi
 export const PASSWORD_PARAMS: Param[] = [
   {
     name: "length",
-    description: "Longitud de la contraseña a generar",
+    description: { es: "Longitud de la contraseña a generar", en: "Password length" },
     params: [],
     required: false,
     types: [COMMON_TYPES.NUMBER],
@@ -20,14 +20,20 @@ export const PASSWORD_PARAMS: Param[] = [
   },
   {
     name: "memorable",
-    description: "Indica si la contraseña debe tener un patrón memorizable",
+    description: {
+      es: "La contraseña debe tener un patrón memorizable",
+      en: "The password should have a memorable pattern",
+    },
     params: [],
     required: false,
     types: [COMMON_TYPES.BOOLEAN],
   },
   {
     name: "prefix",
-    description: "Cadena de texto que aparecerá al inicio de la contraseña",
+    description: {
+      es: "Cadena de texto que aparecerá al inicio de la contraseña",
+      en: "String that will appear at the beginning of the password",
+    },
     params: [],
     required: false,
     types: [COMMON_TYPES.STRING],
@@ -35,8 +41,10 @@ export const PASSWORD_PARAMS: Param[] = [
   },
   {
     name: "pattern",
-    description:
-      "Expresión regular con la que deben cumplir todos los caracteres. Si el parámetro 'memorable' tiene valor 'true' este parámetro no se tendrá en cuenta",
+    description: {
+      es: "Expresión regular con la que deben cumplir todos los caracteres. Si el parámetro 'memorable' tiene valor 'true' este parámetro no se tendrá en cuenta",
+      en: "Regular expression that all characters must match. If the parameter 'memorable' has the value 'true' this parameter will not be taken",
+    },
     params: [],
     required: false,
     types: [COMMON_TYPES.REG_EXP],

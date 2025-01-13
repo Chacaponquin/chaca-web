@@ -8,7 +8,7 @@ modules.lorem.words() // 'lorem ipsum in'
 export const WORDS_PARAMS: Param[] = [
   {
     name: "count",
-    description: "Cantidad de palabras a generar",
+    description: { es: "Cantidad de palabras a generar", en: "Word count" },
     params: [],
     required: false,
     types: [COMMON_TYPES.NUMBER],

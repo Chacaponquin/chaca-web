@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Param } from "../../../../domain"
 import Card from "../../Card"
 import { Header } from "./components"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 
 interface Props {
   params: Param[]
@@ -9,6 +10,8 @@ interface Props {
 }
 
 export default function SubParams({ params, name }: Props) {
+  const { language } = useLanguage()
+
   const [open, setOpen] = useState(true)
 
   function handleChange() {
@@ -29,7 +32,7 @@ export default function SubParams({ params, name }: Props) {
                 name={p.name}
                 params={p.params}
                 required={p.required}
-                description={p.description}
+                description={p.description[language]}
                 default={p.default}
               />
             ))}

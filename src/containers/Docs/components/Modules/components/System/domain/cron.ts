@@ -12,7 +12,10 @@ modules.system.cron({ includeNonStandard: true }) // '@yearly'
 export const CRON_PARAMS: Param[] = [
   {
     name: "includeYear",
-    description: "Incluir un año en la expresión generada",
+    description: {
+      es: "Incluir un año en la expresión generada",
+      en: "Include a year in the generated expression",
+    },
     params: [],
     required: false,
     types: [COMMON_TYPES.BOOLEAN],
@@ -20,7 +23,10 @@ export const CRON_PARAMS: Param[] = [
   },
   {
     name: "includeNonStandard",
-    description: "Añade @yearly, @monthly, @dayly y otras etiquetas en la expresión generada",
+    description: {
+      es: "Añade @yearly, @monthly, @dayly y otras etiquetas en la expresión generada",
+      en: "Add @yearly, @monthly, @dayly and other tags to the generated expression",
+    },
     params: [],
     required: false,
     types: [COMMON_TYPES.BOOLEAN],

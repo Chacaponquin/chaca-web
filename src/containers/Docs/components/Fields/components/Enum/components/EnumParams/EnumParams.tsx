@@ -6,7 +6,10 @@ export default function EnumParams() {
     {
       name: "values",
       types: ["any[]"],
-      description: "Valores que pueden ser seleccionados",
+      description: {
+        es: "Valores que pueden ser seleccionados",
+        en: "Values that can be selected",
+      },
       params: [],
       required: true,
     },

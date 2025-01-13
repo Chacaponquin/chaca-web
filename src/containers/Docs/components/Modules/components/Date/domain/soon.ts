@@ -5,7 +5,10 @@ import { REF_DATE } from "../shared/domain/ref-date"
 export const SOON_PARAMS: Param[] = [
   {
     name: "days",
-    description: "Rango de días en los que se va a encontrar la fecha a generar",
+    description: {
+      es: "Rango de días en los que se va a encontrar la fecha a generar",
+      en: "Range of days in which the date will be found",
+    },
     params: [],
     required: false,
     types: [COMMON_TYPES.NUMBER],

@@ -9,7 +9,7 @@ modules.finance.pin({ length: 6 }) // '213789'
 export const PIN_PARAMS: Param[] = [
   {
     name: "length",
-    description: "Longitud del código PIN",
+    description: { es: "Longitud del código PIN", en: "PIN code length" },
     params: [],
     required: false,
     types: [COMMON_TYPES.NUMBER],

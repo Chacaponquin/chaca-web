@@ -8,14 +8,14 @@ modules.date.between({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:0
 export const BETWEEN_PARAMS: Param[] = [
   {
     name: "from",
-    description: "Límite inferior de la fecha a generar",
+    description: { es: "Límite inferior de la fecha a generar", en: "Lower limit of the date" },
     params: [],
     required: false,
     types: [COMMON_TYPES.DATE],
   },
   {
     name: "to",
-    description: "Límite superior de la fecha a generar",
+    description: { es: "Límite superior de la fecha a generar", en: "Upper limit of the date" },
     params: [],
     required: false,
     types: [COMMON_TYPES.DATE],

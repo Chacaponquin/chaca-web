@@ -4,7 +4,10 @@ import { COMMON_TYPES } from "@markdown/domain/constants"
 export const MAX = (def: number): Param => {
   return {
     name: "min",
-    description: "Límite superior del valor a generar",
+    description: {
+      es: "Límite superior del valor a generar",
+      en: "Upper limit of the value to be generated",
+    },
     params: [],
     types: [COMMON_TYPES.NUMBER],
     required: false,

@@ -5,7 +5,7 @@ export const COLOR_BY_CSS_COLOR_SPACE_PARAMS: Param[] = [
   FORMAT("css"),
   {
     name: "space",
-    description: "CSS Space para generar el color",
+    description: { es: "CSS Space para generar el color", en: "Color CSS Space" },
     params: [],
     required: false,
     default: "'sRGB'",

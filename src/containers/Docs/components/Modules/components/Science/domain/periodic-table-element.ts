@@ -8,7 +8,7 @@ modules.science.periodicTableElement({ type: 'symbol' }) // 'Zn'
 export const PERIODIC_TABLE_ELEMENT_PARAMS: Param[] = [
   {
     name: "type",
-    description: "Formato del elemento",
+    description: { es: "Formato del elemento", en: "Element format" },
     params: [],
     required: false,
     default: "'name'",

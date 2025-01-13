@@ -8,14 +8,14 @@ export const MATRIX_PARAMS: Param[] = [
   {
     name: "x_size",
     params: [],
-    description: "Cantidad de filas para la matriz",
+    description: { es: "Cantidad de filas para la matriz", en: "Rows count" },
     required: false,
     types: [COMMON_TYPES.NUMBER],
   },
   {
     name: "y_size",
     params: [],
-    description: "Cantidad de columnas de la matriz",
+    description: { es: "Cantidad de columnas de la matriz", en: "Columns count" },
     required: false,
     types: [COMMON_TYPES.NUMBER],
   },
