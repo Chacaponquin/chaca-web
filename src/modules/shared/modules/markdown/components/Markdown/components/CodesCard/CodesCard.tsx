@@ -3,6 +3,7 @@ import { Section } from "./components"
 import { CodeSection } from "./domain"
 import { ExampleCode } from "../Code/components"
 import { Copy } from "../../shared/components"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 
 interface Props {
   sections: CodeSection[]
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export default function CodesCard({ sections }: Props) {
+  const { language } = useLanguage()
   const [open, setOpen] = useState<CodeSection>(sections[0])
 
   return (
@@ -19,7 +21,7 @@ export default function CodesCard({ sections }: Props) {
           {sections.map((s, index) => (
             <Section
               key={index}
-              title={s.title}
+              title={s.title[language]}
               handleClick={() => setOpen(s)}
               selected={s === open}
             />

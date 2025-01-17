@@ -8,8 +8,8 @@ interface Props {
 
 export default function RouteExample({ axios, curl }: Props) {
   const sections: CodeSection[] = [
-    { code: curl, language: "bash", title: "cURL" },
-    { code: axios, language: "typescript", title: "axios" },
+    { code: curl, language: "bash", title: { en: "curl", es: "curl" } },
+    { code: axios, language: "typescript", title: { en: "axios", es: "axios" } },
   ]
 
   return <CodesCard sections={sections} />

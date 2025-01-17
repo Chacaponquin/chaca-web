@@ -1,8 +1,7 @@
 import { CodesCard } from "@markdown/components/Markdown/components"
 import { CodeSection } from "@markdown/components/Markdown/components/CodesCard/domain"
 
-export default function Body() {
-  const ts = `
+const ts = `
 const movieSchema = chaca.schema({
     id: () => modules.id.uuid(),
     authors: {
@@ -15,7 +14,7 @@ const movieSchema = chaca.schema({
 })
 `
 
-  const json = `
+const json = `
 {
     "id": {
         "type": "module",
@@ -48,10 +47,11 @@ const movieSchema = chaca.schema({
 }  
 `
 
-  const sections: CodeSection[] = [
-    { code: ts, language: "typescript", title: "Movie.js" },
-    { code: json, language: "json", title: "Request body" },
-  ]
+const sections: CodeSection[] = [
+  { code: ts, language: "typescript", title: { en: "Movie.js", es: "Movie.js" } },
+  { code: json, language: "json", title: { en: "Request body", es: "Cuerpo de la petición" } },
+]
 
+export default function Body() {
   return <CodesCard sections={sections} />
 }

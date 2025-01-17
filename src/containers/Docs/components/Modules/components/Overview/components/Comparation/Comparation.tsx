@@ -40,9 +40,17 @@ axios.post(
 `
 
 const sections: CodeSection[] = [
-  { code: libraryCode, language: "typescript", title: "Chaca SDK" },
-  { code: apiModuleCode, language: "typescript", title: "Get module value" },
-  { code: apiSchemaCode, language: "typescript", title: "Get schema object" },
+  { code: libraryCode, language: "typescript", title: { en: "Chaca SDK", es: "Chaca SDK" } },
+  {
+    code: apiModuleCode,
+    language: "typescript",
+    title: { en: "Get module value", es: "Obtener un valor de un módulo" },
+  },
+  {
+    code: apiSchemaCode,
+    language: "typescript",
+    title: { en: "Get schema object", es: "Obtener un documento a partir de un schema" },
+  },
 ]
 
 export default function Comparation() {

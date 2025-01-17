@@ -1,9 +1,7 @@
 import { CodesCard } from "@markdown/components/Markdown/components"
 import { CodeSection } from "@markdown/components/Markdown/components/CodesCard/domain"
-import { useMemo } from "react"
 
-export default function UserSchemaCode() {
-  const js = `
+const js = `
 import { chaca, modules } from 'chaca'
 
 const schema = chaca.schema({
@@ -14,7 +12,7 @@ const schema = chaca.schema({
 })
 `
 
-  const ts = `
+const ts = `
 import { chaca, modules } from 'chaca'
 
 interface User {
@@ -32,14 +30,11 @@ const schema = chaca.schema<User>({
 })
 `
 
-  const sections: CodeSection[] = useMemo(() => {
-    const s: CodeSection[] = [
-      { code: js, language: "javascript", title: "JS" },
-      { code: ts, language: "typescript", title: "TS" },
-    ]
+const sections: CodeSection[] = [
+  { code: js, language: "javascript", title: { es: "JS", en: "JS" } },
+  { code: ts, language: "typescript", title: { es: "TS", en: "TS" } },
+]
 
-    return s
-  }, [])
-
+export default function UserSchemaCode() {
   return <CodesCard sections={sections} />
 }

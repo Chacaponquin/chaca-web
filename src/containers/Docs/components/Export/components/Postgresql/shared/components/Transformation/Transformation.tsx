@@ -8,8 +8,12 @@ interface Props {
 
 export default function Transformation({ code, sqlCode }: Props) {
   const sections: CodeSection[] = [
-    { code: code, language: "typescript", title: "Schema definition" },
-    { code: sqlCode, language: "sql", title: "SQL" },
+    {
+      code: code,
+      language: "typescript",
+      title: { en: "Schema definition", es: "Definición de un schema" },
+    },
+    { code: sqlCode, language: "sql", title: { en: "SQL", es: "SQL" } },
   ]
 
   return <CodesCard sections={sections} />

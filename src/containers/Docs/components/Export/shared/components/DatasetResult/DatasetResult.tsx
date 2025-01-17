@@ -52,7 +52,7 @@ export default function DatasetResult({ extension, language }: Props) {
       onSuccess(data) {
         setSections(
           data.map((r) => {
-            return { code: r.code, title: r.file, language: language }
+            return { code: r.code, title: { en: r.file, es: r.file }, language: language }
           }),
         )
       },

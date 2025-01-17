@@ -1,8 +1,7 @@
 import { CodesCard } from "@markdown/components/Markdown/components"
 import { CodeSection } from "@markdown/components/Markdown/components/CodesCard/domain"
 
-export default function UserSchemaDefinition() {
-  const js = `
+const js = `
 import { chaca, modules } from 'chaca'
 
 const schema = chaca.schema({
@@ -15,7 +14,7 @@ const schema = chaca.schema({
 })
 `
 
-  const ts = `
+const ts = `
 import { chaca, modules } from 'chaca'
 
 interface User {
@@ -37,10 +36,11 @@ const schema = chaca.schema<User>({
 })
 `
 
-  const sections: CodeSection[] = [
-    { language: "javascript", code: js, title: "JS" },
-    { code: ts, language: "typescript", title: "TS" },
-  ]
+const sections: CodeSection[] = [
+  { language: "javascript", code: js, title: { en: "JS", es: "js" } },
+  { code: ts, language: "typescript", title: { en: "TS", es: "TS" } },
+]
 
+export default function UserSchemaDefinition() {
   return <CodesCard sections={sections} />
 }
