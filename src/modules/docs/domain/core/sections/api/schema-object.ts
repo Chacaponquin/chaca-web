@@ -13,6 +13,8 @@ export const SEQUENCE: SectionTitle = { id: "sequence", title: { en: "Sequence",
 
 export const ENUM: SectionTitle = { id: "enum", title: { en: "Enum", es: "Enum" } }
 
+export const REF: SectionTitle = { id: "ref", title: { en: "Ref", es: "Ref" } }
+
 export const PICK: SectionTitle = { id: "pick", title: { en: "Pick", es: "Pick" } }
 
 export const PROBABILITY: SectionTitle = {
@@ -52,6 +54,7 @@ export class SchemaObjectSection extends DocSubSection {
       MODULE,
       NESTED_SCHEMA,
       AVAILABLE_FIELDS,
+      REF,
     ]
   }
 }

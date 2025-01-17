@@ -1,14 +1,17 @@
 import { MiniCode, Params } from "@markdown/components/Markdown/components"
 import { Param } from "@markdown/components/Markdown/components/Params/domain"
 import { COMMON_TYPES } from "@markdown/domain/constants"
+import useRefParams from "@modules/docs/hooks/useRefParams"
+
+const where = "RefFieldWhere = (props: RefFieldWhereProps) => boolean"
 
 export default function RefParams() {
-  const where = "RefFieldWhere = (props: RefFieldWhereProps) => boolean"
+  const { FIELD_PARAM_DESCRIPTION, UNIQUE_PARAM_DESCRIPTION } = useRefParams()
 
   const params: Param[] = [
     {
       name: "field",
-      description: { es: "Ruta del campo a referenciar", en: "Reference field route" },
+      description: FIELD_PARAM_DESCRIPTION,
       params: [],
       required: true,
       types: [COMMON_TYPES.STRING],
@@ -22,13 +25,11 @@ export default function RefParams() {
       params: [
         {
           name: "unique",
-          description: {
-            es: "El valor escogido no puede ser escogido por más de 1 documento",
-            en: "The chosen value cannot be chosen by more than 1 document",
-          },
+          description: UNIQUE_PARAM_DESCRIPTION,
           required: false,
           params: [],
           types: [COMMON_TYPES.BOOLEAN],
+          default: "false",
         },
         {
           name: "where",
@@ -53,9 +54,9 @@ export default function RefParams() {
             ),
             en: (
               <>
-                <MiniCode size="sm">null</MiniCode> will be returned if there are no documents to
-                reference. If it is defined as <MiniCode size="sm">false</MiniCode> if there are no
-                possible references, the exception{" "}
+                A <MiniCode size="sm">null</MiniCode> value will be returned if there are no
+                documents to reference. If it is defined as <MiniCode size="sm">false</MiniCode> if
+                there are no possible references, the exception{" "}
                 <MiniCode size="sm">NotEnoughValuesForRefError</MiniCode> will be thrown
               </>
             ),

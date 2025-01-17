@@ -18,6 +18,7 @@ import {
   ModuleParams,
   PickParams,
   ProbabilityParams,
+  RefParams,
   SchemaParams,
   SequenceParams,
   SequentialParams,
@@ -33,6 +34,7 @@ import {
   NESTED_SCHEMA,
   PICK,
   PROBABILITY,
+  REF,
   SEQUENCE,
   SEQUENTIAL,
 } from "@modules/docs/domain/core/sections/api/schema-object"
@@ -102,16 +104,24 @@ export default function En() {
 
       <H3 title={ENUM} />
       <EnumParams />
+
       <H3 title={PICK} />
       <PickParams />
+
       <H3 title={PROBABILITY} />
       <ProbabilityParams />
+
       <H3 title={SEQUENCE} />
       <SequenceParams />
+
       <H3 title={SEQUENTIAL} />
       <SequentialParams />
+
       <H3 title={MODULE} />
       <ModuleParams />
+
+      <H3 title={REF} />
+      <RefParams />
 
       <Warning title="Api id">
         <P>

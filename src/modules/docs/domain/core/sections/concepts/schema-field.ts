@@ -39,6 +39,7 @@ export const NULL_FUNCTION: SectionTitle = {
 
 export class SchemaField extends DocSubSection {
   readonly arrayFieldsUrl = this.buildUrl(ARRAY_FIELDS.id)
+  readonly nullFieldsUrl = this.buildUrl(NULL_FIELDS.id)
 
   constructor(parent: DocSection) {
     super({

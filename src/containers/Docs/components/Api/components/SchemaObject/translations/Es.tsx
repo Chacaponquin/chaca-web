@@ -18,6 +18,7 @@ import {
   ModuleParams,
   PickParams,
   ProbabilityParams,
+  RefParams,
   SchemaParams,
   SequenceParams,
   SequentialParams,
@@ -36,6 +37,7 @@ import {
   NESTED_SCHEMA,
   PICK,
   PROBABILITY,
+  REF,
   SEQUENCE,
   SEQUENTIAL,
 } from "@modules/docs/domain/core/sections/api/schema-object"
@@ -128,6 +130,9 @@ export default function Es() {
 
       <H3 title={MODULE} />
       <ModuleParams />
+
+      <H3 title={REF} />
+      <RefParams />
 
       <Warning title="Api id">
         <P>

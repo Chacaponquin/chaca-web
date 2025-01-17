@@ -6,6 +6,7 @@ import FieldsList from "./FieldsList/FieldsList"
 import ModuleParams from "./ModuleParams/ModuleParams"
 import PickParams from "./PickParams/PickParams"
 import ProbabilityParams from "./ProbabilityParams/ProbabilityParams"
+import RefParams from "./RefParams/RefParams"
 import SchemaParams from "./SchemaParams/SchemaParams"
 import SequenceParams from "./SequenceParams/SequenceParams"
 import SequentialParams from "./SequentialParams/SequentialParams"
@@ -24,4 +25,5 @@ export {
   Try,
   Example,
   ApiRoute,
+  RefParams,
 }

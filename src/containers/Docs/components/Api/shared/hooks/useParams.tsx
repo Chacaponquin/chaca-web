@@ -3,7 +3,7 @@ import { Link, MiniCode } from "@markdown/components/Markdown/components"
 import { Param } from "@markdown/components/Markdown/components/Params/domain"
 import { COMMON_TYPES } from "@markdown/domain/constants"
 import { KEY } from "@modules/docs/domain/core/sections/field-types"
-import { SCHEMA } from "@modules/docs/domain/core/sections/concepts"
+import { SCHEMA, SCHEMA_FIELD } from "@modules/docs/domain/core/sections/concepts"
 
 const COUNT_PARAM: Param = {
   name: "count",
@@ -47,8 +47,21 @@ export default function useParams() {
     {
       name: "isArray",
       description: {
-        es: "El valor a retornar para el campo definido será en forma de arreglo",
-        en: "The field type returned value will be an array",
+        es: (
+          <>
+            El valor a retornar para el campo definido será en forma de arreglo.{" "}
+            <Link to={SCHEMA_FIELD.arrayFieldsUrl}>
+              Leer más sobre los campos en forma de arreglo
+            </Link>
+            .
+          </>
+        ),
+        en: (
+          <>
+            The field type returned value will be an array.{" "}
+            <Link to={SCHEMA_FIELD.arrayFieldsUrl}>Read more about array fields</Link>.
+          </>
+        ),
       },
       params: [
         {
@@ -83,12 +96,14 @@ export default function useParams() {
         es: (
           <>
             Probabilidad de que al generar un documento el campo tenga valor{" "}
-            <MiniCode>null</MiniCode>
+            <MiniCode>null</MiniCode>.{" "}
+            <Link to={SCHEMA_FIELD.nullFieldsUrl}>Leer más sobre los campos nulos</Link>.
           </>
         ),
         en: (
           <>
-            Probability that the field has a <MiniCode>null</MiniCode> value
+            Probability that the field has a <MiniCode>null</MiniCode> value.{" "}
+            <Link to={SCHEMA_FIELD.nullFieldsUrl}>Read more about null fields</Link>.
           </>
         ),
       },
@@ -103,7 +118,7 @@ export default function useParams() {
     description: {
       es: (
         <>
-          El campo sera considerado un <Link to={KEY.redirect}>campo key</Link> dentro del{" "}
+          El campo será considerado un <Link to={KEY.redirect}>campo key</Link> dentro del{" "}
           <Link to={SCHEMA.redirect}>schema</Link>
         </>
       ),
