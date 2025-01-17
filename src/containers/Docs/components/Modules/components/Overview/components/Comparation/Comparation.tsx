@@ -1,18 +1,17 @@
-import { useBuildUrl } from "@containers/Docs/components/Api/shared/hooks"
+import { ApiUrlBuilder } from "@containers/Docs/shared/domain/helpers/api-url-builder"
 import { CodesCard } from "@markdown/components/Markdown/components"
 import { CodeSection } from "@markdown/components/Markdown/components/CodesCard/domain"
 
-export default function Comparation() {
-  const { url: moduleUrl } = useBuildUrl({ route: "api/module/person/first_name" })
-  const { url: schemaUrl } = useBuildUrl({ route: "api/schema" })
+const moduleUrl = ApiUrlBuilder.build("person/first_name")
+const schemaUrl = ApiUrlBuilder.build("schema")
 
-  const libraryCode = `
+const libraryCode = `
 import { modules } from "chaca"
 
 modules.person.firstName() // "Rodrigo"
 `
 
-  const apiModuleCode = `
+const apiModuleCode = `
 axios.post("${moduleUrl}", {})
     .then(response => {
         response.data // "Amaya"
@@ -22,7 +21,7 @@ axios.post("${moduleUrl}", {})
     })
 `
 
-  const apiSchemaCode = `
+const apiSchemaCode = `
 axios.post(
         "${schemaUrl}",
         {
@@ -40,11 +39,12 @@ axios.post(
     })
 `
 
-  const sections: CodeSection[] = [
-    { code: libraryCode, language: "typescript", title: "Chaca SDK" },
-    { code: apiModuleCode, language: "typescript", title: "Get module value" },
-    { code: apiSchemaCode, language: "typescript", title: "Get schema object" },
-  ]
+const sections: CodeSection[] = [
+  { code: libraryCode, language: "typescript", title: "Chaca SDK" },
+  { code: apiModuleCode, language: "typescript", title: "Get module value" },
+  { code: apiSchemaCode, language: "typescript", title: "Get schema object" },
+]
 
+export default function Comparation() {
   return <CodesCard sections={sections} />
 }

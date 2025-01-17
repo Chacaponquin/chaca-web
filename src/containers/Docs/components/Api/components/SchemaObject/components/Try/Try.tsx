@@ -1,4 +1,4 @@
-import { MOVIE_SCHEMA } from "@containers/Docs/components/Api/shared/domain/movie"
+import { MOVIE_SCHEMA } from "@containers/Docs/components/Api/shared/domain/movie-schema"
 import { TryRoute } from "@containers/Docs/shared/components"
 
 export default function Try() {

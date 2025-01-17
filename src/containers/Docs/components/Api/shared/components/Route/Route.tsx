@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { useBuildUrl } from "../../hooks"
+import { ApiUrlBuilder } from "@containers/Docs/shared/domain/helpers/api-url-builder"
 
 interface Props {
   url: string
@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default function Route({ method, url: iurl }: Props) {
-  const { url } = useBuildUrl({ route: iurl })
+  const url = ApiUrlBuilder.build(iurl)
 
   const CLASS = clsx("flex", "rounded", "p-3", "items-center", "gap-x-4", "my-4", {
     "bg-blue-500/10": method === "post",
@@ -20,6 +20,7 @@ export default function Route({ method, url: iurl }: Props) {
     "px-3 py-1.5",
     "text-sm",
     "font-fontCodeMedium",
+
     {
       "bg-blue-500": method === "post",
     },

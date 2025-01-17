@@ -1,4 +1,4 @@
-import { USER_PRODUCT_DATASET } from "@containers/Docs/components/Api/shared/domain/dataset"
+import { USER_PRODUCT_DATASET } from "@containers/Docs/components/Api/shared/domain/dataset-schema"
 import { TryRoute } from "@containers/Docs/shared/components"
 
 export default function Try() {
