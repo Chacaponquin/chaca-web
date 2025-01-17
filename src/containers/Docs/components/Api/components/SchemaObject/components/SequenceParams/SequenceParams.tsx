@@ -4,10 +4,11 @@ import { Param } from "@markdown/components/Markdown/components/Params/domain"
 import { COMMON_TYPES } from "@markdown/domain/constants"
 
 export default function SequenceParams() {
-  const { TYPE, COMMON_PARAMS } = useParams()
+  const { TYPE, COMMON_PARAMS, IS_KEY_PARAM } = useParams()
 
   const params: Param[] = [
     TYPE("sequence"),
+    IS_KEY_PARAM,
     {
       name: "startsWith",
       description: {

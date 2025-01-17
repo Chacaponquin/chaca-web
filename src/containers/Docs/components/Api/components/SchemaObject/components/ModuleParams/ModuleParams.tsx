@@ -5,7 +5,7 @@ import { Param } from "@markdown/components/Markdown/components/Params/domain"
 import { COMMON_TYPES } from "@markdown/domain/constants"
 
 export default function ModuleParams() {
-  const { TYPE, COMMON_PARAMS } = useParams()
+  const { TYPE, COMMON_PARAMS, IS_KEY_PARAM } = useParams()
 
   const params: Param[] = [
     TYPE("module"),
@@ -34,6 +34,7 @@ export default function ModuleParams() {
       types: [COMMON_TYPES.STRING],
     },
     ...COMMON_PARAMS,
+    IS_KEY_PARAM,
   ]
 
   return <Params params={params} />
