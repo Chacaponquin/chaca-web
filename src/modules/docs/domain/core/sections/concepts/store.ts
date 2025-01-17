@@ -14,7 +14,7 @@ export class DatasetStore extends DocSubSection {
   constructor(parent: DocSection) {
     super({
       parent: parent,
-      title: { en: "Dataset store", es: "Almacén de datos" },
+      title: { en: "Dataset Store", es: "Dataset Store" },
       url: "dataset-store",
     })
 
