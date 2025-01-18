@@ -1,6 +1,13 @@
-import { DocSection, DocSubSection } from "../../base"
+import { DocSection } from "../../base"
+import { Csv } from "./csv"
+import { Java } from "./java"
+import { Javascript } from "./js"
+import { Json } from "./json"
 import { Overview } from "./overview"
 import { Postgres } from "./postgresql"
+import { Python } from "./python"
+import { Typescript } from "./ts"
+import { Yaml } from "./yaml"
 
 class ExportSection extends DocSection {
   constructor() {
@@ -10,56 +17,14 @@ class ExportSection extends DocSection {
 
 export const SECTION = new ExportSection()
 
-class Csv extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: { en: "CSV", es: "CSV" }, url: "csv" })
-  }
-}
-
-class Java extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: { en: "Java", es: "Java" }, url: "java" })
-  }
-}
-
-class Javascript extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: { en: "Javascript", es: "Javascript" }, url: "javascript" })
-  }
-}
-
-class Json extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: { en: "Json", es: "Json" }, url: "json" })
-  }
-}
-
-class Python extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: { en: "Python", es: "Python" }, url: "python" })
-  }
-}
-
-class Typescript extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: { en: "Typescript", es: "Typescript" }, url: "typescript" })
-  }
-}
-
-class Yaml extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: { en: "Yaml", es: "Yaml" }, url: "yaml" })
-  }
-}
-
 export const OVERVIEW = new Overview(SECTION)
-export const CSV = new Csv()
-export const JAVA = new Java()
-export const JS = new Javascript()
-export const JSON = new Json()
+export const CSV = new Csv(SECTION)
+export const JAVA = new Java(SECTION)
+export const JS = new Javascript(SECTION)
+export const JSON = new Json(SECTION)
 export const POSTGRES = new Postgres(SECTION)
-export const PYTHON = new Python()
-export const TYPESCRIPT = new Typescript()
-export const YAML = new Yaml()
+export const PYTHON = new Python(SECTION)
+export const TYPESCRIPT = new Typescript(SECTION)
+export const YAML = new Yaml(SECTION)
 
 SECTION.push([OVERVIEW, CSV, JAVA, JS, JSON, POSTGRES, PYTHON, TYPESCRIPT, YAML])

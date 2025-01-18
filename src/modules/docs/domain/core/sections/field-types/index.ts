@@ -1,7 +1,12 @@
-import { DocSection, DocSubSection } from "../../base"
+import { DocSection } from "../../base"
+import { Custom } from "./custom"
+import { Enum } from "./enum"
+import { Key } from "./key"
 import { Pick } from "./pick"
 import { Probability } from "./probability"
 import { Ref } from "./ref"
+import { Sequence } from "./sequence"
+import { Sequential } from "./sequential"
 
 class FieldTypesSection extends DocSection {
   constructor() {
@@ -11,43 +16,13 @@ class FieldTypesSection extends DocSection {
 
 export const SECTION = new FieldTypesSection()
 
-class Custom extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: { en: "Custom", es: "Custom" }, url: "custom" })
-  }
-}
-
-class Enum extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: { en: "Enum", es: "Enum" }, url: "enum" })
-  }
-}
-
-class Key extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: { en: "Key", es: "Key" }, url: "key" })
-  }
-}
-
-class Sequence extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: { en: "Sequence", es: "Sequence" }, url: "sequence" })
-  }
-}
-
-class Sequential extends DocSubSection {
-  constructor() {
-    super({ parent: SECTION, title: { en: "Sequential", es: "Sequential" }, url: "sequential" })
-  }
-}
-
-export const CUSTOM = new Custom()
-export const ENUM = new Enum()
+export const CUSTOM = new Custom(SECTION)
+export const ENUM = new Enum(SECTION)
 export const REF = new Ref(SECTION)
-export const SEQUENCE = new Sequence()
-export const SEQUENTIAL = new Sequential()
+export const SEQUENCE = new Sequence(SECTION)
+export const SEQUENTIAL = new Sequential(SECTION)
 export const PICK = new Pick(SECTION)
 export const PROBABILITY = new Probability(SECTION)
-export const KEY = new Key()
+export const KEY = new Key(SECTION)
 
 SECTION.push([CUSTOM, ENUM, KEY, REF, SEQUENCE, SEQUENTIAL, PROBABILITY, PICK])

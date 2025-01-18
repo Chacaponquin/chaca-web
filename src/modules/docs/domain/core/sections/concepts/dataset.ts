@@ -41,7 +41,15 @@ export class Dataset extends DocSubSection {
   readonly cyclicUrl = this.buildUrl(CYCLIC_DEPENDENCE.id)
 
   constructor(parent: DocSection) {
-    super({ parent: parent, title: { en: "Dataset", es: "Dataset" }, url: "dataset" })
+    super({
+      parent: parent,
+      title: { en: "Dataset", es: "Dataset" },
+      url: "dataset",
+      description: {
+        es: "Aprende sobre cómo funcionan los datasets en Chaca para relacionar varios schemas y obtener datos más realistas",
+        en: "Learn how datasets work in Chaca to relate multiple schemas and generate more realistic data",
+      },
+    })
 
     this.titles = [
       DEFINITION,

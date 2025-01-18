@@ -1,6 +1,6 @@
 import { Layout } from "@containers/Layout/components"
 import { Aside, Content, Modals, Navbar } from "./components"
-import { useLanguage, useTranslation } from "@modules/app/modules/language/hooks"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 import { useLayout } from "./hooks"
 import { Outlet } from "react-router-dom"
 
@@ -8,15 +8,8 @@ export default function DocLayout() {
   const { handleChangeOpenAside, openAside, handleOpenSearch, selected } = useLayout()
   const { language } = useLanguage()
 
-  const { DESCRIPTION } = useTranslation({
-    DESCRIPTION: {
-      en: "Explore our guides and examples to integrate Chaca.",
-      es: "Explora nuestras guías y ejemplos para integrar Chaca.",
-    },
-  })
-
   return (
-    <Layout title={selected.titleSeo(language)} description={DESCRIPTION}>
+    <Layout title={selected.titleSeo(language)} description={selected.descriptionSeo(language)}>
       <Modals />
 
       <Aside

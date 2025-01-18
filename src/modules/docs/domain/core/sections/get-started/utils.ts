@@ -50,7 +50,15 @@ export class UtilsSection extends DocSubSection {
   readonly replaceSymbolsUrl = this.buildUrl(REPLACE_SYMBOLS.id)
 
   constructor(parent: DocSection) {
-    super({ parent: parent, title: { en: "Utils", es: "Utils" }, url: "utils" })
+    super({
+      parent: parent,
+      title: { en: "Utils", es: "Utils" },
+      url: "utils",
+      description: {
+        es: "Aprende como utilizar los métodos útiles para generar los valores de los módulos de Chaca",
+        en: "Learn how to use the Chaca util methods to generate module values",
+      },
+    })
 
     this.titles = [
       ONE_OF_ARRAY,

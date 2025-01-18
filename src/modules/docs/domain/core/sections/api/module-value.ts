@@ -15,6 +15,10 @@ export class ModuleValueSection extends DocSubSection {
       parent: parent,
       title: { en: "Module Value", es: "Module Value" },
       url: "module-value",
+      description: {
+        es: "Aprende sobre la ruta /module de nuestra API REST para generar valores de los módulos definidos en Chaca",
+        en: "Learn about the /module route of our REST API to generate values from modules defined in Chaca",
+      },
     })
 
     this.titles = [PARAMS, BODY, EXAMPLE]

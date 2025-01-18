@@ -1,4 +1,5 @@
-import { DocSection, DocSubSection, SectionTitle } from "../../base"
+import { DocSection, SectionTitle } from "../../base"
+import { ExportSubSection } from "./base"
 
 export const TRANSFORMATIONS: SectionTitle = {
   id: "transformations",
@@ -24,9 +25,9 @@ export const NULL_FIELDS: SectionTitle = {
 
 export const ARRAYS: SectionTitle = { id: "arrays", title: { es: "Arreglos", en: "Arrays" } }
 
-export class Postgres extends DocSubSection {
+export class Postgres extends ExportSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: { en: "PostgreSQL", es: "PostgresSQL" }, url: "postgres" })
+    super({ parent: parent, title: "PostgresSQL", url: "postgres" })
 
     this.titles = [TRANSFORMATIONS, KEY, REF, NESTED_SCHEMA, NULL_FIELDS, ARRAYS]
   }

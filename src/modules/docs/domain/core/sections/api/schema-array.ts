@@ -15,6 +15,10 @@ export class SchemaArraySection extends DocSubSection {
       parent: parent,
       title: { en: "Schema Array", es: "Schema Array" },
       url: "schema-array",
+      description: {
+        es: "Aprende sobre la ruta /schema de nuestra API REST para generar un arreglo de datos a través de la definición de un schema",
+        en: "Learn about the /schema route of our REST API to generate a data array with a schema definition",
+      },
     })
 
     this.titles = [PARAMS, BODY, EXAMPLE]

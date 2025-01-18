@@ -10,10 +10,10 @@ interface Props {
 export default function Layout({ children, description, title }: Props) {
   return (
     <Fragment>
-      <Helmet>
+      <Helmet htmlAttributes={{}} bodyAttributes={{}} title={title}>
         <meta name="description" content={description} />
-        <title>{title}</title>
       </Helmet>
+
       {children}
     </Fragment>
   )

@@ -46,6 +46,10 @@ export class SchemaField extends DocSubSection {
       parent: parent,
       title: { en: "Schema field", es: "Campos de un schema" },
       url: "schema-field",
+      description: {
+        es: "Aprende sobre los parámetros que pueden configurar la definición de un campo dentro de un schema en Chaca",
+        en: "Learn about the parameters that can configure the schema field definition in Chaca",
+      },
     })
 
     this.titles = [

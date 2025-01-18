@@ -17,7 +17,15 @@ export const OWN_REF: SectionTitle = {
 
 export class Ref extends DocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: { en: "Ref", es: "Ref" }, url: "ref" })
+    super({
+      parent: parent,
+      title: { en: "Ref", es: "Ref" },
+      url: "ref",
+      description: {
+        es: "Aprende a utilizar el campo ref para relacionar varios schemas dentro de un mismo dataset",
+        en: "Learn how to use the ref field to relate multiple schemas in the same dataset",
+      },
+    })
 
     this.titles = [REF_UNIQUE, FILTER_DOCUMENTS, OWN_REF]
   }

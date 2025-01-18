@@ -40,7 +40,15 @@ export const DEFINE_CONFIG: SectionTitle = {
 
 export class CommandLineSection extends DocSubSection {
   constructor(parent: DocSection) {
-    super({ title: { en: "CLI", es: "CLI" }, parent: parent, url: "cli" })
+    super({
+      title: { en: "CLI", es: "CLI" },
+      parent: parent,
+      url: "cli",
+      description: {
+        es: "Aprende acerca de las funcionalidades de Chaca que puedes ejecutar desde la línea de comandos. Permitiendo exportar datos en archivos json, csv, sql, java y más",
+        en: "Learn about Chaca's features that you can run from the command line. Allowing you to export data in json, csv, sql, java files and more",
+      },
+    })
 
     this.titles = [
       INSTALL,

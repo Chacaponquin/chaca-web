@@ -26,6 +26,10 @@ export class IntroductionSection extends DocSubSection {
       parent: parent,
       title: { en: "Introduction", es: "Introducción" },
       url: "introduction",
+      description: {
+        es: "Aprende a como crear datos mock y exportarlos a cualquier formato de archivo con Chaca",
+        en: "Learn how to create mock data and export it to any file format with Chaca",
+      },
     })
 
     this.titles = [ABOUT, INSTALATION, REQUIREMENTS, COMMUNITY]

@@ -15,6 +15,7 @@ export interface SubSectionProps {
   title: TranslationConfig<string>
   parent: DocSection
   url: string
+  description: TranslationConfig<string>
 }
 
 export abstract class DocSection {
@@ -47,12 +48,14 @@ export abstract class DocSubSection {
   readonly title: TranslationConfig<string>
   private readonly _url: string
   readonly parent: DocSection
+  readonly description: TranslationConfig<string>
   titles: SectionTitle[]
 
-  constructor({ title, parent, url }: SubSectionProps) {
+  constructor({ title, parent, url, description }: SubSectionProps) {
     this._url = url
     this.title = title
     this.parent = parent
+    this.description = description
     this.titles = []
   }
 
@@ -70,6 +73,10 @@ export abstract class DocSubSection {
 
   titleSeo(langauge: Languages): string {
     return `${this.title[langauge]} | Chaca Docs`
+  }
+
+  descriptionSeo(language: Languages): string {
+    return this.description[language]
   }
 
   buildUrl(url: string): string {

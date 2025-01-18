@@ -32,6 +32,14 @@ export const RESPONSE_CODES: SectionTitle = {
 
 export class OverviewSection extends DocSubSection {
   constructor(parent: DocSection) {
-    super({ parent: parent, title: { en: "Overview", es: "Introducción" }, url: "overview" })
+    super({
+      parent: parent,
+      title: { en: "Overview", es: "Introducción" },
+      url: "overview",
+      description: {
+        es: "Aprende sobre nuestra API REST y las rutas definidas para poder crear y transformar schemas y datasets solamente con una llamada HTTP sin necesidad de utilizar la librería de Chaca",
+        en: "Learn about our REST API and the defined routes to be able to create and transform schemas and datasets with just one HTTP call without having to use the Chaca library.",
+      },
+    })
   }
 }

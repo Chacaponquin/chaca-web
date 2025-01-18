@@ -36,7 +36,15 @@ export class Schema extends DocSubSection {
   readonly nestedSchemaUrl = this.buildUrl(NESTED_SCHEMA.id)
 
   constructor(parent: DocSection) {
-    super({ parent: parent, title: { en: "Schema", es: "Schema" }, url: "schema" })
+    super({
+      parent: parent,
+      title: { en: "Schema", es: "Schema" },
+      url: "schema",
+      description: {
+        es: "Aprende sobre cómo utilizar los schemas en Chaca para definir las entidades del negocio, permitiendo también generar y exportar datos mock a través de los campos definidos",
+        en: "Learn how to use Chaca schemas to define business entities, also allowing you to generate and export mock data through the defined fields",
+      },
+    })
 
     this.titles = [
       NESTED_SCHEMA,
