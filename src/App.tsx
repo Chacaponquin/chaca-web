@@ -7,7 +7,7 @@ import { ToastProvider } from "@modules/app/modules/toast/context"
 import { UserProvider } from "@modules/user/context"
 import { ErrorBoundary } from "react-error-boundary"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { ContactUs, Error404, Home, Landing } from "./containers"
+import { ContactUs, Error404 } from "./containers"
 import { ModulesProvider } from "@modules/modules/context"
 import { DatasetProvider } from "@modules/dataset/context"
 import { ConfigProvider } from "@modules/config/context"
@@ -117,7 +117,6 @@ import {
   SCHEMA,
   SCHEMA_FIELD,
 } from "@modules/docs/domain/core/sections/concepts"
-import { DocLayout } from "@modules/docs/components"
 import {
   Csv,
   JSON,
@@ -140,6 +139,12 @@ import {
   TYPESCRIPT,
   YAML,
 } from "@modules/docs/domain/core/sections/export"
+import { lazy, Suspense } from "react"
+import LazyLoader from "@modules/app/components/LazyLoader/LazyLoader"
+
+const Home = lazy(() => import("./containers/Home/Home"))
+const Landing = lazy(() => import("./containers/Landing/Landing"))
+const DocLayout = lazy(() => import("./modules/docs/components/DocLayout/DocLayout"))
 
 export default function App() {
   return (
@@ -152,33 +157,47 @@ export default function App() {
                 <ModalProvider>
                   <DocsProvider>
                     <Routes>
-                      {/* <Route path={APP_ROUTES.AUTH.LOGIN} element={<Login />} /> */}
-                      {/* <Route path={APP_ROUTES.AUTH.SIGN_UP} element={<SignUp />} /> */}
                       <Route path={APP_ROUTES.CONTACT_US} element={<ContactUs />} />
-                      <Route path={APP_ROUTES.ROOT} element={<Landing />} />
+                      <Route
+                        path={APP_ROUTES.ROOT}
+                        element={
+                          <Suspense fallback={<LazyLoader />}>
+                            <Landing />
+                          </Suspense>
+                        }
+                      />
 
                       <Route
                         path={APP_ROUTES.HOME}
                         element={
-                          <SocketProvider>
-                            <ModulesProvider>
-                              <ConfigProvider>
-                                <PlaygroundProvider>
-                                  <DatasetProvider>
-                                    <HomeProvider>
-                                      <Home />
-                                    </HomeProvider>
-                                  </DatasetProvider>
-                                </PlaygroundProvider>
-                              </ConfigProvider>
-                            </ModulesProvider>
-                          </SocketProvider>
+                          <Suspense fallback={<LazyLoader />}>
+                            <SocketProvider>
+                              <ModulesProvider>
+                                <ConfigProvider>
+                                  <PlaygroundProvider>
+                                    <DatasetProvider>
+                                      <HomeProvider>
+                                        <Home />
+                                      </HomeProvider>
+                                    </DatasetProvider>
+                                  </PlaygroundProvider>
+                                </ConfigProvider>
+                              </ModulesProvider>
+                            </SocketProvider>
+                          </Suspense>
                         }
                       />
 
                       <Route path={APP_ROUTES.NOT_FOUND} element={<Error404 />} />
 
-                      <Route path={APP_ROUTES.DOCS.ROOT} element={<DocLayout />}>
+                      <Route
+                        path={APP_ROUTES.DOCS.ROOT}
+                        element={
+                          <Suspense fallback={<LazyLoader />}>
+                            <DocLayout />
+                          </Suspense>
+                        }
+                      >
                         <Route element={<Overview />} path={OVERVIEW.url} />
                         <Route element={<ModuleValue />} path={MODULE_VALUE.url} />
                         <Route element={<SchemaArray />} path={SCHEMA_ARRAY.url} />
