@@ -20,6 +20,8 @@ interface Props {
   handleDeleteFieldSchemaArgument(argument: string): void
 }
 
+const CLASS = clsx("grid grid-cols-2 esm:grid-cols-1", "rounded", "gap-x-4 gap-y-3", "mb-5")
+
 export default function ModuleValueConfig({
   args,
   module,
@@ -30,23 +32,21 @@ export default function ModuleValueConfig({
   handleAddFieldSchemaArgument,
   handleDeleteFieldSchemaArgument,
 }: Props) {
-  const { modules } = useModules()
+  const { modules: sections } = useModules()
   const { MODULE_TEXT, OPTION_TEXT } = useTranslation({
-    MODULE_TEXT: { en: "Module", es: "Módulo" },
-    OPTION_TEXT: { en: "Option", es: "Opción" },
+    MODULE_TEXT: { en: "Section", es: "Sección" },
+    OPTION_TEXT: { en: "Module", es: "Módulo" },
   })
-
-  const CLASS = clsx("grid grid-cols-2 esm:grid-cols-1", "rounded", "gap-x-4 gap-y-3", "mb-5")
 
   return (
     <div className={CLASS}>
       <FormSection vertical={true} labelText={MODULE_TEXT}>
         <ChacaSelect
           id="section-select"
-          options={modules}
+          options={sections}
           label={(s) => s.name}
           placeholder={MODULE_TEXT}
-          value={(s) => s === section}
+          value={(o) => o === section}
           onChange={handleSelectFieldSchema}
           size="base"
         />
@@ -56,7 +56,7 @@ export default function ModuleValueConfig({
         <ChacaSelect
           id="module-select"
           value={(o) => o === module}
-          options={section.options}
+          options={section.modules}
           label={(o) => o.name}
           placeholder={OPTION_TEXT}
           onChange={handleSelectFieldSchemaOption}

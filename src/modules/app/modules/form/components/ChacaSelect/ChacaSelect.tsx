@@ -1,18 +1,18 @@
-import { useMemo, useState } from "react"
-import clsx from "clsx"
 import { Size } from "../../domain"
-import ChacaPopover from "../ChacaPopover/ChacaPopover"
-import { PopoverItem, PopoverList } from "../ChacaPopover/components"
-import { ArrowDown } from "@modules/app/modules/icon/components"
+import LibSelect, { components } from "react-select"
+import MenuOption from "./components/MenuOption/MenuOption"
+import { useMemo } from "react"
+import clsx from "clsx"
+import Indicator from "./components/Indicator/Indicator"
 
-interface Props<T> {
+interface p<T> {
   placeholder: string
   options: T[]
   size: Size
   id: string
   label(o: T): string
   onChange(value: T): void
-  value(o: T): boolean
+  value(data: T): boolean
 }
 
 export default function ChacaSelect<T>({
@@ -20,76 +20,97 @@ export default function ChacaSelect<T>({
   onChange,
   options,
   placeholder,
-  value,
+  value: ivalue,
   size,
-}: Props<T>) {
-  const [openOptions, setOpenOptions] = useState(false)
-
-  function handleSelectOption(v: T) {
-    onChange(v)
-  }
-
-  const PARENT_CLASS = clsx(
-    "cursor-pointer",
-    "w-full",
-    "gap-5",
-    "transition-all duration-300",
-    "rounded",
-    "whitespace-nowrap",
-    "flex items-center justify-between",
-    "text-black dark:text-white",
-    "border-2 border-gray-300",
-
-    "dark:border-scale-3 dark:focus:border-scale-9 dark:hover:border-scale-9",
-    "bg-white dark:bg-scale-5",
-
-    { "border-purple-6": openOptions, "hover:border-purple-6": !openOptions },
-
-    {
-      "text-sm": size === "sm",
-      "text-base": size === "base",
-      "text-lg": size === "lg",
-    },
-
-    {
-      "px-3 py-1": size === "sm",
-      "px-4 py-1.5": size === "base",
-      "px-5 py-1.5": size === "lg",
-    },
-  )
-
-  const selectedOption = useMemo(() => {
-    return options.find((o) => value(o))
-  }, [options, value])
+}: p<T>) {
+  const value = useMemo(() => options.find((o) => ivalue(o)), [options, ivalue])
 
   return (
-    <ChacaPopover
-      parent={
-        <button className={PARENT_CLASS} type="button">
-          <p className="pointer-events-none overflow-x-auto no-scroll">
-            {selectedOption ? label(selectedOption) : placeholder}
-          </p>
+    <LibSelect
+      className="w-full"
+      components={{
+        IndicatorsContainer: (p) => (
+          <components.IndicatorsContainer {...p} className="">
+            <Indicator />
+          </components.IndicatorsContainer>
+        ),
+        Option: (p) => (
+          <components.Option {...p} className="px-1 dark:bg-scale-5 rounded">
+            <MenuOption size={size} selected={value === p.data} label={label(p.data)} />
+          </components.Option>
+        ),
+        IndicatorSeparator: () => null,
+        SingleValue: (p) => (
+          <components.SingleValue
+            {...p}
+            className={clsx("p-0", "text-black dark:text-white", {
+              "text-sm": size === "sm",
+              "text-base": size === "base",
+              "text-lg": size === "lg",
+            })}
+          >
+            {value ? label(value) : placeholder}
+          </components.SingleValue>
+        ),
+      }}
+      onChange={(value) => {
+        onChange(value as T)
+      }}
+      styles={{
+        placeholder: (base) => {
+          return { ...base, padding: "0px" }
+        },
+        control: (base) => {
+          return {
+            ...base,
+            borderColor: "inherit",
+            minHeight: undefined,
+            ":hover": { borderColor: "inherit" },
+          }
+        },
+        option(base) {
+          return { ...base, padding: "0px" }
+        },
+        menuList: (base) => {
+          return {
+            ...base,
+            display: "flex",
+            flexDirection: "column",
+            gap: undefined,
+          }
+        },
+        singleValue(base) {
+          return { ...base, padding: "0px" }
+        },
+      }}
+      classNames={{
+        menuList: () => "py-1 rounded-md dark:bg-scale-5 gap-y-1",
+        menu: () => "rounded-md mt-1 dark:bg-transparent shadow-md",
+        control: () => {
+          return clsx(
+            "transition-all duration-200",
+            "dark:border-scale-3 dark:hover:border-scale-9",
+            "hover:border-purple-6",
+            "bg-white dark:bg-scale-5",
+            "border-2",
+            "cursor-pointer",
+            "shadow-none",
+            "rounded-md",
 
-          <div className="stroke-black dark:stroke-white">
-            <ArrowDown size={18} />
-          </div>
-        </button>
-      }
-      open={openOptions}
-      onClickOutside={() => setOpenOptions(false)}
-      position="bottom"
-    >
-      <PopoverList height={300}>
-        {options.map((o, index) => (
-          <PopoverItem
-            key={index}
-            text={label(o)}
-            onClick={() => handleSelectOption(o)}
-            selected={value(o)}
-            size={size}
-          />
-        ))}
-      </PopoverList>
-    </ChacaPopover>
+            {
+              "px-3 py-1": size === "sm",
+              "px-4 py-1.5": size === "base",
+              "px-5 py-1.5": size === "lg",
+            },
+          )
+        },
+        valueContainer: () => "p-0",
+      }}
+      isSearchable={false}
+      isClearable={false}
+      value={value}
+      options={options}
+      placeholder={placeholder}
+    />
   )
 }

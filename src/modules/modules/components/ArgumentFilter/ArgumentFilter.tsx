@@ -35,7 +35,7 @@ export default function ArgumentFilter({ arg, value, handleChangeArgumentValue }
             onChange={(value) => {
               handleChangeArgumentValue(value.value)
             }}
-            value={(option) => option.value === value}
+            value={(o) => o.value === value}
             size="sm"
           />
         )

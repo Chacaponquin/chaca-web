@@ -48,7 +48,7 @@ export default function ExportImage({ handleExportImage }: Props) {
             placeholder={FORMAT_PLACEHOLDER}
             size="base"
             id="export-image-select"
-            value={(f) => f === form.format}
+            value={(o) => o === form.format}
           />
         </FormSection>
       </div>

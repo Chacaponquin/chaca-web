@@ -169,7 +169,7 @@ export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
           datatype: {
             ...form.datatype,
             section: action.payload.schema,
-            module: action.payload.schema.options[0],
+            module: action.payload.schema.modules[0],
           },
         }
       }

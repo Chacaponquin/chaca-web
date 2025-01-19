@@ -23,7 +23,7 @@ export default function useModulesServices() {
       onSuccess(data) {
         const result: ModuleSection[] = data.modules.map((d) => ({
           name: d.name,
-          options: d.options.map((o) => ({
+          modules: d.options.map((o) => ({
             id: o.id,
             name: o.name,
             arguments: o.arguments.map((a) => {

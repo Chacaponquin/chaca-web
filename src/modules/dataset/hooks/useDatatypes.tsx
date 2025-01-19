@@ -38,7 +38,7 @@ export default function useDatatypes({ fieldId, schemaId }: Props) {
     type: DATA_TYPES.MODULE_VALUE,
     args: {},
     section: modules[0],
-    module: modules[0].options[0],
+    module: modules[0].modules[0],
   }
 
   const DEFAULT_REF_DATA_TYPE: RefDatatype = {

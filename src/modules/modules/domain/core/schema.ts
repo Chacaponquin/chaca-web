@@ -2,7 +2,7 @@ import { Argument } from "./argument"
 
 export interface ModuleSection {
   name: string
-  options: Module[]
+  modules: Module[]
   id: string
 }
 

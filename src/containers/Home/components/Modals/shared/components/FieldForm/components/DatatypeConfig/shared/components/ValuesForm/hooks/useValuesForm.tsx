@@ -2,7 +2,7 @@ import { ARRAY_VALUE_TYPE } from "@modules/dataset/domain/constants"
 import { ArrayValue } from "@modules/dataset/domain/core/datatype"
 import { useCode } from "@modules/modal/hooks"
 import { useTypes } from "../../../hooks"
-import { SelectTypes } from "../../../../domain"
+import { SelectTypes } from "../../../../domain/select-type"
 
 interface Props {
   values: ArrayValue[]
@@ -49,7 +49,7 @@ export default function useValuesForm({ values, handleChangeValues }: Props) {
   function handleClick(index: number) {
     handleOpen({
       language: "json",
-      code: values[index].value as string,
+      code: values[index].value,
       handleChange(code) {
         handleChangeValue(code, index)
       },
@@ -62,7 +62,6 @@ export default function useValuesForm({ values, handleChangeValues }: Props) {
     handleChangeSelectType,
     handleDeleteValue,
     handleAdd,
-
     handleClick,
   }
 }

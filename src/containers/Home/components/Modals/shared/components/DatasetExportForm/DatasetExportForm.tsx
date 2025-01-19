@@ -44,7 +44,7 @@ export default function DatasetExportForm({ form, handleChangeFileType, handleCh
           label={(f) => f.title}
           placeholder={SELECT_FORMAT}
           onChange={(v) => handleChangeFileType(v)}
-          value={(f) => f === form.file.type}
+          value={(o) => o === form.file.type}
           size="base"
         />
       </FormSection>

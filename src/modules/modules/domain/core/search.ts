@@ -5,7 +5,7 @@ export class SchemaSearcher {
 
   findModule(p: string, t: string): Module {
     const foundParent = this.findSection(p)
-    return foundParent.options.find((el) => el.id === t) as Module
+    return foundParent.modules.find((el) => el.id === t) as Module
   }
 
   findSection(p: string): ModuleSection {

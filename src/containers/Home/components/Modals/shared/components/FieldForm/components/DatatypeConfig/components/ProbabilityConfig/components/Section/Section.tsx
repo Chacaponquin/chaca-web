@@ -1,5 +1,5 @@
 import { ARRAY_VALUE_TYPE } from "@modules/dataset/domain/constants"
-import { SelectTypes } from "../../../../domain"
+import { SelectTypes } from "../../../../domain/select-type"
 import { SelectType, ValueInput } from "../../../../shared/components"
 
 interface Props {
