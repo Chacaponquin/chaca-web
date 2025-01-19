@@ -27,8 +27,8 @@ interface Props {
   id: string
   schemaId: string
   datatype: FieldDatatype
-  handleSelectFieldSchema(v: ModuleSection): void
-  handleSelectFieldSchemaOption(p: Module): void
+  handleSelectModuleSection(v: ModuleSection): void
+  handleSelectModule(p: Module): void
   handleUpdateCustomField(p: UpdateCustomProps): void
   handleUpdateFieldSchemaArguments(p: UpdateArgumentsProps): void
   handleChangeSequentialValues(props: ChangeSequentialFieldProps): void
@@ -49,8 +49,8 @@ export default function DatatypeConfig({
   id,
   schemaId,
   datatype,
-  handleSelectFieldSchema,
-  handleSelectFieldSchemaOption,
+  handleSelectModuleSection,
+  handleSelectModule,
   handleUpdateCustomField,
   handleUpdateFieldSchemaArguments,
   handleChangeSequentialValues,
@@ -111,8 +111,8 @@ export default function DatatypeConfig({
           args={datatype.args}
           module={datatype.module}
           section={datatype.section}
-          handleSelectFieldSchema={handleSelectFieldSchema}
-          handleSelectFieldSchemaOption={handleSelectFieldSchemaOption}
+          handleSelectModuleSection={handleSelectModuleSection}
+          handleSelectModule={handleSelectModule}
           handleUpdateFieldSchemaArguments={handleUpdateFieldSchemaArguments}
           handleAddFieldSchemaArgument={handleAddFieldSchemaArgument}
           handleDeleteFieldSchemaArgument={handleDeleteFieldSchemaArgument}

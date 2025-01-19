@@ -61,7 +61,7 @@ export type FieldFormPayload =
   | { type: FORM_ACTIONS.CHANGE_PICK_DATATYPE; payload: { count: number; values: ArrayValue[] } }
   | { type: FORM_ACTIONS.CHANGE_PROBABILITY_DATATYPE; payload: { values: ProbabilityValue[] } }
   | {
-      type: FORM_ACTIONS.CHANGE_SCHEMA_OPTION
+      type: FORM_ACTIONS.CHANGE_MODULE
       payload: {
         option: Module
       }
@@ -154,9 +154,9 @@ export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
       return { ...form, datatype: { type: DATA_TYPES.PROBABILITY, values: action.payload.values } }
     }
 
-    case FORM_ACTIONS.CHANGE_SCHEMA_OPTION: {
+    case FORM_ACTIONS.CHANGE_MODULE: {
       if (form.datatype.type === DATA_TYPES.MODULE_VALUE) {
-        return { ...form, datatype: { ...form.datatype, module: action.payload.option } }
+        return { ...form, datatype: { ...form.datatype, module: action.payload.option, args: {} } }
       }
 
       return form
@@ -170,6 +170,7 @@ export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
             ...form.datatype,
             section: action.payload.schema,
             module: action.payload.schema.modules[0],
+            args: {},
           },
         }
       }

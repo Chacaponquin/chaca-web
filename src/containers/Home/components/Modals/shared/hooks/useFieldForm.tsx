@@ -88,7 +88,7 @@ export default function useFieldForm({ field: ifield, schemaId }: Props): FieldA
     }
   }
 
-  function handleSelectFieldSchema(parent: ModuleSection) {
+  function handleSelectModuleSection(parent: ModuleSection) {
     formDispatch({
       type: FORM_ACTIONS.CHANGE_MODULE_SECTION,
       payload: {
@@ -97,9 +97,9 @@ export default function useFieldForm({ field: ifield, schemaId }: Props): FieldA
     })
   }
 
-  function handleSelectFieldSchemaOption(option: Module) {
+  function handleSelectModule(option: Module) {
     formDispatch({
-      type: FORM_ACTIONS.CHANGE_SCHEMA_OPTION,
+      type: FORM_ACTIONS.CHANGE_MODULE,
       payload: {
         option: option,
       },
@@ -296,8 +296,8 @@ export default function useFieldForm({ field: ifield, schemaId }: Props): FieldA
     handleChangePossibleNull,
     handleChangePossibleNullValue,
     handleChangeDatatype,
-    handleSelectFieldSchema,
-    handleSelectFieldSchemaOption,
+    handleSelectModuleSection,
+    handleSelectModule,
     handleUpdateCustomField,
     handleUpdateRefField,
     handleUpdateFieldSchemaArguments,

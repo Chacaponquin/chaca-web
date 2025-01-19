@@ -13,8 +13,8 @@ interface Props {
   args: ArgumentObject
   section: ModuleSection
   module: Module
-  handleSelectFieldSchema(v: ModuleSection): void
-  handleSelectFieldSchemaOption(p: Module): void
+  handleSelectModuleSection(v: ModuleSection): void
+  handleSelectModule(p: Module): void
   handleUpdateFieldSchemaArguments(p: UpdateArgumentsProps): void
   handleAddFieldSchemaArgument(argument: Argument): void
   handleDeleteFieldSchemaArgument(argument: string): void
@@ -26,8 +26,8 @@ export default function ModuleValueConfig({
   args,
   module,
   section,
-  handleSelectFieldSchema,
-  handleSelectFieldSchemaOption,
+  handleSelectModuleSection,
+  handleSelectModule,
   handleUpdateFieldSchemaArguments,
   handleAddFieldSchemaArgument,
   handleDeleteFieldSchemaArgument,
@@ -47,7 +47,7 @@ export default function ModuleValueConfig({
           label={(s) => s.name}
           placeholder={MODULE_TEXT}
           value={(o) => o === section}
-          onChange={handleSelectFieldSchema}
+          onChange={handleSelectModuleSection}
           size="base"
         />
       </FormSection>
@@ -59,7 +59,7 @@ export default function ModuleValueConfig({
           options={section.modules}
           label={(o) => o.name}
           placeholder={OPTION_TEXT}
-          onChange={handleSelectFieldSchemaOption}
+          onChange={handleSelectModule}
           size="base"
         />
       </FormSection>

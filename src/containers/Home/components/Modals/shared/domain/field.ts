@@ -31,8 +31,8 @@ export interface FieldActions {
   handleChangePossibleNull(v: boolean): void
   handleChangePossibleNullValue(v: number): void
   handleChangeDatatype(v: string): void
-  handleSelectFieldSchema(v: ModuleSection): void
-  handleSelectFieldSchemaOption(p: Module): void
+  handleSelectModuleSection(v: ModuleSection): void
+  handleSelectModule(p: Module): void
   handleUpdateFieldSchemaArguments(p: UpdateArgumentsProps): void
   handleUpdateRefField(p: UpdateRefProps): void
   handleUpdateCustomField(p: UpdateCustomProps): void

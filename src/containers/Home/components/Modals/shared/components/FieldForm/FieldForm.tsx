@@ -22,8 +22,8 @@ export default function FieldForm({
   handleChangePossibleNull,
   handleChangePossibleNullValue,
   handleChangeDatatype,
-  handleSelectFieldSchema,
-  handleSelectFieldSchemaOption,
+  handleSelectModuleSection,
+  handleSelectModule,
   handleUpdateCustomField,
   handleUpdateFieldSchemaArguments,
   handleChangeIsKey,
@@ -65,8 +65,8 @@ export default function FieldForm({
       <DatatypeConfig
         id={field.id}
         schemaId={schemaId}
-        handleSelectFieldSchema={handleSelectFieldSchema}
-        handleSelectFieldSchemaOption={handleSelectFieldSchemaOption}
+        handleSelectModuleSection={handleSelectModuleSection}
+        handleSelectModule={handleSelectModule}
         datatype={field.datatype}
         handleUpdateCustomField={handleUpdateCustomField}
         handleUpdateFieldSchemaArguments={handleUpdateFieldSchemaArguments}
