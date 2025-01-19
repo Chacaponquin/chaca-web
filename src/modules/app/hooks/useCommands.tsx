@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useCallback, useEffect } from "react"
 import { CommandsExecutor } from "../domain/command"
 
 interface Props {
@@ -7,11 +7,14 @@ interface Props {
 }
 
 export default function useCommands({ executor, condition = true }: Props) {
-  const handleKeyboardAction = (event: globalThis.KeyboardEvent) => {
-    if (condition) {
-      executor.execute(event)
-    }
-  }
+  const handleKeyboardAction = useCallback(
+    (event: globalThis.KeyboardEvent) => {
+      if (condition) {
+        executor.execute(event)
+      }
+    },
+    [condition],
+  )
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyboardAction)

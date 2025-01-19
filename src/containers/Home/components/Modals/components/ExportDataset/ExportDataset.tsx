@@ -15,8 +15,8 @@ export default function ExportDataset({ handleExportDataset }: Props) {
   })
 
   const { EXPORT_ALL_DATASETS_TEXT, SUBMIT_TEXT } = useTranslation({
-    SUBMIT_TEXT: { en: "Export Datasets", es: "Exportar Datasets" },
-    EXPORT_ALL_DATASETS_TEXT: { en: "Export All Datasets", es: "Exportar todos los dataset" },
+    SUBMIT_TEXT: { en: "Export", es: "Exportar" },
+    EXPORT_ALL_DATASETS_TEXT: { en: "Export Dataset", es: "Exportar Dataset" },
   })
 
   return (

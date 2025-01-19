@@ -11,6 +11,16 @@ interface Props {
   loading: boolean
 }
 
+const CLASS = clsx(
+  "text-black dark:text-white",
+  "bg-white dark:bg-scale-3",
+  "px-6 esm:px-4",
+  "flex items-center justify-between",
+  "min-h-[65px] max-h-[65px]",
+  "w-full",
+  "dark:border-b-[1px] dark:border-b-scale-7 border-b-2",
+)
+
 export default function Navbar({
   handleExportDataset,
   handleExportImage,
@@ -19,16 +29,6 @@ export default function Navbar({
 }: Props) {
   const { smallWindow } = useContext(HomeContext)
   const { dataset, handleAddSchema } = useDataset()
-
-  const CLASS = clsx(
-    "text-black dark:text-white",
-    "bg-white dark:bg-scale-3",
-    "px-6 esm:px-4",
-    "flex items-center justify-between",
-    "min-h-[65px] max-h-[65px]",
-    "w-full",
-    "dark:border-b-[1px] dark:border-b-scale-7 border-b-2",
-  )
 
   return (
     <nav className={CLASS}>

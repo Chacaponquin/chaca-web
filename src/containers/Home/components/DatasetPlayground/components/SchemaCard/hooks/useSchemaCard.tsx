@@ -40,7 +40,7 @@ export default function useSchemaCard({ schema }: Props) {
     new AddFieldCommand(handleAddField),
   ])
 
-  useCommands({ executor: commands, condition: selected && openModal ? true : false })
+  useCommands({ executor: commands, condition: selected && openModal === null ? true : false })
 
   function handleDeleteSchema() {
     handleOpenModal(new DeleteSchemaModalProps(schema.name, schema.id))

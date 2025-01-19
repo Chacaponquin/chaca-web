@@ -12,6 +12,7 @@ import {
 import { useLanguage, useTranslation } from "@modules/app/modules/language/hooks"
 import { CommandsExecutor } from "@modules/app/domain/command"
 import { useCommands } from "@modules/app/hooks"
+import { useModal } from "@modules/modal/hooks"
 
 interface Props {
   handleExportDataset(): void
@@ -26,6 +27,8 @@ export default function useMenu({
   handleExportImage,
   handleDeleteAll,
 }: Props) {
+  const { openModal } = useModal()
+
   const [open, setOpen] = useState(false)
 
   const listRef = createRef<HTMLDivElement>()
@@ -40,7 +43,7 @@ export default function useMenu({
   ])
 
   useClickOutside({ element: listRef, onClickOutside: () => setOpen(false) })
-  useCommands({ executor: commands })
+  useCommands({ executor: commands, condition: openModal === null })
 
   const { ADD_DATASET, DELETE_ALL, EXPORT_ALL, EXPORT_IMAGE } = useTranslation({
     ADD_DATASET: { en: "Add schema", es: "Añadir schema" },

@@ -2,6 +2,7 @@ import { Schema } from "@modules/dataset/domain/core"
 import { CardHeader, Field } from "./components"
 import { useSchemaCard } from "./hooks"
 import clsx from "clsx"
+import { useMemo } from "react"
 
 export interface CardProps {
   schema: Schema
@@ -25,17 +26,21 @@ export default function SchemaCard({ data: { schema } }: Props) {
     schema: schema,
   })
 
-  const CLASS = clsx(
-    "flex flex-col",
-    "rounded",
-    "bg-scale-4",
-    "cursor-grab",
-    "stroke-white",
-    "text-white",
-    "relative",
-    // "animate-jump-in animate-once animate-duration-400 animate-ease-in-out",
+  const CLASS = useMemo(
+    () =>
+      clsx(
+        "flex flex-col",
+        "rounded",
+        "bg-scale-4",
+        "cursor-grab",
+        "stroke-white",
+        "text-white",
+        "relative",
+        // "animate-jump-in animate-once animate-duration-400 animate-ease-in-out",
 
-    { "outline outline-[2px] outline-purple-6": selected },
+        { "outline outline-[2px] outline-purple-6": selected },
+      ),
+    [selected],
   )
 
   return (
