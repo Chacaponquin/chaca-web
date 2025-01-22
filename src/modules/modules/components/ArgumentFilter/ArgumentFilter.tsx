@@ -66,13 +66,7 @@ export default function ArgumentFilter({ arg, value, handleChangeArgumentValue }
       }
 
       case ARGUMENT_TYPE.BOOLEAN: {
-        return (
-          <ChacaSwitchButton
-            value={value as boolean}
-            size="sm"
-            onChange={handleChangeArgumentValue}
-          />
-        )
+        return <ChacaSwitchButton checked={value as boolean} onChange={handleChangeArgumentValue} />
       }
 
       case ARGUMENT_TYPE.DATE: {
