@@ -8,7 +8,7 @@ export const APP_IMAGES = {
   WELCOME: { image: "/images/welcome.png", alt: "chaca-welcome-image" },
   PRESENTATION: {
     SIMPLE_DATASET: { image: "/images/simple-schema.png", alt: "simple-schema" },
-    RELATIONAL_DATASETS: { image: "/images/Relational Datasets.png", alt: "Relational Datasets" },
+    RELATIONAL_DATASETS: { image: "/images/relational-datasets.png", alt: "Relational Datasets" },
     EXTENSIONS: {
       CSV: { image: "/images/extensions/csv.png", alt: "csv" },
       JAVA: { image: "/images/extensions/java.png", alt: "java" },
