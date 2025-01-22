@@ -50,4 +50,5 @@ export interface FieldActions {
   handleChangeProbabilityValues(values: ProbabilityValue[]): void
   handleChangeRefUnique(value: boolean): void
   handleChangeRefWhere(value: RefWhere): void
+  handleChangeRefNullOnEmpty(value: boolean): void
 }

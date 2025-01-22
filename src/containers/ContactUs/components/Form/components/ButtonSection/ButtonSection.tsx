@@ -11,7 +11,7 @@ export default function ButtonSection({ buttonText, loading }: Props) {
     <section className="flex justify-end">
       <ChacaButton
         color="primary"
-        icon={<Send size={20} />}
+        icon={Send}
         size="lg"
         text={buttonText}
         type="submit"

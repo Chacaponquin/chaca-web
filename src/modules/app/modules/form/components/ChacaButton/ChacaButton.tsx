@@ -1,4 +1,5 @@
 import { Size } from "@form/domain"
+import { IconProps } from "@modules/app/modules/icon/interfaces"
 import clsx from "clsx"
 
 interface Props {
@@ -10,7 +11,7 @@ interface Props {
   type?: "submit" | "button"
   id?: string
   onClick?: () => void
-  icon?: React.ReactNode
+  icon?: React.FC<IconProps>
   rounded?: boolean
 }
 
@@ -81,7 +82,8 @@ export default function ChacaButton({
       type={type ? type : "button"}
       disabled={disabled}
     >
-      {icon}
+      {icon && <i className="stroke-white">{icon({ size: 20 })}</i>}
+
       <p className="">{text}</p>
     </button>
   )

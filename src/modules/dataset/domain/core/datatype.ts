@@ -37,6 +37,7 @@ export interface RefDatatype {
   ref: string[]
   unique: boolean
   where: RefWhere
+  nullOnEmpty: boolean
 }
 
 export type RefWhere = string | null

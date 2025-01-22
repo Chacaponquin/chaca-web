@@ -25,6 +25,7 @@ export type FieldFormPayload =
         ref: string[]
         unique: boolean
         where: RefWhere
+        nullOnEmpty: boolean
       }
     }
   | {
@@ -125,6 +126,7 @@ export const fieldFormReducer: Reducer<FieldForm, FieldFormPayload> = (
           ref: action.payload.ref,
           unique: action.payload.unique,
           where: action.payload.where,
+          nullOnEmpty: action.payload.nullOnEmpty,
         },
       }
     }

@@ -44,6 +44,7 @@ interface Props {
   handleChangeProbabilityValues(values: ProbabilityValue[]): void
   handleChangeRefUnique(value: boolean): void
   handleChangeRefWhere(value: RefWhere): void
+  handleChangeRefNullOnEmpty(value: boolean): void
 }
 
 export default function DatatypeConfig({
@@ -66,6 +67,7 @@ export default function DatatypeConfig({
   handleChangeProbabilityValues,
   handleChangeRefUnique,
   handleChangeRefWhere,
+  handleChangeRefNullOnEmpty,
 }: Props) {
   return (
     <section className="">
@@ -79,7 +81,9 @@ export default function DatatypeConfig({
 
       {datatype.type === DATA_TYPES.REF && (
         <RefConfig
+          nullOnEmpty={datatype.nullOnEmpty}
           refField={datatype.ref}
+          handleChangeRefNullOnEmpty={handleChangeRefNullOnEmpty}
           schemaId={schemaId}
           unique={datatype.unique}
           where={datatype.where}

@@ -1,6 +1,5 @@
 import { useDatatypes } from "@modules/dataset/hooks"
 import { useReducer, Reducer } from "react"
-import { FieldFormPayload, fieldFormReducer } from "../reducer"
 import { FORM_ACTIONS } from "../constants"
 import { ARGUMENT_TYPE, DATA_TYPES } from "@modules/modules/domain/constants"
 import {
@@ -22,6 +21,7 @@ import { Argument } from "@modules/modules/domain/core/module-argument"
 import { FieldForm } from "@modules/dataset/domain/form"
 import { Module } from "@modules/modules/domain/core/module"
 import { ModuleSection } from "@modules/modules/domain/core/module-section"
+import { FieldFormPayload, fieldFormReducer } from "../reducer/field-form-reducer"
 
 interface Props {
   field: FieldForm
@@ -189,6 +189,7 @@ export default function useFieldForm({ field: ifield, schemaId }: Props): FieldA
           ref: [...currentLocation, currentfieldId],
           unique: f.unique,
           where: f.where,
+          nullOnEmpty: f.nullOnEmpty,
         },
       },
     })
@@ -247,7 +248,12 @@ export default function useFieldForm({ field: ifield, schemaId }: Props): FieldA
 
     formDispatch({
       type: FORM_ACTIONS.CHANGE_REF_DATATYPE,
-      payload: { ref: ref.split("."), unique: f.unique, where: f.where },
+      payload: {
+        ref: ref.split("."),
+        unique: f.unique,
+        where: f.where,
+        nullOnEmpty: f.nullOnEmpty,
+      },
     })
   }
 
@@ -285,6 +291,12 @@ export default function useFieldForm({ field: ifield, schemaId }: Props): FieldA
     formDispatch({ type: FORM_ACTIONS.CHANGE_REF_DATATYPE, payload: { ...f, where: value } })
   }
 
+  function handleChangeRefNullOnEmpty(value: boolean) {
+    const f = field.datatype as RefDatatype
+
+    formDispatch({ type: FORM_ACTIONS.CHANGE_REF_DATATYPE, payload: { ...f, nullOnEmpty: value } })
+  }
+
   return {
     field,
     handleChangeProbabilityValues,
@@ -312,5 +324,6 @@ export default function useFieldForm({ field: ifield, schemaId }: Props): FieldA
     handleDeleteFieldSchemaArgument,
     handleChangeRefUnique,
     handleChangeRefWhere,
+    handleChangeRefNullOnEmpty,
   }
 }

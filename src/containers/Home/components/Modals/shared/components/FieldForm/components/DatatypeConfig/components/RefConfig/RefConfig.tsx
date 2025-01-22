@@ -2,7 +2,7 @@ import { ChacaButton, ChacaSelect } from "@form/components"
 import { Edit } from "@modules/app/modules/icon/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { RefWhere } from "@modules/dataset/domain/core/datatype"
-import { UniqueInfo, WhereInfo } from "./components"
+import { NullOnEmptyInfo, UniqueInfo, WhereInfo } from "./components"
 import { useRefConfig } from "./hooks"
 import {
   CheckField,
@@ -15,9 +15,11 @@ interface RefConfigProps {
   unique: boolean
   where: RefWhere
   id: string
+  nullOnEmpty: boolean
   handleChangeRefUnique(value: boolean): void
   handleChangeRefWhere(value: RefWhere): void
   handleChangeRefField(r: string): void
+  handleChangeRefNullOnEmpty(value: boolean): void
 }
 
 export default function RefConfig({
@@ -27,6 +29,8 @@ export default function RefConfig({
   id,
   handleChangeRefUnique,
   handleChangeRefWhere,
+  handleChangeRefNullOnEmpty,
+  nullOnEmpty,
   unique,
   where,
 }: RefConfigProps) {
@@ -70,18 +74,15 @@ export default function RefConfig({
         text="Where"
         info={<WhereInfo />}
       >
-        <ChacaButton
-          size="sm"
-          color="cancel"
-          text={EDIT_WHERE}
-          onClick={handleClick}
-          icon={
-            <i className="dark:fill-white fill-black">
-              <Edit size={20} />
-            </i>
-          }
-        />
+        <ChacaButton size="sm" color="cancel" text={EDIT_WHERE} onClick={handleClick} icon={Edit} />
       </CheckField>
+
+      <CheckField
+        text="Null on empty"
+        check={nullOnEmpty}
+        onChange={handleChangeRefNullOnEmpty}
+        info={<NullOnEmptyInfo />}
+      />
     </div>
   )
 }

@@ -73,7 +73,12 @@ type CustomValueProps = Props & { code: string }
 
 type MixedValueProps = Props & { object: Field[] }
 
-type RefValueProps = Props & { ref: string[]; unique: boolean; where: RefWhere }
+type RefValueProps = Props & {
+  ref: string[]
+  unique: boolean
+  where: RefWhere
+  nullOnEmpty: boolean
+}
 
 export abstract class Field {
   static MIN_POSSIBLE_NULL = 0
@@ -140,6 +145,7 @@ export abstract class Field {
         ref: props.datatype.ref,
         unique: props.datatype.unique,
         where: props.datatype.where,
+        nullOnEmpty: props.datatype.nullOnEmpty,
       })
     } else if (props.datatype.type === DATA_TYPES.SEQUENCE) {
       return new SequenceNode({
@@ -188,6 +194,7 @@ export abstract class Field {
         ref: props.datatype.ref,
         unique: props.datatype.unique,
         where: props.datatype.where,
+        nullOnEmpty: props.datatype.nullOnEmpty,
       })
     } else if (props.datatype.type === DATA_TYPES.SEQUENCE) {
       return new SequenceNode({
@@ -442,12 +449,14 @@ export class RefNode extends Field {
   private _ref: string[]
   readonly unique: boolean
   readonly where: RefWhere
+  readonly nullOnEmpty: boolean
 
   constructor(props: RefValueProps) {
     super(props)
     this._ref = props.ref
     this.unique = props.unique
     this.where = props.where
+    this.nullOnEmpty = props.nullOnEmpty
   }
 
   get datatype(): RefDatatype {
@@ -456,6 +465,7 @@ export class RefNode extends Field {
       ref: this.ref,
       unique: this.unique,
       where: this.where,
+      nullOnEmpty: this.nullOnEmpty,
     }
   }
 
@@ -492,6 +502,7 @@ export class RefNode extends Field {
       unique: this.unique,
       where: this.where,
       id: this.id,
+      nullOnEmpty: this.nullOnEmpty,
     })
   }
 

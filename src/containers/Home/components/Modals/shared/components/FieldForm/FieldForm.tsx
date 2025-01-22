@@ -39,6 +39,7 @@ export default function FieldForm({
   handleChangeProbabilityValues,
   handleChangeRefUnique,
   handleChangeRefWhere,
+  handleChangeRefNullOnEmpty,
 }: Props) {
   const { FIELD_NAME_TEXT, DATA_TYPE_TEXT } = useTranslation({
     FIELD_NAME_TEXT: { en: "Fieldname", es: "Nombre del campo" },
@@ -68,6 +69,7 @@ export default function FieldForm({
         handleSelectModuleSection={handleSelectModuleSection}
         handleSelectModule={handleSelectModule}
         datatype={field.datatype}
+        handleChangeRefNullOnEmpty={handleChangeRefNullOnEmpty}
         handleUpdateCustomField={handleUpdateCustomField}
         handleUpdateFieldSchemaArguments={handleUpdateFieldSchemaArguments}
         handleChangeSequentialValues={handleChangeSequentialValues}

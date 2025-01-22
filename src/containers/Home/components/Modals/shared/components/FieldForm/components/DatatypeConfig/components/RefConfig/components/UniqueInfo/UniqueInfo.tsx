@@ -7,14 +7,14 @@ export default function UniqueInfo() {
     INFO: {
       en: (
         <P>
-          If enabled, the reference chosen for this field will be unique and will not be repeated in
-          any other document on this <MiniCode>Schema</MiniCode>
+          The chosen reference for this field will be unique and will not be repeated in any other
+          document on this <MiniCode>schema</MiniCode>
         </P>
       ),
       es: (
         <P>
-          Si está habilitado la referencia escogida para este campo será único y no se repetirá en
-          cualquier otro documento de este <MiniCode>Schema</MiniCode>
+          La referencia escogida para este campo será único y no se repetirá en cualquier otro
+          documento de este <MiniCode>schema</MiniCode>
         </P>
       ),
     },
