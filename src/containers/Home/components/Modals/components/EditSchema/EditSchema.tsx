@@ -11,7 +11,7 @@ interface Props {
 export default function EditSchema({ schema }: Props) {
   const { TITLE, EDIT_TEXT } = useTranslation({
     TITLE: { en: "Edit schema", es: "Editar schema" },
-    EDIT_TEXT: { en: "Edit schema", es: "Editar schema" },
+    EDIT_TEXT: { en: "Edit", es: "Editar" },
   })
 
   const { datasetName, handleDatasetName, handleNext, datasetLimit, handleChangeLimit } =

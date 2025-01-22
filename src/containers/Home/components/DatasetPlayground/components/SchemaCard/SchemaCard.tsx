@@ -36,7 +36,6 @@ export default function SchemaCard({ data: { schema } }: Props) {
         "stroke-white",
         "text-white",
         "relative",
-        // "animate-jump-in animate-once animate-duration-400 animate-ease-in-out",
 
         { "outline outline-[2px] outline-purple-6": selected },
       ),

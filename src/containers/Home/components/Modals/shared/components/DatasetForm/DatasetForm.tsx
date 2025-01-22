@@ -39,7 +39,7 @@ export default function DatasetForm({ name, handleDatasetName, limit, handleChan
           value={limit}
           size="base"
           min={0}
-          max={userLimits.LIMIT_SCHEMAS}
+          max={userLimits.LIMIT_DOCUMENTS}
           onChange={handleChangeLimit}
         />
       </FormSection>

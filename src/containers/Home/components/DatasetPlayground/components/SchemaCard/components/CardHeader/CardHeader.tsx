@@ -41,7 +41,7 @@ export default function CardHeader({
         onClose={() => setOpen(false)}
         open={open}
         position="bottom"
-        parent={<Config name={nameId} />}
+        parent={<Config name={nameId} onClick={() => setOpen((prev) => !prev)} />}
       >
         <DatasetMenu
           handleDeleteSchema={handleDeleteSchema}
