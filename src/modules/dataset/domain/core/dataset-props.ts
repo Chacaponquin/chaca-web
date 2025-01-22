@@ -1,7 +1,7 @@
+import { SaveFieldDTO } from "@modules/dataset/dto/write/save/field"
 import { DatasetError } from "../../errors/dataset"
 import { FieldDatatype } from "./datatype"
 import { IsArrayConfig, IsKeyConfig, PossibleNullConfig } from "./field-config"
-import { SaveFieldDTO } from "../../dto/save"
 import { SchemaSearcher } from "@modules/modules/domain/core/search"
 
 export interface NodeProps {

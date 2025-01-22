@@ -13,7 +13,7 @@ import {
   TryRefANotKeyField,
 } from "../errors/dataset"
 import { DatasetCreationError } from "@modules/app/modules/socket/domain/error"
-import { ExportSchemaDTO } from "../dto/export"
+import { ExportSchemaDTO } from "../dto/write/export/schema"
 
 interface ExportDatasetsProps {
   dataset: ExportSchemaDTO[]

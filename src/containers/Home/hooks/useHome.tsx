@@ -16,10 +16,10 @@ import { useToast } from "@modules/app/modules/toast/hooks"
 import { useContext } from "react"
 import { HomeContext } from "../context"
 import { ExportFileConfigDTO } from "@modules/config/dto/file"
-import { ExportSchemaDTO } from "@modules/dataset/dto/export"
 import useModules from "@modules/modules/hooks/useModules"
 import useDatasetServices from "@modules/dataset/services/useDatasetServices"
 import { downloadDatasetsImage } from "@modules/dataset/services/download-dataset-image"
+import { ExportSchemaDTO } from "@modules/dataset/dto/write/export/schema"
 
 export default function useHome() {
   const { handleChangeLoading } = useContext(HomeContext)

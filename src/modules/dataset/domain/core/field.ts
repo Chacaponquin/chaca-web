@@ -36,9 +36,9 @@ import {
 import { ValueMapper } from "./value-mapper"
 import { NodesUtils } from "./node-utils"
 import { Module } from "@modules/modules/domain/core/module"
-import { SaveFieldDTO } from "@modules/dataset/dto/save"
-import { ExportDatasetFieldDTO } from "@modules/dataset/dto/export"
 import { ModuleSection } from "@modules/modules/domain/core/module-section"
+import { SaveFieldDTO } from "@modules/dataset/dto/write/save/field"
+import { ExportDatasetFieldDTO } from "@modules/dataset/dto/write/export/field"
 
 interface PossibleConfigProps {
   type: DATA_TYPES

@@ -1,25 +1,6 @@
+import { ArgumentObject, RefWhere } from "@modules/dataset/domain/core/datatype"
 import { DATA_TYPES } from "@modules/modules/domain/constants"
-import { ArgumentObject, RefWhere } from "../domain/core/datatype"
-import { IsArrayConfig, IsKeyConfig, PossibleNullConfig } from "../domain/core/field-config"
-
-export type ExportDatasetFieldDTO = {
-  name: string
-  datatype: ExportDatatypeDTO
-  possibleNull: PossibleNullConfig
-  isArray: IsArrayConfig
-  isKey: IsKeyConfig
-}
-
-export interface ExportSchemaDTO {
-  name: string
-  limit: number
-  fields: ExportDatasetFieldDTO[]
-}
-
-export interface RespExportDatasetDTO {
-  id: string
-  filename: string
-}
+import { ExportDatasetFieldDTO } from "./field"
 
 export type ExportDatatypeDTO =
   | ExportMixedDatatype

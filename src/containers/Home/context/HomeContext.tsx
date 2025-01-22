@@ -4,10 +4,10 @@ import { useToast } from "@modules/app/modules/toast/hooks"
 import { useScreen } from "@modules/shared/hooks"
 import { createContext, createRef, RefObject, useEffect, useState } from "react"
 import { DatasetCreationError } from "@modules/app/modules/socket/domain/error"
-import { RespExportDatasetDTO } from "@modules/dataset/dto/export"
 import { SCREEN_SIZES } from "@modules/app/constants/screen-sizes"
 import useDatasetServices from "@modules/dataset/services/useDatasetServices"
 import { downloadDatasetFile } from "@modules/dataset/services/download-dataset"
+import { ExportDatasetResponse } from "@modules/dataset/dto/read/export-dataset"
 
 interface Props {
   playgroundRef: RefObject<HTMLDivElement>
@@ -54,17 +54,19 @@ export function HomeProvider({ children }: { children: React.ReactNode }) {
     })
   }
 
-  function handleFinishCreation({ filename, id }: RespExportDatasetDTO) {
-    downloadDatasetFile({
-      id: id,
-      filename: filename,
-      onError(error) {
-        toastChacaError(error)
-      },
-      onFinally() {
-        setCreateDataLoading(false)
-      },
-    })
+  function handleFinishCreation(files: ExportDatasetResponse) {
+    for (const { filename, id } of files) {
+      downloadDatasetFile({
+        id: id,
+        filename: filename,
+        onError(error) {
+          toastChacaError(error)
+        },
+        onFinally() {
+          setCreateDataLoading(false)
+        },
+      })
+    }
   }
 
   const data: Props = {

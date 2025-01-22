@@ -1,4 +1,3 @@
-import { DATA_TYPES } from "@modules/modules/domain/constants"
 import {
   ArgumentObject,
   CustomDatatype,
@@ -8,17 +7,9 @@ import {
   RefDatatype,
   SequenceDatatype,
   SequentialDatatype,
-} from "../domain/core/datatype"
-import { IsArrayConfig, IsKeyConfig, PossibleNullConfig } from "../domain/core/field-config"
-
-export type SaveFieldDTO = {
-  name: string
-  datatype: SaveFieldDatatype
-  possibleNull: PossibleNullConfig
-  isArray: IsArrayConfig
-  isKey: IsKeyConfig
-  id: string
-}
+} from "@modules/dataset/domain/core/datatype"
+import { DATA_TYPES } from "@modules/modules/domain/constants"
+import { SaveFieldDTO } from "./field"
 
 export type SaveFieldDatatype =
   | CustomDatatype

@@ -2,9 +2,9 @@ import { RootNode } from "./root-node"
 import { SearchProps } from "@modules/dataset/domain/core/dataset-props"
 import { DatasetError } from "@modules/dataset/errors/dataset"
 import { FieldProps } from "@modules/dataset/domain/core/field-props"
-import { ExportDatasetFieldDTO } from "@modules/dataset/dto/export"
-import { SaveFieldDTO } from "@modules/dataset/dto/save"
 import { Field, MixedNode, RefNode } from "./field"
+import { ExportDatasetFieldDTO } from "@modules/dataset/dto/write/export/field"
+import { SaveFieldDTO } from "@modules/dataset/dto/write/save/field"
 
 interface Props {
   name: string

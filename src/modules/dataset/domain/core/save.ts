@@ -1,4 +1,4 @@
-import { SaveFieldDTO } from "@modules/dataset/dto/save"
+import { SaveFieldDTO } from "@modules/dataset/dto/write/save/field"
 import { Schema } from "./schema"
 
 interface Props {
