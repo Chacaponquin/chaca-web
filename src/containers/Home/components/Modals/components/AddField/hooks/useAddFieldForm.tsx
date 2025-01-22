@@ -28,7 +28,7 @@ export default function useAddFieldForm({ schemaId, parentfieldId }: Props) {
       id: fieldId,
       name: "",
       isArray: null,
-      isPossibleNull: 0,
+      possibleNull: 0,
       datatype: DEFAULT_MODULE_VALUE_DATATYPE,
       isKey: false,
     },
@@ -46,7 +46,7 @@ export default function useAddFieldForm({ schemaId, parentfieldId }: Props) {
         id: field.id,
         isArray: field.isArray,
         isKey: field.isKey,
-        isPossibleNull: field.isPossibleNull,
+        possibleNull: field.possibleNull,
       },
       parentfieldId: parentfieldId,
       success() {

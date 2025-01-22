@@ -47,7 +47,7 @@ interface PossibleConfigProps {
 type Props = {
   id: string
   name: string
-  isPossibleNull: PossibleNullConfig
+  possibleNull: PossibleNullConfig
   isArray: IsArrayConfig
   isKey: IsKeyConfig
 }
@@ -84,10 +84,10 @@ export abstract class Field {
   private _isKey: IsKeyConfig
   private _name: string
 
-  constructor({ name, isArray, isKey, isPossibleNull, id }: Props) {
+  constructor({ name, isArray, isKey, possibleNull, id }: Props) {
     this._name = name
     this._isArray = isArray
-    this._possibleNull = isPossibleNull
+    this._possibleNull = possibleNull
     this._isKey = isKey
     this._id = id
   }
@@ -221,7 +221,7 @@ export abstract class Field {
     return this._isArray
   }
 
-  get isPossibleNull() {
+  get possibleNull() {
     return this._possibleNull
   }
 
@@ -233,7 +233,7 @@ export abstract class Field {
     this._isArray = config
   }
 
-  setIsPossibleNull(config: PossibleNullConfig): void {
+  setpossibleNull(config: PossibleNullConfig): void {
     this._possibleNull = config
   }
 
@@ -272,7 +272,7 @@ export class SchemaValueNode extends Field {
       },
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
       name: this.name,
       id: this.id,
     }
@@ -283,7 +283,7 @@ export class SchemaValueNode extends Field {
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
       module: this.module,
       section: this.section,
       args: this.args,
@@ -311,7 +311,7 @@ export class SchemaValueNode extends Field {
       },
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
     }
   }
 }
@@ -340,7 +340,7 @@ export class SequenceNode extends Field {
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
     }
   }
 
@@ -353,7 +353,7 @@ export class SequenceNode extends Field {
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
       startsWith: this.startsWith,
       step: this.step,
       id: this.id,
@@ -365,7 +365,7 @@ export class SequenceNode extends Field {
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
       datatype: this.datatype,
     }
   }
@@ -391,7 +391,7 @@ export class SequentialNode extends Field {
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
       datatype: this.datatype,
     }
   }
@@ -401,7 +401,7 @@ export class SequentialNode extends Field {
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
       values: this.values,
       loop: this.loop,
       id: this.id,
@@ -432,7 +432,7 @@ export class SequentialNode extends Field {
       },
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
     }
   }
 }
@@ -476,7 +476,7 @@ export class RefNode extends Field {
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
       datatype: this.datatype,
     }
   }
@@ -486,7 +486,7 @@ export class RefNode extends Field {
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
       ref: this.ref,
       unique: this.unique,
       where: this.where,
@@ -508,7 +508,7 @@ export class RefNode extends Field {
         },
         isArray: this.isArray,
         isKey: this.isKey,
-        isPossibleNull: this.isPossibleNull,
+        possibleNull: this.possibleNull,
       }
     } else {
       return new EmptyRefFieldError(this.getRouteString(fieldRoute))
@@ -541,7 +541,7 @@ export class EnumNode extends Field {
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
       datatype: this.datatype,
     }
   }
@@ -551,7 +551,7 @@ export class EnumNode extends Field {
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
       values: this.values,
       id: this.id,
     })
@@ -573,7 +573,7 @@ export class EnumNode extends Field {
       },
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
     }
   }
 }
@@ -600,7 +600,7 @@ export class CustomNode extends Field {
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
       datatype: this.datatype,
     }
   }
@@ -610,7 +610,7 @@ export class CustomNode extends Field {
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
       code: this.code,
       id: this.id,
     })
@@ -622,7 +622,7 @@ export class CustomNode extends Field {
       datatype: { type: DATA_TYPES.CUSTOM, code: this.code },
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
     }
   }
 }
@@ -645,7 +645,7 @@ export class PickNode extends Field {
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
       datatype: this.datatype,
     }
   }
@@ -667,7 +667,7 @@ export class PickNode extends Field {
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
       values: this.values,
       count: this.count,
       id: this.id,
@@ -686,7 +686,7 @@ export class PickNode extends Field {
       },
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
     }
   }
 }
@@ -712,7 +712,7 @@ export class MixedNode extends Field {
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
       datatype: { type: DATA_TYPES.MIXED, object: this.nodes.map((f) => f.save()) },
     }
   }
@@ -730,7 +730,7 @@ export class MixedNode extends Field {
       id: n.id,
       isArray: n.isArray,
       isKey: n.isKey,
-      isPossibleNull: n.isPossibleNull,
+      possibleNull: n.possibleNull,
       name: n.name,
     }))
   }
@@ -744,7 +744,7 @@ export class MixedNode extends Field {
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
       object: this.nodes,
       id: this.id,
     })
@@ -765,7 +765,7 @@ export class MixedNode extends Field {
       },
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
     }
   }
 }
@@ -788,7 +788,7 @@ export class ProbabilityNode extends Field {
       name: this.name,
       isArray: this.isArray,
       isKey: this.isKey,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
       datatype: this.datatype,
     }
   }
@@ -807,7 +807,7 @@ export class ProbabilityNode extends Field {
       isArray: this.isArray,
       isKey: this.isKey,
       id: this.id,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
     })
   }
 
@@ -817,7 +817,7 @@ export class ProbabilityNode extends Field {
     return {
       name: this.name,
       isArray: this.isArray,
-      isPossibleNull: this.isPossibleNull,
+      possibleNull: this.possibleNull,
       isKey: this.isKey,
       datatype: {
         type: DATA_TYPES.PROBABILITY,

@@ -8,7 +8,7 @@ import {
 export interface FieldForm {
   id: string
   name: string
-  isPossibleNull: PossibleNullConfig
+  possibleNull: PossibleNullConfig
   isArray: IsArrayConfig
   datatype: FieldDatatype
   isKey: IsKeyConfig

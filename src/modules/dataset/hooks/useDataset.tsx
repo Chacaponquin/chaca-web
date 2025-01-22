@@ -146,7 +146,7 @@ export default function useDataset() {
             fieldInfo: {
               name: field.name,
               isArray: field.isArray,
-              isPossibleNull: field.isPossibleNull,
+              possibleNull: field.possibleNull,
               datatype: field.datatype,
               isKey: field.isKey,
               id: field.id,

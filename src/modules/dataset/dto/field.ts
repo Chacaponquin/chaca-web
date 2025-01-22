@@ -4,7 +4,7 @@ import { IsArrayConfig, IsKeyConfig, PossibleNullConfig } from "../domain/core/f
 export interface FieldProps {
   id: string
   name: string
-  isPossibleNull: PossibleNullConfig
+  possibleNull: PossibleNullConfig
   isArray: IsArrayConfig
   datatype: FieldDatatype
   isKey: IsKeyConfig

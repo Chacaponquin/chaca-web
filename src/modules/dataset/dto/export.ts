@@ -5,7 +5,7 @@ import { IsArrayConfig, IsKeyConfig, PossibleNullConfig } from "../domain/core/f
 export type ExportDatasetFieldDTO = {
   name: string
   datatype: ExportDatatypeDTO
-  isPossibleNull: PossibleNullConfig
+  possibleNull: PossibleNullConfig
   isArray: IsArrayConfig
   isKey: IsKeyConfig
 }

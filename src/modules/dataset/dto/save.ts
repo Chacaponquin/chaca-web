@@ -14,7 +14,7 @@ import { IsArrayConfig, IsKeyConfig, PossibleNullConfig } from "../domain/core/f
 export type SaveFieldDTO = {
   name: string
   datatype: SaveFieldDatatype
-  isPossibleNull: PossibleNullConfig
+  possibleNull: PossibleNullConfig
   isArray: IsArrayConfig
   isKey: IsKeyConfig
   id: string

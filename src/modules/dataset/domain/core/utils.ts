@@ -139,7 +139,7 @@ export class NodesUtils {
           name: props.name,
           isArray: props.isArray,
           isKey: props.isKey,
-          isPossibleNull: props.isPossibleNull,
+          possibleNull: props.possibleNull,
           id: props.id,
         })
 

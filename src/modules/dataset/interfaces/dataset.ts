@@ -8,7 +8,7 @@ export interface NodeProps {
   name: string
   id: string
   datatype: FieldDatatype
-  isPossibleNull: PossibleNullConfig
+  possibleNull: PossibleNullConfig
   isArray: IsArrayConfig
   isKey: IsKeyConfig
 }

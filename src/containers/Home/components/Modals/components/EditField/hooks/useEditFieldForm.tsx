@@ -20,7 +20,7 @@ export default function useEditFieldForm({ field, parentfieldId, schemaId }: Pro
       id: field.id,
       name: field.name,
       isArray: field.isArray,
-      isPossibleNull: field.isPossibleNull,
+      possibleNull: field.possibleNull,
       datatype: field.datatype,
       isKey: field.isKey,
     },
