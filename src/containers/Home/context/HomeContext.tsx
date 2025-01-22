@@ -3,10 +3,11 @@ import { useSocket } from "@modules/app/modules/socket/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { useScreen } from "@modules/shared/hooks"
 import { createContext, createRef, RefObject, useEffect, useState } from "react"
-import { useDatasetServices } from "@modules/dataset/services"
 import { DatasetCreationError } from "@modules/app/modules/socket/domain/error"
 import { RespExportDatasetDTO } from "@modules/dataset/dto/export"
 import { SCREEN_SIZES } from "@modules/app/constants/screen-sizes"
+import useDatasetServices from "@modules/dataset/services/useDatasetServices"
+import { downloadDatasetFile } from "@modules/dataset/services/download-dataset"
 
 interface Props {
   playgroundRef: RefObject<HTMLDivElement>
@@ -25,7 +26,7 @@ export function HomeProvider({ children }: { children: React.ReactNode }) {
   const { condition } = useScreen(SCREEN_SIZES.LG)
   const { toastChacaError } = useToast()
   const { socket } = useSocket()
-  const { downloadDatasetFile, onCreationError } = useDatasetServices()
+  const { onCreationError } = useDatasetServices()
 
   const playgroundRef = createRef<HTMLDivElement>()
   const exportLink = createRef<HTMLAnchorElement>()

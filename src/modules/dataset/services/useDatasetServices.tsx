@@ -2,7 +2,6 @@ import { useSocket } from "@modules/app/modules/socket/hooks"
 import { DATASETS_ERROR_HTTP_STATUS, SOCKET_EVENTS } from "@modules/app/modules/socket/constants"
 import { ConnectSockerError } from "@modules/app/modules/socket/errors"
 import { ExportFileConfigDTO } from "@modules/config/dto/file"
-import { useEnv } from "@modules/app/modules/env/hooks"
 import {
   CreateDatasetError,
   CyclicEventError,
@@ -13,29 +12,14 @@ import {
   NotExistFieldError,
   TryRefANotKeyField,
 } from "../errors/dataset"
-import { ImageFormats } from "@modules/config/domain/core"
 import { DatasetCreationError } from "@modules/app/modules/socket/domain/error"
 import { ExportSchemaDTO } from "../dto/export"
-import { API_ROUTES } from "@modules/app/constants/api-routes"
 
 interface ExportDatasetsProps {
   dataset: ExportSchemaDTO[]
   config: ExportFileConfigDTO
   onError(error: ConnectSockerError): void
   onFinally(): void
-}
-
-interface DownloadDatasetProps {
-  id: string
-  filename: string
-  onError(error: DatasetError): void
-  onFinally(): void
-}
-
-interface DownloadDatasetsImageProps {
-  filename: string
-  image: string
-  format: ImageFormats
 }
 
 interface CreationErrorProps {
@@ -46,7 +30,6 @@ interface CreationErrorProps {
 
 export default function useDatasetServices() {
   const { socket } = useSocket()
-  const { API_ROUTE } = useEnv()
 
   function exportDatasets({ config, dataset, onError }: ExportDatasetsProps): void {
     if (socket.connected) {
@@ -63,43 +46,6 @@ export default function useDatasetServices() {
     } else {
       onError(new ConnectSockerError())
     }
-  }
-
-  function downloadDatasetFile({ id, filename, onError, onFinally }: DownloadDatasetProps) {
-    fetch(`${API_ROUTE}/${API_ROUTES.DOWNLOAD_FILE(id)}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/zip",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          response
-            .blob()
-            .then((blob) => {
-              const url = window.URL.createObjectURL(new Blob([blob]))
-
-              const link = document.createElement("a")
-              link.href = url
-              link.download = `${filename}.zip`
-
-              document.body.appendChild(link)
-              link.click()
-              link.parentNode?.removeChild(link)
-            })
-            .catch(() => {
-              onError(new DownloadDatasetError())
-            })
-            .finally(() => {
-              onFinally()
-            })
-        } else {
-          onError(new DownloadDatasetError())
-        }
-      })
-      .catch(() => {
-        onError(new DownloadDatasetError())
-      })
   }
 
   function onCreationError({ onError, onFinally, error: ierror }: CreationErrorProps): void {
@@ -125,13 +71,5 @@ export default function useDatasetServices() {
     onFinally()
   }
 
-  function downloadDatasetsImage({ filename, image, format }: DownloadDatasetsImageProps) {
-    const a = document.createElement("a")
-
-    a.setAttribute("download", `${filename}.${format}`)
-    a.setAttribute("href", image)
-    a.click()
-  }
-
-  return { exportDatasets, downloadDatasetFile, downloadDatasetsImage, onCreationError }
+  return { exportDatasets, onCreationError }
 }

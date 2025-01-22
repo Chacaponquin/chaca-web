@@ -1,6 +1,5 @@
 import { useDataset } from "@modules/dataset/hooks"
 import { useModal } from "@modules/modal/hooks"
-import { useDatasetServices } from "@modules/dataset/services"
 import { usePlayground } from "@modules/playground/hooks"
 import { useConfig } from "@modules/config/hooks"
 import { ExportImageProps } from "../domain/props"
@@ -19,13 +18,15 @@ import { HomeContext } from "../context"
 import { ExportFileConfigDTO } from "@modules/config/dto/file"
 import { ExportSchemaDTO } from "@modules/dataset/dto/export"
 import useModules from "@modules/modules/hooks/useModules"
+import useDatasetServices from "@modules/dataset/services/useDatasetServices"
+import { downloadDatasetsImage } from "@modules/dataset/services/download-dataset-image"
 
 export default function useHome() {
   const { handleChangeLoading } = useContext(HomeContext)
   const { dataset, selectedSchema, showFieldsMenu, searchRefField } = useDataset()
   const { handleOpenModal } = useModal()
   const { handleGenerateImage } = usePlayground()
-  const { downloadDatasetsImage, exportDatasets } = useDatasetServices()
+  const { exportDatasets } = useDatasetServices()
   const { loading: modulesLoading } = useModules()
   const { loading: configLoading } = useConfig()
   const { toastChacaError } = useToast()
