@@ -18,9 +18,10 @@ import {
   UpdateArgumentsProps,
   UpdateRefProps,
 } from "../domain/field"
-import { Argument } from "@modules/modules/domain/core/argument"
+import { Argument } from "@modules/modules/domain/core/module-argument"
 import { FieldForm } from "@modules/dataset/domain/form"
-import { ModuleSection, Module } from "@modules/modules/domain/core/schema"
+import { Module } from "@modules/modules/domain/core/module"
+import { ModuleSection } from "@modules/modules/domain/core/module-section"
 
 interface Props {
   field: FieldForm

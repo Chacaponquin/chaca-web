@@ -1,5 +1,5 @@
 import { ChacaButton } from "@form/components"
-import { APP_ROUTES } from "@modules/app/constants"
+import { APP_ROUTES } from "@modules/app/constants/app-routes"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { Link } from "react-router-dom"
 

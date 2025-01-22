@@ -1,8 +1,8 @@
 import { Body, Button, Params, Request, Response } from "./components"
 import { useEffect, useMemo, useState } from "react"
 import { RequestParam, TryResult } from "./domain"
-import { useFetch } from "@modules/app/modules/http/hooks"
 import { HttpMethod } from "../../domain/constants/http"
+import { instance } from "@modules/app/modules/http/domain/instance"
 
 interface Props {
   body?: string
@@ -23,8 +23,6 @@ export default function TryRoute({
   disableBody = false,
   initFetch = false,
 }: Props) {
-  const { instance } = useFetch()
-
   const [loading, setLoading] = useState(false)
   const [response, setResponse] = useState("")
 

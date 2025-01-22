@@ -1,7 +1,7 @@
 import { ChacaNumberInput, ChacaTextInput } from "@form/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
-import { useUser } from "@modules/user/hooks"
 import { FormSection } from "../../shared/components"
+import useUser from "@modules/user/hooks/useUser"
 
 interface Props {
   name: string

@@ -2,7 +2,6 @@ import { useDataset } from "@modules/dataset/hooks"
 import { useModal } from "@modules/modal/hooks"
 import { useDatasetServices } from "@modules/dataset/services"
 import { usePlayground } from "@modules/playground/hooks"
-import { useModules } from "@modules/modules/hooks"
 import { useConfig } from "@modules/config/hooks"
 import { ExportImageProps } from "../domain/props"
 import {
@@ -19,6 +18,7 @@ import { useContext } from "react"
 import { HomeContext } from "../context"
 import { ExportFileConfigDTO } from "@modules/config/dto/file"
 import { ExportSchemaDTO } from "@modules/dataset/dto/export"
+import useModules from "@modules/modules/hooks/useModules"
 
 export default function useHome() {
   const { handleChangeLoading } = useContext(HomeContext)

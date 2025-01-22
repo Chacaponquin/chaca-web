@@ -13,7 +13,7 @@ import {
   Strong,
   Warning,
 } from "@markdown/components/Markdown/components"
-import { APP_ROUTES } from "@modules/app/constants"
+import { APP_ROUTES } from "@modules/app/constants/app-routes"
 import { CHACA_LINKS } from "@modules/shared/domain/links"
 import {
   ABOUT,

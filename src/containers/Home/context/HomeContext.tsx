@@ -1,4 +1,3 @@
-import { SCREEN_SIZES } from "@modules/app/constants"
 import { SOCKET_EVENTS } from "@modules/app/modules/socket/constants"
 import { useSocket } from "@modules/app/modules/socket/hooks"
 import { useToast } from "@modules/app/modules/toast/hooks"
@@ -7,6 +6,7 @@ import { createContext, createRef, RefObject, useEffect, useState } from "react"
 import { useDatasetServices } from "@modules/dataset/services"
 import { DatasetCreationError } from "@modules/app/modules/socket/domain/error"
 import { RespExportDatasetDTO } from "@modules/dataset/dto/export"
+import { SCREEN_SIZES } from "@modules/app/constants/screen-sizes"
 
 interface Props {
   playgroundRef: RefObject<HTMLDivElement>

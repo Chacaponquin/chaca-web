@@ -1,8 +1,8 @@
 import { createContext, useState } from "react"
-import { ModuleSection } from "../domain/core/schema"
 import { useErrorBoundary } from "react-error-boundary"
-import { useModulesServices } from "../services"
 import { DEFAULT_VERSION } from "../domain/constants"
+import { ModuleSection } from "../domain/core/module-section"
+import { getModules } from "../services/get-modules"
 
 interface Props {
   modules: ModuleSection[]
@@ -26,7 +26,6 @@ export function ModulesProvider({ children }: { children: React.ReactNode }) {
   const [modules, setSchemas] = useState<ModuleSection[]>([])
   const [version, setVersion] = useState(DEFAULT_VERSION)
 
-  const { getModules } = useModulesServices()
   const { showBoundary } = useErrorBoundary()
 
   function fetch({ version, success }: FetchProps) {

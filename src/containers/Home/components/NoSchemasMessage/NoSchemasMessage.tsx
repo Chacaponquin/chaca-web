@@ -1,10 +1,11 @@
 import { ChacaButton } from "@form/components"
 import { Image } from "@modules/app/components"
-import { APP_IMAGES } from "@modules/app/constants"
+import { APP_IMAGES } from "@modules/app/constants/image"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useDataset } from "@modules/dataset/hooks"
 
 export default function NoSchemasMessage() {
+  const { handleAddSchema } = useDataset()
   const { MESSAGE, WELCOME_MESSAGE } = useTranslation({
     MESSAGE: { en: "Create Schema", es: "Crear Schema" },
     WELCOME_MESSAGE: {
@@ -12,7 +13,6 @@ export default function NoSchemasMessage() {
       es: "Crea tu primer dataset y mira todas las acciones que puedes realizar con sus campos",
     },
   })
-  const { handleAddSchema } = useDataset()
 
   return (
     <section className="bg-white dark:bg-scale-4 w-full flex flex-grow flex-col pt-24 items-center px-20 esm:px-8">

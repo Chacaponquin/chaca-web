@@ -1,4 +1,4 @@
-import { APP_IMAGES } from "@modules/app/constants"
+import { APP_IMAGES } from "@modules/app/constants/image"
 import Image from "../Image/Image"
 
 interface Props {

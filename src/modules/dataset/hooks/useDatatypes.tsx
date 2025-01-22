@@ -10,10 +10,10 @@ import {
   SequentialDatatype,
   ModuleValueDatatype,
 } from "../domain/core/datatype"
-import { useModules } from "@modules/modules/hooks"
 import { useDataset } from "./"
 import { ARRAY_VALUE_TYPE, DatasetFunctions } from "../domain/constants"
 import { Datatype } from "../domain/data-types"
+import useModules from "@modules/modules/hooks/useModules"
 
 interface Props {
   fieldId: string

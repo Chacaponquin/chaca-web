@@ -1,13 +1,14 @@
 import { ChacaSelect } from "@form/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { UpdateArgumentsProps } from "@containers/Home/components/Modals/shared/domain/field"
-import { useModules } from "@modules/modules/hooks"
 import { OptionArguments } from "./components"
-import { Argument } from "@modules/modules/domain/core/argument"
+import { Argument } from "@modules/modules/domain/core/module-argument"
 import clsx from "clsx"
 import { ArgumentObject } from "@modules/dataset/domain/core/datatype"
-import { ModuleSection, Module } from "@modules/modules/domain/core/schema"
+import { Module } from "@modules/modules/domain/core/module"
 import { FormSection } from "@containers/Home/components/Modals/shared/shared/components"
+import { ModuleSection } from "@modules/modules/domain/core/module-section"
+import useModules from "@modules/modules/hooks/useModules"
 
 interface Props {
   args: ArgumentObject

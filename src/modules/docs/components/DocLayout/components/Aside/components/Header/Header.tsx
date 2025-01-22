@@ -1,5 +1,5 @@
 import { Logo } from "@modules/app/components"
-import { APP_ROUTES } from "@modules/app/constants"
+import { APP_ROUTES } from "@modules/app/constants/app-routes"
 import { X } from "@modules/app/modules/icon/components"
 import { Link } from "react-router-dom"
 

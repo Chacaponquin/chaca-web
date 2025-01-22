@@ -1,5 +1,5 @@
 import { Image } from "@modules/app/components"
-import { APP_IMAGES } from "@modules/app/constants"
+import { APP_IMAGES } from "@modules/app/constants/image"
 
 export default function ImageSection() {
   return (

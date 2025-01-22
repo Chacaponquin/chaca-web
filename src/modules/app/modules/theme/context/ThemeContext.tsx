@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react"
 import { THEME } from "../constants"
-import { useLocalStorage } from "@modules/app/hooks"
-import { STORAGE_KEYS } from "@modules/app/constants"
+import { STORAGE_KEYS } from "@modules/app/constants/storage-keys"
+import { LocalStorage } from "@modules/app/services/local-storage"
 
 type Props = {
   theme: THEME
@@ -13,12 +13,10 @@ export const ThemeContext = createContext<Props>({
 } as Props)
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const { get, set } = useLocalStorage()
-
   const [theme, setTheme] = useState<THEME>(THEME.LIGHT)
 
   useEffect(() => {
-    const saveTheme = get(STORAGE_KEYS.THEME)
+    const saveTheme = LocalStorage.get(STORAGE_KEYS.THEME)
 
     if (saveTheme) {
       setTheme(saveTheme as THEME)
@@ -33,7 +31,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     root.classList.remove(THEME.DARK)
     root.classList.add(theme)
 
-    set(STORAGE_KEYS.THEME, theme)
+    LocalStorage.set(STORAGE_KEYS.THEME, theme)
   }, [theme])
 
   function handleChangeTheme(newTheme: THEME) {

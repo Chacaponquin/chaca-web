@@ -20,8 +20,9 @@ import {
   UpdateArgumentsProps,
   UpdateCustomProps,
 } from "@containers/Home/components/Modals/shared/domain/field"
-import { Argument } from "@modules/modules/domain/core/argument"
-import { ModuleSection, Module } from "@modules/modules/domain/core/schema"
+import { Argument } from "@modules/modules/domain/core/module-argument"
+import { Module } from "@modules/modules/domain/core/module"
+import { ModuleSection } from "@modules/modules/domain/core/module-section"
 
 interface Props {
   id: string

@@ -1,6 +1,6 @@
 /* eslint-disable*/
 import axios from "axios"
-import { ChacaHttpError, RespHttpError } from "../interfaces/error"
+import { ChacaHttpError, RespHttpError } from "../domain/error"
 
 export function handleResponseError(error: any): ChacaHttpError {
   const returnError: ChacaHttpError = { message: "", status: 500 }

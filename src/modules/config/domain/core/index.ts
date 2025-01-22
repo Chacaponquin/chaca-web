@@ -1,4 +1,4 @@
-import { Argument } from "@modules/modules/domain/core/argument"
+import { Argument } from "@modules/modules/domain/core/module-argument"
 
 export interface FileConfigOption {
   type: string

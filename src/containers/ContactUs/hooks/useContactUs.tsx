@@ -8,7 +8,7 @@ import {
   EmptyUserEmailError,
   EmptyUserMessageError,
 } from "@modules/user-message/errors"
-import { useUserMessageServices } from "@modules/user-message/services"
+import { sendMessage } from "@modules/user-message/services/send-user-message"
 
 export default function useContactUs() {
   const [loading, setLoading] = useState(false)
@@ -20,7 +20,6 @@ export default function useContactUs() {
   const [modalOpen, setModalOpen] = useState(false)
 
   const { toastError } = useToast()
-  const { sendMessage } = useUserMessageServices()
 
   const { POST_ERROR, EMPTY_MESSAGE, EMPTY_TITLE, EMPTY_EMAIL } = useTranslation({
     POST_ERROR: {
@@ -43,6 +42,7 @@ export default function useContactUs() {
       const saveMessage = new SaveUserMessage(contactForm)
 
       setLoading(true)
+
       sendMessage({
         body: { email: saveMessage.email, message: saveMessage.message, title: saveMessage.title },
         onSuccess() {

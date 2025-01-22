@@ -1,6 +1,6 @@
 import { ChacaButton } from "@form/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"
-import { APP_IMAGES } from "@modules/app/constants"
+import { APP_IMAGES } from "@modules/app/constants/image"
 
 interface Props {
   handleAddNewField(): void

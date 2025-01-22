@@ -1,6 +1,6 @@
 import { useMemo, Fragment } from "react"
 import { Calendar } from "primereact/calendar"
-import { Argument } from "@modules/modules/domain/core/argument"
+import { Argument } from "@modules/modules/domain/core/module-argument"
 import { ARGUMENT_TYPE } from "@modules/modules/domain/constants"
 import { ChacaTextInput, ChacaSelect, ChacaNumberInput, ChacaSwitchButton } from "@form/components"
 import { useTranslation } from "@modules/app/modules/language/hooks"

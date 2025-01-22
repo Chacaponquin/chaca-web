@@ -1,16 +1,15 @@
-import { useUser } from "@modules/user/hooks"
-import { createContext, ReactElement, useMemo } from "react"
+import { createContext, useMemo } from "react"
 import { useEnv } from "../../env/hooks"
 import { io, Socket } from "socket.io-client"
+import { getToken } from "@modules/user/services/get-token"
 
 interface Props {
   socket: Socket
 }
 
-const SocketContext = createContext<Props>({} as Props)
+export const SocketContext = createContext<Props>({} as Props)
 
-function SocketProvider({ children }: { children: ReactElement }) {
-  const { getToken } = useUser()
+export function SocketProvider({ children }: { children: React.ReactNode }) {
   const { SOCKET_URL } = useEnv()
 
   const socket = useMemo(() => {
@@ -25,5 +24,3 @@ function SocketProvider({ children }: { children: ReactElement }) {
 
   return <SocketContext.Provider value={data}>{children}</SocketContext.Provider>
 }
-
-export { SocketContext, SocketProvider }

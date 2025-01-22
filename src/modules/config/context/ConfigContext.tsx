@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react"
 import { FileConfigOption } from "../domain/core"
 import { useErrorBoundary } from "react-error-boundary"
-import { useConfigServices } from "../services"
+import { getFileOptions } from "../services/get-file-options"
 
 interface Props {
   fileOptions: FileConfigOption[]
@@ -14,7 +14,6 @@ export function ConfigProvider({ children }: { children: React.ReactNode }) {
   const [fileOptions, setFileOptions] = useState<FileConfigOption[]>([])
   const [loading, setLoading] = useState(true)
 
-  const { getFileOptions } = useConfigServices()
   const { showBoundary } = useErrorBoundary()
 
   useEffect(() => {

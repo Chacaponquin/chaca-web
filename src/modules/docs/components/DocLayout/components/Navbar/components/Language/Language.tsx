@@ -1,10 +1,10 @@
-import { APP_IMAGES } from "@modules/app/constants"
 import { ChacaPopover } from "@modules/app/modules/form/components"
 import { PopoverList } from "@modules/app/modules/form/components/ChacaPopover/components"
 import { useLanguage, useTranslation } from "@modules/app/modules/language/hooks"
 import { useState } from "react"
 import { Flag, Item } from "./components"
 import { Languages } from "@modules/app/modules/language/interfaces"
+import { APP_IMAGES } from "@modules/app/constants/image"
 
 export default function Language() {
   const { language, handleChangeLanguage } = useLanguage()

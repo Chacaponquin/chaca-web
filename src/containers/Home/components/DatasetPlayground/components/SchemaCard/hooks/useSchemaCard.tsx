@@ -5,7 +5,7 @@ import {
   ExportDatasetModalProps,
 } from "@containers/Home/domain/modal"
 import { CommandsExecutor } from "@modules/app/domain/command"
-import { useCommands } from "@modules/app/hooks"
+import useCommands from "@modules/app/hooks/useCommands"
 import {
   AddFieldCommand,
   CloneDatasetCommand,

@@ -2,7 +2,7 @@ import { ArgumentFilter } from "@modules/modules/components"
 import { Fragment, useState } from "react"
 import { Enable, Name } from "./components"
 import { UpdateArgumentsProps } from "@containers/Home/components/Modals/shared/domain/field"
-import { Argument as IArgument } from "@modules/modules/domain/core/argument"
+import { Argument as IArgument } from "@modules/modules/domain/core/module-argument"
 import { ArgumentObject } from "@modules/dataset/domain/core/datatype"
 
 interface Props {

@@ -1,4 +1,5 @@
-import { ModuleSection, Module } from "./schema"
+import { Module } from "./module"
+import { ModuleSection } from "./module-section"
 
 export class SchemaSearcher {
   constructor(private readonly modules: ModuleSection[]) {}

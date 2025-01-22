@@ -1,14 +1,10 @@
 import { Error } from "@modules/app/components"
-import { APP_ROUTES } from "@modules/app/constants"
 import { LanguageProvider } from "@modules/app/modules/language/context"
 import { SocketProvider } from "@modules/app/modules/socket/context"
-import { ThemeProvider } from "@modules/app/modules/theme/context"
 import { ToastProvider } from "@modules/app/modules/toast/context"
-import { UserProvider } from "@modules/user/context"
 import { ErrorBoundary } from "react-error-boundary"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { ContactUs, Error404 } from "./containers"
-import { ModulesProvider } from "@modules/modules/context"
 import { DatasetProvider } from "@modules/dataset/context"
 import { ConfigProvider } from "@modules/config/context"
 import { ModalProvider } from "@modules/modal/context"
@@ -141,6 +137,10 @@ import {
 } from "@modules/docs/domain/core/sections/export"
 import { lazy, Suspense } from "react"
 import LazyLoader from "@modules/app/components/LazyLoader/LazyLoader"
+import { APP_ROUTES } from "@modules/app/constants/app-routes"
+import { ModulesProvider } from "@modules/modules/context/ModulesContext"
+import { UserProvider } from "@modules/user/context/UserContext"
+import { ThemeProvider } from "@modules/app/modules/theme/context/ThemeContext"
 
 const Home = lazy(() => import("./containers/Home/Home"))
 const Landing = lazy(() => import("./containers/Landing/Landing"))

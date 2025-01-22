@@ -8,7 +8,8 @@ import { FORM_ACTIONS } from "../constants"
 import { Reducer } from "react"
 import { DATA_TYPES } from "@modules/modules/domain/constants"
 import { FieldForm } from "@modules/dataset/domain/form"
-import { ModuleSection, Module } from "@modules/modules/domain/core/schema"
+import { Module } from "@modules/modules/domain/core/module"
+import { ModuleSection } from "@modules/modules/domain/core/module-section"
 
 export type FieldFormPayload =
   | {

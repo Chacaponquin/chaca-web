@@ -1,8 +1,5 @@
 import { useEffect, Dispatch, Reducer, createContext, useReducer, useState } from "react"
 import { DatasetPayload, datasetReducer } from "../reducer/dataset"
-import { useModules } from "@modules/modules/hooks"
-import { useLocalStorage } from "@modules/app/hooks"
-import { STORAGE_KEYS } from "@modules/app/constants"
 import { InitLoadValidator } from "../domain/validators/init-load"
 import { DATASET_ACTIONS } from "../domain/constants"
 import { DEFAULT_VERSION } from "@modules/modules/domain/constants"
@@ -14,6 +11,9 @@ import { SchemaSearcher } from "@modules/modules/domain/core/search"
 import { ISaveDataset, LoadDataset, SaveDataset, SaveSchema } from "../domain/core/save"
 import { Schema } from "../domain/core/schema"
 import { Field } from "../domain/core/field"
+import useModules from "@modules/modules/hooks/useModules"
+import { LocalStorage } from "@modules/app/services/local-storage"
+import { STORAGE_KEYS } from "@modules/app/constants/storage-keys"
 
 interface Props {
   dataset: Schema[]
@@ -33,7 +33,6 @@ export const DatasetContext = createContext<Props>({
 
 export function DatasetProvider({ children }: { children: React.ReactNode }) {
   const { fetch: fetchModules, modules, version } = useModules()
-  const { set: setStorage, get: getStorage, remove: removeStorage } = useLocalStorage()
   const { toastError } = useToast()
   const { LOAD_DATASETS_ERROR } = useTranslation({
     LOAD_DATASETS_ERROR: {
@@ -59,7 +58,7 @@ export function DatasetProvider({ children }: { children: React.ReactNode }) {
   }, [dataset])
 
   useEffect(() => {
-    const read = getStorage(STORAGE_KEYS.PREVIEW_CONFIG)
+    const read = LocalStorage.get(STORAGE_KEYS.PREVIEW_CONFIG)
 
     if (read) {
       const content = JSON.parse(read) as ISaveDataset
@@ -149,7 +148,7 @@ export function DatasetProvider({ children }: { children: React.ReactNode }) {
         schemas: saveDataset,
       })
 
-      setStorage(STORAGE_KEYS.PREVIEW_CONFIG, save.json())
+      LocalStorage.set(STORAGE_KEYS.PREVIEW_CONFIG, save.json())
     }
   }, [dataset, modules, nodes])
 
@@ -177,7 +176,7 @@ export function DatasetProvider({ children }: { children: React.ReactNode }) {
     handleCleanEdges()
     handleCleanNodes()
 
-    removeStorage(STORAGE_KEYS.PREVIEW_CONFIG)
+    LocalStorage.remove(STORAGE_KEYS.PREVIEW_CONFIG)
   }
 
   function handleCloseFieldsMenu() {

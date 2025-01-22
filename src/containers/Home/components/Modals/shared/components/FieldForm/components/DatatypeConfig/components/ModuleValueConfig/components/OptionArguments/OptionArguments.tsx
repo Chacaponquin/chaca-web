@@ -2,8 +2,8 @@ import { ArgumentObject } from "@modules/dataset/domain/core/datatype"
 import { UpdateArgumentsProps } from "@containers/Home/components/Modals/shared/domain/field"
 import { Fragment } from "react"
 import { Argument } from "./components"
-import { Argument as IArgument } from "@modules/modules/domain/core/argument"
-import { Module } from "@modules/modules/domain/core/schema"
+import { Argument as IArgument } from "@modules/modules/domain/core/module-argument"
+import { Module } from "@modules/modules/domain/core/module"
 
 interface Props {
   module: Module

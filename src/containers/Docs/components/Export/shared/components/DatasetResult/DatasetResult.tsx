@@ -3,9 +3,9 @@ import { CodeSection } from "@markdown/components/Markdown/components/CodesCard/
 import { Language } from "prism-react-renderer"
 import { DatasetDefinition } from "./components"
 import { useEffect, useState } from "react"
-import { useFetch } from "@modules/app/modules/http/hooks"
-import { API_ROUTES } from "@modules/app/constants/ROUTES"
 import { TransformDTO, TransformResult } from "./dto/transform"
+import { API_ROUTES } from "@modules/app/constants/api-routes"
+import { Http } from "@modules/app/modules/http/services/http"
 
 interface Props {
   language: Language
@@ -13,12 +13,11 @@ interface Props {
 }
 
 export default function DatasetResult({ extension, language }: Props) {
-  const { post } = useFetch()
   const [sections, setSections] = useState<CodeSection[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    post<TransformResult[], TransformDTO>({
+    Http.post<TransformResult[], TransformDTO>({
       url: API_ROUTES.API.TRANSFORM_DATASET,
       body: {
         filename: "Data",
@@ -56,6 +55,7 @@ export default function DatasetResult({ extension, language }: Props) {
           }),
         )
       },
+      onError() {},
     })
   }, [language])
 

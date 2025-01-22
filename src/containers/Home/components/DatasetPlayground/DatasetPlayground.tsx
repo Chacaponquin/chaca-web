@@ -3,9 +3,9 @@ import { SchemaCard, Buttons, Edge, Loader, Playground } from "./components"
 import { useTheme } from "@modules/app/modules/theme/hooks"
 import { THEME } from "@modules/app/modules/theme/constants"
 import { usePlayground } from "@modules/playground/hooks"
-import { APP_COLORS } from "@modules/app/constants"
 
 import "reactflow/dist/style.css"
+import { APP_COLORS } from "@modules/app/constants/color"
 
 const nodeTypes = {
   custom: SchemaCard,

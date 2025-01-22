@@ -11,8 +11,8 @@ import {
 } from "@modules/dataset/domain/commands"
 import { useLanguage, useTranslation } from "@modules/app/modules/language/hooks"
 import { CommandsExecutor } from "@modules/app/domain/command"
-import { useCommands } from "@modules/app/hooks"
 import { useModal } from "@modules/modal/hooks"
+import useCommands from "@modules/app/hooks/useCommands"
 
 interface Props {
   handleExportDataset(): void
