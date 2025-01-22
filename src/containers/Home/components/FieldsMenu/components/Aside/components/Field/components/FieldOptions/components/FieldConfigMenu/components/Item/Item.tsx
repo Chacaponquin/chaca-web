@@ -6,5 +6,5 @@ interface Props {
 }
 
 export default function Item({ onClick, text }: Props) {
-  return <PopoverItem onClick={onClick} selected={false} size="sm" text={text} />
+  return <PopoverItem onClick={onClick} selected={false} size="xs" text={text} />
 }

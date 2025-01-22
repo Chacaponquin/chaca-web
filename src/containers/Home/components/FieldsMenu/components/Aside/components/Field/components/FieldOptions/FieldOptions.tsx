@@ -15,7 +15,11 @@ export default function FieldOptions({ field }: Props) {
     <div className="flex flex-col relative">
       <ChacaPopover
         parent={
-          <button type="button" className="dark:fill-white fill-black">
+          <button
+            onClick={() => setOpen((prev) => !prev)}
+            type="button"
+            className="dark:fill-white fill-black"
+          >
             <Config size={19} />
           </button>
         }
@@ -23,7 +27,7 @@ export default function FieldOptions({ field }: Props) {
         onClose={() => setOpen(false)}
         position="bottom"
       >
-        <FieldConfigMenu field={field} />
+        <FieldConfigMenu onClose={() => setOpen(false)} field={field} />
       </ChacaPopover>
     </div>
   )

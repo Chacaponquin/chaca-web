@@ -6,9 +6,10 @@ import { Field, MixedNode } from "@modules/dataset/domain/core/field"
 
 interface Props {
   field: Field
+  onClose(): void
 }
 
-export default function FieldConfigMenu({ field }: Props) {
+export default function FieldConfigMenu({ field, onClose }: Props) {
   const isMixed = field instanceof MixedNode
 
   const { DELETE_OPTION_TEXT, EDIT_OPTION_TEXT, ADD_FIELD_OPTION_TEXT } = useTranslation({
@@ -17,10 +18,13 @@ export default function FieldConfigMenu({ field }: Props) {
     ADD_FIELD_OPTION_TEXT: { en: "Add Field", es: "Añadir Campo" },
   })
 
-  const { handleDeleteField, handleEditField, handleAddSubField } = useFieldConfigMenu({ field })
+  const { handleDeleteField, handleEditField, handleAddSubField } = useFieldConfigMenu({
+    field: field,
+    onClose: onClose,
+  })
 
   return (
-    <PopoverList>
+    <PopoverList size="sm">
       <Item text={EDIT_OPTION_TEXT} onClick={handleEditField} />
       {isMixed && <Item text={ADD_FIELD_OPTION_TEXT} onClick={handleAddSubField} />}
       <Item text={DELETE_OPTION_TEXT} onClick={handleDeleteField} />

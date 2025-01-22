@@ -12,31 +12,31 @@ interface Props {
   name: string
 }
 
+const CLASS = clsx(
+  "flex justify-center items-center",
+  "w-full min-h-screen",
+  "px-3 py-4",
+  "absolute top-0 left-0",
+  "z-50",
+  "bg-scale-5/50",
+  "overflow-y-auto",
+)
+
+const FORM_CLASS = clsx(
+  "flex flex-col",
+  "w-full max-w-[650px]",
+  "bg-white dark:bg-scale-3",
+  "px-8 py-5 esm:px-8",
+  "text-black dark:text-scale-11",
+  "shadow-lg",
+  "rounded-md",
+  "animate-fade-down animate-once animate-duration-500 animate-ease-in-out",
+  "dark:border-scale-7 border-[1px]",
+)
+
 export default function Modal({ children, handleNext, nextText, title, type, name }: Props) {
   const { openCode } = useCode()
   const { handleClose, handleSubmit } = useModalContainer({ handleNext })
-
-  const CLASS = clsx(
-    "flex justify-center items-center",
-    "w-full min-h-screen",
-    "px-3 py-4",
-    "absolute top-0 left-0",
-    "z-50",
-    "bg-scale-5/50",
-    "overflow-y-auto",
-  )
-
-  const FORM_CLASS = clsx(
-    "flex flex-col",
-    "w-full max-w-[650px]",
-    "bg-white dark:bg-scale-3",
-    "px-8 py-5 esm:px-8",
-    "text-black dark:text-scale-11",
-    "shadow-lg",
-    "rounded-md",
-    "animate-fade-down animate-once animate-duration-500 animate-ease-in-out",
-    "dark:border-scale-7 border-[1px]",
-  )
 
   return (
     <div onClick={handleClose} id={`${name}-modal`} className={CLASS}>

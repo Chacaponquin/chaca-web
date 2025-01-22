@@ -1,4 +1,4 @@
-export type Size = "sm" | "base" | "lg" | "xl"
+export type Size = "sm" | "base" | "lg" | "xl" | "xs"
 
 export interface ChacaFormProps<T> {
   onChange(value: T): void

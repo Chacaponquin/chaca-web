@@ -1,4 +1,4 @@
-import { Fragment, useContext } from "react"
+import { useContext } from "react"
 import { Aside } from "./components"
 import { HomeContext } from "@containers/Home/context"
 import clsx from "clsx"
@@ -9,22 +9,22 @@ interface Props {
   loading: boolean
 }
 
+const CLASS = clsx(
+  "flex",
+  "w-full h-screen",
+  "absolute top-0 left-0",
+  "z-50",
+  "bg-scale-5/50",
+  "overflow-y-auto",
+  "pr-4",
+)
+
 export default function FieldsMenu({ handleAddNewField, loading }: Props) {
   const { smallWindow } = useContext(HomeContext)
   const { handleCloseFieldsMenu } = useDataset()
 
-  const CLASS = clsx(
-    "flex",
-    "w-full h-screen",
-    "absolute top-0 left-0",
-    "z-50",
-    "bg-scale-5/50",
-    "overflow-y-auto",
-    "pr-4",
-  )
-
   return (
-    <Fragment>
+    <>
       {smallWindow && (
         <div className={CLASS} onClick={handleCloseFieldsMenu}>
           <Aside handleAddNewField={handleAddNewField} loading={loading} />
@@ -32,6 +32,6 @@ export default function FieldsMenu({ handleAddNewField, loading }: Props) {
       )}
 
       {!smallWindow && <Aside handleAddNewField={handleAddNewField} loading={loading} />}
-    </Fragment>
+    </>
   )
 }

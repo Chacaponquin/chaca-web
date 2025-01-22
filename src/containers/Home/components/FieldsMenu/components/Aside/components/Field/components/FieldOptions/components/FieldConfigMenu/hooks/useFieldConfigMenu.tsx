@@ -5,9 +5,10 @@ import { useModal } from "@modules/modal/hooks"
 
 interface Props {
   field: Field
+  onClose(): void
 }
 
-export function useFieldConfigMenu({ field }: Props) {
+export function useFieldConfigMenu({ field, onClose }: Props) {
   const { selectedSchema, handleDeleteField: handleDeleteFieldService } = useDataset()
   const { handleOpenModal } = useModal()
 
@@ -17,6 +18,7 @@ export function useFieldConfigMenu({ field }: Props) {
 
       if (findParent) {
         handleOpenModal(new EditFieldModalProps(field, findParent.id, selectedSchema.id))
+        onClose()
       }
     }
   }
@@ -24,12 +26,14 @@ export function useFieldConfigMenu({ field }: Props) {
   function handleAddSubField() {
     if (selectedSchema) {
       handleOpenModal(new AddFieldModalProps(field.id, selectedSchema.id))
+      onClose()
     }
   }
 
   function handleDeleteField() {
     if (selectedSchema) {
       handleDeleteFieldService({ fieldId: field.id, schemaId: selectedSchema.id })
+      onClose()
     }
   }
 

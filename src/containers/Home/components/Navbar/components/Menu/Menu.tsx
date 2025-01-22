@@ -40,7 +40,7 @@ export default function Menu({
           onClose={() => setOpen(false)}
           parent={<Button open={open} onClick={() => setOpen((prev) => !prev)} />}
         >
-          <PopoverList>
+          <PopoverList size="base">
             {items.map((i, index) => (
               <PopoverItem
                 size="sm"

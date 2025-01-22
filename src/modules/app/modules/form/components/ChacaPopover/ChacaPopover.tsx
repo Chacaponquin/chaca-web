@@ -16,7 +16,6 @@ export default function ChacaPopover({ children, parent, position, open, onClose
       positions={[position]}
       clickOutsideCapture={true}
       align="start"
-      containerClassName="z-50"
       onClickOutside={onClose}
     >
       {parent}

@@ -33,7 +33,7 @@ export default function Language() {
       }
       position="bottom"
     >
-      <PopoverList>
+      <PopoverList size="base">
         <Item
           text={ENGLISH}
           image={APP_IMAGES.FLAGS.UNITED_STATES}

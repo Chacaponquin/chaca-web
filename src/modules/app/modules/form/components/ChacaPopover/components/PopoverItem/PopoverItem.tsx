@@ -32,13 +32,14 @@ export default function PopoverItem({ onClick, text, selected, size, icon, extra
     },
 
     {
+      "text-xs": size === "xs",
       "text-sm": size === "sm",
       "text-base": size === "base",
       "text-lg": size === "lg",
     },
 
     {
-      "px-3 py-1.5": size === "sm",
+      "px-3 py-1.5": size === "sm" || size == "xs",
       "px-4 py-1.5": size === "base",
       "px-5 py-2": size === "lg",
     },
