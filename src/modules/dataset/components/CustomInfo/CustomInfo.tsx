@@ -1,14 +1,26 @@
-import { MiniCode, P } from "@modules/modal/components/Info/components"
+import { A, MiniCode, P } from "@modules/modal/components/Info/components"
 import TypeInfo from "../TypeInfo/TypeInfo"
-import { useTranslation, useTranslationComponent } from "@modules/app/modules/language/hooks"
+import { useTranslationComponent } from "@modules/app/modules/language/hooks"
+import { CUSTOM } from "@modules/docs/domain/core/sections/field-types"
 
 export default function CustomInfo() {
-  const { INFO, WARNING_HEADER } = useTranslation({
+  const { INFO } = useTranslationComponent({
     INFO: {
-      en: "Executes a function written in Javascript. This must return a value that will be assigned to this field in the document that is being generated",
-      es: "Ejecuta una función escrita en Javascript. Esta debe retornar un valor que se le asignará a este campo en el documento que se está generando",
+      en: (
+        <>
+          Executes a Javascript function. This must return a value that will be assigned to this
+          field in the document that is being generated.{" "}
+          <A to={CUSTOM.redirect}>Read about custom fields</A>
+        </>
+      ),
+      es: (
+        <>
+          Ejecuta una función de Javascript. Esta debe retornar un valor que se le asignará a este
+          campo en el documento que se está generando.{" "}
+          <A to={CUSTOM.redirect}>Leer sobre los campos custom</A>
+        </>
+      ),
     },
-    WARNING_HEADER: { en: "Undefined values", es: "Valores undefined" },
   })
 
   const { WARNING } = useTranslationComponent({
@@ -30,11 +42,11 @@ export default function CustomInfo() {
 
   return (
     <div className="flex flex-col gap-y-1">
-      <TypeInfo type="default" header="Custom field">
+      <TypeInfo type="default" header={{ en: "Custom field", es: "Campo custom" }}>
         <P>{INFO}</P>
       </TypeInfo>
 
-      <TypeInfo type="warning" header={WARNING_HEADER}>
+      <TypeInfo type="warning" header={{ en: "Undefined values", es: "Valores undefined" }}>
         {WARNING}
       </TypeInfo>
     </div>

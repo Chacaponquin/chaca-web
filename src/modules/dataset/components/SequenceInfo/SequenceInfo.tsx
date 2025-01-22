@@ -1,6 +1,7 @@
-import { MiniCode, P } from "@modules/modal/components/Info/components"
+import { A, MiniCode, P } from "@modules/modal/components/Info/components"
 import TypeInfo from "../TypeInfo/TypeInfo"
 import { useTranslationComponent } from "@modules/app/modules/language/hooks"
+import { SEQUENCE } from "@modules/docs/domain/core/sections/field-types"
 
 export default function SequenceInfo() {
   const { INFO, DEFAULT } = useTranslationComponent({
@@ -22,20 +23,20 @@ export default function SequenceInfo() {
       en: (
         <P>
           By default the sequence starts with the number <MiniCode>1</MiniCode> and{" "}
-          <MiniCode>1</MiniCode> as step
+          <MiniCode>1</MiniCode> as step. <A to={SEQUENCE.redirect}>Read about sequence fields</A>
         </P>
       ),
       es: (
         <P>
           Por defecto la secuencia empieza por el número <MiniCode>1</MiniCode> y con un paso de{" "}
-          <MiniCode>1</MiniCode>
+          <MiniCode>1</MiniCode>. <A to={SEQUENCE.redirect}>Leer sobre los campos secuencia</A>
         </P>
       ),
     },
   })
 
   return (
-    <TypeInfo type="default" header="Sequence field">
+    <TypeInfo type="default" header={{ en: "Sequence field", es: "Campo secuencia" }}>
       {INFO}
       {DEFAULT}
     </TypeInfo>

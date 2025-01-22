@@ -1,12 +1,9 @@
-import { MiniCode, P } from "@modules/modal/components/Info/components"
+import { A, MiniCode, P } from "@modules/modal/components/Info/components"
 import TypeInfo from "../TypeInfo/TypeInfo"
-import { useTranslation, useTranslationComponent } from "@modules/app/modules/language/hooks"
+import { useTranslationComponent } from "@modules/app/modules/language/hooks"
+import { SEQUENTIAL } from "@modules/docs/domain/core/sections/field-types"
 
 export default function SequentialInfo() {
-  const { DANGER_HEADER } = useTranslation({
-    DANGER_HEADER: { en: "Values count", es: "Cantidad de valores" },
-  })
-
   const { INFO, DELETE_RESTRICTION, LIMIT_COUNT } = useTranslationComponent({
     INFO: {
       en: (
@@ -42,13 +39,15 @@ export default function SequentialInfo() {
       en: (
         <P>
           The number of defined values must be equal to or greater than the number of documents to
-          be generated from the <MiniCode>Schema</MiniCode>
+          be generated from the <MiniCode>schema</MiniCode>.{" "}
+          <A to={SEQUENTIAL.redirect}>Read about sequential fields</A>
         </P>
       ),
       es: (
         <P>
           La cantidad de valores definidos debe ser igual o mayor a la cantidad de documentos a
-          generar del <MiniCode>Schema</MiniCode>
+          generar del <MiniCode>schema</MiniCode>.{" "}
+          <A to={SEQUENTIAL.redirect}>Leer sobre los campos secuenciales</A>
         </P>
       ),
     },
@@ -56,11 +55,11 @@ export default function SequentialInfo() {
 
   return (
     <div className="flex flex-col items-center">
-      <TypeInfo type="default" header="Sequential field">
+      <TypeInfo type="default" header={{ en: "Sequential field", es: "Campo secuencial" }}>
         {INFO}
       </TypeInfo>
 
-      <TypeInfo type="danger" header={DANGER_HEADER}>
+      <TypeInfo type="danger" header={{ en: "Values count", es: "Cantidad de valores" }}>
         {LIMIT_COUNT}
         {DELETE_RESTRICTION}
       </TypeInfo>

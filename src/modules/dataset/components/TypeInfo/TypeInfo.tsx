@@ -1,14 +1,18 @@
 import clsx from "clsx"
 import { useState } from "react"
 import { Header } from "./components"
+import { TranslationConfig } from "@modules/app/modules/language/interfaces"
+import { useLanguage } from "@modules/app/modules/language/hooks"
 
 interface Props {
   children: React.ReactNode
-  header: string
+  header: TranslationConfig<string>
   type: "danger" | "default" | "warning"
 }
 
 export default function TypeInfo({ children, header, type }: Props) {
+  const { language } = useLanguage()
+
   const [active, setActive] = useState(true)
 
   function handleClose() {
@@ -42,7 +46,7 @@ export default function TypeInfo({ children, header, type }: Props) {
 
   return (
     <div className={CLASS}>
-      <Header type={type} handleClose={handleClose} header={header} />
+      <Header type={type} handleClose={handleClose} header={header[language]} />
       <div className="mt-1.5">{children}</div>
     </div>
   )
