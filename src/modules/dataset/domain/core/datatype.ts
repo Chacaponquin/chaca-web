@@ -1,6 +1,6 @@
 import { DATA_TYPES } from "@modules/modules/domain/constants"
 import { ARRAY_VALUE_TYPE } from "../constants"
-import { NodeProps } from "../../interfaces/dataset"
+import { NodeProps } from "./dataset-props"
 import { Module } from "@modules/modules/domain/core/module"
 import { ModuleSection } from "@modules/modules/domain/core/module-section"
 

@@ -1,7 +1,7 @@
 import { DATASET_ACTIONS } from "../domain/constants"
 import { Reducer } from "react"
 import { Schema } from "@modules/dataset/domain/core/schema"
-import { NodeProps } from "@modules/dataset/interfaces/dataset"
+import { NodeProps } from "@modules/dataset/domain/core/dataset-props"
 import {
   AddSchema,
   AddField,

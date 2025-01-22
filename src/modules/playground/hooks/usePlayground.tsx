@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react"
-import { DatasetConnection } from "../../dataset/interfaces/dataset-connect"
+import { DatasetConnection } from "../../dataset/domain/core/dataset-connect"
 import { Edge, getRectOfNodes, getViewportForBounds } from "reactflow"
 import { toPng, toSvg } from "html-to-image"
 import { ImageFormats } from "@modules/config/domain/core"

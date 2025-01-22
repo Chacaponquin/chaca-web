@@ -5,7 +5,7 @@ import {
   NodeProps,
   SearchProps,
   StringInfProps,
-} from "@modules/dataset/interfaces/dataset"
+} from "@modules/dataset/domain/core/dataset-props"
 import {
   IsArrayConfig,
   IsKeyConfig,
@@ -34,7 +34,7 @@ import {
   EmptySequentialFieldError,
 } from "@modules/dataset/errors/dataset"
 import { ValueMapper } from "./value-mapper"
-import { NodesUtils } from "./utils"
+import { NodesUtils } from "./node-utils"
 import { Module } from "@modules/modules/domain/core/module"
 import { SaveFieldDTO } from "@modules/dataset/dto/save"
 import { ExportDatasetFieldDTO } from "@modules/dataset/dto/export"

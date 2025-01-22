@@ -1,7 +1,7 @@
 import { DatasetContext } from "../context"
 import { useCallback, useContext } from "react"
 import { DATASET_ACTIONS } from "../domain/constants"
-import { PossibleFieldToRef } from "../interfaces/ref"
+import { PossibleFieldToRef } from "../domain/core/possible-ref"
 import { SchemaValidator } from "../domain/validators/dataset"
 import { DatasetError } from "../errors/dataset"
 import { usePlayground } from "@modules/playground/hooks"

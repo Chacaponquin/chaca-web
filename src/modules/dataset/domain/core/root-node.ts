@@ -1,4 +1,4 @@
-import { NodesUtils } from "./utils"
+import { NodesUtils } from "./node-utils"
 import { Schema } from "./schema"
 import { Id } from "@modules/shared/domain/id"
 import { Field } from "./field"
