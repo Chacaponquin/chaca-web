@@ -20,7 +20,7 @@ export default function FieldOptions({ field }: Props) {
           </button>
         }
         open={open}
-        onClickOutside={() => setOpen(false)}
+        onClose={() => setOpen(false)}
         position="bottom"
       >
         <FieldConfigMenu field={field} />

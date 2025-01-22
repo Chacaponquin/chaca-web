@@ -14,7 +14,7 @@ export default function Item({ text, image, onChange }: Props) {
       text={text}
       selected={false}
       size="sm"
-      icon={<Image image={image} className="object-contain w-[18px] h-[18px]" />}
+      icon={() => <Image image={image} className="object-contain w-[18px] h-[18px]" />}
     />
   )
 }

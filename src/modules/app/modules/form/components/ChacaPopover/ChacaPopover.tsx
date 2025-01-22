@@ -5,19 +5,19 @@ interface Props {
   parent: JSX.Element
   open: boolean
   position: "bottom" | "top"
-  onClickOutside: () => void
+  onClose(): void
 }
 
-export default function ChacaPopover({ children, parent, position, open, onClickOutside }: Props) {
+export default function ChacaPopover({ children, parent, position, open, onClose }: Props) {
   return (
     <Popover
       isOpen={open}
       content={children}
       positions={[position]}
       clickOutsideCapture={true}
-      align="end"
+      align="start"
       containerClassName="z-50"
-      onClickOutside={onClickOutside}
+      onClickOutside={onClose}
     >
       {parent}
     </Popover>

@@ -1,14 +1,15 @@
 import { Size } from "@form/domain"
+import { IconProps } from "@modules/app/modules/icon/interfaces"
 import clsx from "clsx"
 
 interface Props {
-  onClick(): void
   text: string
   selected: boolean
   size: Size
-  icon?: React.ReactNode
+  icon?: React.FC<IconProps>
   extra?: React.ReactNode
   id?: string
+  onClick?: () => void
 }
 
 export default function PopoverItem({ onClick, text, selected, size, icon, extra, id }: Props) {
@@ -16,6 +17,9 @@ export default function PopoverItem({ onClick, text, selected, size, icon, extra
     "duration-200 transition-all",
     "cursor-pointer",
     "rounded",
+    "w-full",
+    "flex items-center justify-between",
+    "gap-x-7",
 
     {
       "bg-gray-100 dark:bg-scale-3": selected,
@@ -43,7 +47,7 @@ export default function PopoverItem({ onClick, text, selected, size, icon, extra
   return (
     <li className={CLASS} onClick={onClick} id={id}>
       <div className="flex items-center gap-x-3">
-        {icon && <i className="stroke-white fill-white">{icon}</i>}
+        {icon && <i className="stroke-white fill-white">{icon({ size: 18 })}</i>}
 
         <p className="whitespace-nowrap">{text}</p>
       </div>

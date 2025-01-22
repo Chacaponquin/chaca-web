@@ -23,7 +23,7 @@ export default function Language() {
 
   return (
     <ChacaPopover
-      onClickOutside={() => setOpen(false)}
+      onClose={() => setOpen(false)}
       open={open}
       parent={
         <button type="button" className="px-1.5" onClick={() => setOpen((prev) => !prev)}>
@@ -33,7 +33,7 @@ export default function Language() {
       }
       position="bottom"
     >
-      <PopoverList height={300}>
+      <PopoverList>
         <Item
           text={ENGLISH}
           image={APP_IMAGES.FLAGS.UNITED_STATES}

@@ -75,7 +75,7 @@ export default function DatasetMenu({
   ]
 
   return (
-    <PopoverList height={300}>
+    <PopoverList>
       {items.map(({ command, icon, id, onClick, text }, index) => (
         <Item onClick={onClick} text={text} key={index} icon={icon} id={id} command={command} />
       ))}

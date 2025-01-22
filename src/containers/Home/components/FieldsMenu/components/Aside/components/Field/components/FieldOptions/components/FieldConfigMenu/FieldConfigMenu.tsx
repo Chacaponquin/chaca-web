@@ -20,7 +20,7 @@ export default function FieldConfigMenu({ field }: Props) {
   const { handleDeleteField, handleEditField, handleAddSubField } = useFieldConfigMenu({ field })
 
   return (
-    <PopoverList height={300}>
+    <PopoverList>
       <Item text={EDIT_OPTION_TEXT} onClick={handleEditField} />
       {isMixed && <Item text={ADD_FIELD_OPTION_TEXT} onClick={handleAddSubField} />}
       <Item text={DELETE_OPTION_TEXT} onClick={handleDeleteField} />

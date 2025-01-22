@@ -18,7 +18,7 @@ export default function Item({ icon, id, onClick, text, command }: Props) {
       id={id}
       size="sm"
       text={text}
-      icon={icon({ size: 14 })}
+      icon={icon}
       extra={<span className="font-fontCodeMedium text-xs text-gray-500">{command}</span>}
     />
   )

@@ -14,6 +14,13 @@ interface Props {
   nameId: string
 }
 
+const CLASS = clsx(
+  "relative",
+  "flex justify-center items-center",
+  "border-b-[0.5px] border-white",
+  "py-2 px-12",
+)
+
 export default function CardHeader({
   handleDeleteSchema,
   handleEditSchema,
@@ -26,19 +33,12 @@ export default function CardHeader({
 }: Props) {
   const [open, setOpen] = useState(false)
 
-  const CLASS = clsx(
-    "relative",
-    "flex justify-center items-center",
-    "border-b-[0.5px] border-white",
-    "py-2 px-12",
-  )
-
   return (
     <header className={CLASS}>
       <DatasetInfo limit={limit} name={name} />
 
       <ChacaPopover
-        onClickOutside={() => setOpen(false)}
+        onClose={() => setOpen(false)}
         open={open}
         position="bottom"
         parent={<Config name={nameId} />}
