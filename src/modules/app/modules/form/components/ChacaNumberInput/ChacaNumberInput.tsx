@@ -1,4 +1,4 @@
-import { useMemo, useState, useRef } from "react"
+import { useMemo, useState, useRef, useEffect, useCallback } from "react"
 import { ChacaFormProps, Size } from "../../domain"
 import { ArrowDown, ArrowUp } from "@modules/app/modules/icon/components"
 import clsx from "clsx"
@@ -20,11 +20,11 @@ export default function ChacaNumberInput({ min, max, step = 1, value, size, onCh
   const height = useMemo(() => {
     switch (size) {
       case "sm":
-        return 33
+        return 28
       case "base":
-        return 38
+        return 30
       case "lg":
-        return 43
+        return 32
       default:
         return 30
     }
@@ -114,26 +114,35 @@ export default function ChacaNumberInput({ min, max, step = 1, value, size, onCh
     return !(value === undefined)
   }
 
-  function handleInteractKey(key: KeyboardEvent) {
-    if (key.key === "ArrowUp") {
-      if (upButton.current) {
-        upButton.current.click()
+  const handleInteractKey = useCallback(
+    (key: KeyboardEvent) => {
+      if (key.key === "ArrowUp") {
+        if (upButton.current && isFocus) {
+          upButton.current.click()
+        }
+      } else if (key.key === "ArrowDown") {
+        if (downButton.current && isFocus) {
+          downButton.current.click()
+        }
       }
-    } else if (key.key === "ArrowDown") {
-      if (downButton.current) {
-        downButton.current.click()
-      }
+    },
+    [isFocus],
+  )
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleInteractKey)
+
+    return () => {
+      document.removeEventListener("keydown", handleInteractKey)
     }
-  }
+  }, [handleInteractKey])
 
   function handleFocus() {
     setIsFocus(true)
-    document.addEventListener("keydown", handleInteractKey)
   }
 
   function handleBlur() {
     setIsFocus(false)
-    document.removeEventListener("keydown", handleInteractKey)
   }
 
   const CONTAINER_CLASS = clsx(
@@ -155,15 +164,17 @@ export default function ChacaNumberInput({ min, max, step = 1, value, size, onCh
     "bg-transparent",
     "outline-none",
     "py-1.5",
+
     {
-      "text-base": size === "sm",
-      "text-lg": size === "base",
-      "text-xl": size === "lg",
+      "text-sm": size === "sm",
+      "text-base": size === "base",
+      "text-lg": size === "lg",
     },
+
     {
-      "px-3": size === "sm",
-      "px-4": size === "base",
-      "px-5": size === "lg",
+      "px-2.5": size === "sm",
+      "px-3": size === "base",
+      "px-3.5": size === "lg",
     },
   )
 

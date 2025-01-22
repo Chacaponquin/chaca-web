@@ -1,7 +1,6 @@
 import { Size } from "@form/domain"
 import { Check } from "@modules/app/modules/icon/components"
 import clsx from "clsx"
-import { Fragment } from "react"
 
 interface Props {
   check: boolean
@@ -11,12 +10,12 @@ interface Props {
 }
 
 export default function ChacaCheckbox({ check, handleChange, size, id }: Props) {
-  const checkClass = clsx(
+  const CLASS = clsx(
     "flex items-center justify-center",
     "stroke-black",
     "rounded",
     "transition-all durarion-200",
-    "dark:border-[1px] border-[1px]",
+    "border-[1px]",
 
     { "bg-white dark:bg-scale-5": !check },
     { "dark:border-scale-10 border-scale-10": !check },
@@ -25,16 +24,16 @@ export default function ChacaCheckbox({ check, handleChange, size, id }: Props) 
     { "dark:border-scale-7": check },
 
     {
-      "min-w-[32px] min-h-[32px]": size === "lg",
-      "min-w-[29px] min-h-[29px]": size === "base",
-      "min-w-[25px] min-h-[25px]": size === "sm",
+      "min-w-[22px] min-h-[22px]": size === "lg",
+      "min-w-[20px] min-h-[20px]": size === "base",
+      "min-w-[18px] min-h-[18px]": size === "sm",
     },
   )
 
   return (
-    <Fragment>
-      <button type="button" className={checkClass} onClick={() => handleChange(!check)}>
-        {check && <Check size={15} />}
+    <>
+      <button type="button" className={CLASS} onClick={() => handleChange(!check)}>
+        {check && <Check size={11} />}
       </button>
 
       <input
@@ -46,6 +45,6 @@ export default function ChacaCheckbox({ check, handleChange, size, id }: Props) 
         }}
         onChange={(e) => handleChange(e.target.checked)}
       />
-    </Fragment>
+    </>
   )
 }
