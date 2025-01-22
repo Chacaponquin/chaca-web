@@ -21,8 +21,8 @@ import {
   ExportSchemaModalProps,
 } from "@containers/Home/domain/modal"
 import { ExportImageProps } from "@containers/Home/domain/props"
-import { Schema } from "@modules/dataset/domain/core"
 import { ExportFileConfigDTO } from "@modules/config/dto/file"
+import { Schema } from "@modules/dataset/domain/core/schema"
 
 interface Props {
   handleExportImage(props: ExportImageProps): void

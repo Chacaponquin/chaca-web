@@ -1,5 +1,5 @@
 import { SaveFieldDTO } from "@modules/dataset/dto/save"
-import { Schema } from "./dataset"
+import { Schema } from "./schema"
 
 interface Props {
   version: string

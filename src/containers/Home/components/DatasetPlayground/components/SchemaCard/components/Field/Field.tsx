@@ -1,8 +1,8 @@
-import { Field as FieldNode, MixedNode } from "@modules/dataset/domain/core"
 import { Connect, FieldKeyIcon, FieldName, FieldType } from "./components"
 import { Position } from "reactflow"
 import { Fragment } from "react"
 import { useField } from "./hooks"
+import { Field as FieldNode, MixedNode } from "@modules/dataset/domain/core/field"
 
 interface Props {
   field: FieldNode

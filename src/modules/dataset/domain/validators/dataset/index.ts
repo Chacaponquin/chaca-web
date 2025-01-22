@@ -1,7 +1,7 @@
 import { Validator } from "@modules/app/domain/validator"
-import { Schema } from "../../core"
 import { DatasetNameValidator } from "./name-validator"
 import { NoDuplicateSchema } from "./no-duplicate"
+import { Schema } from "../../core/schema"
 
 interface Props {
   dataset: Schema[]

@@ -7,8 +7,8 @@ import {
   DatatypeConfig,
   KeyConfig,
 } from "./components"
-import { Field } from "@modules/dataset/domain/core"
 import { FieldActions } from "../../domain/field"
+import { Field } from "@modules/dataset/domain/core/field"
 
 type Props = FieldActions & { schemaId: string }
 

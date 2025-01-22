@@ -12,7 +12,7 @@ import {
   ExportDatasetImageModalProps,
   ExportSchemaModalProps,
 } from "../domain/modal"
-import { Schema } from "@modules/dataset/domain/core"
+import { Schema } from "@modules/dataset/domain/core/schema"
 import { DatasetError } from "@modules/dataset/errors/dataset"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { useContext } from "react"

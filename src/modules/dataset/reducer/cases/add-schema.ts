@@ -1,4 +1,4 @@
-import { Schema } from "@modules/dataset/domain/core"
+import { Schema } from "@modules/dataset/domain/core/schema"
 import { DatasetUseCase } from "./base-use-case"
 import { DatasetNameGenerator } from "./schema-name-generator"
 import { Id } from "@modules/shared/domain/id"

@@ -1,4 +1,4 @@
-import { Schema } from "@modules/dataset/domain/core"
+import { Schema } from "@modules/dataset/domain/core/schema"
 
 interface Props {
   name: string

@@ -1,6 +1,8 @@
 import { DatasetError, RepeatSameLevelFieldNameError } from "@modules/dataset/errors/dataset"
 import { IValidator } from "@modules/app/domain/validator"
-import { Schema, MixedNode, RootNode } from "@modules/dataset/domain/core"
+import { Schema } from "../../core/schema"
+import { MixedNode } from "../../core/field"
+import { RootNode } from "../../core/root-node"
 
 interface Props {
   dataset: Schema[]

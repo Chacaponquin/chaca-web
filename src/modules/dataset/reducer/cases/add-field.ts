@@ -1,6 +1,7 @@
-import { Schema, Field, MixedNode } from "@modules/dataset/domain/core"
 import { NodeProps } from "@modules/dataset/interfaces/dataset"
 import { DatasetUseCase } from "./base-use-case"
+import { Schema } from "@modules/dataset/domain/core/schema"
+import { Field, MixedNode } from "@modules/dataset/domain/core/field"
 
 interface ExecuteProps {
   schemaId: string
@@ -10,7 +11,7 @@ interface ExecuteProps {
 }
 
 export class AddField extends DatasetUseCase<ExecuteProps> {
-  public execute({ schemaId, field, parentId, next }: ExecuteProps): Array<Schema> {
+  public execute({ schemaId, field, parentId, next }: ExecuteProps): Schema[] {
     const newNode = Field.create(field)
 
     const newDataset = this.dataset.map((d) => {

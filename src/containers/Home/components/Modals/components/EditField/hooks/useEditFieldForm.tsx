@@ -1,8 +1,8 @@
 import { useDataset } from "@modules/dataset/hooks"
 import { useModal } from "@modules/modal/hooks"
-import { Field } from "@modules/dataset/domain/core"
 import { useToast } from "@modules/app/modules/toast/hooks"
 import { useFieldForm } from "../../../shared/hooks"
+import { Field } from "@modules/dataset/domain/core/field"
 
 interface Props {
   field: Field

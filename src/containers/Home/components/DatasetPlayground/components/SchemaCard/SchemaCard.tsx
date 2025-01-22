@@ -1,4 +1,4 @@
-import { Schema } from "@modules/dataset/domain/core"
+import { Schema } from "@modules/dataset/domain/core/schema"
 import { CardHeader, Field } from "./components"
 import { useSchemaCard } from "./hooks"
 import clsx from "clsx"

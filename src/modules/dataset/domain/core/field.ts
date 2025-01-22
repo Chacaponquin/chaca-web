@@ -33,7 +33,7 @@ import {
   EmptyRefFieldError,
   EmptySequentialFieldError,
 } from "@modules/dataset/errors/dataset"
-import { ValueMapper } from "./mapper"
+import { ValueMapper } from "./value-mapper"
 import { NodesUtils } from "./utils"
 import { ModuleSection, Module } from "@modules/modules/domain/core/schema"
 import { SaveFieldDTO } from "@modules/dataset/dto/save"

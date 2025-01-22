@@ -1,8 +1,9 @@
-import { Schema, RefNode } from "@modules/dataset/domain/core"
 import { DatasetUseCase } from "./base-use-case"
 import { DATA_TYPES } from "@modules/modules/domain/constants"
 import { DeleteReceiveRef } from "./delete-receive-ref"
-import { FieldProps } from "@modules/dataset/dto/field"
+import { FieldProps } from "@modules/dataset/domain/core/field-props"
+import { Schema } from "@modules/dataset/domain/core/schema"
+import { RefNode } from "@modules/dataset/domain/core/field"
 
 interface ExecuteProps {
   schemaId: string

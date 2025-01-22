@@ -1,5 +1,5 @@
 import { CardProps } from "@containers/Home/components/DatasetPlayground/components"
-import { Schema } from "@modules/dataset/domain/core"
+import { Schema } from "@modules/dataset/domain/core/schema"
 import { Id } from "@modules/shared/domain/id"
 import { Edge, Node, Viewport } from "reactflow"
 

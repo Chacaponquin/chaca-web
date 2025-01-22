@@ -1,6 +1,5 @@
 import { useEffect, Dispatch, Reducer, createContext, useReducer, useState } from "react"
 import { DatasetPayload, datasetReducer } from "../reducer/dataset"
-import { Schema, Field, SaveDataset } from "@modules/dataset/domain/core"
 import { useModules } from "@modules/modules/hooks"
 import { useLocalStorage } from "@modules/app/hooks"
 import { STORAGE_KEYS } from "@modules/app/constants"
@@ -12,7 +11,9 @@ import { useTranslation } from "@modules/app/modules/language/hooks"
 import { usePlayground } from "@modules/playground/hooks"
 import { DatasetNodeBuilder } from "@modules/playground/domain"
 import { SchemaSearcher } from "@modules/modules/domain/core/search"
-import { ISaveDataset, LoadDataset, SaveSchema } from "../domain/core/save"
+import { ISaveDataset, LoadDataset, SaveDataset, SaveSchema } from "../domain/core/save"
+import { Schema } from "../domain/core/schema"
+import { Field } from "../domain/core/field"
 
 interface Props {
   dataset: Schema[]

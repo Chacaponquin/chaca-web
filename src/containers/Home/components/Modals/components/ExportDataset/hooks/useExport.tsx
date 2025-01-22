@@ -1,5 +1,5 @@
 import { useToast } from "@modules/app/modules/toast/hooks"
-import { Schema } from "@modules/dataset/domain/core"
+import { Schema } from "@modules/dataset/domain/core/schema"
 import { ExportDatasetValidator } from "@modules/dataset/domain/validators/export"
 import { useDataset } from "@modules/dataset/hooks"
 import { useModal } from "@modules/modal/hooks"

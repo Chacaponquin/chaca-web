@@ -9,18 +9,18 @@ interface Props {
   loading: boolean
 }
 
+const CLASS = clsx(
+  "flex flex-col justify-between",
+  "w-full max-w-[320px]",
+  "h-full",
+  "bg-white dark:bg-scale-3",
+  "shadow-lg",
+  "px-4",
+)
+
 export default function Aside({ handleAddNewField, loading }: Props) {
   const { selectedSchema, handleCloseFieldsMenu, showFieldsMenu } = useDataset()
   const { smallWindow } = useContext(HomeContext)
-
-  const CLASS = clsx(
-    "flex flex-col justify-between",
-    "w-full max-w-[320px]",
-    "h-full",
-    "bg-white dark:bg-scale-3",
-    "shadow-lg",
-    "px-4",
-  )
 
   return (
     <aside className={CLASS} onClick={(e) => e.stopPropagation()}>

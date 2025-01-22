@@ -1,8 +1,8 @@
 import { Config } from "@modules/app/modules/icon/components"
 import { FieldConfigMenu } from "./components"
-import { Field } from "@modules/dataset/domain/core"
 import { ChacaPopover } from "@modules/app/modules/form/components"
 import { useState } from "react"
+import { Field } from "@modules/dataset/domain/core/field"
 
 interface Props {
   field: Field

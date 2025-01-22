@@ -1,8 +1,8 @@
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useFieldConfigMenu } from "./hooks"
 import { Item } from "./components"
-import { Field, MixedNode } from "@modules/dataset/domain/core"
 import { PopoverList } from "@modules/app/modules/form/components/ChacaPopover/components"
+import { Field, MixedNode } from "@modules/dataset/domain/core/field"
 
 interface Props {
   field: Field

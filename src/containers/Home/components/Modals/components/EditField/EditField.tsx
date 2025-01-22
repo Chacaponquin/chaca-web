@@ -1,8 +1,8 @@
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useEditFieldForm } from "./hooks"
-import { Field } from "@modules/dataset/domain/core"
 import { Modal } from "@modules/modal/components"
 import { FieldForm } from "../../shared/components"
+import { Field } from "@modules/dataset/domain/core/field"
 
 interface Props {
   field: Field

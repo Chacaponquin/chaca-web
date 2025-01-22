@@ -1,5 +1,5 @@
 import { NodesUtils } from "./utils"
-import { Schema } from "./dataset"
+import { Schema } from "./schema"
 import { Id } from "@modules/shared/domain/id"
 import { Field } from "./field"
 

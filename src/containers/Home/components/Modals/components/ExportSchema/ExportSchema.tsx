@@ -2,7 +2,7 @@ import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useExport } from "./hooks"
 import { DatasetExportForm } from "../../shared/components"
 import { Modal } from "@modules/modal/components"
-import { Schema } from "@modules/dataset/domain/core"
+import { Schema } from "@modules/dataset/domain/core/schema"
 import { ExportFileConfigDTO } from "@modules/config/dto/file"
 
 interface Props {

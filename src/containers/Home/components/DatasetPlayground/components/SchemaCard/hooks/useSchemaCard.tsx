@@ -13,7 +13,7 @@ import {
   EditSchemaCommand,
   ExportDatasetCommand,
 } from "@modules/dataset/domain/commands"
-import { Schema } from "@modules/dataset/domain/core"
+import { Schema } from "@modules/dataset/domain/core/schema"
 import { useDataset } from "@modules/dataset/hooks"
 import { useModal } from "@modules/modal/hooks"
 import { useMemo } from "react"

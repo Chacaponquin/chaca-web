@@ -1,6 +1,6 @@
 import { useTranslation } from "@modules/app/modules/language/hooks"
 import { useEditSchema } from "./hooks"
-import { Schema } from "@modules/dataset/domain/core"
+import { Schema } from "@modules/dataset/domain/core/schema"
 import { Modal } from "@modules/modal/components"
 import { DatasetForm } from "../../shared/components"
 

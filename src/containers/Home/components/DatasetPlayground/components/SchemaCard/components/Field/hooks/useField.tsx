@@ -1,5 +1,5 @@
 import { EditFieldModalProps } from "@containers/Home/domain/modal"
-import { Field } from "@modules/dataset/domain/core"
+import { Field } from "@modules/dataset/domain/core/field"
 import { useDataset } from "@modules/dataset/hooks"
 import { useModal } from "@modules/modal/hooks"
 import { useMemo } from "react"

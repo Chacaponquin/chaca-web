@@ -1,7 +1,6 @@
-import { Fragment } from "react"
 import { FieldName, FieldOptions, OpenFieldsButton, Point } from "./components"
 import { useFieldContainer } from "./hooks"
-import { Field as IField, MixedNode } from "@modules/dataset/domain/core"
+import { Field as IField, MixedNode } from "@modules/dataset/domain/core/field"
 
 interface Props {
   field: IField
@@ -16,13 +15,13 @@ export default function Field({ margin, field }: Props) {
       <div className="w-full flex items-center gap-x-4 justify-between py-2 transition-all duration-300">
         <div className="flex items-center">
           {field instanceof MixedNode ? (
-            <Fragment>
+            <>
               {field.nodes.length === 0 ? (
                 <Point />
               ) : (
                 <OpenFieldsButton onClick={handleInteractSubFields} open={subFieldsOpen} />
               )}
-            </Fragment>
+            </>
           ) : (
             <Point />
           )}

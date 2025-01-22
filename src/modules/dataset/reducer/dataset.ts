@@ -1,6 +1,6 @@
 import { DATASET_ACTIONS } from "../domain/constants"
 import { Reducer } from "react"
-import { Schema } from "@modules/dataset/domain/core"
+import { Schema } from "@modules/dataset/domain/core/schema"
 import { NodeProps } from "@modules/dataset/interfaces/dataset"
 import {
   AddSchema,
@@ -14,7 +14,7 @@ import {
 } from "./cases"
 import { DeleteReceiveRef } from "./cases/delete-receive-ref"
 import { DatasetNameGenerator } from "./cases/schema-name-generator"
-import { FieldProps } from "../dto/field"
+import { FieldProps } from "../domain/core/field-props"
 
 export type DatasetPayload =
   | {

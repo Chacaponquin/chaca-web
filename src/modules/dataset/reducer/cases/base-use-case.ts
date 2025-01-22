@@ -1,4 +1,4 @@
-import { Schema } from "@modules/dataset/domain/core"
+import { Schema } from "@modules/dataset/domain/core/schema"
 
 export abstract class DatasetUseCase<T = undefined> {
   constructor(protected readonly dataset: Schema[]) {}

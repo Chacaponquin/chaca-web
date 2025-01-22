@@ -1,4 +1,5 @@
-import { Schema, Field } from "@modules/dataset/domain/core"
+import { Field } from "@modules/dataset/domain/core/field"
+import { Schema } from "@modules/dataset/domain/core/schema"
 import { ModalProps } from "@modules/modal/domain"
 
 export class DeleteAllSchemasModalProps extends ModalProps {}

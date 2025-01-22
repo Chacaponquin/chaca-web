@@ -4,11 +4,11 @@ import { RefFieldValidator } from "./RefFieldValidator"
 import { EnumValuesValidator } from "./EnumValuesValidator"
 import { PickValuesValidator } from "./PickValuesValidator"
 import { ProbabilityValuesValidator } from "./ProbabilityValuesValidator"
-import { Schema } from "../../core"
 import { FieldDatatype } from "@modules/dataset/domain/core/datatype"
 import { CustomFieldValidator } from "./CustomFieldValidator"
 import { FieldNameValidator } from "./FieldNameValidator"
 import { NoDuplicateLevelField } from "./NoDuplicateLevelField"
+import { Schema } from "../../core/schema"
 
 interface Props {
   name: string

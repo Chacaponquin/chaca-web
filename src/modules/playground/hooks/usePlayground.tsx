@@ -1,11 +1,11 @@
 import { useContext, useEffect } from "react"
-import { Schema } from "../../dataset/domain/core"
 import { DatasetConnection } from "../../dataset/interfaces/dataset-connect"
 import { Edge, getRectOfNodes, getViewportForBounds } from "reactflow"
 import { toPng, toSvg } from "html-to-image"
 import { ImageFormats } from "@modules/config/domain/core"
 import { PlaygroundContext } from "../context"
 import { DatasetEdgeBuilder } from "../domain"
+import { Schema } from "@modules/dataset/domain/core/schema"
 
 interface GenerateImageProps {
   success(img: string): void

@@ -1,14 +1,15 @@
 import { DatasetContext } from "../context"
 import { useCallback, useContext } from "react"
 import { DATASET_ACTIONS } from "../domain/constants"
-import { Schema, Field } from "@modules/dataset/domain/core"
 import { PossibleFieldToRef } from "../interfaces/ref"
 import { SchemaValidator } from "../domain/validators/dataset"
 import { DatasetError } from "../errors/dataset"
 import { usePlayground } from "@modules/playground/hooks"
 import { DatasetNodeBuilder } from "@modules/playground/domain"
 import { FieldValidator } from "../domain/validators/field"
-import { FieldProps } from "../dto/field"
+import { FieldProps } from "../domain/core/field-props"
+import { Field } from "../domain/core/field"
+import { Schema } from "../domain/core/schema"
 
 interface AddFieldProps {
   field: FieldProps
